@@ -62,16 +62,23 @@ void qsynthPresetForm::setup ( fluid_synth_t *pSynth, int iChan )
     
     // Load and set the dialog controls.
     fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, m_iChan);
-    if (pPreset) {
-        int iSoundFontIndex = findSoundFontIndex((pPreset->sfont)->id);
-        SoundFontComboBox->setCurrentItem(iSoundFontIndex);
-        soundfontChanged();
-        int iBankIndex = findBankIndex(pPreset->get_banknum(pPreset));
-        BankListBox->setCurrentItem(iBankIndex);
-        bankChanged();
-        int iProgramIndex = findProgramIndex(pPreset->get_num(pPreset));
-        ProgramListBox->setCurrentItem(iProgramIndex);
-    }
+
+    int iSoundFontIndex = 0;
+    if (pPreset)
+        iSoundFontIndex = findSoundFontIndex((pPreset->sfont)->id);
+    SoundFontComboBox->setCurrentItem(iSoundFontIndex);
+    soundfontChanged();
+
+    int iBankIndex = 0;
+    if (pPreset)
+        iBankIndex = findBankIndex(pPreset->get_banknum(pPreset));
+    BankListBox->setCurrentItem(iBankIndex);
+    bankChanged();
+
+    int iProgramIndex = 0;
+    if (pPreset)
+        iProgramIndex = findProgramIndex(pPreset->get_num(pPreset));
+    ProgramListBox->setCurrentItem(iProgramIndex);
 }
 
 
@@ -104,6 +111,8 @@ void qsynthPresetForm::acceptForm()
         int iProgram = ProgramListBox->currentText().section(':', 0, 0).toInt();
         // And set it right away...
         ::fluid_synth_program_select(m_pSynth, m_iChan, iSFID, iBank, iProgram);
+        // Maybe this is needed to stabilize things around.
+        ::fluid_synth_program_reset(m_pSynth);
         // We got it.
         accept();
     }

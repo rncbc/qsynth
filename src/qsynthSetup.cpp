@@ -544,6 +544,9 @@ bool qsynthSetup::loadPreset ( fluid_synth_t *pSynth, const QString& sPreset )
     }
     m_settings.endGroup();
 
+    // Recommended to post-stabilize things around.
+    ::fluid_synth_program_reset(pSynth);
+
     return true;
 }
 

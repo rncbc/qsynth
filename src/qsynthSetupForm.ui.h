@@ -466,7 +466,18 @@ void qsynthSetupForm::addSoundFont()
     const QString& sSoundFont = SoundFontComboBox->currentText();
     if (sSoundFont.isEmpty())
         return;
-        
+
+    // Check if not already there...
+    if (SoundFontListView->findItem(sSoundFont, 1) &&
+        QMessageBox::warning(this, tr("Warning"),
+            tr("Soundfont file already on list") + ":\n\n" +
+            "\"" + sSoundFont + "\"\n\n" +
+            tr("Add anyway?"),
+            tr("OK"), tr("Cancel")) > 0) {
+        return;
+    }
+
+    // Ready to add this soundfont to list.
     QListViewItem *pItem = NULL;
     if (::fluid_is_soundfont((char *) sSoundFont.latin1())) {
         pItem = SoundFontListView->selectedItem();
@@ -491,7 +502,7 @@ void qsynthSetupForm::addSoundFont()
             tr("Failed to add soundfont file") + ":\n\n" +
             "\"" + sSoundFont + "\"\n\n" +
             tr("Please, check for a valid soundfont file."),
-            tr("OK"));
+            tr("Cancel"));
     }
     
     refreshSoundFonts();

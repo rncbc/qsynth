@@ -287,6 +287,8 @@ void qsynthChannelsForm::savePreset (void)
         resetPresets();
         PresetComboBox->setCurrentText(sPreset);
         m_iDirtySetup--;
+        // Again special, force this the default preset.
+        m_pSetup->sDefPreset = sPreset;
         // Not dirty anymore, by definition.
         m_iDirtyCount = 0;
     }
