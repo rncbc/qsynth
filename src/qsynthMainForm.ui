@@ -200,7 +200,7 @@
                                 <number>50</number>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Chorus Speed Hz</string>
+                                <string>Chorus Speed (Hz)</string>
                             </property>
                         </widget>
                         <widget class="QSpinBox" row="2" column="0">
@@ -225,7 +225,7 @@
                                 <number>3</number>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Chorus Speed Hz</string>
+                                <string>Chorus Speed (Hz)</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="0" column="0">
@@ -291,7 +291,7 @@
                                 <number>100</number>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Chorus Nr</string>
+                                <string>Number of Chorus Stages</string>
                             </property>
                         </widget>
                         <widget class="QSpinBox" row="2" column="0">
@@ -313,7 +313,7 @@
                                 <number>100</number>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Chorus N State</string>
+                                <string>Number of Chorus Stages</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="0" column="0">
@@ -376,7 +376,7 @@
                                 <number>100</number>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Chorus Depth ms</string>
+                                <string>Chorus Depth (ms)</string>
                             </property>
                         </widget>
                         <widget class="QSpinBox" row="2" column="0">
@@ -398,7 +398,7 @@
                                 <number>100</number>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Chorus Depth ms</string>
+                                <string>Chorus Depth (ms)</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="0" column="0">
@@ -441,7 +441,7 @@
                                 <string></string>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Chorus Active</string>
+                                <string>Chorus effect activation</string>
                             </property>
                         </widget>
                         <widget class="QLabel">
@@ -551,7 +551,7 @@
                                 <number>100</number>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Reverb Damp</string>
+                                <string>Reverb Damp Factor</string>
                             </property>
                         </widget>
                         <widget class="QSpinBox" row="2" column="0">
@@ -573,7 +573,7 @@
                                 <number>100</number>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Reverb Damp</string>
+                                <string>Reverb Damp Factor</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="0" column="0">
@@ -863,7 +863,7 @@
                         <string>Alt+T</string>
                     </property>
                     <property name="toolTip" stdset="0">
-                        <string>Reverb Active</string>
+                        <string>Reverb effect activation</string>
                     </property>
                 </widget>
             </grid>
@@ -1163,6 +1163,9 @@
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter|AlignRight</set>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>MIDI Input</string>
                     </property>
                 </widget>
                 <widget class="QLabel">

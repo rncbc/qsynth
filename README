@@ -1,8 +1,11 @@
 qsynth - A fluidsynth Qt GUI Interface
 --------------------------------------
 
-qsynth is a fluidsynth front-end written in C++ around the Qt3 toolkit for X11,
-most exclusively using Qt Designer.
+QSynth is a fluidsynth GUI front-end application written in C++ around the Qt3
+toolkit using Qt Designer. Eventually it may evolve into a softsynth management
+application allowing the user to control and manage a variety of command line
+softsynths but for the moment it wraps the excellent FluidSynth (http://www.fluidsynth.org).
+FluidSynth is a command line software synthesiser based on the Soundfont specification.
 
 Homepage: http://qsynth.sourceforge.net
 
@@ -12,7 +15,8 @@ License: GNU General Public License (GPL)
 Installation
 ------------
 
-This is standard for source distributions:
+The installation procedure follows the standard for source distributions.
+Unpack the tarball and in the extracted source directory:
 
     ./configure [--prefix=/usr/local]
     make
@@ -21,6 +25,54 @@ and optionally as root:
 
     make install
 
-And that's all.
+This procedure will end installing the following couple of files:
 
+    ${prefix}/bin/qsynth
+    ${prefix}/share/icons/qsynth.xpm
+
+Just launch ${prefix}/bin/qsynth and you're off (hopefully).
+
+Note that the default installation path ${prefix} is /usr/local.
+
+
+Configuration
+-------------
+
+QSynth holds its settings and configuration state per user, in a file
+located as $HOME/.qt/qsynthrc. Normally, there's no need to edit this file,
+as it is recreated and rewritten everytime qsynth is run.
+
+Bugs
+----
+
+Plenty still as this is alpha software ;)
+
+
+Support
+-------
+
+QSynth is open source free software. For bug reports, feature requests,
+discussion forums, mailling lists, or any other matter related to the
+development of this piece of software, please use the Sourceforge
+project page (http://sourceforge.net/projects/qsynth).
+
+
+Acknowledgements
+----------------
+
+QSynth has been created by Rui Nuno Capela, Richard Bown and Chris Cannam
+to bring a simple but effective software synthesier front end to the Linux
+desktop.  From an original idea by Richard Bown and Chris Cannam to create
+an open software synthesiser front end to use in conjunction with Rosegarden
+(http://www.sourceforge.net/projects/rosegarden) and other ALSA based
+software sequencers.
+
+Inspired by Rui's work on QjackCtl (http://qjackctl.sourceforge.net).
+
+
+Enjoy.
+
+rncbc aka Rui Nuno Capela <rncbc at rncbc dot org>
+bownie aka Richard Bown <bownie at bownie dot com>
+cannam aka Chris Cannam <cannam at all dash day dash breakfast dot com>
 
