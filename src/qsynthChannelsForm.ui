@@ -310,6 +310,7 @@
     <slot specifier="non virtual">savePreset()</slot>
     <slot specifier="non virtual">deletePreset()</slot>
     <slot specifier="non virtual">resetPresets()</slot>
+    <slot specifier="non virtual">resetAllChannels( void )</slot>
     <slot specifier="non virtual">updateAllChannels( void )</slot>
     <slot specifier="non virtual">editSelectedChannel( void )</slot>
     <slot specifier="non virtual">contextMenu(QListViewItem *, const QPoint&amp;, int)</slot>

@@ -449,15 +449,12 @@ void qsynthMainForm::stabilizeForm (void)
 // Program reset command slot (all channels).
 void qsynthMainForm::programReset (void)
 {
-    if (m_pSynth == NULL)
-        return;
-        
-    appendMessages("fluid_synth_program_reset");
-    ::fluid_synth_program_reset(m_pSynth);
-
-    if (m_pChannelsForm)
-        m_pChannelsForm->updateAllChannels();
-
+    if (m_pSynth) {
+        appendMessages("fluid_synth_program_reset");
+        ::fluid_synth_program_reset(m_pSynth);
+        if (m_pChannelsForm)
+            m_pChannelsForm->resetAllChannels();
+    }
     stabilizeForm();
 }
 
@@ -465,19 +462,17 @@ void qsynthMainForm::programReset (void)
 // System reset command slot.
 void qsynthMainForm::systemReset (void)
 {
-    if (m_pSynth == NULL)
-        return;
-
+    if (m_pSynth) {
 #ifdef CONFIG_FLUID_RESET
-    appendMessages("fluid_synth_system_reset");
-    ::fluid_synth_system_reset(m_pSynth);
+        appendMessages("fluid_synth_system_reset");
+        ::fluid_synth_system_reset(m_pSynth);
 #else
-    appendMessages("fluid_synth_program_reset");
-    ::fluid_synth_program_reset(m_pSynth);
+        appendMessages("fluid_synth_program_reset");
+        ::fluid_synth_program_reset(m_pSynth);
 #endif
-    if (m_pChannelsForm)
-        m_pChannelsForm->updateAllChannels();
-
+        if (m_pChannelsForm)
+            m_pChannelsForm->resetAllChannels();
+    }
     stabilizeForm();
 }
 
@@ -486,7 +481,7 @@ void qsynthMainForm::systemReset (void)
 void qsynthMainForm::promptRestart (void)
 {
     bool bRestart = true;
-    
+
     // If currently running, prompt user...
     if (m_pSynth) {
         bRestart = (QMessageBox::warning(this, tr("Warning"),
@@ -497,7 +492,7 @@ void qsynthMainForm::promptRestart (void)
             tr("Do you want to restart the engine now?"),
             tr("Yes"), tr("No")) == 0);
     }
-    
+
     // If allowed, just restart the engine...
     if (bRestart)
         restartSynth();
@@ -741,11 +736,11 @@ bool qsynthMainForm::startSynth (void)
             }
         }
     }
-    
+
     // All is right.
     appendMessages(tr("Synthesizer engine started."));
     // Show up our efforts :)
-    stabilizeForm();
+    programReset();
 
     return true;
 }

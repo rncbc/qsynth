@@ -128,7 +128,7 @@ void qsynthChannelsForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
         PresetComboBox->setCurrentText(m_pSetup->sDefPreset);
         m_iDirtySetup--;
         // Load default preset and update/refresh the whole thing...
-        changePreset(PresetComboBox->currentText());
+        resetAllChannels();
     }
 }
 
@@ -142,7 +142,7 @@ void qsynthChannelsForm::updateChannel ( int iChan )
         return;
 
     qsynthChannelsViewItem *pItem = m_ppChannels[iChan];
-    
+
     fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, iChan);
     if (pPreset) {
         pItem->setText(QSYNTH_CHANNELS_SFID, QString::number((pPreset->sfont)->id));
@@ -162,16 +162,27 @@ void qsynthChannelsForm::updateChannel ( int iChan )
     }
 }
 
+
 // All channels update.
 void qsynthChannelsForm::updateAllChannels (void)
 {
     if (m_pSynth == NULL || m_ppChannels == NULL)
         return;
-        
+
     for (int iChan = 0; iChan < m_iChannels; iChan++)
         updateChannel(iChan);
-        
+
     stabilizeForm();
+}
+
+
+// All channels reset update.
+void qsynthChannelsForm::resetAllChannels (void)
+{
+    if (m_pSetup == NULL)
+        return;
+
+    changePreset(m_pSetup->sDefPreset);
 }
 
 
@@ -225,7 +236,7 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
     int iChan = (pItem->text(QSYNTH_CHANNELS_CHAN).toInt() - 1);
     if (iChan < 0 || iChan >= m_iChannels)
         return;
-        
+
     qsynthPresetForm *pPresetForm = new qsynthPresetForm(this);
     if (pPresetForm) {
         // The the proper context.
@@ -256,7 +267,7 @@ void qsynthChannelsForm::changePreset( const QString& sPreset )
         // This is clean now, for sure.
         m_iDirtyCount = 0;
     }
-    
+
     stabilizeForm();
 }
 
