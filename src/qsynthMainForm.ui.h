@@ -32,6 +32,10 @@
 
 #include "config.h"
 
+#ifdef CONFIG_SIGNAL
+#include <signal.h>
+#endif
+
 #include "qsynthAbout.h"
 
 // Timer constant stuff.
@@ -225,6 +229,11 @@ void qsynthMainForm::init (void)
     m_pMessagesForm  = NULL;
     m_pChannelsForm  = NULL;
     
+#ifdef CONFIG_SIGNAL
+	// Set to ignore any fatal "Broken pipe" signals.
+	::signal(SIGPIPE, SIG_IGN);
+#endif
+
     // TabBar management.
     QObject::connect(TabBar, SIGNAL(selected(int)), this, SLOT(tabSelect(int)));
     QObject::connect(TabBar, SIGNAL(contextMenuRequested(qsynthTab *, const QPoint &)), this, SLOT(tabContextMenu(qsynthTab *, const QPoint &)));
