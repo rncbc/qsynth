@@ -5,6 +5,8 @@ ChangeLog
 
 0.2.2   2004-09-27  Output level peak meters and other fixes.
 
+- Minor configure fixes.
+
 - Meanwhile, XPM icon(s) were brainlessly converted to PNG format.
 
 - Engine panel settings are now properly saved on stop/restart.
