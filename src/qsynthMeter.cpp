@@ -94,7 +94,7 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 	drawLineLabel(p, m_pMeter->iec_level(QSYNTHMETER_6DB),  "6");
 	drawLineLabel(p, m_pMeter->iec_level(QSYNTHMETER_10DB), "10");
 
-	for (float dB = -15.0; dB > QSYNTHMETER_MINDB; dB -= 5.0)
+	for (float dB = -20.0; dB > QSYNTHMETER_MINDB; dB -= 10.0)
 		drawLineLabel(p, m_pMeter->iec_scale(dB), QString::number((int) -dB));
 }
 
