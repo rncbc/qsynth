@@ -3,13 +3,17 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.0.2   2003-11-24  Minor bugfixes.
+0.0.2   2003-11-25  Minor bugfixes.
+
+- Gain, Reverb and Chorus front-panel settings are now loosely scaled
+  and properly clipped; this is a first attempt to avoid unstable sound
+  feedback behaviour namely on Reverb.
 
 - MIDI input status led stickyness has been fixed.
 
 - Soundfont open dialog now uses uppercase filter too (*.SF2).
 
-- New configure argument debugging option.
+- New configure time argument debugging option.
 
 
 0.0.1   2003-11-15  Primordial release.
