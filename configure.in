@@ -126,6 +126,12 @@ if test "x$ac_fluid_server" = "xyes"; then
    AC_DEFINE(CONFIG_FLUID_SERVER, 1, [new_fluid_server is defined.])
 fi
 
+dnl Check for fluid_synth_system_reset function.
+AC_CHECK_LIB(fluidsynth, fluid_synth_system_reset, [ac_fluid_reset="yes"], [ac_fluid_reset="no"])
+if test "x$ac_fluid_reset" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_RESET, 1, [fluid_synth_system_reset is defined.])
+fi
+
 dnl Finally produce a configure header file and the makefiles.
 AC_OUTPUT(Makefile qsynth.pro)
 

@@ -17,6 +17,9 @@ IMAGES   = icons/qsynth.xpm \
            icons/about1.png \
            icons/accept1.png \
            icons/quit1.png \
+           icons/reset1.png \
+           icons/panic1.png \
+           icons/restart1.png \
            icons/ledoff1.png \
            icons/ledon1.png \
            icons/sfont1.png \
