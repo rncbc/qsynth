@@ -538,10 +538,8 @@ bool qsynthSetup::loadPreset ( fluid_synth_t *pSynth, const QString& sPreset )
         if (sEntry.isEmpty())
             break;
         if (iChan == sEntry.section(':', 0, 0).toInt()) {
-            int iSFID = sEntry.section(':', 1, 1).toInt();
-            int iBank = sEntry.section(':', 2, 2).toInt();
-            int iProg = sEntry.section(':', 3, 3).toInt();
-            ::fluid_synth_program_select(pSynth, iChan, iSFID, iBank, iProg);
+            ::fluid_synth_bank_select(pSynth, iChan, sEntry.section(':', 1, 1).toInt());
+            ::fluid_synth_program_change(pSynth, iChan, sEntry.section(':', 2, 2).toInt());
         }
     }
     m_settings.endGroup();
@@ -574,8 +572,6 @@ bool qsynthSetup::savePreset ( fluid_synth_t *pSynth, const QString& sPreset )
         fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(pSynth, iChan);
         if (pPreset) {
             QString sEntry = QString::number(iChan);
-            sEntry += ":";
-            sEntry += QString::number((pPreset->sfont)->id);
             sEntry += ":";
             sEntry += QString::number(pPreset->get_banknum(pPreset));
             sEntry += ":";
