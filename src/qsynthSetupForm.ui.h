@@ -450,10 +450,10 @@ void qsynthSetupForm::refreshSoundFonts()
 void qsynthSetupForm::browseSoundFont()
 {
     QString sSoundFont = QFileDialog::getOpenFileName(
-            m_sSoundFontDir,                        // Start here.
-            tr("Soundfont files") + " (*.sf2)",     // Filter (XML files)
-            this, 0,                                // Parent and name (none)
-            tr("Soundfont file")                    // Caption.
+            m_sSoundFontDir,                            // Start here.
+            tr("Soundfont files") + " (*.sf2 *.SF2)",   // Filter (XML files)
+            this, 0,                                    // Parent and name (none)
+            tr("Soundfont file")                        // Caption.
     );
     
     if (!sSoundFont.isEmpty())

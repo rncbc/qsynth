@@ -36,9 +36,21 @@ void qsynthAboutForm::init (void)
     sText += "<br />\n";
     sText += tr("Version") + ": <b>" QSYNTH_VERSION "</b><br />\n";
     sText += tr("Build") + ": " __DATE__ " " __TIME__ "<br />\n";
+#ifdef CONFIG_DEBUG
+    sText += "<small><font color=\"red\">";
+    sText += tr("Debugging option enabled.");
+    sText += "<br />\n";
+    sText += "</font></small>";
+#endif
 #ifndef CONFIG_FLUID_SERVER
     sText += "<small><font color=\"red\">";
     sText += tr("Server option disabled.");
+    sText += "<br />\n";
+    sText += "</font></small>";
+#endif
+#ifndef CONFIG_FLUID_RESET
+    sText += "<small><font color=\"red\">";
+    sText += tr("System reset option disabled.");
     sText += "<br />\n";
     sText += "</font></small>";
 #endif
@@ -70,4 +82,3 @@ void qsynthAboutForm::aboutQt()
 
 
 // end of qsynthAboutForm.ui.h
-

@@ -31,7 +31,7 @@ IMAGES   = icons/qsynth.xpm \
            icons/qtlogo.png
 
 TEMPLATE = app
-CONFIG  += qt @ac_thread@ warn_on release
+CONFIG  += qt @ac_thread@ warn_on @ac_debug@
 LANGUAGE = C++
 
 LIBS    += -lfluidsynth
