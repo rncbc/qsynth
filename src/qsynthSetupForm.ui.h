@@ -488,6 +488,9 @@ void qsynthSetupForm::openSoundFont()
                 tr("Cancel"));
         }
     }
+
+    refreshSoundFonts();
+    stabilizeForm();
 }
 
 
