@@ -234,6 +234,8 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
         // Done.
         delete pPresetForm;
     }
+    
+    stabilizeForm();
 }
 
 // Channels preset naming slots.
