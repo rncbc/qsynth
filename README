@@ -1,7 +1,7 @@
 qsynth - A fluidsynth Qt GUI Interface
 --------------------------------------
 
-QSynth is a fluidsynth GUI front-end application written in C++ around the Qt3
+Qsynth is a fluidsynth GUI front-end application written in C++ around the Qt3
 toolkit using Qt Designer. Eventually it may evolve into a softsynth management
 application allowing the user to control and manage a variety of command line
 softsynths but for the moment it wraps the excellent FluidSynth (http://www.fluidsynth.org).
@@ -38,7 +38,7 @@ Note that the default installation path ${prefix} is /usr/local.
 Configuration
 -------------
 
-QSynth holds its settings and configuration state per user, in a file
+Qsynth holds its settings and configuration state per user, in a file
 located as $HOME/.qt/qsynthrc. Normally, there's no need to edit this file,
 as it is recreated and rewritten everytime qsynth is run.
 
@@ -51,7 +51,7 @@ Plenty still although this is beta software ;)
 Support
 -------
 
-QSynth is open source free software. For bug reports, feature requests,
+Qsynth is open source free software. For bug reports, feature requests,
 discussion forums, mailling lists, or any other matter related to the
 development of this piece of software, please use the Sourceforge
 project page (http://sourceforge.net/projects/qsynth).
@@ -60,7 +60,7 @@ project page (http://sourceforge.net/projects/qsynth).
 Acknowledgements
 ----------------
 
-QSynth has been created by Rui Nuno Capela, Richard Bown and Chris Cannam
+Qsynth has been created by Rui Nuno Capela, Richard Bown and Chris Cannam
 to bring a simple but effective software synthesier front end to the Linux
 desktop.  From an original idea by Richard Bown and Chris Cannam to create
 an open software synthesiser front end to use in conjunction with Rosegarden

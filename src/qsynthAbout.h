@@ -22,9 +22,9 @@
 #ifndef __qsynthAbout_h
 #define __qsynthAbout_h
 
-#define QSYNTH_TITLE        "qsynth"
+#define QSYNTH_TITLE        "Qsynth"
 #define QSYNTH_SUBTITLE	    "A fluidsynth Qt GUI Interface"
-#define QSYNTH_VERSION      "0.2.2.27"
+#define QSYNTH_VERSION      "0.2.2.28"
 #define QSYNTH_WEBSITE      "http://qsynth.sourceforge.net"
 #define QSYNTH_COPYRIGHT    "Copyright (C) 2003-2005, rncbc aka Rui Nuno Capela. All rights reserved."
 
