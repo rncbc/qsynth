@@ -27,11 +27,11 @@
 // Column index helpers.
 #define QSYNTH_CHANNELS_IN      0
 #define QSYNTH_CHANNELS_CHAN    1
-#define QSYNTH_CHANNELS_SFID    2
-#define QSYNTH_CHANNELS_SFNAME  3
-#define QSYNTH_CHANNELS_BANK    4
-#define QSYNTH_CHANNELS_PROG    5
-#define QSYNTH_CHANNELS_NAME    6
+#define QSYNTH_CHANNELS_BANK    2
+#define QSYNTH_CHANNELS_PROG    3
+#define QSYNTH_CHANNELS_NAME    4
+#define QSYNTH_CHANNELS_SFID    5
+#define QSYNTH_CHANNELS_SFNAME  6
 
 
 // The channels list view item.

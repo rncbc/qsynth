@@ -244,7 +244,7 @@
     </connection>
     <connection>
         <sender>ProgListView</sender>
-        <signal>doubleClicked(QListViewItem*,const QPoint&amp;,int)</signal>
+        <signal>doubleClicked(QListViewItem*)</signal>
         <receiver>qsynthPresetForm</receiver>
         <slot>acceptForm()</slot>
     </connection>

@@ -145,20 +145,20 @@ void qsynthChannelsForm::updateChannel ( int iChan )
 
     fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, iChan);
     if (pPreset) {
-        pItem->setText(QSYNTH_CHANNELS_SFID, QString::number((pPreset->sfont)->id));
-        pItem->setText(QSYNTH_CHANNELS_SFNAME, QFileInfo((pPreset->sfont)->get_name(pPreset->sfont)).baseName());
         pItem->setText(QSYNTH_CHANNELS_BANK, QString::number(pPreset->get_banknum(pPreset)));
         pItem->setText(QSYNTH_CHANNELS_PROG, QString::number(pPreset->get_num(pPreset)));
         pItem->setText(QSYNTH_CHANNELS_NAME, pPreset->get_name(pPreset));
+        pItem->setText(QSYNTH_CHANNELS_SFID, QString::number((pPreset->sfont)->id));
+        pItem->setText(QSYNTH_CHANNELS_SFNAME, QFileInfo((pPreset->sfont)->get_name(pPreset->sfont)).baseName());
         // Make this a dirty-operation.
         m_iDirtyCount++;
     } else {
         QString n = "-";
-        pItem->setText(QSYNTH_CHANNELS_SFID, n);
-        pItem->setText(QSYNTH_CHANNELS_SFNAME, n);
         pItem->setText(QSYNTH_CHANNELS_BANK, n);
         pItem->setText(QSYNTH_CHANNELS_PROG, n);
         pItem->setText(QSYNTH_CHANNELS_NAME, n);
+        pItem->setText(QSYNTH_CHANNELS_SFID, n);
+        pItem->setText(QSYNTH_CHANNELS_SFNAME, n);
     }
 }
 

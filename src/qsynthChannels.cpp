@@ -46,9 +46,9 @@ int qsynthChannelsViewItem::compare ( QListViewItem* pItem, int iColumn, bool bA
 {
     switch (iColumn) {
 
-        case QSYNTH_CHANNELS_SFID:
         case QSYNTH_CHANNELS_BANK:
         case QSYNTH_CHANNELS_PROG:
+        case QSYNTH_CHANNELS_SFID:
         {
             int iNum1 = text(iColumn).toInt();
             int iNum2 = pItem->text(iColumn).toInt();
@@ -59,8 +59,8 @@ int qsynthChannelsViewItem::compare ( QListViewItem* pItem, int iColumn, bool bA
             break;
         }
 
-        case QSYNTH_CHANNELS_SFNAME:
         case QSYNTH_CHANNELS_NAME:
+        case QSYNTH_CHANNELS_SFNAME:
         {
             const QString sName1 = text(iColumn);
             const QString sName2 = pItem->text(iColumn);
