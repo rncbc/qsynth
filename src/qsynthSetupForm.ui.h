@@ -231,6 +231,7 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     MidiChannelsSpinBox->setValue(m_pSetup->iMidiChannels);
     MidiDumpCheckBox->setChecked(m_pSetup->bMidiDump);
     VerboseCheckBox->setChecked(m_pSetup->bVerbose);
+    AlsaNameComboBox->setCurrentText(m_pSetup->sAlsaName);
 
     // Audio settings...
     AudioDriverComboBox->setCurrentText(m_pSetup->sAudioDriver);
@@ -243,6 +244,7 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     PolyphonySpinBox->setValue(m_pSetup->iPolyphony);
     JackMultiCheckBox->setChecked(m_pSetup->bJackMulti);
     JackAutoConnectCheckBox->setChecked(m_pSetup->bJackAutoConnect);
+    JackNameComboBox->setCurrentText(m_pSetup->sJackName);
 
     // Load the soundfonts view.
     SoundFontListView->clear();
@@ -326,12 +328,14 @@ void qsynthSetupForm::accept (void)
         m_pSetup->iPolyphony       = PolyphonySpinBox->value();
         m_pSetup->bJackMulti       = JackMultiCheckBox->isChecked();
         m_pSetup->bJackAutoConnect = JackAutoConnectCheckBox->isChecked();
+        m_pSetup->sJackName        = JackNameComboBox->currentText();
         // Midi settings...
         m_pSetup->bMidiIn          = MidiInCheckBox->isChecked();
         m_pSetup->sMidiDriver      = MidiDriverComboBox->currentText();
         m_pSetup->iMidiChannels    = MidiChannelsSpinBox->value();
         m_pSetup->bMidiDump        = MidiDumpCheckBox->isChecked();
         m_pSetup->bVerbose         = VerboseCheckBox->isChecked();
+        m_pSetup->sAlsaName        = AlsaNameComboBox->currentText();
         // Reset dirty flag.
         m_iDirtyCount = 0;
     }
@@ -392,9 +396,15 @@ void qsynthSetupForm::stabilizeForm()
     MidiDumpCheckBox->setEnabled(bEnabled);
     VerboseCheckBox->setEnabled(bEnabled);
 
+    bool bAlsaEnabled = (bEnabled && MidiDriverComboBox->currentText() == "alsa_seq");
+    AlsaNameTextLabel->setEnabled(bAlsaEnabled);
+    AlsaNameComboBox->setEnabled(bAlsaEnabled);
+    
     bool bJackEnabled = (AudioDriverComboBox->currentText() == "jack");
     JackMultiCheckBox->setEnabled(bJackEnabled);
     JackAutoConnectCheckBox->setEnabled(bJackEnabled);
+    JackNameTextLabel->setEnabled(bJackEnabled);
+    JackNameComboBox->setEnabled(bJackEnabled);
 
     SoundFontOpenPushButton->setEnabled(true);
     QListViewItem *pSelectedItem = SoundFontListView->selectedItem();
