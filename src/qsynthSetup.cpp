@@ -190,45 +190,45 @@ void qsynthSetup::print_usage ( const char *arg0 )
     fprintf(stderr, "%s - %s\n\n", QSYNTH_TITLE, QSYNTH_SUBTITLE);
     fprintf(stderr, QObject::tr("Options") + ":" + sEol);
     fprintf(stderr, "  -n, --no-midi-in" + sEot +
-	   QObject::tr("Don't create a midi driver to read MIDI input events [default = yes]") + sEol);
+        QObject::tr("Don't create a midi driver to read MIDI input events [default = yes]") + sEol);
     fprintf(stderr, "  -m, --midi-driver=[label]" + sEot +
-       QObject::tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]") + sEol);
+        QObject::tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]") + sEol);
     fprintf(stderr, "  -K, --midi-channels=[num]" + sEot +
-       QObject::tr("The number of midi channels [default = 16]") + sEol);
+        QObject::tr("The number of midi channels [default = 16]") + sEol);
     fprintf(stderr, "  -a, --audio-driver=[label]" + sEot +
-       QObject::tr("The audio driver [alsa,jack,oss,dsound,...]") + sEol);
+        QObject::tr("The audio driver [alsa,jack,oss,dsound,...]") + sEol);
     fprintf(stderr, "  -j, --connect-jack-outputs" + sEot +
-       QObject::tr("Attempt to connect the jack outputs to the physical ports") + sEol);
+        QObject::tr("Attempt to connect the jack outputs to the physical ports") + sEol);
     fprintf(stderr, "  -L, --audio-channels=[num]" + sEot +
-       QObject::tr("The number of stereo audio channels [default = 1]") + sEol);
+        QObject::tr("The number of stereo audio channels [default = 1]") + sEol);
     fprintf(stderr, "  -G, --audio-groups=[num]" + sEot +
-       QObject::tr("The number of audio groups [default = 1]") + sEol);
+        QObject::tr("The number of audio groups [default = 1]") + sEol);
     fprintf(stderr, "  -z, --audio-bufsize=[size]" + sEot +
-       QObject::tr("Size of each audio buffer") + sEol);
+        QObject::tr("Size of each audio buffer") + sEol);
     fprintf(stderr, "  -c, --audio-bufcount=[count]" + sEot +
-       QObject::tr("Number of audio buffers") + sEol);
+        QObject::tr("Number of audio buffers") + sEol);
     fprintf(stderr, "  -r, --sample-rate=[rate]" + sEot +
-       QObject::tr("Set the sample rate") + sEol);
+        QObject::tr("Set the sample rate") + sEol);
     fprintf(stderr, "  -R, --reverb=[flag]" + sEot +
-       QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]") + sEol);
+        QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]") + sEol);
     fprintf(stderr, "  -C, --chorus=[flag]" + sEot +
-       QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]") + sEol);
+        QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]") + sEol);
     fprintf(stderr, "  -g, --gain=[gain]" + sEot +
-       QObject::tr("Set the master gain [0 < gain < 10, default = 0.2]") + sEol);
+        QObject::tr("Set the master gain [0 < gain < 10, default = 0.2]") + sEol);
     fprintf(stderr, "  -o, --option [name=value]" + sEot +
-       QObject::tr("Define a setting name=value") + sEol);
+        QObject::tr("Define a setting name=value") + sEol);
     fprintf(stderr, "  -s, --server" + sEot +
-	   QObject::tr("Create and start server [default = no]") + sEol);
+        QObject::tr("Create and start server [default = no]") + sEol);
     fprintf(stderr, "  -i, --no-shell" + sEot +
-       QObject::tr("Don't read commands from the shell [ignored]") + sEol);
+        QObject::tr("Don't read commands from the shell [ignored]") + sEol);
     fprintf(stderr, "  -d, --dump" + sEot +
-       QObject::tr("Dump midi router events") + sEol);
+        QObject::tr("Dump midi router events") + sEol);
     fprintf(stderr, "  -v, --verbose" + sEot +
-       QObject::tr("Print out verbose messages about midi events") + sEol);
-    fprintf(stderr, "  -h, --help" + sEot + +
-       QObject::tr("Show help about command line options") + sEol);
+        QObject::tr("Print out verbose messages about midi events") + sEol);
+    fprintf(stderr, "  -h, --help" + sEot +
+        QObject::tr("Show help about command line options") + sEol);
     fprintf(stderr, "  -V, --version" + sEot +
-       QObject::tr("Show version information") + sEol);
+        QObject::tr("Show version information") + sEol);
 }
 
 
