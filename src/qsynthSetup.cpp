@@ -21,6 +21,8 @@
 
 #include "qsynthSetup.h"
 
+#include <qobject.h>
+
 #include "config.h"
 
 
@@ -32,6 +34,8 @@
 qsynthSetup::qsynthSetup (void)
 {
     m_pFluidSettings = ::new_fluid_settings();
+    
+    sDefPresetName = QObject::tr("(default)");
 }
 
 

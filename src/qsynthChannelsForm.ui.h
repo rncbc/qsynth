@@ -341,7 +341,7 @@ void qsynthChannelsForm::resetPresets (void)
 
     PresetComboBox->clear();
     PresetComboBox->insertStringList(pSetup->presets);
-    PresetComboBox->insertItem("(default)");
+    PresetComboBox->insertItem(pSetup->sDefPresetName);
 }
 
 
@@ -357,8 +357,9 @@ void qsynthChannelsForm::stabilizeForm (void)
 
     QString sPreset = PresetComboBox->currentText();
     if (m_pSynth && !sPreset.isEmpty()) {
-        PresetSavePushButton->setEnabled(m_iDirtyCount > 0);
-        PresetDeletePushButton->setEnabled(pSetup->presets.find(sPreset) != pSetup->presets.end());
+        bool bPreset = (pSetup->presets.find(sPreset) != pSetup->presets.end());
+        PresetSavePushButton->setEnabled(m_iDirtyCount > 0 || (!bPreset && sPreset != pSetup->sDefPresetName));
+        PresetDeletePushButton->setEnabled(bPreset);
     } else {
         PresetSavePushButton->setEnabled(false);
         PresetDeletePushButton->setEnabled(false);

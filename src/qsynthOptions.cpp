@@ -540,7 +540,7 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 
     // Load channel presets list.
     m_settings.beginGroup("/Presets");
-    pSetup->sDefPreset = m_settings.readEntry("/DefPreset", "(default)");
+    pSetup->sDefPreset = m_settings.readEntry("/DefPreset", pSetup->sDefPresetName);
     const QString sPresetPrefix = "/Preset";
     int iPreset = 0;
     for (;;) {
@@ -646,7 +646,7 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
         return false;
     
     QString sSuffix;
-    if (sPreset != "(default)" && !sPreset.isEmpty()) {
+    if (sPreset != pSetup->sDefPresetName && !sPreset.isEmpty()) {
         sSuffix = "/" + sPreset;
         // Check if on list.
         if (pSetup->presets.find(sPreset) == pSetup->presets.end())
@@ -690,7 +690,7 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
         return false;
 
     QString sSuffix;
-    if (sPreset != "(default)" && !sPreset.isEmpty()) {
+    if (sPreset != pSetup->sDefPresetName && !sPreset.isEmpty()) {
         sSuffix = "/" + sPreset;
         // Append to list if not already.
         if (pSetup->presets.find(sPreset) == pSetup->presets.end())
@@ -742,7 +742,7 @@ bool qsynthOptions::deletePreset ( qsynthEngine *pEngine, const QString& sPreset
     if (!pEngine->isDefault())
         sPrefix = "/Engine/" + pEngine->name();
     QString sSuffix;
-    if (sPreset != "(default)" && !sPreset.isEmpty()) {
+    if (sPreset != pSetup->sDefPresetName && !sPreset.isEmpty()) {
         sSuffix = "/" + sPreset;
         QStringList::Iterator iter = pSetup->presets.find(sPreset);
         if (iter == pSetup->presets.end())

@@ -91,6 +91,9 @@ public:
     QStringList soundfonts;
     QStringList midifiles;
 
+    // Current (translated) preset name.
+    QString sDefPresetName;
+
     // Current (default) preset name.
     QString sDefPreset;
     // Available presets list.
