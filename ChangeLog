@@ -3,7 +3,7 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.0.4   2003-12-23  Channel preset breakout.
+0.0.4   2003-12-26  Channel preset breakout.
 
 - Added channels breakout and program preset view and edit windows,
   including a simple preset/profile management feature where the complete
@@ -13,7 +13,8 @@ ChangeLog
 
 - Messages window fallback fix.
 
-- Standard output/error stream capture setup option.
+- Standard output/error stream capture setup option; handler retouched
+  to be line buffer oriented.
 
 
 0.0.3   2003-12-12  Few tiny changes so far.

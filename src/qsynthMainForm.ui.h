@@ -382,7 +382,33 @@ void qsynthMainForm::stdoutNotifySlot ( int fd )
     int  cchBuffer = ::read(fd, achBuffer, sizeof(achBuffer) - 1);
     if (cchBuffer > 0) {
         achBuffer[cchBuffer] = (char) 0;
-        appendMessagesText(achBuffer);
+        appendStdoutBuffer(achBuffer);
+    }
+}
+
+
+// Stdout buffer handler -- now splitted by complete new-lines...
+void qsynthMainForm::appendStdoutBuffer ( const QString& s )
+{
+    m_sStdoutBuffer.append(s);
+
+    int iLength = m_sStdoutBuffer.findRev('\n') + 1;
+    if (iLength > 0) {
+        QString sTemp = m_sStdoutBuffer.left(iLength);
+        m_sStdoutBuffer.remove(0, iLength);
+        QStringList list = QStringList::split('\n', sTemp, true);
+        for (QStringList::Iterator iter = list.begin(); iter != list.end(); iter++)
+            appendMessagesText(*iter);
+    }
+}
+
+
+// Stdout flusher -- show up any unfinished line...
+void qsynthMainForm::flushStdoutBuffer (void)
+{
+    if (!m_sStdoutBuffer.isEmpty()) {
+        appendMessagesText(m_sStdoutBuffer);
+        m_sStdoutBuffer.truncate(0);
     }
 }
 
@@ -790,6 +816,9 @@ void qsynthMainForm::stopSynth (void)
 
     const QString sElipsis = "...";
 
+    // Flush anything that maybe pending...
+    flushStdoutBuffer();
+    
     // Freeze channel view.
     if (m_pChannelsForm) {
         m_pChannelsForm->setup(m_pSetup, NULL);

@@ -1440,9 +1440,12 @@
     <variable access="private">int m_iGainUpdated;</variable>
     <variable access="private">int m_iReverbUpdated;</variable>
     <variable access="private">int m_iChorusUpdated;</variable>
+    <variable access="private">QString m_sStdoutBuffer;</variable>
 </variables>
 <slots>
     <slot specifier="non virtual">stdoutNotifySlot( int fd )</slot>
+    <slot specifier="non virtual">appendStdoutBuffer( const QString &amp; s )</slot>
+    <slot specifier="non virtual">flushStdoutBuffer( void )</slot>
     <slot specifier="non virtual">stabilizeForm( void )</slot>
     <slot specifier="non virtual">programReset()</slot>
     <slot specifier="non virtual">systemReset()</slot>
