@@ -100,6 +100,7 @@ public:
 
     // Default options...
     QString sSoundFontDir;
+    bool    bPresetPreview;
 
     // Current (default) preset name.
     QString sDefPreset;

@@ -29,7 +29,7 @@
             <x>0</x>
             <y>0</y>
             <width>433</width>
-            <height>298</height>
+            <height>301</height>
         </rect>
     </property>
     <property name="caption">
@@ -121,48 +121,6 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QListView" row="0" column="0">
-                        <column>
-                            <property name="text">
-                                <string>Bank</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <property name="name">
-                            <cstring>BankListView</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>1</hsizetype>
-                                <vsizetype>7</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>80</width>
-                                <height>0</height>
-                            </size>
-                        </property>
-                        <property name="allColumnsShowFocus">
-                            <bool>true</bool>
-                        </property>
-                        <property name="showSortIndicator">
-                            <bool>true</bool>
-                        </property>
-                        <property name="resizeMode">
-                            <enum>AllColumns</enum>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string>Bank selector</string>
-                        </property>
-                    </widget>
                     <widget class="QListView" row="0" column="1">
                         <column>
                             <property name="text">
@@ -224,6 +182,62 @@
                             <string>Program selector</string>
                         </property>
                     </widget>
+                    <widget class="QListView" row="0" column="0">
+                        <column>
+                            <property name="text">
+                                <string>Bank</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <property name="name">
+                            <cstring>BankListView</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>1</hsizetype>
+                                <vsizetype>7</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                            <size>
+                                <width>72</width>
+                                <height>0</height>
+                            </size>
+                        </property>
+                        <property name="allColumnsShowFocus">
+                            <bool>true</bool>
+                        </property>
+                        <property name="showSortIndicator">
+                            <bool>true</bool>
+                        </property>
+                        <property name="resizeMode">
+                            <enum>AllColumns</enum>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Bank selector</string>
+                        </property>
+                    </widget>
+                    <widget class="QCheckBox" row="1" column="0">
+                        <property name="name">
+                            <cstring>PreviewCheckBox</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Preview</string>
+                        </property>
+                        <property name="accel">
+                            <string></string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Whether to preview the current selection</string>
+                        </property>
+                    </widget>
                 </grid>
             </widget>
         </widget>
@@ -240,25 +254,31 @@
         <sender>ProgListView</sender>
         <signal>selectionChanged()</signal>
         <receiver>qsynthPresetForm</receiver>
-        <slot>stabilizeForm()</slot>
+        <slot>progChanged()</slot>
+    </connection>
+    <connection>
+        <sender>PreviewCheckBox</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthPresetForm</receiver>
+        <slot>previewChanged()</slot>
     </connection>
     <connection>
         <sender>ProgListView</sender>
         <signal>doubleClicked(QListViewItem*)</signal>
         <receiver>qsynthPresetForm</receiver>
-        <slot>acceptForm()</slot>
+        <slot>accept()</slot>
     </connection>
     <connection>
         <sender>ProgListView</sender>
         <signal>returnPressed(QListViewItem*)</signal>
         <receiver>qsynthPresetForm</receiver>
-        <slot>acceptForm()</slot>
+        <slot>accept()</slot>
     </connection>
     <connection>
         <sender>OkPushButton</sender>
         <signal>clicked()</signal>
         <receiver>qsynthPresetForm</receiver>
-        <slot>acceptForm()</slot>
+        <slot>accept()</slot>
     </connection>
     <connection>
         <sender>CancelPushButton</sender>
@@ -271,6 +291,7 @@
     <tabstop>PresetTabWidget</tabstop>
     <tabstop>BankListView</tabstop>
     <tabstop>ProgListView</tabstop>
+    <tabstop>PreviewCheckBox</tabstop>
     <tabstop>OkPushButton</tabstop>
     <tabstop>CancelPushButton</tabstop>
 </tabstops>
@@ -279,21 +300,29 @@
     <include location="local" impldecl="in implementation">qsynthPresetForm.ui.h</include>
 </includes>
 <variables>
+    <variable access="private">qsynthSetup *m_pSetup;</variable>
     <variable access="private">fluid_synth_t *m_pSynth;</variable>
     <variable access="private">int m_iChan;</variable>
+    <variable access="private">int m_iBank;</variable>
+    <variable access="private">int m_iProg;</variable>
+    <variable access="private">int m_iDirtySetup;</variable>
 </variables>
 <slots>
-    <slot specifier="non virtual">stabilizeForm()</slot>
-    <slot specifier="non virtual">acceptForm()</slot>
+    <slot specifier="non virtual">accept()</slot>
+    <slot specifier="non virtual">reject()</slot>
     <slot specifier="non virtual">bankChanged()</slot>
+    <slot specifier="non virtual">progChanged()</slot>
+    <slot specifier="non virtual">previewChanged()</slot>
+    <slot specifier="non virtual">stabilizeForm()</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
     <function access="private" specifier="non virtual">destroy()</function>
-    <function specifier="non virtual">setup( fluid_synth_t *pSynth, int iChan )</function>
+    <function specifier="non virtual">setup( qsynthSetup *pSetup, fluid_synth_t *pSynth, int iChan )</function>
     <function access="private" specifier="non virtual" returnType="bool">validateForm()</function>
     <function access="private" specifier="non virtual" returnType="QListViewItem*">findBankItem( int iBank )</function>
     <function access="private" specifier="non virtual" returnType="QListViewItem*">findProgItem( int iProg )</function>
+    <function access="private" specifier="non virtual">setBankProg( int iBank, int iProg )</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="4" margin="8"/>

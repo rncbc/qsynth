@@ -91,7 +91,8 @@ qsynthSetup::qsynthSetup (void)
 
     // Load defaults...
     m_settings.beginGroup("/Defaults");
-    sSoundFontDir = m_settings.readEntry("/SoundFontDir", QString::null);
+    sSoundFontDir  = m_settings.readEntry("/SoundFontDir", QString::null);
+    bPresetPreview = m_settings.readBoolEntry("/PresetPreview", false);
     m_settings.endGroup();
 
     // Load channel presets list.
@@ -132,7 +133,8 @@ qsynthSetup::~qsynthSetup (void)
 
     // Save defaults...
     m_settings.beginGroup("/Defaults");
-    m_settings.writeEntry("/SoundFontDir", sSoundFontDir);
+    m_settings.writeEntry("/SoundFontDir",  sSoundFontDir);
+    m_settings.writeEntry("/PresetPreview", bPresetPreview);
     m_settings.endGroup();
 
     // Save last display options.

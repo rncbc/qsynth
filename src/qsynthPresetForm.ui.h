@@ -30,7 +30,12 @@ void qsynthPresetForm::init()
 {
     m_pSynth = NULL;
     m_iChan  = 0;
+    m_iBank  = 0;
+    m_iProg  = 0;
 
+    // To avoid setup jitterness.
+    m_iDirtySetup = 0;
+    
     // No default sorting, initially.
     BankListView->setSorting(BankListView->columns() + 1);
     ProgListView->setSorting(ProgListView->columns() + 1);
@@ -44,18 +49,25 @@ void qsynthPresetForm::destroy()
 
 
 // Dialog setup loader.
-void qsynthPresetForm::setup ( fluid_synth_t *pSynth, int iChan )
+void qsynthPresetForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth, int iChan )
 {
+    // Set our internal stuff...
+    m_pSetup = pSetup;
     m_pSynth = pSynth;
     m_iChan  = iChan;
 
-    // set the proper caption...
+    // We'll goinfg to changes the whole thing...
+    m_iDirtySetup++;
+    
+    // Set the proper caption...
     setCaption(tr("Channel") + " " + QString::number(m_iChan + 1));
+
+    QListViewItem *pBankItem = NULL;
+    QListViewItem *pProgItem = NULL;
 
     // Load bank list from actual synth stack...
     BankListView->clear();
-    QListViewItem *pBankItem = NULL;
-    QListViewItem *pProgItem = NULL;
+    BankListView->setUpdatesEnabled(false);
     fluid_preset_t preset;
     // For all soundfonts (in reversed stack order) fill the available banks...
     int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
@@ -73,22 +85,29 @@ void qsynthPresetForm::setup ( fluid_synth_t *pSynth, int iChan )
             }
         }
     }
+    BankListView->setUpdatesEnabled(true);
 
     // Set the selected bank.
-    pBankItem = NULL;
     fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, m_iChan);
     if (pPreset)
-        pBankItem = findBankItem(pPreset->get_banknum(pPreset));
+        m_iBank = pPreset->get_banknum(pPreset);
+    pBankItem = findBankItem(m_iBank);
     BankListView->setSelected(pBankItem, true);
     BankListView->ensureItemVisible(pBankItem);
     bankChanged();
 
     // Set the selected program.
-    pProgItem = NULL;
     if (pPreset)
-        pProgItem = findProgItem(pPreset->get_num(pPreset));
+        m_iProg = pPreset->get_num(pPreset);
+    pProgItem = findProgItem(m_iProg);
     ProgListView->setSelected(pProgItem, true);
     ProgListView->ensureItemVisible(pProgItem);
+    
+    // And the preview state...
+    PreviewCheckBox->setChecked(m_pSetup->bPresetPreview);
+
+    // Done with setup...
+    m_iDirtySetup--;
 }
 
 
@@ -110,21 +129,47 @@ bool qsynthPresetForm::validateForm()
     return bValid;
 }
 
+
+// Realize a bank-program selection preset.
+void qsynthPresetForm::setBankProg ( int iBank, int iProg )
+{
+    if (m_pSynth == NULL)
+        return;
+
+    // just select the synth's program preset...
+    ::fluid_synth_bank_select(m_pSynth, m_iChan, iBank);
+    ::fluid_synth_program_change(m_pSynth, m_iChan, iProg);
+    // Maybe this is needed to stabilize things around.
+    ::fluid_synth_program_reset(m_pSynth);
+}
+
+
 // Validate form fields and accept it valid.
-void qsynthPresetForm::acceptForm()
+void qsynthPresetForm::accept()
 {
     if (validateForm()) {
         // Unload from current selected dialog items.
         int iBank = (BankListView->selectedItem())->text(0).toInt();
         int iProg = (ProgListView->selectedItem())->text(0).toInt();
         // And set it right away...
-        ::fluid_synth_bank_select(m_pSynth, m_iChan, iBank);
-        ::fluid_synth_program_change(m_pSynth, m_iChan, iProg);
-        // Maybe this is needed to stabilize things around.
-        ::fluid_synth_program_reset(m_pSynth);
+        setBankProg(iBank, iProg);
+        // Do remember preview state...
+        if (m_pSetup)
+            m_pSetup->bPresetPreview = PreviewCheckBox->isChecked();
         // We got it.
-        accept();
+        QDialog::accept();
     }
+}
+
+
+// Reject settings (Cancel button slot).
+void qsynthPresetForm::reject (void)
+{
+    // Reset selection to initial selection, if applicable...
+    if (!PreviewCheckBox->isChecked())
+        setBankProg(m_iBank, m_iProg);
+    // Done (hopefully nothing).
+    QDialog::reject();
 }
 
 
@@ -190,6 +235,36 @@ void qsynthPresetForm::bankChanged (void)
     // Stabilize the form.
     stabilizeForm();
 }
+
+
+// Program change slot.
+void qsynthPresetForm::progChanged (void)
+{
+    if (m_pSynth == NULL)
+        return;
+
+    // Which preview state...
+    if (PreviewCheckBox->isChecked() && validateForm()) {
+        // Set current selection.
+        int iBank = (BankListView->selectedItem())->text(0).toInt();
+        int iProg = (ProgListView->selectedItem())->text(0).toInt();
+        // And set it right away...
+        setBankProg(iBank, iProg);
+    }
+
+    // Stabilize the form.
+    stabilizeForm();
+}
+
+
+// Preview change slot.
+void qsynthPresetForm::previewChanged (void)
+{
+    // Just like a program change, if not on setup...
+    if (m_iDirtySetup == 0)
+        progChanged();
+}
+
 
 
 // end of qsynthPresetForm.ui.h

@@ -240,7 +240,7 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
     qsynthPresetForm *pPresetForm = new qsynthPresetForm(this);
     if (pPresetForm) {
         // The the proper context.
-        pPresetForm->setup(m_pSynth, iChan);
+        pPresetForm->setup(m_pSetup, m_pSynth, iChan);
         // Show the channel preset dialog...
         if (pPresetForm->exec())
             updateChannel(iChan);
