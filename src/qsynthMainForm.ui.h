@@ -1187,6 +1187,9 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
     if (pSetup == NULL)
         return;
 
+    // Before all else save current engine panel settings...
+    savePanelSettings(pEngine);
+
     // Flush anything that maybe pending...
     flushStdoutBuffer();
 
@@ -1246,7 +1249,6 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 
     // Show up our efforts, if we're currently selected :p
     if (pEngine == currentEngine()) {
-        savePanelSettings(pEngine);
         resetChannelsForm(pEngine, true);
         stabilizeForm();
     }

@@ -3,7 +3,9 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.2   2004-07-28  Output level peak meters and other fixes.
+0.2.2   2004-08-05  Output level peak meters and other fixes.
+
+- Engine panel settings are now properly saved on stop/restart.
 
 - Icons were added to the engine tab selector context menu.
 

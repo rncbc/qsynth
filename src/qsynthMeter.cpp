@@ -45,6 +45,7 @@ qsynthMeterScale::qsynthMeterScale( qsynthMeter *pMeter )
     m_pMeter = pMeter;
     m_iLastY = 0;
 
+    QWidget::setMinimumWidth(16);
     QWidget::setBackgroundMode(Qt::PaletteMid);
 }
 
