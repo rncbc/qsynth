@@ -1,0 +1,236 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>qsynthMainForm</class>
+<comment>qsynth - A fluidsynth Qt GUI Interface.
+
+   Copyright (C) 2003, rncbc aka Rui Nuno Capela. All rights reserved.
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+</comment>
+<author>rncbc aka Rui Nuno Capela</author>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>qsynthMainForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>330</width>
+            <height>33</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>1</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="font">
+        <font>
+        </font>
+    </property>
+    <property name="caption">
+        <string>qsynth</string>
+    </property>
+    <property name="icon">
+        <pixmap>qsynth.xpm</pixmap>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QPushButton" row="0" column="2">
+            <property name="name">
+                <cstring>AboutPushButton</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>80</width>
+                    <height>0</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>Ab&amp;out...</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
+            </property>
+            <property name="iconSet">
+                <iconset>about1.png</iconset>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>Show information about this application</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="0" column="1">
+            <property name="name">
+                <cstring>SetupPushButton</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>80</width>
+                    <height>0</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>S&amp;etup...</string>
+            </property>
+            <property name="accel">
+                <string>Alt+E</string>
+            </property>
+            <property name="iconSet">
+                <iconset>setup1.png</iconset>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>Show settings and options dialog</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="0" column="0">
+            <property name="name">
+                <cstring>MessagesPushButton</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>80</width>
+                    <height>0</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>&amp;Messages</string>
+            </property>
+            <property name="accel">
+                <string>Alt+M</string>
+            </property>
+            <property name="toggleButton">
+                <bool>true</bool>
+            </property>
+            <property name="iconSet">
+                <iconset>messages1.png</iconset>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>Show/hide the messages log window</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="0" column="3">
+            <property name="name">
+                <cstring>QuitPushButton</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>80</width>
+                    <height>0</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>&amp;Quit</string>
+            </property>
+            <property name="accel">
+                <string>Alt+Q</string>
+            </property>
+            <property name="iconSet">
+                <iconset>quit1.png</iconset>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>Quit this application</string>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>SetupPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>showSetupForm()</slot>
+    </connection>
+    <connection>
+        <sender>MessagesPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>toggleMessagesForm()</slot>
+    </connection>
+    <connection>
+        <sender>AboutPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>showAboutForm()</slot>
+    </connection>
+    <connection>
+        <sender>QuitPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>close()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>MessagesPushButton</tabstop>
+    <tabstop>SetupPushButton</tabstop>
+    <tabstop>AboutPushButton</tabstop>
+    <tabstop>QuitPushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="global" impldecl="in declaration">qsettings.h</include>
+    <include location="global" impldecl="in declaration">qsocketnotifier.h</include>
+    <include location="global" impldecl="in declaration">qtimer.h</include>
+    <include location="local" impldecl="in declaration">qsynthSetup.h</include>
+    <include location="local" impldecl="in declaration">qsynthMessagesForm.h</include>
+    <include location="local" impldecl="in implementation">qsynthSetupForm.h</include>
+    <include location="local" impldecl="in implementation">qsynthAboutForm.h</include>
+    <include location="local" impldecl="in implementation">qsynthMainForm.ui.h</include>
+</includes>
+<variables>
+    <variable access="public">qsynthSetup *m_pSetup;</variable>
+    <variable access="private">QTimer *m_pTimer;</variable>
+    <variable access="private">fluid_synth_t *m_pSynth;</variable>
+    <variable access="private">fluid_audio_driver_t *m_pAudioDriver;</variable>
+    <variable access="private">fluid_midi_router_t *m_pMidiRouter;</variable>
+    <variable access="private">fluid_midi_driver_t *m_pMidiDriver;</variable>
+    <variable access="private">fluid_player_t *m_pPlayer;</variable>
+    <variable access="private">fluid_server_t *m_pServer;</variable>
+    <variable access="private">QSocketNotifier *m_pStdoutNotifier;</variable>
+    <variable access="private">qsynthMessagesForm *m_pMessagesForm;</variable>
+</variables>
+<slots>
+    <slot access="protected" specifier="non virtual">reject( void )</slot>
+    <slot specifier="non virtual">stdoutNotifySlot( int fd )</slot>
+    <slot specifier="non virtual">toggleMessagesForm( void )</slot>
+    <slot specifier="non virtual">showSetupForm( void )</slot>
+    <slot specifier="non virtual">showAboutForm( void )</slot>
+    <slot specifier="non virtual">timerSlot( void )</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+    <function specifier="non virtual">setup( qsynthSetup *pSetup )</function>
+    <function access="private" specifier="non virtual" returnType="bool">queryClose( void )</function>
+    <function access="private" specifier="non virtual">closeEvent( QCloseEvent * pCloseEvent )</function>
+    <function access="private" specifier="non virtual">appendMessages( const QString &amp; s )</function>
+    <function access="private" specifier="non virtual">appendMessagesColor( const QString &amp; s, const QString &amp; c )</function>
+    <function access="private" specifier="non virtual">appendMessagesText( const QString &amp; s )</function>
+    <function access="private" specifier="non virtual">appendMessagesError( const QString &amp; s )</function>
+    <function access="private" specifier="non virtual">updateMessagesFont( void )</function>
+    <function specifier="non virtual" returnType="bool">startSynth( void )</function>
+    <function specifier="non virtual">stopSynth( void )</function>
+    <function specifier="non virtual">stabilizeForm( void )</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="0" margin="0"/>
+</UI>
