@@ -82,10 +82,8 @@ void qsynthMessagesForm::appendMessagesColor( const QString& s, const QString& c
 void qsynthMessagesForm::appendMessagesText( const QString& s )
 {
     while (MessagesTextView->paragraphs() > 1000) {
-        MessagesTextView->setUpdatesEnabled(false);
         MessagesTextView->removeParagraph(0);
         MessagesTextView->scrollToBottom();
-        MessagesTextView->setUpdatesEnabled(true);
     }
     MessagesTextView->append(s);
 }
