@@ -28,7 +28,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>504</width>
+            <width>540</width>
             <height>370</height>
         </rect>
     </property>
@@ -870,7 +870,7 @@
                         </column>
                         <column>
                             <property name="text">
-                                <string>Bank Offset</string>
+                                <string>Offset</string>
                             </property>
                             <property name="clickable">
                                 <bool>true</bool>
@@ -921,6 +921,29 @@
                                 </property>
                                 <property name="toolTip" stdset="0">
                                     <string>Open soundfont file for loading</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>SoundFontEditPushButton</cstring>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>80</width>
+                                        <height>32767</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Edit</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+E</string>
+                                </property>
+                                <property name="iconSet">
+                                    <iconset>edit1.png</iconset>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Edit selected soundfont bank offset</string>
                                 </property>
                             </widget>
                             <widget class="QPushButton">
@@ -1325,6 +1348,12 @@
         <slot>removeSoundFont()</slot>
     </connection>
     <connection>
+        <sender>SoundFontEditPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>editSoundFont()</slot>
+    </connection>
+    <connection>
         <sender>SoundFontMoveUpPushButton</sender>
         <signal>clicked()</signal>
         <receiver>qsynthSetupForm</receiver>
@@ -1335,6 +1364,12 @@
         <signal>clicked()</signal>
         <receiver>qsynthSetupForm</receiver>
         <slot>moveDownSoundFont()</slot>
+    </connection>
+    <connection>
+        <sender>SoundFontListView</sender>
+        <signal>itemRenamed(QListViewItem *, int, const QString&amp;)</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>itemRenamed(QListViewItem *, int, const QString&amp;)</slot>
     </connection>
     <connection>
         <sender>OkPushButton</sender>
@@ -1371,6 +1406,7 @@
     <tabstop>JackMultiCheckBox</tabstop>
     <tabstop>SoundFontListView</tabstop>
     <tabstop>SoundFontOpenPushButton</tabstop>
+    <tabstop>SoundFontEditPushButton</tabstop>
     <tabstop>SoundFontRemovePushButton</tabstop>
     <tabstop>SoundFontMoveUpPushButton</tabstop>
     <tabstop>SoundFontMoveDownPushButton</tabstop>
@@ -1399,9 +1435,11 @@
     <slot specifier="non virtual">stabilizeForm()</slot>
     <slot specifier="non virtual">contextMenu(QListViewItem *, const QPoint&amp;, int)</slot>
     <slot specifier="non virtual">openSoundFont()</slot>
+    <slot specifier="non virtual">editSoundFont()</slot>
     <slot specifier="non virtual">removeSoundFont()</slot>
     <slot specifier="non virtual">moveUpSoundFont()</slot>
     <slot specifier="non virtual">moveDownSoundFont()</slot>
+    <slot specifier="non virtual">itemRenamed(QListViewItem *, int, const QString&amp;)</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>

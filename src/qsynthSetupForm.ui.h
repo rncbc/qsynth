@@ -291,16 +291,13 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
             if (pSoundFont) {
                 pItem = new QListViewItem(SoundFontListView, pItem);
                 if (pItem) {
-                    int iBankOffset;
-#ifdef CONFIG_FLUID_BANK_OFFSET
-                    iBankOffset = pSoundFont->bank_offset;
-#else
-                    iBankOffset = 0;
-#endif
                     pItem->setPixmap(0, *m_pXpmSoundFont);
                     pItem->setText(0, QString::number(pSoundFont->id));
                     pItem->setText(1, pSoundFont->get_name(pSoundFont));
-                    pItem->setText(2, QString::number(iBankOffset));
+#ifdef CONFIG_FLUID_BANK_OFFSET
+                    pItem->setText(2, QString::number(pSoundFont->bank_offset));
+                    pItem->setRenameEnabled(2, true);
+#endif
                 }
             }
         }
@@ -314,7 +311,10 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
                 pItem->setPixmap(0, *m_pXpmSoundFont);
                 pItem->setText(0, QString::number(i));
                 pItem->setText(1, *iter);
+#ifdef CONFIG_FLUID_BANK_OFFSET
                 pItem->setText(2, m_pSetup->bankoffsets[i]);
+                pItem->setRenameEnabled(2, true);
+#endif
             }
             i++;
         }
@@ -334,8 +334,11 @@ void qsynthSetupForm::accept (void)
     if (m_iDirtyCount > 0) {
         // Save the soundfont view.
         m_pSetup->soundfonts.clear();
-        for (QListViewItem *pItem = SoundFontListView->firstChild(); pItem; pItem = pItem->nextSibling())
+        m_pSetup->bankoffsets.clear();
+        for (QListViewItem *pItem = SoundFontListView->firstChild(); pItem; pItem = pItem->nextSibling()) {
             m_pSetup->soundfonts.append(pItem->text(1));
+            m_pSetup->bankoffsets.append(pItem->text(2));
+        }
         // Will we have a setup renaming?
         m_pSetup->sDisplayName     = DisplayNameLineEdit->text();
         // Audio settings...
@@ -452,11 +455,16 @@ void qsynthSetupForm::stabilizeForm (void)
     SoundFontOpenPushButton->setEnabled(true);
     QListViewItem *pSelectedItem = SoundFontListView->selectedItem();
     if (pSelectedItem) {
+#ifdef CONFIG_FLUID_BANK_OFFSET
+        SoundFontEditPushButton->setEnabled(true);
+#else
+        SoundFontEditPushButton->setEnabled(false);
+#endif
         SoundFontRemovePushButton->setEnabled(true);
         SoundFontMoveUpPushButton->setEnabled(pSelectedItem->itemAbove() != NULL);
         SoundFontMoveDownPushButton->setEnabled(pSelectedItem->nextSibling() != NULL);
     } else {
-        SoundFontRemovePushButton->setEnabled(false);
+        SoundFontEditPushButton->setEnabled(false);
         SoundFontMoveUpPushButton->setEnabled(false);
         SoundFontMoveDownPushButton->setEnabled(false);
     }
@@ -485,6 +493,12 @@ void qsynthSetupForm::contextMenu( QListViewItem *pItem, const QPoint& pos, int 
     iItemID = pContextMenu->insertItem(tr("Open..."), this, SLOT(openSoundFont()));
     pContextMenu->insertSeparator();
     bool bEnabled = (pItem != NULL);
+    iItemID = pContextMenu->insertItem(tr("Edit"), this, SLOT(editSoundFont()));
+#ifdef CONFIG_FLUID_BANK_OFFSET
+    pContextMenu->setItemEnabled(iItemID, bEnabled);
+#else
+    pContextMenu->setItemEnabled(iItemID, bEnabled);
+#endif	
     iItemID = pContextMenu->insertItem(tr("Remove"), this, SLOT(removeSoundFont()));
     pContextMenu->setItemEnabled(iItemID, bEnabled);
     pContextMenu->insertSeparator();
@@ -570,6 +584,17 @@ void qsynthSetupForm::openSoundFont()
 }
 
 
+// Edit current selected soundfont.
+void qsynthSetupForm::editSoundFont (void)
+{
+    QListViewItem *pItem = SoundFontListView->selectedItem();
+    if (pItem)
+        pItem->startRename(2);
+    
+    stabilizeForm();
+}
+
+
 // Remove current selected soundfont.
 void qsynthSetupForm::removeSoundFont (void)
 {
@@ -626,6 +651,21 @@ void qsynthSetupForm::moveDownSoundFont (void)
     }
 
     refreshSoundFonts();
+    stabilizeForm();
+}
+
+
+// Check soundfont bank offset edit.
+void qsynthSetupForm::itemRenamed ( QListViewItem *pItem, int iCol, const QString& sText )
+{
+    if (iCol == 2) {
+        int iBankOffset = sText.toInt();
+        if (iBankOffset < 0 || iBankOffset > 128)
+            iBankOffset = 0;
+        pItem->setText(iCol, QString::number(iBankOffset));
+        m_iDirtyCount++;
+    }
+
     stabilizeForm();
 }
 
