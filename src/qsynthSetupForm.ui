@@ -743,7 +743,7 @@
                                     <string>Alt+B</string>
                                 </property>
                                 <property name="toolTip" stdset="0">
-                                    <string>Open sound font file for loading</string>
+                                    <string>Open soundfont file for loading</string>
                                 </property>
                             </widget>
                             <widget class="QComboBox">
@@ -762,7 +762,7 @@
                                     <bool>true</bool>
                                 </property>
                                 <property name="toolTip" stdset="0">
-                                    <string>Sounf font file name</string>
+                                    <string>Soundfont file name</string>
                                 </property>
                             </widget>
                             <widget class="QPushButton">
@@ -782,7 +782,7 @@
                                     <string>Alt+L</string>
                                 </property>
                                 <property name="toolTip" stdset="0">
-                                    <string>Load current file into sound font stack</string>
+                                    <string>Load current file into soundfont stack</string>
                                 </property>
                             </widget>
                             <widget class="QPushButton">
@@ -802,7 +802,7 @@
                                     <string>Alt+U</string>
                                 </property>
                                 <property name="toolTip" stdset="0">
-                                    <string>Unload (remove) selected sound font from stack</string>
+                                    <string>Unload (remove) selected soundfont from stack</string>
                                 </property>
                             </widget>
                         </hbox>

@@ -964,7 +964,7 @@
                                 </font>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Chorus Modulatiuon Type</string>
+                                <string>Chorus Modulation Type</string>
                             </property>
                         </widget>
                     </hbox>

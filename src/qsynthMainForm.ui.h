@@ -139,6 +139,7 @@ void qsynthMainForm::setup ( qsynthSetup *pSetup )
 bool qsynthMainForm::queryClose (void)
 {
     bool bQueryClose = true;
+#if 0
     // Dow we quit right away?
     if (m_pSynth && m_pAudioDriver) {
         bQueryClose = (QMessageBox::warning(this, tr("Warning"),
@@ -146,6 +147,7 @@ bool qsynthMainForm::queryClose (void)
             tr("Are you sure?"),
             tr("OK"), tr("Cancel")) == 0);
     }
+#endif    
     // Now's time.
     if (m_pSetup) {
         // Some windows default fonts is here on demeand too.
