@@ -65,16 +65,23 @@ static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
 int qsynth_process ( void *pvData, int len, int nin, float **in, int nout, float **out )
 {
     qsynthEngine *pEngine = (qsynthEngine *) pvData;
+	// Call the synthesizer process function to fill
+	// the output buffers with its audio output.
+    if (::fluid_synth_process(pEngine->pSynth, len, nin, in, nout, out) != 0)
+		return -1;
+	// Now find the peak level for this buffer run...
 	if (pEngine == g_pCurrentEngine) {
 		for (int i = 0; i < nout; i++) {
+			float *out_i = out[i];
 			for (int j = 0; j < len; j++) {
-				float fValue = out[i][j];
+				float fValue = out_i[j];
 				if (pEngine->fMeterValue[i & 1] < fValue)
 					pEngine->fMeterValue[i & 1] = fValue;
 			}
 		}
 	}
-    return ::fluid_synth_process(pEngine->pSynth, len, nin, in, nout, out);
+	// Surely a success :)
+	return 0;
 }
  
 //-------------------------------------------------------------------------

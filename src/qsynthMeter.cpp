@@ -74,7 +74,7 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 {
     QPainter p(this);
 
-    p.setFont(QFont("Helvetica", 6));
+    p.setFont(QFont("Helvetica", 5));
     p.setPen(m_pMeter->color(QSYNTHMETER_FORE));
 
     m_iLastY = 0;
@@ -229,10 +229,10 @@ qsynthMeter::qsynthMeter ( QWidget *pParent, const char *pszName )
         int iStripCount = 2 * m_iPortCount;
         if (m_iPortCount > 1)
             iStripCount--;
-        QWidget::setMinimumSize(13 * iStripCount, 120);
+        QWidget::setMinimumSize(13 * iStripCount, 140);
         QWidget::setMaximumWidth(16 * iStripCount);
     } else {
-        QWidget::setMinimumSize(2, 120);
+        QWidget::setMinimumSize(2, 140);
         QWidget::setMaximumWidth(4);
     }
 
