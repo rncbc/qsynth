@@ -2,7 +2,7 @@
 //
 // ui.h extension file, included from the uic-generated form implementation.
 /****************************************************************************
-   Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2005, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -30,7 +30,7 @@
 // Kind of constructor.
 void qsynthOptionsForm::init (void)
 {
-    // No settings descriptor initially (the caller will set it).
+    // No options descriptor initially (the caller will set it).
     m_pOptions = NULL;
 
     // Initialize dirty control state.
@@ -51,7 +51,7 @@ void qsynthOptionsForm::destroy (void)
 }
 
 
-// Populate (setup) dialog controls from settings descriptors.
+// Populate (setup) dialog controls from options descriptors.
 void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 {
     // Set reference descriptor.
@@ -91,7 +91,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 }
 
 
-// Accept settings (OK button slot).
+// Accept options (OK button slot).
 void qsynthOptionsForm::accept (void)
 {
     // Save options...
@@ -113,7 +113,7 @@ void qsynthOptionsForm::accept (void)
 }
 
 
-// Reject settings (Cancel button slot).
+// Reject options (Cancel button slot).
 void qsynthOptionsForm::reject (void)
 {
     bool bReject = true;
@@ -121,7 +121,7 @@ void qsynthOptionsForm::reject (void)
     // Check if there's any pending changes...
     if (m_iDirtyCount > 0) {
         switch (QMessageBox::warning(this, tr("Warning"),
-            tr("Some settings have been changed.") + "\n\n" +
+            tr("Some options have been changed.") + "\n\n" +
             tr("Do you want to apply the changes?"),
             tr("Apply"), tr("Discard"), tr("Cancel"))) {
         case 0:     // Apply...
@@ -139,8 +139,8 @@ void qsynthOptionsForm::reject (void)
 }
 
 
-// Dirty up settings.
-void qsynthOptionsForm::settingsChanged()
+// Dirty up options.
+void qsynthOptionsForm::optionsChanged()
 {
     if (m_iDirtySetup > 0)
         return;
@@ -167,7 +167,7 @@ void qsynthOptionsForm::chooseMessagesFont()
     if (bOk) {
         MessagesFontTextLabel->setFont(font);
         MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
-        settingsChanged();
+        optionsChanged();
     }
 }
 

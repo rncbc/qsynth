@@ -426,25 +426,25 @@
         <sender>QueryCloseCheckBox</sender>
         <signal>stateChanged(int)</signal>
         <receiver>qsynthOptionsForm</receiver>
-        <slot>settingsChanged()</slot>
+        <slot>optionsChanged()</slot>
     </connection>
     <connection>
         <sender>KeepOnTopCheckBox</sender>
         <signal>stateChanged(int)</signal>
         <receiver>qsynthOptionsForm</receiver>
-        <slot>settingsChanged()</slot>
+        <slot>optionsChanged()</slot>
     </connection>
     <connection>
         <sender>StdoutCaptureCheckBox</sender>
         <signal>stateChanged(int)</signal>
         <receiver>qsynthOptionsForm</receiver>
-        <slot>settingsChanged()</slot>
+        <slot>optionsChanged()</slot>
     </connection>
     <connection>
         <sender>OutputMetersCheckBox</sender>
         <signal>stateChanged(int)</signal>
         <receiver>qsynthOptionsForm</receiver>
-        <slot>settingsChanged()</slot>
+        <slot>optionsChanged()</slot>
     </connection>
     <connection>
         <sender>SystemTrayCheckBox</sender>
@@ -456,13 +456,13 @@
         <sender>MessagesLimitCheckBox</sender>
         <signal>stateChanged(int)</signal>
         <receiver>qsynthOptionsForm</receiver>
-        <slot>settingsChanged()</slot>
+        <slot>optionsChanged()</slot>
     </connection>
     <connection>
         <sender>MessagesLimitLinesComboBox</sender>
         <signal>activated(int)</signal>
         <receiver>qsynthOptionsForm</receiver>
-        <slot>settingsChanged()</slot>
+        <slot>optionsChanged()</slot>
     </connection>
     <connection>
         <sender>OkPushButton</sender>
@@ -503,7 +503,7 @@
 <slots>
     <slot specifier="non virtual">accept()</slot>
     <slot specifier="non virtual">reject()</slot>
-    <slot specifier="non virtual">settingsChanged()</slot>
+    <slot specifier="non virtual">optionsChanged()</slot>
     <slot specifier="non virtual">stabilizeForm()</slot>
     <slot specifier="non virtual">chooseMessagesFont()</slot>
 </slots>
