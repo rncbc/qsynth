@@ -241,6 +241,7 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     AudioChannelsSpinBox->setValue(m_pSetup->iAudioChannels);
     AudioGroupsSpinBox->setValue(m_pSetup->iAudioGroups);
     PolyphonySpinBox->setValue(m_pSetup->iPolyphony);
+    JackMultiCheckBox->setChecked(m_pSetup->bJackMulti);
     JackAutoConnectCheckBox->setChecked(m_pSetup->bJackAutoConnect);
 
     // Load the soundfonts view.
@@ -323,6 +324,7 @@ void qsynthSetupForm::accept (void)
         m_pSetup->iAudioChannels   = AudioChannelsSpinBox->value();
         m_pSetup->iAudioGroups     = AudioGroupsSpinBox->value();
         m_pSetup->iPolyphony       = PolyphonySpinBox->value();
+        m_pSetup->bJackMulti       = JackMultiCheckBox->isChecked();
         m_pSetup->bJackAutoConnect = JackAutoConnectCheckBox->isChecked();
         // Midi settings...
         m_pSetup->bMidiIn          = MidiInCheckBox->isChecked();
@@ -390,7 +392,9 @@ void qsynthSetupForm::stabilizeForm()
     MidiDumpCheckBox->setEnabled(bEnabled);
     VerboseCheckBox->setEnabled(bEnabled);
 
-    JackAutoConnectCheckBox->setEnabled(AudioDriverComboBox->currentText() == "jack");
+    bool bJackEnabled = (AudioDriverComboBox->currentText() == "jack");
+    JackMultiCheckBox->setEnabled(bJackEnabled);
+    JackAutoConnectCheckBox->setEnabled(bJackEnabled);
 
     SoundFontOpenPushButton->setEnabled(true);
     QListViewItem *pSelectedItem = SoundFontListView->selectedItem();

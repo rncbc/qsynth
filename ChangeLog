@@ -10,6 +10,8 @@ ChangeLog
 - ALSA sequencer client name may now be internally set; not of great use
   for now, but it opens the ground for future workings.
 
+- JACK multiple output port mode may now be configured on setup.
+
 - Makefile.cvs makes its late entrance on the build toolset.
 
 
