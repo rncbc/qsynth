@@ -170,6 +170,8 @@ void qsynthChannelsForm::updateAllChannels (void)
         
     for (int iChan = 0; iChan < m_iChannels; iChan++)
         updateChannel(iChan);
+        
+    stabilizeForm();
 }
 
 
@@ -234,7 +236,7 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
         // Done.
         delete pPresetForm;
     }
-    
+
     stabilizeForm();
 }
 
@@ -254,6 +256,7 @@ void qsynthChannelsForm::changePreset( const QString& sPreset )
         // This is clean now, for sure.
         m_iDirtyCount = 0;
     }
+    
     stabilizeForm();
 }
 

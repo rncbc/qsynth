@@ -150,6 +150,7 @@ int qsynthPresetForm::findProgramIndex ( int iProgram )
 void qsynthPresetForm::soundfontChanged (void)
 {
     // Clear up the banks listbox.
+    int iBankIndex = BankListBox->currentItem();
     BankListBox->clear();
     // Grab soundfont id from combobox item text.
     int iSFID = SoundFontComboBox->currentText().section(':', 0, 0).toInt();
@@ -165,7 +166,8 @@ void qsynthPresetForm::soundfontChanged (void)
         }
     }
     // Stabilize the bank list.
-    bankChanged();
+    BankListBox->setCurrentItem(iBankIndex);
+//  bankChanged();
 }
 
 

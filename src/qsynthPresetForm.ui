@@ -200,7 +200,7 @@
 <connections>
     <connection>
         <sender>SoundFontComboBox</sender>
-        <signal>highlighted(int)</signal>
+        <signal>activated(int)</signal>
         <receiver>qsynthPresetForm</receiver>
         <slot>soundfontChanged()</slot>
     </connection>
