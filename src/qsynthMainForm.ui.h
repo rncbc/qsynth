@@ -23,6 +23,8 @@
 #include <qapplication.h>
 #include <qmessagebox.h>
 
+#include <math.h>
+
 #include "config.h"
 
 #include "qsynthAbout.h"
@@ -158,11 +160,6 @@ bool qsynthMainForm::queryClose (void)
     return bQueryClose;
 }
 
-void qsynthMainForm::reject (void)
-{
-    if (queryClose())
-        QDialog::reject();
-}
 
 void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 {
@@ -540,19 +537,19 @@ void qsynthMainForm::loadPanelSettings (void)
     m_iReverbUpdated = 0;
     m_iChorusUpdated = 0;
 
-    GainDial->setValue((int) (10.0 * m_pSetup->fGain));
+    GainDial->setValue((int) ::ceil(10.0 * m_pSetup->fGain));
 
     ReverbActiveCheckBox->setChecked(m_pSetup->bReverbActive);
-    ReverbRoomDial->setValue((int) (10.0 * m_pSetup->fReverbRoom));
-    ReverbDampDial->setValue((int) (10.0 * m_pSetup->fReverbDamp));
-    ReverbWidthDial->setValue((int) (10.0 * m_pSetup->fReverbWidth));
-    ReverbLevelDial->setValue((int) (10.0 * m_pSetup->fReverbLevel));
+    ReverbRoomDial->setValue((int) ::ceil(10.0 * m_pSetup->fReverbRoom));
+    ReverbDampDial->setValue((int) ::ceil(10.0 * m_pSetup->fReverbDamp));
+    ReverbWidthDial->setValue((int) ::ceil(10.0 * m_pSetup->fReverbWidth));
+    ReverbLevelDial->setValue((int) ::ceil(10.0 * m_pSetup->fReverbLevel));
 
     ChorusActiveCheckBox->setChecked(m_pSetup->bChorusActive);
     ChorusNrDial->setValue(m_pSetup->iChorusNr);
-    ChorusLevelDial->setValue((int) (10.0 * m_pSetup->fChorusLevel));
-    ChorusSpeedDial->setValue((int) (10.0 * m_pSetup->fChorusSpeed));
-    ChorusDepthDial->setValue((int) (10.0 * m_pSetup->fChorusDepth));
+    ChorusLevelDial->setValue((int) ::ceil(10.0 * m_pSetup->fChorusLevel));
+    ChorusSpeedDial->setValue((int) ::ceil(10.0 * m_pSetup->fChorusSpeed));
+    ChorusDepthDial->setValue((int) ::ceil(10.0 * m_pSetup->fChorusDepth));
     ChorusTypeComboBox->setCurrentItem(m_pSetup->iChorusType);
 
     stabilizeForm();
@@ -721,7 +718,7 @@ void qsynthMainForm::refreshGain (void)
 
     float fGain = ::fluid_synth_get_gain(m_pSynth);
 
-    GainDial->setValue((int) (10.0 * fGain));
+    GainDial->setValue((int) ::ceil(10.0 * fGain));
 }
 
 
@@ -736,10 +733,10 @@ void qsynthMainForm::refreshReverb (void)
     double fReverbWidth = ::fluid_synth_get_reverb_width(m_pSynth);
     double fReverbLevel = ::fluid_synth_get_reverb_level(m_pSynth);
 
-    ReverbRoomDial->setValue((int) (10.0 * fReverbRoom));
-    ReverbDampDial->setValue((int) (10.0 * fReverbDamp));
-    ReverbWidthDial->setValue((int) (10.0 * fReverbWidth));
-    ReverbLevelDial->setValue((int) (10.0 * fReverbLevel));
+    ReverbRoomDial->setValue((int) ::ceil(10.0 * fReverbRoom));
+    ReverbDampDial->setValue((int) ::ceil(10.0 * fReverbDamp));
+    ReverbWidthDial->setValue((int) ::ceil(10.0 * fReverbWidth));
+    ReverbLevelDial->setValue((int) ::ceil(10.0 * fReverbLevel));
 }
 
 
@@ -756,9 +753,9 @@ void qsynthMainForm::refreshChorus (void)
     int    iChorusType  = ::fluid_synth_get_chorus_type(m_pSynth);
 
     ChorusNrDial->setValue(iChorusNr);
-    ChorusLevelDial->setValue((int) (10.0 * fChorusLevel));
-    ChorusSpeedDial->setValue((int) (10.0 * fChorusSpeed));
-    ChorusDepthDial->setValue((int) (10.0 * fChorusDepth));
+    ChorusLevelDial->setValue((int) ::ceil(10.0 * fChorusLevel));
+    ChorusSpeedDial->setValue((int) ::ceil(10.0 * fChorusSpeed));
+    ChorusDepthDial->setValue((int) ::ceil(10.0 * fChorusDepth));
     ChorusTypeComboBox->setCurrentItem(iChorusType);
 }
 

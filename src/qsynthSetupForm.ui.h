@@ -155,7 +155,12 @@ void qsynthSetupForm::init (void)
 {
     // No fluidsynth descriptor initially (the caller will set it).
     m_pSynth = NULL;
-    
+
+    // Set dialog validators...
+    SampleRateComboBox->setValidator(new QIntValidator(SampleRateComboBox));
+    AudioBufSizeComboBox->setValidator(new QIntValidator(AudioBufSizeComboBox));
+    AudioBufCountComboBox->setValidator(new QIntValidator(AudioBufCountComboBox));
+
     // Try to restore old window positioning.
     adjustSize();
 
@@ -183,7 +188,8 @@ void qsynthSetupForm::load ( qsynthSetup *pSetup )
     // Load combobox stories.
     pSetup->loadComboBoxHistory(SoundFontComboBox);
     SoundFontComboBox->setCurrentText(QString::null);
-    
+
+
     // Some defaults first.
     m_sSoundFontDir = pSetup->sSoundFontDir;
 
@@ -196,15 +202,50 @@ void qsynthSetupForm::load ( qsynthSetup *pSetup )
     // And start filling it in...
     ::fluid_settings_foreach(pSetup->fluid_settings(), &data, qsynth_settings_foreach);
 
+    // Midi Driver combobox options.
+    data.options.clear();
+    ::fluid_settings_foreach_option(pSetup->fluid_settings(), "midi.driver", &data, qsynth_settings_foreach_option);
+    MidiDriverComboBox->clear();
+    MidiDriverComboBox->insertStringList(data.options);
+    // Audio Driver combobox options.
+    data.options.clear();
+    ::fluid_settings_foreach_option(pSetup->fluid_settings(), "audio.driver", &data, qsynth_settings_foreach_option);
+    AudioDriverComboBox->clear();
+    AudioDriverComboBox->insertStringList(data.options);
+    // Sample Format combobox options.
+    data.options.clear();
+    ::fluid_settings_foreach_option(pSetup->fluid_settings(), "audio.sample-format", &data, qsynth_settings_foreach_option);
+    SampleFormatComboBox->clear();
+    SampleFormatComboBox->insertStringList(data.options);
+
+    // Midi settings...
+    MidiInCheckBox->setChecked(pSetup->bMidiIn);
+    MidiDriverComboBox->setCurrentText(pSetup->sMidiDriver);
+    MidiChannelsSpinBox->setValue(pSetup->iMidiChannels);
+    MidiDumpCheckBox->setChecked(pSetup->bMidiDump);
+    VerboseCheckBox->setChecked(pSetup->bVerbose);
+
+    // Audio settings...
+    AudioDriverComboBox->setCurrentText(pSetup->sAudioDriver);
+    SampleFormatComboBox->setCurrentText(pSetup->sSampleFormat);
+    SampleRateComboBox->setCurrentText(QString::number(pSetup->fSampleRate));
+    AudioBufSizeComboBox->setCurrentText(QString::number(pSetup->iAudioBufSize));
+    AudioBufCountComboBox->setCurrentText(QString::number(pSetup->iAudioBufCount));
+    AudioChannelsSpinBox->setValue(pSetup->iAudioChannels);
+    AudioGroupsSpinBox->setValue(pSetup->iAudioGroups);
+    PolyphonySpinBox->setValue(pSetup->iPolyphony);
+    JackAutoConnectCheckBox->setChecked(pSetup->bJackAutoConnect);
+
+    // Load the soundfont view.
+    refreshSoundFonts();
+
     // Load Display options...
     QFont font;
     if (pSetup->sMessagesFont.isEmpty() || !font.fromString(pSetup->sMessagesFont))
         font = QFont("Fixed", 8);
     MessagesFontTextLabel->setFont(font);
     MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
-    
-    // Load the soundfont view.
-    refreshSoundFonts();
+
     // Done.
     stabilizeForm();
 }
@@ -226,6 +267,24 @@ void qsynthSetupForm::save ( qsynthSetup *pSetup )
                 pSetup->soundfonts.append(pSoundFont->get_name(pSoundFont));
         }
     }
+
+    // Audio settings...
+    pSetup->sAudioDriver     = AudioDriverComboBox->currentText();
+    pSetup->sSampleFormat    = SampleFormatComboBox->currentText();
+    pSetup->fSampleRate      = SampleRateComboBox->currentText().toDouble();
+    pSetup->iAudioBufSize    = AudioBufSizeComboBox->currentText().toInt();
+    pSetup->iAudioBufCount   = AudioBufCountComboBox->currentText().toInt();
+    pSetup->iAudioChannels   = AudioChannelsSpinBox->value();
+    pSetup->iAudioGroups     = AudioGroupsSpinBox->value();
+    pSetup->iPolyphony       = PolyphonySpinBox->value();
+    pSetup->bJackAutoConnect = JackAutoConnectCheckBox->isChecked();
+
+    // Midi settings...
+    pSetup->bMidiIn          = MidiInCheckBox->isChecked();
+    pSetup->sMidiDriver      = MidiDriverComboBox->currentText();
+    pSetup->iMidiChannels    = MidiChannelsSpinBox->value();
+    pSetup->bMidiDump        = MidiDumpCheckBox->isChecked();
+    pSetup->bVerbose         = VerboseCheckBox->isChecked();
 
     // Save combobox stories.
     pSetup->saveComboBoxHistory(SoundFontComboBox);
@@ -262,6 +321,16 @@ void qsynthSetupForm::refreshSoundFonts()
 // Stabilize current form state.
 void qsynthSetupForm::stabilizeForm()
 {
+    bool bEnabled = MidiInCheckBox->isChecked();
+    MidiDriverTextLabel->setEnabled(bEnabled);
+    MidiDriverComboBox->setEnabled(bEnabled);
+    MidiChannelsTextLabel->setEnabled(bEnabled);
+    MidiChannelsSpinBox->setEnabled(bEnabled);
+    MidiDumpCheckBox->setEnabled(bEnabled);
+    VerboseCheckBox->setEnabled(bEnabled);
+    
+    JackAutoConnectCheckBox->setEnabled(AudioDriverComboBox->currentText() == "jack");
+
     if (m_pSynth) {
         QString sSoundFont = SoundFontComboBox->currentText();
         SoundFontComboBox->setEnabled(true);
