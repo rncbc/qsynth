@@ -26,6 +26,7 @@
 #include <qfiledialog.h>
 #include <qfileinfo.h>
 #include <qfontdialog.h>
+#include <qlistbox.h>
 
 #include "config.h"
 
@@ -376,6 +377,24 @@ void qsynthSetupForm::reject (void)
 // Dirty up engine display name.
 void qsynthSetupForm::nameChanged ( const QString& )
 {
+    if (m_iDirtySetup > 0)
+        return;
+
+    QListBox *pListBox;
+    const QString& sDisplayName = DisplayNameLineEdit->text();
+
+    pListBox = AlsaNameComboBox->listBox();
+    if (pListBox->findItem(sDisplayName, Qt::ExactMatch) == NULL) {
+        pListBox->removeItem(pListBox->count() - 1);
+        pListBox->insertItem(DisplayNameLineEdit->text());
+    }
+
+    pListBox = JackNameComboBox->listBox();
+    if (pListBox->findItem(sDisplayName, Qt::ExactMatch) == NULL) {
+        pListBox->removeItem(pListBox->count() - 1);
+        pListBox->insertItem(DisplayNameLineEdit->text());
+    }
+
     settingsChanged();
 }
 

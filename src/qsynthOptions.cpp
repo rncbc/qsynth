@@ -395,14 +395,20 @@ void qsynthOptions::deleteKey ( const QString& sKey )
 {
     // First, delete all stand-alone entries...
     QStringList entries = m_settings.entryList(sKey);
-    for (QStringList::Iterator entry = entries.begin(); entry != entries.end(); ++entry)
-        m_settings.removeEntry(sKey + "/" + *entry);
+    for (QStringList::Iterator entry = entries.begin(); entry != entries.end(); ++entry) {
+        const QString& sEntry = *entry;
+        if (!sEntry.isEmpty())
+            m_settings.removeEntry(sKey + "/" + sEntry);
+    }
         
     // Then, we'll recurse under sub-keys...
     QStringList subkeys = m_settings.subkeyList(sKey);
-    for (QStringList::Iterator subkey = subkeys.begin(); subkey != subkeys.end(); ++subkey)
-        deleteKey(sKey + "/" + *subkey);
-        
+    for (QStringList::Iterator subkey = subkeys.begin(); subkey != subkeys.end(); ++subkey) {
+        const QString& sSubKey = *subkey;
+        if (!sSubKey.isEmpty())
+            deleteKey(sKey + "/" + sSubKey);
+    }
+    
     // Finally we remove our-selves.
     m_settings.removeEntry(sKey);
 }
