@@ -3,6 +3,11 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+0.0.3   2003-12-10  Tiny changes so far.
+
+- One shot timer graceful rewrite.
+
+
 0.0.2   2003-11-26  Minor bugfixes.
 
 - Gain, Reverb and Chorus front-panel settings are now loosely scaled

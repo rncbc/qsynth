@@ -22,6 +22,7 @@
 
 #include <qapplication.h>
 #include <qmessagebox.h>
+#include <qtimer.h>
 
 #include <math.h>
 
@@ -31,6 +32,7 @@
 
 // Timer constant stuff.
 #define QSYNTH_TIMER_MSECS  200
+#define QSYNTH_DELAY_MSECS  200
 
 // Scale factors.
 #define QSYNTH_GAIN_SCALE   10.0
@@ -75,7 +77,9 @@ static int qsynth_handle_midi_event (void *pvData, fluid_midi_event_t *pMidiEven
 
 static int qsynth_iscale_clip ( double fScale, double fValue )
 {
-#if 0
+#ifdef CONFIG_ROUND
+    int iValue = (int) ::round(fScale * fValue);
+#else
     double fIPart = 0.0;
     double fFPart = ::modf(fScale * fValue, &fIPart);
     int iValue = (int) fIPart;
@@ -84,8 +88,6 @@ static int qsynth_iscale_clip ( double fScale, double fValue )
     else
     if (fFPart <= -0.5)
         iValue--;
-#else
-    int iValue = (int) ::round(fScale * fValue);
 #endif
 
     if (iValue < 0)
@@ -117,8 +119,8 @@ static double qsynth_fscale_clip ( int iValue, double fScale )
 void qsynthMainForm::init (void)
 {
     m_pSetup = NULL;
-    m_pTimer = new QTimer(this);
-    m_iTimerSlot = 0;
+    
+    m_iTimerDelay = 0;
 
     m_pSynth        = NULL;
     m_pAudioDriver  = NULL;
@@ -150,11 +152,6 @@ void qsynthMainForm::init (void)
 
     // All forms are to be created right now.
     m_pMessagesForm = new qsynthMessagesForm(this);
-
-    // Register the timer slot.
-    QObject::connect(m_pTimer, SIGNAL(timeout()), this, SLOT(timerSlot()));
-    // Our timer is started...
-    m_pTimer->start(QSYNTH_TIMER_MSECS, false);
 }
 
 
@@ -165,10 +162,6 @@ void qsynthMainForm::destroy (void)
     stopSynth();
     m_pSetup = NULL;
     
-    // Stop and kill timer.
-    m_pTimer->stop();
-    delete m_pTimer;
-
     // Delete pixmaps.
     delete m_pXpmLedOn;
     delete m_pXpmLedOff;
@@ -192,6 +185,9 @@ void qsynthMainForm::setup ( qsynthSetup *pSetup )
 
     // Final startup stabilization...
     stabilizeForm();
+
+    // Register the initial timer slot.
+    QTimer::singleShot(QSYNTH_TIMER_MSECS, this, SLOT(timerSlot()));
 }
 
 
@@ -439,10 +435,13 @@ void qsynthMainForm::showAboutForm (void)
 void qsynthMainForm::timerSlot (void)
 {
     // Is it the first shot on synth start after a one slot delay?
-    if (++m_iTimerSlot == 1) {
-        if (!startSynth()) {
-            close();
-            return;
+    if (m_iTimerDelay < QSYNTH_DELAY_MSECS) {
+        m_iTimerDelay += QSYNTH_TIMER_MSECS;
+        if (m_iTimerDelay >= QSYNTH_DELAY_MSECS) {
+            if (!startSynth()) {
+                close();
+                return;
+            }
         }
     }
 
@@ -470,6 +469,9 @@ void qsynthMainForm::timerSlot (void)
     // Chorus changes?
     if (m_iChorusChanged > 0)
         updateChorus();
+
+    // Register for the next timer slot.
+    QTimer::singleShot(QSYNTH_TIMER_MSECS, this, SLOT(timerSlot()));
 }
 
 
@@ -641,7 +643,7 @@ void qsynthMainForm::stopSynth (void)
     // Show up our efforts :)
     stabilizeForm();
     // Make room for immediate restart...
-    m_iTimerSlot = 0;
+    m_iTimerDelay = 0;
 }
 
 

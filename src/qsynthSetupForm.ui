@@ -29,7 +29,7 @@
             <x>0</x>
             <y>0</y>
             <width>514</width>
-            <height>237</height>
+            <height>265</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -323,6 +323,12 @@
                             <widget class="QLabel" row="1" column="0">
                                 <property name="name">
                                     <cstring>SampleRateTextLabel</cstring>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>NoFrame</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Plain</enum>
                                 </property>
                                 <property name="text">
                                     <string>Sample &amp;Rate:</string>
@@ -975,6 +981,9 @@
                                 <width>480</width>
                                 <height>0</height>
                             </size>
+                        </property>
+                        <property name="selectionMode">
+                            <enum>NoSelection</enum>
                         </property>
                         <property name="allColumnsShowFocus">
                             <bool>true</bool>

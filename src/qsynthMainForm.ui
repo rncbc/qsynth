@@ -1383,7 +1383,6 @@
 <includes>
     <include location="global" impldecl="in declaration">qsettings.h</include>
     <include location="global" impldecl="in declaration">qsocketnotifier.h</include>
-    <include location="global" impldecl="in declaration">qtimer.h</include>
     <include location="local" impldecl="in declaration">qsynthSetup.h</include>
     <include location="local" impldecl="in declaration">qsynthMessagesForm.h</include>
     <include location="local" impldecl="in implementation">qsynthSetupForm.h</include>
@@ -1392,8 +1391,7 @@
 </includes>
 <variables>
     <variable access="public">qsynthSetup *m_pSetup;</variable>
-    <variable access="private">QTimer *m_pTimer;</variable>
-    <variable access="private">int m_iTimerSlot;</variable>
+    <variable access="private">int m_iTimerDelay;</variable>
     <variable access="private">QPixmap *m_pXpmLedOn;</variable>
     <variable access="private">QPixmap *m_pXpmLedOff;</variable>
     <variable access="private">fluid_synth_t *m_pSynth;</variable>
