@@ -49,7 +49,7 @@ qsynthOptions::qsynthOptions (void)
     bQueryClose    = m_settings.readBoolEntry("/QueryClose",    true);
     bKeepOnTop     = m_settings.readBoolEntry("/KeepOnTop",     true);
     bStdoutCapture = m_settings.readBoolEntry("/StdoutCapture", true);
-    bOutputMeters  = m_settings.readBoolEntry("/OutputMeters",  true);
+    bOutputMeters  = m_settings.readBoolEntry("/OutputMeters",  false);
     m_settings.endGroup();
 
     // Load defaults...

@@ -3,7 +3,7 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.2   2004-09-22  Output level peak meters and other fixes.
+0.2.2   2004-09-27  Output level peak meters and other fixes.
 
 - Meanwhile, XPM icon(s) were brainlessly converted to PNG format.
 
@@ -14,12 +14,16 @@ ChangeLog
 - Master gain front panel control gets rescaled and now ranges
   from 0..200, with midpoint at 100 (unit gain).
 
+- Added Mac OS X build instructions (README-OSX, by Ebrahim Mayat).
+
 - Soundfont bank offset option gets its trial time (EXPERIMENTAL);
   please note that fluidsynth 1.0.5 is needed to build on this feature, 
   which is being properly detected and only enabled at configure time.
 
-- Output level peak meters are now featured as an option (EXPERIMENTAL);
-  in addition, overall GUI refresh cycle period reduced to 100 msec.
+- Output level peak meters are now featured as an option (EXPERIMENTAL),
+  which must be explicitly enabled on setup for those to show up;
+  in addition, overall GUI refresh cycle period has been reduced from
+  200 to 100 msec.
 
 - Top level sub-windows are now always raised and set with active focus
   when shown to visibility.

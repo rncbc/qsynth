@@ -1,0 +1,70 @@
+Compiling qsynth-0.2.2 on Mac OS X
+----------------------------------
+by: Ebrahim Mayat <ebmayat at mac dot com>
+
+
+1. Install qt3, qt3-designer, qt3-dev, qt3-doc, qt3-linguist
+   and qt3-shlibs from fink.
+
+2. cd to the qsynth-0.2.2 directory and generate the qsynth.pro file:
+
+   /sw/bin/qmake -project
+
+3. Edit the generated qsynth.pro file to include the IMAGES object:
+
+   IMAGES = icons/qsynth.xpm \
+            icons/messages1.png \
+            icons/options1.png \
+            icons/about1.png \
+            icons/accept1.png \
+            icons/quit1.png \
+            icons/setup1.png \
+            icons/reset1.png \
+            icons/panic1.png \
+            icons/restart1.png \
+            icons/channels1.png \
+            icons/ledoff1.png \
+            icons/ledon1.png \
+            icons/sfont1.png \
+            icons/open1.png \
+            icons/save1.png \
+            icons/add1.png \
+            icons/edit1.png \
+            icons/remove1.png \
+            icons/up1.png \
+            icons/down1.png \
+            icons/qtlogo.png
+
+4. Generate the Makefile:
+
+   /sw/bin/qmake
+
+5. Edit the Makefile to include the libraries for MidiShare, CoreAudio,
+   fluidsynth and Jack in the LIBS line:
+   
+   -lfluidsynth -framework MidiShare -framework CoreAudio -framework Jack
+   
+6. Add paths of the include directories (INCPATH) for the four libraries
+   mentioned above:
+   
+   -I/System/Library/Frameworks/MidiShare.framework/Versions/A/Headers -I/System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers -I/Library/Frameworks/Jack.framework/Headers
+   
+7. Create an empty config.h file in the src folder of qsynth; edit and add
+   the following lines to config.h:
+
+   #define CONFIG_PREFIX "/sw"
+   #undef  CONFIG_FLUID_SERVER
+   #define CONFIG_FLUID_RESET 1
+   #define CONFIG_FLUID_BANK_OFFSET 1
+   #define CONFIG_ROUND 1
+
+8. make
+
+
+FAIR WARNING: Please, avoid enabling the "Output peak level meters" option,
+which is known to raise a general "bus error" exception on startup, making
+QSynth unusable. Please do report if you ever get the level meters to show
+up unsuspiciously on Mac OS X.
+
+Enjoy.
+
