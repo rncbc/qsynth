@@ -150,6 +150,8 @@ void qsynthChannelsForm::updateChannel ( int iChan )
         pItem->setText(QSYNTH_CHANNELS_BANK, QString::number(pPreset->get_banknum(pPreset)));
         pItem->setText(QSYNTH_CHANNELS_PROG, QString::number(pPreset->get_num(pPreset)));
         pItem->setText(QSYNTH_CHANNELS_NAME, pPreset->get_name(pPreset));
+        // Make this a dirty-operation.
+        m_iDirtyCount++;
     } else {
         QString n = "-";
         pItem->setText(QSYNTH_CHANNELS_SFID, n);
@@ -193,7 +195,7 @@ void qsynthChannelsForm::contextMenu( QListViewItem *pItem, const QPoint& pos, i
     QPopupMenu* pContextMenu = new QPopupMenu(this);
 
     bool bEnabled = (m_pSynth && pItem);
-    iItemID = pContextMenu->insertItem(tr("Edit"), this, SLOT(editSelectedChannel()));
+    iItemID = pContextMenu->insertItem(tr("Edit") + "...", this, SLOT(editSelectedChannel()));
     pContextMenu->setItemEnabled(iItemID, bEnabled);
     pContextMenu->insertSeparator();
     iItemID = pContextMenu->insertItem(tr("Refresh"), this, SLOT(updateAllChannels()));
@@ -227,10 +229,8 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
         // The the proper context.
         pPresetForm->setup(m_pSynth, iChan);
         // Show the channel preset dialog...
-        if (pPresetForm->exec()) {
+        if (pPresetForm->exec())
             updateChannel(iChan);
-            m_iDirtyCount++;
-        }
         // Done.
         delete pPresetForm;
     }
@@ -244,11 +244,14 @@ void qsynthChannelsForm::changePreset( const QString& sPreset )
     if (m_pSetup == NULL || m_pSynth == NULL || m_iDirtySetup > 0)
         return;
 
-    // This is a pseudo-dirty procedure...
+    // Force this is pseudo-dirty procedure...
     m_iDirtyCount++;
     // Load presets and update/refresh the whole thing.
     if (m_pSetup->loadPreset(m_pSynth, sPreset)) {
         updateAllChannels();
+        // Very special, make this the new default preset.
+        m_pSetup->sDefPreset = sPreset;
+        // This is clean now, for sure.
         m_iDirtyCount = 0;
     }
     stabilizeForm();
@@ -270,8 +273,7 @@ void qsynthChannelsForm::savePreset (void)
         resetPresets();
         PresetComboBox->setCurrentText(sPreset);
         m_iDirtySetup--;
-        // Special, set this as default.
-        m_pSetup->sDefPreset = sPreset;
+        // Not dirty anymore, by definition.
         m_iDirtyCount = 0;
     }
 

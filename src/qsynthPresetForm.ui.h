@@ -154,7 +154,7 @@ void qsynthPresetForm::soundfontChanged (void)
     // Grab soundfont id from combobox item text.
     int iSFID = SoundFontComboBox->currentText().section(':', 0, 0).toInt();
     // Grab the soundfont...
-    fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, iSFID);
+    fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont_by_id(m_pSynth, iSFID);
     if (pSoundFont) {
         fluid_preset_t preset;
         pSoundFont->iteration_start(pSoundFont);
@@ -178,7 +178,7 @@ void qsynthPresetForm::bankChanged (void)
     int iSFID = SoundFontComboBox->currentText().section(':', 0, 0).toInt();
     int iBank = BankListBox->currentText().toInt();
     // Grab the soundfont...
-    fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, iSFID);
+    fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont_by_id(m_pSynth, iSFID);
     if (pSoundFont) {
         fluid_preset_t preset;
         pSoundFont->iteration_start(pSoundFont);
