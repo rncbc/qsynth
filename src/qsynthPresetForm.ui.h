@@ -33,9 +33,10 @@ void qsynthPresetForm::init()
     m_iBank  = 0;
     m_iProg  = 0;
 
-    // To avoid setup jitterness.
+    // To avoid setup jitterness and preview side effects.
     m_iDirtySetup = 0;
-    
+    m_iDirtyCount = 0;
+
     // No default sorting, initially.
     BankListView->setSorting(BankListView->columns() + 1);
     ProgListView->setSorting(ProgListView->columns() + 1);
@@ -102,7 +103,7 @@ void qsynthPresetForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth, int i
     pProgItem = findProgItem(m_iProg);
     ProgListView->setSelected(pProgItem, true);
     ProgListView->ensureItemVisible(pProgItem);
-    
+
     // And the preview state...
     PreviewCheckBox->setChecked(m_pSetup->bPresetPreview);
 
@@ -166,7 +167,7 @@ void qsynthPresetForm::accept()
 void qsynthPresetForm::reject (void)
 {
     // Reset selection to initial selection, if applicable...
-    if (!PreviewCheckBox->isChecked())
+    if (m_iDirtyCount > 0)
         setBankProg(m_iBank, m_iProg);
     // Done (hopefully nothing).
     QDialog::reject();
@@ -250,6 +251,14 @@ void qsynthPresetForm::progChanged (void)
         int iProg = (ProgListView->selectedItem())->text(0).toInt();
         // And set it right away...
         setBankProg(iBank, iProg);
+        // Now we're dirty nuff.
+        m_iDirtyCount++;
+    }   // Have we done anything dirty before?
+    else if (m_iDirtyCount > 0) {
+        // Restore initial preset...
+        setBankProg(m_iBank, m_iProg);
+        // And we're clean again.
+        m_iDirtyCount = 0;
     }
 
     // Stabilize the form.

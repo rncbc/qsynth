@@ -306,6 +306,7 @@
     <variable access="private">int m_iBank;</variable>
     <variable access="private">int m_iProg;</variable>
     <variable access="private">int m_iDirtySetup;</variable>
+    <variable access="private">int m_iDirtyCount;</variable>
 </variables>
 <slots>
     <slot specifier="non virtual">accept()</slot>
