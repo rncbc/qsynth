@@ -42,15 +42,17 @@ by: Ebrahim Mayat <ebmayat at mac dot com>
 5. Edit the Makefile to include the libraries for MidiShare, CoreAudio,
    fluidsynth and Jack in the LIBS line:
    
-   -lfluidsynth -framework MidiShare -framework CoreAudio -framework Jack
+   -lfluidsynth -framework MidiShare -framework CoreAudio 
    
 6. Add paths of the include directories (INCPATH) for the four libraries
    mentioned above:
    
-   -I/System/Library/Frameworks/MidiShare.framework/Versions/A/Headers -I/System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers -I/Library/Frameworks/Jack.framework/Headers
+   -I/System/Library/Frameworks/MidiShare.framework/Versions/A/Headers \
+   -I/System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers \
+   -I/Library/Frameworks/Jack.framework/Headers
    
-7. Create an empty config.h file in the src folder of qsynth:	touch src/config.h 
-   then edit and add the following lines to config.h:
+7. Create an empty config.h file in the src folder of qsynth:
+   touch src/config.h then edit and add the following lines to config.h:
 
    #define CONFIG_PREFIX "/sw"
    #undef  CONFIG_FLUID_SERVER

@@ -3,7 +3,7 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.2   2004-10-06  Output level peak meters and other fixes.
+0.2.2   2004-10-07  Output level peak meters and other fixes.
 
 - Minor configure fixes.
 
