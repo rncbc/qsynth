@@ -2,7 +2,7 @@
 <class>qsynthChannelsForm</class>
 <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2005, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -311,6 +311,7 @@
     <slot specifier="non virtual">savePreset()</slot>
     <slot specifier="non virtual">deletePreset()</slot>
     <slot specifier="non virtual">editSelectedChannel( void )</slot>
+    <slot specifier="non virtual">updateAllChannels( void )</slot>
     <slot specifier="non virtual">contextMenu(QListViewItem *, const QPoint&amp;, int)</slot>
 </slots>
 <functions>
@@ -323,7 +324,6 @@
     <function specifier="non virtual">setup( qsynthOptions *pOptions, qsynthEngine *pEngine, bool bPreset )</function>
     <function specifier="non virtual">setChannelOn( int iChan, bool bOn )</function>
     <function specifier="non virtual">resetAllChannels( bool bPreset )</function>
-    <function specifier="non virtual">updateAllChannels( void )</function>
     <function specifier="non virtual">updateChannel( int iChan )</function>
 </functions>
 <pixmapinproject/>
