@@ -5,11 +5,11 @@ ChangeLog
 
 0.0.3   2003-12-12  Few tiny changes so far.
 
-- Single shot timer graceful rewrite.
+- Single shot timer and restart code path had a graceful rewrite.
+
+- Messages window blankness rendering fix.
 
 - Configure time detection of 'round' library function availability.
-
-- Messages window blank rendering fix.
 
 - Player drag and drop feature has been prepared, but somehow the
   internal MIDI player function is still broken.
