@@ -69,7 +69,7 @@
             </property>
             <property name="font">
                 <font>
-                    <family>Terminal</family>
+                    <family>Fixed</family>
                 </font>
             </property>
             <property name="wordWrap">

@@ -1297,21 +1297,21 @@
     <function specifier="non virtual">setup( qsynthSetup *pSetup )</function>
     <function access="private" specifier="non virtual" returnType="bool">queryClose( void )</function>
     <function access="private" specifier="non virtual">closeEvent( QCloseEvent * pCloseEvent )</function>
-    <function access="private" specifier="non virtual">appendMessages( const QString &amp; s )</function>
-    <function access="private" specifier="non virtual">appendMessagesColor( const QString &amp; s, const QString &amp; c )</function>
-    <function access="private" specifier="non virtual">appendMessagesText( const QString &amp; s )</function>
-    <function access="private" specifier="non virtual">appendMessagesError( const QString &amp; s )</function>
     <function access="private" specifier="non virtual">updateMessagesFont( void )</function>
+    <function specifier="non virtual">appendMessages( const QString &amp; s )</function>
+    <function specifier="non virtual">appendMessagesColor( const QString &amp; s, const QString &amp; c )</function>
+    <function specifier="non virtual">appendMessagesText( const QString &amp; s )</function>
+    <function specifier="non virtual">appendMessagesError( const QString &amp; s )</function>
     <function specifier="non virtual" returnType="bool">startSynth( void )</function>
     <function specifier="non virtual">stopSynth( void )</function>
-    <function specifier="non virtual">loadPanelSettings( void )</function>
-    <function specifier="non virtual">savePanelSettings( void )</function>
-    <function specifier="non virtual">updateGain( void )</function>
-    <function specifier="non virtual">updateReverb( void )</function>
-    <function specifier="non virtual">updateChorus( void )</function>
-    <function specifier="non virtual">refreshGain( void )</function>
-    <function specifier="non virtual">refreshReverb( void )</function>
-    <function specifier="non virtual">refreshChorus( void )</function>
+    <function access="private" specifier="non virtual">loadPanelSettings( void )</function>
+    <function access="private" specifier="non virtual">savePanelSettings( void )</function>
+    <function access="private" specifier="non virtual">updateGain( void )</function>
+    <function access="private" specifier="non virtual">updateReverb( void )</function>
+    <function access="private" specifier="non virtual">updateChorus( void )</function>
+    <function access="private" specifier="non virtual">refreshGain( void )</function>
+    <function access="private" specifier="non virtual">refreshReverb( void )</function>
+    <function access="private" specifier="non virtual">refreshChorus( void )</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="4" margin="4"/>

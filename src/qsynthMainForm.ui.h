@@ -124,7 +124,13 @@ bool qsynthMainForm::queryClose (void)
 {
     bool bQueryClose = true;
     // Dow we quit right away?
-    // ...
+    if (m_pSynth && m_pAudioDriver) {
+        bQueryClose = (QMessageBox::warning(this, tr("Warning"),
+            tr("qsynth is about to terminate.") + "\n\n" +
+            tr("Are you sure?"),
+            tr("OK"), tr("Cancel")) == 0);
+    }
+    // Now's time.
     if (m_pSetup) {
         // Some windows default fonts is here on demeand too.
         if (bQueryClose && m_pMessagesForm)
@@ -278,6 +284,7 @@ void qsynthMainForm::showSetupForm (void)
         // To track down immediate changes.
         QString sOldMessagesFont = m_pSetup->sMessagesFont;
         // Load the current setup settings.
+        pSetupForm->setSynth(m_pSynth);
         pSetupForm->load(m_pSetup);
         // Show the setup dialog...
         if (pSetupForm->exec()) {

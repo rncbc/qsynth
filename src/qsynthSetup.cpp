@@ -74,9 +74,10 @@ qsynthSetup::qsynthSetup (void)
 
     // Load soundfont list...
     m_settings.beginGroup("/SoundFonts");
+    const QString sPrefix = "/SoundFont";
     int i = 0;
     for (;;) {
-        QString sSoundFont = m_settings.readEntry("/SoundFont" + QString::number(++i), QString::null);
+        QString sSoundFont = m_settings.readEntry(sPrefix + QString::number(++i), QString::null);
         if (sSoundFont.isEmpty())
             break;
         soundfonts.append(sSoundFont);
@@ -86,6 +87,11 @@ qsynthSetup::qsynthSetup (void)
     // Load display options...
     m_settings.beginGroup("/Options");
     sMessagesFont = m_settings.readEntry("/MessagesFont", QString::null);
+    m_settings.endGroup();
+
+    // Load defaults...
+    m_settings.beginGroup("/Defaults");
+    sSoundFontDir = m_settings.readEntry("/SoundFontDir", QString::null);
     m_settings.endGroup();
 }
 
@@ -98,6 +104,11 @@ qsynthSetup::~qsynthSetup (void)
     m_settings.writeEntry("/Version", QSYNTH_VERSION);
     m_settings.endGroup();
 
+    // Save defaults...
+    m_settings.beginGroup("/Defaults");
+    m_settings.writeEntry("/SoundFontDir", sSoundFontDir);
+    m_settings.endGroup();
+    
     // Save last display options.
     m_settings.beginGroup("/Options");
     m_settings.writeEntry("/MessagesFont", sMessagesFont);
@@ -105,9 +116,13 @@ qsynthSetup::~qsynthSetup (void)
 
     // Save last soundfont list.
     m_settings.beginGroup("/SoundFonts");
+    const QString sPrefix = "/SoundFont";
     int i = 0;
     for (QStringList::Iterator iter = soundfonts.begin(); iter != soundfonts.end(); iter++)
-        m_settings.writeEntry("/SoundFont" + QString::number(++i), *iter);
+        m_settings.writeEntry(sPrefix + QString::number(++i), *iter);        
+    // Cleanup old entries, if any...
+    for (++i; !m_settings.readEntry(sPrefix + QString::number(i)).isEmpty(); i++)
+        m_settings.removeEntry(sPrefix + QString::number(i));
     m_settings.endGroup();
 
     // Save last fluidsynth settings.
@@ -471,7 +486,7 @@ void qsynthSetup::realize (void)
 //---------------------------------------------------------------------------
 // Combo box history persistence helper implementation.
 
-void qsynthSetup::add2ComboBoxHistory ( QComboBox *pComboBox, const QString& sNewText, int iLimit, int iIndex )
+void qsynthSetup::add2ComboBoxHistory ( QComboBox *pComboBox, const QString& sNewText, int iIndex, int iLimit )
 {
     int iCount = pComboBox->count();
     for (int i = 0; i < iCount; i++) {
@@ -493,12 +508,12 @@ void qsynthSetup::loadComboBoxHistory ( QComboBox *pComboBox, int iLimit )
     pComboBox->setUpdatesEnabled(false);
     pComboBox->setDuplicatesEnabled(false);
 
-    m_settings.beginGroup("/" + QString(pComboBox->name()));
+    m_settings.beginGroup("/History/" + QString(pComboBox->name()));
     for (int i = 0; i < iLimit; i++) {
         QString sText = m_settings.readEntry("/Item" + QString::number(i + 1), QString::null);
         if (sText.isEmpty())
             break;
-        add2ComboBoxHistory(pComboBox, sText, iLimit);
+        add2ComboBoxHistory(pComboBox, sText, -1, iLimit);  // Append.
     }
     m_settings.endGroup();
 
@@ -508,9 +523,7 @@ void qsynthSetup::loadComboBoxHistory ( QComboBox *pComboBox, int iLimit )
 
 void qsynthSetup::saveComboBoxHistory ( QComboBox *pComboBox, int iLimit )
 {
-    add2ComboBoxHistory(pComboBox, pComboBox->currentText(), iLimit, 0);
-
-    m_settings.beginGroup("/" + QString(pComboBox->name()));
+    m_settings.beginGroup("/History/" + QString(pComboBox->name()));
     for (int i = 0; i < iLimit && i < pComboBox->count(); i++) {
         QString sText = pComboBox->text(i);
         if (sText.isEmpty())

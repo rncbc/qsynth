@@ -95,9 +95,12 @@ public:
 
     // Display options...
     QString sMessagesFont;
+    
+    // Default helpers...
+    QString sSoundFontDir;
 
     // Combo box history persistence helper prototypes.
-    void add2ComboBoxHistory(QComboBox *pComboBox, const QString& sNewText, int iLimit = 8, int iIndex = -1);
+    static void add2ComboBoxHistory(QComboBox *pComboBox, const QString& sNewText, int iIndex = 0, int iLimit = 8);
     void loadComboBoxHistory(QComboBox *pComboBox, int iLimit = 8);
     void saveComboBoxHistory(QComboBox *pComboBox, int iLimit = 8);
 

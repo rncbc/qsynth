@@ -29,7 +29,7 @@
             <x>0</x>
             <y>0</y>
             <width>528</width>
-            <height>245</height>
+            <height>289</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -109,6 +109,144 @@
             <property name="acceptDrops">
                 <bool>false</bool>
             </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>SoundFontTabPage</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Soundfonts</string>
+                </attribute>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QListView" row="0" column="0">
+                        <column>
+                            <property name="text">
+                                <string>ID</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>Name</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <property name="name">
+                            <cstring>SoundFontListView</cstring>
+                        </property>
+                        <property name="allColumnsShowFocus">
+                            <bool>true</bool>
+                        </property>
+                        <property name="resizeMode">
+                            <enum>LastColumn</enum>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Sound font stack</string>
+                        </property>
+                    </widget>
+                    <widget class="QLayoutWidget" row="1" column="0">
+                        <property name="name">
+                            <cstring>layout3</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>SoundFontOpenPushButton</cstring>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>70</width>
+                                        <height>32767</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Browse...</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+B</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Open sound font file for loading</string>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox">
+                                <property name="name">
+                                    <cstring>SoundFontComboBox</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>3</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="editable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Sounf font file name</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>SoundFontLoadPushButton</cstring>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>70</width>
+                                        <height>32767</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Load</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+L</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Load current file into sound font stack</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>SoundFontUnloadPushButton</cstring>
+                                </property>
+                                <property name="maximumSize">
+                                    <size>
+                                        <width>70</width>
+                                        <height>32767</height>
+                                    </size>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Unload</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+U</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Unload (remove) selected sound font from stack</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                </grid>
+            </widget>
             <widget class="QWidget">
                 <property name="name">
                     <cstring>TabPage</cstring>
@@ -347,6 +485,36 @@
 </widget>
 <connections>
     <connection>
+        <sender>SoundFontListView</sender>
+        <signal>selectionChanged()</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>stabilizeForm()</slot>
+    </connection>
+    <connection>
+        <sender>SoundFontComboBox</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>stabilizeForm()</slot>
+    </connection>
+    <connection>
+        <sender>SoundFontOpenPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>openSoundFont()</slot>
+    </connection>
+    <connection>
+        <sender>SoundFontLoadPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>loadSoundFont()</slot>
+    </connection>
+    <connection>
+        <sender>SoundFontUnloadPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>unloadSoundFont()</slot>
+    </connection>
+    <connection>
         <sender>MessagesFontPushButton</sender>
         <signal>clicked()</signal>
         <receiver>qsynthSetupForm</receiver>
@@ -367,21 +535,37 @@
 </connections>
 <tabstops>
     <tabstop>SetupTabWidget</tabstop>
+    <tabstop>SoundFontListView</tabstop>
+    <tabstop>SoundFontOpenPushButton</tabstop>
+    <tabstop>SoundFontComboBox</tabstop>
+    <tabstop>SoundFontLoadPushButton</tabstop>
+    <tabstop>SoundFontUnloadPushButton</tabstop>
+    <tabstop>SettingsListView</tabstop>
     <tabstop>MessagesFontPushButton</tabstop>
     <tabstop>OkPushButton</tabstop>
     <tabstop>CancelPushButton</tabstop>
 </tabstops>
 <includes>
     <include location="global" impldecl="in declaration">qsynthSetup.h</include>
+    <include location="local" impldecl="in implementation">qsynthMainForm.h</include>
     <include location="local" impldecl="in implementation">qsynthSetupForm.ui.h</include>
 </includes>
+<variables>
+    <variable access="private">fluid_synth_t *m_pSynth;</variable>
+    <variable access="private">QString m_sSoundFontDir;</variable>
+</variables>
 <slots>
+    <slot specifier="non virtual">refreshSoundFonts()</slot>
+    <slot specifier="non virtual">stabilizeForm()</slot>
+    <slot specifier="non virtual">openSoundFont()</slot>
+    <slot specifier="non virtual">loadSoundFont()</slot>
+    <slot specifier="non virtual">unloadSoundFont()</slot>
     <slot specifier="non virtual">chooseMessagesFont()</slot>
 </slots>
 <functions>
-    <function access="private" specifier="non virtual">init()</function>
-    <function access="private" specifier="non virtual">destroy()</function>
-    <function access="private" specifier="non virtual">stabilizeForm()</function>
+    <function access="private" specifier="non virtual">init( void )</function>
+    <function access="private" specifier="non virtual">destroy( void )</function>
+    <function specifier="non virtual">setSynth( fluid_synth_t *pSynth )</function>
     <function specifier="non virtual">load( qsynthSetup * pSetup )</function>
     <function specifier="non virtual">save( qsynthSetup * pSetup )</function>
 </functions>
