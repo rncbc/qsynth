@@ -3,6 +3,12 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+0.2.2   2004-05-24  Sloppy boy fixes.
+
+- Top level sub-windows are now always raised and set with active focus
+  when shown to visibility.
+
+
 0.2.1   2004-04-30  Important internal fixes.
 
 - Channels window reset when switching engines isn't destructive

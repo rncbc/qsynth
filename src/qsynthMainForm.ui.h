@@ -738,10 +738,13 @@ void qsynthMainForm::toggleMessagesForm (void)
 
     if (m_pMessagesForm) {
         m_pOptions->saveWidgetGeometry(m_pMessagesForm);
-        if (m_pMessagesForm->isVisible())
+        if (m_pMessagesForm->isVisible()) {
             m_pMessagesForm->hide();
-        else
+        } else {
             m_pMessagesForm->show();
+            m_pMessagesForm->raise();
+            m_pMessagesForm->setActiveWindow();
+        }
     }
 }
 
@@ -754,10 +757,13 @@ void qsynthMainForm::toggleChannelsForm (void)
 
     if (m_pChannelsForm) {
         m_pOptions->saveWidgetGeometry(m_pChannelsForm);
-        if (m_pChannelsForm->isVisible())
+        if (m_pChannelsForm->isVisible()) {
             m_pChannelsForm->hide();
-        else
+        } else {
             m_pChannelsForm->show();
+            m_pChannelsForm->raise();
+            m_pChannelsForm->setActiveWindow();
+        }
     }
 }
 

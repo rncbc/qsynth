@@ -6,17 +6,24 @@ name    = qsynth
 headers = config.h \
 	src/qsynthAbout.h \
 	src/qsynthSetup.h \
+	src/qsynthEngine.h \
+	src/qsynthOptions.h \
 	src/qsynthChannels.h \
+	src/qsynthTabBar.h \
 	src/qsynthMainForm.ui.h \
 	src/qsynthMessagesForm.ui.h \
 	src/qsynthChannelsForm.ui.h \
+	src/qsynthOptionsForm.ui.h \
 	src/qsynthPresetForm.ui.h \
 	src/qsynthSetupForm.ui.h \
 	src/qsynthAboutForm.ui.h
           
 sources = src/main.cpp \
 	src/qsynthSetup.cpp \
+	src/qsynthSetup.cpp \
+	src/qsynthEngine.cpp \
 	src/qsynthChannels.cpp \
+	src/qsynthTabBar.cpp \
 	src/qsynthMainForm.ui \
 	src/qsynthMessagesForm.ui \
 	src/qsynthChannelsForm.ui \
@@ -44,3 +51,4 @@ clean:	$(name).mak
 	@make -f $(name).mak clean
 	@rm -f $(name) $(name).mak
 	@rm -rf *.cache *.log *.status
+
