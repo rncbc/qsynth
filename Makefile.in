@@ -9,7 +9,7 @@ headers = config.h \
 	src/qsynthChannels.h \
 	src/qsynthMainForm.ui.h \
 	src/qsynthMessagesForm.ui.h \
-	src/qsynthChannelsForm.h \
+	src/qsynthChannelsForm.ui.h \
 	src/qsynthSetupForm.ui.h \
 	src/qsynthAboutForm.ui.h
           
