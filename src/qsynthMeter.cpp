@@ -32,7 +32,7 @@
 #define QSYNTHMETER_MINDB		(-70.0)
 
 // The peak decay rate (magic goes here :).
-#define QSYNTHMETER_DECAY_RATE1	(1.0 - 3E-1)
+#define QSYNTHMETER_DECAY_RATE1	(1.0 - 3E-2)
 #define QSYNTHMETER_DECAY_RATE2	(1.0 - 3E-8)
 
 
@@ -71,10 +71,11 @@ void qsynthMeterScale::drawLineLabel ( QPainter& p, int y, const char* pszLabel 
 	}
 
 	int iMidHeight = (fm.height() >> 1);
-	if (iCurrY > m_iLastY + iMidHeight)
-		p.drawText(2, iCurrY - iMidHeight, iWidth - 3, fm.height(), Qt::AlignHCenter | Qt::AlignVCenter, pszLabel);
-
-	m_iLastY = iCurrY;
+	if (iCurrY > m_iLastY + iMidHeight) {
+		p.drawText(2, iCurrY - iMidHeight, iWidth - 3, fm.height(),
+			Qt::AlignHCenter | Qt::AlignVCenter, pszLabel);
+		m_iLastY = iCurrY;
+	}
 }
 
 
@@ -93,7 +94,7 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 	drawLineLabel(p, m_pMeter->iec_level(QSYNTHMETER_6DB),  "6");
 	drawLineLabel(p, m_pMeter->iec_level(QSYNTHMETER_10DB), "10");
 
-	for (float dB = -20.0; dB > QSYNTHMETER_MINDB; dB -= 10.0)
+	for (float dB = -15.0; dB > QSYNTHMETER_MINDB; dB -= 5.0)
 		drawLineLabel(p, m_pMeter->iec_scale(dB), QString::number((int) -dB));
 }
 
@@ -151,6 +152,10 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 	p.setViewport(0, 0, iWidth, iHeight);
 	p.setWindow(0, 0, iWidth, iHeight);
 
+    int y = m_pMeter->iec_level(QSYNTHMETER_0DB);
+	p.setPen(m_pMeter->color(QSYNTHMETER_FORE));
+	p.drawLine(0, iHeight - y, iWidth, iHeight - y);
+
 	float dB = QSYNTHMETER_MINDB;
 	if (m_fValue > 0.0)
 	    dB = 20.0 * ::log(m_fValue) / M_LN10;
@@ -162,8 +167,8 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 
 	int y_over = 0;
 	int y_curr = 0;
-	int y = m_pMeter->iec_scale(dB);
 
+	y = m_pMeter->iec_scale(dB);
 	if (y > m_iValue) {
 	    m_iValue = y;
 	    m_fValueDecay = QSYNTHMETER_DECAY_RATE1;
@@ -178,17 +183,23 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 	}
 
 	int iLevel;
-	for (iLevel = QSYNTHMETER_10DB; iLevel > QSYNTHMETER_OVER && y >= y_over; iLevel--) {
+	for (iLevel = QSYNTHMETER_10DB;
+			iLevel > QSYNTHMETER_OVER && y >= y_over; iLevel--) {
 	    y_curr = m_pMeter->iec_level(iLevel);
-	    if (y < y_curr)
-	        p.fillRect(0, iHeight - y, iWidth, y - y_over, m_pMeter->color(iLevel));
-	    else
-	        p.fillRect(0, iHeight - y_curr, iWidth, y_curr - y_over, m_pMeter->color(iLevel));
+	    if (y < y_curr) {
+	        p.fillRect(0, iHeight - y, iWidth, y - y_over,
+				m_pMeter->color(iLevel));
+	    } else {
+	        p.fillRect(0, iHeight - y_curr, iWidth, y_curr - y_over,
+				m_pMeter->color(iLevel));
+		}
 	    y_over = y_curr;
 	}
 
-	if (y > y_over)
-	    p.fillRect(0, iHeight - y, iWidth, y - y_over, m_pMeter->color(QSYNTHMETER_OVER));
+	if (y > y_over) {
+	    p.fillRect(0, iHeight - y, iWidth, y - y_over,
+			m_pMeter->color(QSYNTHMETER_OVER));
+	}
 
 	if (y > m_iPeak) {
 		m_iPeak = y;
@@ -242,7 +253,7 @@ qsynthMeter::qsynthMeter ( QWidget *pParent, const char *pszName )
 	m_pColors[QSYNTHMETER_3DB]  = new QColor(220,220, 20);
 	m_pColors[QSYNTHMETER_6DB]  = new QColor(160,220, 20);
 	m_pColors[QSYNTHMETER_10DB] = new QColor( 40,160, 40);
-	m_pColors[QSYNTHMETER_BACK] = new QColor( 20, 40, 20);
+	m_pColors[QSYNTHMETER_BACK] = new QColor( 20, 60, 20);
 	m_pColors[QSYNTHMETER_FORE] = new QColor( 80, 80, 80);
 
 	if (m_iPortCount > 0) {
@@ -266,7 +277,8 @@ qsynthMeter::qsynthMeter ( QWidget *pParent, const char *pszName )
 	    QWidget::setMaximumWidth(4);
 	}
 
-	QWidget::setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding));
+	QWidget::setSizePolicy(
+		QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding));
 
 	QHBox::setFrameShape(QFrame::StyledPanel);
 	QHBox::setFrameShadow(QFrame::Sunken);
@@ -300,7 +312,7 @@ int qsynthMeter::iec_scale ( float dB )
 	else if (dB < -60.0)
 	    fDef = (dB + 70.0) * 0.0025;
 	else if (dB < -50.0)
-	    fDef = (dB + 60.0) * 0.005 + 0.05;
+	    fDef = (dB + 60.0) * 0.005 + 0.025;
 	else if (dB < -40.0)
 	    fDef = (dB + 50.0) * 0.0075 + 0.075;
 	else if (dB < -30.0)
