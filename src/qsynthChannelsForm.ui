@@ -1,0 +1,291 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>qsynthChannelsForm</class>
+<comment>qsynth - A fluidsynth Qt GUI Interface.
+
+   Copyright (C) 2003, rncbc aka Rui Nuno Capela. All rights reserved.
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+</comment>
+<author>rncbc aka Rui Nuno Capela</author>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>qsynthChannelsForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>603</width>
+            <height>359</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>1</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="font">
+        <font>
+        </font>
+    </property>
+    <property name="caption">
+        <string>qsynth: Channels</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout7</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>PresetTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Preset &amp;Name:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>PresetComboBox</cstring>
+                    </property>
+                </widget>
+                <widget class="QComboBox">
+                    <item>
+                        <property name="text">
+                            <string>(default)</string>
+                        </property>
+                    </item>
+                    <property name="name">
+                        <cstring>PresetComboBox</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="editable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Settings preset name</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>PresetSavePushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Save</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+S</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>save1.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Save settings as current preset name</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>PresetDeletePushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Delete</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+D</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>remove1.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Delete current settings preset</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QListView">
+            <column>
+                <property name="text">
+                    <string>In</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property name="text">
+                    <string>Ch</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property name="text">
+                    <string>SFID</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property name="text">
+                    <string>Bank</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property name="text">
+                    <string>Prog</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property name="text">
+                    <string>Name</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <property name="name">
+                <cstring>ChannelsListView</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>7</hsizetype>
+                    <vsizetype>7</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="resizePolicy">
+                <enum>Manual</enum>
+            </property>
+            <property name="allColumnsShowFocus">
+                <bool>true</bool>
+            </property>
+            <property name="showSortIndicator">
+                <bool>true</bool>
+            </property>
+            <property name="resizeMode">
+                <enum>AllColumns</enum>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>Channels view</string>
+            </property>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>PresetComboBox</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>qsynthChannelsForm</receiver>
+        <slot>changePreset(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>PresetSavePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthChannelsForm</receiver>
+        <slot>savePreset()</slot>
+    </connection>
+    <connection>
+        <sender>PresetDeletePushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthChannelsForm</receiver>
+        <slot>deletePreset()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>PresetComboBox</tabstop>
+    <tabstop>PresetSavePushButton</tabstop>
+    <tabstop>PresetDeletePushButton</tabstop>
+    <tabstop>ChannelsListView</tabstop>
+</tabstops>
+<includes>
+    <include location="global" impldecl="in declaration">qsynthChannels.h</include>
+    <include location="local" impldecl="in declaration">qsynthSetup.h</include>
+    <include location="local" impldecl="in implementation">qsynthMainForm.h</include>
+    <include location="local" impldecl="in implementation">qsynthChannelsForm.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">int m_iChannels;</variable>
+    <variable access="private">qsynthChannelsViewItem **m_ppChannels;</variable>
+    <variable access="private">qsynthSetup *m_pSetup;</variable>
+    <variable access="private">fluid_synth_t *m_pSynth;</variable>
+</variables>
+<slots>
+    <slot specifier="non virtual">changePreset( const QString&amp; sPreset )</slot>
+    <slot specifier="non virtual">savePreset()</slot>
+    <slot specifier="non virtual">deletePreset()</slot>
+    <slot specifier="non virtual">resetPresets()</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+    <function access="private" specifier="non virtual">showEvent( QShowEvent * pShowEvent )</function>
+    <function access="private" specifier="non virtual">hideEvent( QHideEvent * pHideEvent )</function>
+    <function specifier="non virtual">setup( qsynthSetup *pSetup, fluid_synth_t *pSynth )</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="4" margin="4"/>
+</UI>

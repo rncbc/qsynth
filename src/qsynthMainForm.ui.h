@@ -154,6 +154,7 @@ void qsynthMainForm::init (void)
 
     // All forms are to be created right now.
     m_pMessagesForm = new qsynthMessagesForm(this);
+    m_pChannelsForm = new qsynthChannelsForm(this);
 }
 
 
@@ -181,6 +182,7 @@ void qsynthMainForm::setup ( qsynthSetup *pSetup )
     m_pSetup->loadWidgetGeometry(this);
     // And for the whole widget gallore...
     m_pSetup->loadWidgetGeometry(m_pMessagesForm);
+    m_pSetup->loadWidgetGeometry(m_pChannelsForm);
 
     // Set defaults...
     updateMessagesFont();
@@ -212,6 +214,7 @@ bool qsynthMainForm::queryClose (void)
             m_pSetup->sMessagesFont = m_pMessagesForm->messagesFont().toString();
         // Try to save current positioning.
         if (bQueryClose) {
+            m_pSetup->saveWidgetGeometry(m_pChannelsForm);
             m_pSetup->saveWidgetGeometry(m_pMessagesForm);
             m_pSetup->saveWidgetGeometry(this);
         }
@@ -398,8 +401,10 @@ void qsynthMainForm::stabilizeForm (void)
     bool bMidiIn = (m_pSynth && m_pSetup && m_pSetup->bMidiIn);
     MidiEventPixmapLabel->setEnabled(bMidiIn);
     MidiEventTextLabel->setEnabled(bMidiIn);
+    ChannelsPushButton->setEnabled(bMidiIn);
 
     MessagesPushButton->setOn(m_pMessagesForm && m_pMessagesForm->isVisible());
+    ChannelsPushButton->setOn(m_pChannelsForm && m_pChannelsForm->isVisible());
 }
 
 
@@ -468,6 +473,22 @@ void qsynthMainForm::toggleMessagesForm (void)
             m_pMessagesForm->hide();
         else
             m_pMessagesForm->show();
+    }
+}
+
+
+// Channels view form requester slot.
+void qsynthMainForm::toggleChannelsForm (void)
+{
+    if (m_pSetup == NULL)
+        return;
+
+    if (m_pChannelsForm) {
+        m_pSetup->saveWidgetGeometry(m_pChannelsForm);
+        if (m_pChannelsForm->isVisible())
+            m_pChannelsForm->hide();
+        else
+            m_pChannelsForm->show();
     }
 }
 
