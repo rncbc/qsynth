@@ -17,10 +17,12 @@ IMAGES   = icons/qsynth.xpm \
            icons/about1.png \
            icons/accept1.png \
            icons/quit1.png \
+           icons/ledoff1.png \
+           icons/ledon1.png \
            icons/qtlogo.png
 
 TEMPLATE = app
-CONFIG  += qt warn_on release
+CONFIG  += qt @ac_thread@ warn_on release
 LANGUAGE = C++
 
 LIBS    += -lfluidsynth

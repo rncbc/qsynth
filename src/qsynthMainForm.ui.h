@@ -37,11 +37,25 @@
 
 static int g_fdStdout[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
 
-
 // Needed for server mode.
 static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
 {
     return ::new_fluid_cmd_handler((fluid_synth_t*) data);
+}
+
+// Midi router stubs to have some midi activity feedback.
+static int g_iMidiEvent  = 0;
+
+static int qsynth_dump_postrouter (void *pvData, fluid_midi_event_t *pMidiEvent)
+{
+    g_iMidiEvent++;
+    return ::fluid_midi_dump_postrouter(pvData, pMidiEvent);
+}
+
+static int qsynth_handle_midi_event (void *pvData, fluid_midi_event_t *pMidiEvent)
+{
+    g_iMidiEvent++;
+    return ::fluid_synth_handle_midi_event(pvData, pMidiEvent);
 }
 
 
@@ -321,6 +335,16 @@ void qsynthMainForm::timerSlot (void)
         }
     }
 
+    // Some MIDI activity?
+    if (g_iMidiEvent > 0) {
+        MidiEventPixmapLabel->setPixmap(QPixmap::fromMimeSource("ledon1.png"));
+        g_iMidiEvent = -1;
+    }
+    else if (g_iMidiEvent < 0) {
+        MidiEventPixmapLabel->setPixmap(QPixmap::fromMimeSource("ledoff1.png"));
+        g_iMidiEvent = 0;
+    }
+
     // Gain changes?
     if (m_iGainChanged > 0)
         updateGain();
@@ -379,7 +403,7 @@ bool qsynthMainForm::startSynth (void)
         // the chain before and after the router..
         appendMessages(tr("Creating MIDI router") + " (" + m_pSetup->sMidiDriver + ")" + sElipsis);
         m_pMidiRouter = ::new_fluid_midi_router(m_pSetup->fluid_settings(),
-            m_pSetup->bMidiDump ? ::fluid_midi_dump_postrouter : ::fluid_synth_handle_midi_event,
+            m_pSetup->bMidiDump ? qsynth_dump_postrouter : qsynth_handle_midi_event,
             (void*) m_pSynth);
         if (m_pMidiRouter == NULL) {
             appendMessagesError(tr("Failed to create the MIDI input router") + " (" + m_pSetup->sMidiDriver + "); " + tr("no MIDI input will be available."));

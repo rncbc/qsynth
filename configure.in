@@ -47,6 +47,12 @@ if test "x$ac_qtlib" = "x"; then
 fi
 AC_SUBST(ac_qtlib)
 
+dnl Check for Qt multi-thread support.
+if test "x$ac_qtlib" = "xqt-mt"; then
+  ac_thread="thread"
+fi
+AC_SUBST(ac_thread)
+
 CFLAGS="$CFLAGS -I$QTDIR/include"
 CPPFLAGS="$CPPFLAGS -I$QTDIR/include"
 LIBS="-L$QTDIR/lib -L/usr/X11R6/lib"
@@ -120,8 +126,8 @@ if test "x$ac_fluid_server" = "xyes"; then
    AC_DEFINE(CONFIG_FLUID_SERVER, 1, [new_fluid_server is defined.])
 fi
 
-dnl Finally produce a configure header file and the main makefile.
-AC_OUTPUT(Makefile)
+dnl Finally produce a configure header file and the makefiles.
+AC_OUTPUT(Makefile qsynth.pro)
 
 make clean > /dev/null 2>&1
 
