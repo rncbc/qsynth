@@ -637,8 +637,8 @@ void qsynthMainForm::showSetupForm (void)
                 ( bKeepOnTop     && !m_pSetup->bKeepOnTop)     ||
                 (!bKeepOnTop     &&  m_pSetup->bKeepOnTop)) {
                 QMessageBox::information(this, tr("Information"),
-                    tr("Some settings will be only in effect\n"
-                       "the next time you run this program."), tr("OK"));
+                    tr("Some settings will be only effective\n"
+                       "next time you start this program."), tr("OK"));
             }
             // Check wheather something immediate has changed.
             if (sOldMessagesFont != m_pSetup->sMessagesFont)
