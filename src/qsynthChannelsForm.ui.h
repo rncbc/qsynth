@@ -38,6 +38,9 @@ void qsynthChannelsForm::init (void)
     // No setup synth references initially (the caller will set them).
     m_pSetup = NULL;
     m_pSynth = NULL;
+    // Initialize dirty control state.
+    m_iDirtySetup = 0;
+    m_iDirtyCount = 0;
 
     // Our activity leds (same of main form :).
     m_pXpmLedOn  = new QPixmap(QPixmap::fromMimeSource("ledon1.png"));
@@ -91,6 +94,10 @@ void qsynthChannelsForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     m_pSetup = pSetup;
     m_pSynth = pSynth;
 
+    // Check this first.
+    if (m_pSetup == NULL)
+        return;
+        
     // Free up current channel list view.
     if (m_pSynth == NULL && m_ppChannels) {
         ChannelsListView->clear();
@@ -98,7 +105,7 @@ void qsynthChannelsForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
         m_ppChannels = NULL;
         m_iChannels  = 0;
     }
-
+    
     // Allocate a new channel list view...
     if (m_pSynth && m_ppChannels == NULL) {
         ChannelsListView->clear();
@@ -115,8 +122,13 @@ void qsynthChannelsForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
                 m_ppChannels[iChan] = pItem;
             }
         }
-        // Update/refresh the whole thing.
-        updateAllChannels();
+        // Load preset list...
+        m_iDirtySetup++;
+        resetPresets();
+        PresetComboBox->setCurrentText(m_pSetup->sDefPreset);
+        m_iDirtySetup--;
+        // Load default preset and update/refresh the whole thing...
+        changePreset(PresetComboBox->currentText());
     }
 }
 
@@ -215,8 +227,10 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
         // The the proper context.
         pPresetForm->setup(m_pSynth, iChan);
         // Show the channel preset dialog...
-        if (pPresetForm->exec())
+        if (pPresetForm->exec()) {
             updateChannel(iChan);
+            m_iDirtyCount++;
+        }
         // Done.
         delete pPresetForm;
     }
@@ -225,21 +239,88 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
 // Channels preset naming slots.
 void qsynthChannelsForm::changePreset( const QString& sPreset )
 {
+    if (m_pSetup == NULL || m_pSynth == NULL || m_iDirtySetup > 0)
+        return;
+
+    // This is a pseudo-dirty procedure...
+    m_iDirtyCount++;
+    // Load presets and update/refresh the whole thing.
+    if (m_pSetup->loadPreset(m_pSynth, sPreset)) {
+        updateAllChannels();
+        m_iDirtyCount = 0;
+    }
+    stabilizeForm();
 }
 
 
 void qsynthChannelsForm::savePreset (void)
 {
+    if (m_pSetup == NULL || m_pSynth == NULL)
+        return;
+
+    QString sPreset = PresetComboBox->currentText();
+    if (sPreset.isEmpty())
+        return;
+
+    // Unload presets (from synth).
+    if (m_pSetup->savePreset(m_pSynth, sPreset)) {
+        m_iDirtySetup++;
+        resetPresets();
+        PresetComboBox->setCurrentText(sPreset);
+        m_iDirtySetup--;
+        // Special, set this as default.
+        m_pSetup->sDefPreset = sPreset;
+        m_iDirtyCount = 0;
+    }
+
+    stabilizeForm();
 }
 
 
 void qsynthChannelsForm::deletePreset (void)
 {
+    if (m_pSetup == NULL || m_pSynth == NULL)
+        return;
+
+    QString sPreset = PresetComboBox->currentText();
+    if (sPreset.isEmpty())
+        return;
+
+    // Remove current preset item...
+    m_iDirtySetup++;
+    int iItem = PresetComboBox->currentItem();
+    m_pSetup->deletePreset(sPreset);
+    resetPresets();
+    PresetComboBox->setCurrentItem(iItem);
+    m_iDirtySetup--;
+
+    // Load a new preset...
+    changePreset(PresetComboBox->currentText());
 }
 
 
 void qsynthChannelsForm::resetPresets (void)
 {
+    if (m_pSetup == NULL)
+        return;
+
+    PresetComboBox->clear();
+    PresetComboBox->insertStringList(m_pSetup->presets);
+    PresetComboBox->insertItem("(default)");
+}
+
+
+// Stabilize current form state.
+void qsynthChannelsForm::stabilizeForm (void)
+{
+    QString sPreset = PresetComboBox->currentText();
+    if (m_pSetup && !sPreset.isEmpty()) {
+        PresetSavePushButton->setEnabled(m_iDirtyCount > 0);
+        PresetDeletePushButton->setEnabled(m_pSetup->presets.find(sPreset) != m_pSetup->presets.end());
+    } else {
+        PresetSavePushButton->setEnabled(false);
+        PresetDeletePushButton->setEnabled(false);
+    }
 }
 
 

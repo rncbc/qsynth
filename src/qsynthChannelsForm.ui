@@ -299,6 +299,8 @@
     <variable access="private">qsynthChannelsViewItemPtr *m_ppChannels;</variable>
     <variable access="private">qsynthSetup *m_pSetup;</variable>
     <variable access="private">fluid_synth_t *m_pSynth;</variable>
+    <variable access="private">int m_iDirtySetup;</variable>
+    <variable access="private">int m_iDirtyCount;</variable>
     <variable access="private">QPixmap *m_pXpmLedOn;</variable>
     <variable access="private">QPixmap *m_pXpmLedOff;</variable>
 </variables>
@@ -317,6 +319,7 @@
     <function access="private" specifier="non virtual">destroy()</function>
     <function access="private" specifier="non virtual">showEvent( QShowEvent * pShowEvent )</function>
     <function access="private" specifier="non virtual">hideEvent( QHideEvent * pHideEvent )</function>
+    <function access="private" specifier="non virtual">stabilizeForm()</function>
     <function specifier="non virtual">setup( qsynthSetup *pSetup, fluid_synth_t *pSynth )</function>
     <function specifier="non virtual">setChannelOn( int iChan, bool bOn )</function>
     <function specifier="non virtual">updateChannel( int iChan )</function>

@@ -100,6 +100,16 @@ public:
     // Default options...
     QString sSoundFontDir;
 
+    // Current (default) preset name.
+    QString sDefPreset;
+    // Available presets list.
+    QStringList presets;
+
+    // Preset management methods.
+    bool loadPreset(fluid_synth_t *pSynth, const QString& sPreset);
+    bool savePreset(fluid_synth_t *pSynth, const QString& sPreset);
+    bool deletePreset(const QString& sPreset);
+
     // Combo box history persistence helper prototypes.
     static void add2ComboBoxHistory(QComboBox *pComboBox, const QString& sNewText, int iIndex = 0, int iLimit = 8);
     void loadComboBoxHistory(QComboBox *pComboBox, int iLimit = 8);

@@ -92,6 +92,19 @@ qsynthSetup::qsynthSetup (void)
     m_settings.beginGroup("/Defaults");
     sSoundFontDir = m_settings.readEntry("/SoundFontDir", QString::null);
     m_settings.endGroup();
+
+    // Load channel presets list.
+    m_settings.beginGroup("/Presets");
+    sDefPreset = m_settings.readEntry("/DefPreset", "(default)");
+    const QString sPresetPrefix = "/Preset";
+    int iPreset = 0;
+    for (;;) {
+        QString sItem = m_settings.readEntry(sPresetPrefix + QString::number(++iPreset), QString::null);
+        if (sItem.isEmpty())
+            break;
+        presets.append(sItem);
+    }
+    m_settings.endGroup();
 }
 
 
@@ -101,6 +114,19 @@ qsynthSetup::~qsynthSetup (void)
     // Make program version available in the future.
     m_settings.beginGroup("/Program");
     m_settings.writeEntry("/Version", QSYNTH_VERSION);
+    m_settings.endGroup();
+
+    // Save presets list...
+    m_settings.beginGroup("/Presets");
+    m_settings.writeEntry("/DefPreset", sDefPreset);
+    // Save last preset list.
+    const QString sPresetPrefix = "/Preset";
+    int iPreset = 0;
+    for (QStringList::Iterator iter = presets.begin(); iter != presets.end(); iter++)
+        m_settings.writeEntry(sPresetPrefix + QString::number(++iPreset), *iter);
+    // Cleanup old entries, if any...
+    for (++iPreset; !m_settings.readEntry(sPresetPrefix + QString::number(iPreset)).isEmpty(); iPreset++)
+        m_settings.removeEntry(sPresetPrefix + QString::number(iPreset));
     m_settings.endGroup();
 
     // Save defaults...
@@ -482,6 +508,96 @@ void qsynthSetup::realize (void)
     ::fluid_settings_setstr(m_pFluidSettings, "synth.ladspa.active", (char *) (bLadspaActive ? "yes" : "no"));
     ::fluid_settings_setstr(m_pFluidSettings, "synth.dump",          (char *) (bMidiDump     ? "yes" : "no"));
     ::fluid_settings_setstr(m_pFluidSettings, "synth.verbose",       (char *) (bVerbose      ? "yes" : "no"));
+}
+
+
+//---------------------------------------------------------------------------
+// Preset management methods.
+
+bool qsynthSetup::loadPreset ( fluid_synth_t *pSynth, const QString& sPreset )
+{
+    if (pSynth == NULL)
+        return false;
+
+    QString sSuffix;
+    if (sPreset != "(default)" && !sPreset.isEmpty()) {
+        sSuffix = "/" + sPreset;
+        // Check if on list.
+        if (presets.find(sPreset) == presets.end())
+            return false;
+    }
+
+    // Load as current presets.
+    const QString sPrefix = "/Chan";
+    m_settings.beginGroup("/Preset" + sSuffix);
+    int iChannels = ::fluid_synth_count_midi_channels(pSynth);
+    for (int iChan = 0; iChan < iChannels; iChan++) {
+        QString sEntry = m_settings.readEntry(sPrefix + QString::number(iChan + 1), QString::null);
+        if (sEntry.isEmpty())
+            break;
+        if (iChan == sEntry.section(':', 0, 0).toInt()) {
+            int iSFID = sEntry.section(':', 1, 1).toInt();
+            int iBank = sEntry.section(':', 2, 2).toInt();
+            int iProg = sEntry.section(':', 3, 3).toInt();
+            ::fluid_synth_program_select(pSynth, iChan, iSFID, iBank, iProg);
+        }
+    }
+    m_settings.endGroup();
+
+    return true;
+}
+
+bool qsynthSetup::savePreset ( fluid_synth_t *pSynth, const QString& sPreset )
+{
+    if (pSynth == NULL)
+        return false;
+
+    QString sSuffix;
+    if (sPreset != "(default)" && !sPreset.isEmpty()) {
+        sSuffix = "/" + sPreset;
+        // Append to list if not already.
+        if (presets.find(sPreset) == presets.end())
+            presets.prepend(sPreset);
+    }
+
+    // Unload current presets.
+    const QString sPrefix = "/Chan";
+    m_settings.beginGroup("/Preset" + sSuffix);
+    int iChannels = ::fluid_synth_count_midi_channels(pSynth);
+    int iChan = 0;
+    for ( ; iChan < iChannels; iChan++) {
+        fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(pSynth, iChan);
+        if (pPreset) {
+            QString sEntry = QString::number(iChan);
+            sEntry += ":";
+            sEntry += QString::number((pPreset->sfont)->id);
+            sEntry += ":";
+            sEntry += QString::number(pPreset->get_banknum(pPreset));
+            sEntry += ":";
+            sEntry += QString::number(pPreset->get_num(pPreset));
+            m_settings.writeEntry(sPrefix + QString::number(iChan + 1), sEntry);
+        }
+    }
+    // Cleanup old entries, if any...
+    for (++iChan; !m_settings.readEntry(sPrefix + QString::number(iChan)).isEmpty(); iChan++)
+        m_settings.removeEntry(sPrefix + QString::number(iChan));
+    m_settings.endGroup();
+
+    return true;
+}
+
+bool qsynthSetup::deletePreset ( const QString& sPreset )
+{
+    QString sSuffix;
+    if (sPreset != "(default)" && !sPreset.isEmpty()) {
+        sSuffix = "/" + sPreset;
+        QStringList::Iterator iter = presets.find(sPreset);
+        if (iter == presets.end())
+            return false;
+        presets.remove(iter);
+        m_settings.removeEntry("/Preset" + sSuffix);
+    }
+    return true;
 }
 
 
