@@ -30,6 +30,10 @@ void qsynthPresetForm::init()
 {
     m_pSynth = NULL;
     m_iChan  = 0;
+
+    // No default sorting, initially.
+    BankListView->setSorting(BankListView->columns() + 1);
+    ProgListView->setSorting(ProgListView->columns() + 1);
 }
 
 
@@ -47,7 +51,7 @@ void qsynthPresetForm::setup ( fluid_synth_t *pSynth, int iChan )
 
     // set the proper caption...
     setCaption(tr("Channel") + " " + QString::number(m_iChan + 1));
-    
+
     // Load bank list from actual synth stack...
     BankListView->clear();
     QListViewItem *pBankItem = NULL;
@@ -76,6 +80,7 @@ void qsynthPresetForm::setup ( fluid_synth_t *pSynth, int iChan )
     if (pPreset)
         pBankItem = findBankItem(pPreset->get_banknum(pPreset));
     BankListView->setSelected(pBankItem, true);
+    BankListView->ensureItemVisible(pBankItem);
     bankChanged();
 
     // Set the selected program.
@@ -83,6 +88,7 @@ void qsynthPresetForm::setup ( fluid_synth_t *pSynth, int iChan )
     if (pPreset)
         pProgItem = findProgItem(pPreset->get_num(pPreset));
     ProgListView->setSelected(pProgItem, true);
+    ProgListView->ensureItemVisible(pProgItem);
 }
 
 
@@ -142,16 +148,19 @@ void qsynthPresetForm::bankChanged (void)
 {
     if (m_pSynth == NULL)
         return;
-        
+
     QListViewItem *pBankItem = BankListView->selectedItem();
     if (pBankItem == NULL)
         pBankItem = BankListView->currentItem();
     if (pBankItem == NULL)
         return;
     int iBank = pBankItem->text(0).toInt();
-    
+
     // Clear up the program listview.
     ProgListView->clear();
+    // Start freeze...
+    BankListView->setUpdatesEnabled(false);
+    ProgListView->setUpdatesEnabled(false);
     QListViewItem *pProgItem = NULL;
     fluid_preset_t preset;
     // For all soundfonts (in reversed stack order) fill the available programs...
@@ -174,6 +183,9 @@ void qsynthPresetForm::bankChanged (void)
             }
         }
     }
+    // Freeze's over.
+    BankListView->setUpdatesEnabled(true);
+    ProgListView->setUpdatesEnabled(true);
 
     // Stabilize the form.
     stabilizeForm();
