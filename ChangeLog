@@ -3,5 +3,10 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+0.0.2   2003-11-18  Minor bugfixes.
+
+- MIDI input status led stickyness has been fixed.
+
+
 0.0.1   2003-11-15  Primordial release.
 

@@ -46,7 +46,8 @@ static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
 }
 
 // Midi router stubs to have some midi activity feedback.
-static int g_iMidiEvent  = 0;
+static int g_iMidiEvent = 0;
+static int g_iMidiState = 0;
 
 static int qsynth_dump_postrouter (void *pvData, fluid_midi_event_t *pMidiEvent)
 {
@@ -396,12 +397,15 @@ void qsynthMainForm::timerSlot (void)
 
     // Some MIDI activity?
     if (g_iMidiEvent > 0) {
-        MidiEventPixmapLabel->setPixmap(*m_pXpmLedOn);
-        g_iMidiEvent = -1;
-    }
-    else if (g_iMidiEvent < 0) {
-        MidiEventPixmapLabel->setPixmap(*m_pXpmLedOff);
         g_iMidiEvent = 0;
+        if (g_iMidiState == 0) {
+            MidiEventPixmapLabel->setPixmap(*m_pXpmLedOn);
+            g_iMidiState++;
+        }
+    }   // On the other tick...
+    else if (g_iMidiEvent == 0 && g_iMidiState > 0) {
+        MidiEventPixmapLabel->setPixmap(*m_pXpmLedOff);
+        g_iMidiState--;
     }
 
     // Gain changes?
