@@ -11,6 +11,9 @@ ChangeLog
 
 - Messages window blank rendering fix.
 
+- Player drag and drop feature has been prepared, but somehow the
+  internal MIDI player function is still broken.
+
 
 0.0.2   2003-11-26  Minor bugfixes.
 
