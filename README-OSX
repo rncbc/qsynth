@@ -1,16 +1,18 @@
-Compiling qsynth-0.2.2 on Mac OS X
+Compiling qsynth-0.2.x on Mac OS X
 ----------------------------------
 by: Ebrahim Mayat <ebmayat at mac dot com>
 
+1. Install X11-1.0 from the Panther (10.3) CD and Apple's Xcode and
+   X11SDK.pkg from the Xcode Tools CD.
 
-1. Install qt3, qt3-designer, qt3-dev, qt3-doc, qt3-linguist
-   and qt3-shlibs from fink.
+2. Install qt3, qt3-designer, qt3-dev, qt3-doc, qt3-linguist and
+   qt3-shlibs from fink.
 
-2. cd to the qsynth-0.2.2 directory and generate the qsynth.pro file:
+3. cd to the qsynth-0.2.2 directory and generate the qsynth.pro file:
 
    /sw/bin/qmake -project
 
-3. Edit the generated qsynth.pro file to include the IMAGES object:
+4. Edit the generated qsynth.pro file to include the IMAGES object:
 
    IMAGES = icons/qsynth.png \
             icons/messages1.png \
@@ -35,23 +37,23 @@ by: Ebrahim Mayat <ebmayat at mac dot com>
             icons/down1.png \
             icons/qtlogo.png
 
-4. Generate the Makefile:
+5. Generate the Makefile:
 
    /sw/bin/qmake
 
-5. Edit the Makefile to include the libraries for MidiShare, CoreAudio,
-   fluidsynth and Jack in the LIBS line:
+6. Edit the Makefile to include the libraries for fluidsynth, MidiShare,
+   CoreAudio and Jack in the LIBS line:
    
-   -lfluidsynth -framework MidiShare -framework CoreAudio 
+   -lfluidsynth -framework MidiShare -framework CoreAudio -framework Jack 
    
-6. Add paths of the include directories (INCPATH) for the four libraries
+7. Add paths of the include directories (INCPATH) for the frameworks
    mentioned above:
    
    -I/System/Library/Frameworks/MidiShare.framework/Versions/A/Headers \
    -I/System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers \
-   -I/Library/Frameworks/Jack.framework/Headers
-   
-7. Create an empty config.h file in the src folder of qsynth:
+   -I/Library/Frameworks/Jack.framework/Versions/A/Headers 
+      
+8. Create an empty config.h file in the src folder of qsynth:
    touch src/config.h then edit and add the following lines to config.h:
 
    #define CONFIG_PREFIX "/sw"
@@ -60,7 +62,7 @@ by: Ebrahim Mayat <ebmayat at mac dot com>
    #define CONFIG_FLUID_BANK_OFFSET 1
    #define CONFIG_ROUND 1
 
-8. make
+9. make
 
 
 FAIR WARNING: Please, avoid enabling the "Output peak level meters" option,
