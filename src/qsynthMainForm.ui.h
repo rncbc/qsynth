@@ -212,10 +212,14 @@ void qsynthMainForm::destroy (void)
     // Stop th press!
     stopSynth();
     m_pSetup = NULL;
-    
+
     // Delete pixmaps.
     delete m_pXpmLedOn;
     delete m_pXpmLedOff;
+    
+    // Finally drop any popup widgets around...
+    delete m_pMessagesForm;
+    delete m_pChannelsForm;
 }
 
 
@@ -273,6 +277,9 @@ bool qsynthMainForm::queryClose (void)
             m_pSetup->saveWidgetGeometry(m_pChannelsForm);
             m_pSetup->saveWidgetGeometry(m_pMessagesForm);
             m_pSetup->saveWidgetGeometry(this);
+            // Close popup widgets.
+            m_pMessagesForm->close();
+            m_pChannelsForm->close();        
         }
     }
     return bQueryClose;
