@@ -388,6 +388,25 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
     return true;
 }
 
+//---------------------------------------------------------------------------
+// A recursive QSettings key entry remover.
+
+void qsynthOptions::deleteKey ( const QString& sKey )
+{
+    // First, delete all stand-alone entries...
+    QStringList entries = m_settings.entryList(sKey);
+    for (QStringList::Iterator entry = entries.begin(); entry != entries.end(); ++entry)
+        m_settings.removeEntry(sKey + "/" + *entry);
+        
+    // Then, we'll recurse under sub-keys...
+    QStringList subkeys = m_settings.subkeyList(sKey);
+    for (QStringList::Iterator subkey = subkeys.begin(); subkey != subkeys.end(); ++subkey)
+        deleteKey(sKey + "/" + *subkey);
+        
+    // Finally we remove our-selves.
+    m_settings.removeEntry(sKey);
+}
+
 
 //---------------------------------------------------------------------------
 // Engine entry management methods.
@@ -415,7 +434,7 @@ void qsynthOptions::deleteEngine ( qsynthEngine *pEngine )
     const QString& sName = pEngine->name();
     engines.remove(sName);
     
-    m_settings.removeEntry("/Engine/" + sName);
+    deleteKey("/Engine/" + sName);
 }
 
 
