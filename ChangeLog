@@ -3,6 +3,11 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+0.0.4   2003-12-15  The fix of fixes.
+
+- Messages window fallback fix.
+
+
 0.0.3   2003-12-12  Few tiny changes so far.
 
 - Single shot timer and restart code path had a graceful rewrite.

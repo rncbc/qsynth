@@ -22,6 +22,9 @@
 
 #include "config.h"
 
+// The maximum number of message lines.
+#define QSYNTH_MESSAGES_MAXLINES  1000
+
 
 // Kind of constructor.
 void qsynthMessagesForm::init (void)
@@ -81,9 +84,15 @@ void qsynthMessagesForm::appendMessagesColor( const QString& s, const QString& c
 
 void qsynthMessagesForm::appendMessagesText( const QString& s )
 {
-    while (MessagesTextView->paragraphs() > 1000) {
-        MessagesTextView->removeParagraph(0);
+    int iParagraphs = MessagesTextView->paragraphs();
+    if (iParagraphs > QSYNTH_MESSAGES_MAXLINES) {
+        MessagesTextView->setUpdatesEnabled(false);
+        while (iParagraphs > QSYNTH_MESSAGES_MAXLINES) {
+            MessagesTextView->removeParagraph(0);
+            iParagraphs--;
+        }
         MessagesTextView->scrollToBottom();
+        MessagesTextView->setUpdatesEnabled(true);
     }
     MessagesTextView->append(s);
 }
