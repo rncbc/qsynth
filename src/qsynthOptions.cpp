@@ -433,8 +433,8 @@ bool qsynthOptions::renameEngine ( qsynthEngine *pEngine )
     if (pSetup == NULL)
         return false;
         
-    const QString& sOldName = pEngine->name();
-    const QString& sNewName = pSetup->sDisplayName;
+    const QString sOldName = pEngine->name();
+    const QString sNewName = pSetup->sDisplayName;
     if (sOldName == sNewName)
         return false;
         
