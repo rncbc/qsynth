@@ -39,7 +39,7 @@
 #define QSYNTH_DELAY_MSECS  200
 
 // Scale factors.
-#define QSYNTH_GAIN_SCALE   10.0
+#define QSYNTH_GAIN_SCALE   100.0
 #define QSYNTH_REVERB_SCALE 100.0
 #define QSYNTH_CHORUS_SCALE 10.0
 
@@ -160,7 +160,7 @@ static int qsynth_handle_midi_event (void *pvData, fluid_midi_event_t *pMidiEven
 //-------------------------------------------------------------------------
 // Scaling & Clipping helpers.
 
-static int qsynth_iscale_clip ( double fScale, double fValue )
+static void qsynth_set_range_value ( QRangeControl *pRange, double fScale, double fValue )
 {
 #ifdef CONFIG_ROUND
     int iValue = (int) ::round(fScale * fValue);
@@ -175,23 +175,25 @@ static int qsynth_iscale_clip ( double fScale, double fValue )
         iValue--;
 #endif
 
-    if (iValue < 0)
-        iValue = 0;
-    else if (iValue > 100)
-        iValue = 100;
+    if (iValue < pRange->minValue())
+        iValue = pRange->minValue();
+    else if (iValue > pRange->maxValue())
+        iValue = pRange->maxValue();
         
-    return iValue;
+    pRange->setValue(iValue);
 }
 
-static double qsynth_fscale_clip ( int iValue, double fScale )
+static double qsynth_get_range_value ( QRangeControl *pRange, double fScale )
 {
-    double fValue = ((double) iValue / fScale);
-
-    const double fMax = (100.0 / fScale);
-    if (fValue < 0.0)
-        fValue = 0.0;
-    else if (fValue > fMax)
-        fValue = fMax;
+    double fValue = ((double) pRange->value() / fScale);
+    
+    double fMinValue = ((double) pRange->minValue() / fScale);
+    double fMaxValue = ((double) pRange->maxValue() / fScale);
+    
+    if (fValue < fMinValue)
+        fValue = fMinValue;
+    else if (fValue > fMaxValue)
+        fValue = fMaxValue;
         
     return fValue;
 }
@@ -1337,19 +1339,19 @@ void qsynthMainForm::loadPanelSettings ( qsynthEngine *pEngine, bool bUpdate )
     m_iReverbUpdated = 1;
     m_iChorusUpdated = 1;
 
-    GainDial->setValue(qsynth_iscale_clip(QSYNTH_GAIN_SCALE, pSetup->fGain));
+    qsynth_set_range_value(GainDial, QSYNTH_GAIN_SCALE, pSetup->fGain);
 
     ReverbActiveCheckBox->setChecked(pSetup->bReverbActive);
-    ReverbRoomDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, pSetup->fReverbRoom));
-    ReverbDampDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, pSetup->fReverbDamp));
-    ReverbWidthDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, pSetup->fReverbWidth));
-    ReverbLevelDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, pSetup->fReverbLevel));
+    qsynth_set_range_value(ReverbRoomDial,  QSYNTH_REVERB_SCALE, pSetup->fReverbRoom);
+    qsynth_set_range_value(ReverbDampDial,  QSYNTH_REVERB_SCALE, pSetup->fReverbDamp);
+    qsynth_set_range_value(ReverbWidthDial, QSYNTH_REVERB_SCALE, pSetup->fReverbWidth);
+    qsynth_set_range_value(ReverbLevelDial, QSYNTH_REVERB_SCALE, pSetup->fReverbLevel);
 
     ChorusActiveCheckBox->setChecked(pSetup->bChorusActive);
     ChorusNrDial->setValue(pSetup->iChorusNr);
-    ChorusLevelDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, pSetup->fChorusLevel));
-    ChorusSpeedDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, pSetup->fChorusSpeed));
-    ChorusDepthDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, pSetup->fChorusDepth));
+    qsynth_set_range_value(ChorusLevelDial, QSYNTH_CHORUS_SCALE, pSetup->fChorusLevel);
+    qsynth_set_range_value(ChorusSpeedDial, QSYNTH_CHORUS_SCALE, pSetup->fChorusSpeed);
+    qsynth_set_range_value(ChorusDepthDial, QSYNTH_CHORUS_SCALE, pSetup->fChorusDepth);
     ChorusTypeComboBox->setCurrentItem(pSetup->iChorusType);
 
     // Make them dirty.
@@ -1378,19 +1380,19 @@ void qsynthMainForm::savePanelSettings ( qsynthEngine *pEngine )
     if (pSetup == NULL)
         return;
 
-    pSetup->fGain = qsynth_fscale_clip(GainDial->value(), QSYNTH_GAIN_SCALE);
+    pSetup->fGain = qsynth_get_range_value(GainDial, QSYNTH_GAIN_SCALE);
 
     pSetup->bReverbActive = ReverbActiveCheckBox->isChecked();
-    pSetup->fReverbRoom   = qsynth_fscale_clip(ReverbRoomSpinBox->value(),  QSYNTH_REVERB_SCALE);
-    pSetup->fReverbDamp   = qsynth_fscale_clip(ReverbDampSpinBox->value(),  QSYNTH_REVERB_SCALE);
-    pSetup->fReverbWidth  = qsynth_fscale_clip(ReverbWidthSpinBox->value(), QSYNTH_REVERB_SCALE);
-    pSetup->fReverbLevel  = qsynth_fscale_clip(ReverbLevelSpinBox->value(), QSYNTH_REVERB_SCALE);
+    pSetup->fReverbRoom   = qsynth_get_range_value(ReverbRoomDial,  QSYNTH_REVERB_SCALE);
+    pSetup->fReverbDamp   = qsynth_get_range_value(ReverbDampDial,  QSYNTH_REVERB_SCALE);
+    pSetup->fReverbWidth  = qsynth_get_range_value(ReverbWidthDial, QSYNTH_REVERB_SCALE);
+    pSetup->fReverbLevel  = qsynth_get_range_value(ReverbLevelDial, QSYNTH_REVERB_SCALE);
 
     pSetup->bChorusActive = ChorusActiveCheckBox->isChecked();
     pSetup->iChorusNr     = ChorusNrSpinBox->value();
-    pSetup->fChorusLevel  = qsynth_fscale_clip(ChorusLevelSpinBox->value(), QSYNTH_CHORUS_SCALE);
-    pSetup->fChorusSpeed  = qsynth_fscale_clip(ChorusSpeedSpinBox->value(), QSYNTH_CHORUS_SCALE);
-    pSetup->fChorusDepth  = qsynth_fscale_clip(ChorusDepthSpinBox->value(), QSYNTH_CHORUS_SCALE);
+    pSetup->fChorusLevel  = qsynth_get_range_value(ChorusLevelDial, QSYNTH_CHORUS_SCALE);
+    pSetup->fChorusSpeed  = qsynth_get_range_value(ChorusSpeedDial, QSYNTH_CHORUS_SCALE);
+    pSetup->fChorusDepth  = qsynth_get_range_value(ChorusDepthDial, QSYNTH_CHORUS_SCALE);
     pSetup->iChorusType   = ChorusTypeComboBox->currentItem();
 }
 
@@ -1503,7 +1505,7 @@ void qsynthMainForm::updateGain (void)
         return;
     m_iGainUpdated++;
 
-    float fGain = qsynth_fscale_clip(GainSpinBox->value(), QSYNTH_GAIN_SCALE);
+    float fGain = qsynth_get_range_value(GainSpinBox, QSYNTH_GAIN_SCALE);
 
     setEngineGain(pEngine, fGain);
     refreshGain();
@@ -1526,10 +1528,10 @@ void qsynthMainForm::updateReverb (void)
         return;
     m_iReverbUpdated++;
 
-    double fReverbRoom  = qsynth_fscale_clip(ReverbRoomSpinBox->value(), QSYNTH_REVERB_SCALE);
-    double fReverbDamp  = qsynth_fscale_clip(ReverbDampSpinBox->value(), QSYNTH_REVERB_SCALE);
-    double fReverbWidth = qsynth_fscale_clip(ReverbWidthSpinBox->value(), QSYNTH_REVERB_SCALE);
-    double fReverbLevel = qsynth_fscale_clip(ReverbLevelSpinBox->value(), QSYNTH_REVERB_SCALE);
+    double fReverbRoom  = qsynth_get_range_value(ReverbRoomSpinBox,  QSYNTH_REVERB_SCALE);
+    double fReverbDamp  = qsynth_get_range_value(ReverbDampSpinBox,  QSYNTH_REVERB_SCALE);
+    double fReverbWidth = qsynth_get_range_value(ReverbWidthSpinBox, QSYNTH_REVERB_SCALE);
+    double fReverbLevel = qsynth_get_range_value(ReverbLevelSpinBox, QSYNTH_REVERB_SCALE);
 
     setEngineReverb(pEngine, fReverbRoom, fReverbDamp, fReverbWidth, fReverbLevel);
     refreshReverb();
@@ -1553,9 +1555,9 @@ void qsynthMainForm::updateChorus (void)
     m_iChorusUpdated++;
 
     int    iChorusNr    = ChorusNrSpinBox->value();
-    double fChorusLevel = qsynth_fscale_clip(ChorusLevelSpinBox->value(), QSYNTH_CHORUS_SCALE);
-    double fChorusSpeed = qsynth_fscale_clip(ChorusSpeedSpinBox->value(), QSYNTH_CHORUS_SCALE);
-    double fChorusDepth = qsynth_fscale_clip(ChorusDepthSpinBox->value(), QSYNTH_CHORUS_SCALE);
+    double fChorusLevel = qsynth_get_range_value(ChorusLevelSpinBox, QSYNTH_CHORUS_SCALE);
+    double fChorusSpeed = qsynth_get_range_value(ChorusSpeedSpinBox, QSYNTH_CHORUS_SCALE);
+    double fChorusDepth = qsynth_get_range_value(ChorusDepthSpinBox, QSYNTH_CHORUS_SCALE);
     int    iChorusType  = ChorusTypeComboBox->currentItem();
 
     setEngineChorus(pEngine, iChorusNr, fChorusLevel, fChorusSpeed, fChorusDepth, iChorusType);
@@ -1577,7 +1579,7 @@ void qsynthMainForm::refreshGain (void)
 
     float fGain = ::fluid_synth_get_gain(pEngine->pSynth);
 
-    GainDial->setValue(qsynth_iscale_clip(QSYNTH_GAIN_SCALE, fGain));
+    qsynth_set_range_value(GainDial, QSYNTH_GAIN_SCALE, fGain);
 }
 
 
@@ -1595,10 +1597,10 @@ void qsynthMainForm::refreshReverb (void)
     double fReverbWidth = ::fluid_synth_get_reverb_width(pEngine->pSynth);
     double fReverbLevel = ::fluid_synth_get_reverb_level(pEngine->pSynth);
 
-    ReverbRoomDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, fReverbRoom));
-    ReverbDampDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, fReverbDamp));
-    ReverbWidthDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, fReverbWidth));
-    ReverbLevelDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, fReverbLevel));
+    qsynth_set_range_value(ReverbRoomDial,  QSYNTH_REVERB_SCALE, fReverbRoom);
+    qsynth_set_range_value(ReverbDampDial,  QSYNTH_REVERB_SCALE, fReverbDamp);
+    qsynth_set_range_value(ReverbWidthDial, QSYNTH_REVERB_SCALE, fReverbWidth);
+    qsynth_set_range_value(ReverbLevelDial, QSYNTH_REVERB_SCALE, fReverbLevel);
 }
 
 
@@ -1618,9 +1620,9 @@ void qsynthMainForm::refreshChorus (void)
     int    iChorusType  = ::fluid_synth_get_chorus_type(pEngine->pSynth);
 
     ChorusNrDial->setValue(iChorusNr);
-    ChorusLevelDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, fChorusLevel));
-    ChorusSpeedDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, fChorusSpeed));
-    ChorusDepthDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, fChorusDepth));
+    qsynth_set_range_value(ChorusLevelDial, QSYNTH_CHORUS_SCALE, fChorusLevel);
+    qsynth_set_range_value(ChorusSpeedDial, QSYNTH_CHORUS_SCALE, fChorusSpeed);
+    qsynth_set_range_value(ChorusDepthDial, QSYNTH_CHORUS_SCALE, fChorusDepth);
     ChorusTypeComboBox->setCurrentItem(iChorusType);
 }
 

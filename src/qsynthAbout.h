@@ -24,7 +24,7 @@
 
 #define QSYNTH_TITLE        "qsynth"
 #define QSYNTH_SUBTITLE	    "A fluidsynth Qt GUI Interface"
-#define QSYNTH_VERSION      "0.2.1.95"
+#define QSYNTH_VERSION      "0.2.1.96"
 #define QSYNTH_WEBSITE      "http://qsynth.sourceforge.net"
 #define QSYNTH_COPYRIGHT    "Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved."
 

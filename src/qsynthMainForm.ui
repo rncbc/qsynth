@@ -629,7 +629,7 @@
                                     </property>
                                     <property name="maximumSize">
                                         <size>
-                                            <width>40</width>
+                                            <width>50</width>
                                             <height>32767</height>
                                         </size>
                                     </property>
@@ -639,7 +639,7 @@
                                         </font>
                                     </property>
                                     <property name="maxValue">
-                                        <number>100</number>
+                                        <number>200</number>
                                     </property>
                                     <property name="toolTip" stdset="0">
                                         <string>Master Gain</string>
@@ -678,7 +678,7 @@
                                     </property>
                                     <property name="maximumSize">
                                         <size>
-                                            <width>40</width>
+                                            <width>50</width>
                                             <height>40</height>
                                         </size>
                                     </property>
@@ -688,13 +688,13 @@
                                         </font>
                                     </property>
                                     <property name="notchTarget">
-                                        <number>10</number>
+                                        <number>20</number>
                                     </property>
                                     <property name="notchesVisible">
                                         <bool>true</bool>
                                     </property>
                                     <property name="maxValue">
-                                        <number>100</number>
+                                        <number>200</number>
                                     </property>
                                     <property name="toolTip" stdset="0">
                                         <string>Master Gain</string>
