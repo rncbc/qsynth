@@ -212,6 +212,12 @@
     </connection>
     <connection>
         <sender>ProgramListBox</sender>
+        <signal>highlighted(int)</signal>
+        <receiver>qsynthPresetForm</receiver>
+        <slot>stabilizeForm()</slot>
+    </connection>
+    <connection>
+        <sender>ProgramListBox</sender>
         <signal>selected(int)</signal>
         <receiver>qsynthPresetForm</receiver>
         <slot>acceptForm()</slot>
