@@ -78,6 +78,12 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
     KeepOnTopCheckBox->setChecked(m_pOptions->bKeepOnTop);
     StdoutCaptureCheckBox->setChecked(m_pOptions->bStdoutCapture);
     OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
+    SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
+
+#ifndef CONFIG_SYSTEM_TRAY
+    SystemTrayCheckBox->setChecked(false);
+    SystemTrayCheckBox->setEnabled(false);
+#endif
 
     // Done.
     m_iDirtySetup--;
@@ -97,6 +103,7 @@ void qsynthOptionsForm::accept (void)
         m_pOptions->bKeepOnTop          = KeepOnTopCheckBox->isChecked();
         m_pOptions->bStdoutCapture      = StdoutCaptureCheckBox->isChecked();
         m_pOptions->bOutputMeters       = OutputMetersCheckBox->isChecked();
+        m_pOptions->bSystemTray         = SystemTrayCheckBox->isChecked();
         // Reset dirty flag.
         m_iDirtyCount = 0;
     }

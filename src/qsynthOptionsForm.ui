@@ -2,7 +2,7 @@
 <class>qsynthOptionsForm</class>
 <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2005, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -389,6 +389,25 @@
                                     <string>Whether to monitor and show engine output peak level meters</string>
                                 </property>
                             </widget>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>SystemTrayCheckBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Enable system tray icon</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+E</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Whether to enable the system tray icon</string>
+                                </property>
+                            </widget>
                         </vbox>
                     </widget>
                 </vbox>
@@ -428,6 +447,12 @@
         <slot>settingsChanged()</slot>
     </connection>
     <connection>
+        <sender>SystemTrayCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>optionsChanged()</slot>
+    </connection>
+    <connection>
         <sender>MessagesLimitCheckBox</sender>
         <signal>stateChanged(int)</signal>
         <receiver>qsynthOptionsForm</receiver>
@@ -461,6 +486,7 @@
     <tabstop>KeepOnTopCheckBox</tabstop>
     <tabstop>StdoutCaptureCheckBox</tabstop>
     <tabstop>OutputMetersCheckBox</tabstop>
+    <tabstop>SystemTrayCheckBox</tabstop>
     <tabstop>OkPushButton</tabstop>
     <tabstop>CancelPushButton</tabstop>
 </tabstops>

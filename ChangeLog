@@ -3,7 +3,11 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.3   2005-01-14  Work in progress...
+0.2.3   2005-02-15  System tray icon and menu option.
+
+- New option for system tray icon and menu, which is known to be effective
+  on KDE enabled desktops; support for freedesktop.org's system tray protocol
+  specification has been included so this maybe also effective on Gnome2.
 
 - Set to ignore the SIGPIPE ("Broken pipe") signal, where available, as the
   default handler is usually fatal when a JACK client is zombified abruptly.

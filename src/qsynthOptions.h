@@ -58,6 +58,7 @@ public:
     bool    bKeepOnTop;
     bool    bStdoutCapture;
     bool    bOutputMeters;
+    bool    bSystemTray;
 
     // Default options...
     QString sSoundFontDir;

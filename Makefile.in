@@ -11,6 +11,7 @@ headers = config.h \
 	src/qsynthChannels.h \
 	src/qsynthTabBar.h \
 	src/qsynthMeter.h \
+	src/qsynthSystemTray.h \
 	src/qsynthMainForm.ui.h \
 	src/qsynthMessagesForm.ui.h \
 	src/qsynthChannelsForm.ui.h \
@@ -26,6 +27,7 @@ sources = src/main.cpp \
 	src/qsynthChannels.cpp \
 	src/qsynthTabBar.cpp \
 	src/qsynthMeter.cpp \
+	src/qsynthSystemTray.cpp \
 	src/qsynthMainForm.ui \
 	src/qsynthMessagesForm.ui \
 	src/qsynthChannelsForm.ui \

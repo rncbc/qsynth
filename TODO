@@ -3,4 +3,5 @@ qsynth - A fluidsynth Qt GUI Interface
 
 TODOs
 
+- Make it a DSSI plugin...
 - Any feature one can think of ;)

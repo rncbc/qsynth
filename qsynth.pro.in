@@ -6,7 +6,8 @@ SOURCES += src/main.cpp \
            src/qsynthOptions.cpp \
            src/qsynthChannels.cpp \
            src/qsynthTabBar.cpp \
-           src/qsynthMeter.cpp
+           src/qsynthMeter.cpp \
+           src/qsynthSystemTray.cpp
 
 HEADERS += src/qsynthAbout.h \
            src/qsynthSetup.h \
@@ -14,7 +15,8 @@ HEADERS += src/qsynthAbout.h \
            src/qsynthOptions.h \
            src/qsynthChannels.h \
            src/qsynthTabBar.h \
-           src/qsynthMeter.h
+           src/qsynthMeter.h \
+           src/qsynthSystemTray.h
 
 FORMS    = src/qsynthMainForm.ui \
            src/qsynthMessagesForm.ui \

@@ -229,6 +229,16 @@ void qsynthMainForm::init (void)
     m_pMessagesForm  = NULL;
     m_pChannelsForm  = NULL;
     
+    // The eventual system tray widget.
+    m_pSystemTray = NULL;
+    m_iSystemTrayState = 0;
+
+    // Working engines popup menu.
+    m_pEnginesMenu = NULL;
+
+    // We're not quitting so early :)
+    m_bQuitForce = false;
+
 #ifdef HAVE_SIGNAL_H
 	// Set to ignore any fatal "Broken pipe" signals.
 	::signal(SIGPIPE, SIG_IGN);
@@ -261,6 +271,10 @@ void qsynthMainForm::destroy (void)
         delete m_pMessagesForm;
     if (m_pChannelsForm)
         delete m_pChannelsForm;
+
+    // Quit off system tray widget.
+    if (m_pSystemTray)
+        delete m_pSystemTray;
 }
 
 
@@ -295,6 +309,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
     updateMessagesFont();
     updateMessagesLimit();
     updateOutputMeters();
+    updateSystemTray();
 
     // Check if we can redirect our own stdout/stderr...
     if (m_pOptions->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
@@ -322,8 +337,17 @@ bool qsynthMainForm::queryClose (void)
 
     // Now's the time?
     if (m_pOptions) {
+#ifdef CONFIG_SYSTEM_TRAY
+	    // If we're not quitting explicitly and there's an
+	    // active system tray icon, then just hide ourselves.
+	    if (!m_bQuitForce && isVisible() && m_pOptions->bSystemTray && m_pSystemTray) {
+	        m_pOptions->saveWidgetGeometry(this);
+	        hide();
+	        bQueryClose = false;
+	    }
+#endif
         // Dow we quit right away?
-        if (m_pOptions->bQueryClose) {
+        if (bQueryClose && m_pOptions->bQueryClose) {
             for (int i = 0; i < TabBar->count(); i++) {
                 qsynthTab *pTab = (qsynthTab *) TabBar->tabAt(i);
                 if (pTab) {
@@ -347,10 +371,21 @@ bool qsynthMainForm::queryClose (void)
             m_pOptions->saveWidgetGeometry(m_pMessagesForm);
             m_pOptions->saveWidgetGeometry(this);
             // Close popup widgets.
-            m_pMessagesForm->close();
-            m_pChannelsForm->close();        
+            if (m_pMessagesForm)
+            	m_pMessagesForm->close();
+            if (m_pChannelsForm)
+            	m_pChannelsForm->close();
+	        // And the system tray icon too.
+	        if (m_pSystemTray)
+	            m_pSystemTray->close();
         }
     }
+
+#ifdef CONFIG_SYSTEM_TRAY
+    // Whether we're really quitting.
+    m_bQuitForce = bQueryClose;
+#endif
+
     return bQueryClose;
 }
 
@@ -571,6 +606,116 @@ void qsynthMainForm::updateOutputMeters (void)
 }
 
 
+// System tray master switcher.
+void qsynthMainForm::updateSystemTray (void)
+{
+    if (m_pOptions == NULL)
+        return;
+
+#ifdef CONFIG_SYSTEM_TRAY
+    if (!m_pOptions->bSystemTray && m_pSystemTray) {
+        m_pSystemTray->close();
+        delete m_pSystemTray;
+        m_pSystemTray = NULL;
+    }
+    if (m_pOptions->bSystemTray && m_pSystemTray == NULL) {
+        m_pSystemTray = new qsynthSystemTray(this);
+        m_pSystemTray->show();
+        QObject::connect(m_pSystemTray, SIGNAL(clicked()), this, SLOT(toggleMainForm()));
+        QObject::connect(m_pSystemTray, SIGNAL(contextMenuRequested(const QPoint &)),
+            this, SLOT(systemTrayContextMenu(const QPoint &)));
+    } else {
+        // Make sure the main widget is visible.
+        show();
+        raise();
+        setActiveWindow();
+    }
+#endif
+}
+
+
+// System tray context menu request slot.
+void qsynthMainForm::systemTrayContextMenu ( const QPoint& pos )
+{
+    if (m_pOptions == NULL)
+        return;
+
+    int iItemID;
+    QPopupMenu* pContextMenu = new QPopupMenu(this);
+
+    QString sHideMinimize = (m_pOptions->bSystemTray && m_pSystemTray ? tr("&Hide") : tr("Mi&nimize"));
+    QString sShowRestore  = (m_pOptions->bSystemTray && m_pSystemTray ? tr("S&how") : tr("Rest&ore"));
+    pContextMenu->insertItem(isVisible() ? sHideMinimize : sShowRestore, this, SLOT(toggleMainForm()));
+    pContextMenu->insertSeparator();
+
+    qsynthEngine *pEngine = currentEngine();
+    pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("add1.png")),
+		tr("&New engine..."), this, SLOT(newEngine()));
+    iItemID = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("remove1.png")),
+		tr("&Delete"), this, SLOT(deleteEngine()));
+    pContextMenu->setItemEnabled(iItemID, pEngine && !pEngine->isDefault());
+    pContextMenu->insertSeparator();
+
+    bool bEnabled = (pEngine && pEngine->pSynth);
+    pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("restart1.png")),
+        bEnabled ? tr("Re&start") : tr("&Start"), this, SLOT(promptRestart()));
+    iItemID = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("reset1.png")),
+        tr("&Reset"), this, SLOT(programReset()));
+    pContextMenu->setItemEnabled(iItemID, bEnabled);
+    iItemID = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("panic1.png")),
+        tr("&Panic"), this, SLOT(systemReset()));
+    pContextMenu->setItemEnabled(iItemID, bEnabled);
+    pContextMenu->insertSeparator();
+    iItemID = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("channels1.png")),
+        tr("&Channels"), this, SLOT(toggleChannelsForm()));
+    pContextMenu->setItemChecked(iItemID, m_pChannelsForm && m_pChannelsForm->isVisible());
+    pContextMenu->setItemEnabled(iItemID, bEnabled);
+    pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("setup1.png")),
+        tr("Set&up..."), this, SLOT(showSetupForm()));
+    pContextMenu->insertSeparator();
+
+    // Construct the actual engines menu,
+    // overriding the last one, if any...
+    if (m_pEnginesMenu)
+        delete m_pEnginesMenu;
+    m_pEnginesMenu = new QPopupMenu(this);
+    for (int iTab = 0; iTab < TabBar->count(); iTab++) {
+        qsynthTab *pTab = (qsynthTab *) TabBar->tabAt(iTab);
+        if (pTab) {
+            pEngine = pTab->engine();
+            if (pEngine) {
+        		iItemID = m_pEnginesMenu->insertItem(pEngine->name());
+        		m_pEnginesMenu->setItemChecked(iItemID, pEngine == currentEngine());
+        		m_pEnginesMenu->setItemParameter(iItemID, iTab);
+			}
+        }
+    }
+    QObject::connect(m_pEnginesMenu, SIGNAL(activated(int)), this, SLOT(activateEnginesMenu(int)));
+    // Add presets menu to the main context menu...
+    pContextMenu->insertItem(tr("Engines"), m_pEnginesMenu);
+    pContextMenu->insertSeparator();
+
+    iItemID = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("messages1.png")),
+        tr("&Messages"), this, SLOT(toggleMessagesForm()));
+    pContextMenu->setItemChecked(iItemID, m_pMessagesForm && m_pMessagesForm->isVisible());
+    pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("options1.png")),
+        tr("&Options..."), this, SLOT(showOptionsForm()));
+//  pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("about1.png")),
+//      tr("A&bout..."), this, SLOT(showAboutForm()));
+    pContextMenu->insertSeparator();
+
+    pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("quit1.png")),
+        tr("&Quit"), this, SLOT(quitMainForm()));
+
+    pContextMenu->exec(pos);
+
+    delete pContextMenu;
+
+    delete m_pEnginesMenu;
+    m_pEnginesMenu = NULL;
+}
+
+
 // Stabilize current form toggle buttons that may be astray.
 void qsynthMainForm::stabilizeForm (void)
 {
@@ -671,7 +816,7 @@ void qsynthMainForm::promptRestart (void)
 
 
 // Prompt and create a new engine instance.
-bool qsynthMainForm::newEngineTab (void)
+void qsynthMainForm::newEngine (void)
 {
     qsynthEngine *pEngine;
     QString sName;
@@ -695,8 +840,7 @@ bool qsynthMainForm::newEngineTab (void)
 
     // Probably a good idea to prompt for the setup dialog.
     pEngine = new qsynthEngine(m_pOptions, sName);
-    bool bResult = setupEngineTab(pEngine, NULL);
-    if (bResult) {
+    if (setupEngineTab(pEngine, NULL)) {
         // Success, add a new tab...
         TabBar->addTab(new qsynthTab(pEngine));
         // And try to be persistent...
@@ -708,8 +852,19 @@ bool qsynthMainForm::newEngineTab (void)
         // we better free it up right now...
         delete pEngine;
     }
-    // Done.
-    return bResult;
+}
+
+
+// Delete the current engine instance.
+void qsynthMainForm::deleteEngine (void)
+{
+    // Check if we're doing everything all right.
+    qsynthTab *pTab = (qsynthTab *) TabBar->tab(m_iCurrentTab);
+    if (pTab) {
+        qsynthEngine *pEngine = pTab->engine();
+        if (pEngine)
+            deleteEngineTab(pEngine, pTab);
+    }
 }
 
 
@@ -779,6 +934,29 @@ bool qsynthMainForm::setupEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
 }
 
 
+// Main form visibility requester slot.
+void qsynthMainForm::toggleMainForm (void)
+{
+    if (m_pOptions == NULL)
+        return;
+
+    m_pOptions->saveWidgetGeometry(this);
+    if (isVisible()) {
+        if (m_pOptions->bSystemTray && m_pSystemTray) {
+            // Hide away from sight.
+            hide();
+        } else {
+            // Minimize (iconify) normally.
+            showMinimized();
+        }
+    } else {
+        show();
+        raise();
+        setActiveWindow();
+    }
+}
+
+
 // Message log form requester slot.
 void qsynthMainForm::toggleMessagesForm (void)
 {
@@ -839,6 +1017,7 @@ void qsynthMainForm::showOptionsForm (void)
             m_pOptions->sMessagesFont = m_pMessagesForm->messagesFont().toString();
         // To track down deferred or immediate changes.
         QString sOldMessagesFont = m_pOptions->sMessagesFont;
+        bool    bOldSystemTray   = m_pOptions->bSystemTray;
         bool    bOutputMeters    = m_pOptions->bOutputMeters;
         bool    bStdoutCapture   = m_pOptions->bStdoutCapture;
         bool    bKeepOnTop       = m_pOptions->bKeepOnTop;
@@ -864,6 +1043,9 @@ void qsynthMainForm::showOptionsForm (void)
                 (!bMessagesLimit &&  m_pOptions->bMessagesLimit) ||
                 (iMessagesLimitLines !=  m_pOptions->iMessagesLimitLines))
                 updateMessagesLimit();
+            if (( bOldSystemTray && !m_pOptions->bSystemTray) ||
+                (!bOldSystemTray &&  m_pOptions->bSystemTray))
+                updateSystemTray();
             // There's some option(s) that need a global restart...
             if (( bOutputMeters  && !m_pOptions->bOutputMeters) ||
                 (!bOutputMeters  &&  m_pOptions->bOutputMeters)) {
@@ -932,17 +1114,17 @@ void qsynthMainForm::tabContextMenu ( qsynthTab *pTab, const QPoint& pos )
         pEngine = pTab->engine();
 
     QPopupMenu* pContextMenu = new QPopupMenu(this);
-    int iNew    = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("add1.png")), tr("New engine..."));
-    int iDelete = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("remove1.png")), tr("Delete"));
+    int iNew    = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("add1.png")), tr("&New engine..."));
+    int iDelete = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("remove1.png")), tr("&Delete"));
     pContextMenu->setItemEnabled(iDelete, pEngine && !pEngine->isDefault());
     pContextMenu->insertSeparator();
-    int iSetup  = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("setup1.png")), tr("Setup..."));
+    int iSetup  = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("setup1.png")), tr("Set&up..."));
     pContextMenu->setItemEnabled(iSetup, pEngine);
     int iItemID = pContextMenu->exec(pos);
     delete pContextMenu;
 
     if (iItemID == iNew)
-        newEngineTab();
+        newEngine();
     else if (iItemID == iDelete)
         deleteEngineTab(pEngine, pTab);
     else if (iItemID == iSetup)
@@ -978,16 +1160,29 @@ void qsynthMainForm::timerSlot (void)
                     pEngine->iMidiState++;
                     pTab->setOn(true);
                     iTabUpdate++;
+                    // Change the system tray icon background color!
+                    if (m_pSystemTray && m_iSystemTrayState == 0) {
+                        m_iSystemTrayState++;
+				        m_pSystemTray->setBackgroundMode(Qt::PaletteBackground);
+				        m_pSystemTray->setPaletteBackgroundColor(Qt::green);
+				        m_pSystemTray->repaint(true);
+					}
                 }
             }
             else if (pEngine->iMidiEvent == 0 && pEngine->iMidiState > 0) {
                 pEngine->iMidiState--;
                 pTab->setOn(false);
                 iTabUpdate++;
+                // Reset the system tray icon background!
+                if (m_pSystemTray && m_iSystemTrayState > 0) {
+                    m_iSystemTrayState--;
+			        m_pSystemTray->setBackgroundMode(Qt::X11ParentRelative);
+			        m_pSystemTray->repaint(true);
+				}
             }
         }
     }
-    // Do we have an update?
+    // Have we an update?
     if (iTabUpdate > 0)
         TabBar->update();
 
@@ -1690,6 +1885,36 @@ void qsynthMainForm::refreshChorus (void)
     qsynth_set_range_value(ChorusSpeedDial, QSYNTH_CHORUS_SCALE, fChorusSpeed);
     qsynth_set_range_value(ChorusDepthDial, QSYNTH_CHORUS_SCALE, fChorusDepth);
     ChorusTypeComboBox->setCurrentItem(iChorusType);
+}
+
+
+// Select the current default preset name from context menu.
+void qsynthMainForm::activateEnginesMenu ( int iItemID )
+{
+    if (m_pEnginesMenu == NULL)
+        return;
+
+    TabBar->setCurrentTab(m_pEnginesMenu->itemParameter(iItemID));
+}
+
+
+// Close main form slot.
+void qsynthMainForm::quitMainForm (void)
+{
+#ifdef CONFIG_SYSTEM_TRAY
+    // Flag that we're quitting explicitly.
+    m_bQuitForce = true;
+#endif
+    // And then, do the closing dance.
+    close();
+}
+
+
+// Context menu event handler.
+void qsynthMainForm::contextMenuEvent( QContextMenuEvent *pEvent )
+{
+    // We'll just show up the usual system tray menu.
+    systemTrayContextMenu(pEvent->globalPos());
 }
 
 

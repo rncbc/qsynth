@@ -1544,7 +1544,7 @@
         <sender>QuitPushButton</sender>
         <signal>clicked()</signal>
         <receiver>qsynthMainForm</receiver>
-        <slot>close()</slot>
+        <slot>quitMainForm()</slot>
     </connection>
     <connection>
         <sender>OptionsPushButton</sender>
@@ -1601,10 +1601,12 @@
 <includes>
     <include location="global" impldecl="in declaration">qsettings.h</include>
     <include location="global" impldecl="in declaration">qsocketnotifier.h</include>
+    <include location="global" impldecl="in declaration">qpopupmenu.h</include>
     <include location="local" impldecl="in declaration">qsynthEngine.h</include>
     <include location="local" impldecl="in declaration">qsynthMessagesForm.h</include>
     <include location="local" impldecl="in declaration">qsynthChannelsForm.h</include>
     <include location="local" impldecl="in declaration">qsynthTabBar.h</include>
+    <include location="local" impldecl="in declaration">qsynthSystemTray.h</include>
     <include location="local" impldecl="in implementation">qsynthSetupForm.h</include>
     <include location="local" impldecl="in implementation">qsynthOptionsForm.h</include>
     <include location="local" impldecl="in implementation">qsynthAboutForm.h</include>
@@ -1624,15 +1626,22 @@
     <variable access="private">int m_iReverbUpdated;</variable>
     <variable access="private">int m_iChorusUpdated;</variable>
     <variable access="private">QString m_sStdoutBuffer;</variable>
+    <variable access="private">int m_iSystemTrayState;</variable>
+    <variable access="private">qsynthSystemTray *m_pSystemTray;</variable>
+    <variable access="private">QPopupMenu *m_pEnginesMenu;</variable>
+    <variable access="private">bool m_bQuitForce;</variable>
 </variables>
 <slots>
     <slot specifier="non virtual">stdoutNotifySlot( int fd )</slot>
     <slot specifier="non virtual">appendStdoutBuffer( const QString &amp; s )</slot>
     <slot specifier="non virtual">flushStdoutBuffer( void )</slot>
     <slot specifier="non virtual">stabilizeForm( void )</slot>
+    <slot specifier="non virtual">newEngine( void )</slot>
+    <slot specifier="non virtual">deleteEngine( void )</slot>
     <slot specifier="non virtual">programReset()</slot>
     <slot specifier="non virtual">systemReset()</slot>
     <slot specifier="non virtual">promptRestart()</slot>
+    <slot specifier="non virtual">toggleMainForm( void )</slot>
     <slot specifier="non virtual">toggleMessagesForm( void )</slot>
     <slot specifier="non virtual">toggleChannelsForm( void )</slot>
     <slot specifier="non virtual">showSetupForm( void )</slot>
@@ -1646,6 +1655,9 @@
     <slot specifier="non virtual">gainChanged( int )</slot>
     <slot specifier="non virtual">reverbChanged( int )</slot>
     <slot specifier="non virtual">chorusChanged( int )</slot>
+    <slot specifier="non virtual">systemTrayContextMenu( const QPoint &amp; pos )</slot>
+    <slot specifier="non virtual">activateEnginesMenu ( int iItemID )</slot>
+    <slot specifier="non virtual">quitMainForm( void )</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
@@ -1664,7 +1676,6 @@
     <function access="private" specifier="non virtual">updateMessagesFont( void )</function>
     <function access="private" specifier="non virtual">updateMessagesLimit( void )</function>
     <function access="private" specifier="non virtual">updateOutputMeters( void )</function>
-    <function specifier="non virtual" returnType="bool">newEngineTab( void )</function>
     <function specifier="non virtual" returnType="bool">deleteEngineTab( qsynthEngine *pEngine, qsynthTab *pTab )</function>
     <function specifier="non virtual" returnType="bool">setupEngineTab( qsynthEngine *pEngine, qsynthTab *pTab )</function>
     <function access="private" specifier="non virtual" returnType="qsynthEngine *">currentEngine( void )</function>
@@ -1687,6 +1698,8 @@
     <function access="private" specifier="non virtual">refreshGain( void )</function>
     <function access="private" specifier="non virtual">refreshReverb( void )</function>
     <function access="private" specifier="non virtual">refreshChorus( void )</function>
+    <function access="private" specifier="non virtual">updateSystemTray( void )</function>
+    <function access="private" specifier="non virtual">contextMenuEvent( QContextMenuEvent *pEvent )</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="4" margin="8"/>

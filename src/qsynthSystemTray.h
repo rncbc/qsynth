@@ -1,4 +1,4 @@
-// qsynthAbout.h
+// qsynthSystemTray.h
 //
 /****************************************************************************
    Copyright (C) 2003-2005, rncbc aka Rui Nuno Capela. All rights reserved.
@@ -19,15 +19,44 @@
 
 *****************************************************************************/
 
-#ifndef __qsynthAbout_h
-#define __qsynthAbout_h
+#ifndef __qsynthSystemTray_h
+#define __qsynthSystemTray_h
 
-#define QSYNTH_TITLE        "qsynth"
-#define QSYNTH_SUBTITLE	    "A fluidsynth Qt GUI Interface"
-#define QSYNTH_VERSION      "0.2.2.15"
-#define QSYNTH_WEBSITE      "http://qsynth.sourceforge.net"
-#define QSYNTH_COPYRIGHT    "Copyright (C) 2003-2005, rncbc aka Rui Nuno Capela. All rights reserved."
+#include <qlabel.h>
+#include <qpixmap.h>
 
-#endif  // __qsynthAbout_h
 
-// end of qsynthAbout.h
+//----------------------------------------------------------------------------
+// qsynthSystemTray -- Custom system tray widget.
+
+class qsynthSystemTray : public QLabel
+{
+    Q_OBJECT
+
+public:
+
+    // Constructor.
+    qsynthSystemTray(QWidget *pParent = 0, const char *pszName = 0);
+    // Default destructor.
+    ~qsynthSystemTray();
+
+    // Set system tray icon overlay.
+    void setPixmapOverlay(const QPixmap& pmOverlay);
+
+signals:
+
+    // Clicked signal.
+    void clicked();
+    // Context menu signal.
+    void contextMenuRequested(const QPoint& pos);
+
+protected:
+
+    // Overriden mouse event method.
+    void mousePressEvent(QMouseEvent *);
+};
+
+
+#endif  // __qsynthSystemTray_h
+
+// end of qsynthSystemTray.h
