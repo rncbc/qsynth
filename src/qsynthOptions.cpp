@@ -424,6 +424,35 @@ void qsynthOptions::newEngine ( qsynthEngine *pEngine )
 }
 
 
+bool qsynthOptions::renameEngine ( qsynthEngine *pEngine )
+{
+    if (pEngine == NULL)
+        return false;
+
+    qsynthSetup *pSetup = pEngine->setup();
+    if (pSetup == NULL)
+        return false;
+        
+    const QString& sOldName = pEngine->name();
+    const QString& sNewName = pSetup->sDisplayName;
+    if (sOldName == sNewName)
+        return false;
+        
+    QStringList::Iterator iter = engines.find(sOldName);
+    if (iter == engines.end())
+        return false;
+        
+    if (!pEngine->isDefault())
+        deleteKey("/Engine/" + sOldName);
+
+    pEngine->setName(sNewName);
+    *iter = sNewName;
+    
+    return true;
+}
+
+
+
 void qsynthOptions::deleteEngine ( qsynthEngine *pEngine )
 {
     if (pEngine == NULL)

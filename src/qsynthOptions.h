@@ -65,8 +65,9 @@ public:
     // Available custom engines list.
     QStringList engines;
 
-    // Preset management methods.
+    // Engine management methods.
     void newEngine(qsynthEngine *pEngine);
+    bool renameEngine(qsynthEngine *pEngine);
     void deleteEngine(qsynthEngine *pEngine);
 
     // Setup registry methods.

@@ -700,21 +700,13 @@ bool qsynthMainForm::setupEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
 
     qsynthSetupForm *pSetupForm = new qsynthSetupForm(this);
     if (pSetupForm) {
-        // To track down engine renaming.
-        const QString sOldDisplayName = (pEngine->setup())->sDisplayName;
         // Load the current instance settings.
         pSetupForm->setup(m_pOptions, pEngine, (pTab == NULL));
         // Show the instance setup dialog, then ask for a engine restart?
         bResult = pSetupForm->exec();
         if (bResult) {
             // Have we changed names? Ugly uh?
-            if (pTab && sOldDisplayName != (pEngine->setup())->sDisplayName) {
-                // Remove old name entries...
-                m_pOptions->deleteEngine(pEngine);
-                // Set new one :)
-                pEngine->setName((pEngine->setup())->sDisplayName);
-                // Remember to add to our list.
-                m_pOptions->newEngine(pEngine);
+            if (pTab && m_pOptions->renameEngine(pEngine)) {
                 // Update main caption, if we're on current engine tab...
                 if (pTab->identifier() == TabBar->currentTab())
                     setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + " [" + pEngine->name() + "]");
