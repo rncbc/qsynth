@@ -455,6 +455,9 @@ void qsynthMainForm::programReset (void)
     appendMessages("fluid_synth_program_reset");
     ::fluid_synth_program_reset(m_pSynth);
 
+    if (m_pChannelsForm)
+        m_pChannelsForm->updateAllChannels();
+
     stabilizeForm();
 }
 
@@ -472,6 +475,8 @@ void qsynthMainForm::systemReset (void)
     appendMessages("fluid_synth_program_reset");
     ::fluid_synth_program_reset(m_pSynth);
 #endif
+    if (m_pChannelsForm)
+        m_pChannelsForm->updateAllChannels();
 
     stabilizeForm();
 }
