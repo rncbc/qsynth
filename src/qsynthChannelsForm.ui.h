@@ -21,6 +21,7 @@
 *****************************************************************************/
 
 #include <qvalidator.h>
+#include <qmessagebox.h>
 #include <qpopupmenu.h>
 #include <qfileinfo.h>
 
@@ -315,6 +316,14 @@ void qsynthChannelsForm::deletePreset (void)
 
     QString sPreset = PresetComboBox->currentText();
     if (sPreset.isEmpty())
+        return;
+
+    // Try to prompt user if he/she really wants this...
+    if (QMessageBox::warning(this, tr("Warning"),
+        tr("Delete preset:") + "\n\n" +
+        sPreset + "\n\n" +
+        tr("Are you sure?"),
+        tr("OK"), tr("Cancel")) > 0)
         return;
 
     // Remove current preset item...

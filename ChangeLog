@@ -3,9 +3,11 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.1   2004-03-23  Minor internal fixes.
+0.2.1   2004-03-26  Minor internal fixes.
 
 - Translation support for the default preset name "(default)".
+
+- Delete preset confirmation warning message.
 
 
 0.2.0   2004-03-21  Multi-instance comes to town.
