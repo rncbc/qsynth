@@ -59,7 +59,24 @@ static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
     return ::new_fluid_cmd_handler((fluid_synth_t*) data);
 }
 
+//-------------------------------------------------------------------------
+// Audio driver processing stub.
 
+int qsynth_process ( void *pvData, int len, int nin, float **in, int nout, float **out )
+{
+    qsynthEngine *pEngine = (qsynthEngine *) pvData;
+	if (pEngine == g_pCurrentEngine) {
+		for (int i = 0; i < nout; i++) {
+			for (int j = 0; j < len; j++) {
+				float fValue = out[i][j];
+				if (pEngine->fMeterValue[i & 1] < fValue)
+					pEngine->fMeterValue[i & 1] = fValue;
+			}
+		}
+	}
+    return ::fluid_synth_process(pEngine->pSynth, len, nin, in, nout, out);
+}
+ 
 //-------------------------------------------------------------------------
 // Midi router stubs to have some midi activity feedback.
 
@@ -526,9 +543,16 @@ void qsynthMainForm::stabilizeForm (void)
 {
     qsynthEngine *pEngine = currentEngine();
     
-    if (pEngine && pEngine->pSynth) {
-        GainGroupBox->setEnabled(true);
-        ReverbGroupBox->setEnabled(true);
+    bool bEnabled = (pEngine && pEngine->pSynth);
+    
+    GainGroupBox->setEnabled(bEnabled);
+    ReverbGroupBox->setEnabled(bEnabled);
+    ChorusGroupBox->setEnabled(bEnabled);
+    OutputGroupBox->setEnabled(bEnabled);
+    ProgramResetPushButton->setEnabled(bEnabled);
+    SystemResetPushButton->setEnabled(bEnabled);
+    
+    if (bEnabled) {
         bool bReverbActive = ReverbActiveCheckBox->isChecked();
         ReverbRoomTextLabel->setEnabled(bReverbActive);
         ReverbDampTextLabel->setEnabled(bReverbActive);
@@ -557,19 +581,11 @@ void qsynthMainForm::stabilizeForm (void)
         ChorusSpeedSpinBox->setEnabled(bChorusActive);
         ChorusDepthSpinBox->setEnabled(bChorusActive);
         ChorusTypeComboBox->setEnabled(bChorusActive);
-        ChorusGroupBox->setEnabled(true);
-        ProgramResetPushButton->setEnabled(true);
-        SystemResetPushButton->setEnabled(true);
-        RestartPushButton->setText(tr("Re&start"));
         qsynthSetup *pSetup = pEngine->setup();
         bool bMidiIn = (pSetup && pSetup->bMidiIn);
         ChannelsPushButton->setEnabled(bMidiIn);
+        RestartPushButton->setText(tr("Re&start"));
     } else {
-        GainGroupBox->setEnabled(false);
-        ReverbGroupBox->setEnabled(false);
-        ChorusGroupBox->setEnabled(false);
-        ProgramResetPushButton->setEnabled(false);
-        SystemResetPushButton->setEnabled(false);
         ChannelsPushButton->setEnabled(false);
         RestartPushButton->setText(tr("&Start"));
     }
@@ -976,6 +992,13 @@ void qsynthMainForm::timerSlot (void)
     if (m_iChorusChanged > 0)
         updateChorus();
 
+    // Meter update.
+    OutputMeter->setValue(0, g_pCurrentEngine->fMeterValue[0]);
+    OutputMeter->setValue(1, g_pCurrentEngine->fMeterValue[1]);
+    OutputMeter->refresh();
+    g_pCurrentEngine->fMeterValue[0] = 0.0;
+    g_pCurrentEngine->fMeterValue[1] = 0.0;
+
     // Register for the next timer slot.
     QTimer::singleShot(QSYNTH_TIMER_MSECS, this, SLOT(timerSlot()));
 }
@@ -1020,7 +1043,8 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 
     // Start the synthesis thread...
     appendMessages(sPrefix + tr("Creating audio driver") + " (" + pSetup->sAudioDriver + ")" + sElipsis);
-    pEngine->pAudioDriver = ::new_fluid_audio_driver(pSetup->fluid_settings(), pEngine->pSynth);
+//  pEngine->pAudioDriver = ::new_fluid_audio_driver(pSetup->fluid_settings(), pEngine->pSynth);
+    pEngine->pAudioDriver = ::new_fluid_audio_driver2(pSetup->fluid_settings(), qsynth_process, pEngine);
     if (pEngine->pAudioDriver == NULL) {
         appendMessagesError(sPrefix + tr("Failed to create the audio driver") + " (" + pSetup->sAudioDriver + "). " + tr("Cannot continue without it."));
         stopEngine(pEngine);

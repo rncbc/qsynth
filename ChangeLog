@@ -3,7 +3,9 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.2   2004-05-24  Sloppy boy fixes.
+0.2.2   2004-07-12  Output level peak meters and other fixes.
+
+- Output level peak meters are now featured (EXPERIMENTAL).
 
 - Top level sub-windows are now always raised and set with active focus
   when shown to visibility.

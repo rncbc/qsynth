@@ -60,6 +60,9 @@ public:
     int iMidiEvent;
     int iMidiState;
 
+    // Current meter peak-value (pseudo-stereo).
+    float fMeterValue[2];
+
 private:
 
     // Engine member variables.

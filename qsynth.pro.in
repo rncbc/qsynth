@@ -5,14 +5,16 @@ SOURCES += src/main.cpp \
            src/qsynthEngine.cpp \
            src/qsynthOptions.cpp \
            src/qsynthChannels.cpp \
-           src/qsynthTabBar.cpp
+           src/qsynthTabBar.cpp \
+           src/qsynthMeter.cpp
 
 HEADERS += src/qsynthAbout.h \
            src/qsynthSetup.h \
            src/qsynthEngine.h \
            src/qsynthOptions.h \
            src/qsynthChannels.h \
-           src/qsynthTabBar.h
+           src/qsynthTabBar.h \
+           src/qsynthMeter.h
 
 FORMS    = src/qsynthMainForm.ui \
            src/qsynthMessagesForm.ui \
