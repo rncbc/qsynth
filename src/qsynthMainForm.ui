@@ -589,6 +589,9 @@
                             <property name="notchesVisible">
                                 <bool>true</bool>
                             </property>
+                            <property name="minValue">
+                                <number>1</number>
+                            </property>
                             <property name="maxValue">
                                 <number>100</number>
                             </property>
@@ -674,8 +677,11 @@
                             <property name="notchesVisible">
                                 <bool>true</bool>
                             </property>
+                            <property name="minValue">
+                                <number>3</number>
+                            </property>
                             <property name="maxValue">
-                                <number>100</number>
+                                <number>50</number>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Chorus Speed Hz</string>
@@ -697,7 +703,10 @@
                                 </font>
                             </property>
                             <property name="maxValue">
-                                <number>100</number>
+                                <number>50</number>
+                            </property>
+                            <property name="minValue">
+                                <number>3</number>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Chorus Speed Hz</string>
@@ -983,6 +992,9 @@
                     <property name="accel">
                         <string>Alt+Q</string>
                     </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
                     <property name="iconSet">
                         <iconset>quit1.png</iconset>
                     </property>
@@ -999,6 +1011,9 @@
                     </property>
                     <property name="accel">
                         <string>Alt+E</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
                     </property>
                     <property name="iconSet">
                         <iconset>setup1.png</iconset>
@@ -1020,6 +1035,9 @@
                     <property name="toggleButton">
                         <bool>true</bool>
                     </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
                     <property name="iconSet">
                         <iconset>messages1.png</iconset>
                     </property>
@@ -1036,6 +1054,9 @@
                     </property>
                     <property name="accel">
                         <string>Alt+O</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
                     </property>
                     <property name="iconSet">
                         <iconset>about1.png</iconset>
@@ -1204,21 +1225,21 @@
     <tabstop>GainDial</tabstop>
     <tabstop>GainSpinBox</tabstop>
     <tabstop>ReverbRoomDial</tabstop>
-    <tabstop>ReverbRoomSpinBox</tabstop>
     <tabstop>ReverbDampDial</tabstop>
-    <tabstop>ReverbDampSpinBox</tabstop>
     <tabstop>ReverbWidthDial</tabstop>
-    <tabstop>ReverbWidthSpinBox</tabstop>
     <tabstop>ReverbLevelDial</tabstop>
+    <tabstop>ReverbRoomSpinBox</tabstop>
+    <tabstop>ReverbDampSpinBox</tabstop>
+    <tabstop>ReverbWidthSpinBox</tabstop>
     <tabstop>ReverbLevelSpinBox</tabstop>
     <tabstop>ReverbActiveCheckBox</tabstop>
     <tabstop>ChorusNrDial</tabstop>
-    <tabstop>ChorusNrSpinBox</tabstop>
     <tabstop>ChorusLevelDial</tabstop>
-    <tabstop>ChorusLevelSpinBox</tabstop>
     <tabstop>ChorusSpeedDial</tabstop>
-    <tabstop>ChorusSpeedSpinBox</tabstop>
     <tabstop>ChorusDepthDial</tabstop>
+    <tabstop>ChorusNrSpinBox</tabstop>
+    <tabstop>ChorusLevelSpinBox</tabstop>
+    <tabstop>ChorusSpeedSpinBox</tabstop>
     <tabstop>ChorusDepthSpinBox</tabstop>
     <tabstop>ChorusActiveCheckBox</tabstop>
     <tabstop>ChorusTypeComboBox</tabstop>
@@ -1252,9 +1273,9 @@
     <variable access="private">int m_iGainChanged;</variable>
     <variable access="private">int m_iReverbChanged;</variable>
     <variable access="private">int m_iChorusChanged;</variable>
-    <variable access="private">int m_iGainUpdate;</variable>
-    <variable access="private">int m_iReverbUpdate;</variable>
-    <variable access="private">int m_iChorusUpdate;</variable>
+    <variable access="private">int m_iGainUpdated;</variable>
+    <variable access="private">int m_iReverbUpdated;</variable>
+    <variable access="private">int m_iChorusUpdated;</variable>
 </variables>
 <slots>
     <slot access="protected" specifier="non virtual">reject( void )</slot>

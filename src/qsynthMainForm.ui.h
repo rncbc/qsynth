@@ -65,9 +65,9 @@ void qsynthMainForm::init (void)
     m_iReverbChanged = 0;
     m_iChorusChanged = 0;
 
-    m_iGainUpdate    = 0;
-    m_iReverbUpdate  = 0;
-    m_iChorusUpdate  = 0;
+    m_iGainUpdated   = 0;
+    m_iReverbUpdated = 0;
+    m_iChorusUpdated = 0;
 
     // Check if we can redirect our own stdout/stderr...
     if (::pipe(g_fdStdout) == 0) {
@@ -315,22 +315,16 @@ void qsynthMainForm::timerSlot (void)
     }
 
     // Gain changes?
-    if (m_iGainChanged > 0) {
-        m_iGainChanged = 0;
+    if (m_iGainChanged > 0)
         updateGain();
-    }
 
     // Reverb changes?
-    if (m_iReverbChanged > 0) {
-        m_iReverbChanged = 0;
+    if (m_iReverbChanged > 0)
         updateReverb();
-    }
 
     // Chorus changes?
-    if (m_iChorusChanged > 0) {
-        m_iChorusChanged = 0;
+    if (m_iChorusChanged > 0)
         updateChorus();
-    }
 }
 
 
@@ -424,7 +418,7 @@ bool qsynthMainForm::startSynth (void)
     // Finally initialize the front panel controls.
     appendMessages(tr("Loading panel settings") + sElipsis);
     loadPanelSettings();
-    
+
     // All is right.
     appendMessages(tr("Synthesizer engine started."));
 
@@ -441,9 +435,12 @@ void qsynthMainForm::stopSynth (void)
     const QString sElipsis = "...";
 
     // Start saving the front panel controls.
-    appendMessages(tr("Saving panel settings") + sElipsis);
-    savePanelSettings();
-    
+    // (but only if we have started alright)
+    if (m_pAudioDriver) {
+        appendMessages(tr("Saving panel settings") + sElipsis);
+        savePanelSettings();
+    }
+
 #ifdef CONFIG_FLUID_SERVER
     // Destroy server.
     if (m_pServer) {
@@ -508,9 +505,9 @@ void qsynthMainForm::loadPanelSettings (void)
     m_iReverbChanged = 0;
     m_iChorusChanged = 0;
 
-    m_iGainUpdate    = 0;
-    m_iReverbUpdate  = 0;
-    m_iChorusUpdate  = 0;
+    m_iGainUpdated   = 0;
+    m_iReverbUpdated = 0;
+    m_iChorusUpdated = 0;
 
     GainDial->setValue((int) (10.0 * m_pSetup->fGain));
 
@@ -540,18 +537,19 @@ void qsynthMainForm::savePanelSettings (void)
     m_pSetup->fGain = (double) (GainDial->value() / 10.0);
 
     m_pSetup->bReverbActive = ReverbActiveCheckBox->isChecked();
-    m_pSetup->fReverbRoom   = (double) (ReverbRoomDial->value()  / 10.0);
-    m_pSetup->fReverbDamp   = (double) (ReverbDampDial->value()  / 10.0);
-    m_pSetup->fReverbWidth  = (double) (ReverbWidthDial->value() / 10.0);
-    m_pSetup->fReverbLevel  = (double) (ReverbLevelDial->value() / 10.0);
+    m_pSetup->fReverbRoom   = (double) (ReverbRoomSpinBox->value()  / 10.0);
+    m_pSetup->fReverbDamp   = (double) (ReverbDampSpinBox->value()  / 10.0);
+    m_pSetup->fReverbWidth  = (double) (ReverbWidthSpinBox->value() / 10.0);
+    m_pSetup->fReverbLevel  = (double) (ReverbLevelSpinBox->value() / 10.0);
 
     m_pSetup->bChorusActive = ChorusActiveCheckBox->isChecked();
-    m_pSetup->iChorusNr     = ChorusNrDial->value();
-    m_pSetup->fChorusLevel  = (double) (ChorusLevelDial->value() / 10.0);
-    m_pSetup->fChorusSpeed  = (double) (ChorusSpeedDial->value() / 10.0);
-    m_pSetup->fChorusDepth  = (double) (ChorusDepthDial->value() / 10.0);
+    m_pSetup->iChorusNr     = ChorusNrSpinBox->value();
+    m_pSetup->fChorusLevel  = (double) (ChorusLevelSpinBox->value() / 10.0);
+    m_pSetup->fChorusSpeed  = (double) (ChorusSpeedSpinBox->value() / 10.0);
+    m_pSetup->fChorusDepth  = (double) (ChorusDepthSpinBox->value() / 10.0);
     m_pSetup->iChorusType   = ChorusTypeComboBox->currentItem();
 }
+
 
 // Increment reverb change flag.
 void qsynthMainForm::reverbActivate ( bool bActive )
@@ -562,6 +560,10 @@ void qsynthMainForm::reverbActivate ( bool bActive )
     appendMessages("fluid_synth_set_reverb_on(" + QString::number((int) bActive) + ")");
 
     ::fluid_synth_set_reverb_on(m_pSynth, (int) bActive);
+
+    if (bActive)
+        refreshReverb();
+
     stabilizeForm();
 }
 
@@ -575,6 +577,10 @@ void qsynthMainForm::chorusActivate ( bool bActive )
     appendMessages("fluid_synth_set_chorus_on(" + QString::number((int) bActive) + ")");
 
     ::fluid_synth_set_chorus_on(m_pSynth, (int) bActive);
+
+    if (bActive)
+        refreshChorus();
+
     stabilizeForm();
 }
 
@@ -582,7 +588,7 @@ void qsynthMainForm::chorusActivate ( bool bActive )
 // Increment gain change flag.
 void qsynthMainForm::gainChanged (int)
 {
-    if (m_iGainUpdate == 0)
+    if (m_iGainUpdated == 0)
         m_iGainChanged++;
 }
 
@@ -590,7 +596,7 @@ void qsynthMainForm::gainChanged (int)
 // Increment reverb change flag.
 void qsynthMainForm::reverbChanged (int)
 {
-    if (m_iReverbUpdate == 0)
+    if (m_iReverbUpdated == 0)
         m_iReverbChanged++;
 }
 
@@ -598,7 +604,7 @@ void qsynthMainForm::reverbChanged (int)
 // Increment chorus change flag.
 void qsynthMainForm::chorusChanged (int)
 {
-    if (m_iChorusUpdate == 0)
+    if (m_iChorusUpdated == 0)
         m_iChorusChanged++;
 }
 
@@ -606,9 +612,9 @@ void qsynthMainForm::chorusChanged (int)
 // Update gain state.
 void qsynthMainForm::updateGain (void)
 {
-    if (m_pSynth == NULL || m_iGainUpdate > 0)
+    if (m_pSynth == NULL || m_iGainUpdated > 0)
         return;
-    m_iGainUpdate++;
+    m_iGainUpdated++;
 
     float fGain = (float) (GainSpinBox->value() / 10.0);
 
@@ -617,21 +623,22 @@ void qsynthMainForm::updateGain (void)
     ::fluid_synth_set_gain(m_pSynth, fGain);
     refreshGain();
 
-    m_iGainUpdate--;
+    m_iGainUpdated--;
+    m_iGainChanged = 0;
 }
 
 
 // Update reverb state.
 void qsynthMainForm::updateReverb (void)
 {
-    if (m_pSynth == NULL || m_iReverbUpdate > 0)
+    if (m_pSynth == NULL || m_iReverbUpdated > 0)
         return;
-    m_iReverbUpdate++;
+    m_iReverbUpdated++;
 
-    double fReverbRoom   = (double) (ReverbRoomSpinBox->value()  / 10.0);
-    double fReverbDamp   = (double) (ReverbDampSpinBox->value()  / 10.0);
-    double fReverbWidth  = (double) (ReverbWidthSpinBox->value() / 10.0);
-    double fReverbLevel  = (double) (ReverbLevelSpinBox->value() / 10.0);
+    double fReverbRoom  = (double) (ReverbRoomSpinBox->value()  / 10.0);
+    double fReverbDamp  = (double) (ReverbDampSpinBox->value()  / 10.0);
+    double fReverbWidth = (double) (ReverbWidthSpinBox->value() / 10.0);
+    double fReverbLevel = (double) (ReverbLevelSpinBox->value() / 10.0);
 
     appendMessages("fluid_synth_set_reverb("
         + QString::number(fReverbRoom)  + ","
@@ -642,22 +649,23 @@ void qsynthMainForm::updateReverb (void)
     ::fluid_synth_set_reverb(m_pSynth, fReverbRoom, fReverbDamp, fReverbWidth, fReverbLevel);
     refreshReverb();
 
-    m_iReverbUpdate--;
+    m_iReverbUpdated--;
+    m_iReverbChanged = 0;
 }
 
 
 // Update chorus state.
 void qsynthMainForm::updateChorus (void)
 {
-    if (m_pSynth == NULL || m_iChorusUpdate > 0)
+    if (m_pSynth == NULL || m_iChorusUpdated > 0)
         return;
-    m_iChorusUpdate++;
+    m_iChorusUpdated++;
 
-    int    iChorusNr     = ChorusNrSpinBox->value();
-    double fChorusLevel  = (double) (ChorusLevelSpinBox->value() / 10.0);
-    double fChorusSpeed  = (double) (ChorusSpeedSpinBox->value() / 10.0);
-    double fChorusDepth  = (double) (ChorusDepthSpinBox->value() / 10.0);
-    int    iChorusType   = ChorusTypeComboBox->currentItem();
+    int    iChorusNr    = ChorusNrSpinBox->value();
+    double fChorusLevel = (double) (ChorusLevelSpinBox->value() / 10.0);
+    double fChorusSpeed = (double) (ChorusSpeedSpinBox->value() / 10.0);
+    double fChorusDepth = (double) (ChorusDepthSpinBox->value() / 10.0);
+    int    iChorusType  = ChorusTypeComboBox->currentItem();
 
     appendMessages("fluid_synth_set_chorus("
         + QString::number(iChorusNr)    + ","
@@ -669,7 +677,8 @@ void qsynthMainForm::updateChorus (void)
     ::fluid_synth_set_chorus(m_pSynth, iChorusNr, fChorusLevel, fChorusSpeed, fChorusDepth, iChorusType);
     refreshChorus();
 
-    m_iChorusUpdate--;
+    m_iChorusUpdated--;
+    m_iChorusChanged = 0;
 }
 
 
@@ -691,10 +700,10 @@ void qsynthMainForm::refreshReverb (void)
     if (m_pSynth == NULL)
         return;
 
-    double fReverbRoom   = ::fluid_synth_get_reverb_roomsize(m_pSynth);
-    double fReverbDamp   = ::fluid_synth_get_reverb_damp(m_pSynth);
-    double fReverbWidth  = ::fluid_synth_get_reverb_width(m_pSynth);
-    double fReverbLevel  = ::fluid_synth_get_reverb_level(m_pSynth);
+    double fReverbRoom  = ::fluid_synth_get_reverb_roomsize(m_pSynth);
+    double fReverbDamp  = ::fluid_synth_get_reverb_damp(m_pSynth);
+    double fReverbWidth = ::fluid_synth_get_reverb_width(m_pSynth);
+    double fReverbLevel = ::fluid_synth_get_reverb_level(m_pSynth);
 
     ReverbRoomDial->setValue((int) (10.0 * fReverbRoom));
     ReverbDampDial->setValue((int) (10.0 * fReverbDamp));
@@ -709,11 +718,11 @@ void qsynthMainForm::refreshChorus (void)
     if (m_pSynth == NULL)
         return;
 
-    int    iChorusNr     = ::fluid_synth_get_chorus_nr(m_pSynth);
-    double fChorusLevel  = ::fluid_synth_get_chorus_level(m_pSynth);
-    double fChorusSpeed  = ::fluid_synth_get_chorus_speed_Hz(m_pSynth);
-    double fChorusDepth  = ::fluid_synth_get_chorus_depth_ms(m_pSynth);
-    int    iChorusType   = ::fluid_synth_get_chorus_type(m_pSynth);
+    int    iChorusNr    = ::fluid_synth_get_chorus_nr(m_pSynth);
+    double fChorusLevel = ::fluid_synth_get_chorus_level(m_pSynth);
+    double fChorusSpeed = ::fluid_synth_get_chorus_speed_Hz(m_pSynth);
+    double fChorusDepth = ::fluid_synth_get_chorus_depth_ms(m_pSynth);
+    int    iChorusType  = ::fluid_synth_get_chorus_type(m_pSynth);
 
     ChorusNrDial->setValue(iChorusNr);
     ChorusLevelDial->setValue((int) (10.0 * fChorusLevel));

@@ -1,5 +1,5 @@
-qsynth - fluidsynth Qt GUI Interface
-------------------------------------
+qsynth - A fluidsynth Qt GUI Interface
+--------------------------------------
 
 qsynth is a fluidsynth front-end written in C++ around the Qt3 toolkit for X11,
 most exclusively using Qt Designer.
