@@ -32,7 +32,7 @@
 
 #include "config.h"
 
-#ifdef CONFIG_SIGNAL
+#ifdef HAVE_SIGNAL_H
 #include <signal.h>
 #endif
 
@@ -229,7 +229,7 @@ void qsynthMainForm::init (void)
     m_pMessagesForm  = NULL;
     m_pChannelsForm  = NULL;
     
-#ifdef CONFIG_SIGNAL
+#ifdef HAVE_SIGNAL_H
 	// Set to ignore any fatal "Broken pipe" signals.
 	::signal(SIGPIPE, SIG_IGN);
 #endif
