@@ -932,11 +932,11 @@ void qsynthMainForm::tabContextMenu ( qsynthTab *pTab, const QPoint& pos )
         pEngine = pTab->engine();
 
     QPopupMenu* pContextMenu = new QPopupMenu(this);
-    int iNew    = pContextMenu->insertItem(tr("New..."));
-    int iDelete = pContextMenu->insertItem(tr("Delete"));
+    int iNew    = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("add1.png")), tr("New engine..."));
+    int iDelete = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("remove1.png")), tr("Delete"));
     pContextMenu->setItemEnabled(iDelete, pEngine && !pEngine->isDefault());
     pContextMenu->insertSeparator();
-    int iSetup  = pContextMenu->insertItem(tr("Setup..."));
+    int iSetup  = pContextMenu->insertItem(QIconSet(QPixmap::fromMimeSource("setup1.png")), tr("Setup..."));
     pContextMenu->setItemEnabled(iSetup, pEngine);
     int iItemID = pContextMenu->exec(pos);
     delete pContextMenu;

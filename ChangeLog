@@ -3,7 +3,9 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.2   2004-07-14  Output level peak meters and other fixes.
+0.2.2   2004-07-28  Output level peak meters and other fixes.
+
+- Icons were added to the engine tab selector context menu.
 
 - Master gain front panel control gets rescaled and now ranges
   from 0..200, with midpoint at 100 (unit gain).

@@ -57,14 +57,18 @@ qsynthMeterScale::~qsynthMeterScale (void)
 // Draw IEC scale line and label; assumes labels drawed from top to bottom.
 void qsynthMeterScale::drawLineLabel ( QPainter& p, int y, const char* pszLabel )
 {
-    int iCurrY = QWidget::height() - y;
-    p.drawLine(1, iCurrY, QWidget::width() - 2, iCurrY);
-    if (iCurrY > m_iLastY + p.fontMetrics().ascent()) {
-        if (m_pMeter->portCount() > 1)
-            p.drawText(1, iCurrY - p.fontMetrics().ascent() - 1, QWidget::width() - 2, p.fontMetrics().height(), Qt::AlignHCenter | Qt::AlignVCenter, pszLabel);
-        else
-            p.drawText(2, iCurrY - 1, pszLabel);
-    }
+    int iCurrY  = QWidget::height() - y;
+    int iWidth  = QWidget::width();
+    int iHeight = p.fontMetrics().height();
+
+    int iMidHeight = (iHeight >> 1);
+    
+    p.drawLine(0, iCurrY, 2, iCurrY);
+    if (m_pMeter->portCount() > 1)
+        p.drawLine(iWidth - 3, iCurrY, iWidth - 1, iCurrY);
+    if (iCurrY > m_iLastY + iMidHeight)
+        p.drawText(2, iCurrY - iMidHeight, iWidth - 2, iHeight, Qt::AlignHCenter | Qt::AlignVCenter, pszLabel);
+
     m_iLastY = iCurrY;
 }
 
