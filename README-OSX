@@ -12,7 +12,7 @@ by: Ebrahim Mayat <ebmayat at mac dot com>
 
 3. Edit the generated qsynth.pro file to include the IMAGES object:
 
-   IMAGES = icons/qsynth.xpm \
+   IMAGES = icons/qsynth.png \
             icons/messages1.png \
             icons/options1.png \
             icons/about1.png \
@@ -49,8 +49,8 @@ by: Ebrahim Mayat <ebmayat at mac dot com>
    
    -I/System/Library/Frameworks/MidiShare.framework/Versions/A/Headers -I/System/Library/Frameworks/CoreAudio.framework/Versions/A/Headers -I/Library/Frameworks/Jack.framework/Headers
    
-7. Create an empty config.h file in the src folder of qsynth; edit and add
-   the following lines to config.h:
+7. Create an empty config.h file in the src folder of qsynth:	touch src/config.h 
+   then edit and add the following lines to config.h:
 
    #define CONFIG_PREFIX "/sw"
    #undef  CONFIG_FLUID_SERVER
@@ -63,8 +63,8 @@ by: Ebrahim Mayat <ebmayat at mac dot com>
 
 FAIR WARNING: Please, avoid enabling the "Output peak level meters" option,
 which is known to raise a general "bus error" exception on startup, making
-QSynth unusable. Please do report if you ever get the level meters to show
-up unsuspiciously on Mac OS X.
+QSynth unusable. Please do report if you ever get the level meters to sneak
+up on Mac OS X.
 
 Enjoy.
 
