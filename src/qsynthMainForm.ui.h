@@ -59,10 +59,14 @@ static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
 //-------------------------------------------------------------------------
 // Midi router stubs to have some midi activity feedback.
 
-#define QSYNTH_MIDI_NOTE_OFF        0x80
-#define QSYNTH_MIDI_NOTE_ON         0x90
-#define QSYNTH_MIDI_CONTROL_CHANGE  0xb0
-#define QSYNTH_MIDI_PROGRAM_CHANGE  0xc0
+#define QSYNTH_MIDI_NOTE_OFF            0x80
+#define QSYNTH_MIDI_NOTE_ON             0x90
+#define QSYNTH_MIDI_CONTROL_CHANGE      0xb0
+#define QSYNTH_MIDI_PROGRAM_CHANGE      0xc0
+
+#define QSYNTH_MIDI_CC_BANK_SELECT_MSB  0x00
+#define QSYNTH_MIDI_CC_BANK_SELECT_LSB  0x20
+#define QSYNTH_MIDI_CC_ALL_SOUND_OFF    0x78
 
 static int g_iMidiEvent = 0;
 static int g_iMidiState = 0;
@@ -83,12 +87,27 @@ static void qsynth_midi_event ( fluid_midi_event_t *pMidiEvent )
     
     if (g_pMidiChannels) {
         int iChan = ::fluid_midi_event_get_channel(pMidiEvent);
+#ifdef CONFIG_DEBUG
+        int iType = ::fluid_midi_event_get_type(pMidiEvent);
+        int iKey  = ::fluid_midi_event_get_control(pMidiEvent);
+        int iVal  = ::fluid_midi_event_get_value(pMidiEvent);
+        fprintf(stderr, "Type=%03d (0x%02x) Chan=%02d Key=%03d (0x%02x) Val=%03d (0x%02x).\n",
+            iType, iType, iChan, iKey, iKey, iVal, iVal);
+#endif
         if (iChan >= 0 && iChan < g_iMidiChannels) {
+            int iCC;
             switch (::fluid_midi_event_get_type(pMidiEvent)) {
               case QSYNTH_MIDI_CONTROL_CHANGE:
+                // Avoid bank selects or global control changes...
+                iCC = ::fluid_midi_event_get_control(pMidiEvent);
+                if (iCC == QSYNTH_MIDI_CC_BANK_SELECT_MSB ||
+                    iCC == QSYNTH_MIDI_CC_BANK_SELECT_LSB ||
+                    iCC >= QSYNTH_MIDI_CC_ALL_SOUND_OFF)
+                    break;
+                // Fall thru...
               case QSYNTH_MIDI_PROGRAM_CHANGE:
                 g_pMidiChannels[iChan].iChange++;
-                // Fall thru...
+                // Fall thru, again...
               case QSYNTH_MIDI_NOTE_ON:
               case QSYNTH_MIDI_NOTE_OFF:
                 g_pMidiChannels[iChan].iEvent++;
@@ -181,14 +200,6 @@ void qsynthMainForm::init (void)
     m_pXpmLedOn  = new QPixmap(QPixmap::fromMimeSource("ledon1.png"));
     m_pXpmLedOff = new QPixmap(QPixmap::fromMimeSource("ledoff1.png"));
 
-    // Check if we can redirect our own stdout/stderr...
-    if (::pipe(g_fdStdout) == 0) {
-        ::dup2(g_fdStdout[QSYNTH_FDWRITE], STDOUT_FILENO);
-        ::dup2(g_fdStdout[QSYNTH_FDWRITE], STDERR_FILENO);
-        m_pStdoutNotifier = new QSocketNotifier(g_fdStdout[QSYNTH_FDREAD], QSocketNotifier::Read, this);
-        QObject::connect(m_pStdoutNotifier, SIGNAL(activated(int)), this, SLOT(stdoutNotifySlot(int)));
-    }
-
     // All forms are to be created right now.
     m_pMessagesForm = new qsynthMessagesForm(this);
     m_pChannelsForm = new qsynthChannelsForm(this);
@@ -223,6 +234,14 @@ void qsynthMainForm::setup ( qsynthSetup *pSetup )
 
     // Set defaults...
     updateMessagesFont();
+
+    // Check if we can redirect our own stdout/stderr...
+    if (m_pSetup->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
+        ::dup2(g_fdStdout[QSYNTH_FDWRITE], STDOUT_FILENO);
+        ::dup2(g_fdStdout[QSYNTH_FDWRITE], STDERR_FILENO);
+        m_pStdoutNotifier = new QSocketNotifier(g_fdStdout[QSYNTH_FDREAD], QSocketNotifier::Read, this);
+        QObject::connect(m_pStdoutNotifier, SIGNAL(activated(int)), this, SLOT(stdoutNotifySlot(int)));
+    }
 
     // Final startup stabilization...
     stabilizeForm();

@@ -84,8 +84,9 @@ qsynthSetup::qsynthSetup (void)
 
     // Load display options...
     m_settings.beginGroup("/Options");
-    sMessagesFont = m_settings.readEntry("/MessagesFont", QString::null);
-    bQueryClose   = m_settings.readBoolEntry("/QueryClose", true);
+    sMessagesFont  = m_settings.readEntry("/MessagesFont", QString::null);
+    bQueryClose    = m_settings.readBoolEntry("/QueryClose",    true);
+    bStdoutCapture = m_settings.readBoolEntry("/StdoutCapture", true);
     m_settings.endGroup();
 
     // Load defaults...
@@ -136,8 +137,9 @@ qsynthSetup::~qsynthSetup (void)
 
     // Save last display options.
     m_settings.beginGroup("/Options");
-    m_settings.writeEntry("/MessagesFont", sMessagesFont);
-    m_settings.writeEntry("/QueryClose",   bQueryClose);
+    m_settings.writeEntry("/MessagesFont",  sMessagesFont);
+    m_settings.writeEntry("/QueryClose",    bQueryClose);
+    m_settings.writeEntry("/StdoutCapture", bStdoutCapture);
     m_settings.endGroup();
 
     // Save last soundfont list.

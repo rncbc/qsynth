@@ -289,6 +289,7 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
     // Other options finally.
     QueryCloseCheckBox->setChecked(m_pSetup->bQueryClose);
+    StdoutCaptureCheckBox->setChecked(m_pSetup->bStdoutCapture);
 
     // Done.
     m_iDirtySetup--;
@@ -300,8 +301,9 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
 void qsynthSetupForm::accept (void)
 {
     // Save options...
-    m_pSetup->sMessagesFont = MessagesFontTextLabel->font().toString();
-    m_pSetup->bQueryClose   = QueryCloseCheckBox->isChecked();
+    m_pSetup->sMessagesFont  = MessagesFontTextLabel->font().toString();
+    m_pSetup->bQueryClose    = QueryCloseCheckBox->isChecked();
+    m_pSetup->bStdoutCapture = StdoutCaptureCheckBox->isChecked();
 
     if (m_iDirtyCount > 0) {
         // Save the soundfont view.

@@ -5,11 +5,15 @@ ChangeLog
 
 0.0.4   2003-12-19  Channel preset breakout.
 
-- Added channels breakout and preset view and edit windows.
+- Added channels breakout and program preset view and edit windows,
+  including a simple preset/profile management feature where the complete
+  channel program assignments may be referenced and saved by name.
 
 - Drag and dropped soundfont files are now accepted for immediate load.
 
 - Messages window fallback fix.
+
+- Standard output/error stream capture setup option.
 
 
 0.0.3   2003-12-12  Few tiny changes so far.

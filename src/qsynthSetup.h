@@ -96,6 +96,7 @@ public:
     // Display options...
     QString sMessagesFont;
     bool    bQueryClose;
+    bool    bStdoutCapture;
 
     // Default options...
     QString sSoundFontDir;
