@@ -22,6 +22,8 @@
 
 #include <qapplication.h>
 #include <qmessagebox.h>
+#include <qdragobject.h>
+#include <qregexp.h>
 #include <qtimer.h>
 
 #include <math.h>
@@ -227,6 +229,73 @@ void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 }
 
 
+// Add MIDI files to playlist.
+void qsynthMainForm::playMidiFiles ( const QStringList& files )
+{
+    if (m_pPlayer == NULL)
+        return;
+
+    // Add each list item to MIDI player playlist...
+    int iMidiFiles = 0;
+    for (QStringList::ConstIterator iter = files.begin(); iter != files.end(); iter++) {
+        char *pszMidiFile = (char *) (*iter).latin1();
+        if (::fluid_is_midifile(pszMidiFile)) {
+            appendMessagesColor(tr("Playing MIDI file") + ": \"" + QString(pszMidiFile) + "\"...", "#99cc66");
+            ::fluid_player_add(m_pPlayer, pszMidiFile);
+            iMidiFiles++;
+        }
+    }
+    // Start playing, if any...
+    if (iMidiFiles)
+        ::fluid_player_play(m_pPlayer);
+}
+
+
+// Drag'n'drop midi player feature handlers.
+bool qsynthMainForm::decodeDragFiles ( const QMimeSource *pEvent, QStringList& files )
+{
+    bool bDecode = false;
+    
+    if (QTextDrag::canDecode(pEvent)) {
+        QString sText;
+        bDecode = QTextDrag::decode(pEvent, sText);
+        if (bDecode) {
+            files = QStringList::split("\n", sText);
+            for (QStringList::Iterator iter = files.begin(); iter != files.end(); iter++)
+                *iter = (*iter).stripWhiteSpace().replace(QRegExp("^file:"), "");
+        }
+    }
+    
+    return bDecode;
+}
+
+void qsynthMainForm::dragEnterEvent ( QDragEnterEvent* pDragEnterEvent )
+{
+    bool bAccept = false;
+    
+    if (m_pPlayer && QTextDrag::canDecode(pDragEnterEvent)) {
+        QStringList files;
+        if (decodeDragFiles(pDragEnterEvent, files)) {
+            for (QStringList::Iterator iter = files.begin(); iter != files.end() && !bAccept; iter++) {
+                char *pszMidiFile = (char *) (*iter).latin1();
+                if (::fluid_is_midifile(pszMidiFile))
+                    bAccept = true;
+            }
+        }
+    }
+    
+    pDragEnterEvent->accept(bAccept);
+}
+
+void qsynthMainForm::dropEvent ( QDropEvent* pDropEvent )
+{
+    QStringList files;
+    
+    if (decodeDragFiles(pDropEvent, files))
+        playMidiFiles(files);
+}
+
+
 // Own stdout/stderr socket notifier slot.
 void qsynthMainForm::stdoutNotifySlot ( int fd )
 {
@@ -317,15 +386,14 @@ void qsynthMainForm::stabilizeForm (void)
         ChorusGroupBox->setEnabled(true);
         ProgramResetPushButton->setEnabled(true);
         SystemResetPushButton->setEnabled(true);
-        RestartPushButton->setEnabled(true);
     } else {
         GainGroupBox->setEnabled(false);
         ReverbGroupBox->setEnabled(false);
         ChorusGroupBox->setEnabled(false);
         ProgramResetPushButton->setEnabled(false);
         SystemResetPushButton->setEnabled(false);
-        RestartPushButton->setEnabled(false);
     }
+    RestartPushButton->setEnabled(true);
 
     bool bMidiIn = (m_pSynth && m_pSetup && m_pSetup->bMidiIn);
     MidiEventPixmapLabel->setEnabled(bMidiIn);
@@ -367,19 +435,24 @@ void qsynthMainForm::systemReset (void)
 
 
 // Complete engine restart.
-void qsynthMainForm::restart (void)
+void qsynthMainForm::promptRestart (void)
 {
-    if (QMessageBox::warning(this, tr("Warning"),
-        tr("New settings will be effective after\n"
-           "restarting the fluidsynth engine.") + "\n\n" +
-        tr("Please note that this operation may cause\n"
-           "temporary MIDI and Audio disruption.") + "\n\n" +
-        tr("Do you want to restart the engine now?"),
-        tr("Yes"), tr("No")) == 0) {
-        // Just stop the engine,
-        // it will be restarted one tick later...
-        stopSynth();
+    bool bRestart = true;
+    
+    // If currently running, prompt user...
+    if (m_pSynth) {
+        bRestart = (QMessageBox::warning(this, tr("Warning"),
+            tr("New settings will be effective after\n"
+               "restarting the fluidsynth engine.") + "\n\n" +
+            tr("Please note that this operation may cause\n"
+               "temporary MIDI and Audio disruption.") + "\n\n" +
+            tr("Do you want to restart the engine now?"),
+            tr("Yes"), tr("No")) == 0);
     }
+    
+    // If allowed, just restart the engine...
+    if (bRestart)
+        restartSynth();
 }
 
 
@@ -417,7 +490,7 @@ void qsynthMainForm::showSetupForm (void)
             if (sOldMessagesFont != m_pSetup->sMessagesFont)
                 updateMessagesFont();
             // Ask for a engine restart?
-            restart();
+            promptRestart();
         }
         delete pSetupForm;
     }
@@ -441,12 +514,8 @@ void qsynthMainForm::timerSlot (void)
     // Is it the first shot on synth start after a one slot delay?
     if (m_iTimerDelay < QSYNTH_DELAY_MSECS) {
         m_iTimerDelay += QSYNTH_TIMER_MSECS;
-        if (m_iTimerDelay >= QSYNTH_DELAY_MSECS) {
-            if (!startSynth()) {
-                close();
-                return;
-            }
-        }
+        if (m_iTimerDelay >= QSYNTH_DELAY_MSECS)
+            startSynth();
     }
 
     // Some MIDI activity?
@@ -502,7 +571,7 @@ bool qsynthMainForm::startSynth (void)
     // Load the soundfonts...
     for (iter = m_pSetup->soundfonts.begin(); iter != m_pSetup->soundfonts.end(); iter++) {
         const QString& sSoundFont = *iter;
-        appendMessages(tr("Loading soundfont") + ": \"" + sSoundFont + "\"" + sElipsis);
+        appendMessagesColor(tr("Loading soundfont") + ": \"" + sSoundFont + "\"" + sElipsis, "#999933");
         if (::fluid_synth_sfload(m_pSynth, sSoundFont.latin1(), 1) < 0)
             appendMessagesError(tr("Failed to load the soundfont") + ": \"" + sSoundFont + "\".");
     }
@@ -545,13 +614,9 @@ bool qsynthMainForm::startSynth (void)
         appendMessagesError(tr("Failed to create the MIDI player. Continuing without a player."));
     } else {
         // Play the midi files, if any.
-        for (iter = m_pSetup->midifiles.begin(); iter != m_pSetup->midifiles.end(); iter++) {
-            const QString& sMidiFile = *iter;
-            ::fluid_player_add(m_pPlayer, (char *) sMidiFile.latin1());
-        }
-        // Start playing...
-        if (m_pSetup->midifiles.count() > 0)
-            ::fluid_player_play(m_pPlayer);
+        playMidiFiles(m_pSetup->midifiles);
+        // We'll accept drops from now on...
+        setAcceptDrops(true);
     }
 
     // Run the server, if requested.
@@ -614,6 +679,8 @@ void qsynthMainForm::stopSynth (void)
         appendMessages(tr("Destroying MIDI player") + sElipsis);
         ::delete_fluid_player(m_pPlayer);
         m_pPlayer = NULL;
+        // We'll refuse drops from now on...
+        setAcceptDrops(false);
     }
 
     // Destroy MIDI router.
@@ -640,13 +707,21 @@ void qsynthMainForm::stopSynth (void)
         appendMessages(tr("Destroying synthesizer engine") + sElipsis);
         ::delete_fluid_synth(m_pSynth);
         m_pSynth = NULL;
+        // We're done.
+        appendMessages(tr("Synthesizer engine terminated."));
     }
 
-    // We're done.
-    appendMessages(tr("Synthesizer engine terminated."));
     // Show up our efforts :)
     stabilizeForm();
-    // Make room for immediate restart...
+}
+
+
+// Start the fluidsynth clone, based on given settings.
+void qsynthMainForm::restartSynth (void)
+{
+    // Restarting means stopping current engine...
+    stopSynth();
+    // And making room for immediate restart...
     m_iTimerDelay = 0;
 }
 

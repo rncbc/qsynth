@@ -3,7 +3,7 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.0.3   2003-12-10  Few tiny changes so far.
+0.0.3   2003-12-12  Few tiny changes so far.
 
 - Single shot timer graceful rewrite.
 

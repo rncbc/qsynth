@@ -1347,7 +1347,7 @@
         <sender>RestartPushButton</sender>
         <signal>clicked()</signal>
         <receiver>qsynthMainForm</receiver>
-        <slot>restart()</slot>
+        <slot>promptRestart()</slot>
     </connection>
 </connections>
 <tabstops>
@@ -1414,7 +1414,7 @@
     <slot specifier="non virtual">stabilizeForm( void )</slot>
     <slot specifier="non virtual">programReset()</slot>
     <slot specifier="non virtual">systemReset()</slot>
-    <slot specifier="non virtual">restart()</slot>
+    <slot specifier="non virtual">promptRestart()</slot>
     <slot specifier="non virtual">toggleMessagesForm( void )</slot>
     <slot specifier="non virtual">showSetupForm( void )</slot>
     <slot specifier="non virtual">showAboutForm( void )</slot>
@@ -1431,6 +1431,10 @@
     <function specifier="non virtual">setup( qsynthSetup * pSetup )</function>
     <function access="private" specifier="non virtual" returnType="bool">queryClose( void )</function>
     <function access="private" specifier="non virtual">closeEvent( QCloseEvent * pCloseEvent )</function>
+    <function access="private" specifier="non virtual">playMidiFiles ( const QStringList &amp; files )</function>
+    <function access="private" specifier="non virtual" returnType="bool">decodeDragFiles( const QMimeSource * pEvent, QStringList &amp; files )</function>
+    <function access="private" specifier="non virtual">dragEnterEvent( QDragEnterEvent * pDragEnterEvent )</function>
+    <function access="private" specifier="non virtual">dropEvent( QDropEvent * pDropEvent )</function>
     <function specifier="non virtual">appendMessages( const QString &amp; s )</function>
     <function specifier="non virtual">appendMessagesColor( const QString &amp; s, const QString &amp; c )</function>
     <function specifier="non virtual">appendMessagesText( const QString &amp; s )</function>
@@ -1438,6 +1442,7 @@
     <function access="private" specifier="non virtual">updateMessagesFont( void )</function>
     <function specifier="non virtual" returnType="bool">startSynth( void )</function>
     <function specifier="non virtual">stopSynth( void )</function>
+    <function specifier="non virtual">restartSynth( void )</function>
     <function access="private" specifier="non virtual">loadPanelSettings( void )</function>
     <function access="private" specifier="non virtual">savePanelSettings( void )</function>
     <function access="private" specifier="non virtual">updateGain( void )</function>
