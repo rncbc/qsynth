@@ -1297,6 +1297,8 @@
     <variable access="public">qsynthSetup *m_pSetup;</variable>
     <variable access="private">QTimer *m_pTimer;</variable>
     <variable access="private">int m_iTimerSlot;</variable>
+    <variable access="private">QPixmap *m_pXpmLedOn;</variable>
+    <variable access="private">QPixmap *m_pXpmLedOff;</variable>
     <variable access="private">fluid_synth_t *m_pSynth;</variable>
     <variable access="private">fluid_audio_driver_t *m_pAudioDriver;</variable>
     <variable access="private">fluid_midi_router_t *m_pMidiRouter;</variable>

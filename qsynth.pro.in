@@ -19,6 +19,12 @@ IMAGES   = icons/qsynth.xpm \
            icons/quit1.png \
            icons/ledoff1.png \
            icons/ledon1.png \
+           icons/sfont1.png \
+           icons/open1.png \
+           icons/add1.png \
+           icons/remove1.png \
+           icons/up1.png \
+           icons/down1.png \
            icons/qtlogo.png
 
 TEMPLATE = app

@@ -33,7 +33,6 @@
 qsynthSetup::qsynthSetup (void)
 {
     m_pFluidSettings = ::new_fluid_settings();
-    m_iSoundfontOverride = 0;
 
     m_settings.beginGroup("/qsynth");
 
@@ -86,6 +85,7 @@ qsynthSetup::qsynthSetup (void)
     // Load display options...
     m_settings.beginGroup("/Options");
     sMessagesFont = m_settings.readEntry("/MessagesFont", QString::null);
+    bQueryClose   = m_settings.readBoolEntry("/QueryClose", true);
     m_settings.endGroup();
 
     // Load defaults...
@@ -107,10 +107,11 @@ qsynthSetup::~qsynthSetup (void)
     m_settings.beginGroup("/Defaults");
     m_settings.writeEntry("/SoundFontDir", sSoundFontDir);
     m_settings.endGroup();
-    
+
     // Save last display options.
     m_settings.beginGroup("/Options");
     m_settings.writeEntry("/MessagesFont", sMessagesFont);
+    m_settings.writeEntry("/QueryClose",   bQueryClose);
     m_settings.endGroup();
 
     // Save last soundfont list.
@@ -118,7 +119,7 @@ qsynthSetup::~qsynthSetup (void)
     const QString sPrefix = "/SoundFont";
     int i = 0;
     for (QStringList::Iterator iter = soundfonts.begin(); iter != soundfonts.end(); iter++)
-        m_settings.writeEntry(sPrefix + QString::number(++i), *iter);        
+        m_settings.writeEntry(sPrefix + QString::number(++i), *iter);
     // Cleanup old entries, if any...
     for (++i; !m_settings.readEntry(sPrefix + QString::number(i)).isEmpty(); i++)
         m_settings.removeEntry(sPrefix + QString::number(i));
@@ -265,6 +266,7 @@ bool qsynthSetup::parse_option ( char *optarg )
 bool qsynthSetup::parse_args ( int argc, char **argv )
 {
     const QString sEol = "\n\n";
+    int iSoundFontOverride = 0;
 
     for (int i = 1; i < argc; i++) {
 
@@ -415,7 +417,7 @@ bool qsynthSetup::parse_args ( int argc, char **argv )
             return false;
         }
         else if (::fluid_is_soundfont(argv[i])) {
-            if (++m_iSoundfontOverride == 1)
+            if (++iSoundFontOverride == 1)
                 soundfonts.clear();
             soundfonts.append(argv[i]);
         }
@@ -454,7 +456,7 @@ void qsynthSetup::realize (void)
         ::fluid_settings_setstr(m_pFluidSettings, "audio.driver", (char *) sAudioDriver.latin1());
     if (!sJackName.isEmpty())
         ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.id", (char *) sJackName.latin1());
-        
+
     ::fluid_settings_setint(m_pFluidSettings, "audio.jack.autoconnect", (int) bJackAutoConnect);
     ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.multi", (char *) (bJackMulti ? "yes" : "no"));
     ::fluid_settings_setstr(m_pFluidSettings, "audio.sample-format", (char *) sSampleFormat.latin1());
@@ -471,8 +473,9 @@ void qsynthSetup::realize (void)
         ::fluid_settings_setnum(m_pFluidSettings, "synth.sample-rate", fSampleRate);
     if (iPolyphony > 0)
         ::fluid_settings_setint(m_pFluidSettings, "synth.polyphony", iPolyphony);
-    if (fGain > 0.0)
-        ::fluid_settings_setnum(m_pFluidSettings, "synth.gain", fGain);
+//  Gain is set on realtime (don't need to set it here)
+//  if (fGain > 0.0)
+//      ::fluid_settings_setnum(m_pFluidSettings, "synth.gain", fGain);
 
     ::fluid_settings_setstr(m_pFluidSettings, "synth.reverb.active", (char *) (bReverbActive ? "yes" : "no"));
     ::fluid_settings_setstr(m_pFluidSettings, "synth.chorus.active", (char *) (bChorusActive ? "yes" : "no"));

@@ -95,8 +95,9 @@ public:
 
     // Display options...
     QString sMessagesFont;
-    
-    // Default helpers...
+    bool    bQueryClose;
+
+    // Default options...
     QString sSoundFontDir;
 
     // Combo box history persistence helper prototypes.
@@ -116,9 +117,6 @@ private:
     // Settings member variables.
     QSettings m_settings;
     fluid_settings_t *m_pFluidSettings;
-
-    // Soundfont overriding from commandline flag.
-    int  m_iSoundfontOverride;
 };
 
 

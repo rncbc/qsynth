@@ -38,7 +38,7 @@ void qsynthMessagesForm::destroy (void)
 // Notify our parent that we're emerging.
 void qsynthMessagesForm::showEvent ( QShowEvent *pShowEvent )
 {
-    qsynthMainForm *pMainForm = (qsynthMainForm *) QWidget::parent();
+    qsynthMainForm *pMainForm = (qsynthMainForm *) QWidget::parentWidget();
     if (pMainForm)
         pMainForm->stabilizeForm();
 
@@ -50,7 +50,7 @@ void qsynthMessagesForm::hideEvent ( QHideEvent *pHideEvent )
 {
     QWidget::hideEvent(pHideEvent);
 
-    qsynthMainForm *pMainForm = (qsynthMainForm *) QWidget::parent();
+    qsynthMainForm *pMainForm = (qsynthMainForm *) QWidget::parentWidget();
     if (pMainForm)
         pMainForm->stabilizeForm();
 }

@@ -85,6 +85,9 @@ void qsynthMainForm::init (void)
     m_iReverbUpdated = 0;
     m_iChorusUpdated = 0;
 
+    m_pXpmLedOn  = new QPixmap(QPixmap::fromMimeSource("ledon1.png"));
+    m_pXpmLedOff = new QPixmap(QPixmap::fromMimeSource("ledoff1.png"));
+
     // Check if we can redirect our own stdout/stderr...
     if (::pipe(g_fdStdout) == 0) {
         ::dup2(g_fdStdout[QSYNTH_FDWRITE], STDOUT_FILENO);
@@ -108,10 +111,15 @@ void qsynthMainForm::destroy (void)
 {
     // Stop th press!
     stopSynth();
-
+    m_pSetup = NULL;
+    
     // Stop and kill timer.
     m_pTimer->stop();
     delete m_pTimer;
+
+    // Delete pixmaps.
+    delete m_pXpmLedOn;
+    delete m_pXpmLedOff;
 }
 
 
@@ -139,17 +147,16 @@ void qsynthMainForm::setup ( qsynthSetup *pSetup )
 bool qsynthMainForm::queryClose (void)
 {
     bool bQueryClose = true;
-#if 0
-    // Dow we quit right away?
-    if (m_pSynth && m_pAudioDriver) {
-        bQueryClose = (QMessageBox::warning(this, tr("Warning"),
-            tr("qsynth is about to terminate.") + "\n\n" +
-            tr("Are you sure?"),
-            tr("OK"), tr("Cancel")) == 0);
-    }
-#endif    
-    // Now's time.
+
+    // Now's the time?
     if (m_pSetup) {
+        // Dow we quit right away?
+        if (m_pSynth && m_pAudioDriver && m_pSetup->bQueryClose) {
+            bQueryClose = (QMessageBox::warning(this, tr("Warning"),
+                tr("qsynth is about to terminate.") + "\n\n" +
+                tr("Are you sure?"),
+                tr("OK"), tr("Cancel")) == 0);
+        }
         // Some windows default fonts is here on demeand too.
         if (bQueryClose && m_pMessagesForm)
             m_pSetup->sMessagesFont = m_pMessagesForm->messagesFont().toString();
@@ -297,15 +304,23 @@ void qsynthMainForm::showSetupForm (void)
         // To track down immediate changes.
         QString sOldMessagesFont = m_pSetup->sMessagesFont;
         // Load the current setup settings.
-        pSetupForm->setSynth(m_pSynth);
-        pSetupForm->load(m_pSetup);
+        pSetupForm->setup(m_pSetup, m_pSynth);
         // Show the setup dialog...
         if (pSetupForm->exec()) {
-            // Save the new setup settings.
-            pSetupForm->save(m_pSetup);
             // Check wheather something immediate has changed.
             if (sOldMessagesFont != m_pSetup->sMessagesFont)
                 updateMessagesFont();
+            // Ask for a engine restart?
+            if (QMessageBox::warning(this, tr("Warning"),
+                tr("The new settings will be effective only\n"
+                   "after restarting the fluidsynth engine.") + "\n\n" +
+                tr("Please note that this operation will cause\n"
+                   "temporary MIDI and Audio disruption.") + "\n\n" +
+                tr("Do you want to restart the engine now?"),
+                tr("Yes"), tr("No")) == 0) {
+                // Just stop the engine, it will restart one tick later...
+                stopSynth();
+            }
         }
         delete pSetupForm;
     }
@@ -336,11 +351,11 @@ void qsynthMainForm::timerSlot (void)
 
     // Some MIDI activity?
     if (g_iMidiEvent > 0) {
-        MidiEventPixmapLabel->setPixmap(QPixmap::fromMimeSource("ledon1.png"));
+        MidiEventPixmapLabel->setPixmap(*m_pXpmLedOn);
         g_iMidiEvent = -1;
     }
     else if (g_iMidiEvent < 0) {
-        MidiEventPixmapLabel->setPixmap(QPixmap::fromMimeSource("ledoff1.png"));
+        MidiEventPixmapLabel->setPixmap(*m_pXpmLedOff);
         g_iMidiEvent = 0;
     }
 
@@ -381,7 +396,7 @@ bool qsynthMainForm::startSynth (void)
     // Load the soundfonts...
     for (iter = m_pSetup->soundfonts.begin(); iter != m_pSetup->soundfonts.end(); iter++) {
         const QString& sSoundFont = *iter;
-        appendMessages(tr("Loading soundfont:") + " \"" + sSoundFont + "\"" + sElipsis);
+        appendMessages(tr("Loading soundfont") + ": \"" + sSoundFont + "\"" + sElipsis);
         if (::fluid_synth_sfload(m_pSynth, sSoundFont.latin1(), 1) < 0)
             appendMessagesError(tr("Failed to load the soundfont") + ": \"" + sSoundFont + "\".");
     }
@@ -451,6 +466,8 @@ bool qsynthMainForm::startSynth (void)
 
     // All is right.
     appendMessages(tr("Synthesizer engine started."));
+    // Show up our efforts :)
+    stabilizeForm();
 
     return true;
 }
@@ -521,7 +538,10 @@ void qsynthMainForm::stopSynth (void)
 
     // We're done.
     appendMessages(tr("Synthesizer engine terminated."));
-    m_pSetup = NULL;
+    // Show up our efforts :)
+    stabilizeForm();
+    // Make room for immediate restart...
+    m_iTimerSlot = 0;
 }
 
 
@@ -553,8 +573,6 @@ void qsynthMainForm::loadPanelSettings (void)
     ChorusSpeedDial->setValue((int) ::ceil(10.0 * m_pSetup->fChorusSpeed));
     ChorusDepthDial->setValue((int) ::ceil(10.0 * m_pSetup->fChorusDepth));
     ChorusTypeComboBox->setCurrentItem(m_pSetup->iChorusType);
-
-    stabilizeForm();
 }
 
 
