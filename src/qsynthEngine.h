@@ -60,7 +60,8 @@ public:
     int iMidiEvent;
     int iMidiState;
 
-    // Current meter peak-value (pseudo-stereo).
+    // Current peak level meters (pseudo-stereo).
+    bool  bMeterEnabled;
     float fMeterValue[2];
 
 private:

@@ -291,22 +291,32 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
             if (pSoundFont) {
                 pItem = new QListViewItem(SoundFontListView, pItem);
                 if (pItem) {
+                    int iBankOffset;
+#ifdef CONFIG_FLUID_BANK_OFFSET
+                    iBankOffset = pSoundFont->bank_offset;
+#else
+                    iBankOffset = 0;
+#endif
                     pItem->setPixmap(0, *m_pXpmSoundFont);
                     pItem->setText(0, QString::number(pSoundFont->id));
                     pItem->setText(1, pSoundFont->get_name(pSoundFont));
+                    pItem->setText(2, QString::number(iBankOffset));
                 }
             }
         }
     } else {
         // Load soundfont view from configuration setup list...
         int i = 0;
-        for (QStringList::Iterator iter = m_pSetup->soundfonts.begin(); iter != m_pSetup->soundfonts.end(); iter++) {
+        for (QStringList::Iterator iter = m_pSetup->soundfonts.begin();
+                iter != m_pSetup->soundfonts.end(); iter++) {
             pItem = new QListViewItem(SoundFontListView, pItem);
             if (pItem) {
                 pItem->setPixmap(0, *m_pXpmSoundFont);
-                pItem->setText(0, QString::number(i++));
+                pItem->setText(0, QString::number(i));
                 pItem->setText(1, *iter);
+                pItem->setText(2, m_pSetup->bankoffsets[i]);
             }
+            i++;
         }
     }
     SoundFontListView->setUpdatesEnabled(true);

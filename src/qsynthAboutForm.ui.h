@@ -54,6 +54,12 @@ void qsynthAboutForm::init (void)
     sText += "<br />\n";
     sText += "</font></small>";
 #endif
+#ifndef CONFIG_FLUID_BANK_OFFSET
+    sText += "<small><font color=\"red\">";
+    sText += tr("Bank offset option disabled.");
+    sText += "<br />\n";
+    sText += "</font></small>";
+#endif
     sText += "<br />\n";
     sText += tr("Website") + ": <a href=\"" QSYNTH_WEBSITE "\">" QSYNTH_WEBSITE "</a><br />\n";
     sText += "<br />\n";

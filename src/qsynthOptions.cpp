@@ -370,9 +370,12 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
             return false;
         }
         else if (::fluid_is_soundfont(argv[i])) {
-            if (++iSoundFontOverride == 1)
+            if (++iSoundFontOverride == 1) {
                 m_pDefaultSetup->soundfonts.clear();
+                m_pDefaultSetup->bankoffsets.clear();
+            }
             m_pDefaultSetup->soundfonts.append(argv[i]);
+            m_pDefaultSetup->bankoffsets.append(QString::null);
         }
         else if (::fluid_is_midifile(argv[i])) {
             m_pDefaultSetup->midifiles.append(argv[i]);
@@ -528,13 +531,17 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 
     // Load soundfont list...
     m_settings.beginGroup("/SoundFonts");
-    const QString sPrefix = "/SoundFont";
+    const QString sSoundFontPrefix  = "/SoundFont";
+    const QString sBankOffsetPrefix = "/BankOffset";
     int i = 0;
     for (;;) {
-        QString sSoundFont = m_settings.readEntry(sPrefix + QString::number(++i), QString::null);
+        QString sNumber     = QString::number(++i);
+        QString sSoundFont  = m_settings.readEntry(sSoundFontPrefix  + sNumber, QString::null);
+        QString sBankOffset = m_settings.readEntry(sBankOffsetPrefix + sNumber, QString::null);
         if (sSoundFont.isEmpty())
             break;
         pSetup->soundfonts.append(sSoundFont);
+        pSetup->bankoffsets.append(sBankOffset);
     }
     m_settings.endGroup();
 
@@ -582,13 +589,23 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
 
     // Save last soundfont list.
     m_settings.beginGroup("/SoundFonts");
-    const QString sPrefix = "/SoundFont";
+    const QString sSoundFontPrefix  = "/SoundFont";
+    const QString sBankOffsetPrefix = "/BankOffset";
     int i = 0;
-    for (QStringList::Iterator iter = pSetup->soundfonts.begin(); iter != pSetup->soundfonts.end(); iter++)
-        m_settings.writeEntry(sPrefix + QString::number(++i), *iter);
+    for (QStringList::Iterator iter = pSetup->soundfonts.begin();
+            iter != pSetup->soundfonts.end(); iter++) {
+        QString sNumber = QString::number(++i);
+        m_settings.writeEntry(sSoundFontPrefix  + sNumber, *iter);
+        m_settings.writeEntry(sBankOffsetPrefix + sNumber, pSetup->bankoffsets[i]);
+    }
     // Cleanup old entries, if any...
-    for (++i; !m_settings.readEntry(sPrefix + QString::number(i)).isEmpty(); i++)
-        m_settings.removeEntry(sPrefix + QString::number(i));
+    for (;;) {
+        QString sNumber = QString::number(++i);
+        if (m_settings.readEntry(sSoundFontPrefix + sNumber).isEmpty())
+            break;
+        m_settings.removeEntry(sSoundFontPrefix  + sNumber);
+        m_settings.removeEntry(sBankOffsetPrefix + sNumber);
+    }
     m_settings.endGroup();
 
     // Save last fluidsynth m_settings.

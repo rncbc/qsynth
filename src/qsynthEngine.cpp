@@ -48,6 +48,7 @@ qsynthEngine::qsynthEngine ( qsynthOptions *pOptions, const QString& sName )
     iMidiEvent = 0;
     iMidiState = 0;
 
+    bMeterEnabled  = false;
     fMeterValue[0] = 0.0;
     fMeterValue[1] = 0.0;
 }

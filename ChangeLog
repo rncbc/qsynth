@@ -5,6 +5,8 @@ ChangeLog
 
 0.2.2   2004-07-13  Output level peak meters and other fixes.
 
+- Soundfont bank offset option gets its trial (EXPERIMENTAL).
+
 - Output level peak meters are now featured (EXPERIMENTAL).
 
 - Top level sub-windows are now always raised and set with active focus

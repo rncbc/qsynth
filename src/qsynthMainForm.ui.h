@@ -380,8 +380,10 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine, const QStringList& f
                 appendMessagesColor(sPrefix + tr("Loading soundfont") + ": \"" + *iter + "\"" + sElipsis, "#999933");
                 if (::fluid_synth_sfload(pEngine->pSynth, pszFilename, 1) >= 0) {
                     iSoundfonts++;
-                    if (!bSetup)
+                    if (!bSetup) {
                         pSetup->soundfonts.append(*iter);
+                        pSetup->bankoffsets.append("0");
+                    }
                 }
                 else appendMessagesError(sPrefix + tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
             }
@@ -555,7 +557,7 @@ void qsynthMainForm::stabilizeForm (void)
     GainGroupBox->setEnabled(bEnabled);
     ReverbGroupBox->setEnabled(bEnabled);
     ChorusGroupBox->setEnabled(bEnabled);
-    OutputGroupBox->setEnabled(bEnabled);
+    OutputGroupBox->setEnabled(bEnabled && pEngine->bMeterEnabled);
     ProgramResetPushButton->setEnabled(bEnabled);
     SystemResetPushButton->setEnabled(bEnabled);
     
@@ -1045,13 +1047,30 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
         return false;
     }
 
-    // Load the soundfonts...
-    playLoadFiles(pEngine, pSetup->soundfonts, true);
+    // Load soundfonts...
+    int i = 0;
+    for (QStringList::ConstIterator iter = pSetup->soundfonts.begin(); iter != pSetup->soundfonts.end(); iter++) {
+        char *pszFilename = (char *) (*iter).latin1();
+        // Is it a soundfont file...
+        if (::fluid_is_soundfont(pszFilename)) {
+            int iBankOffset = pSetup->bankoffsets[i].toInt();
+            appendMessagesColor(sPrefix + tr("Loading soundfont") + ": \"" + *iter + "\" (bank offset " + QString::number(iBankOffset) + ")" + sElipsis, "#999933");
+#ifdef CONFIG_FLUID_BANK_OFFSET
+            if (::fluid_synth_sfload_bank_offset(pEngine->pSynth, pszFilename, 1, iBankOffset) < 0)
+#else
+            if (::fluid_synth_sfload(pEngine->pSynth, pszFilename, 1) < 0)
+#endif
+                appendMessagesError(sPrefix + tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
+        }
+        i++;
+    }
 
     // Start the synthesis thread...
     appendMessages(sPrefix + tr("Creating audio driver") + " (" + pSetup->sAudioDriver + ")" + sElipsis);
-//  pEngine->pAudioDriver = ::new_fluid_audio_driver(pSetup->fluid_settings(), pEngine->pSynth);
-    pEngine->pAudioDriver = ::new_fluid_audio_driver2(pSetup->fluid_settings(), qsynth_process, pEngine);
+    pEngine->pAudioDriver  = ::new_fluid_audio_driver2(pSetup->fluid_settings(), qsynth_process, pEngine);
+    pEngine->bMeterEnabled = (pEngine->pAudioDriver != NULL);
+    if (pEngine->pAudioDriver == NULL)
+        pEngine->pAudioDriver = ::new_fluid_audio_driver(pSetup->fluid_settings(), pEngine->pSynth);
     if (pEngine->pAudioDriver == NULL) {
         appendMessagesError(sPrefix + tr("Failed to create the audio driver") + " (" + pSetup->sAudioDriver + "). " + tr("Cannot continue without it."));
         stopEngine(pEngine);
@@ -1182,6 +1201,7 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
         appendMessages(sPrefix + tr("Destroying audio driver") + sElipsis);
         ::delete_fluid_audio_driver(pEngine->pAudioDriver);
         pEngine->pAudioDriver = NULL;
+        pEngine->bMeterEnabled = false;
     }
 
     // And finally, destroy the synthesizer engine.

@@ -229,10 +229,10 @@ qsynthMeter::qsynthMeter ( QWidget *pParent, const char *pszName )
         int iStripCount = 2 * m_iPortCount;
         if (m_iPortCount > 1)
             iStripCount--;
-        QWidget::setMinimumSize(13 * iStripCount, 140);
+        QWidget::setMinimumSize(12 * iStripCount, 120);
         QWidget::setMaximumWidth(16 * iStripCount);
     } else {
-        QWidget::setMinimumSize(2, 140);
+        QWidget::setMinimumSize(2, 120);
         QWidget::setMaximumWidth(4);
     }
 

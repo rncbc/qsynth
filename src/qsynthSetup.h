@@ -89,6 +89,7 @@ public:
 
     // Optional file lists.
     QStringList soundfonts;
+    QStringList bankoffsets;
     QStringList midifiles;
 
     // Current (translated) preset name.

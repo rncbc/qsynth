@@ -29,7 +29,7 @@
             <x>0</x>
             <y>0</y>
             <width>504</width>
-            <height>367</height>
+            <height>370</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -848,7 +848,7 @@
                     <widget class="QListView" row="0" column="0">
                         <column>
                             <property name="text">
-                                <string>ID</string>
+                                <string>SFID</string>
                             </property>
                             <property name="clickable">
                                 <bool>true</bool>
@@ -860,6 +860,17 @@
                         <column>
                             <property name="text">
                                 <string>Name</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>Bank Offset</string>
                             </property>
                             <property name="clickable">
                                 <bool>true</bool>
