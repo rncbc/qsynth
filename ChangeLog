@@ -3,7 +3,7 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.1   2004-04-27  Important internal fixes.
+0.2.1   2004-04-30  Important internal fixes.
 
 - Channels window reset when switching engines isn't destructive
   anymore; also reverb and chorus activation were not being correctly
@@ -12,8 +12,11 @@ ChangeLog
 - Corrected MIDI/Audio driver settings that were being obliterated from
   the setup dialog option lists; this was causing the impossibility to
   choose an appropriate driver on certain systems where "alsa_seq" or
-  "jack" may not be available by default (e.g. MacOSX).
+  "jack" may not be available by default (e.g. MacOSX, thanks to Ebrahim
+  Mayat).
   
+- The dash (-) is now a legal character for preset names.
+
 - Translation support for the default preset name "(default)".
 
 - Delete preset confirmation warning message.

@@ -51,7 +51,7 @@ void qsynthChannelsForm::init (void)
     m_pXpmLedOff = new QPixmap(QPixmap::fromMimeSource("ledoff1.png"));
 
     // Set validators...
-    PresetComboBox->setValidator(new QRegExpValidator(QRegExp("[\\w]+"), PresetComboBox));
+    PresetComboBox->setValidator(new QRegExpValidator(QRegExp("[\\w-]+"), PresetComboBox));
 
     // Initially sorted by channel number.
     ChannelsListView->setSorting(1);

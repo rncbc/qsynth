@@ -169,7 +169,7 @@ void qsynthSetupForm::init (void)
     m_pXpmSoundFont  = new QPixmap(QPixmap::fromMimeSource("sfont1.png"));
 
     // Set dialog validators...
-    QRegExp rx("[\\w]+");
+    QRegExp rx("[\\w-]+");
     DisplayNameLineEdit->setValidator(new QRegExpValidator(rx, DisplayNameLineEdit));
     SampleRateComboBox->setValidator(new QIntValidator(SampleRateComboBox));
     AudioBufSizeComboBox->setValidator(new QIntValidator(AudioBufSizeComboBox));
