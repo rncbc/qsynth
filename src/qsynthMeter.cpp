@@ -229,13 +229,13 @@ qsynthMeter::qsynthMeter ( QWidget *pParent, const char *pszName )
         int iStripCount = 2 * m_iPortCount;
         if (m_iPortCount > 1)
             iStripCount--;
-        QWidget::setMinimumSize(QSize(13 * iStripCount, 160));
+        QWidget::setMinimumSize(13 * iStripCount, 120);
         QWidget::setMaximumWidth(16 * iStripCount);
     } else {
-        QWidget::setMinimumSize(QSize(2, 160));
+        QWidget::setMinimumSize(2, 120);
         QWidget::setMaximumWidth(4);
     }
-    
+
     QWidget::setSizePolicy(QSizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding));
 
     QHBox::setFrameShape(QFrame::StyledPanel);

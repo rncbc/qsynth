@@ -28,8 +28,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>848</width>
-            <height>189</height>
+            <width>836</width>
+            <height>209</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -1174,25 +1174,10 @@
                             <property name="name">
                                 <cstring>OutputMeter</cstring>
                             </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>1</hsizetype>
-                                    <vsizetype>7</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="minimumSize">
-                                <size>
-                                    <width>32</width>
-                                    <height>0</height>
-                                </size>
-                            </property>
-                            <property name="maximumSize">
-                                <size>
-                                    <width>40</width>
-                                    <height>32767</height>
-                                </size>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Output peak level</string>
@@ -1377,8 +1362,8 @@
         </sizehint>
         <container>0</container>
         <sizepolicy>
-            <hordata>7</hordata>
-            <verdata>1</verdata>
+            <hordata>5</hordata>
+            <verdata>7</verdata>
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
         </sizepolicy>
