@@ -577,6 +577,9 @@ void qsynthMainForm::showSetupForm (void)
 
     qsynthSetupForm *pSetupForm = new qsynthSetupForm(this);
     if (pSetupForm) {
+        // Check out some initial nullities(tm)...
+        if (m_pSetup->sMessagesFont.isEmpty() && m_pMessagesForm)
+            m_pSetup->sMessagesFont = m_pMessagesForm->messagesFont().toString();
         // To track down immediate changes.
         QString sOldMessagesFont = m_pSetup->sMessagesFont;
         // Load the current setup settings.
