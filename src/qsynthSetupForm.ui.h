@@ -2,7 +2,7 @@
 //
 // ui.h extension file, included from the uic-generated form implementation.
 /****************************************************************************
-   Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2005, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -253,6 +253,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
     // Midi settings...
     MidiInCheckBox->setChecked(m_pSetup->bMidiIn);
     MidiDriverComboBox->setCurrentText(m_pSetup->sMidiDriver);
+	MidiDeviceLineEdit->setText(m_pSetup->sMidiDevice);
     MidiChannelsSpinBox->setValue(m_pSetup->iMidiChannels);
     MidiDumpCheckBox->setChecked(m_pSetup->bMidiDump);
     VerboseCheckBox->setChecked(m_pSetup->bVerbose);
@@ -262,6 +263,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 
     // Audio settings...
     AudioDriverComboBox->setCurrentText(m_pSetup->sAudioDriver);
+	AudioDeviceLineEdit->setText(m_pSetup->sAudioDevice);
     SampleFormatComboBox->setCurrentText(m_pSetup->sSampleFormat);
     SampleRateComboBox->setCurrentText(QString::number(m_pSetup->fSampleRate));
     AudioBufSizeComboBox->setCurrentText(QString::number(m_pSetup->iAudioBufSize));
@@ -341,8 +343,17 @@ void qsynthSetupForm::accept (void)
         }
         // Will we have a setup renaming?
         m_pSetup->sDisplayName     = DisplayNameLineEdit->text();
+        // Midi settings...
+        m_pSetup->bMidiIn          = MidiInCheckBox->isChecked();
+        m_pSetup->sMidiDriver      = MidiDriverComboBox->currentText();
+        m_pSetup->sMidiDevice      = MidiDeviceLineEdit->text();
+        m_pSetup->iMidiChannels    = MidiChannelsSpinBox->value();
+        m_pSetup->bMidiDump        = MidiDumpCheckBox->isChecked();
+        m_pSetup->bVerbose         = VerboseCheckBox->isChecked();
+        m_pSetup->sAlsaName        = AlsaNameComboBox->currentText();
         // Audio settings...
         m_pSetup->sAudioDriver     = AudioDriverComboBox->currentText();
+        m_pSetup->sAudioDevice     = AudioDeviceLineEdit->text();
         m_pSetup->sSampleFormat    = SampleFormatComboBox->currentText();
         m_pSetup->fSampleRate      = SampleRateComboBox->currentText().toDouble();
         m_pSetup->iAudioBufSize    = AudioBufSizeComboBox->currentText().toInt();
@@ -353,13 +364,6 @@ void qsynthSetupForm::accept (void)
         m_pSetup->bJackMulti       = JackMultiCheckBox->isChecked();
         m_pSetup->bJackAutoConnect = JackAutoConnectCheckBox->isChecked();
         m_pSetup->sJackName        = JackNameComboBox->currentText();
-        // Midi settings...
-        m_pSetup->bMidiIn          = MidiInCheckBox->isChecked();
-        m_pSetup->sMidiDriver      = MidiDriverComboBox->currentText();
-        m_pSetup->iMidiChannels    = MidiChannelsSpinBox->value();
-        m_pSetup->bMidiDump        = MidiDumpCheckBox->isChecked();
-        m_pSetup->bVerbose         = VerboseCheckBox->isChecked();
-        m_pSetup->sAlsaName        = AlsaNameComboBox->currentText();
         // Reset dirty flag.
         m_iDirtyCount = 0;
     }
@@ -435,18 +439,23 @@ void qsynthSetupForm::settingsChanged (void)
 void qsynthSetupForm::stabilizeForm (void)
 {
     bool bEnabled = MidiInCheckBox->isChecked();
+
+    bool bAlsaEnabled = (MidiDriverComboBox->currentText() == "alsa_seq");
     MidiDriverTextLabel->setEnabled(bEnabled);
     MidiDriverComboBox->setEnabled(bEnabled);
+    MidiDeviceTextLabel->setEnabled(bEnabled && !bAlsaEnabled);
+    MidiDeviceLineEdit->setEnabled(bEnabled && !bAlsaEnabled);
     MidiChannelsTextLabel->setEnabled(bEnabled);
     MidiChannelsSpinBox->setEnabled(bEnabled);
     MidiDumpCheckBox->setEnabled(bEnabled);
     VerboseCheckBox->setEnabled(bEnabled);
 
-    bool bAlsaEnabled = (bEnabled && MidiDriverComboBox->currentText() == "alsa_seq");
     AlsaNameTextLabel->setEnabled(bAlsaEnabled);
     AlsaNameComboBox->setEnabled(bAlsaEnabled);
     
     bool bJackEnabled = (AudioDriverComboBox->currentText() == "jack");
+    AudioDeviceTextLabel->setEnabled(bEnabled && !bJackEnabled);
+    AudioDeviceLineEdit->setEnabled(bEnabled && !bJackEnabled);
     JackMultiCheckBox->setEnabled(bJackEnabled);
     JackAutoConnectCheckBox->setEnabled(bJackEnabled);
     JackNameTextLabel->setEnabled(bJackEnabled);

@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2005, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -499,9 +499,11 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
     pSetup->sDisplayName     = m_settings.readEntry        ("/DisplayName",     sDisplayName);
     pSetup->bMidiIn          = m_settings.readBoolEntry    ("/MidiIn",          true);
     pSetup->sMidiDriver      = m_settings.readEntry        ("/MidiDriver",      "alsa_seq");
+    pSetup->sMidiDevice      = m_settings.readEntry        ("/MidiDevice",      QString::null);
     pSetup->iMidiChannels    = m_settings.readNumEntry     ("/MidiChannels",    16);
     pSetup->sAlsaName        = m_settings.readEntry        ("/AlsaName",        "pid");
     pSetup->sAudioDriver     = m_settings.readEntry        ("/AudioDriver",     "jack");
+    pSetup->sAudioDevice     = m_settings.readEntry        ("/AudioDevice",     QString::null);
     pSetup->sJackName        = m_settings.readEntry        ("/JackName",        "qsynth");
     pSetup->bJackAutoConnect = m_settings.readBoolEntry    ("/JackAutoConnect", true);
     pSetup->bJackMulti       = m_settings.readBoolEntry    ("/JackMulti",       false);
@@ -615,9 +617,11 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
     m_settings.writeEntry("/DisplayName",      pSetup->sDisplayName);
     m_settings.writeEntry("/MidiIn",           pSetup->bMidiIn);
     m_settings.writeEntry("/MidiDriver",       pSetup->sMidiDriver);
+    m_settings.writeEntry("/MidiDevice",       pSetup->sMidiDevice);
     m_settings.writeEntry("/MidiChannels",     pSetup->iMidiChannels);
     m_settings.writeEntry("/AlsaName",         pSetup->sAlsaName);
     m_settings.writeEntry("/AudioDriver",      pSetup->sAudioDriver);
+    m_settings.writeEntry("/AudioDevice",      pSetup->sAudioDevice);
     m_settings.writeEntry("/JackName",         pSetup->sJackName);
     m_settings.writeEntry("/JackAutoConnect",  pSetup->bJackAutoConnect);
     m_settings.writeEntry("/JackMulti",        pSetup->bJackMulti);

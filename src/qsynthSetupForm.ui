@@ -2,7 +2,7 @@
 <class>qsynthSetupForm</class>
 <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2005, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -28,8 +28,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>540</width>
-            <height>370</height>
+            <width>479</width>
+            <height>380</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -114,13 +114,13 @@
                     <cstring>MidiTabPage</cstring>
                 </property>
                 <attribute name="title">
-                    <string>MIDI</string>
+                    <string>&amp;MIDI</string>
                 </attribute>
                 <grid>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="3">
+                    <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="5">
                         <property name="name">
                             <cstring>MidiInCheckBox</cstring>
                         </property>
@@ -132,37 +132,6 @@
                         </property>
                         <property name="toolTip" stdset="0">
                             <string>Enable MIDI input</string>
-                        </property>
-                    </widget>
-                    <spacer row="1" column="3">
-                        <property name="name">
-                            <cstring>spacer11</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>8</width>
-                                <height>8</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <widget class="QLabel" row="1" column="0">
-                        <property name="name">
-                            <cstring>MidiDriverTextLabel</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;MIDI Driver:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                        <property name="buddy" stdset="0">
-                            <cstring>MidiDriverComboBox</cstring>
                         </property>
                     </widget>
                     <widget class="QLabel" row="2" column="0">
@@ -196,34 +165,9 @@
                             <string>Number of MIDI channels</string>
                         </property>
                     </widget>
-                    <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>MidiDriverComboBox</cstring>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string>Input MIDI driver</string>
-                        </property>
-                    </widget>
-                    <spacer row="2" column="2">
-                        <property name="name">
-                            <cstring>spacer12</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>8</width>
-                                <height>8</height>
-                            </size>
-                        </property>
-                    </spacer>
                     <spacer row="3" column="0">
                         <property name="name">
-                            <cstring>spacer13</cstring>
+                            <cstring>spacer12</cstring>
                         </property>
                         <property name="orientation">
                             <enum>Vertical</enum>
@@ -234,11 +178,11 @@
                         <property name="sizeHint">
                             <size>
                                 <width>8</width>
-                                <height>8</height>
+                                <height>78</height>
                             </size>
                         </property>
                     </spacer>
-                    <widget class="QCheckBox" row="5" column="0" rowspan="1" colspan="4">
+                    <widget class="QCheckBox" row="5" column="0" rowspan="1" colspan="6">
                         <property name="name">
                             <cstring>VerboseCheckBox</cstring>
                         </property>
@@ -252,7 +196,7 @@
                             <string>Print out verbose messages about MIDI events</string>
                         </property>
                     </widget>
-                    <widget class="QCheckBox" row="6" column="0" rowspan="1" colspan="4">
+                    <widget class="QCheckBox" row="6" column="0" rowspan="1" colspan="6">
                         <property name="name">
                             <cstring>MidiDumpCheckBox</cstring>
                         </property>
@@ -266,7 +210,7 @@
                             <string>Whether to show MIDI router events on messages window</string>
                         </property>
                     </widget>
-                    <widget class="QLayoutWidget" row="4" column="0" rowspan="1" colspan="4">
+                    <widget class="QLayoutWidget" row="4" column="0" rowspan="1" colspan="6">
                         <property name="name">
                             <cstring>layout8</cstring>
                         </property>
@@ -305,14 +249,6 @@
                                 <property name="name">
                                     <cstring>AlsaNameComboBox</cstring>
                                 </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>7</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
                                 <property name="editable">
                                     <bool>true</bool>
                                 </property>
@@ -322,7 +258,7 @@
                             </widget>
                             <spacer>
                                 <property name="name">
-                                    <cstring>spacer14</cstring>
+                                    <cstring>spacer13</cstring>
                                 </property>
                                 <property name="orientation">
                                     <enum>Horizontal</enum>
@@ -339,6 +275,67 @@
                             </spacer>
                         </hbox>
                     </widget>
+                    <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>MidiDriverComboBox</cstring>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Input MIDI driver</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="1" column="0">
+                        <property name="name">
+                            <cstring>MidiDriverTextLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&amp;MIDI Driver:</string>
+                        </property>
+                        <property name="alignment">
+                            <set>AlignVCenter</set>
+                        </property>
+                        <property name="buddy" stdset="0">
+                            <cstring>MidiDriverComboBox</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="1" column="3">
+                        <property name="name">
+                            <cstring>MidiDeviceTextLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>MIDI &amp;Device:</string>
+                        </property>
+                        <property name="alignment">
+                            <set>AlignVCenter|AlignRight</set>
+                        </property>
+                        <property name="buddy" stdset="0">
+                            <cstring>MidiDeviceLineEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="1" column="4">
+                        <property name="name">
+                            <cstring>MidiDeviceLineEdit</cstring>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>MIDI device name</string>
+                        </property>
+                    </widget>
+                    <spacer row="2" column="2">
+                        <property name="name">
+                            <cstring>spacer11</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Minimum</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>40</width>
+                                <height>8</height>
+                            </size>
+                        </property>
+                    </spacer>
                 </grid>
             </widget>
             <widget class="QWidget">
@@ -346,21 +343,314 @@
                     <cstring>AudioTabPage</cstring>
                 </property>
                 <attribute name="title">
-                    <string>Audio</string>
+                    <string>&amp;Audio</string>
                 </attribute>
                 <grid>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QLayoutWidget" row="1" column="0" rowspan="2" colspan="1">
+                    <spacer row="2" column="0">
                         <property name="name">
-                            <cstring>layout8</cstring>
+                            <cstring>spacer23</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>8</width>
+                                <height>26</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QCheckBox" row="5" column="0">
+                        <property name="name">
+                            <cstring>JackMultiCheckBox</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&amp;Multiple JACK Outputs</string>
+                        </property>
+                        <property name="accel">
+                            <string>Alt+M</string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Create multiple JACK output ports for channels, groups and effects</string>
+                        </property>
+                    </widget>
+                    <widget class="QCheckBox" row="4" column="0">
+                        <property name="name">
+                            <cstring>JackAutoConnectCheckBox</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Auto Connect &amp;JACK Outputs</string>
+                        </property>
+                        <property name="accel">
+                            <string>Alt+J</string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Attempt to connect the JACK outputs to the physical ports</string>
+                        </property>
+                    </widget>
+                    <widget class="QLayoutWidget" row="3" column="0" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>layout9</cstring>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>JackNameTextLabel</cstring>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>NoFrame</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Plain</enum>
+                                </property>
+                                <property name="text">
+                                    <string>JACK Client Name &amp;ID:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>JackNameComboBox</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox">
+                                <item>
+                                    <property name="text">
+                                        <string>fluidsynth</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>qsynth</string>
+                                    </property>
+                                </item>
+                                <property name="name">
+                                    <cstring>JackNameComboBox</cstring>
+                                </property>
+                                <property name="editable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="currentItem">
+                                    <number>1</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>JACK client name identification</string>
+                                </property>
+                            </widget>
+                            <spacer>
+                                <property name="name">
+                                    <cstring>spacer24</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>8</width>
+                                        <height>8</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                        </hbox>
+                    </widget>
+                    <widget class="QLayoutWidget" row="0" column="1">
+                        <property name="name">
+                            <cstring>layout10</cstring>
                         </property>
                         <grid>
                             <property name="name">
                                 <cstring>unnamed</cstring>
                             </property>
-                            <widget class="QComboBox" row="2" column="1">
+                            <widget class="QLabel" row="0" column="0">
+                                <property name="name">
+                                    <cstring>AudioDeviceTextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Audio &amp;Device:</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter</set>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>AudioDeviceLineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>AudioChannelsTextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Audio &amp;Channels:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>AudioChannelsSpinBox</cstring>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string></string>
+                                </property>
+                            </widget>
+                            <widget class="QSpinBox" row="2" column="1">
+                                <property name="name">
+                                    <cstring>AudioGroupsSpinBox</cstring>
+                                </property>
+                                <property name="maxValue">
+                                    <number>256</number>
+                                </property>
+                                <property name="minValue">
+                                    <number>1</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Number of audio groups</string>
+                                </property>
+                            </widget>
+                            <widget class="QSpinBox" row="3" column="1">
+                                <property name="name">
+                                    <cstring>PolyphonySpinBox</cstring>
+                                </property>
+                                <property name="maxValue">
+                                    <number>4096</number>
+                                </property>
+                                <property name="minValue">
+                                    <number>16</number>
+                                </property>
+                                <property name="value">
+                                    <number>256</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Number of enabled polyphonic voices</string>
+                                </property>
+                            </widget>
+                            <widget class="QSpinBox" row="1" column="1">
+                                <property name="name">
+                                    <cstring>AudioChannelsSpinBox</cstring>
+                                </property>
+                                <property name="maxValue">
+                                    <number>256</number>
+                                </property>
+                                <property name="minValue">
+                                    <number>1</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Number of stereo audio channels</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="0" column="1" rowspan="1" colspan="2">
+                                <property name="name">
+                                    <cstring>AudioDeviceLineEdit</cstring>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>MIDI device name</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="3" column="0">
+                                <property name="name">
+                                    <cstring>PolyphonyTextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Polyphony:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>PolyphonySpinBox</cstring>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string></string>
+                                </property>
+                            </widget>
+                            <spacer row="2" column="2">
+                                <property name="name">
+                                    <cstring>spacer22</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>133</width>
+                                        <height>8</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                            <widget class="QLabel" row="2" column="0">
+                                <property name="name">
+                                    <cstring>AudioGroupsTextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Audio &amp;Groups:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>AudioGroupsSpinBox</cstring>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string></string>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                    <spacer row="1" column="1">
+                        <property name="name">
+                            <cstring>spacer21</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>270</width>
+                                <height>8</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QLayoutWidget" row="0" column="0" rowspan="2" colspan="1">
+                        <property name="name">
+                            <cstring>layout11</cstring>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>SampleFormatTextLabel</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Sample &amp;Format:</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>SampleFormatComboBox</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox" row="0" column="1">
+                                <property name="name">
+                                    <cstring>AudioDriverComboBox</cstring>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Output audio driver</string>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox" row="1" column="1">
+                                <property name="name">
+                                    <cstring>SampleFormatComboBox</cstring>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Sample format</string>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox" row="3" column="1">
                                 <item>
                                     <property name="text">
                                         <string>64</string>
@@ -411,18 +701,57 @@
                                     <string>Period size in bytes (audio buffer size)</string>
                                 </property>
                             </widget>
-                            <widget class="QLabel" row="0" column="0">
+                            <widget class="QLabel" row="4" column="0">
                                 <property name="name">
-                                    <cstring>SampleFormatTextLabel</cstring>
+                                    <cstring>AudioBufCountTextLabel</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>Sample &amp;Format:</string>
+                                    <string>Buffer Cou&amp;nt:</string>
                                 </property>
                                 <property name="buddy" stdset="0">
-                                    <cstring>SampleFormatComboBox</cstring>
+                                    <cstring>AudioBufCountComboBox</cstring>
                                 </property>
                             </widget>
-                            <widget class="QLabel" row="1" column="0">
+                            <widget class="QComboBox" row="2" column="1">
+                                <item>
+                                    <property name="text">
+                                        <string>22050</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>44100</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>48000</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>88200</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>96000</string>
+                                    </property>
+                                </item>
+                                <property name="name">
+                                    <cstring>SampleRateComboBox</cstring>
+                                </property>
+                                <property name="editable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="currentItem">
+                                    <number>1</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Sample rate in samples per second (Hz)</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="2" column="0">
                                 <property name="name">
                                     <cstring>SampleRateTextLabel</cstring>
                                 </property>
@@ -439,7 +768,7 @@
                                     <cstring>SampleRateComboBox</cstring>
                                 </property>
                             </widget>
-                            <widget class="QComboBox" row="3" column="1">
+                            <widget class="QComboBox" row="4" column="1">
                                 <item>
                                     <property name="text">
                                         <string>2</string>
@@ -480,65 +809,7 @@
                                     <string>Period count (number of audio buffers)</string>
                                 </property>
                             </widget>
-                            <widget class="QComboBox" row="1" column="1">
-                                <item>
-                                    <property name="text">
-                                        <string>22050</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>44100</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>48000</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>88200</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>96000</string>
-                                    </property>
-                                </item>
-                                <property name="name">
-                                    <cstring>SampleRateComboBox</cstring>
-                                </property>
-                                <property name="editable">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="currentItem">
-                                    <number>1</number>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Sample rate in samples per second (Hz)</string>
-                                </property>
-                            </widget>
                             <widget class="QLabel" row="3" column="0">
-                                <property name="name">
-                                    <cstring>AudioBufCountTextLabel</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Buffer Cou&amp;nt:</string>
-                                </property>
-                                <property name="buddy" stdset="0">
-                                    <cstring>AudioBufCountComboBox</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QComboBox" row="0" column="1">
-                                <property name="name">
-                                    <cstring>SampleFormatComboBox</cstring>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Sample format</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="2" column="0">
                                 <property name="name">
                                     <cstring>AudioBufSizeTextLabel</cstring>
                                 </property>
@@ -549,16 +820,6 @@
                                     <cstring>AudioBufSizeComboBox</cstring>
                                 </property>
                             </widget>
-                        </grid>
-                    </widget>
-                    <widget class="QLayoutWidget" row="0" column="0">
-                        <property name="name">
-                            <cstring>layout9</cstring>
-                        </property>
-                        <grid>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
                             <widget class="QLabel" row="0" column="0">
                                 <property name="name">
                                     <cstring>AudioDriverTextLabel</cstring>
@@ -570,268 +831,8 @@
                                     <cstring>AudioDriverComboBox</cstring>
                                 </property>
                             </widget>
-                            <widget class="QComboBox" row="0" column="1">
-                                <property name="name">
-                                    <cstring>AudioDriverComboBox</cstring>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Output audio driver</string>
-                                </property>
-                            </widget>
                         </grid>
                     </widget>
-                    <widget class="QLayoutWidget" row="1" column="1">
-                        <property name="name">
-                            <cstring>layout7</cstring>
-                        </property>
-                        <grid>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QLabel" row="0" column="0">
-                                <property name="name">
-                                    <cstring>AudioChannelsTextLabel</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Audio &amp;Channels:</string>
-                                </property>
-                                <property name="buddy" stdset="0">
-                                    <cstring>AudioChannelsSpinBox</cstring>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="2" column="0">
-                                <property name="name">
-                                    <cstring>PolyphonyTextLabel</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>&amp;Polyphony:</string>
-                                </property>
-                                <property name="buddy" stdset="0">
-                                    <cstring>PolyphonySpinBox</cstring>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
-                                </property>
-                            </widget>
-                            <widget class="QSpinBox" row="0" column="1">
-                                <property name="name">
-                                    <cstring>AudioChannelsSpinBox</cstring>
-                                </property>
-                                <property name="maxValue">
-                                    <number>256</number>
-                                </property>
-                                <property name="minValue">
-                                    <number>1</number>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Number of stereo audio channels</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="1" column="0">
-                                <property name="name">
-                                    <cstring>AudioGroupsTextLabel</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Audio &amp;Groups:</string>
-                                </property>
-                                <property name="buddy" stdset="0">
-                                    <cstring>AudioGroupsSpinBox</cstring>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string></string>
-                                </property>
-                            </widget>
-                            <widget class="QSpinBox" row="2" column="1">
-                                <property name="name">
-                                    <cstring>PolyphonySpinBox</cstring>
-                                </property>
-                                <property name="maxValue">
-                                    <number>4096</number>
-                                </property>
-                                <property name="minValue">
-                                    <number>16</number>
-                                </property>
-                                <property name="value">
-                                    <number>256</number>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Number of enabled polyphonic voices</string>
-                                </property>
-                            </widget>
-                            <widget class="QSpinBox" row="1" column="1">
-                                <property name="name">
-                                    <cstring>AudioGroupsSpinBox</cstring>
-                                </property>
-                                <property name="maxValue">
-                                    <number>256</number>
-                                </property>
-                                <property name="minValue">
-                                    <number>1</number>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Number of audio groups</string>
-                                </property>
-                            </widget>
-                        </grid>
-                    </widget>
-                    <spacer row="3" column="0">
-                        <property name="name">
-                            <cstring>spacer23</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>8</width>
-                                <height>8</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <spacer row="2" column="1">
-                        <property name="name">
-                            <cstring>spacer21</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>8</width>
-                                <height>8</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <widget class="QCheckBox" row="6" column="0">
-                        <property name="name">
-                            <cstring>JackMultiCheckBox</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Multiple JACK Outputs</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+M</string>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string>Create multiple JACK output ports for channels, groups and effects</string>
-                        </property>
-                    </widget>
-                    <widget class="QCheckBox" row="5" column="0">
-                        <property name="name">
-                            <cstring>JackAutoConnectCheckBox</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Auto Connect &amp;JACK Outputs</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+J</string>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string>Attempt to connect the JACK outputs to the physical ports</string>
-                        </property>
-                    </widget>
-                    <widget class="QLayoutWidget" row="4" column="0" rowspan="1" colspan="3">
-                        <property name="name">
-                            <cstring>layout9</cstring>
-                        </property>
-                        <hbox>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QLabel">
-                                <property name="name">
-                                    <cstring>JackNameTextLabel</cstring>
-                                </property>
-                                <property name="frameShape">
-                                    <enum>NoFrame</enum>
-                                </property>
-                                <property name="frameShadow">
-                                    <enum>Plain</enum>
-                                </property>
-                                <property name="text">
-                                    <string>JACK Client Name &amp;ID:</string>
-                                </property>
-                                <property name="buddy" stdset="0">
-                                    <cstring>JackNameComboBox</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QComboBox">
-                                <item>
-                                    <property name="text">
-                                        <string>fluidsynth</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>qsynth</string>
-                                    </property>
-                                </item>
-                                <property name="name">
-                                    <cstring>JackNameComboBox</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>7</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="editable">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="currentItem">
-                                    <number>1</number>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>JACK client name identification</string>
-                                </property>
-                            </widget>
-                            <spacer>
-                                <property name="name">
-                                    <cstring>spacer24</cstring>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Horizontal</enum>
-                                </property>
-                                <property name="sizeType">
-                                    <enum>Expanding</enum>
-                                </property>
-                                <property name="sizeHint">
-                                    <size>
-                                        <width>8</width>
-                                        <height>8</height>
-                                    </size>
-                                </property>
-                            </spacer>
-                        </hbox>
-                    </widget>
-                    <spacer row="1" column="2">
-                        <property name="name">
-                            <cstring>spacer22</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>8</width>
-                                <height>8</height>
-                            </size>
-                        </property>
-                    </spacer>
                 </grid>
             </widget>
             <widget class="QWidget">
@@ -839,7 +840,7 @@
                     <cstring>SoundFontTabPage</cstring>
                 </property>
                 <attribute name="title">
-                    <string>Soundfonts</string>
+                    <string>&amp;Soundfonts</string>
                 </attribute>
                 <grid>
                     <property name="name">
@@ -938,9 +939,6 @@
                                 </property>
                                 <property name="accel">
                                     <string>Alt+E</string>
-                                </property>
-                                <property name="iconSet">
-                                    <iconset>edit1.png</iconset>
                                 </property>
                                 <property name="toolTip" stdset="0">
                                     <string>Edit selected soundfont bank offset</string>
@@ -1041,7 +1039,7 @@
                     <cstring>TabPage</cstring>
                 </property>
                 <attribute name="title">
-                    <string>Settings</string>
+                    <string>S&amp;ettings</string>
                 </attribute>
                 <grid>
                     <property name="name">
@@ -1234,6 +1232,12 @@
         <slot>settingsChanged()</slot>
     </connection>
     <connection>
+        <sender>MidiDeviceLineEdit</sender>
+        <signal>textChanged(const QString &amp;)</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
         <sender>MidiChannelsSpinBox</sender>
         <signal>valueChanged(int)</signal>
         <receiver>qsynthSetupForm</receiver>
@@ -1260,6 +1264,12 @@
     <connection>
         <sender>AudioDriverComboBox</sender>
         <signal>activated(int)</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>AudioDeviceLineEdit</sender>
+        <signal>textChanged(const QString &amp;)</signal>
         <receiver>qsynthSetupForm</receiver>
         <slot>settingsChanged()</slot>
     </connection>
@@ -1369,7 +1379,7 @@
         <sender>SoundFontListView</sender>
         <signal>itemRenamed(QListViewItem *, int, const QString&amp;)</signal>
         <receiver>qsynthSetupForm</receiver>
-        <slot>itemRenamed(QListViewItem *, int, const QString&amp;)</slot>
+        <slot>itemRenamed(QListViewItem*,int,const QString&amp;)</slot>
     </connection>
     <connection>
         <sender>OkPushButton</sender>
@@ -1389,11 +1399,13 @@
     <tabstop>SetupTabWidget</tabstop>
     <tabstop>MidiInCheckBox</tabstop>
     <tabstop>MidiDriverComboBox</tabstop>
+    <tabstop>MidiDeviceLineEdit</tabstop>
     <tabstop>MidiChannelsSpinBox</tabstop>
     <tabstop>AlsaNameComboBox</tabstop>
     <tabstop>VerboseCheckBox</tabstop>
     <tabstop>MidiDumpCheckBox</tabstop>
     <tabstop>AudioDriverComboBox</tabstop>
+    <tabstop>AudioDeviceLineEdit</tabstop>
     <tabstop>SampleFormatComboBox</tabstop>
     <tabstop>SampleRateComboBox</tabstop>
     <tabstop>AudioBufSizeComboBox</tabstop>
