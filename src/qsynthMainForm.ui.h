@@ -248,6 +248,7 @@ void qsynthMainForm::setup ( qsynthSetup *pSetup )
 
     // Set defaults...
     updateMessagesFont();
+    updateMessagesLimit();
 
     // Check if we can redirect our own stdout/stderr...
     if (m_pSetup->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
@@ -471,6 +472,21 @@ void qsynthMainForm::updateMessagesFont (void)
 }
 
 
+// Update messages window line limit.
+void qsynthMainForm::updateMessagesLimit (void)
+{
+    if (m_pSetup == NULL)
+        return;
+
+    if (m_pMessagesForm) {
+        if (m_pSetup->bMessagesLimit)
+            m_pMessagesForm->setMessagesLimit(m_pSetup->iMessagesLimitLines);
+        else
+            m_pMessagesForm->setMessagesLimit(0);
+    }
+}
+
+
 // Stabilize current form toggle buttons that may be astray.
 void qsynthMainForm::stabilizeForm (void)
 {
@@ -627,6 +643,8 @@ void qsynthMainForm::showSetupForm (void)
         QString sOldMessagesFont = m_pSetup->sMessagesFont;
         bool    bStdoutCapture   = m_pSetup->bStdoutCapture;
         bool    bKeepOnTop       = m_pSetup->bKeepOnTop;
+        int     bMessagesLimit   = m_pSetup->bMessagesLimit;
+        int     iMessagesLimitLines = m_pSetup->iMessagesLimitLines;
         // Load the current setup settings.
         pSetupForm->setup(m_pSetup, m_pSynth);
         // Show the setup dialog...
@@ -643,6 +661,10 @@ void qsynthMainForm::showSetupForm (void)
             // Check wheather something immediate has changed.
             if (sOldMessagesFont != m_pSetup->sMessagesFont)
                 updateMessagesFont();
+            if (( bMessagesLimit && !m_pSetup->bMessagesLimit) ||
+                (!bMessagesLimit &&  m_pSetup->bMessagesLimit) ||
+                (iMessagesLimitLines !=  m_pSetup->iMessagesLimitLines))
+                updateMessagesLimit();
             // Ask for a engine restart?
             promptRestart();
         }

@@ -1476,6 +1476,7 @@
     <function specifier="non virtual">appendMessagesText( const QString &amp; s )</function>
     <function specifier="non virtual">appendMessagesError( const QString &amp; s )</function>
     <function access="private" specifier="non virtual">updateMessagesFont( void )</function>
+    <function access="private" specifier="non virtual">updateMessagesLimit( void )</function>
     <function specifier="non virtual" returnType="bool">startSynth( void )</function>
     <function specifier="non virtual">stopSynth( void )</function>
     <function specifier="non virtual">restartSynth( void )</function>

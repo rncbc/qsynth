@@ -29,6 +29,8 @@
 // Kind of constructor.
 void qsynthMessagesForm::init (void)
 {
+    // Initialize default message limit.
+    m_iMessagesLimit = QSYNTH_MESSAGES_MAXLINES;
 }
 
 
@@ -71,6 +73,18 @@ void qsynthMessagesForm::setMessagesFont ( const QFont & font )
 }
 
 
+// Messages line limit accessors.
+int qsynthMessagesForm::messagesLimit (void)
+{
+    return m_iMessagesLimit;
+}
+
+void qsynthMessagesForm::setMessagesLimit( int iMessagesLimit )
+{
+    m_iMessagesLimit = iMessagesLimit;
+}
+
+
 // Messages widget output method.
 void qsynthMessagesForm::appendMessages( const QString& s )
 {
@@ -84,15 +98,18 @@ void qsynthMessagesForm::appendMessagesColor( const QString& s, const QString& c
 
 void qsynthMessagesForm::appendMessagesText( const QString& s )
 {
-    int iParagraphs = MessagesTextView->paragraphs();
-    if (iParagraphs > QSYNTH_MESSAGES_MAXLINES) {
-        MessagesTextView->setUpdatesEnabled(false);
-        while (iParagraphs > QSYNTH_MESSAGES_MAXLINES) {
-            MessagesTextView->removeParagraph(0);
-            iParagraphs--;
+    // Check for message line limit...
+    if (m_iMessagesLimit > 0) {
+        int iParagraphs = MessagesTextView->paragraphs();
+        if (iParagraphs > m_iMessagesLimit) {
+            MessagesTextView->setUpdatesEnabled(false);
+            while (iParagraphs > m_iMessagesLimit) {
+                MessagesTextView->removeParagraph(0);
+                iParagraphs--;
+            }
+            MessagesTextView->scrollToBottom();
+            MessagesTextView->setUpdatesEnabled(true);
         }
-        MessagesTextView->scrollToBottom();
-        MessagesTextView->setUpdatesEnabled(true);
     }
     MessagesTextView->append(s);
 }

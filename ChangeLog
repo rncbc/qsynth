@@ -3,6 +3,11 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+0.1.3   2004-02-23  More work in progress.
+
+- Message window line limit is now a configurable option on setup.
+
+
 0.1.2   2004-02-16  Work in progress.
 
 - Messages and Channels pop-up windows are not hinted as dialogs anymore 

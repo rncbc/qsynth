@@ -168,6 +168,7 @@ void qsynthSetupForm::init (void)
     SampleRateComboBox->setValidator(new QIntValidator(SampleRateComboBox));
     AudioBufSizeComboBox->setValidator(new QIntValidator(AudioBufSizeComboBox));
     AudioBufCountComboBox->setValidator(new QIntValidator(AudioBufCountComboBox));
+    MessagesLimitLinesComboBox->setValidator(new QIntValidator(MessagesLimitLinesComboBox));
 
     // No sorting on soundfont stack list.
     SoundFontListView->setSorting(-1);
@@ -281,6 +282,11 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
         font = QFont("Fixed", 8);
     MessagesFontTextLabel->setFont(font);
     MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
+
+    // Messages limit option.
+    MessagesLimitCheckBox->setChecked(m_pSetup->bMessagesLimit);
+    MessagesLimitLinesComboBox->setCurrentText(QString::number(m_pSetup->iMessagesLimitLines));
+
     // Other options finally.
     QueryCloseCheckBox->setChecked(m_pSetup->bQueryClose);
     KeepOnTopCheckBox->setChecked(m_pSetup->bKeepOnTop);
@@ -296,10 +302,12 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
 void qsynthSetupForm::accept (void)
 {
     // Save options...
-    m_pSetup->sMessagesFont  = MessagesFontTextLabel->font().toString();
-    m_pSetup->bQueryClose    = QueryCloseCheckBox->isChecked();
-    m_pSetup->bKeepOnTop     = KeepOnTopCheckBox->isChecked();
-    m_pSetup->bStdoutCapture = StdoutCaptureCheckBox->isChecked();
+    m_pSetup->sMessagesFont        = MessagesFontTextLabel->font().toString();
+    m_pSetup->bMessagesLimit       = MessagesLimitCheckBox->isChecked();
+    m_pSetup->iMessagesLimitLines  = MessagesLimitLinesComboBox->currentText().toInt();
+    m_pSetup->bQueryClose          = QueryCloseCheckBox->isChecked();
+    m_pSetup->bKeepOnTop           = KeepOnTopCheckBox->isChecked();
+    m_pSetup->bStdoutCapture       = StdoutCaptureCheckBox->isChecked();
 
     if (m_iDirtyCount > 0) {
         // Save the soundfont view.
@@ -395,6 +403,8 @@ void qsynthSetupForm::stabilizeForm()
         SoundFontMoveUpPushButton->setEnabled(false);
         SoundFontMoveDownPushButton->setEnabled(false);
     }
+
+    MessagesLimitLinesComboBox->setEnabled(MessagesLimitCheckBox->isChecked());
 
     OkPushButton->setEnabled(m_iDirtyCount > 0);
 }

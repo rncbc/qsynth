@@ -85,6 +85,8 @@ qsynthSetup::qsynthSetup (void)
     // Load display options...
     m_settings.beginGroup("/Options");
     sMessagesFont  = m_settings.readEntry("/MessagesFont", QString::null);
+    bMessagesLimit = m_settings.readBoolEntry("/MessagesLimit", true);
+    iMessagesLimitLines = m_settings.readNumEntry("/MessagesLimitLines", 1000);
     bQueryClose    = m_settings.readBoolEntry("/QueryClose",    true);
     bKeepOnTop     = m_settings.readBoolEntry("/KeepOnTop",     true);
     bStdoutCapture = m_settings.readBoolEntry("/StdoutCapture", true);
@@ -141,6 +143,8 @@ qsynthSetup::~qsynthSetup (void)
     // Save last display options.
     m_settings.beginGroup("/Options");
     m_settings.writeEntry("/MessagesFont",  sMessagesFont);
+    m_settings.writeEntry("/MessagesLimit", bMessagesLimit);
+    m_settings.writeEntry("/MessagesLimitLines", iMessagesLimitLines);
     m_settings.writeEntry("/QueryClose",    bQueryClose);
     m_settings.writeEntry("/KeepOnTop",     bKeepOnTop);
     m_settings.writeEntry("/StdoutCapture", bStdoutCapture);

@@ -95,6 +95,8 @@ public:
 
     // Display options...
     QString sMessagesFont;
+    bool    bMessagesLimit;
+    int     iMessagesLimitLines;
     bool    bQueryClose;
     bool    bKeepOnTop;
     bool    bStdoutCapture;

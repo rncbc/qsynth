@@ -951,11 +951,11 @@
                         <property name="flat">
                             <bool>true</bool>
                         </property>
-                        <grid>
+                        <hbox>
                             <property name="name">
                                 <cstring>unnamed</cstring>
                             </property>
-                            <widget class="QLabel" row="0" column="0">
+                            <widget class="QLabel">
                                 <property name="name">
                                     <cstring>MessagesFontTextLabel</cstring>
                                 </property>
@@ -966,6 +966,12 @@
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
                                     </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>180</width>
+                                        <height>0</height>
+                                    </size>
                                 </property>
                                 <property name="paletteBackgroundColor">
                                     <color>
@@ -992,7 +998,7 @@
                                     <string>Sample messages text font display</string>
                                 </property>
                             </widget>
-                            <widget class="QPushButton" row="0" column="1">
+                            <widget class="QPushButton">
                                 <property name="name">
                                     <cstring>MessagesFontPushButton</cstring>
                                 </property>
@@ -1007,13 +1013,16 @@
                                 <property name="accel">
                                     <string>Alt+F</string>
                                 </property>
+                                <property name="autoDefault">
+                                    <bool>false</bool>
+                                </property>
                                 <property name="toolTip" stdset="0">
                                     <string>Select font for the messages text display</string>
                                 </property>
                             </widget>
-                            <spacer row="0" column="2">
+                            <spacer>
                                 <property name="name">
-                                    <cstring>space41</cstring>
+                                    <cstring>space43</cstring>
                                 </property>
                                 <property name="orientation">
                                     <enum>Horizontal</enum>
@@ -1028,7 +1037,75 @@
                                     </size>
                                 </property>
                             </spacer>
-                        </grid>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>MessagesLimitCheckBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Messages limit:</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+M</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Whether to keep a maximum number of lines in the messages window</string>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox">
+                                <item>
+                                    <property name="text">
+                                        <string>100</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>250</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>500</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>1000</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>2500</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>5000</string>
+                                    </property>
+                                </item>
+                                <property name="name">
+                                    <cstring>MessagesLimitLinesComboBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="editable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="currentItem">
+                                    <number>3</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>The maximum number of message lines to keep in view</string>
+                                </property>
+                            </widget>
+                        </hbox>
                     </widget>
                     <widget class="QGroupBox">
                         <property name="name">
@@ -1308,6 +1385,18 @@
         <slot>settingsChanged()</slot>
     </connection>
     <connection>
+        <sender>MessagesLimitCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>MessagesLimitLinesComboBox</sender>
+        <signal>activated(int)</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
         <sender>OkPushButton</sender>
         <signal>clicked()</signal>
         <receiver>qsynthSetupForm</receiver>
@@ -1343,6 +1432,8 @@
     <tabstop>SoundFontMoveDownPushButton</tabstop>
     <tabstop>SettingsListView</tabstop>
     <tabstop>MessagesFontPushButton</tabstop>
+    <tabstop>MessagesLimitCheckBox</tabstop>
+    <tabstop>MessagesLimitLinesComboBox</tabstop>
     <tabstop>QueryCloseCheckBox</tabstop>
     <tabstop>KeepOnTopCheckBox</tabstop>
     <tabstop>StdoutCaptureCheckBox</tabstop>
