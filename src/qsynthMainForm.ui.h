@@ -83,12 +83,18 @@ static void qsynth_midi_event ( fluid_midi_event_t *pMidiEvent )
     g_iMidiEvent++;
     
     if (g_pMidiChannels) {
-        int iType = ::fluid_midi_event_get_type(pMidiEvent);
         int iChan = ::fluid_midi_event_get_channel(pMidiEvent);
         if (iChan >= 0 && iChan < g_iMidiChannels) {
-            g_pMidiChannels[iChan].iEvent++;
-            if (iType == QSYNTH_MIDI_CONTROL_CHANGE || iType == QSYNTH_MIDI_PROGRAM_CHANGE)
+            switch (::fluid_midi_event_get_type(pMidiEvent)) {
+              case QSYNTH_MIDI_CONTROL_CHANGE:
+              case QSYNTH_MIDI_PROGRAM_CHANGE:
                 g_pMidiChannels[iChan].iChange++;
+                // Fall thru...
+              case QSYNTH_MIDI_NOTE_ON:
+              case QSYNTH_MIDI_NOTE_OFF:
+                g_pMidiChannels[iChan].iEvent++;
+                break;
+            }
         }
     }
 }
