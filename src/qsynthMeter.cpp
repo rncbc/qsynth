@@ -67,7 +67,7 @@ void qsynthMeterScale::drawLineLabel ( QPainter& p, int y, const char* pszLabel 
     if (m_pMeter->portCount() > 1)
         p.drawLine(iWidth - 3, iCurrY, iWidth - 1, iCurrY);
     if (iCurrY > m_iLastY + iMidHeight)
-        p.drawText(2, iCurrY - iMidHeight, iWidth - 2, iHeight, Qt::AlignHCenter | Qt::AlignVCenter, pszLabel);
+        p.drawText(2, iCurrY - iMidHeight, iWidth - 3, iHeight, Qt::AlignHCenter | Qt::AlignVCenter, pszLabel);
 
     m_iLastY = iCurrY;
 }
