@@ -32,8 +32,7 @@
 #define QSYNTHMETER_MINDB		(-70.0)
 
 // The peak decay rate (magic goes here :).
-#define QSYNTHMETER_DECAY_RATE1	(1.0 - 3E-8)
-#define QSYNTHMETER_DECAY_RATE2	(1.0 - 3E-1)
+#define QSYNTHMETER_DECAY_RATE 	(1.0 - 3E-8)
 
 
 //----------------------------------------------------------------------------
@@ -114,10 +113,8 @@ qsynthMeterValue::qsynthMeterValue( qsynthMeter *pMeter )
 {
 	m_pMeter      = pMeter;
 	m_fValue      = 0.0;
-	m_iValue      = 0;
-	m_fValueDecay = QSYNTHMETER_DECAY_RATE2;
 	m_iPeak       = 0;
-	m_fPeakDecay  = QSYNTHMETER_DECAY_RATE1;
+	m_fPeakDecay  = QSYNTHMETER_DECAY_RATE;
 	m_iPeakColor  = QSYNTHMETER_6DB;
 
 	QWidget::setMinimumWidth(10);
@@ -163,14 +160,6 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 	int y_over = 0;
 	int y_curr = 0;
 	int y  = m_pMeter->iec_scale(dB);
-	if (y > m_iValue) {
-		m_iValue = y;
-		m_fValueDecay = QSYNTHMETER_DECAY_RATE2;
-	} else {
-		y = m_iValue = (int) ((float) m_iValue * m_fValueDecay);
-		m_fValueDecay *= m_fValueDecay;
-	}
-
 	int iLevel;
 	for (iLevel = QSYNTHMETER_10DB; iLevel > QSYNTHMETER_OVER && y >= y_over; iLevel--) {
 	    y_curr = m_pMeter->iec_level(iLevel);
@@ -187,7 +176,7 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 	if (y > m_iPeak) {
 	    m_iPeak = y;
 	    m_iPeakColor = iLevel;
-	    m_fPeakDecay = QSYNTHMETER_DECAY_RATE1;
+	    m_fPeakDecay = QSYNTHMETER_DECAY_RATE;
 	} else {
 	    m_iPeak = (int) ((float) m_iPeak * m_fPeakDecay);
 	    if (m_iPeak < m_pMeter->iec_level(QSYNTHMETER_10DB))

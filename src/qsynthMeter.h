@@ -112,8 +112,6 @@ private:
     qsynthMeter *m_pMeter;
     // Running variables.
     float m_fValue;
-	int   m_iValue;
-	float m_fValueDecay;
     int   m_iPeak;
     float m_fPeakDecay;
     int   m_iPeakColor;
