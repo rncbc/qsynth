@@ -2,25 +2,33 @@ INCLUDEPATH += ./src
 
 SOURCES += src/main.cpp \
            src/qsynthSetup.cpp \
-           src/qsynthChannels.cpp
+           src/qsynthEngine.cpp \
+           src/qsynthOptions.cpp \
+           src/qsynthChannels.cpp \
+           src/qsynthTabBar.cpp
 
 HEADERS += src/qsynthAbout.h \
            src/qsynthSetup.h \
-           src/qsynthChannels.h
+           src/qsynthEngine.h \
+           src/qsynthOptions.h \
+           src/qsynthChannels.h \
+           src/qsynthTabBar.h
 
 FORMS    = src/qsynthMainForm.ui \
            src/qsynthMessagesForm.ui \
            src/qsynthChannelsForm.ui \
+           src/qsynthOptionsForm.ui \
 	       src/qsynthPresetForm.ui \
            src/qsynthSetupForm.ui \
            src/qsynthAboutForm.ui
 
 IMAGES   = icons/qsynth.xpm \
            icons/messages1.png \
-           icons/setup1.png \
+           icons/options1.png \
            icons/about1.png \
            icons/accept1.png \
            icons/quit1.png \
+           icons/setup1.png \
            icons/reset1.png \
            icons/panic1.png \
            icons/restart1.png \

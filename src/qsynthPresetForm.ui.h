@@ -50,10 +50,10 @@ void qsynthPresetForm::destroy()
 
 
 // Dialog setup loader.
-void qsynthPresetForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth, int iChan )
+void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, int iChan )
 {
     // Set our internal stuff...
-    m_pSetup = pSetup;
+    m_pOptions = pOptions;
     m_pSynth = pSynth;
     m_iChan  = iChan;
 
@@ -105,7 +105,7 @@ void qsynthPresetForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth, int i
     ProgListView->ensureItemVisible(pProgItem);
 
     // And the preview state...
-    PreviewCheckBox->setChecked(m_pSetup->bPresetPreview);
+    PreviewCheckBox->setChecked(m_pOptions->bPresetPreview);
 
     // Done with setup...
     m_iDirtySetup--;
@@ -155,8 +155,8 @@ void qsynthPresetForm::accept()
         // And set it right away...
         setBankProg(iBank, iProg);
         // Do remember preview state...
-        if (m_pSetup)
-            m_pSetup->bPresetPreview = PreviewCheckBox->isChecked();
+        if (m_pOptions)
+            m_pOptions->bPresetPreview = PreviewCheckBox->isChecked();
         // We got it.
         QDialog::accept();
     }

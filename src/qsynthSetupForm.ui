@@ -28,8 +28,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>524</width>
-            <height>344</height>
+            <width>504</width>
+            <height>367</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -49,18 +49,40 @@
     <property name="sizeGripEnabled">
         <bool>true</bool>
     </property>
-    <grid>
+    <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLayoutWidget" row="1" column="0">
+        <widget class="QLayoutWidget">
             <property name="name">
-                <cstring>layout7</cstring>
+                <cstring>layout8</cstring>
             </property>
             <hbox>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>DisplayNameTextLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Engine &amp;Name:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>DisplayNameLineEdit</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit">
+                    <property name="name">
+                        <cstring>DisplayNameLineEdit</cstring>
+                    </property>
+                    <property name="maxLength">
+                        <number>32</number>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Engine display name</string>
+                    </property>
+                </widget>
                 <spacer>
                     <property name="name">
                         <cstring>spacer01</cstring>
@@ -73,36 +95,14 @@
                     </property>
                     <property name="sizeHint">
                         <size>
-                            <width>250</width>
-                            <height>16</height>
+                            <width>8</width>
+                            <height>8</height>
                         </size>
                     </property>
                 </spacer>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>OkPushButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>OK</string>
-                    </property>
-                    <property name="iconSet">
-                        <iconset>accept1.png</iconset>
-                    </property>
-                </widget>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>CancelPushButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Cancel</string>
-                    </property>
-                    <property name="iconSet">
-                        <iconset>quit1.png</iconset>
-                    </property>
-                </widget>
             </hbox>
         </widget>
-        <widget class="QTabWidget" row="0" column="0">
+        <widget class="QTabWidget">
             <property name="name">
                 <cstring>SetupTabWidget</cstring>
             </property>
@@ -146,8 +146,8 @@
                         </property>
                         <property name="sizeHint">
                             <size>
-                                <width>269</width>
-                                <height>16</height>
+                                <width>8</width>
+                                <height>8</height>
                             </size>
                         </property>
                     </spacer>
@@ -216,8 +216,8 @@
                         </property>
                         <property name="sizeHint">
                             <size>
-                                <width>56</width>
-                                <height>16</height>
+                                <width>8</width>
+                                <height>8</height>
                             </size>
                         </property>
                     </spacer>
@@ -233,8 +233,8 @@
                         </property>
                         <property name="sizeHint">
                             <size>
-                                <width>16</width>
-                                <height>16</height>
+                                <width>8</width>
+                                <height>8</height>
                             </size>
                         </property>
                     </spacer>
@@ -305,6 +305,14 @@
                                 <property name="name">
                                     <cstring>AlsaNameComboBox</cstring>
                                 </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>7</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
                                 <property name="editable">
                                     <bool>true</bool>
                                 </property>
@@ -324,8 +332,8 @@
                                 </property>
                                 <property name="sizeHint">
                                     <size>
-                                        <width>210</width>
-                                        <height>20</height>
+                                        <width>8</width>
+                                        <height>8</height>
                                     </size>
                                 </property>
                             </spacer>
@@ -344,7 +352,7 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QLayoutWidget" row="1" column="0" rowspan="3" colspan="1">
+                    <widget class="QLayoutWidget" row="1" column="0" rowspan="2" colspan="1">
                         <property name="name">
                             <cstring>layout8</cstring>
                         </property>
@@ -669,24 +677,7 @@
                             </widget>
                         </grid>
                     </widget>
-                    <spacer row="2" column="2">
-                        <property name="name">
-                            <cstring>spacer22</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>160</width>
-                                <height>20</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <spacer row="4" column="0">
+                    <spacer row="3" column="0">
                         <property name="name">
                             <cstring>spacer23</cstring>
                         </property>
@@ -698,8 +689,8 @@
                         </property>
                         <property name="sizeHint">
                             <size>
-                                <width>20</width>
-                                <height>4</height>
+                                <width>8</width>
+                                <height>8</height>
                             </size>
                         </property>
                     </spacer>
@@ -715,12 +706,12 @@
                         </property>
                         <property name="sizeHint">
                             <size>
-                                <width>16</width>
-                                <height>20</height>
+                                <width>8</width>
+                                <height>8</height>
                             </size>
                         </property>
                     </spacer>
-                    <widget class="QCheckBox" row="7" column="0">
+                    <widget class="QCheckBox" row="6" column="0">
                         <property name="name">
                             <cstring>JackMultiCheckBox</cstring>
                         </property>
@@ -734,7 +725,7 @@
                             <string>Create multiple JACK output ports for channels, groups and effects</string>
                         </property>
                     </widget>
-                    <widget class="QCheckBox" row="6" column="0">
+                    <widget class="QCheckBox" row="5" column="0">
                         <property name="name">
                             <cstring>JackAutoConnectCheckBox</cstring>
                         </property>
@@ -748,7 +739,7 @@
                             <string>Attempt to connect the JACK outputs to the physical ports</string>
                         </property>
                     </widget>
-                    <widget class="QLayoutWidget" row="5" column="0" rowspan="1" colspan="3">
+                    <widget class="QLayoutWidget" row="4" column="0" rowspan="1" colspan="3">
                         <property name="name">
                             <cstring>layout9</cstring>
                         </property>
@@ -787,6 +778,14 @@
                                 <property name="name">
                                     <cstring>JackNameComboBox</cstring>
                                 </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>7</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
                                 <property name="editable">
                                     <bool>true</bool>
                                 </property>
@@ -809,13 +808,30 @@
                                 </property>
                                 <property name="sizeHint">
                                     <size>
-                                        <width>200</width>
-                                        <height>20</height>
+                                        <width>8</width>
+                                        <height>8</height>
                                     </size>
                                 </property>
                             </spacer>
                         </hbox>
                     </widget>
+                    <spacer row="1" column="2">
+                        <property name="name">
+                            <cstring>spacer22</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>8</width>
+                                <height>8</height>
+                            </size>
+                        </property>
+                    </spacer>
                 </grid>
             </widget>
             <widget class="QWidget">
@@ -931,8 +947,8 @@
                                 </property>
                                 <property name="sizeHint">
                                     <size>
-                                        <width>20</width>
-                                        <height>140</height>
+                                        <width>8</width>
+                                        <height>8</height>
                                     </size>
                                 </property>
                             </spacer>
@@ -1099,7 +1115,7 @@
                         </property>
                         <property name="minimumSize">
                             <size>
-                                <width>320</width>
+                                <width>360</width>
                                 <height>0</height>
                             </size>
                         </property>
@@ -1112,275 +1128,65 @@
                     </widget>
                 </grid>
             </widget>
-            <widget class="QWidget">
-                <property name="name">
-                    <cstring>DisplayTabPage</cstring>
-                </property>
-                <attribute name="title">
-                    <string>Display</string>
-                </attribute>
-                <vbox>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <widget class="QGroupBox">
-                        <property name="name">
-                            <cstring>MessagesGroupBox</cstring>
-                        </property>
-                        <property name="font">
-                            <font>
-                                <bold>1</bold>
-                            </font>
-                        </property>
-                        <property name="margin">
-                            <number>4</number>
-                        </property>
-                        <property name="title">
-                            <string>Messages Window</string>
-                        </property>
-                        <property name="flat">
-                            <bool>true</bool>
-                        </property>
-                        <hbox>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QLabel">
-                                <property name="name">
-                                    <cstring>MessagesFontTextLabel</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>3</hsizetype>
-                                        <vsizetype>5</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="minimumSize">
-                                    <size>
-                                        <width>180</width>
-                                        <height>0</height>
-                                    </size>
-                                </property>
-                                <property name="paletteBackgroundColor">
-                                    <color>
-                                        <red>255</red>
-                                        <green>255</green>
-                                        <blue>255</blue>
-                                    </color>
-                                </property>
-                                <property name="font">
-                                    <font>
-                                        <bold>0</bold>
-                                    </font>
-                                </property>
-                                <property name="frameShape">
-                                    <enum>LineEditPanel</enum>
-                                </property>
-                                <property name="frameShadow">
-                                    <enum>Sunken</enum>
-                                </property>
-                                <property name="alignment">
-                                    <set>AlignCenter</set>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Sample messages text font display</string>
-                                </property>
-                            </widget>
-                            <widget class="QPushButton">
-                                <property name="name">
-                                    <cstring>MessagesFontPushButton</cstring>
-                                </property>
-                                <property name="font">
-                                    <font>
-                                        <bold>0</bold>
-                                    </font>
-                                </property>
-                                <property name="text">
-                                    <string>&amp;Font...</string>
-                                </property>
-                                <property name="accel">
-                                    <string>Alt+F</string>
-                                </property>
-                                <property name="autoDefault">
-                                    <bool>false</bool>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Select font for the messages text display</string>
-                                </property>
-                            </widget>
-                            <spacer>
-                                <property name="name">
-                                    <cstring>space51</cstring>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Horizontal</enum>
-                                </property>
-                                <property name="sizeType">
-                                    <enum>Expanding</enum>
-                                </property>
-                                <property name="sizeHint">
-                                    <size>
-                                        <width>8</width>
-                                        <height>8</height>
-                                    </size>
-                                </property>
-                            </spacer>
-                            <widget class="QCheckBox">
-                                <property name="name">
-                                    <cstring>MessagesLimitCheckBox</cstring>
-                                </property>
-                                <property name="font">
-                                    <font>
-                                        <bold>0</bold>
-                                    </font>
-                                </property>
-                                <property name="text">
-                                    <string>&amp;Messages limit:</string>
-                                </property>
-                                <property name="accel">
-                                    <string>Alt+M</string>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Whether to keep a maximum number of lines in the messages window</string>
-                                </property>
-                            </widget>
-                            <widget class="QComboBox">
-                                <item>
-                                    <property name="text">
-                                        <string>100</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>250</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>500</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>1000</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>2500</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>5000</string>
-                                    </property>
-                                </item>
-                                <property name="name">
-                                    <cstring>MessagesLimitLinesComboBox</cstring>
-                                </property>
-                                <property name="font">
-                                    <font>
-                                        <bold>0</bold>
-                                    </font>
-                                </property>
-                                <property name="editable">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="currentItem">
-                                    <number>3</number>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>The maximum number of message lines to keep in view</string>
-                                </property>
-                            </widget>
-                        </hbox>
-                    </widget>
-                    <widget class="QGroupBox">
-                        <property name="name">
-                            <cstring>OtherGroupBox</cstring>
-                        </property>
-                        <property name="font">
-                            <font>
-                                <bold>1</bold>
-                            </font>
-                        </property>
-                        <property name="title">
-                            <string>Other</string>
-                        </property>
-                        <property name="flat">
-                            <bool>true</bool>
-                        </property>
-                        <vbox>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QCheckBox">
-                                <property name="name">
-                                    <cstring>QueryCloseCheckBox</cstring>
-                                </property>
-                                <property name="font">
-                                    <font>
-                                        <bold>0</bold>
-                                    </font>
-                                </property>
-                                <property name="text">
-                                    <string>&amp;Confirm application close</string>
-                                </property>
-                                <property name="accel">
-                                    <string>Alt+C</string>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Whether to ask for confirmation on application exit</string>
-                                </property>
-                            </widget>
-                            <widget class="QCheckBox">
-                                <property name="name">
-                                    <cstring>KeepOnTopCheckBox</cstring>
-                                </property>
-                                <property name="font">
-                                    <font>
-                                        <bold>0</bold>
-                                    </font>
-                                </property>
-                                <property name="text">
-                                    <string>&amp;Keep child windows always on top</string>
-                                </property>
-                                <property name="accel">
-                                    <string>Alt+K</string>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Whether to keep all child windows on top of the main window</string>
-                                </property>
-                            </widget>
-                            <widget class="QCheckBox">
-                                <property name="name">
-                                    <cstring>StdoutCaptureCheckBox</cstring>
-                                </property>
-                                <property name="font">
-                                    <font>
-                                        <bold>0</bold>
-                                    </font>
-                                </property>
-                                <property name="text">
-                                    <string>Capture standard &amp;output</string>
-                                </property>
-                                <property name="accel">
-                                    <string>Alt+O</string>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Whether to capture standard output (stdout/stderr) into messages window</string>
-                                </property>
-                            </widget>
-                        </vbox>
-                    </widget>
-                </vbox>
-            </widget>
         </widget>
-    </grid>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout7</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer02</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>8</width>
+                            <height>8</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>OkPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>OK</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>accept1.png</iconset>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>CancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Cancel</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>quit1.png</iconset>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
 </widget>
 <connections>
+    <connection>
+        <sender>DisplayNameLineEdit</sender>
+        <signal>textChanged(const QString &amp;)</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>nameChanged(const QString&amp;)</slot>
+    </connection>
     <connection>
         <sender>MidiInCheckBox</sender>
         <signal>stateChanged(int)</signal>
@@ -1413,7 +1219,7 @@
     </connection>
     <connection>
         <sender>AlsaNameComboBox</sender>
-        <signal>activated(int)</signal>
+        <signal>textChanged(const QString &amp;)</signal>
         <receiver>qsynthSetupForm</receiver>
         <slot>settingsChanged()</slot>
     </connection>
@@ -1431,19 +1237,19 @@
     </connection>
     <connection>
         <sender>SampleRateComboBox</sender>
-        <signal>activated(int)</signal>
+        <signal>textChanged(const QString &amp;)</signal>
         <receiver>qsynthSetupForm</receiver>
         <slot>settingsChanged()</slot>
     </connection>
     <connection>
         <sender>AudioBufSizeComboBox</sender>
-        <signal>activated(int)</signal>
+        <signal>textChanged(const QString &amp;)</signal>
         <receiver>qsynthSetupForm</receiver>
         <slot>settingsChanged()</slot>
     </connection>
     <connection>
         <sender>AudioBufCountComboBox</sender>
-        <signal>activated(int)</signal>
+        <signal>textChanged(const QString &amp;)</signal>
         <receiver>qsynthSetupForm</receiver>
         <slot>settingsChanged()</slot>
     </connection>
@@ -1479,7 +1285,7 @@
     </connection>
     <connection>
         <sender>JackNameComboBox</sender>
-        <signal>activated(int)</signal>
+        <signal>textChanged(const QString &amp;)</signal>
         <receiver>qsynthSetupForm</receiver>
         <slot>settingsChanged()</slot>
     </connection>
@@ -1520,42 +1326,6 @@
         <slot>moveDownSoundFont()</slot>
     </connection>
     <connection>
-        <sender>MessagesFontPushButton</sender>
-        <signal>clicked()</signal>
-        <receiver>qsynthSetupForm</receiver>
-        <slot>chooseMessagesFont()</slot>
-    </connection>
-    <connection>
-        <sender>QueryCloseCheckBox</sender>
-        <signal>stateChanged(int)</signal>
-        <receiver>qsynthSetupForm</receiver>
-        <slot>settingsChanged()</slot>
-    </connection>
-    <connection>
-        <sender>KeepOnTopCheckBox</sender>
-        <signal>stateChanged(int)</signal>
-        <receiver>qsynthSetupForm</receiver>
-        <slot>settingsChanged()</slot>
-    </connection>
-    <connection>
-        <sender>StdoutCaptureCheckBox</sender>
-        <signal>stateChanged(int)</signal>
-        <receiver>qsynthSetupForm</receiver>
-        <slot>settingsChanged()</slot>
-    </connection>
-    <connection>
-        <sender>MessagesLimitCheckBox</sender>
-        <signal>stateChanged(int)</signal>
-        <receiver>qsynthSetupForm</receiver>
-        <slot>settingsChanged()</slot>
-    </connection>
-    <connection>
-        <sender>MessagesLimitLinesComboBox</sender>
-        <signal>activated(int)</signal>
-        <receiver>qsynthSetupForm</receiver>
-        <slot>settingsChanged()</slot>
-    </connection>
-    <connection>
         <sender>OkPushButton</sender>
         <signal>clicked()</signal>
         <receiver>qsynthSetupForm</receiver>
@@ -1569,6 +1339,7 @@
     </connection>
 </connections>
 <tabstops>
+    <tabstop>DisplayNameLineEdit</tabstop>
     <tabstop>SetupTabWidget</tabstop>
     <tabstop>MidiInCheckBox</tabstop>
     <tabstop>MidiDriverComboBox</tabstop>
@@ -1593,30 +1364,26 @@
     <tabstop>SoundFontMoveUpPushButton</tabstop>
     <tabstop>SoundFontMoveDownPushButton</tabstop>
     <tabstop>SettingsListView</tabstop>
-    <tabstop>MessagesFontPushButton</tabstop>
-    <tabstop>MessagesLimitCheckBox</tabstop>
-    <tabstop>MessagesLimitLinesComboBox</tabstop>
-    <tabstop>QueryCloseCheckBox</tabstop>
-    <tabstop>KeepOnTopCheckBox</tabstop>
-    <tabstop>StdoutCaptureCheckBox</tabstop>
     <tabstop>OkPushButton</tabstop>
     <tabstop>CancelPushButton</tabstop>
 </tabstops>
 <includes>
-    <include location="global" impldecl="in declaration">qsynthSetup.h</include>
+    <include location="local" impldecl="in declaration">qsynthEngine.h</include>
     <include location="local" impldecl="in implementation">qsynthMainForm.h</include>
     <include location="local" impldecl="in implementation">qsynthSetupForm.ui.h</include>
 </includes>
 <variables>
-    <variable access="private">QPixmap *m_pXpmSoundFont;</variable>
+    <variable access="private">qsynthOptions *m_pOptions;</variable>
     <variable access="private">qsynthSetup *m_pSetup;</variable>
     <variable access="private">int m_iDirtySetup;</variable>
     <variable access="private">int m_iDirtyCount;</variable>
     <variable access="private">QString m_sSoundFontDir;</variable>
+    <variable access="private">QPixmap *m_pXpmSoundFont;</variable>
 </variables>
 <slots>
     <slot specifier="non virtual">accept()</slot>
     <slot specifier="non virtual">reject()</slot>
+    <slot specifier="non virtual">nameChanged(const QString &amp;)</slot>
     <slot specifier="non virtual">settingsChanged()</slot>
     <slot specifier="non virtual">stabilizeForm()</slot>
     <slot specifier="non virtual">contextMenu(QListViewItem *, const QPoint&amp;, int)</slot>
@@ -1624,14 +1391,13 @@
     <slot specifier="non virtual">removeSoundFont()</slot>
     <slot specifier="non virtual">moveUpSoundFont()</slot>
     <slot specifier="non virtual">moveDownSoundFont()</slot>
-    <slot specifier="non virtual">chooseMessagesFont()</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
     <function access="private" specifier="non virtual">destroy()</function>
-    <function specifier="non virtual">setup( qsynthSetup *pSetup, fluid_synth_t *pSynth )</function>
+    <function specifier="non virtual">setup( qsynthOptions *pOptions, qsynthEngine *pEngine, bool bNew )</function>
     <function access="private" specifier="non virtual">refreshSoundFonts()</function>
 </functions>
 <pixmapinproject/>
-<layoutdefaults spacing="4" margin="4"/>
+<layoutdefaults spacing="8" margin="8"/>
 </UI>

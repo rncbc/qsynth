@@ -27,6 +27,7 @@
 #include "config.h"
 
 #include "qsynthChannels.h"
+#include "qsynthAbout.h"
 
 
 // Kind of constructor.
@@ -36,8 +37,10 @@ void qsynthChannelsForm::init (void)
     m_ppChannels = NULL;
 
     // No setup synth references initially (the caller will set them).
-    m_pSetup = NULL;
-    m_pSynth = NULL;
+    m_pOptions = NULL;
+    m_pEngine  = NULL;
+    m_pSynth   = NULL;
+    
     // Initialize dirty control state.
     m_iDirtySetup = 0;
     m_iDirtyCount = 0;
@@ -88,27 +91,29 @@ void qsynthChannelsForm::hideEvent ( QHideEvent *pHideEvent )
 
 
 // Populate (setup) synth settings descriptors.
-void qsynthChannelsForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
+void qsynthChannelsForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine )
 {
     // Set the proper descriptors.
-    m_pSetup = pSetup;
-    m_pSynth = pSynth;
-
-    // Check this first.
-    if (m_pSetup == NULL)
-        return;
+    m_pOptions = pOptions;
+    m_pEngine  = pEngine;
+    m_pSynth   = pEngine ? pEngine->pSynth : NULL;
         
+    // Update caption.
+    QString sCaption = QSYNTH_TITLE ": " + tr("Channels");
+    if (pEngine)
+        sCaption += " [" + pEngine->name() + "]";
+    setCaption(sCaption);
+
     // Free up current channel list view.
-    if (m_pSynth == NULL && m_ppChannels) {
-        ChannelsListView->clear();
+    if (m_ppChannels) {
         delete [] m_ppChannels;
         m_ppChannels = NULL;
         m_iChannels  = 0;
     }
     
     // Allocate a new channel list view...
+    ChannelsListView->clear();
     if (m_pSynth && m_ppChannels == NULL) {
-        ChannelsListView->clear();
         m_iChannels = ::fluid_synth_count_midi_channels(m_pSynth);
         if (m_iChannels > 0)
             m_ppChannels = new qsynthChannelsViewItemPtr [m_iChannels];
@@ -125,7 +130,7 @@ void qsynthChannelsForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
         // Load preset list...
         m_iDirtySetup++;
         resetPresets();
-        PresetComboBox->setCurrentText(m_pSetup->sDefPreset);
+        PresetComboBox->setCurrentText((m_pEngine->setup())->sDefPreset);
         m_iDirtySetup--;
         // Load default preset and update/refresh the whole thing...
         resetAllChannels();
@@ -166,9 +171,6 @@ void qsynthChannelsForm::updateChannel ( int iChan )
 // All channels update.
 void qsynthChannelsForm::updateAllChannels (void)
 {
-    if (m_pSynth == NULL || m_ppChannels == NULL)
-        return;
-
     for (int iChan = 0; iChan < m_iChannels; iChan++)
         updateChannel(iChan);
 
@@ -179,19 +181,22 @@ void qsynthChannelsForm::updateAllChannels (void)
 // All channels reset update.
 void qsynthChannelsForm::resetAllChannels (void)
 {
-    if (m_pSetup == NULL)
+    if (m_pEngine == NULL)
         return;
 
-    changePreset(m_pSetup->sDefPreset);
+    qsynthSetup *pSetup = m_pEngine->setup();
+    if (pSetup == NULL)
+        return;
+
+    changePreset(pSetup->sDefPreset);
 }
 
 
 // Update channel activity status LED.
 void qsynthChannelsForm::setChannelOn ( int iChan, bool bOn )
 {
-    if (m_pSynth == NULL || m_ppChannels == NULL)
+    if (m_ppChannels == NULL)
         return;
-
     if (iChan < 0 || iChan >= m_iChannels)
         return;
         
@@ -232,7 +237,9 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
 {
     if (pItem == NULL)
         return;
-    if (m_pSynth == NULL || m_ppChannels == NULL)
+    if (m_ppChannels == NULL)
+        return;
+    if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
         return;
 
     int iChan = (pItem->text(QSYNTH_CHANNELS_CHAN).toInt() - 1);
@@ -242,7 +249,7 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
     qsynthPresetForm *pPresetForm = new qsynthPresetForm(this);
     if (pPresetForm) {
         // The the proper context.
-        pPresetForm->setup(m_pSetup, m_pSynth, iChan);
+        pPresetForm->setup(m_pOptions, m_pSynth, iChan);
         // Show the channel preset dialog...
         if (pPresetForm->exec())
             updateChannel(iChan);
@@ -256,16 +263,18 @@ void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
 // Channels preset naming slots.
 void qsynthChannelsForm::changePreset( const QString& sPreset )
 {
-    if (m_pSetup == NULL || m_pSynth == NULL || m_iDirtySetup > 0)
+    if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
+        return;
+    if (m_iDirtySetup > 0)
         return;
 
     // Force this is pseudo-dirty procedure...
     m_iDirtyCount++;
     // Load presets and update/refresh the whole thing.
-    if (m_pSetup->loadPreset(m_pSynth, sPreset)) {
+    if (m_pOptions->loadPreset(m_pEngine, sPreset)) {
         updateAllChannels();
         // Very special, make this the new default preset.
-        m_pSetup->sDefPreset = sPreset;
+        (m_pEngine->setup())->sDefPreset = sPreset;
         // This is clean now, for sure.
         m_iDirtyCount = 0;
     }
@@ -276,7 +285,7 @@ void qsynthChannelsForm::changePreset( const QString& sPreset )
 
 void qsynthChannelsForm::savePreset (void)
 {
-    if (m_pSetup == NULL || m_pSynth == NULL)
+    if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
         return;
 
     QString sPreset = PresetComboBox->currentText();
@@ -284,13 +293,13 @@ void qsynthChannelsForm::savePreset (void)
         return;
 
     // Unload presets (from synth).
-    if (m_pSetup->savePreset(m_pSynth, sPreset)) {
+    if (m_pOptions->savePreset(m_pEngine, sPreset)) {
         m_iDirtySetup++;
         resetPresets();
         PresetComboBox->setCurrentText(sPreset);
         m_iDirtySetup--;
         // Again special, force this the default preset.
-        m_pSetup->sDefPreset = sPreset;
+        (m_pEngine->setup())->sDefPreset = sPreset;
         // Not dirty anymore, by definition.
         m_iDirtyCount = 0;
     }
@@ -301,7 +310,7 @@ void qsynthChannelsForm::savePreset (void)
 
 void qsynthChannelsForm::deletePreset (void)
 {
-    if (m_pSetup == NULL || m_pSynth == NULL)
+    if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
         return;
 
     QString sPreset = PresetComboBox->currentText();
@@ -311,7 +320,7 @@ void qsynthChannelsForm::deletePreset (void)
     // Remove current preset item...
     m_iDirtySetup++;
     int iItem = PresetComboBox->currentItem();
-    m_pSetup->deletePreset(sPreset);
+    m_pOptions->deletePreset(m_pEngine, sPreset);
     resetPresets();
     PresetComboBox->setCurrentItem(iItem);
     m_iDirtySetup--;
@@ -323,11 +332,15 @@ void qsynthChannelsForm::deletePreset (void)
 
 void qsynthChannelsForm::resetPresets (void)
 {
-    if (m_pSetup == NULL)
+    if (m_pEngine == NULL)
+        return;
+        
+    qsynthSetup *pSetup = m_pEngine->setup();
+    if (pSetup == NULL)
         return;
 
     PresetComboBox->clear();
-    PresetComboBox->insertStringList(m_pSetup->presets);
+    PresetComboBox->insertStringList(pSetup->presets);
     PresetComboBox->insertItem("(default)");
 }
 
@@ -335,10 +348,17 @@ void qsynthChannelsForm::resetPresets (void)
 // Stabilize current form state.
 void qsynthChannelsForm::stabilizeForm (void)
 {
+    if (m_pEngine == NULL)
+        return;
+        
+    qsynthSetup *pSetup = m_pEngine->setup();
+    if (pSetup == NULL)
+        return;
+
     QString sPreset = PresetComboBox->currentText();
-    if (m_pSetup && !sPreset.isEmpty()) {
+    if (m_pSynth && !sPreset.isEmpty()) {
         PresetSavePushButton->setEnabled(m_iDirtyCount > 0);
-        PresetDeletePushButton->setEnabled(m_pSetup->presets.find(sPreset) != m_pSetup->presets.end());
+        PresetDeletePushButton->setEnabled(pSetup->presets.find(sPreset) != pSetup->presets.end());
     } else {
         PresetSavePushButton->setEnabled(false);
         PresetDeletePushButton->setEnabled(false);
@@ -347,4 +367,3 @@ void qsynthChannelsForm::stabilizeForm (void)
 
 
 // end of qsynthChannelsForm.ui.h
-

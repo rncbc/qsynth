@@ -32,7 +32,7 @@ void qsynthAboutForm::init (void)
 {
     // Stuff the about box...
     QString sText = "<p align=\"center\"><br />\n";
-    sText += "<b>" QSYNTH_TITLE " - " QSYNTH_SUBTITLE "</b><br />\n";
+    sText += "<b>" QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + "</b><br />\n";
     sText += "<br />\n";
     sText += tr("Version") + ": <b>" QSYNTH_VERSION "</b><br />\n";
     sText += tr("Build") + ": " __DATE__ " " __TIME__ "<br />\n";

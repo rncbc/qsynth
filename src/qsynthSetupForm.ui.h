@@ -29,6 +29,8 @@
 
 #include "config.h"
 
+#include "qsynthAbout.h"
+
 
 // Our local parameter data struct.
 struct qsynth_settings_data
@@ -156,6 +158,7 @@ void qsynthSetupForm::init (void)
 {
     // No settings descriptor initially (the caller will set it).
     m_pSetup = NULL;
+    m_pOptions = NULL;
 
     // Initialize dirty control state.
     m_iDirtySetup = 0;
@@ -165,10 +168,13 @@ void qsynthSetupForm::init (void)
     m_pXpmSoundFont  = new QPixmap(QPixmap::fromMimeSource("sfont1.png"));
 
     // Set dialog validators...
+    QRegExp rx("[\\w]+");
+    DisplayNameLineEdit->setValidator(new QRegExpValidator(rx, DisplayNameLineEdit));
     SampleRateComboBox->setValidator(new QIntValidator(SampleRateComboBox));
     AudioBufSizeComboBox->setValidator(new QIntValidator(AudioBufSizeComboBox));
     AudioBufCountComboBox->setValidator(new QIntValidator(AudioBufCountComboBox));
-    MessagesLimitLinesComboBox->setValidator(new QIntValidator(MessagesLimitLinesComboBox));
+    JackNameComboBox->setValidator(new QRegExpValidator(rx, JackNameComboBox));
+    AlsaNameComboBox->setValidator(new QRegExpValidator(rx, AlsaNameComboBox));
 
     // No sorting on soundfont stack list.
     SoundFontListView->setSorting(-1);
@@ -187,19 +193,29 @@ void qsynthSetupForm::destroy (void)
 
 
 // Populate (setup) dialog controls from settings descriptors.
-void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
+void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bool bNew )
 {
-    // Set reference descriptor.
-    m_pSetup = pSetup;
+    // Check this first.
+    if (pOptions == NULL || pEngine == NULL)
+        return;
 
-    // Start clean.
+    // Set reference descriptors.
+    m_pOptions = pOptions;
+    m_pSetup = pEngine->setup();
+
+    // Update caption.
+    setCaption(QSYNTH_TITLE ": " + tr("Setup") + " [" + pEngine->name() + "]");
+
+    // Start clean?
     m_iDirtyCount = 0;
+    if (bNew)
+        m_iDirtyCount++;
     // Avoid nested changes.
     m_iDirtySetup++;
 
-    // Some defaults first.
-    m_sSoundFontDir = m_pSetup->sSoundFontDir;
-
+    // Display name.
+    DisplayNameLineEdit->setText(m_pSetup->sDisplayName);
+    
     // Load Setttings view...
     qsynth_settings_data data;
     // Set data context.
@@ -231,7 +247,9 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     MidiChannelsSpinBox->setValue(m_pSetup->iMidiChannels);
     MidiDumpCheckBox->setChecked(m_pSetup->bMidiDump);
     VerboseCheckBox->setChecked(m_pSetup->bVerbose);
-    AlsaNameComboBox->setCurrentText(m_pSetup->sAlsaName);
+    // ALSA client identifier.
+    AlsaNameComboBox->insertItem(m_pSetup->sDisplayName);
+    AlsaNameComboBox->setCurrentText(bNew ? m_pSetup->sDisplayName : m_pSetup->sAlsaName);
 
     // Audio settings...
     AudioDriverComboBox->setCurrentText(m_pSetup->sAudioDriver);
@@ -244,17 +262,23 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     PolyphonySpinBox->setValue(m_pSetup->iPolyphony);
     JackMultiCheckBox->setChecked(m_pSetup->bJackMulti);
     JackAutoConnectCheckBox->setChecked(m_pSetup->bJackAutoConnect);
-    JackNameComboBox->setCurrentText(m_pSetup->sJackName);
+    // JACK client name...
+    QString sJackName;
+    if (m_pSetup->sDisplayName.find(QSYNTH_TITLE) < 0)
+        sJackName += QSYNTH_TITLE "_";
+    sJackName += m_pSetup->sDisplayName;
+    JackNameComboBox->insertItem(sJackName);
+    JackNameComboBox->setCurrentText(bNew ? sJackName : m_pSetup->sJackName);
 
     // Load the soundfonts view.
     SoundFontListView->clear();
     SoundFontListView->setUpdatesEnabled(false);
     QListViewItem *pItem = NULL;
-    if (pSynth) {
+    if (pEngine->pSynth) {
         // Load soundfont view from actual synth stack...
-        int cSoundFonts = ::fluid_synth_sfcount(pSynth);
+        int cSoundFonts = ::fluid_synth_sfcount(pEngine->pSynth);
         for (int i = cSoundFonts - 1; i >= 0; i--) {
-            fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(pSynth, i);
+            fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(pEngine->pSynth, i);
             if (pSoundFont) {
                 pItem = new QListViewItem(SoundFontListView, pItem);
                 if (pItem) {
@@ -279,22 +303,6 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     SoundFontListView->setUpdatesEnabled(true);
     SoundFontListView->update();
 
-    // Load Display options...
-    QFont font;
-    if (m_pSetup->sMessagesFont.isEmpty() || !font.fromString(m_pSetup->sMessagesFont))
-        font = QFont("Fixed", 8);
-    MessagesFontTextLabel->setFont(font);
-    MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
-
-    // Messages limit option.
-    MessagesLimitCheckBox->setChecked(m_pSetup->bMessagesLimit);
-    MessagesLimitLinesComboBox->setCurrentText(QString::number(m_pSetup->iMessagesLimitLines));
-
-    // Other options finally.
-    QueryCloseCheckBox->setChecked(m_pSetup->bQueryClose);
-    KeepOnTopCheckBox->setChecked(m_pSetup->bKeepOnTop);
-    StdoutCaptureCheckBox->setChecked(m_pSetup->bStdoutCapture);
-
     // Done.
     m_iDirtySetup--;
     stabilizeForm();
@@ -304,19 +312,13 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
 // Accept settings (OK button slot).
 void qsynthSetupForm::accept (void)
 {
-    // Save options...
-    m_pSetup->sMessagesFont        = MessagesFontTextLabel->font().toString();
-    m_pSetup->bMessagesLimit       = MessagesLimitCheckBox->isChecked();
-    m_pSetup->iMessagesLimitLines  = MessagesLimitLinesComboBox->currentText().toInt();
-    m_pSetup->bQueryClose          = QueryCloseCheckBox->isChecked();
-    m_pSetup->bKeepOnTop           = KeepOnTopCheckBox->isChecked();
-    m_pSetup->bStdoutCapture       = StdoutCaptureCheckBox->isChecked();
-
     if (m_iDirtyCount > 0) {
         // Save the soundfont view.
         m_pSetup->soundfonts.clear();
         for (QListViewItem *pItem = SoundFontListView->firstChild(); pItem; pItem = pItem->nextSibling())
             m_pSetup->soundfonts.append(pItem->text(1));
+        // Will we have a setup renaming?
+        m_pSetup->sDisplayName     = DisplayNameLineEdit->text();
         // Audio settings...
         m_pSetup->sAudioDriver     = AudioDriverComboBox->currentText();
         m_pSetup->sSampleFormat    = SampleFormatComboBox->currentText();
@@ -339,9 +341,6 @@ void qsynthSetupForm::accept (void)
         // Reset dirty flag.
         m_iDirtyCount = 0;
     }
-
-    // And the defaults too.
-    m_pSetup->sSoundFontDir = m_sSoundFontDir;
 
     // Just go with dialog acceptance.
     QDialog::accept();
@@ -374,8 +373,15 @@ void qsynthSetupForm::reject (void)
 }
 
 
+// Dirty up engine display name.
+void qsynthSetupForm::nameChanged ( const QString& )
+{
+    settingsChanged();
+}
+
+
 // Dirty up settings.
-void qsynthSetupForm::settingsChanged()
+void qsynthSetupForm::settingsChanged (void)
 {
     if (m_iDirtySetup > 0)
         return;
@@ -386,7 +392,7 @@ void qsynthSetupForm::settingsChanged()
 
 
 // Stabilize current form state.
-void qsynthSetupForm::stabilizeForm()
+void qsynthSetupForm::stabilizeForm (void)
 {
     bool bEnabled = MidiInCheckBox->isChecked();
     MidiDriverTextLabel->setEnabled(bEnabled);
@@ -418,9 +424,16 @@ void qsynthSetupForm::stabilizeForm()
         SoundFontMoveDownPushButton->setEnabled(false);
     }
 
-    MessagesLimitLinesComboBox->setEnabled(MessagesLimitCheckBox->isChecked());
-
-    OkPushButton->setEnabled(m_iDirtyCount > 0);
+    bEnabled = (m_iDirtyCount > 0);
+    if (bEnabled && m_pSetup) {
+        const QString& sDisplayName = DisplayNameLineEdit->text();
+        if (sDisplayName != m_pSetup->sDisplayName) {
+            bEnabled = (m_pOptions->engines.find(sDisplayName) == m_pOptions->engines.end());
+            if (bEnabled)
+                bEnabled = (sDisplayName != (m_pOptions->defaultSetup())->sDisplayName);
+        }
+    }
+    OkPushButton->setEnabled(bEnabled);
 }
 
 
@@ -450,7 +463,7 @@ void qsynthSetupForm::contextMenu( QListViewItem *pItem, const QPoint& pos, int 
 
 
 // Refresh the soundfont view ids.
-void qsynthSetupForm::refreshSoundFonts()
+void qsynthSetupForm::refreshSoundFonts (void)
 {
     SoundFontListView->setUpdatesEnabled(false);
     int i = 0;
@@ -466,7 +479,7 @@ void qsynthSetupForm::openSoundFont()
 {
     QStringList soundfonts = QFileDialog::getOpenFileNames(
             tr("Soundfont files") + " (*.sf2 *.SF2)",   // Filter (SF2 files)
-            m_sSoundFontDir,                            // Start here.
+            m_pOptions->sSoundFontDir,                  // Start here.
             this, 0,                                    // Parent and name (none)
             tr("Soundfont files")                       // Caption.
     );
@@ -502,7 +515,7 @@ void qsynthSetupForm::openSoundFont()
                 pItem->setText(1, sSoundFont);
                 pItem->setSelected(true);
                 SoundFontListView->setCurrentItem(pItem);
-                m_sSoundFontDir = QFileInfo(sSoundFont).dirPath(true);
+                m_pOptions->sSoundFontDir = QFileInfo(sSoundFont).dirPath(true);
                 m_iDirtyCount++;
             }
         }
@@ -521,7 +534,7 @@ void qsynthSetupForm::openSoundFont()
 
 
 // Remove current selected soundfont.
-void qsynthSetupForm::removeSoundFont()
+void qsynthSetupForm::removeSoundFont (void)
 {
     QListViewItem *pItem = SoundFontListView->selectedItem();
     if (pItem) {
@@ -535,7 +548,7 @@ void qsynthSetupForm::removeSoundFont()
 
 
 // Move current selected soundfont one position up.
-void qsynthSetupForm::moveUpSoundFont()
+void qsynthSetupForm::moveUpSoundFont (void)
 {
     QListViewItem *pItem = SoundFontListView->selectedItem();
     if (pItem) {
@@ -561,7 +574,7 @@ void qsynthSetupForm::moveUpSoundFont()
 
 
 // Move current selected soundfont one position down.
-void qsynthSetupForm::moveDownSoundFont()
+void qsynthSetupForm::moveDownSoundFont (void)
 {
     QListViewItem *pItem = SoundFontListView->selectedItem();
     if (pItem) {
@@ -577,19 +590,6 @@ void qsynthSetupForm::moveDownSoundFont()
 
     refreshSoundFonts();
     stabilizeForm();
-}
-
-
-// The messages font selection dialog.
-void qsynthSetupForm::chooseMessagesFont()
-{
-    bool  bOk  = false;
-    QFont font = QFontDialog::getFont(&bOk, MessagesFontTextLabel->font(), this);
-    if (bOk) {
-        MessagesFontTextLabel->setFont(font);
-        MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
-        settingsChanged();
-    }
 }
 
 

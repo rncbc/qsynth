@@ -292,7 +292,7 @@
 </tabstops>
 <includes>
     <include location="global" impldecl="in declaration">qsynthChannels.h</include>
-    <include location="local" impldecl="in declaration">qsynthSetup.h</include>
+    <include location="local" impldecl="in declaration">qsynthEngine.h</include>
     <include location="local" impldecl="in implementation">qsynthMainForm.h</include>
     <include location="local" impldecl="in implementation">qsynthPresetForm.h</include>
     <include location="local" impldecl="in implementation">qsynthChannelsForm.ui.h</include>
@@ -300,7 +300,8 @@
 <variables>
     <variable access="private">int m_iChannels;</variable>
     <variable access="private">qsynthChannelsViewItemPtr *m_ppChannels;</variable>
-    <variable access="private">qsynthSetup *m_pSetup;</variable>
+    <variable access="private">qsynthOptions *m_pOptions;</variable>
+    <variable access="private">qsynthEngine *m_pEngine;</variable>
     <variable access="private">fluid_synth_t *m_pSynth;</variable>
     <variable access="private">int m_iDirtySetup;</variable>
     <variable access="private">int m_iDirtyCount;</variable>
@@ -324,7 +325,7 @@
     <function access="private" specifier="non virtual">showEvent( QShowEvent * pShowEvent )</function>
     <function access="private" specifier="non virtual">hideEvent( QHideEvent * pHideEvent )</function>
     <function access="private" specifier="non virtual">stabilizeForm()</function>
-    <function specifier="non virtual">setup( qsynthSetup *pSetup, fluid_synth_t *pSynth )</function>
+    <function specifier="non virtual">setup( qsynthOptions *pOptions, qsynthEngine *pEngine )</function>
     <function specifier="non virtual">setChannelOn( int iChan, bool bOn )</function>
     <function specifier="non virtual">updateChannel( int iChan )</function>
 </functions>

@@ -1,0 +1,465 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>qsynthOptionsForm</class>
+<comment>qsynth - A fluidsynth Qt GUI Interface.
+
+   Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved.
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+
+</comment>
+<author>rncbc aka Rui Nuno Capela</author>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>qsynthOptionsForm</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>524</width>
+            <height>344</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>1</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>qsynth: Setup</string>
+    </property>
+    <property name="icon">
+        <pixmap>qsynth.xpm</pixmap>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLayoutWidget" row="1" column="0">
+            <property name="name">
+                <cstring>layout7</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer01</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>250</width>
+                            <height>16</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>OkPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>OK</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>accept1.png</iconset>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>CancelPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Cancel</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>quit1.png</iconset>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QTabWidget" row="0" column="0">
+            <property name="name">
+                <cstring>OptionsTabWidget</cstring>
+            </property>
+            <property name="acceptDrops">
+                <bool>false</bool>
+            </property>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>DisplayTabPage</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Display</string>
+                </attribute>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QGroupBox">
+                        <property name="name">
+                            <cstring>MessagesGroupBox</cstring>
+                        </property>
+                        <property name="font">
+                            <font>
+                                <bold>1</bold>
+                            </font>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="title">
+                            <string>Messages Window</string>
+                        </property>
+                        <property name="flat">
+                            <bool>true</bool>
+                        </property>
+                        <hbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>MessagesFontTextLabel</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>3</hsizetype>
+                                        <vsizetype>5</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="minimumSize">
+                                    <size>
+                                        <width>180</width>
+                                        <height>0</height>
+                                    </size>
+                                </property>
+                                <property name="paletteBackgroundColor">
+                                    <color>
+                                        <red>255</red>
+                                        <green>255</green>
+                                        <blue>255</blue>
+                                    </color>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>LineEditPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignCenter</set>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Sample messages text font display</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>MessagesFontPushButton</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Font...</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+F</string>
+                                </property>
+                                <property name="autoDefault">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Select font for the messages text display</string>
+                                </property>
+                            </widget>
+                            <spacer>
+                                <property name="name">
+                                    <cstring>space51</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>8</width>
+                                        <height>8</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>MessagesLimitCheckBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Messages limit:</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+M</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Whether to keep a maximum number of lines in the messages window</string>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox">
+                                <item>
+                                    <property name="text">
+                                        <string>100</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>250</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>500</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>1000</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>2500</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>5000</string>
+                                    </property>
+                                </item>
+                                <property name="name">
+                                    <cstring>MessagesLimitLinesComboBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="editable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="currentItem">
+                                    <number>3</number>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>The maximum number of message lines to keep in view</string>
+                                </property>
+                            </widget>
+                        </hbox>
+                    </widget>
+                    <widget class="QGroupBox">
+                        <property name="name">
+                            <cstring>OtherGroupBox</cstring>
+                        </property>
+                        <property name="font">
+                            <font>
+                                <bold>1</bold>
+                            </font>
+                        </property>
+                        <property name="title">
+                            <string>Other</string>
+                        </property>
+                        <property name="flat">
+                            <bool>true</bool>
+                        </property>
+                        <vbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>QueryCloseCheckBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Confirm application close</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+C</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Whether to ask for confirmation on application exit</string>
+                                </property>
+                            </widget>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>KeepOnTopCheckBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Keep child windows always on top</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+K</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Whether to keep all child windows on top of the main window</string>
+                                </property>
+                            </widget>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>StdoutCaptureCheckBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>Capture standard &amp;output</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+O</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Whether to capture standard output (stdout/stderr) into messages window</string>
+                                </property>
+                            </widget>
+                        </vbox>
+                    </widget>
+                </vbox>
+            </widget>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>MessagesFontPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>chooseMessagesFont()</slot>
+    </connection>
+    <connection>
+        <sender>QueryCloseCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>KeepOnTopCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>StdoutCaptureCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>MessagesLimitCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>MessagesLimitLinesComboBox</sender>
+        <signal>activated(int)</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>OkPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>CancelPushButton</sender>
+        <signal>clicked()</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>reject()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>OptionsTabWidget</tabstop>
+    <tabstop>MessagesFontPushButton</tabstop>
+    <tabstop>MessagesLimitCheckBox</tabstop>
+    <tabstop>MessagesLimitLinesComboBox</tabstop>
+    <tabstop>QueryCloseCheckBox</tabstop>
+    <tabstop>KeepOnTopCheckBox</tabstop>
+    <tabstop>StdoutCaptureCheckBox</tabstop>
+    <tabstop>OkPushButton</tabstop>
+    <tabstop>CancelPushButton</tabstop>
+</tabstops>
+<includes>
+    <include location="global" impldecl="in declaration">qsynthOptions.h</include>
+    <include location="local" impldecl="in implementation">qsynthMainForm.h</include>
+    <include location="local" impldecl="in implementation">qsynthOptionsForm.ui.h</include>
+</includes>
+<variables>
+    <variable access="private">qsynthOptions *m_pOptions;</variable>
+    <variable access="private">int m_iDirtySetup;</variable>
+    <variable access="private">int m_iDirtyCount;</variable>
+</variables>
+<slots>
+    <slot specifier="non virtual">accept()</slot>
+    <slot specifier="non virtual">reject()</slot>
+    <slot specifier="non virtual">settingsChanged()</slot>
+    <slot specifier="non virtual">stabilizeForm()</slot>
+    <slot specifier="non virtual">chooseMessagesFont()</slot>
+</slots>
+<functions>
+    <function access="private" specifier="non virtual">init()</function>
+    <function access="private" specifier="non virtual">destroy()</function>
+    <function specifier="non virtual">setup( qsynthOptions *pOptions )</function>
+</functions>
+<pixmapinproject/>
+<layoutdefaults spacing="4" margin="4"/>
+</UI>

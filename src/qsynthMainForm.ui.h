@@ -21,10 +21,12 @@
 *****************************************************************************/
 
 #include <qapplication.h>
+#include <qeventloop.h>
 #include <qmessagebox.h>
 #include <qdragobject.h>
 #include <qregexp.h>
 #include <qtimer.h>
+#include <qpopupmenu.h>
 
 #include <math.h>
 
@@ -48,6 +50,8 @@
 
 static int g_fdStdout[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
 
+static qsynthEngine *g_pCurrentEngine = NULL;
+
 //-------------------------------------------------------------------------
 // Needed for server mode.
 static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
@@ -68,9 +72,6 @@ static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
 #define QSYNTH_MIDI_CC_BANK_SELECT_LSB  0x20
 #define QSYNTH_MIDI_CC_ALL_SOUND_OFF    0x78
 
-static int g_iMidiEvent = 0;
-static int g_iMidiState = 0;
-
 struct qsynth_midi_channel
 {
     int iEvent;     // Event occurrence accumulator.
@@ -78,14 +79,14 @@ struct qsynth_midi_channel
     int iChange;    // Change activity accumulator.
 };
 
-static int                  g_iMidiChannels = 0;
-static qsynth_midi_channel *g_pMidiChannels = NULL;
+static int                  g_iMidiChannels  = 0;
+static qsynth_midi_channel *g_pMidiChannels  = NULL;
 
-static void qsynth_midi_event ( fluid_midi_event_t *pMidiEvent )
+static void qsynth_midi_event ( qsynthEngine *pEngine, fluid_midi_event_t *pMidiEvent )
 {
-    g_iMidiEvent++;
+    pEngine->iMidiEvent++;
     
-    if (g_pMidiChannels) {
+    if (g_pMidiChannels && pEngine == g_pCurrentEngine) {
         int iChan = ::fluid_midi_event_get_channel(pMidiEvent);
 #ifdef CONFIG_DEBUG
         int iType = ::fluid_midi_event_get_type(pMidiEvent);
@@ -119,14 +120,16 @@ static void qsynth_midi_event ( fluid_midi_event_t *pMidiEvent )
 
 static int qsynth_dump_postrouter (void *pvData, fluid_midi_event_t *pMidiEvent)
 {
-    qsynth_midi_event(pMidiEvent);
-    return ::fluid_midi_dump_postrouter(pvData, pMidiEvent);
+    qsynthEngine *pEngine = (qsynthEngine *) pvData;
+    qsynth_midi_event(pEngine, pMidiEvent);
+    return ::fluid_midi_dump_postrouter(pEngine->pSynth, pMidiEvent);
 }
 
 static int qsynth_handle_midi_event (void *pvData, fluid_midi_event_t *pMidiEvent)
 {
-    qsynth_midi_event(pMidiEvent);
-    return ::fluid_synth_handle_midi_event(pvData, pMidiEvent);
+    qsynthEngine *pEngine = (qsynthEngine *) pvData;
+    qsynth_midi_event(pEngine, pMidiEvent);
+    return ::fluid_synth_handle_midi_event(pEngine->pSynth, pMidiEvent);
 }
 
 
@@ -176,16 +179,11 @@ static double qsynth_fscale_clip ( int iValue, double fScale )
 // Kind of constructor.
 void qsynthMainForm::init (void)
 {
-    m_pSetup = NULL;
-    
+    m_pOptions = NULL;
+
     m_iTimerDelay = 0;
 
-    m_pSynth        = NULL;
-    m_pAudioDriver  = NULL;
-    m_pMidiRouter   = NULL;
-    m_pMidiDriver   = NULL;
-    m_pPlayer       = NULL;
-    m_pServer       = NULL;
+    m_iCurrentTab = -1;
 
     m_pStdoutNotifier = NULL;
 
@@ -197,26 +195,35 @@ void qsynthMainForm::init (void)
     m_iReverbUpdated = 0;
     m_iChorusUpdated = 0;
 
-    m_pXpmLedOn  = new QPixmap(QPixmap::fromMimeSource("ledon1.png"));
-    m_pXpmLedOff = new QPixmap(QPixmap::fromMimeSource("ledoff1.png"));
-
     // All forms are to be created later on setup.
     m_pMessagesForm  = NULL;
     m_pChannelsForm  = NULL;
+    
+    // TabBar management.
+    QObject::connect(TabBar, SIGNAL(selected(int)), this, SLOT(tabSelect(int)));
+    QObject::connect(TabBar, SIGNAL(contextMenuRequested(qsynthTab *, const QPoint &)), this, SLOT(tabContextMenu(qsynthTab *, const QPoint &)));
 }
 
 
 // Kind of destructor.
 void qsynthMainForm::destroy (void)
 {
-    // Stop th press!
-    stopSynth();
-    m_pSetup = NULL;
+    // Stop the press!
+    for (int i = 0; i < TabBar->count(); i++) {
+        qsynthTab *pTab = (qsynthTab *) TabBar->tabAt(i);
+        if (pTab) {
+            qsynthEngine *pEngine = pTab->engine();
+            if (pEngine) {
+                if (!pEngine->isDefault())
+                    m_pOptions->saveSetup(pEngine->setup(), pEngine->name());
+                stopEngine(pEngine);
+            }
+        }
+    }
 
-    // Delete pixmaps.
-    delete m_pXpmLedOn;
-    delete m_pXpmLedOff;
-    
+    // No more options descriptor.
+    m_pOptions = NULL;
+
     // Finally drop any popup widgets around...
     if (m_pMessagesForm)
         delete m_pMessagesForm;
@@ -226,43 +233,52 @@ void qsynthMainForm::destroy (void)
 
 
 // Make and set a proper setup step.
-void qsynthMainForm::setup ( qsynthSetup *pSetup )
+void qsynthMainForm::setup ( qsynthOptions *pOptions )
 {
     // Finally, fix settings descriptor
     // and stabilize the form.
-    m_pSetup = pSetup;
+    m_pOptions = pOptions;
 
     // What style do we create these forms?
     WFlags wflags = Qt::WType_TopLevel;
-    if (m_pSetup->bKeepOnTop)
+    if (m_pOptions->bKeepOnTop)
         wflags |= Qt::WStyle_Tool;
     // All forms are to be created right now.
     m_pMessagesForm = new qsynthMessagesForm(this, 0, wflags);
     m_pChannelsForm = new qsynthChannelsForm(this, 0, wflags);
 
+    // Get the default setup and dummy instace tab.
+    TabBar->addTab(new qsynthTab(new qsynthEngine(m_pOptions)));
+    // And all additional custom ones...
+    for (QStringList::Iterator iter = m_pOptions->engines.begin(); iter != m_pOptions->engines.end(); iter++)
+        TabBar->addTab(new qsynthTab(new qsynthEngine(m_pOptions, *iter)));
+
     // Try to restore old window positioning.
-    m_pSetup->loadWidgetGeometry(this);
+    m_pOptions->loadWidgetGeometry(this);
     // And for the whole widget gallore...
-    m_pSetup->loadWidgetGeometry(m_pMessagesForm);
-    m_pSetup->loadWidgetGeometry(m_pChannelsForm);
+    m_pOptions->loadWidgetGeometry(m_pMessagesForm);
+    m_pOptions->loadWidgetGeometry(m_pChannelsForm);
 
     // Set defaults...
     updateMessagesFont();
     updateMessagesLimit();
 
     // Check if we can redirect our own stdout/stderr...
-    if (m_pSetup->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
+    if (m_pOptions->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
         ::dup2(g_fdStdout[QSYNTH_FDWRITE], STDOUT_FILENO);
         ::dup2(g_fdStdout[QSYNTH_FDWRITE], STDERR_FILENO);
         m_pStdoutNotifier = new QSocketNotifier(g_fdStdout[QSYNTH_FDREAD], QSocketNotifier::Read, this);
         QObject::connect(m_pStdoutNotifier, SIGNAL(activated(int)), this, SLOT(stdoutNotifySlot(int)));
     }
 
+    // We'll accept drops from now on...
+    setAcceptDrops(true);
     // Final startup stabilization...
     stabilizeForm();
 
     // Register the initial timer slot.
     QTimer::singleShot(QSYNTH_TIMER_MSECS, this, SLOT(timerSlot()));
+
 }
 
 
@@ -272,22 +288,31 @@ bool qsynthMainForm::queryClose (void)
     bool bQueryClose = true;
 
     // Now's the time?
-    if (m_pSetup) {
+    if (m_pOptions) {
         // Dow we quit right away?
-        if (m_pSynth && m_pAudioDriver && m_pSetup->bQueryClose) {
-            bQueryClose = (QMessageBox::warning(this, tr("Warning"),
-                tr("qsynth is about to terminate.") + "\n\n" +
-                tr("Are you sure?"),
-                tr("OK"), tr("Cancel")) == 0);
+        if (m_pOptions->bQueryClose) {
+            for (int i = 0; i < TabBar->count(); i++) {
+                qsynthTab *pTab = (qsynthTab *) TabBar->tabAt(i);
+                if (pTab) {
+                    qsynthEngine *pEngine = pTab->engine();
+                    if (pEngine && pEngine->pSynth) {
+                        bQueryClose = (QMessageBox::warning(this, tr("Warning"),
+                            QSYNTH_TITLE " " + tr("is about to terminate.") + "\n\n" +
+                            tr("Are you sure?"),
+                            tr("OK"), tr("Cancel")) == 0);
+                        break;
+                    }
+                }
+            }
         }
         // Some windows default fonts is here on demeand too.
         if (bQueryClose && m_pMessagesForm)
-            m_pSetup->sMessagesFont = m_pMessagesForm->messagesFont().toString();
+            m_pOptions->sMessagesFont = m_pMessagesForm->messagesFont().toString();
         // Try to save current positioning.
         if (bQueryClose) {
-            m_pSetup->saveWidgetGeometry(m_pChannelsForm);
-            m_pSetup->saveWidgetGeometry(m_pMessagesForm);
-            m_pSetup->saveWidgetGeometry(this);
+            m_pOptions->saveWidgetGeometry(m_pChannelsForm);
+            m_pOptions->saveWidgetGeometry(m_pMessagesForm);
+            m_pOptions->saveWidgetGeometry(this);
             // Close popup widgets.
             m_pMessagesForm->close();
             m_pChannelsForm->close();        
@@ -307,12 +332,19 @@ void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 
 
 // Add dropped files to playlist or soundfont stack.
-void qsynthMainForm::playLoadFiles ( const QStringList& files, bool bSetup )
+void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine, const QStringList& files, bool bSetup )
 {
-    if (m_pSetup == NULL || m_pSynth == NULL)
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
+        return;
+
+    qsynthSetup *pSetup = pEngine->setup();
+    if (pSetup == NULL)
         return;
 
     // Add each list item to Soundfont stack or MIDI player playlist...
+    const QString sPrefix  = pEngine->name() + ": ";
     const QString sElipsis = "...";
     int   iSoundfonts = 0;
     int   iMidiFiles  = 0;
@@ -320,31 +352,31 @@ void qsynthMainForm::playLoadFiles ( const QStringList& files, bool bSetup )
         char *pszFilename = (char *) (*iter).latin1();
         // Is it a soundfont file...
         if (::fluid_is_soundfont(pszFilename)) {
-            if (bSetup || m_pSetup->soundfonts.find(*iter) == m_pSetup->soundfonts.end()) {
-                appendMessagesColor(tr("Loading soundfont") + ": \"" + *iter + "\"" + sElipsis, "#999933");
-                if (::fluid_synth_sfload(m_pSynth, pszFilename, 1) >= 0) {
+            if (bSetup || pSetup->soundfonts.find(*iter) == pSetup->soundfonts.end()) {
+                appendMessagesColor(sPrefix + tr("Loading soundfont") + ": \"" + *iter + "\"" + sElipsis, "#999933");
+                if (::fluid_synth_sfload(pEngine->pSynth, pszFilename, 1) >= 0) {
                     iSoundfonts++;
                     if (!bSetup)
-                        m_pSetup->soundfonts.append(*iter);
+                        pSetup->soundfonts.append(*iter);
                 }
-                else appendMessagesError(tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
+                else appendMessagesError(sPrefix + tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
             }
         }  // Or is it a bare midifile?
-        else if (::fluid_is_midifile(pszFilename) && m_pPlayer) {
-            appendMessagesColor(tr("Playing MIDI file") + ": \"" + *iter + "\"" + sElipsis, "#99cc66");
-            if (::fluid_player_add(m_pPlayer, pszFilename) >= 0)
+        else if (::fluid_is_midifile(pszFilename) && pEngine->pPlayer) {
+            appendMessagesColor(sPrefix + tr("Playing MIDI file") + ": \"" + *iter + "\"" + sElipsis, "#99cc66");
+            if (::fluid_player_add(pEngine->pPlayer, pszFilename) >= 0)
                 iMidiFiles++;
             else
-                appendMessagesError(tr("Failed to play MIDI file") + ": \"" + *iter + "\".");
+                appendMessagesError(sPrefix + tr("Failed to play MIDI file") + ": \"" + *iter + "\".");
         }
     }
     
     // Reset all presets, if applicable...
     if (!bSetup && iSoundfonts > 0)
-        programReset();
+        resetEngine(pEngine);
     // Start playing, if any...
-    if (m_pPlayer && iMidiFiles > 0)
-        ::fluid_player_play(m_pPlayer);
+    if (pEngine->pPlayer && iMidiFiles > 0)
+        ::fluid_player_play(pEngine->pPlayer);
 }
 
 
@@ -370,7 +402,7 @@ void qsynthMainForm::dragEnterEvent ( QDragEnterEvent* pDragEnterEvent )
 {
     bool bAccept = false;
     
-    if (m_pPlayer && QTextDrag::canDecode(pDragEnterEvent)) {
+    if (QTextDrag::canDecode(pDragEnterEvent)) {
         QStringList files;
         if (decodeDragFiles(pDragEnterEvent, files)) {
             for (QStringList::Iterator iter = files.begin(); iter != files.end() && !bAccept; iter++) {
@@ -387,9 +419,8 @@ void qsynthMainForm::dragEnterEvent ( QDragEnterEvent* pDragEnterEvent )
 void qsynthMainForm::dropEvent ( QDropEvent* pDropEvent )
 {
     QStringList files;
-    
     if (decodeDragFiles(pDropEvent, files))
-        playLoadFiles(files, false);
+        playLoadFiles(currentEngine(), files, false);
 }
 
 
@@ -461,12 +492,12 @@ void qsynthMainForm::appendMessagesError( const QString& s )
 // Force update of the messages font.
 void qsynthMainForm::updateMessagesFont (void)
 {
-    if (m_pSetup == NULL)
+    if (m_pOptions == NULL)
         return;
 
-    if (m_pMessagesForm && !m_pSetup->sMessagesFont.isEmpty()) {
+    if (m_pMessagesForm && !m_pOptions->sMessagesFont.isEmpty()) {
         QFont font;
-        if (font.fromString(m_pSetup->sMessagesFont))
+        if (font.fromString(m_pOptions->sMessagesFont))
             m_pMessagesForm->setMessagesFont(font);
     }
 }
@@ -475,12 +506,12 @@ void qsynthMainForm::updateMessagesFont (void)
 // Update messages window line limit.
 void qsynthMainForm::updateMessagesLimit (void)
 {
-    if (m_pSetup == NULL)
+    if (m_pOptions == NULL)
         return;
 
     if (m_pMessagesForm) {
-        if (m_pSetup->bMessagesLimit)
-            m_pMessagesForm->setMessagesLimit(m_pSetup->iMessagesLimitLines);
+        if (m_pOptions->bMessagesLimit)
+            m_pMessagesForm->setMessagesLimit(m_pOptions->iMessagesLimitLines);
         else
             m_pMessagesForm->setMessagesLimit(0);
     }
@@ -490,7 +521,9 @@ void qsynthMainForm::updateMessagesLimit (void)
 // Stabilize current form toggle buttons that may be astray.
 void qsynthMainForm::stabilizeForm (void)
 {
-    if (m_pSynth) {
+    qsynthEngine *pEngine = currentEngine();
+    
+    if (pEngine && pEngine->pSynth) {
         GainGroupBox->setEnabled(true);
         ReverbGroupBox->setEnabled(true);
         bool bReverbActive = ReverbActiveCheckBox->isChecked();
@@ -524,19 +557,20 @@ void qsynthMainForm::stabilizeForm (void)
         ChorusGroupBox->setEnabled(true);
         ProgramResetPushButton->setEnabled(true);
         SystemResetPushButton->setEnabled(true);
+        RestartPushButton->setText(tr("Re&start"));
+        qsynthSetup *pSetup = pEngine->setup();
+        bool bMidiIn = (pSetup && pSetup->bMidiIn);
+        ChannelsPushButton->setEnabled(bMidiIn);
     } else {
         GainGroupBox->setEnabled(false);
         ReverbGroupBox->setEnabled(false);
         ChorusGroupBox->setEnabled(false);
         ProgramResetPushButton->setEnabled(false);
         SystemResetPushButton->setEnabled(false);
+        ChannelsPushButton->setEnabled(false);
+        RestartPushButton->setText(tr("&Start"));
     }
     RestartPushButton->setEnabled(true);
-
-    bool bMidiIn = (m_pSynth && m_pSetup && m_pSetup->bMidiIn);
-    MidiEventPixmapLabel->setEnabled(bMidiIn);
-    MidiEventTextLabel->setEnabled(bMidiIn);
-    ChannelsPushButton->setEnabled(bMidiIn);
 
     MessagesPushButton->setOn(m_pMessagesForm && m_pMessagesForm->isVisible());
     ChannelsPushButton->setOn(m_pChannelsForm && m_pChannelsForm->isVisible());
@@ -546,12 +580,11 @@ void qsynthMainForm::stabilizeForm (void)
 // Program reset command slot (all channels).
 void qsynthMainForm::programReset (void)
 {
-    if (m_pSynth) {
-        appendMessagesColor("fluid_synth_program_reset", "#996666");
-        ::fluid_synth_program_reset(m_pSynth);
-        if (m_pChannelsForm)
-            m_pChannelsForm->resetAllChannels();
-    }
+    ProgramResetPushButton->setEnabled(false);
+    
+    resetEngine(currentEngine());
+    if (m_pChannelsForm)
+        m_pChannelsForm->resetAllChannels();
     stabilizeForm();
 }
 
@@ -559,13 +592,16 @@ void qsynthMainForm::programReset (void)
 // System reset command slot.
 void qsynthMainForm::systemReset (void)
 {
-    if (m_pSynth) {
+    SystemResetPushButton->setEnabled(false);
+    
+    qsynthEngine *pEngine = currentEngine();
+    if (pEngine && pEngine->pSynth) {
 #ifdef CONFIG_FLUID_RESET
-        appendMessagesColor("fluid_synth_system_reset", "#993366");
-        ::fluid_synth_system_reset(m_pSynth);
+        appendMessagesColor(pEngine->name() + ": fluid_synth_system_reset()", "#993366");
+        ::fluid_synth_system_reset(pEngine->pSynth);
 #else
-        appendMessagesColor("fluid_synth_program_reset", "#996666");
-        ::fluid_synth_program_reset(m_pSynth);
+        appendMessagesColor(pEngine->name() + ": fluid_synth_program_reset()", "#996666");
+        ::fluid_synth_program_reset(pEngine->pSynth);
 #endif
         if (m_pChannelsForm)
             m_pChannelsForm->resetAllChannels();
@@ -577,33 +613,133 @@ void qsynthMainForm::systemReset (void)
 // Complete engine restart.
 void qsynthMainForm::promptRestart (void)
 {
-    bool bRestart = true;
+    RestartPushButton->setEnabled(false);
+    restartEngine(currentEngine());
+}
 
-    // If currently running, prompt user...
-    if (m_pSynth) {
-        bRestart = (QMessageBox::warning(this, tr("Warning"),
-            tr("New settings will be effective after\n"
-               "restarting the fluidsynth engine.") + "\n\n" +
-            tr("Please note that this operation may cause\n"
-               "temporary MIDI and Audio disruption.") + "\n\n" +
-            tr("Do you want to restart the engine now?"),
-            tr("Yes"), tr("No")) == 0);
+
+// Prompt and create a new engine instance.
+bool qsynthMainForm::newEngineTab (void)
+{
+    qsynthEngine *pEngine;
+    QString sName;
+    
+    // Simple hack for finding a unused engine name...
+    const QString sPrefix = QSYNTH_TITLE;
+    int   iSuffix = TabBar->count() + 1;    // One is always there, so try after...
+    bool  bRetry  = true;
+    while (bRetry) {
+        sName  = sPrefix + QString::number(iSuffix++);
+        bRetry = false;
+        for (int i = 0; i < TabBar->count() && !bRetry; i++) {
+            qsynthTab *pTab = (qsynthTab *) TabBar->tabAt(i);
+            if (pTab) {
+                pEngine = pTab->engine();
+                if (pEngine->name() == sName)
+                    bRetry = true;
+            }
+        }
     }
 
-    // If allowed, just restart the engine...
-    if (bRestart)
-        restartSynth();
+    // Probably a good idea to prompt for the setup dialog.
+    pEngine = new qsynthEngine(m_pOptions, sName);
+    bool bResult = setupEngineTab(pEngine, NULL);
+    if (bResult) {
+        // Success, add a new tab...
+        TabBar->addTab(new qsynthTab(pEngine));
+        // And try to be persistent...
+        m_pOptions->newEngine(pEngine);
+        // Update bar...
+        TabBar->update();
+    } else {
+        // As this will not be mangaed by a qsynthTab instance,
+        // we better free it up right now...
+        delete pEngine;
+    }
+    // Done.
+    return bResult;
+}
+
+
+// Delete and engine instance.
+bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
+{
+    if (pEngine == NULL || pTab == NULL)
+        return false;
+
+    // Try to prompt user if he/she really wants this...
+    bool bResult = (QMessageBox::warning(this, tr("Warning"),
+        tr("Delete fluidsynth engine:") + "\n\n" +
+        pEngine->name() + "\n\n" +
+        tr("Are you sure?"),
+        tr("OK"), tr("Cancel")) == 0);
+    
+    if (bResult) {
+        // First we try to stop the angine.
+        stopEngine(pEngine);
+        // Nows time to remove those crappy entries...
+        m_pOptions->deleteEngine(pEngine);
+        // Then, we delete the instance (note that the engine object
+        // is owned by the tab instance, so it will be delete here).
+        TabBar->removeTab(pTab);
+        TabBar->update();
+        tabSelect(TabBar->currentTab());
+    }
+    
+    return bResult;
+}
+
+
+// Edit settings of a given engine instance.
+bool qsynthMainForm::setupEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
+{
+    bool bResult = false;
+
+    if (pEngine == NULL || pEngine->setup() == NULL)
+        return bResult;
+
+    qsynthSetupForm *pSetupForm = new qsynthSetupForm(this);
+    if (pSetupForm) {
+        // To track down engine renaming.
+        const QString sOldDisplayName = (pEngine->setup())->sDisplayName;
+        // Load the current instance settings.
+        pSetupForm->setup(m_pOptions, pEngine, (pTab == NULL));
+        // Show the instance setup dialog, then ask for a engine restart?
+        bResult = pSetupForm->exec();
+        if (bResult) {
+            // Have we changed names? Ugly uh?
+            if (pTab && sOldDisplayName != (pEngine->setup())->sDisplayName) {
+                // Remove old name entries...
+                m_pOptions->deleteEngine(pEngine);
+                // Set new one :)
+                pEngine->setName((pEngine->setup())->sDisplayName);
+                // Remember to add to our list.
+                m_pOptions->newEngine(pEngine);
+                // Update main caption, if we're on current engine tab...
+                if (pTab->identifier() == TabBar->currentTab())
+                    setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + " [" + pEngine->name() + "]");
+                // Finally update tab text...
+                pTab->setText(pEngine->name());
+            }
+            // Now we may restart this.
+            restartEngine(pEngine);
+        }
+        // Done.
+        delete pSetupForm;
+    }
+
+    return bResult;
 }
 
 
 // Message log form requester slot.
 void qsynthMainForm::toggleMessagesForm (void)
 {
-    if (m_pSetup == NULL)
+    if (m_pOptions == NULL)
         return;
 
     if (m_pMessagesForm) {
-        m_pSetup->saveWidgetGeometry(m_pMessagesForm);
+        m_pOptions->saveWidgetGeometry(m_pMessagesForm);
         if (m_pMessagesForm->isVisible())
             m_pMessagesForm->hide();
         else
@@ -615,11 +751,11 @@ void qsynthMainForm::toggleMessagesForm (void)
 // Channels view form requester slot.
 void qsynthMainForm::toggleChannelsForm (void)
 {
-    if (m_pSetup == NULL)
+    if (m_pOptions == NULL)
         return;
 
     if (m_pChannelsForm) {
-        m_pSetup->saveWidgetGeometry(m_pChannelsForm);
+        m_pOptions->saveWidgetGeometry(m_pChannelsForm);
         if (m_pChannelsForm->isVisible())
             m_pChannelsForm->hide();
         else
@@ -628,47 +764,55 @@ void qsynthMainForm::toggleChannelsForm (void)
 }
 
 
-// Setup dialog requester slot.
+// Instance dialog requester slot.
 void qsynthMainForm::showSetupForm (void)
 {
-    if (m_pSetup == NULL)
+    qsynthTab *pTab = (qsynthTab *) TabBar->tab(TabBar->currentTab());
+    if (pTab)
+        setupEngineTab(pTab->engine(), pTab);
+}
+
+
+// Setup dialog requester slot.
+void qsynthMainForm::showOptionsForm (void)
+{
+    if (m_pOptions == NULL)
         return;
 
-    qsynthSetupForm *pSetupForm = new qsynthSetupForm(this);
-    if (pSetupForm) {
+    qsynthOptionsForm *pOptionsForm = new qsynthOptionsForm(this);
+    if (pOptionsForm) {
         // Check out some initial nullities(tm)...
-        if (m_pSetup->sMessagesFont.isEmpty() && m_pMessagesForm)
-            m_pSetup->sMessagesFont = m_pMessagesForm->messagesFont().toString();
+        if (m_pOptions->sMessagesFont.isEmpty() && m_pMessagesForm)
+            m_pOptions->sMessagesFont = m_pMessagesForm->messagesFont().toString();
         // To track down deferred or immediate changes.
-        QString sOldMessagesFont = m_pSetup->sMessagesFont;
-        bool    bStdoutCapture   = m_pSetup->bStdoutCapture;
-        bool    bKeepOnTop       = m_pSetup->bKeepOnTop;
-        int     bMessagesLimit   = m_pSetup->bMessagesLimit;
-        int     iMessagesLimitLines = m_pSetup->iMessagesLimitLines;
+        QString sOldMessagesFont = m_pOptions->sMessagesFont;
+        bool    bStdoutCapture   = m_pOptions->bStdoutCapture;
+        bool    bKeepOnTop       = m_pOptions->bKeepOnTop;
+        int     bMessagesLimit   = m_pOptions->bMessagesLimit;
+        int     iMessagesLimitLines = m_pOptions->iMessagesLimitLines;
         // Load the current setup settings.
-        pSetupForm->setup(m_pSetup, m_pSynth);
+        pOptionsForm->setup(m_pOptions);
         // Show the setup dialog...
-        if (pSetupForm->exec()) {
+        if (pOptionsForm->exec()) {
             // Warn if something will be only effective on next run.
-            if (( bStdoutCapture && !m_pSetup->bStdoutCapture) ||
-                (!bStdoutCapture &&  m_pSetup->bStdoutCapture) ||
-                ( bKeepOnTop     && !m_pSetup->bKeepOnTop)     ||
-                (!bKeepOnTop     &&  m_pSetup->bKeepOnTop)) {
+            if (( bStdoutCapture && !m_pOptions->bStdoutCapture) ||
+                (!bStdoutCapture &&  m_pOptions->bStdoutCapture) ||
+                ( bKeepOnTop     && !m_pOptions->bKeepOnTop)     ||
+                (!bKeepOnTop     &&  m_pOptions->bKeepOnTop)) {
                 QMessageBox::information(this, tr("Information"),
                     tr("Some settings will be only effective\n"
                        "next time you start this program."), tr("OK"));
             }
             // Check wheather something immediate has changed.
-            if (sOldMessagesFont != m_pSetup->sMessagesFont)
+            if (sOldMessagesFont != m_pOptions->sMessagesFont)
                 updateMessagesFont();
-            if (( bMessagesLimit && !m_pSetup->bMessagesLimit) ||
-                (!bMessagesLimit &&  m_pSetup->bMessagesLimit) ||
-                (iMessagesLimitLines !=  m_pSetup->iMessagesLimitLines))
+            if (( bMessagesLimit && !m_pOptions->bMessagesLimit) ||
+                (!bMessagesLimit &&  m_pOptions->bMessagesLimit) ||
+                (iMessagesLimitLines !=  m_pOptions->iMessagesLimitLines))
                 updateMessagesLimit();
-            // Ask for a engine restart?
-            promptRestart();
         }
-        delete pSetupForm;
+        // Done.
+        delete pOptionsForm;
     }
 }
 
@@ -684,29 +828,113 @@ void qsynthMainForm::showAboutForm (void)
 }
 
 
+// Tab selection slot.
+void qsynthMainForm::tabSelect ( int iTab )
+{
+    if (iTab == m_iCurrentTab)
+        return;
+
+    const QString sElipsis = "...";
+    const QString sColon   = ": ";
+
+    // Try to save old tab settings...
+    qsynthTab *pTab = (qsynthTab *) TabBar->tab(m_iCurrentTab);
+    if (pTab) {
+        qsynthEngine *pEngine = pTab->engine();
+        if (pEngine) {
+            appendMessages(pEngine->name() + sColon + tr("Saving panel settings") + sElipsis);
+            savePanelSettings(pEngine);
+        }
+    }
+    
+    // Make it official.
+    m_iCurrentTab = iTab;
+
+    // And set new ones, while refreshing views...
+    pTab = (qsynthTab *) TabBar->tab(m_iCurrentTab);
+    if (pTab) {
+        qsynthEngine *pEngine = pTab->engine();
+        if (pEngine) {
+            setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + " [" + pEngine->name() + "]");
+            appendMessages(pEngine->name() + sColon + tr("Loading panel settings") + sElipsis);
+            loadPanelSettings(pEngine, false);
+            resetChannelsForm(pEngine);
+            // Don't forget to set current engine reference hack.
+            g_pCurrentEngine = pEngine;
+        }
+    }
+
+    // Finally, stabilize main form.
+    stabilizeForm();
+}
+
+
+// Common context request slot.
+void qsynthMainForm::tabContextMenu ( qsynthTab *pTab, const QPoint& pos )
+{
+    qsynthEngine *pEngine = NULL;
+    if (pTab)
+        pEngine = pTab->engine();
+
+    QPopupMenu* pContextMenu = new QPopupMenu(this);
+    int iNew    = pContextMenu->insertItem(tr("New..."));
+    int iDelete = pContextMenu->insertItem(tr("Delete"));
+    pContextMenu->setItemEnabled(iDelete, pEngine && !pEngine->isDefault());
+    pContextMenu->insertSeparator();
+    int iSetup  = pContextMenu->insertItem(tr("Setup..."));
+    pContextMenu->setItemEnabled(iSetup, pEngine);
+    int iItemID = pContextMenu->exec(pos);
+    delete pContextMenu;
+
+    if (iItemID == iNew)
+        newEngineTab();
+    else if (iItemID == iDelete)
+        deleteEngineTab(pEngine, pTab);
+    else if (iItemID == iSetup)
+        setupEngineTab(pEngine, pTab);
+}
+
+
 // Timer callback funtion.
 void qsynthMainForm::timerSlot (void)
 {
     // Is it the first shot on synth start after a one slot delay?
     if (m_iTimerDelay < QSYNTH_DELAY_MSECS) {
         m_iTimerDelay += QSYNTH_TIMER_MSECS;
-        if (m_iTimerDelay >= QSYNTH_DELAY_MSECS)
-            startSynth();
+        if (m_iTimerDelay >= QSYNTH_DELAY_MSECS) {
+            // Start the press!
+            for (int i = 0; i < TabBar->count(); i++) {
+                qsynthTab *pTab = (qsynthTab *) TabBar->tabAt(i);
+                if (pTab)
+                    startEngine(pTab->engine());
+            }
+        }
     }
 
     // Some global MIDI activity?
-    if (g_iMidiEvent > 0) {
-        // Global activity...
-        g_iMidiEvent = 0;
-        if (g_iMidiState == 0) {
-            MidiEventPixmapLabel->setPixmap(*m_pXpmLedOn);
-            g_iMidiState++;
+    int iTabUpdate = 0;
+    for (int i = 0; i < TabBar->count(); i++) {
+        qsynthTab *pTab = (qsynthTab * ) TabBar->tabAt(i);
+        if (pTab) {
+            qsynthEngine *pEngine = pTab->engine();
+            if (pEngine->iMidiEvent > 0) {
+                pEngine->iMidiEvent = 0;
+                if (pEngine->iMidiState == 0) {
+                    pEngine->iMidiState++;
+                    pTab->setOn(true);
+                    iTabUpdate++;
+                }
+            }
+            else if (pEngine->iMidiEvent == 0 && pEngine->iMidiState > 0) {
+                pEngine->iMidiState--;
+                pTab->setOn(false);
+                iTabUpdate++;
+            }
         }
-    }   // On the other tick...
-    else if (g_iMidiEvent == 0 && g_iMidiState > 0) {
-        MidiEventPixmapLabel->setPixmap(*m_pXpmLedOff);
-        g_iMidiState--;
     }
+    // Do we have an update?
+    if (iTabUpdate > 0)
+        TabBar->update();
 
     // MIDI Channel activity breakout...
     if (m_pChannelsForm) {
@@ -748,215 +976,299 @@ void qsynthMainForm::timerSlot (void)
 }
 
 
-// Start the fluidsynth clone, based on given settings.
-bool qsynthMainForm::startSynth (void)
+// Return the current selected engine.
+qsynthEngine *qsynthMainForm::currentEngine (void)
 {
-    if (m_pSetup == NULL)
+    return g_pCurrentEngine;
+}
+
+
+// Start the fluidsynth clone, based on given settings.
+bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
+{
+    if (pEngine == NULL)
+        return false;
+    if (pEngine->pSynth)
+        return true;
+
+    qsynthSetup *pSetup = pEngine->setup();
+    if (pSetup == NULL)
         return false;
 
     // Start realizing settings...
-    m_pSetup->realize();
+    pSetup->realize();
 
+    const QString sPrefix  = pEngine->name() + ": ";
     const QString sElipsis = "...";
     QStringList::Iterator iter;
 
     // Create the synthesizer.
-    appendMessages(tr("Creating synthesizer engine") + sElipsis);
-    m_pSynth = ::new_fluid_synth(m_pSetup->fluid_settings());
-    if (m_pSynth == NULL) {
-        appendMessagesError(tr("Failed to create the synthesizer. Cannot continue without it."));
+    appendMessages(sPrefix + tr("Creating synthesizer engine") + sElipsis);
+    pEngine->pSynth = ::new_fluid_synth(pSetup->fluid_settings());
+    if (pEngine->pSynth == NULL) {
+        appendMessagesError(sPrefix + tr("Failed to create the synthesizer. Cannot continue without it."));
         return false;
     }
 
     // Load the soundfonts...
-    playLoadFiles(m_pSetup->soundfonts, true);
+    playLoadFiles(pEngine, pSetup->soundfonts, true);
 
     // Start the synthesis thread...
-    appendMessages(tr("Creating audio driver") + " (" + m_pSetup->sAudioDriver + ")" + sElipsis);
-    m_pAudioDriver = ::new_fluid_audio_driver(m_pSetup->fluid_settings(), m_pSynth);
-    if (m_pAudioDriver == NULL) {
-        appendMessagesError(tr("Failed to create the audio driver") + " (" + m_pSetup->sAudioDriver + "). " + tr("Cannot continue without it."));
-        stopSynth();
+    appendMessages(sPrefix + tr("Creating audio driver") + " (" + pSetup->sAudioDriver + ")" + sElipsis);
+    pEngine->pAudioDriver = ::new_fluid_audio_driver(pSetup->fluid_settings(), pEngine->pSynth);
+    if (pEngine->pAudioDriver == NULL) {
+        appendMessagesError(sPrefix + tr("Failed to create the audio driver") + " (" + pSetup->sAudioDriver + "). " + tr("Cannot continue without it."));
+        stopEngine(pEngine);
         return false;
     }
 
     // Start the midi router and link it to the synth...
-    if (m_pSetup->bMidiIn) {
+    if (pSetup->bMidiIn) {
         // In dump mode, text output is generated for events going into
         // and out of the router. The example dump functions are put into
         // the chain before and after the router..
-        appendMessages(tr("Creating MIDI router") + " (" + m_pSetup->sMidiDriver + ")" + sElipsis);
-        m_pMidiRouter = ::new_fluid_midi_router(m_pSetup->fluid_settings(),
-            m_pSetup->bMidiDump ? qsynth_dump_postrouter : qsynth_handle_midi_event,
-            (void*) m_pSynth);
-        if (m_pMidiRouter == NULL) {
-            appendMessagesError(tr("Failed to create the MIDI input router") + " (" + m_pSetup->sMidiDriver + "); " + tr("no MIDI input will be available."));
+        appendMessages(sPrefix + tr("Creating MIDI router") + " (" + pSetup->sMidiDriver + ")" + sElipsis);
+        pEngine->pMidiRouter = ::new_fluid_midi_router(pSetup->fluid_settings(),
+            pSetup->bMidiDump ? qsynth_dump_postrouter : qsynth_handle_midi_event,
+            (void *) pEngine);
+        if (pEngine->pMidiRouter == NULL) {
+            appendMessagesError(sPrefix + tr("Failed to create the MIDI input router") + " (" + pSetup->sMidiDriver + "); " + tr("no MIDI input will be available."));
         } else {
-            ::fluid_synth_set_midi_router(m_pSynth, m_pMidiRouter);
-            appendMessages(tr("Creating MIDI driver") + " (" + m_pSetup->sMidiDriver + ")" + sElipsis);
-            m_pMidiDriver = ::new_fluid_midi_driver(m_pSetup->fluid_settings(),
-                m_pSetup->bMidiDump ? ::fluid_midi_dump_prerouter : ::fluid_midi_router_handle_midi_event,
-               (void*) m_pMidiRouter);
-            if (m_pMidiDriver == NULL)
-                appendMessagesError(tr("Failed to create the MIDI driver") + " (" + m_pSetup->sMidiDriver + "); " + tr("no MIDI input will be available."));
+            ::fluid_synth_set_midi_router(pEngine->pSynth, pEngine->pMidiRouter);
+            appendMessages(sPrefix + tr("Creating MIDI driver") + " (" + pSetup->sMidiDriver + ")" + sElipsis);
+            pEngine->pMidiDriver = ::new_fluid_midi_driver(pSetup->fluid_settings(),
+                pSetup->bMidiDump ? ::fluid_midi_dump_prerouter : ::fluid_midi_router_handle_midi_event,
+               (void *) pEngine->pMidiRouter);
+            if (pEngine->pMidiDriver == NULL)
+                appendMessagesError(sPrefix + tr("Failed to create the MIDI driver") + " (" + pSetup->sMidiDriver + "); " + tr("no MIDI input will be available."));
         }
     }
 
     // Create the MIDI player.
-    appendMessages(tr("Creating MIDI player") + sElipsis);
-    m_pPlayer = ::new_fluid_player(m_pSynth);
-    if (m_pPlayer == NULL) {
-        appendMessagesError(tr("Failed to create the MIDI player. Continuing without a player."));
+    appendMessages(sPrefix + tr("Creating MIDI player") + sElipsis);
+    pEngine->pPlayer = ::new_fluid_player(pEngine->pSynth);
+    if (pEngine->pPlayer == NULL) {
+        appendMessagesError(sPrefix + tr("Failed to create the MIDI player. Continuing without a player."));
     } else {
         // Play the midi files, if any.
-        playLoadFiles(m_pSetup->midifiles, false);
-        // We'll accept drops from now on...
-        setAcceptDrops(true);
+        playLoadFiles(pEngine, pSetup->midifiles, false);
     }
 
     // Run the server, if requested.
-    if (m_pSetup->bServer) {
+    if (pSetup->bServer) {
 #ifdef CONFIG_FLUID_SERVER
-        appendMessages(tr("Creating server") + sElipsis);
-        m_pServer = ::new_fluid_server(m_pSetup->fluid_settings(), qsynth_newclient, m_pSynth);
-        if (m_pServer == NULL)
-            appendMessagesError(tr("Failed to create the server. Continuing without it."));
+        appendMessages(sPrefix + tr("Creating server") + sElipsis);
+        pEngine->pServer = ::new_fluid_server(pSetup->fluid_settings(), qsynth_newclient, pEngine->pSynth);
+        if (pEngine->pServer == NULL)
+            appendMessagesError(sPrefix + tr("Failed to create the server. Continuing without it."));
 #else
-        appendMessagesError(tr("Server mode disabled. Continuing without it."));
+        appendMessagesError(sPrefix + tr("Server mode disabled. Continuing without it."));
 #endif
     }
 
-    // Finally initialize the front panel controls.
-    appendMessages(tr("Loading panel settings") + sElipsis);
-    loadPanelSettings();
-    // And the channel view too.
-    if (m_pChannelsForm) {
-        // Setup the channels view window.
-        m_pChannelsForm->setup(m_pSetup, m_pSynth);
-        // Prepare the channel event state flaggers.
-        if (g_pMidiChannels)
-            delete [] g_pMidiChannels;
-        g_pMidiChannels = NULL;
-        g_iMidiChannels = ::fluid_synth_count_midi_channels(m_pSynth);
-        if (g_iMidiChannels > 0)
-           g_pMidiChannels = new qsynth_midi_channel [g_iMidiChannels];
-        if (g_pMidiChannels) {
-            for (int iChan = 0; iChan < g_iMidiChannels; iChan++) {
-                g_pMidiChannels[iChan].iEvent  = 0;
-                g_pMidiChannels[iChan].iState  = 0;
-                g_pMidiChannels[iChan].iChange = 0;
-            }
-        }
-    }
+    // Make an initial program reset.
+    resetEngine(pEngine);
 
-    // Show up our efforts :)
-    programReset();
+    // Show up our efforts, if we're currently selected :)
+    if (pEngine == currentEngine()) {
+        loadPanelSettings(pEngine, true);
+        resetChannelsForm(pEngine);
+        stabilizeForm();
+    } else {
+        setEngineReverbOn(pEngine, pSetup->bReverbActive);
+        setEngineChorusOn(pEngine, pSetup->bChorusActive);
+        setEngineGain(pEngine, pSetup->fGain);
+        setEngineReverb(pEngine, pSetup->fReverbRoom, pSetup->fReverbDamp, pSetup->fReverbWidth, pSetup->fReverbLevel);
+        setEngineChorus(pEngine, pSetup->iChorusNr, pSetup->fChorusLevel, pSetup->fChorusSpeed, pSetup->fChorusDepth, pSetup->iChorusType);
+    }
+    
     // All is right.
-    appendMessages(tr("Synthesizer engine started."));
+    appendMessages(sPrefix + tr("Synthesizer engine started."));
 
     return true;
 }
 
 
 // Stop the fluidsynth clone.
-void qsynthMainForm::stopSynth (void)
+void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 {
-    if (m_pSetup == NULL)
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
 
-    const QString sElipsis = "...";
+    qsynthSetup *pSetup = pEngine->setup();
+    if (pSetup == NULL)
+        return;
 
     // Flush anything that maybe pending...
     flushStdoutBuffer();
-    
-    // Freeze channel view.
-    if (m_pChannelsForm) {
-        m_pChannelsForm->setup(m_pSetup, NULL);
-        // Unprepare the channel event state flaggers.
-        if (g_pMidiChannels)
-            delete [] g_pMidiChannels;
-        g_pMidiChannels = NULL;
-        g_iMidiChannels = 0;
-    }
 
-    // Start saving the front panel controls.
-    // (but only if we have started alright)
-    if (m_pAudioDriver) {
-        appendMessages(tr("Saving panel settings") + sElipsis);
-        savePanelSettings();
-    }
+    const QString sPrefix  = pEngine->name() + ": ";
+    const QString sElipsis = "...";
 
 #ifdef CONFIG_FLUID_SERVER
     // Destroy server.
-    if (m_pServer) {
-        appendMessages(tr("Waiting for server to terminate") + sElipsis);
-        ::fluid_server_join(m_pServer);
-        appendMessages(tr("Destroying server") + sElipsis);
-        ::delete_fluid_server(m_pServer);
-        m_pServer = NULL;
+    if (pEngine->pServer) {
+        appendMessages(sPrefix + tr("Waiting for server to terminate") + sElipsis);
+        ::fluid_server_join(pEngine->pServer);
+        appendMessages(sPrefix + tr("Destroying server") + sElipsis);
+        ::delete_fluid_server(pEngine->pServer);
+        pEngine->pServer = NULL;
     }
 #endif
 
     // Destroy player.
-    if (m_pPlayer) {
-        appendMessages(tr("Stopping MIDI player") + sElipsis);
-        ::fluid_player_stop(m_pPlayer);
-        appendMessages(tr("Waiting for MIDI player to terminate") + sElipsis);
-        ::fluid_player_join(m_pPlayer);
-        appendMessages(tr("Destroying MIDI player") + sElipsis);
-        ::delete_fluid_player(m_pPlayer);
-        m_pPlayer = NULL;
-        // We'll refuse drops from now on...
-        setAcceptDrops(false);
+    if (pEngine->pPlayer) {
+        appendMessages(sPrefix + tr("Stopping MIDI player") + sElipsis);
+        ::fluid_player_stop(pEngine->pPlayer);
+        appendMessages(sPrefix + tr("Waiting for MIDI player to terminate") + sElipsis);
+        ::fluid_player_join(pEngine->pPlayer);
+        appendMessages(sPrefix + tr("Destroying MIDI player") + sElipsis);
+        ::delete_fluid_player(pEngine->pPlayer);
+        pEngine->pPlayer = NULL;
     }
 
     // Destroy MIDI router.
-    if (m_pMidiRouter) {
-        if (m_pMidiDriver) {
-            appendMessages(tr("Destroying MIDI driver") + sElipsis);
-            ::delete_fluid_midi_driver(m_pMidiDriver);
-            m_pMidiDriver = NULL;
+    if (pEngine->pMidiRouter) {
+        if (pEngine->pMidiDriver) {
+            appendMessages(sPrefix + tr("Destroying MIDI driver") + sElipsis);
+            ::delete_fluid_midi_driver(pEngine->pMidiDriver);
+            pEngine->pMidiDriver = NULL;
         }
-        appendMessages(tr("Destroying MIDI router") + sElipsis);
-        ::delete_fluid_midi_router(m_pMidiRouter);
-        m_pMidiRouter = NULL;
+        appendMessages(sPrefix + tr("Destroying MIDI router") + sElipsis);
+        ::delete_fluid_midi_router(pEngine->pMidiRouter);
+        pEngine->pMidiRouter = NULL;
     }
 
     // Destroy audio driver.
-    if (m_pAudioDriver) {
-        appendMessages(tr("Destroying audio driver") + sElipsis);
-        ::delete_fluid_audio_driver(m_pAudioDriver);
-        m_pAudioDriver = NULL;
+    if (pEngine->pAudioDriver) {
+        appendMessages(sPrefix + tr("Destroying audio driver") + sElipsis);
+        ::delete_fluid_audio_driver(pEngine->pAudioDriver);
+        pEngine->pAudioDriver = NULL;
     }
 
     // And finally, destroy the synthesizer engine.
-    if (m_pSynth) {
-        appendMessages(tr("Destroying synthesizer engine") + sElipsis);
-        ::delete_fluid_synth(m_pSynth);
-        m_pSynth = NULL;
+    if (pEngine->pSynth) {
+        appendMessages(sPrefix + tr("Destroying synthesizer engine") + sElipsis);
+        ::delete_fluid_synth(pEngine->pSynth);
+        pEngine->pSynth = NULL;
         // We're done.
-        appendMessages(tr("Synthesizer engine terminated."));
+        appendMessages(sPrefix + tr("Synthesizer engine terminated."));
     }
 
-    // Show up our efforts :)
-    stabilizeForm();
+    // Show up our efforts, if we're currently selected :p
+    if (pEngine == currentEngine()) {
+        savePanelSettings(pEngine);
+        resetChannelsForm(pEngine);
+        stabilizeForm();
+    }
+
+   // Wait a litle bit before continue...
+    QTime t;
+    t.start();
+    while (t.elapsed() < QSYNTH_DELAY_MSECS)
+        QApplication::eventLoop()->processEvents(QEventLoop::ExcludeUserInput);
 }
 
 
 // Start the fluidsynth clone, based on given settings.
-void qsynthMainForm::restartSynth (void)
+void qsynthMainForm::restartEngine ( qsynthEngine *pEngine )
 {
-    // Restarting means stopping current engine...
-    stopSynth();
-    // And making room for immediate restart...
-    m_iTimerDelay = 0;
+    bool bRestart = true;
+    
+    // If currently running, prompt user...
+    if (pEngine && pEngine->pSynth) {
+        bRestart = (QMessageBox::warning(this, tr("Warning"),
+            tr("New settings will be effective after\n"
+               "restarting the fluidsynth engine:") + "\n\n" +
+            pEngine->name() + "\n\n" +
+            tr("Please note that this operation may cause\n"
+               "temporary MIDI and Audio disruption.") + "\n\n" +
+            tr("Do you want to restart the engine now?"),
+            tr("Yes"), tr("No")) == 0);
+    }
+
+    // If allowed, just restart the engine...
+    if (bRestart) {
+        // Restarting means stopping current engine...
+        stopEngine(pEngine);
+        // And making room for immediate restart...
+        m_iTimerDelay = 0;
+    }
+}
+
+
+// Engine reset (all channels program reset).
+void qsynthMainForm::resetEngine ( qsynthEngine *pEngine )
+{
+    if (pEngine && pEngine->pSynth) {
+        appendMessagesColor(pEngine->name() + ": fluid_synth_program_reset()", "#996666");
+        ::fluid_synth_program_reset(pEngine->pSynth);
+    }
+}
+
+
+// Engine gain settings.
+void qsynthMainForm::setEngineGain ( qsynthEngine *pEngine, float fGain )
+{
+    appendMessagesColor(pEngine->name() + ": fluid_synth_set_gain(" + QString::number(fGain) + ")", "#6699cc");
+
+    ::fluid_synth_set_gain(pEngine->pSynth, fGain);
+}
+
+
+// Engine reverb settings.
+void qsynthMainForm::setEngineReverbOn ( qsynthEngine *pEngine, bool bActive )
+{
+    appendMessagesColor(pEngine->name() + ": fluid_synth_set_reverb_on(" + QString::number((int) bActive) + ")", "#99cc33");
+
+    ::fluid_synth_set_reverb_on(pEngine->pSynth, (int) bActive);
+}
+
+void qsynthMainForm::setEngineReverb ( qsynthEngine *pEngine, float fRoom, float fDamp, float fWidth, float fLevel )
+{
+    appendMessagesColor(pEngine->name() + ": fluid_synth_set_reverb("
+        + QString::number(fRoom)  + ","
+        + QString::number(fDamp)  + ","
+        + QString::number(fWidth) + ","
+        + QString::number(fLevel) + ")", "#99cc66");
+
+    ::fluid_synth_set_reverb(pEngine->pSynth, fRoom, fDamp, fWidth, fLevel);
+}
+
+
+// Engine chorus settings.
+void qsynthMainForm::setEngineChorusOn ( qsynthEngine *pEngine, bool bActive )
+{
+    appendMessagesColor(pEngine->name() + ": fluid_synth_set_chorus_on(" + QString::number((int) bActive) + ")", "#cc9933");
+
+    ::fluid_synth_set_chorus_on(pEngine->pSynth, (int) bActive);
+}
+
+void qsynthMainForm::setEngineChorus ( qsynthEngine *pEngine, int iNr, float fLevel, float fSpeed, float fDepth, int iType )
+{
+    appendMessagesColor(pEngine->name() + ": fluid_synth_set_chorus("
+        + QString::number(iNr)    + ","
+        + QString::number(fLevel) + ","
+        + QString::number(fSpeed) + ","
+        + QString::number(fDepth) + ","
+        + QString::number(iType)  + ")", "#cc9966");
+
+    ::fluid_synth_set_chorus(pEngine->pSynth, iNr, fLevel, fSpeed, fDepth, iType);
 }
 
 
 // Front panel state load routine.
-void qsynthMainForm::loadPanelSettings (void)
+void qsynthMainForm::loadPanelSettings ( qsynthEngine *pEngine, bool bUpdate )
 {
-    if (m_pSetup == NULL)
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
+        return;
+
+    qsynthSetup *pSetup = pEngine->setup();
+    if (pSetup == NULL)
         return;
 
     // Reset change flags.
@@ -969,25 +1281,29 @@ void qsynthMainForm::loadPanelSettings (void)
     m_iReverbUpdated = 1;
     m_iChorusUpdated = 1;
 
-    GainDial->setValue(qsynth_iscale_clip(QSYNTH_GAIN_SCALE, m_pSetup->fGain));
-    m_iGainChanged++;
+    GainDial->setValue(qsynth_iscale_clip(QSYNTH_GAIN_SCALE, pSetup->fGain));
 
-    ReverbActiveCheckBox->setChecked(m_pSetup->bReverbActive);
-    ReverbRoomDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, m_pSetup->fReverbRoom));
-    ReverbDampDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, m_pSetup->fReverbDamp));
-    ReverbWidthDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, m_pSetup->fReverbWidth));
-    ReverbLevelDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, m_pSetup->fReverbLevel));
-    m_iReverbChanged++;
+    ReverbActiveCheckBox->setChecked(pSetup->bReverbActive);
+    ReverbRoomDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, pSetup->fReverbRoom));
+    ReverbDampDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, pSetup->fReverbDamp));
+    ReverbWidthDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, pSetup->fReverbWidth));
+    ReverbLevelDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, pSetup->fReverbLevel));
 
-    ChorusActiveCheckBox->setChecked(m_pSetup->bChorusActive);
-    ChorusNrDial->setValue(m_pSetup->iChorusNr);
-    ChorusLevelDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, m_pSetup->fChorusLevel));
-    ChorusSpeedDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, m_pSetup->fChorusSpeed));
-    ChorusDepthDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, m_pSetup->fChorusDepth));
-    ChorusTypeComboBox->setCurrentItem(m_pSetup->iChorusType);
-    m_iChorusChanged++;
+    ChorusActiveCheckBox->setChecked(pSetup->bChorusActive);
+    ChorusNrDial->setValue(pSetup->iChorusNr);
+    ChorusLevelDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, pSetup->fChorusLevel));
+    ChorusSpeedDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, pSetup->fChorusSpeed));
+    ChorusDepthDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, pSetup->fChorusDepth));
+    ChorusTypeComboBox->setCurrentItem(pSetup->iChorusType);
 
-    // Let them get updated, on next tick.
+    // Make them dirty.
+    if (bUpdate) {
+        m_iGainChanged++;
+        m_iReverbChanged++;
+        m_iChorusChanged++;
+    }
+    
+    // Let them get updated, possibly on next tick.
     m_iGainUpdated   = 0;
     m_iReverbUpdated = 0;
     m_iChorusUpdated = 0;
@@ -995,37 +1311,72 @@ void qsynthMainForm::loadPanelSettings (void)
 
 
 // Front panel state save routine.
-void qsynthMainForm::savePanelSettings (void)
+void qsynthMainForm::savePanelSettings ( qsynthEngine *pEngine )
 {
-    if (m_pSetup == NULL)
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
 
-    m_pSetup->fGain = qsynth_fscale_clip(GainDial->value(), QSYNTH_GAIN_SCALE);
+    qsynthSetup *pSetup = pEngine->setup();
+    if (pSetup == NULL)
+        return;
 
-    m_pSetup->bReverbActive = ReverbActiveCheckBox->isChecked();
-    m_pSetup->fReverbRoom   = qsynth_fscale_clip(ReverbRoomSpinBox->value(),  QSYNTH_REVERB_SCALE);
-    m_pSetup->fReverbDamp   = qsynth_fscale_clip(ReverbDampSpinBox->value(),  QSYNTH_REVERB_SCALE);
-    m_pSetup->fReverbWidth  = qsynth_fscale_clip(ReverbWidthSpinBox->value(), QSYNTH_REVERB_SCALE);
-    m_pSetup->fReverbLevel  = qsynth_fscale_clip(ReverbLevelSpinBox->value(), QSYNTH_REVERB_SCALE);
+    pSetup->fGain = qsynth_fscale_clip(GainDial->value(), QSYNTH_GAIN_SCALE);
 
-    m_pSetup->bChorusActive = ChorusActiveCheckBox->isChecked();
-    m_pSetup->iChorusNr     = ChorusNrSpinBox->value();
-    m_pSetup->fChorusLevel  = qsynth_fscale_clip(ChorusLevelSpinBox->value(), QSYNTH_CHORUS_SCALE);
-    m_pSetup->fChorusSpeed  = qsynth_fscale_clip(ChorusSpeedSpinBox->value(), QSYNTH_CHORUS_SCALE);
-    m_pSetup->fChorusDepth  = qsynth_fscale_clip(ChorusDepthSpinBox->value(), QSYNTH_CHORUS_SCALE);
-    m_pSetup->iChorusType   = ChorusTypeComboBox->currentItem();
+    pSetup->bReverbActive = ReverbActiveCheckBox->isChecked();
+    pSetup->fReverbRoom   = qsynth_fscale_clip(ReverbRoomSpinBox->value(),  QSYNTH_REVERB_SCALE);
+    pSetup->fReverbDamp   = qsynth_fscale_clip(ReverbDampSpinBox->value(),  QSYNTH_REVERB_SCALE);
+    pSetup->fReverbWidth  = qsynth_fscale_clip(ReverbWidthSpinBox->value(), QSYNTH_REVERB_SCALE);
+    pSetup->fReverbLevel  = qsynth_fscale_clip(ReverbLevelSpinBox->value(), QSYNTH_REVERB_SCALE);
+
+    pSetup->bChorusActive = ChorusActiveCheckBox->isChecked();
+    pSetup->iChorusNr     = ChorusNrSpinBox->value();
+    pSetup->fChorusLevel  = qsynth_fscale_clip(ChorusLevelSpinBox->value(), QSYNTH_CHORUS_SCALE);
+    pSetup->fChorusSpeed  = qsynth_fscale_clip(ChorusSpeedSpinBox->value(), QSYNTH_CHORUS_SCALE);
+    pSetup->fChorusDepth  = qsynth_fscale_clip(ChorusDepthSpinBox->value(), QSYNTH_CHORUS_SCALE);
+    pSetup->iChorusType   = ChorusTypeComboBox->currentItem();
+}
+
+
+// Complete refresh of the floating channels form.
+void qsynthMainForm::resetChannelsForm ( qsynthEngine *pEngine )
+{
+    if (m_pChannelsForm == NULL)
+        return;
+        
+    // Setup the channels view window.
+    m_pChannelsForm->setup(m_pOptions, pEngine);
+    // Reset the channel event state flaggers.
+    if (g_pMidiChannels)
+        delete [] g_pMidiChannels;
+    g_pMidiChannels = NULL;
+    g_iMidiChannels = 0;
+    // Prepare the new channel event state flaggers.
+    if (pEngine && pEngine->pSynth)
+        g_iMidiChannels = ::fluid_synth_count_midi_channels(pEngine->pSynth);
+    if (g_iMidiChannels > 0)
+        g_pMidiChannels = new qsynth_midi_channel [g_iMidiChannels];
+    if (g_pMidiChannels) {
+        for (int iChan = 0; iChan < g_iMidiChannels; iChan++) {
+            g_pMidiChannels[iChan].iEvent  = 0;
+            g_pMidiChannels[iChan].iState  = 0;
+            g_pMidiChannels[iChan].iChange = 0;
+        }
+    }
 }
 
 
 // Increment reverb change flag.
 void qsynthMainForm::reverbActivate ( bool bActive )
 {
-    if (m_pSynth == NULL)
+    qsynthEngine *pEngine = currentEngine();
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
 
-    appendMessagesColor("fluid_synth_set_reverb_on(" + QString::number((int) bActive) + ")", "#99cc33");
-
-    ::fluid_synth_set_reverb_on(m_pSynth, (int) bActive);
+    setEngineReverbOn(pEngine, bActive);
 
     if (bActive)
         refreshReverb();
@@ -1037,12 +1388,13 @@ void qsynthMainForm::reverbActivate ( bool bActive )
 // Increment chorus change flag.
 void qsynthMainForm::chorusActivate ( bool bActive )
 {
-    if (m_pSynth == NULL)
+    qsynthEngine *pEngine = currentEngine();
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
 
-    appendMessagesColor("fluid_synth_set_chorus_on(" + QString::number((int) bActive) + ")", "#cc9933");
-
-    ::fluid_synth_set_chorus_on(m_pSynth, (int) bActive);
+    setEngineChorusOn(pEngine, bActive);
 
     if (bActive)
         refreshChorus();
@@ -1078,15 +1430,19 @@ void qsynthMainForm::chorusChanged (int)
 // Update gain state.
 void qsynthMainForm::updateGain (void)
 {
-    if (m_pSynth == NULL || m_iGainUpdated > 0)
+    if (m_iGainUpdated > 0)
+        return;
+        
+    qsynthEngine *pEngine = currentEngine();
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
     m_iGainUpdated++;
 
     float fGain = qsynth_fscale_clip(GainSpinBox->value(), QSYNTH_GAIN_SCALE);
 
-    appendMessagesColor("fluid_synth_set_gain(" + QString::number(fGain) + ")", "#6699cc");
-
-    ::fluid_synth_set_gain(m_pSynth, fGain);
+    setEngineGain(pEngine, fGain);
     refreshGain();
 
     m_iGainUpdated--;
@@ -1097,7 +1453,13 @@ void qsynthMainForm::updateGain (void)
 // Update reverb state.
 void qsynthMainForm::updateReverb (void)
 {
-    if (m_pSynth == NULL || m_iReverbUpdated > 0)
+    if (m_iReverbUpdated > 0)
+        return;
+        
+    qsynthEngine *pEngine = currentEngine();
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
     m_iReverbUpdated++;
 
@@ -1106,13 +1468,7 @@ void qsynthMainForm::updateReverb (void)
     double fReverbWidth = qsynth_fscale_clip(ReverbWidthSpinBox->value(), QSYNTH_REVERB_SCALE);
     double fReverbLevel = qsynth_fscale_clip(ReverbLevelSpinBox->value(), QSYNTH_REVERB_SCALE);
 
-    appendMessagesColor("fluid_synth_set_reverb("
-        + QString::number(fReverbRoom)  + ","
-        + QString::number(fReverbDamp)  + ","
-        + QString::number(fReverbWidth) + ","
-        + QString::number(fReverbLevel) + ")", "#99cc66");
-
-    ::fluid_synth_set_reverb(m_pSynth, fReverbRoom, fReverbDamp, fReverbWidth, fReverbLevel);
+    setEngineReverb(pEngine, fReverbRoom, fReverbDamp, fReverbWidth, fReverbLevel);
     refreshReverb();
 
     m_iReverbUpdated--;
@@ -1123,7 +1479,13 @@ void qsynthMainForm::updateReverb (void)
 // Update chorus state.
 void qsynthMainForm::updateChorus (void)
 {
-    if (m_pSynth == NULL || m_iChorusUpdated > 0)
+    if (m_iChorusUpdated > 0)
+        return;
+    
+    qsynthEngine *pEngine = currentEngine();
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
     m_iChorusUpdated++;
 
@@ -1133,14 +1495,7 @@ void qsynthMainForm::updateChorus (void)
     double fChorusDepth = qsynth_fscale_clip(ChorusDepthSpinBox->value(), QSYNTH_CHORUS_SCALE);
     int    iChorusType  = ChorusTypeComboBox->currentItem();
 
-    appendMessagesColor("fluid_synth_set_chorus("
-        + QString::number(iChorusNr)    + ","
-        + QString::number(fChorusLevel) + ","
-        + QString::number(fChorusSpeed) + ","
-        + QString::number(fChorusDepth) + ","
-        + QString::number(iChorusType)  + ")", "#cc9966");
-
-    ::fluid_synth_set_chorus(m_pSynth, iChorusNr, fChorusLevel, fChorusSpeed, fChorusDepth, iChorusType);
+    setEngineChorus(pEngine, iChorusNr, fChorusLevel, fChorusSpeed, fChorusDepth, iChorusType);
     refreshChorus();
 
     m_iChorusUpdated--;
@@ -1151,10 +1506,13 @@ void qsynthMainForm::updateChorus (void)
 // Refresh gain panel controls.
 void qsynthMainForm::refreshGain (void)
 {
-    if (m_pSynth == NULL)
+    qsynthEngine *pEngine = currentEngine();
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
 
-    float fGain = ::fluid_synth_get_gain(m_pSynth);
+    float fGain = ::fluid_synth_get_gain(pEngine->pSynth);
 
     GainDial->setValue(qsynth_iscale_clip(QSYNTH_GAIN_SCALE, fGain));
 }
@@ -1163,13 +1521,16 @@ void qsynthMainForm::refreshGain (void)
 // Refresh reverb panel controls.
 void qsynthMainForm::refreshReverb (void)
 {
-    if (m_pSynth == NULL)
+    qsynthEngine *pEngine = currentEngine();
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
 
-    double fReverbRoom  = ::fluid_synth_get_reverb_roomsize(m_pSynth);
-    double fReverbDamp  = ::fluid_synth_get_reverb_damp(m_pSynth);
-    double fReverbWidth = ::fluid_synth_get_reverb_width(m_pSynth);
-    double fReverbLevel = ::fluid_synth_get_reverb_level(m_pSynth);
+    double fReverbRoom  = ::fluid_synth_get_reverb_roomsize(pEngine->pSynth);
+    double fReverbDamp  = ::fluid_synth_get_reverb_damp(pEngine->pSynth);
+    double fReverbWidth = ::fluid_synth_get_reverb_width(pEngine->pSynth);
+    double fReverbLevel = ::fluid_synth_get_reverb_level(pEngine->pSynth);
 
     ReverbRoomDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, fReverbRoom));
     ReverbDampDial->setValue(qsynth_iscale_clip(QSYNTH_REVERB_SCALE, fReverbDamp));
@@ -1181,14 +1542,17 @@ void qsynthMainForm::refreshReverb (void)
 // Refresh chorus panel controls.
 void qsynthMainForm::refreshChorus (void)
 {
-    if (m_pSynth == NULL)
+    qsynthEngine *pEngine = currentEngine();
+    if (pEngine == NULL)
+        return;
+    if (pEngine->pSynth == NULL)
         return;
 
-    int    iChorusNr    = ::fluid_synth_get_chorus_nr(m_pSynth);
-    double fChorusLevel = ::fluid_synth_get_chorus_level(m_pSynth);
-    double fChorusSpeed = ::fluid_synth_get_chorus_speed_Hz(m_pSynth);
-    double fChorusDepth = ::fluid_synth_get_chorus_depth_ms(m_pSynth);
-    int    iChorusType  = ::fluid_synth_get_chorus_type(m_pSynth);
+    int    iChorusNr    = ::fluid_synth_get_chorus_nr(pEngine->pSynth);
+    double fChorusLevel = ::fluid_synth_get_chorus_level(pEngine->pSynth);
+    double fChorusSpeed = ::fluid_synth_get_chorus_speed_Hz(pEngine->pSynth);
+    double fChorusDepth = ::fluid_synth_get_chorus_depth_ms(pEngine->pSynth);
+    int    iChorusType  = ::fluid_synth_get_chorus_type(pEngine->pSynth);
 
     ChorusNrDial->setValue(iChorusNr);
     ChorusLevelDial->setValue(qsynth_iscale_clip(QSYNTH_CHORUS_SCALE, fChorusLevel));
@@ -1199,4 +1563,3 @@ void qsynthMainForm::refreshChorus (void)
 
 
 // end of qsynthMainForm.ui.h
-

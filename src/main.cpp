@@ -23,7 +23,7 @@
 #include <qtextcodec.h>
 
 #include "qsynthAbout.h"
-#include "qsynthSetup.h"
+#include "qsynthOptions.h"
 #include "qsynthMainForm.h"
 
 #include "config.h"
@@ -50,7 +50,7 @@ int main ( int argc, char **argv )
     }
 
     // Construct default settings; override with command line arguments.
-    qsynthSetup settings;
+    qsynthOptions settings;
     if (!settings.parse_args(app.argc(), app.argv())) {
         app.quit();
         return 1;

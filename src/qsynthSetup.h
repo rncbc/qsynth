@@ -25,7 +25,6 @@
 #include <qstring.h>
 #include <qstringlist.h>
 #include <qsettings.h>
-#include <qcombobox.h>
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -46,16 +45,14 @@ public:
     // Default destructor.
     ~qsynthSetup();
 
-    // Command line arguments parser.
-    bool parse_args(int argc, char **argv);
-    // Command line usage helper.
-    void print_usage(const char *arg0);
-
     // Settings cache realization.
     void realize();
 
     // Fluidsynth settings accessor.
     fluid_settings_t *fluid_settings();
+
+    // Setup display name.
+    QString sDisplayName;
 
     // Settings variables.
     bool    bMidiIn;
@@ -94,39 +91,14 @@ public:
     QStringList soundfonts;
     QStringList midifiles;
 
-    // Display options...
-    QString sMessagesFont;
-    bool    bMessagesLimit;
-    int     iMessagesLimitLines;
-    bool    bQueryClose;
-    bool    bKeepOnTop;
-    bool    bStdoutCapture;
-
-    // Default options...
-    QString sSoundFontDir;
-    bool    bPresetPreview;
-
     // Current (default) preset name.
     QString sDefPreset;
     // Available presets list.
     QStringList presets;
 
-    // Preset management methods.
-    bool loadPreset(fluid_synth_t *pSynth, const QString& sPreset);
-    bool savePreset(fluid_synth_t *pSynth, const QString& sPreset);
-    bool deletePreset(const QString& sPreset);
-
-    // Widget geometry persistence helper prototypes.
-    void saveWidgetGeometry(QWidget *pWidget);
-    void loadWidgetGeometry(QWidget *pWidget);
-
 private:
 
-    // Special parsing of '-o' command-line option into fluidsynth settings.
-    bool parse_option(char *optarg);
-
-    // Settings member variables.
-    QSettings m_settings;
+    // Fluidsynth settings member variable.
     fluid_settings_t *m_pFluidSettings;
 };
 

@@ -296,11 +296,11 @@
     <tabstop>CancelPushButton</tabstop>
 </tabstops>
 <includes>
-    <include location="global" impldecl="in declaration">qsynthSetup.h</include>
+    <include location="local" impldecl="in declaration">qsynthOptions.h</include>
     <include location="local" impldecl="in implementation">qsynthPresetForm.ui.h</include>
 </includes>
 <variables>
-    <variable access="private">qsynthSetup *m_pSetup;</variable>
+    <variable access="private">qsynthOptions *m_pOptions;</variable>
     <variable access="private">fluid_synth_t *m_pSynth;</variable>
     <variable access="private">int m_iChan;</variable>
     <variable access="private">int m_iBank;</variable>
@@ -319,7 +319,7 @@
 <functions>
     <function access="private" specifier="non virtual">init()</function>
     <function access="private" specifier="non virtual">destroy()</function>
-    <function specifier="non virtual">setup( qsynthSetup *pSetup, fluid_synth_t *pSynth, int iChan )</function>
+    <function specifier="non virtual">setup( qsynthOptions *pOptions, fluid_synth_t *pSynth, int iChan )</function>
     <function access="private" specifier="non virtual" returnType="bool">validateForm()</function>
     <function access="private" specifier="non virtual" returnType="QListViewItem*">findBankItem( int iBank )</function>
     <function access="private" specifier="non virtual" returnType="QListViewItem*">findProgItem( int iProg )</function>
