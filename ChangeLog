@@ -6,7 +6,8 @@ ChangeLog
 0.2.1   2004-04-27  Important internal fixes.
 
 - Channels window reset when switching engines isn't destructive
-  anymore; this was an annoying bug, now fixed.
+  anymore; also reverb and chorus activation were not being correctly
+  updated; these were quite annoying bugs, now fixed.
 
 - Corrected MIDI/Audio driver settings that were being obliterated from
   the setup dialog option lists; this was causing the impossibility to

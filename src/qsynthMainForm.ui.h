@@ -853,12 +853,13 @@ void qsynthMainForm::tabSelect ( int iTab )
     if (pTab) {
         qsynthEngine *pEngine = pTab->engine();
         if (pEngine) {
+            // Set current engine reference hack.
+            g_pCurrentEngine = pEngine;
+            // And do the change.
             setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + " [" + pEngine->name() + "]");
             appendMessages(pEngine->name() + sColon + tr("Loading panel settings") + sElipsis);
             loadPanelSettings(pEngine, false);
             resetChannelsForm(pEngine, false);
-            // Don't forget to set current engine reference hack.
-            g_pCurrentEngine = pEngine;
         }
     }
 
@@ -1369,6 +1370,9 @@ void qsynthMainForm::resetChannelsForm ( qsynthEngine *pEngine, bool bPreset )
 // Increment reverb change flag.
 void qsynthMainForm::reverbActivate ( bool bActive )
 {
+    if (m_iReverbUpdated > 0)
+        return;
+        
     qsynthEngine *pEngine = currentEngine();
     if (pEngine == NULL)
         return;
@@ -1387,6 +1391,9 @@ void qsynthMainForm::reverbActivate ( bool bActive )
 // Increment chorus change flag.
 void qsynthMainForm::chorusActivate ( bool bActive )
 {
+    if (m_iChorusUpdated > 0)
+        return;
+    
     qsynthEngine *pEngine = currentEngine();
     if (pEngine == NULL)
         return;
