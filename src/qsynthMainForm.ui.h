@@ -45,12 +45,92 @@ static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
 }
 
 
+static void qsynth_settings_foreach_option ( void *data, char *name, char *option )
+{
+    fprintf(stderr, " option: name=\"%s\" option=\"%s\"\n", name, option);
+}
+
+static void qsynth_settings_foreach ( void *data, char *name, int type )
+{
+    qsynthSetup *pSetup = (qsynthSetup *) data;
+    char *t = "NO";
+    switch (type) {
+      case FLUID_NUM_TYPE: t = "NUM"; break;
+      case FLUID_INT_TYPE: t = "INT"; break;
+      case FLUID_STR_TYPE: t = "STR"; break;
+      case FLUID_SET_TYPE: t = "SET"; break;
+    }
+
+    int hints = ::fluid_settings_get_hints(pSetup->fluid_settings(), name);
+    QString sHints = "";
+    if (hints & FLUID_HINT_BOUNDED_BELOW)
+        sHints += " BOUNDED_BELOW ";
+    if (hints & FLUID_HINT_BOUNDED_ABOVE)
+        sHints += " BOUNDED_ABOVE ";
+    if (hints & FLUID_HINT_TOGGLED)
+        sHints += " TOGGLED ";
+    if (hints & FLUID_HINT_SAMPLE_RATE)
+        sHints += " SAMPLE_RATE ";
+    if (hints & FLUID_HINT_LOGARITHMIC)
+        sHints += " LOGARITHMIC ";
+    if (hints & FLUID_HINT_LOGARITHMIC)
+        sHints += " INTEGER ";
+    if (hints & FLUID_HINT_FILENAME)
+        sHints += " FILENAME ";
+    if (hints & FLUID_HINT_OPTIONLIST)
+        sHints += " OPTIONLIST ";
+
+    int realtime = ::fluid_settings_is_realtime(pSetup->fluid_settings(), name);
+
+    fprintf(stderr, "setting: name=\"%s\", type=FLUID_%s_TYPE (%d), realtime=%d, hints=0x%04x {%s}\n", name, t, type, realtime, hints, (char *) sHints.latin1());
+
+    switch (type) {
+
+      case FLUID_NUM_TYPE:
+      {
+        double fDefault  = ::fluid_settings_getnum_default(pSetup->fluid_settings(), name);
+        double fCurrent  = 0.0;
+        double fRangeMin = 0.0;
+        double fRangeMax = 0.0;
+        ::fluid_settings_getnum(pSetup->fluid_settings(), name, &fCurrent);
+        ::fluid_settings_getnum_range(pSetup->fluid_settings(), name, &fRangeMin, &fRangeMax);
+        fprintf(stderr, "  value: current=%g, default=%g, range: min=%g, max=%g\n", fCurrent, fDefault, fRangeMin, fRangeMax);
+        break;
+      }
+
+      case FLUID_INT_TYPE:
+      {
+        int iDefault  = ::fluid_settings_getint_default(pSetup->fluid_settings(), name);
+        int iCurrent  = 0;
+        int iRangeMin = 0;
+        int iRangeMax = 0;
+        ::fluid_settings_getint(pSetup->fluid_settings(), name, &iCurrent);
+        ::fluid_settings_getint_range(pSetup->fluid_settings(), name, &iRangeMin, &iRangeMax);
+        fprintf(stderr, "  value: current=%d, default=%d, range: min=%d, max=%d\n", iCurrent, iDefault, iRangeMin, iRangeMax);
+        break;
+      }
+
+      case FLUID_STR_TYPE:
+      {
+      //char *pszDefault = ::fluid_settings_getstr_default(pSetup->fluid_settings(), name);
+        char *pszCurrent = NULL;
+        ::fluid_settings_getstr(pSetup->fluid_settings(), name, &pszCurrent);
+      //fprintf(stderr, "  value: current=\"%s\", default=\"%s\"\n", pszCurrent, pszDefault);
+        fprintf(stderr, "  value: current=\"%s\"\n", pszCurrent);
+        break;
+      }
+    }
+
+    ::fluid_settings_foreach_option(pSetup->fluid_settings(), name, data, qsynth_settings_foreach_option);
+}
+
+
 // Kind of constructor.
 void qsynthMainForm::init (void)
 {
     m_pSetup = NULL;
     m_pTimer = new QTimer(this);
-    
+
     m_pSynth        = NULL;
     m_pAudioDriver  = NULL;
     m_pMidiRouter   = NULL;
@@ -350,6 +430,9 @@ bool qsynthMainForm::startSynth (void)
 
     // All is right.
     appendMessages(tr("Synthesizer engine started."));
+
+    ::fluid_settings_foreach(m_pSetup->fluid_settings(), m_pSetup, qsynth_settings_foreach);
+
     return true;
 }
 

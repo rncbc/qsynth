@@ -39,22 +39,28 @@ qsynthSetup::qsynthSetup (void)
 
     // Load previous/default fluidsynth settings...
     m_settings.beginGroup("/Settings");
-    bMidiIn         = m_settings.readBoolEntry    ("/MidiIn",         true);
-    sMidiDriver     = m_settings.readEntry        ("/MidiDriver",     "alsa_seq");
-    iMidiChannels   = m_settings.readNumEntry     ("/MidiChannels",   0);
-    sAudioDriver    = m_settings.readEntry        ("/AudioDriver",    "jack");
-    bConnectJack    = m_settings.readBoolEntry    ("/ConnectJack",    true);
-    iAudioChannels  = m_settings.readNumEntry     ("/AudioChannels",  0);
-    iAudioGroups    = m_settings.readNumEntry     ("/AudioGroups",    0);
-    iAudioBufSize   = m_settings.readNumEntry     ("/AudioBufSize",   0);
-    iAudioBufCount  = m_settings.readNumEntry     ("/AudioBufCount",  0);
-    fSampleRate     = m_settings.readDoubleEntry  ("/SampleRate",     0.0);
-    bReverb         = m_settings.readBoolEntry    ("/Reverb",         true);
-    bChorus         = m_settings.readBoolEntry    ("/Chorus",         true);
-    fGain           = m_settings.readDoubleEntry  ("/Gain",           0.0);
-    bServer         = m_settings.readBoolEntry    ("/Server",         false);
-    bMidiDump       = m_settings.readBoolEntry    ("/MidiDump",       false);
-    bVerbose        = m_settings.readBoolEntry    ("/Verbose",        false);
+    bMidiIn          = m_settings.readBoolEntry    ("/MidiIn",          true);
+    sMidiDriver      = m_settings.readEntry        ("/MidiDriver",      "alsa_seq");
+    iMidiChannels    = m_settings.readNumEntry     ("/MidiChannels",    0);
+    sAudioDriver     = m_settings.readEntry        ("/AudioDriver",     "jack");
+    sJackName        = m_settings.readEntry        ("/JackName",        "qsynth");
+    bJackAutoConnect = m_settings.readBoolEntry    ("/JackAutoConnect", true);
+    bJackMulti       = m_settings.readBoolEntry    ("/JackMulti",       false);
+    iAudioChannels   = m_settings.readNumEntry     ("/AudioChannels",   0);
+    iAudioGroups     = m_settings.readNumEntry     ("/AudioGroups",     0);
+    iAudioBufSize    = m_settings.readNumEntry     ("/AudioBufSize",    0);
+    iAudioBufCount   = m_settings.readNumEntry     ("/AudioBufCount",   0);
+    sSampleFormat    = m_settings.readEntry        ("/SampleFormat",    "16bits");
+    fSampleRate      = m_settings.readDoubleEntry  ("/SampleRate",      0.0);
+    iPolyphony       = m_settings.readNumEntry     ("/Polyphony",       0);
+    iAudioBufCount   = m_settings.readNumEntry     ("/AudioBufCount",   0);
+    bReverbActive    = m_settings.readBoolEntry    ("/ReverbActive",    true);
+    bChorusActive    = m_settings.readBoolEntry    ("/ChorusActive",    true);
+    bLadspaActive    = m_settings.readBoolEntry    ("/LadspaActive",    false);
+    fGain            = m_settings.readDoubleEntry  ("/Gain",            0.0);
+    bServer          = m_settings.readBoolEntry    ("/Server",          false);
+    bMidiDump        = m_settings.readBoolEntry    ("/MidiDump",        false);
+    bVerbose         = m_settings.readBoolEntry    ("/Verbose",         false);
     m_settings.endGroup();
 
     // Load soundfont list...
@@ -101,14 +107,19 @@ qsynthSetup::~qsynthSetup (void)
     m_settings.writeEntry("/MidiDriver",       sMidiDriver);
     m_settings.writeEntry("/MidiChannels",     iMidiChannels);
     m_settings.writeEntry("/AudioDriver",      sAudioDriver);
-    m_settings.writeEntry("/ConnectJack",      bConnectJack);
+    m_settings.writeEntry("/JackName",         sJackName);
+    m_settings.writeEntry("/JackAutoConnect",  bJackAutoConnect);
+    m_settings.writeEntry("/JackMulti",        bJackMulti);
     m_settings.writeEntry("/AudioChannels",    iAudioChannels);
     m_settings.writeEntry("/AudioGroups",      iAudioGroups);
     m_settings.writeEntry("/AudioBufSize",     iAudioBufSize);
     m_settings.writeEntry("/AudioBufCount",    iAudioBufCount);
+    m_settings.writeEntry("/SampleFormat",     sSampleFormat);
     m_settings.writeEntry("/SampleRate",       fSampleRate);
-    m_settings.writeEntry("/Reverb",           bReverb);
-    m_settings.writeEntry("/Chorus",           bChorus);
+    m_settings.writeEntry("/Polyphony",        iPolyphony);
+    m_settings.writeEntry("/ReverbActive",     bReverbActive);
+    m_settings.writeEntry("/ChorusActive",     bChorusActive);
+    m_settings.writeEntry("/LadspaActive",     bLadspaActive);
     m_settings.writeEntry("/Gain",             fGain);
     m_settings.writeEntry("/Server",           bServer);
     m_settings.writeEntry("/MidiDump",         bMidiDump);
@@ -266,7 +277,7 @@ bool qsynthSetup::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-j" || sArg == "--connect-jack-outputs") {
-            bConnectJack = true;
+            bJackAutoConnect = true;
         }
         else if (sArg == "-L" || sArg == "--audio-channels") {
         	if (sVal.isNull()) {
@@ -318,7 +329,7 @@ bool qsynthSetup::parse_args ( int argc, char **argv )
                 fprintf(stderr, QObject::tr("Option -R requires an argument (reverb).") + sEol);
                 return false;
             }
-            bReverb = !(sVal == "0" || sVal == "no" || sVal == "off");
+            bReverbActive = !(sVal == "0" || sVal == "no" || sVal == "off");
             if (iEqual < 0)
                 i++;
         }
@@ -327,7 +338,7 @@ bool qsynthSetup::parse_args ( int argc, char **argv )
                 fprintf(stderr, QObject::tr("Option -C requires an argument (chorus).") + sEol);
                 return false;
             }
-            bChorus = !(sVal == "0" || sVal == "no" || sVal == "off");
+            bChorusActive = !(sVal == "0" || sVal == "no" || sVal == "off");
             if (iEqual < 0)
                 i++;
         }
@@ -410,7 +421,11 @@ void qsynthSetup::realize (void)
     if (!sAudioDriver.isEmpty())
         ::fluid_settings_setstr(m_pFluidSettings, "audio.driver", (char *) sAudioDriver.latin1());
 
-    ::fluid_settings_setint(m_pFluidSettings, "audio.jack.autoconnect", (int) bConnectJack);
+    ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.id", (char *) sJackName.latin1());
+    ::fluid_settings_setint(m_pFluidSettings, "audio.jack.autoconnect", (int) bJackAutoConnect);
+    ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.multi", (char *) (bJackMulti ? "yes" : "no"));
+
+    ::fluid_settings_setstr(m_pFluidSettings, "audio.sample-format", (char *) sSampleFormat.latin1());
 
     if (iAudioChannels > 0)
         ::fluid_settings_setint(m_pFluidSettings, "synth.audio-channels", iAudioChannels);
@@ -422,13 +437,16 @@ void qsynthSetup::realize (void)
         ::fluid_settings_setint(m_pFluidSettings, "audio.periods", iAudioBufCount);
     if (fSampleRate > 0.0)
         ::fluid_settings_setnum(m_pFluidSettings, "synth.sample-rate", fSampleRate);
+    if (iPolyphony > 0)
+        ::fluid_settings_setint(m_pFluidSettings, "synth.polyphony", iPolyphony);
     if (fGain > 0.0)
         ::fluid_settings_setnum(m_pFluidSettings, "synth.gain", fGain);
 
-    ::fluid_settings_setstr(m_pFluidSettings, "synth.reverb.active", (char *) (bReverb   ? "yes" : "no"));
-    ::fluid_settings_setstr(m_pFluidSettings, "synth.chorus.active", (char *) (bChorus   ? "yes" : "no"));
-    ::fluid_settings_setstr(m_pFluidSettings, "synth.dump",          (char *) (bMidiDump ? "yes" : "no"));
-    ::fluid_settings_setstr(m_pFluidSettings, "synth.verbose",       (char *) (bVerbose  ? "yes" : "no"));
+    ::fluid_settings_setstr(m_pFluidSettings, "synth.reverb.active", (char *) (bReverbActive ? "yes" : "no"));
+    ::fluid_settings_setstr(m_pFluidSettings, "synth.chorus.active", (char *) (bChorusActive ? "yes" : "no"));
+    ::fluid_settings_setstr(m_pFluidSettings, "synth.ladspa.active", (char *) (bLadspaActive ? "yes" : "no"));
+    ::fluid_settings_setstr(m_pFluidSettings, "synth.dump",          (char *) (bMidiDump     ? "yes" : "no"));
+    ::fluid_settings_setstr(m_pFluidSettings, "synth.verbose",       (char *) (bVerbose      ? "yes" : "no"));
 }
 
 
