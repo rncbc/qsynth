@@ -283,6 +283,7 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
     // Other options finally.
     QueryCloseCheckBox->setChecked(m_pSetup->bQueryClose);
+    KeepOnTopCheckBox->setChecked(m_pSetup->bKeepOnTop);
     StdoutCaptureCheckBox->setChecked(m_pSetup->bStdoutCapture);
 
     // Done.
@@ -297,6 +298,7 @@ void qsynthSetupForm::accept (void)
     // Save options...
     m_pSetup->sMessagesFont  = MessagesFontTextLabel->font().toString();
     m_pSetup->bQueryClose    = QueryCloseCheckBox->isChecked();
+    m_pSetup->bKeepOnTop     = KeepOnTopCheckBox->isChecked();
     m_pSetup->bStdoutCapture = StdoutCaptureCheckBox->isChecked();
 
     if (m_iDirtyCount > 0) {

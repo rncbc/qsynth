@@ -86,6 +86,7 @@ qsynthSetup::qsynthSetup (void)
     m_settings.beginGroup("/Options");
     sMessagesFont  = m_settings.readEntry("/MessagesFont", QString::null);
     bQueryClose    = m_settings.readBoolEntry("/QueryClose",    true);
+    bKeepOnTop     = m_settings.readBoolEntry("/KeepOnTop",     true);
     bStdoutCapture = m_settings.readBoolEntry("/StdoutCapture", true);
     m_settings.endGroup();
 
@@ -141,6 +142,7 @@ qsynthSetup::~qsynthSetup (void)
     m_settings.beginGroup("/Options");
     m_settings.writeEntry("/MessagesFont",  sMessagesFont);
     m_settings.writeEntry("/QueryClose",    bQueryClose);
+    m_settings.writeEntry("/KeepOnTop",     bKeepOnTop);
     m_settings.writeEntry("/StdoutCapture", bStdoutCapture);
     m_settings.endGroup();
 

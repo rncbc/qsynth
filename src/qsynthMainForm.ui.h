@@ -200,9 +200,9 @@ void qsynthMainForm::init (void)
     m_pXpmLedOn  = new QPixmap(QPixmap::fromMimeSource("ledon1.png"));
     m_pXpmLedOff = new QPixmap(QPixmap::fromMimeSource("ledoff1.png"));
 
-    // All forms are to be created right now.
-    m_pMessagesForm = new qsynthMessagesForm(this, 0, Qt::WType_TopLevel | Qt::WStyle_Tool);
-    m_pChannelsForm = new qsynthChannelsForm(this, 0, Qt::WType_TopLevel | Qt::WStyle_Tool);
+    // All forms are to be created later on setup.
+    m_pMessagesForm  = NULL;
+    m_pChannelsForm  = NULL;
 }
 
 
@@ -218,8 +218,10 @@ void qsynthMainForm::destroy (void)
     delete m_pXpmLedOff;
     
     // Finally drop any popup widgets around...
-    delete m_pMessagesForm;
-    delete m_pChannelsForm;
+    if (m_pMessagesForm)
+        delete m_pMessagesForm;
+    if (m_pChannelsForm)
+        delete m_pChannelsForm;
 }
 
 
@@ -229,6 +231,14 @@ void qsynthMainForm::setup ( qsynthSetup *pSetup )
     // Finally, fix settings descriptor
     // and stabilize the form.
     m_pSetup = pSetup;
+
+    // What style do we create these forms?
+    WFlags wflags = Qt::WType_TopLevel;
+    if (m_pSetup->bKeepOnTop)
+        wflags |= Qt::WStyle_Tool;
+    // All forms are to be created right now.
+    m_pMessagesForm = new qsynthMessagesForm(this, 0, wflags);
+    m_pChannelsForm = new qsynthChannelsForm(this, 0, wflags);
 
     // Try to restore old window positioning.
     m_pSetup->loadWidgetGeometry(this);
@@ -613,12 +623,23 @@ void qsynthMainForm::showSetupForm (void)
         // Check out some initial nullities(tm)...
         if (m_pSetup->sMessagesFont.isEmpty() && m_pMessagesForm)
             m_pSetup->sMessagesFont = m_pMessagesForm->messagesFont().toString();
-        // To track down immediate changes.
+        // To track down deferred or immediate changes.
         QString sOldMessagesFont = m_pSetup->sMessagesFont;
+        bool    bStdoutCapture   = m_pSetup->bStdoutCapture;
+        bool    bKeepOnTop       = m_pSetup->bKeepOnTop;
         // Load the current setup settings.
         pSetupForm->setup(m_pSetup, m_pSynth);
         // Show the setup dialog...
         if (pSetupForm->exec()) {
+            // Warn if something will be only effective on next run.
+            if (( bStdoutCapture && !m_pSetup->bStdoutCapture) ||
+                (!bStdoutCapture &&  m_pSetup->bStdoutCapture) ||
+                ( bKeepOnTop     && !m_pSetup->bKeepOnTop)     ||
+                (!bKeepOnTop     &&  m_pSetup->bKeepOnTop)) {
+                QMessageBox::information(this, tr("Information"),
+                    tr("Some settings will be only in effect\n"
+                       "the next time you run this program."), tr("OK"));
+            }
             // Check wheather something immediate has changed.
             if (sOldMessagesFont != m_pSetup->sMessagesFont)
                 updateMessagesFont();

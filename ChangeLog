@@ -3,13 +3,19 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.1.2   2004-02-12  Work in progress.
+0.1.2   2004-02-13  Work in progress.
 
 - Messages and Channels pop-up windows are not hinted as dialogs anymore 
   and thus are not centered relative to parent main window which has become 
   a strict Qt dialog widget behaviour (as of Qt 3.3+).
 
 - Soundfont setup dialog changed to open and load multiple files at once.
+
+- New setup option on wether all child windows are kept on top of the main
+  window, or otherwise floating with probable taskbar entries of their own.
+
+- Setup changes that are only effective next time the program is run gets
+  an informational message box shown to the user.
 
 
 0.1.1   2004-01-22  Yet more minor bugfixes.

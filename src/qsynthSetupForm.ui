@@ -1070,6 +1070,25 @@
                             </widget>
                             <widget class="QCheckBox">
                                 <property name="name">
+                                    <cstring>KeepOnTopCheckBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Keep child windows always on top</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+K</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Whether to keep all child windows on top of the main window</string>
+                                </property>
+                            </widget>
+                            <widget class="QCheckBox">
+                                <property name="name">
                                     <cstring>StdoutCaptureCheckBox</cstring>
                                 </property>
                                 <property name="font">
@@ -1277,6 +1296,18 @@
         <slot>settingsChanged()</slot>
     </connection>
     <connection>
+        <sender>KeepOnTopCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>StdoutCaptureCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthSetupForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
         <sender>OkPushButton</sender>
         <signal>clicked()</signal>
         <receiver>qsynthSetupForm</receiver>
@@ -1313,6 +1344,7 @@
     <tabstop>SettingsListView</tabstop>
     <tabstop>MessagesFontPushButton</tabstop>
     <tabstop>QueryCloseCheckBox</tabstop>
+    <tabstop>KeepOnTopCheckBox</tabstop>
     <tabstop>StdoutCaptureCheckBox</tabstop>
     <tabstop>OkPushButton</tabstop>
     <tabstop>CancelPushButton</tabstop>
