@@ -1624,7 +1624,7 @@
     <function access="private" specifier="non virtual">setEngineChorus( qsynthEngine *pEngine, int iNr, float fLevel, float fSpeed, float fDepth, int iType )</function>
     <function access="private" specifier="non virtual">loadPanelSettings( qsynthEngine *pEngine, bool bUpdate )</function>
     <function access="private" specifier="non virtual">savePanelSettings( qsynthEngine *pEngine )</function>
-    <function access="private" specifier="non virtual">resetChannelsForm( qsynthEngine *pEngine )</function>
+    <function access="private" specifier="non virtual">resetChannelsForm( qsynthEngine *pEngine, bool fPreset )</function>
     <function access="private" specifier="non virtual">updateGain( void )</function>
     <function access="private" specifier="non virtual">updateReverb( void )</function>
     <function access="private" specifier="non virtual">updateChorus( void )</function>

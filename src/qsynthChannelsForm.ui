@@ -310,9 +310,6 @@
     <slot specifier="non virtual">changePreset( const QString&amp; sPreset )</slot>
     <slot specifier="non virtual">savePreset()</slot>
     <slot specifier="non virtual">deletePreset()</slot>
-    <slot specifier="non virtual">resetPresets()</slot>
-    <slot specifier="non virtual">resetAllChannels( void )</slot>
-    <slot specifier="non virtual">updateAllChannels( void )</slot>
     <slot specifier="non virtual">editSelectedChannel( void )</slot>
     <slot specifier="non virtual">contextMenu(QListViewItem *, const QPoint&amp;, int)</slot>
 </slots>
@@ -322,8 +319,11 @@
     <function access="private" specifier="non virtual">showEvent( QShowEvent * pShowEvent )</function>
     <function access="private" specifier="non virtual">hideEvent( QHideEvent * pHideEvent )</function>
     <function access="private" specifier="non virtual">stabilizeForm()</function>
-    <function specifier="non virtual">setup( qsynthOptions *pOptions, qsynthEngine *pEngine )</function>
+    <function access="private" specifier="non virtual">resetPresets()</function>
+    <function specifier="non virtual">setup( qsynthOptions *pOptions, qsynthEngine *pEngine, bool bPreset )</function>
     <function specifier="non virtual">setChannelOn( int iChan, bool bOn )</function>
+    <function specifier="non virtual">resetAllChannels( bool bPreset )</function>
+    <function specifier="non virtual">updateAllChannels( void )</function>
     <function specifier="non virtual">updateChannel( int iChan )</function>
 </functions>
 <pixmapinproject/>

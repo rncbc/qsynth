@@ -62,7 +62,7 @@ void qsynthChannelsForm::init (void)
 void qsynthChannelsForm::destroy (void)
 {
     // Nullify references.
-    setup(NULL, NULL);
+    setup(NULL, NULL, false);
 
     // Delete pixmaps.
     delete m_pXpmLedOn;
@@ -92,7 +92,7 @@ void qsynthChannelsForm::hideEvent ( QHideEvent *pHideEvent )
 
 
 // Populate (setup) synth settings descriptors.
-void qsynthChannelsForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine )
+void qsynthChannelsForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bool bPreset )
 {
     // Set the proper descriptors.
     m_pOptions = pOptions;
@@ -134,7 +134,7 @@ void qsynthChannelsForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine 
         PresetComboBox->setCurrentText((m_pEngine->setup())->sDefPreset);
         m_iDirtySetup--;
         // Load default preset and update/refresh the whole thing...
-        resetAllChannels();
+        resetAllChannels(bPreset);
     }
 }
 
@@ -180,7 +180,7 @@ void qsynthChannelsForm::updateAllChannels (void)
 
 
 // All channels reset update.
-void qsynthChannelsForm::resetAllChannels (void)
+void qsynthChannelsForm::resetAllChannels ( bool bPreset )
 {
     if (m_pEngine == NULL)
         return;
@@ -189,7 +189,10 @@ void qsynthChannelsForm::resetAllChannels (void)
     if (pSetup == NULL)
         return;
 
-    changePreset(pSetup->sDefPreset);
+    if (bPreset)
+        changePreset(pSetup->sDefPreset);
+    else
+        updateAllChannels();
 }
 
 

@@ -226,16 +226,24 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
     // And start filling it in...
     ::fluid_settings_foreach(m_pSetup->fluid_settings(), &data, qsynth_settings_foreach);
 
-    // Midi Driver combobox options.
+    // Midi Driver combobox options;
+    // check if intended MIDI driver is available.
     data.options.clear();
     ::fluid_settings_foreach_option(m_pSetup->fluid_settings(), "midi.driver", &data, qsynth_settings_foreach_option);
     MidiDriverComboBox->clear();
+    if (data.options.find(m_pSetup->sMidiDriver) == data.options.end())
+        data.options.append(m_pSetup->sMidiDriver);
     MidiDriverComboBox->insertStringList(data.options);
+
     // Audio Driver combobox options.
+    // check if intended Audio driver is available.
     data.options.clear();
     ::fluid_settings_foreach_option(m_pSetup->fluid_settings(), "audio.driver", &data, qsynth_settings_foreach_option);
     AudioDriverComboBox->clear();
+    if (data.options.find(m_pSetup->sAudioDriver) == data.options.end())
+        data.options.append(m_pSetup->sAudioDriver);
     AudioDriverComboBox->insertStringList(data.options);
+
     // Sample Format combobox options.
     data.options.clear();
     ::fluid_settings_foreach_option(m_pSetup->fluid_settings(), "audio.sample-format", &data, qsynth_settings_foreach_option);

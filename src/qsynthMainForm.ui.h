@@ -587,7 +587,7 @@ void qsynthMainForm::programReset (void)
     
     resetEngine(currentEngine());
     if (m_pChannelsForm)
-        m_pChannelsForm->resetAllChannels();
+        m_pChannelsForm->resetAllChannels(true);
     stabilizeForm();
 }
 
@@ -607,7 +607,7 @@ void qsynthMainForm::systemReset (void)
         ::fluid_synth_program_reset(pEngine->pSynth);
 #endif
         if (m_pChannelsForm)
-            m_pChannelsForm->resetAllChannels();
+            m_pChannelsForm->resetAllChannels(true);
     }
     stabilizeForm();
 }
@@ -856,7 +856,7 @@ void qsynthMainForm::tabSelect ( int iTab )
             setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + " [" + pEngine->name() + "]");
             appendMessages(pEngine->name() + sColon + tr("Loading panel settings") + sElipsis);
             loadPanelSettings(pEngine, false);
-            resetChannelsForm(pEngine);
+            resetChannelsForm(pEngine, false);
             // Don't forget to set current engine reference hack.
             g_pCurrentEngine = pEngine;
         }
@@ -1070,7 +1070,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
     // Show up our efforts, if we're currently selected :)
     if (pEngine == currentEngine()) {
         loadPanelSettings(pEngine, true);
-        resetChannelsForm(pEngine);
+        resetChannelsForm(pEngine, true);
         stabilizeForm();
     } else {
         setEngineReverbOn(pEngine, pSetup->bReverbActive);
@@ -1158,7 +1158,7 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
     // Show up our efforts, if we're currently selected :p
     if (pEngine == currentEngine()) {
         savePanelSettings(pEngine);
-        resetChannelsForm(pEngine);
+        resetChannelsForm(pEngine, true);
         stabilizeForm();
     }
 
@@ -1338,13 +1338,14 @@ void qsynthMainForm::savePanelSettings ( qsynthEngine *pEngine )
 
 
 // Complete refresh of the floating channels form.
-void qsynthMainForm::resetChannelsForm ( qsynthEngine *pEngine )
+void qsynthMainForm::resetChannelsForm ( qsynthEngine *pEngine, bool bPreset )
 {
     if (m_pChannelsForm == NULL)
         return;
         
     // Setup the channels view window.
-    m_pChannelsForm->setup(m_pOptions, pEngine);
+    m_pChannelsForm->setup(m_pOptions, pEngine, bPreset);
+    
     // Reset the channel event state flaggers.
     if (g_pMidiChannels)
         delete [] g_pMidiChannels;
