@@ -67,16 +67,15 @@ static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
 static int g_iMidiEvent = 0;
 static int g_iMidiState = 0;
 
-typedef struct _qsynthMidiChannel
+struct qsynth_midi_channel
 {
     int iEvent;     // Event occurrence accumulator.
     int iState;     // Activity state tracker.
     int iChange;    // Change activity accumulator.
-    
-} qsynthMidiChannel;
+};
 
-static int                g_iMidiChannels = 0;
-static qsynthMidiChannel *g_pMidiChannels = NULL;
+static int                  g_iMidiChannels = 0;
+static qsynth_midi_channel *g_pMidiChannels = NULL;
 
 static void qsynth_midi_event ( fluid_midi_event_t *pMidiEvent )
 {
@@ -271,32 +270,43 @@ void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 
 
 // Add dropped files to playlist or soundfont stack.
-void qsynthMainForm::playLoadFiles ( const QStringList& files )
+void qsynthMainForm::playLoadFiles ( const QStringList& files, bool bSetup )
 {
-    if (m_pSynth == NULL || m_pPlayer == NULL)
+    if (m_pSetup == NULL || m_pSynth == NULL)
         return;
 
     // Add each list item to Soundfont stack or MIDI player playlist...
     const QString sElipsis = "...";
-    int iMidiFiles = 0;
+    int   iSoundfonts = 0;
+    int   iMidiFiles  = 0;
     for (QStringList::ConstIterator iter = files.begin(); iter != files.end(); iter++) {
         char *pszFilename = (char *) (*iter).latin1();
+        // Is it a soundfont file...
         if (::fluid_is_soundfont(pszFilename)) {
-            appendMessagesColor(tr("Loading soundfont") + ": \"" + *iter + "\"" + sElipsis, "#999933");
-            if (::fluid_synth_sfload(m_pSynth, pszFilename, 1) < 0)
-                appendMessagesError(tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
+            if (bSetup || m_pSetup->soundfonts.find(*iter) == m_pSetup->soundfonts.end()) {
+                appendMessagesColor(tr("Loading soundfont") + ": \"" + *iter + "\"" + sElipsis, "#999933");
+                if (::fluid_synth_sfload(m_pSynth, pszFilename, 1) >= 0) {
+                    iSoundfonts++;
+                    if (!bSetup)
+                        m_pSetup->soundfonts.append(*iter);
+                }
+                else appendMessagesError(tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
+            }
         }  // Or is it a bare midifile?
-        else if (::fluid_is_midifile(pszFilename)) {
+        else if (::fluid_is_midifile(pszFilename) && m_pPlayer) {
             appendMessagesColor(tr("Playing MIDI file") + ": \"" + *iter + "\"" + sElipsis, "#99cc66");
-            if (::fluid_player_add(m_pPlayer, pszFilename) < 0)
-                appendMessagesError(tr("Failed to play MIDI file") + ": \"" + *iter + "\".");
-            else
+            if (::fluid_player_add(m_pPlayer, pszFilename) >= 0)
                 iMidiFiles++;
+            else
+                appendMessagesError(tr("Failed to play MIDI file") + ": \"" + *iter + "\".");
         }
     }
     
+    // Reset all presets, if applicable...
+    if (!bSetup && iSoundfonts > 0)
+        programReset();
     // Start playing, if any...
-    if (iMidiFiles > 0)
+    if (m_pPlayer && iMidiFiles > 0)
         ::fluid_player_play(m_pPlayer);
 }
 
@@ -342,7 +352,7 @@ void qsynthMainForm::dropEvent ( QDropEvent* pDropEvent )
     QStringList files;
     
     if (decodeDragFiles(pDropEvent, files))
-        playLoadFiles(files);
+        playLoadFiles(files, false);
 }
 
 
@@ -661,7 +671,7 @@ bool qsynthMainForm::startSynth (void)
     }
 
     // Load the soundfonts...
-    playLoadFiles(m_pSetup->soundfonts);
+    playLoadFiles(m_pSetup->soundfonts, true);
 
     // Start the synthesis thread...
     appendMessages(tr("Creating audio driver") + " (" + m_pSetup->sAudioDriver + ")" + sElipsis);
@@ -701,7 +711,7 @@ bool qsynthMainForm::startSynth (void)
         appendMessagesError(tr("Failed to create the MIDI player. Continuing without a player."));
     } else {
         // Play the midi files, if any.
-        playLoadFiles(m_pSetup->midifiles);
+        playLoadFiles(m_pSetup->midifiles, false);
         // We'll accept drops from now on...
         setAcceptDrops(true);
     }
@@ -731,7 +741,7 @@ bool qsynthMainForm::startSynth (void)
         g_pMidiChannels = NULL;
         g_iMidiChannels = ::fluid_synth_count_midi_channels(m_pSynth);
         if (g_iMidiChannels > 0)
-           g_pMidiChannels = new qsynthMidiChannel [g_iMidiChannels];
+           g_pMidiChannels = new qsynth_midi_channel [g_iMidiChannels];
         if (g_pMidiChannels) {
             for (int iChan = 0; iChan < g_iMidiChannels; iChan++) {
                 g_pMidiChannels[iChan].iEvent  = 0;

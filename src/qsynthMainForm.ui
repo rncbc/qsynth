@@ -1464,7 +1464,7 @@
     <function specifier="non virtual">setup( qsynthSetup * pSetup )</function>
     <function access="private" specifier="non virtual" returnType="bool">queryClose( void )</function>
     <function access="private" specifier="non virtual">closeEvent( QCloseEvent * pCloseEvent )</function>
-    <function access="private" specifier="non virtual">playLoadFiles ( const QStringList &amp; files )</function>
+    <function access="private" specifier="non virtual">playLoadFiles ( const QStringList &amp; files, bool bSetup )</function>
     <function access="private" specifier="non virtual" returnType="bool">decodeDragFiles( const QMimeSource * pEvent, QStringList &amp; files )</function>
     <function access="private" specifier="non virtual">dragEnterEvent( QDragEnterEvent * pDragEnterEvent )</function>
     <function access="private" specifier="non virtual">dropEvent( QDropEvent * pDropEvent )</function>
