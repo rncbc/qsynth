@@ -270,24 +270,33 @@ void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 }
 
 
-// Add MIDI files to playlist.
-void qsynthMainForm::playMidiFiles ( const QStringList& files )
+// Add dropped files to playlist or soundfont stack.
+void qsynthMainForm::playLoadFiles ( const QStringList& files )
 {
-    if (m_pPlayer == NULL)
+    if (m_pSynth == NULL || m_pPlayer == NULL)
         return;
 
-    // Add each list item to MIDI player playlist...
+    // Add each list item to Soundfont stack or MIDI player playlist...
+    const QString sElipsis = "...";
     int iMidiFiles = 0;
     for (QStringList::ConstIterator iter = files.begin(); iter != files.end(); iter++) {
-        char *pszMidiFile = (char *) (*iter).latin1();
-        if (::fluid_is_midifile(pszMidiFile)) {
-            appendMessagesColor(tr("Playing MIDI file") + ": \"" + QString(pszMidiFile) + "\"...", "#99cc66");
-            ::fluid_player_add(m_pPlayer, pszMidiFile);
-            iMidiFiles++;
+        char *pszFilename = (char *) (*iter).latin1();
+        if (::fluid_is_soundfont(pszFilename)) {
+            appendMessagesColor(tr("Loading soundfont") + ": \"" + *iter + "\"" + sElipsis, "#999933");
+            if (::fluid_synth_sfload(m_pSynth, pszFilename, 1) < 0)
+                appendMessagesError(tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
+        }  // Or is it a bare midifile?
+        else if (::fluid_is_midifile(pszFilename)) {
+            appendMessagesColor(tr("Playing MIDI file") + ": \"" + *iter + "\"" + sElipsis, "#99cc66");
+            if (::fluid_player_add(m_pPlayer, pszFilename) < 0)
+                appendMessagesError(tr("Failed to play MIDI file") + ": \"" + *iter + "\".");
+            else
+                iMidiFiles++;
         }
     }
+    
     // Start playing, if any...
-    if (iMidiFiles)
+    if (iMidiFiles > 0)
         ::fluid_player_play(m_pPlayer);
 }
 
@@ -318,8 +327,8 @@ void qsynthMainForm::dragEnterEvent ( QDragEnterEvent* pDragEnterEvent )
         QStringList files;
         if (decodeDragFiles(pDragEnterEvent, files)) {
             for (QStringList::Iterator iter = files.begin(); iter != files.end() && !bAccept; iter++) {
-                char *pszMidiFile = (char *) (*iter).latin1();
-                if (::fluid_is_midifile(pszMidiFile))
+                char *pszFilename = (char *) (*iter).latin1();
+                if (::fluid_is_midifile(pszFilename) || ::fluid_is_soundfont(pszFilename))
                     bAccept = true;
             }
         }
@@ -333,7 +342,7 @@ void qsynthMainForm::dropEvent ( QDropEvent* pDropEvent )
     QStringList files;
     
     if (decodeDragFiles(pDropEvent, files))
-        playMidiFiles(files);
+        playLoadFiles(files);
 }
 
 
@@ -652,12 +661,7 @@ bool qsynthMainForm::startSynth (void)
     }
 
     // Load the soundfonts...
-    for (iter = m_pSetup->soundfonts.begin(); iter != m_pSetup->soundfonts.end(); iter++) {
-        const QString& sSoundFont = *iter;
-        appendMessagesColor(tr("Loading soundfont") + ": \"" + sSoundFont + "\"" + sElipsis, "#999933");
-        if (::fluid_synth_sfload(m_pSynth, sSoundFont.latin1(), 1) < 0)
-            appendMessagesError(tr("Failed to load the soundfont") + ": \"" + sSoundFont + "\".");
-    }
+    playLoadFiles(m_pSetup->soundfonts);
 
     // Start the synthesis thread...
     appendMessages(tr("Creating audio driver") + " (" + m_pSetup->sAudioDriver + ")" + sElipsis);
@@ -697,7 +701,7 @@ bool qsynthMainForm::startSynth (void)
         appendMessagesError(tr("Failed to create the MIDI player. Continuing without a player."));
     } else {
         // Play the midi files, if any.
-        playMidiFiles(m_pSetup->midifiles);
+        playLoadFiles(m_pSetup->midifiles);
         // We'll accept drops from now on...
         setAcceptDrops(true);
     }
@@ -737,10 +741,10 @@ bool qsynthMainForm::startSynth (void)
         }
     }
 
-    // All is right.
-    appendMessages(tr("Synthesizer engine started."));
     // Show up our efforts :)
     programReset();
+    // All is right.
+    appendMessages(tr("Synthesizer engine started."));
 
     return true;
 }
