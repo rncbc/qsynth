@@ -55,9 +55,6 @@ int main ( int argc, char **argv )
         app.quit();
         return 1;
     }
-    // Realize synth setttings.
-    settings.realize();
-
     // Construct, setup and show the main form.
     qsynthMainForm w;
     w.setup(&settings);

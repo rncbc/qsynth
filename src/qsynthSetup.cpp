@@ -420,11 +420,11 @@ void qsynthSetup::realize (void)
         ::fluid_settings_setint(m_pFluidSettings, "synth.midi-channels", iMidiChannels);
     if (!sAudioDriver.isEmpty())
         ::fluid_settings_setstr(m_pFluidSettings, "audio.driver", (char *) sAudioDriver.latin1());
-
-    ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.id", (char *) sJackName.latin1());
+    if (!sJackName.isEmpty())
+        ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.id", (char *) sJackName.latin1());
+        
     ::fluid_settings_setint(m_pFluidSettings, "audio.jack.autoconnect", (int) bJackAutoConnect);
     ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.multi", (char *) (bJackMulti ? "yes" : "no"));
-
     ::fluid_settings_setstr(m_pFluidSettings, "audio.sample-format", (char *) sSampleFormat.latin1());
 
     if (iAudioChannels > 0)
