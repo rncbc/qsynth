@@ -37,19 +37,27 @@ void qsynthChannelsForm::init (void)
     m_pSetup = NULL;
     m_pSynth = NULL;
 
+    // Our activity leds (same of main form :).
+    m_pXpmLedOn  = new QPixmap(QPixmap::fromMimeSource("ledon1.png"));
+    m_pXpmLedOff = new QPixmap(QPixmap::fromMimeSource("ledoff1.png"));
+
     // Set validators...
     PresetComboBox->setValidator(new QRegExpValidator(QRegExp("[\\w]+"), PresetComboBox));
+
+    // Initially sorted by channel number.
+    ChannelsListView->setSorting(1);
 }
 
 
 // Kind of destructor.
 void qsynthChannelsForm::destroy (void)
 {
-    if (m_ppChannels)
-        delete [] m_ppChannels;
+    // Nullify references.
+    setup(NULL, NULL);
 
-    m_ppChannels = NULL;
-    m_iChannels  = 0;
+    // Delete pixmaps.
+    delete m_pXpmLedOn;
+    delete m_pXpmLedOff;
 }
 
 
@@ -77,9 +85,88 @@ void qsynthChannelsForm::hideEvent ( QHideEvent *pHideEvent )
 // Populate (setup) synth settings descriptors.
 void qsynthChannelsForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
 {
+    // Set the proper descriptors.
     m_pSetup = pSetup;
     m_pSynth = pSynth;
+
+    // Free up current channel list view.
+    if (m_pSynth == NULL && m_ppChannels) {
+        ChannelsListView->clear();
+        delete [] m_ppChannels;
+        m_ppChannels = NULL;
+        m_iChannels  = 0;
+    }
+
+    // Allocate a new channel list view...
+    if (m_pSynth && m_ppChannels == NULL) {
+        ChannelsListView->clear();
+        m_iChannels = ::fluid_synth_count_midi_channels(m_pSynth);
+        if (m_iChannels > 0)
+            m_ppChannels = new qsynthChannelsViewItemPtr [m_iChannels];
+        if (m_ppChannels) {
+            for (int iChan = 0; iChan < m_iChannels; iChan++) {
+                qsynthChannelsViewItem *pItem = new qsynthChannelsViewItem(ChannelsListView);
+                if (pItem) {
+                    pItem->setPixmap(QSYNTH_CHANNELS_IN, *m_pXpmLedOff);
+                    pItem->setText(QSYNTH_CHANNELS_CHAN, QString::number(iChan + 1));
+                }
+                m_ppChannels[iChan] = pItem;
+            }
+        }
+        // Update/refresh the whole thing.
+        updateAllChannels();
+    }
 }
+
+
+// Channel item update.
+void qsynthChannelsForm::updateChannel ( int iChan )
+{
+    if (m_pSynth == NULL || m_ppChannels == NULL)
+        return;
+    if (iChan < 0 || iChan >= m_iChannels)
+        return;
+
+    qsynthChannelsViewItem *pItem = m_ppChannels[iChan];
+    
+    fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, iChan);
+    if (pPreset) {
+        pItem->setText(QSYNTH_CHANNELS_SFID, QString::number((pPreset->sfont)->id));
+        pItem->setText(QSYNTH_CHANNELS_BANK, QString::number(pPreset->get_banknum(pPreset)));
+        pItem->setText(QSYNTH_CHANNELS_PROG, QString::number(pPreset->get_num(pPreset)));
+        pItem->setText(QSYNTH_CHANNELS_NAME, pPreset->get_name(pPreset));
+    } else {
+        QString n = "-";
+        pItem->setText(QSYNTH_CHANNELS_SFID, n);
+        pItem->setText(QSYNTH_CHANNELS_BANK, n);
+        pItem->setText(QSYNTH_CHANNELS_PROG, n);
+        pItem->setText(QSYNTH_CHANNELS_NAME, n);
+    }
+}
+
+// All channels update.
+void qsynthChannelsForm::updateAllChannels (void)
+{
+    if (m_pSynth == NULL || m_ppChannels == NULL)
+        return;
+        
+    for (int iChan = 0; iChan < m_iChannels; iChan++)
+        updateChannel(iChan);
+}
+
+
+// Update channel activity status LED.
+void qsynthChannelsForm::setChannelOn ( int iChan, bool bOn )
+{
+    if (m_pSynth == NULL || m_ppChannels == NULL)
+        return;
+
+    if (iChan < 0 || iChan >= m_iChannels)
+        return;
+        
+    m_ppChannels[iChan]->setPixmap(QSYNTH_CHANNELS_IN, (bOn ? *m_pXpmLedOn : *m_pXpmLedOff));
+}
+
 
 
 // Channels preset naming slots.

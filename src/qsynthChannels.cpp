@@ -41,5 +41,45 @@ qsynthChannelsViewItem::~qsynthChannelsViewItem (void)
 {
 }
 
+// Special column sorting virtual comparator.
+int qsynthChannelsViewItem::compare ( QListViewItem* pItem, int iColumn, bool bAscending ) const
+{
+    switch (iColumn) {
+
+        case QSYNTH_CHANNELS_SFID:
+        case QSYNTH_CHANNELS_BANK:
+        case QSYNTH_CHANNELS_PROG:
+        {
+            int iNum1 = text(iColumn).toInt();
+            int iNum2 = pItem->text(iColumn).toInt();
+            if (iNum1 > iNum2)
+                return (bAscending ?  1 : -1);
+            else if (iNum1 < iNum2)
+                return (bAscending ? -1 :  1);
+            break;
+        }
+
+        case QSYNTH_CHANNELS_NAME:
+        {
+            const QString sName1 = text(QSYNTH_CHANNELS_NAME);
+            const QString sName2 = pItem->text(QSYNTH_CHANNELS_NAME);
+            if (sName1 > sName2)
+                return (bAscending ?  1 : -1);
+            else if (sName1 < sName2)
+                return (bAscending ? -1 :  1);
+            break;
+        }
+    }
+
+    int iChan1 = text(QSYNTH_CHANNELS_CHAN).toInt();
+    int iChan2 = pItem->text(QSYNTH_CHANNELS_CHAN).toInt();
+    if (iChan1 > iChan2)
+        return (bAscending ?  1 : -1);
+    else
+    if (iChan1 < iChan2)
+        return (bAscending ? -1 :  1);
+
+    return 0;
+}
 
 // end of qsynthChannels.cpp

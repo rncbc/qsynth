@@ -6,15 +6,19 @@ name    = qsynth
 headers = config.h \
 	src/qsynthAbout.h \
 	src/qsynthSetup.h \
+	src/qsynthChannels.h \
 	src/qsynthMainForm.ui.h \
 	src/qsynthMessagesForm.ui.h \
+	src/qsynthChannelsForm.h \
 	src/qsynthSetupForm.ui.h \
 	src/qsynthAboutForm.ui.h
           
 sources = src/main.cpp \
 	src/qsynthSetup.cpp \
+	src/qsynthChannels.cpp \
 	src/qsynthMainForm.ui \
 	src/qsynthMessagesForm.ui \
+	src/qsynthChannelsForm.ui \
 	src/qsynthSetupForm.ui \
 	src/qsynthAboutForm.ui
 

@@ -29,7 +29,7 @@
             <x>0</x>
             <y>0</y>
             <width>603</width>
-            <height>359</height>
+            <height>362</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -227,7 +227,7 @@
                 <bool>true</bool>
             </property>
             <property name="resizeMode">
-                <enum>AllColumns</enum>
+                <enum>LastColumn</enum>
             </property>
             <property name="toolTip" stdset="0">
                 <string>Channels view</string>
@@ -269,9 +269,11 @@
 </includes>
 <variables>
     <variable access="private">int m_iChannels;</variable>
-    <variable access="private">qsynthChannelsViewItem **m_ppChannels;</variable>
+    <variable access="private">qsynthChannelsViewItemPtr *m_ppChannels;</variable>
     <variable access="private">qsynthSetup *m_pSetup;</variable>
     <variable access="private">fluid_synth_t *m_pSynth;</variable>
+    <variable access="private">QPixmap *m_pXpmLedOn;</variable>
+    <variable access="private">QPixmap *m_pXpmLedOff;</variable>
 </variables>
 <slots>
     <slot specifier="non virtual">changePreset( const QString&amp; sPreset )</slot>
@@ -285,6 +287,9 @@
     <function access="private" specifier="non virtual">showEvent( QShowEvent * pShowEvent )</function>
     <function access="private" specifier="non virtual">hideEvent( QHideEvent * pHideEvent )</function>
     <function specifier="non virtual">setup( qsynthSetup *pSetup, fluid_synth_t *pSynth )</function>
+    <function specifier="non virtual">updateChannel( int iChan )</function>
+    <function specifier="non virtual">updateAllChannels( void )</function>
+    <function specifier="non virtual">setChannelOn( int iChan, bool bOn )</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="4" margin="4"/>

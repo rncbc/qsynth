@@ -58,18 +58,50 @@ static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
 
 //-------------------------------------------------------------------------
 // Midi router stubs to have some midi activity feedback.
+
+#define QSYNTH_MIDI_NOTE_OFF        0x80
+#define QSYNTH_MIDI_NOTE_ON         0x90
+#define QSYNTH_MIDI_CONTROL_CHANGE  0xb0
+#define QSYNTH_MIDI_PROGRAM_CHANGE  0xc0
+
 static int g_iMidiEvent = 0;
 static int g_iMidiState = 0;
 
-static int qsynth_dump_postrouter (void *pvData, fluid_midi_event_t *pMidiEvent)
+typedef struct _qsynthMidiChannel
+{
+    int iEvent;     // Event occurrence accumulator.
+    int iState;     // Activity state tracker.
+    int iChange;    // Change activity accumulator.
+    
+} qsynthMidiChannel;
+
+static int                g_iMidiChannels = 0;
+static qsynthMidiChannel *g_pMidiChannels = NULL;
+
+static void qsynth_midi_event ( fluid_midi_event_t *pMidiEvent )
 {
     g_iMidiEvent++;
+    
+    if (g_pMidiChannels) {
+        int iType = ::fluid_midi_event_get_type(pMidiEvent);
+        int iChan = ::fluid_midi_event_get_channel(pMidiEvent);
+        if (iChan >= 0 && iChan < g_iMidiChannels) {
+            g_pMidiChannels[iChan].iEvent++;
+            if (iType == QSYNTH_MIDI_CONTROL_CHANGE || iType == QSYNTH_MIDI_PROGRAM_CHANGE)
+                g_pMidiChannels[iChan].iChange++;
+        }
+    }
+}
+
+static int qsynth_dump_postrouter (void *pvData, fluid_midi_event_t *pMidiEvent)
+{
+    qsynth_midi_event(pMidiEvent);
     return ::fluid_midi_dump_postrouter(pvData, pMidiEvent);
 }
 
 static int qsynth_handle_midi_event (void *pvData, fluid_midi_event_t *pMidiEvent)
 {
-    g_iMidiEvent++;
+    qsynth_midi_event(pMidiEvent);
     return ::fluid_synth_handle_midi_event(pvData, pMidiEvent);
 }
 
@@ -539,8 +571,9 @@ void qsynthMainForm::timerSlot (void)
             startSynth();
     }
 
-    // Some MIDI activity?
+    // Some global MIDI activity?
     if (g_iMidiEvent > 0) {
+        // Global activity...
         g_iMidiEvent = 0;
         if (g_iMidiState == 0) {
             MidiEventPixmapLabel->setPixmap(*m_pXpmLedOn);
@@ -550,6 +583,29 @@ void qsynthMainForm::timerSlot (void)
     else if (g_iMidiEvent == 0 && g_iMidiState > 0) {
         MidiEventPixmapLabel->setPixmap(*m_pXpmLedOff);
         g_iMidiState--;
+    }
+
+    // MIDI Channel activity breakout...
+    if (m_pChannelsForm) {
+        for (int iChan = 0; iChan < g_iMidiChannels; iChan++) {
+            if (g_pMidiChannels[iChan].iEvent > 0) {
+                g_pMidiChannels[iChan].iEvent = 0;
+                // Activity tracking...
+                if (g_pMidiChannels[iChan].iState == 0) {
+                    m_pChannelsForm->setChannelOn(iChan, true);
+                    g_pMidiChannels[iChan].iState++;
+                }
+                // Control and/or program change...
+                if (g_pMidiChannels[iChan].iChange > 0) {
+                    g_pMidiChannels[iChan].iChange = 0;
+                    m_pChannelsForm->updateChannel(iChan);
+                }
+            }   // Activity fallback...
+            else if (g_pMidiChannels[iChan].iEvent == 0 && g_pMidiChannels[iChan].iState > 0) {
+                m_pChannelsForm->setChannelOn(iChan, false);
+                g_pMidiChannels[iChan].iState--;
+            }
+        }
     }
 
     // Gain changes?
@@ -655,7 +711,26 @@ bool qsynthMainForm::startSynth (void)
     // Finally initialize the front panel controls.
     appendMessages(tr("Loading panel settings") + sElipsis);
     loadPanelSettings();
-
+    // And the channel view too.
+    if (m_pChannelsForm) {
+        // Setup the channels view window.
+        m_pChannelsForm->setup(m_pSetup, m_pSynth);
+        // Prepare the channel event state flaggers.
+        if (g_pMidiChannels)
+            delete [] g_pMidiChannels;
+        g_pMidiChannels = NULL;
+        g_iMidiChannels = ::fluid_synth_count_midi_channels(m_pSynth);
+        if (g_iMidiChannels > 0)
+           g_pMidiChannels = new qsynthMidiChannel [g_iMidiChannels];
+        if (g_pMidiChannels) {
+            for (int iChan = 0; iChan < g_iMidiChannels; iChan++) {
+                g_pMidiChannels[iChan].iEvent  = 0;
+                g_pMidiChannels[iChan].iState  = 0;
+                g_pMidiChannels[iChan].iChange = 0;
+            }
+        }
+    }
+    
     // All is right.
     appendMessages(tr("Synthesizer engine started."));
     // Show up our efforts :)
@@ -672,6 +747,16 @@ void qsynthMainForm::stopSynth (void)
         return;
 
     const QString sElipsis = "...";
+
+    // Freeze channel view.
+    if (m_pChannelsForm) {
+        m_pChannelsForm->setup(m_pSetup, NULL);
+        // Unprepare the channel event state flaggers.
+        if (g_pMidiChannels)
+            delete [] g_pMidiChannels;
+        g_pMidiChannels = NULL;
+        g_iMidiChannels = 0;
+    }
 
     // Start saving the front panel controls.
     // (but only if we have started alright)
@@ -797,8 +882,8 @@ void qsynthMainForm::savePanelSettings (void)
     m_pSetup->fGain = qsynth_fscale_clip(GainDial->value(), QSYNTH_GAIN_SCALE);
 
     m_pSetup->bReverbActive = ReverbActiveCheckBox->isChecked();
-    m_pSetup->fReverbRoom   = qsynth_fscale_clip(ReverbRoomSpinBox->value(), QSYNTH_REVERB_SCALE);
-    m_pSetup->fReverbDamp   = qsynth_fscale_clip(ReverbDampSpinBox->value(), QSYNTH_REVERB_SCALE);
+    m_pSetup->fReverbRoom   = qsynth_fscale_clip(ReverbRoomSpinBox->value(),  QSYNTH_REVERB_SCALE);
+    m_pSetup->fReverbDamp   = qsynth_fscale_clip(ReverbDampSpinBox->value(),  QSYNTH_REVERB_SCALE);
     m_pSetup->fReverbWidth  = qsynth_fscale_clip(ReverbWidthSpinBox->value(), QSYNTH_REVERB_SCALE);
     m_pSetup->fReverbLevel  = qsynth_fscale_clip(ReverbLevelSpinBox->value(), QSYNTH_REVERB_SCALE);
 

@@ -24,6 +24,15 @@
 
 #include <qlistview.h>
 
+// Column index helpers.
+#define QSYNTH_CHANNELS_IN      0
+#define QSYNTH_CHANNELS_CHAN    1
+#define QSYNTH_CHANNELS_SFID    2
+#define QSYNTH_CHANNELS_BANK    3
+#define QSYNTH_CHANNELS_PROG    4
+#define QSYNTH_CHANNELS_NAME    5
+
+
 // The channels list view item.
 class qsynthChannelsViewItem : public QListViewItem
 {
@@ -33,8 +42,12 @@ public:
     qsynthChannelsViewItem(QListView *pParent);
     // Default destructor.
     ~qsynthChannelsViewItem();
+
+    // Special column sorting virtual comparator.
+    virtual int compare (QListViewItem* pItem, int iColumn, bool bAscending) const;
 };
 
+typedef qsynthChannelsViewItem * qsynthChannelsViewItemPtr;
 
 #endif  // __qsynthChannels_h
 
