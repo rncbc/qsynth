@@ -3,9 +3,11 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.0.3   2003-12-10  Tiny changes so far.
+0.0.3   2003-12-10  Few tiny changes so far.
 
-- One shot timer graceful rewrite.
+- Single shot timer graceful rewrite.
+
+- Configure time detection of 'round' library function availability.
 
 
 0.0.2   2003-11-26  Minor bugfixes.
