@@ -1,0 +1,40 @@
+prefix  = @ac_prefix@
+qmake   = @ac_qmake@
+
+name    = qsynth
+
+headers = config.h \
+	src/qsynthAbout.h \
+	src/qsynthSetup.h \
+	src/qsynthMainForm.ui.h \
+	src/qsynthMessagesForm.ui.h \
+	src/qsynthSetupForm.ui.h \
+	src/qsynthAboutForm.ui.h
+          
+sources = src/main.cpp \
+	src/qsynthSetup.cpp \
+	src/qsynthMainForm.ui \
+	src/qsynthMessagesForm.ui \
+	src/qsynthSetupForm.ui \
+	src/qsynthAboutForm.ui
+
+all:	$(name)
+
+$(name).mak:	$(name).pro
+	@$(qmake) -o $(name).mak $(name).pro
+
+$(name):	$(name).mak $(sources) $(headers)
+	@make -f $(name).mak $(name)
+
+install:	$(name) icons/$(name).xpm
+	@install -vD $(name) $(prefix)/bin/$(name)
+	@install -vD icons/$(name).xpm $(prefix)/share/icons/$(name).xpm
+
+uninstall:	$(prefix)/bin/$(name)
+	@rm -vf $(prefix)/bin/$(name)
+	@rm -vf $(prefix)/share/icons/$(name).xpm
+
+clean:	$(name).mak
+	@make -f $(name).mak clean
+	@rm -f $(name) $(name).mak
+	@rm -rf *.cache *.log *.status
