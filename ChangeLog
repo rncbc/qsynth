@@ -3,15 +3,20 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.1.3   2004-02-23  More work in progress.
+0.1.3   2004-02-27  More work in progress.
 
 - Message window line limit is now a configurable option on setup.
+
+- ALSA sequencer client name may now be internally set; not of great use
+  for now, but it opens the ground for future workings.
+
+- Makefile.cvs makes its late entrance on the build toolset.
 
 
 0.1.2   2004-02-16  Work in progress.
 
-- Messages and Channels pop-up windows are not hinted as dialogs anymore 
-  and thus are not centered relative to parent main window which has become 
+- Messages and Channels pop-up windows are not hinted as dialogs anymore
+  and thus are not centered relative to parent main window which has become
   a strict Qt dialog widget behaviour (as of Qt 3.3+).
 
 - Soundfont setup dialog changed to open and load multiple files at once.

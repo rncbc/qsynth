@@ -61,6 +61,7 @@ public:
     bool    bMidiIn;
     QString sMidiDriver;
     int     iMidiChannels;
+    QString sAlsaName;
     QString sAudioDriver;
     QString sJackName;
     bool    bJackAutoConnect;

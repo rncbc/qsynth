@@ -41,6 +41,7 @@ qsynthSetup::qsynthSetup (void)
     bMidiIn          = m_settings.readBoolEntry    ("/MidiIn",          true);
     sMidiDriver      = m_settings.readEntry        ("/MidiDriver",      "alsa_seq");
     iMidiChannels    = m_settings.readNumEntry     ("/MidiChannels",    16);
+    sAlsaName        = m_settings.readEntry        ("/AlsaName",        "pid");
     sAudioDriver     = m_settings.readEntry        ("/AudioDriver",     "jack");
     sJackName        = m_settings.readEntry        ("/JackName",        "qsynth");
     bJackAutoConnect = m_settings.readBoolEntry    ("/JackAutoConnect", true);
@@ -166,6 +167,7 @@ qsynthSetup::~qsynthSetup (void)
     m_settings.writeEntry("/MidiIn",           bMidiIn);
     m_settings.writeEntry("/MidiDriver",       sMidiDriver);
     m_settings.writeEntry("/MidiChannels",     iMidiChannels);
+    m_settings.writeEntry("/AlsaName",         sAlsaName);
     m_settings.writeEntry("/AudioDriver",      sAudioDriver);
     m_settings.writeEntry("/JackName",         sJackName);
     m_settings.writeEntry("/JackAutoConnect",  bJackAutoConnect);
@@ -492,6 +494,8 @@ void qsynthSetup::realize (void)
         ::fluid_settings_setstr(m_pFluidSettings, "audio.driver", (char *) sAudioDriver.latin1());
     if (!sJackName.isEmpty())
         ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.id", (char *) sJackName.latin1());
+    if (!sAlsaName.isEmpty())
+        ::fluid_settings_setstr(m_pFluidSettings, "midi.alsa_seq.id", (char *) sAlsaName.latin1());
 
     ::fluid_settings_setint(m_pFluidSettings, "audio.jack.autoconnect", (int) bJackAutoConnect);
     ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.multi", (char *) (bJackMulti ? "yes" : "no"));
