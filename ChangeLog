@@ -3,6 +3,11 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+0.1.1   2004-01-06  Yet more minor bugfixes.
+
+- Popup menus memory leak fixed.
+
+
 0.1.0   2003-12-29  Channel preset breakout.
 
 - Added channels breakout and program preset view and edit windows,
