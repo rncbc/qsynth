@@ -906,7 +906,7 @@
                         </column>
                         <column>
                             <property name="text">
-                                <string>Startup</string>
+                                <string>Current</string>
                             </property>
                             <property name="clickable">
                                 <bool>true</bool>
