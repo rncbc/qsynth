@@ -438,16 +438,15 @@ bool qsynthOptions::renameEngine ( qsynthEngine *pEngine )
     if (sOldName == sNewName)
         return false;
         
-    QStringList::Iterator iter = engines.find(sOldName);
-    if (iter == engines.end())
-        return false;
-        
-    if (!pEngine->isDefault())
-        deleteKey("/Engine/" + sOldName);
-
     pEngine->setName(sNewName);
-    *iter = sNewName;
     
+    if (!pEngine->isDefault()) {
+        QStringList::Iterator iter = engines.find(sOldName);
+        if (iter != engines.end())
+            *iter = sNewName;
+        deleteKey("/Engine/" + sOldName);
+    }
+
     return true;
 }
 
