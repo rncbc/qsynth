@@ -594,9 +594,10 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
     int i = 0;
     for (QStringList::Iterator iter = pSetup->soundfonts.begin();
             iter != pSetup->soundfonts.end(); iter++) {
-        QString sNumber = QString::number(++i);
+        QString sNumber = QString::number(i + 1);
         m_settings.writeEntry(sSoundFontPrefix  + sNumber, *iter);
         m_settings.writeEntry(sBankOffsetPrefix + sNumber, pSetup->bankoffsets[i]);
+        i++;
     }
     // Cleanup old entries, if any...
     for (;;) {

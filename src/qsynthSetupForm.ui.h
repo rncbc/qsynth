@@ -455,15 +455,12 @@ void qsynthSetupForm::stabilizeForm (void)
     SoundFontOpenPushButton->setEnabled(true);
     QListViewItem *pSelectedItem = SoundFontListView->selectedItem();
     if (pSelectedItem) {
-#ifdef CONFIG_FLUID_BANK_OFFSET
-        SoundFontEditPushButton->setEnabled(true);
-#else
-        SoundFontEditPushButton->setEnabled(false);
-#endif
+        SoundFontEditPushButton->setEnabled(pSelectedItem->renameEnabled(2));
         SoundFontRemovePushButton->setEnabled(true);
         SoundFontMoveUpPushButton->setEnabled(pSelectedItem->itemAbove() != NULL);
         SoundFontMoveDownPushButton->setEnabled(pSelectedItem->nextSibling() != NULL);
     } else {
+        SoundFontRemovePushButton->setEnabled(false);
         SoundFontEditPushButton->setEnabled(false);
         SoundFontMoveUpPushButton->setEnabled(false);
         SoundFontMoveDownPushButton->setEnabled(false);
@@ -494,11 +491,7 @@ void qsynthSetupForm::contextMenu( QListViewItem *pItem, const QPoint& pos, int 
     pContextMenu->insertSeparator();
     bool bEnabled = (pItem != NULL);
     iItemID = pContextMenu->insertItem(tr("Edit"), this, SLOT(editSoundFont()));
-#ifdef CONFIG_FLUID_BANK_OFFSET
-    pContextMenu->setItemEnabled(iItemID, bEnabled);
-#else
-    pContextMenu->setItemEnabled(iItemID, bEnabled);
-#endif	
+    pContextMenu->setItemEnabled(iItemID, bEnabled && pItem->renameEnabled(2));
     iItemID = pContextMenu->insertItem(tr("Remove"), this, SLOT(removeSoundFont()));
     pContextMenu->setItemEnabled(iItemID, bEnabled);
     pContextMenu->insertSeparator();
@@ -564,6 +557,10 @@ void qsynthSetupForm::openSoundFont()
             if (pItem) {
                 pItem->setPixmap(0, *m_pXpmSoundFont);
                 pItem->setText(1, sSoundFont);
+#ifdef CONFIG_FLUID_BANK_OFFSET
+                pItem->setText(2, "0");
+                pItem->setRenameEnabled(2, true);
+#endif
                 pItem->setSelected(true);
                 SoundFontListView->setCurrentItem(pItem);
                 m_pOptions->sSoundFontDir = QFileInfo(sSoundFont).dirPath(true);
