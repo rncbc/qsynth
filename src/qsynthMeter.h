@@ -115,6 +115,7 @@ private:
     int   m_iValue;
     float m_fValueDecay;
     int   m_iPeak;
+    int   m_iPeakHold;
     float m_fPeakDecay;
     int   m_iPeakColor;
 };
