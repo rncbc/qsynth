@@ -74,7 +74,7 @@ void qsynthMeterScale::drawLineLabel ( QPainter& p, int y, const char* pszLabel 
 	if (iCurrY > m_iLastY + iMidHeight) {
 		p.drawText(2, iCurrY - iMidHeight, iWidth - 3, fm.height(),
 			Qt::AlignHCenter | Qt::AlignVCenter, pszLabel);
-		m_iLastY = iCurrY;
+		m_iLastY = iCurrY + 1;
 	}
 }
 
@@ -143,18 +143,22 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 {
 	int iWidth  = QWidget::width();
 	int iHeight = QWidget::height();
+	int y;
 
 	QPixmap pm(iWidth, iHeight);
 	QPainter p(&pm);
 
-	pm.fill(isEnabled() ? m_pMeter->color(QSYNTHMETER_BACK) : Qt::gray);
-
 	p.setViewport(0, 0, iWidth, iHeight);
 	p.setWindow(0, 0, iWidth, iHeight);
 
-    int y = m_pMeter->iec_level(QSYNTHMETER_0DB);
-	p.setPen(m_pMeter->color(QSYNTHMETER_FORE));
-	p.drawLine(0, iHeight - y, iWidth, iHeight - y);
+	if (isEnabled()) {
+		pm.fill(m_pMeter->color(QSYNTHMETER_BACK));
+    	y = m_pMeter->iec_level(QSYNTHMETER_0DB);
+		p.setPen(m_pMeter->color(QSYNTHMETER_FORE));
+		p.drawLine(0, iHeight - y, iWidth, iHeight - y);
+	} else {
+		pm.fill(Qt::gray);
+	}
 
 	float dB = QSYNTHMETER_MINDB;
 	if (m_fValue > 0.0)
