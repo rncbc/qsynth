@@ -327,6 +327,10 @@ void qsynthMainForm::stabilizeForm (void)
         RestartPushButton->setEnabled(false);
     }
 
+    bool bMidiIn = (m_pSynth && m_pSetup && m_pSetup->bMidiIn);
+    MidiEventPixmapLabel->setEnabled(bMidiIn);
+    MidiEventTextLabel->setEnabled(bMidiIn);
+
     MessagesPushButton->setOn(m_pMessagesForm && m_pMessagesForm->isVisible());
 }
 
