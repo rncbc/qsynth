@@ -73,7 +73,16 @@ public:
     float   fSampleRate;
     int     iPolyphony;
     bool    bReverbActive;
+    double  fReverbRoom;
+    double  fReverbDamp;
+    double  fReverbWidth;
+    double  fReverbLevel;
     bool    bChorusActive;
+    int     iChorusNr;
+    double  fChorusLevel;
+    double  fChorusSpeed;
+    double  fChorusDepth;
+    int     iChorusType;
     bool    bLadspaActive;
     float   fGain;
     bool    bServer;
@@ -104,7 +113,7 @@ private:
     // Settings member variables.
     QSettings m_settings;
     fluid_settings_t *m_pFluidSettings;
-    
+
     // Soundfont overriding from commandline flag.
     int  m_iSoundfontOverride;
 };

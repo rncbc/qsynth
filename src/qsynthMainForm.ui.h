@@ -28,7 +28,7 @@
 #include "qsynthAbout.h"
 
 // Timer constant stuff.
-#define QSYNTH_DELAY_MSECS  200
+#define QSYNTH_TIMER_MSECS  500
 
 // Notification pipe descriptors
 #define QSYNTH_FDNIL     -1
@@ -50,6 +50,7 @@ void qsynthMainForm::init (void)
 {
     m_pSetup = NULL;
     m_pTimer = new QTimer(this);
+    m_iTimerSlot = 0;
 
     m_pSynth        = NULL;
     m_pAudioDriver  = NULL;
@@ -59,6 +60,14 @@ void qsynthMainForm::init (void)
     m_pServer       = NULL;
 
     m_pStdoutNotifier = NULL;
+
+    m_iGainChanged   = 0;
+    m_iReverbChanged = 0;
+    m_iChorusChanged = 0;
+
+    m_iGainUpdate    = 0;
+    m_iReverbUpdate  = 0;
+    m_iChorusUpdate  = 0;
 
     // Check if we can redirect our own stdout/stderr...
     if (::pipe(g_fdStdout) == 0) {
@@ -73,8 +82,8 @@ void qsynthMainForm::init (void)
 
     // Register the timer slot.
     QObject::connect(m_pTimer, SIGNAL(timeout()), this, SLOT(timerSlot()));
-    // Our timer is started as one shot.
-    m_pTimer->start(QSYNTH_DELAY_MSECS, true);
+    // Our timer is started...
+    m_pTimer->start(QSYNTH_TIMER_MSECS, false);
 }
 
 
@@ -84,7 +93,8 @@ void qsynthMainForm::destroy (void)
     // Stop th press!
     stopSynth();
 
-    // Kill timer.
+    // Stop and kill timer.
+    m_pTimer->stop();
     delete m_pTimer;
 }
 
@@ -199,6 +209,44 @@ void qsynthMainForm::updateMessagesFont (void)
 // Stabilize current form toggle buttons that may be astray.
 void qsynthMainForm::stabilizeForm (void)
 {
+    if (m_pSynth) {
+        GainGroupBox->setEnabled(true);
+        ReverbGroupBox->setEnabled(true);
+        bool bReverbActive = ReverbActiveCheckBox->isChecked();
+        ReverbRoomTextLabel->setEnabled(bReverbActive);
+        ReverbDampTextLabel->setEnabled(bReverbActive);
+        ReverbWidthTextLabel->setEnabled(bReverbActive);
+        ReverbLevelTextLabel->setEnabled(bReverbActive);
+        ReverbRoomDial->setEnabled(bReverbActive);
+        ReverbDampDial->setEnabled(bReverbActive);
+        ReverbWidthDial->setEnabled(bReverbActive);
+        ReverbLevelDial->setEnabled(bReverbActive);
+        ReverbRoomSpinBox->setEnabled(bReverbActive);
+        ReverbDampSpinBox->setEnabled(bReverbActive);
+        ReverbWidthSpinBox->setEnabled(bReverbActive);
+        ReverbLevelSpinBox->setEnabled(bReverbActive);
+        bool bChorusActive = ChorusActiveCheckBox->isChecked();
+        ChorusNrTextLabel->setEnabled(bChorusActive);
+        ChorusLevelTextLabel->setEnabled(bChorusActive);
+        ChorusSpeedTextLabel->setEnabled(bChorusActive);
+        ChorusDepthTextLabel->setEnabled(bChorusActive);
+        ChorusTypeTextLabel->setEnabled(bChorusActive);
+        ChorusNrDial->setEnabled(bChorusActive);
+        ChorusLevelDial->setEnabled(bChorusActive);
+        ChorusSpeedDial->setEnabled(bChorusActive);
+        ChorusDepthDial->setEnabled(bChorusActive);
+        ChorusNrSpinBox->setEnabled(bChorusActive);
+        ChorusLevelSpinBox->setEnabled(bChorusActive);
+        ChorusSpeedSpinBox->setEnabled(bChorusActive);
+        ChorusDepthSpinBox->setEnabled(bChorusActive);
+        ChorusTypeComboBox->setEnabled(bChorusActive);
+        ChorusGroupBox->setEnabled(true);
+    } else {
+        GainGroupBox->setEnabled(false);
+        ReverbGroupBox->setEnabled(false);
+        ChorusGroupBox->setEnabled(false);
+    }
+
     MessagesPushButton->setOn(m_pMessagesForm && m_pMessagesForm->isVisible());
 }
 
@@ -258,9 +306,31 @@ void qsynthMainForm::showAboutForm (void)
 // Timer callback funtion.
 void qsynthMainForm::timerSlot (void)
 {
-    // Is it the first shot on synth start after a few delay?
-    if (!startSynth())
-        close();
+    // Is it the first shot on synth start after a one slot delay?
+    if (++m_iTimerSlot == 1) {
+        if (!startSynth()) {
+            close();
+            return;
+        }
+    }
+
+    // Gain changes?
+    if (m_iGainChanged > 0) {
+        m_iGainChanged = 0;
+        updateGain();
+    }
+
+    // Reverb changes?
+    if (m_iReverbChanged > 0) {
+        m_iReverbChanged = 0;
+        updateReverb();
+    }
+
+    // Chorus changes?
+    if (m_iChorusChanged > 0) {
+        m_iChorusChanged = 0;
+        updateChorus();
+    }
 }
 
 
@@ -351,6 +421,10 @@ bool qsynthMainForm::startSynth (void)
 #endif
     }
 
+    // Finally initialize the front panel controls.
+    appendMessages(tr("Loading panel settings") + sElipsis);
+    loadPanelSettings();
+    
     // All is right.
     appendMessages(tr("Synthesizer engine started."));
 
@@ -366,6 +440,10 @@ void qsynthMainForm::stopSynth (void)
 
     const QString sElipsis = "...";
 
+    // Start saving the front panel controls.
+    appendMessages(tr("Saving panel settings") + sElipsis);
+    savePanelSettings();
+    
 #ifdef CONFIG_FLUID_SERVER
     // Destroy server.
     if (m_pServer) {
@@ -417,6 +495,231 @@ void qsynthMainForm::stopSynth (void)
     // We're done.
     appendMessages(tr("Synthesizer engine terminated."));
     m_pSetup = NULL;
+}
+
+
+// Front panel state load routine.
+void qsynthMainForm::loadPanelSettings (void)
+{
+    if (m_pSetup == NULL)
+        return;
+
+    m_iGainChanged   = 0;
+    m_iReverbChanged = 0;
+    m_iChorusChanged = 0;
+
+    m_iGainUpdate    = 0;
+    m_iReverbUpdate  = 0;
+    m_iChorusUpdate  = 0;
+
+    GainDial->setValue((int) (10.0 * m_pSetup->fGain));
+
+    ReverbActiveCheckBox->setChecked(m_pSetup->bReverbActive);
+    ReverbRoomDial->setValue((int) (10.0 * m_pSetup->fReverbRoom));
+    ReverbDampDial->setValue((int) (10.0 * m_pSetup->fReverbDamp));
+    ReverbWidthDial->setValue((int) (10.0 * m_pSetup->fReverbWidth));
+    ReverbLevelDial->setValue((int) (10.0 * m_pSetup->fReverbLevel));
+
+    ChorusActiveCheckBox->setChecked(m_pSetup->bChorusActive);
+    ChorusNrDial->setValue(m_pSetup->iChorusNr);
+    ChorusLevelDial->setValue((int) (10.0 * m_pSetup->fChorusLevel));
+    ChorusSpeedDial->setValue((int) (10.0 * m_pSetup->fChorusSpeed));
+    ChorusDepthDial->setValue((int) (10.0 * m_pSetup->fChorusDepth));
+    ChorusTypeComboBox->setCurrentItem(m_pSetup->iChorusType);
+
+    stabilizeForm();
+}
+
+
+// Front panel state save routine.
+void qsynthMainForm::savePanelSettings (void)
+{
+    if (m_pSetup == NULL)
+        return;
+
+    m_pSetup->fGain = (double) (GainDial->value() / 10.0);
+
+    m_pSetup->bReverbActive = ReverbActiveCheckBox->isChecked();
+    m_pSetup->fReverbRoom   = (double) (ReverbRoomDial->value()  / 10.0);
+    m_pSetup->fReverbDamp   = (double) (ReverbDampDial->value()  / 10.0);
+    m_pSetup->fReverbWidth  = (double) (ReverbWidthDial->value() / 10.0);
+    m_pSetup->fReverbLevel  = (double) (ReverbLevelDial->value() / 10.0);
+
+    m_pSetup->bChorusActive = ChorusActiveCheckBox->isChecked();
+    m_pSetup->iChorusNr     = ChorusNrDial->value();
+    m_pSetup->fChorusLevel  = (double) (ChorusLevelDial->value() / 10.0);
+    m_pSetup->fChorusSpeed  = (double) (ChorusSpeedDial->value() / 10.0);
+    m_pSetup->fChorusDepth  = (double) (ChorusDepthDial->value() / 10.0);
+    m_pSetup->iChorusType   = ChorusTypeComboBox->currentItem();
+}
+
+// Increment reverb change flag.
+void qsynthMainForm::reverbActivate ( bool bActive )
+{
+    if (m_pSynth == NULL)
+        return;
+
+    appendMessages("fluid_synth_set_reverb_on(" + QString::number((int) bActive) + ")");
+
+    ::fluid_synth_set_reverb_on(m_pSynth, (int) bActive);
+    stabilizeForm();
+}
+
+
+// Increment chorus change flag.
+void qsynthMainForm::chorusActivate ( bool bActive )
+{
+    if (m_pSynth == NULL)
+        return;
+
+    appendMessages("fluid_synth_set_chorus_on(" + QString::number((int) bActive) + ")");
+
+    ::fluid_synth_set_chorus_on(m_pSynth, (int) bActive);
+    stabilizeForm();
+}
+
+
+// Increment gain change flag.
+void qsynthMainForm::gainChanged (int)
+{
+    if (m_iGainUpdate == 0)
+        m_iGainChanged++;
+}
+
+
+// Increment reverb change flag.
+void qsynthMainForm::reverbChanged (int)
+{
+    if (m_iReverbUpdate == 0)
+        m_iReverbChanged++;
+}
+
+
+// Increment chorus change flag.
+void qsynthMainForm::chorusChanged (int)
+{
+    if (m_iChorusUpdate == 0)
+        m_iChorusChanged++;
+}
+
+
+// Update gain state.
+void qsynthMainForm::updateGain (void)
+{
+    if (m_pSynth == NULL || m_iGainUpdate > 0)
+        return;
+    m_iGainUpdate++;
+
+    float fGain = (float) (GainSpinBox->value() / 10.0);
+
+    appendMessages("fluid_synth_set_gain(" + QString::number(fGain) + ")");
+
+    ::fluid_synth_set_gain(m_pSynth, fGain);
+    refreshGain();
+
+    m_iGainUpdate--;
+}
+
+
+// Update reverb state.
+void qsynthMainForm::updateReverb (void)
+{
+    if (m_pSynth == NULL || m_iReverbUpdate > 0)
+        return;
+    m_iReverbUpdate++;
+
+    double fReverbRoom   = (double) (ReverbRoomSpinBox->value()  / 10.0);
+    double fReverbDamp   = (double) (ReverbDampSpinBox->value()  / 10.0);
+    double fReverbWidth  = (double) (ReverbWidthSpinBox->value() / 10.0);
+    double fReverbLevel  = (double) (ReverbLevelSpinBox->value() / 10.0);
+
+    appendMessages("fluid_synth_set_reverb("
+        + QString::number(fReverbRoom)  + ","
+        + QString::number(fReverbDamp)  + ","
+        + QString::number(fReverbWidth) + ","
+        + QString::number(fReverbLevel) + ")");
+
+    ::fluid_synth_set_reverb(m_pSynth, fReverbRoom, fReverbDamp, fReverbWidth, fReverbLevel);
+    refreshReverb();
+
+    m_iReverbUpdate--;
+}
+
+
+// Update chorus state.
+void qsynthMainForm::updateChorus (void)
+{
+    if (m_pSynth == NULL || m_iChorusUpdate > 0)
+        return;
+    m_iChorusUpdate++;
+
+    int    iChorusNr     = ChorusNrSpinBox->value();
+    double fChorusLevel  = (double) (ChorusLevelSpinBox->value() / 10.0);
+    double fChorusSpeed  = (double) (ChorusSpeedSpinBox->value() / 10.0);
+    double fChorusDepth  = (double) (ChorusDepthSpinBox->value() / 10.0);
+    int    iChorusType   = ChorusTypeComboBox->currentItem();
+
+    appendMessages("fluid_synth_set_chorus("
+        + QString::number(iChorusNr)    + ","
+        + QString::number(fChorusLevel) + ","
+        + QString::number(fChorusSpeed) + ","
+        + QString::number(fChorusDepth) + ","
+        + QString::number(iChorusType)  + ")");
+
+    ::fluid_synth_set_chorus(m_pSynth, iChorusNr, fChorusLevel, fChorusSpeed, fChorusDepth, iChorusType);
+    refreshChorus();
+
+    m_iChorusUpdate--;
+}
+
+
+// Refresh gain panel controls.
+void qsynthMainForm::refreshGain (void)
+{
+    if (m_pSynth == NULL)
+        return;
+
+    float fGain = ::fluid_synth_get_gain(m_pSynth);
+
+    GainDial->setValue((int) (10.0 * fGain));
+}
+
+
+// Refresh reverb panel controls.
+void qsynthMainForm::refreshReverb (void)
+{
+    if (m_pSynth == NULL)
+        return;
+
+    double fReverbRoom   = ::fluid_synth_get_reverb_roomsize(m_pSynth);
+    double fReverbDamp   = ::fluid_synth_get_reverb_damp(m_pSynth);
+    double fReverbWidth  = ::fluid_synth_get_reverb_width(m_pSynth);
+    double fReverbLevel  = ::fluid_synth_get_reverb_level(m_pSynth);
+
+    ReverbRoomDial->setValue((int) (10.0 * fReverbRoom));
+    ReverbDampDial->setValue((int) (10.0 * fReverbDamp));
+    ReverbWidthDial->setValue((int) (10.0 * fReverbWidth));
+    ReverbLevelDial->setValue((int) (10.0 * fReverbLevel));
+}
+
+
+// Refresh chorus panel controls.
+void qsynthMainForm::refreshChorus (void)
+{
+    if (m_pSynth == NULL)
+        return;
+
+    int    iChorusNr     = ::fluid_synth_get_chorus_nr(m_pSynth);
+    double fChorusLevel  = ::fluid_synth_get_chorus_level(m_pSynth);
+    double fChorusSpeed  = ::fluid_synth_get_chorus_speed_Hz(m_pSynth);
+    double fChorusDepth  = ::fluid_synth_get_chorus_depth_ms(m_pSynth);
+    int    iChorusType   = ::fluid_synth_get_chorus_type(m_pSynth);
+
+    ChorusNrDial->setValue(iChorusNr);
+    ChorusLevelDial->setValue((int) (10.0 * fChorusLevel));
+    ChorusSpeedDial->setValue((int) (10.0 * fChorusSpeed));
+    ChorusDepthDial->setValue((int) (10.0 * fChorusDepth));
+    ChorusTypeComboBox->setCurrentItem(iChorusType);
 }
 
 

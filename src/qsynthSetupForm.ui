@@ -156,7 +156,7 @@
                         </column>
                         <column>
                             <property name="text">
-                                <string>Current</string>
+                                <string>Startup</string>
                             </property>
                             <property name="clickable">
                                 <bool>true</bool>

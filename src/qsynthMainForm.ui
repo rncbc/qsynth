@@ -28,8 +28,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>330</width>
-            <height>33</height>
+            <width>657</width>
+            <height>151</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -45,7 +45,7 @@
         </font>
     </property>
     <property name="caption">
-        <string>qsynth</string>
+        <string>qsynth - A fluidsynth Qt GUI Interface</string>
     </property>
     <property name="icon">
         <pixmap>qsynth.xpm</pixmap>
@@ -57,104 +57,1124 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QPushButton" row="0" column="2">
+        <widget class="QGroupBox" row="0" column="0">
             <property name="name">
-                <cstring>AboutPushButton</cstring>
+                <cstring>GainGroupBox</cstring>
             </property>
-            <property name="minimumSize">
-                <size>
-                    <width>80</width>
-                    <height>0</height>
-                </size>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
             </property>
-            <property name="text">
-                <string>Ab&amp;out...</string>
+            <property name="title">
+                <string>Master</string>
             </property>
-            <property name="accel">
-                <string>Alt+O</string>
-            </property>
-            <property name="iconSet">
-                <iconset>about1.png</iconset>
-            </property>
-            <property name="toolTip" stdset="0">
-                <string>Show information about this application</string>
-            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget" row="0" column="0">
+                    <property name="name">
+                        <cstring>GainLayout</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="spacing">
+                            <number>2</number>
+                        </property>
+                        <widget class="QDial" row="1" column="0">
+                            <property name="name">
+                                <cstring>GainDial</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="notchTarget">
+                                <number>10</number>
+                            </property>
+                            <property name="notchesVisible">
+                                <bool>true</bool>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Master Gain</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox" row="2" column="0">
+                            <property name="name">
+                                <cstring>GainSpinBox</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Master Gain</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>GainTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Gain</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignCenter</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>GainSpinBox</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+            </grid>
         </widget>
-        <widget class="QPushButton" row="0" column="1">
+        <widget class="QGroupBox" row="0" column="1" rowspan="2" colspan="1">
             <property name="name">
-                <cstring>SetupPushButton</cstring>
+                <cstring>ReverbGroupBox</cstring>
             </property>
-            <property name="minimumSize">
-                <size>
-                    <width>80</width>
-                    <height>0</height>
-                </size>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
             </property>
-            <property name="text">
-                <string>S&amp;etup...</string>
+            <property name="frameShape">
+                <enum>GroupBoxPanel</enum>
             </property>
-            <property name="accel">
-                <string>Alt+E</string>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
             </property>
-            <property name="iconSet">
-                <iconset>setup1.png</iconset>
+            <property name="title">
+                <string>Reverb</string>
             </property>
-            <property name="toolTip" stdset="0">
-                <string>Show settings and options dialog</string>
-            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget" row="0" column="1">
+                    <property name="name">
+                        <cstring>ReverbDampLayout</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="spacing">
+                            <number>2</number>
+                        </property>
+                        <widget class="QDial" row="1" column="0">
+                            <property name="name">
+                                <cstring>ReverbDampDial</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="notchTarget">
+                                <number>10</number>
+                            </property>
+                            <property name="notchesVisible">
+                                <bool>true</bool>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Reverb Damp</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox" row="2" column="0">
+                            <property name="name">
+                                <cstring>ReverbDampSpinBox</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Reverb Damp</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>ReverbDampTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>D&amp;amp</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignCenter</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>ReverbDampSpinBox</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLayoutWidget" row="0" column="0">
+                    <property name="name">
+                        <cstring>ReverbRoomLayout</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="spacing">
+                            <number>2</number>
+                        </property>
+                        <widget class="QDial" row="1" column="0">
+                            <property name="name">
+                                <cstring>ReverbRoomDial</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="notchTarget">
+                                <number>10</number>
+                            </property>
+                            <property name="notchesVisible">
+                                <bool>true</bool>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Reverb Room Size</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox" row="2" column="0">
+                            <property name="name">
+                                <cstring>ReverbRoomSpinBox</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Reverb Room Size</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>ReverbRoomTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Room</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignCenter</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>ReverbRoomSpinBox</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLayoutWidget" row="0" column="2">
+                    <property name="name">
+                        <cstring>ReverbWidthLayout</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="spacing">
+                            <number>2</number>
+                        </property>
+                        <widget class="QDial" row="1" column="0">
+                            <property name="name">
+                                <cstring>ReverbWidthDial</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="notchTarget">
+                                <number>10</number>
+                            </property>
+                            <property name="notchesVisible">
+                                <bool>true</bool>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Reverb Width</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox" row="2" column="0">
+                            <property name="name">
+                                <cstring>ReverbWidthSpinBox</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Reverb Width</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>ReverbWidthTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Width</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignCenter</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>ReverbWidthSpinBox</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLayoutWidget" row="0" column="3">
+                    <property name="name">
+                        <cstring>ReverbLevelLayout</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="spacing">
+                            <number>2</number>
+                        </property>
+                        <widget class="QDial" row="1" column="0">
+                            <property name="name">
+                                <cstring>ReverbLevelDial</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="notchTarget">
+                                <number>10</number>
+                            </property>
+                            <property name="notchesVisible">
+                                <bool>true</bool>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Reverb Level</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox" row="2" column="0">
+                            <property name="name">
+                                <cstring>ReverbLevelSpinBox</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Reverb Level</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>ReverbLevelTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Level</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignCenter</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>ReverbLevelSpinBox</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QCheckBox" row="1" column="0" rowspan="1" colspan="4">
+                    <property name="name">
+                        <cstring>ReverbActiveCheckBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Ac&amp;tive</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+T</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Reverb Active</string>
+                    </property>
+                </widget>
+            </grid>
         </widget>
-        <widget class="QPushButton" row="0" column="0">
+        <widget class="QGroupBox" row="0" column="2" rowspan="2" colspan="1">
             <property name="name">
-                <cstring>MessagesPushButton</cstring>
+                <cstring>ChorusGroupBox</cstring>
             </property>
-            <property name="minimumSize">
-                <size>
-                    <width>80</width>
-                    <height>0</height>
-                </size>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
             </property>
-            <property name="text">
-                <string>&amp;Messages</string>
+            <property name="title">
+                <string>Chorus</string>
             </property>
-            <property name="accel">
-                <string>Alt+M</string>
-            </property>
-            <property name="toggleButton">
-                <bool>true</bool>
-            </property>
-            <property name="iconSet">
-                <iconset>messages1.png</iconset>
-            </property>
-            <property name="toolTip" stdset="0">
-                <string>Show/hide the messages log window</string>
-            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget" row="0" column="1">
+                    <property name="name">
+                        <cstring>ChorusLevelLayout</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="spacing">
+                            <number>2</number>
+                        </property>
+                        <widget class="QDial" row="1" column="0">
+                            <property name="name">
+                                <cstring>ChorusLevelDial</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="notchTarget">
+                                <number>10</number>
+                            </property>
+                            <property name="notchesVisible">
+                                <bool>true</bool>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Level</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox" row="2" column="0">
+                            <property name="name">
+                                <cstring>ChorusLevelSpinBox</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Level</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>ChorusLevelTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>Le&amp;vel</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignCenter</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>ChorusLevelSpinBox</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLayoutWidget" row="0" column="2">
+                    <property name="name">
+                        <cstring>ChorusSpeedLayout</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="spacing">
+                            <number>2</number>
+                        </property>
+                        <widget class="QDial" row="1" column="0">
+                            <property name="name">
+                                <cstring>ChorusSpeedDial</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="notchTarget">
+                                <number>10</number>
+                            </property>
+                            <property name="notchesVisible">
+                                <bool>true</bool>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Speed Hz</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox" row="2" column="0">
+                            <property name="name">
+                                <cstring>ChorusSpeedSpinBox</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Speed Hz</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>ChorusSpeedTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Speed</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignCenter</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>ChorusSpeedSpinBox</cstring>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Speed Hz</string>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLayoutWidget" row="0" column="0">
+                    <property name="name">
+                        <cstring>ChorusNrLayout</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="spacing">
+                            <number>2</number>
+                        </property>
+                        <widget class="QDial" row="1" column="0">
+                            <property name="name">
+                                <cstring>ChorusNrDial</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="notchTarget">
+                                <number>10</number>
+                            </property>
+                            <property name="notchesVisible">
+                                <bool>true</bool>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Nr</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox" row="2" column="0">
+                            <property name="name">
+                                <cstring>ChorusNrSpinBox</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus N State</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>ChorusNrTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>&amp;N</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignCenter</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>ChorusNrSpinBox</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLayoutWidget" row="0" column="3">
+                    <property name="name">
+                        <cstring>ChorusDepthLayout</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>4</number>
+                        </property>
+                        <property name="spacing">
+                            <number>2</number>
+                        </property>
+                        <widget class="QDial" row="1" column="0">
+                            <property name="name">
+                                <cstring>ChorusDepthDial</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>40</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="notchTarget">
+                                <number>10</number>
+                            </property>
+                            <property name="notchesVisible">
+                                <bool>true</bool>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Depth ms</string>
+                            </property>
+                        </widget>
+                        <widget class="QSpinBox" row="2" column="0">
+                            <property name="name">
+                                <cstring>ChorusDepthSpinBox</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>40</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="maxValue">
+                                <number>100</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Depth ms</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>ChorusDepthTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Depth</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignCenter</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>ChorusDepthSpinBox</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLayoutWidget" row="1" column="0" rowspan="1" colspan="4">
+                    <property name="name">
+                        <cstring>layout11</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>ChorusActiveCheckBox</cstring>
+                            </property>
+                            <property name="text">
+                                <string>A&amp;ctive</string>
+                            </property>
+                            <property name="accel">
+                                <string></string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Active</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>ChorusTypeTextLabel</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="text">
+                                <string>T&amp;ype:</string>
+                            </property>
+                            <property name="alignment">
+                                <set>AlignVCenter|AlignRight</set>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>ChorusTypeComboBox</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox">
+                            <item>
+                                <property name="text">
+                                    <string>Sine</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>Triangle</string>
+                                </property>
+                            </item>
+                            <property name="name">
+                                <cstring>ChorusTypeComboBox</cstring>
+                            </property>
+                            <property name="font">
+                                <font>
+                                    <bold>0</bold>
+                                </font>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Chorus Modulatiuon Type</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </grid>
         </widget>
-        <widget class="QPushButton" row="0" column="3">
+        <widget class="QLayoutWidget" row="0" column="3" rowspan="2" colspan="1">
             <property name="name">
-                <cstring>QuitPushButton</cstring>
+                <cstring>layout12</cstring>
             </property>
-            <property name="minimumSize">
-                <size>
-                    <width>80</width>
-                    <height>0</height>
-                </size>
-            </property>
-            <property name="text">
-                <string>&amp;Quit</string>
-            </property>
-            <property name="accel">
-                <string>Alt+Q</string>
-            </property>
-            <property name="iconSet">
-                <iconset>quit1.png</iconset>
-            </property>
-            <property name="toolTip" stdset="0">
-                <string>Quit this application</string>
-            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>QuitPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Quit</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+Q</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>quit1.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Quit this application</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>SetupPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>S&amp;etup...</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+E</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>setup1.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Show settings and options dialog</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>MessagesPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Messages</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+M</string>
+                    </property>
+                    <property name="toggleButton">
+                        <bool>true</bool>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>messages1.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Show/hide the messages log window</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>AboutPushButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Ab&amp;out...</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>about1.png</iconset>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Show information about this application</string>
+                    </property>
+                </widget>
+            </vbox>
         </widget>
     </grid>
 </widget>
 <connections>
+    <connection>
+        <sender>GainDial</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>GainSpinBox</receiver>
+        <slot>setValue(int)</slot>
+    </connection>
+    <connection>
+        <sender>ReverbActiveCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>reverbActivate(bool)</slot>
+    </connection>
+    <connection>
+        <sender>ReverbRoomDial</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ReverbRoomSpinBox</receiver>
+        <slot>setValue(int)</slot>
+    </connection>
+    <connection>
+        <sender>ReverbDampDial</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ReverbDampSpinBox</receiver>
+        <slot>setValue(int)</slot>
+    </connection>
+    <connection>
+        <sender>ReverbWidthDial</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ReverbWidthSpinBox</receiver>
+        <slot>setValue(int)</slot>
+    </connection>
+    <connection>
+        <sender>ReverbLevelDial</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ReverbLevelSpinBox</receiver>
+        <slot>setValue(int)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusActiveCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>chorusActivate(bool)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusNrDial</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ChorusNrSpinBox</receiver>
+        <slot>setValue(int)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusLevelDial</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ChorusLevelSpinBox</receiver>
+        <slot>setValue(int)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusSpeedDial</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ChorusSpeedSpinBox</receiver>
+        <slot>setValue(int)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusDepthDial</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ChorusDepthSpinBox</receiver>
+        <slot>setValue(int)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusTypeComboBox</sender>
+        <signal>activated(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>chorusChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>GainSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>gainChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ReverbRoomSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>reverbChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ReverbDampSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>reverbChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ReverbWidthSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>reverbChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ReverbLevelSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>reverbChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusNrSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>chorusChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusLevelSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>chorusChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusSpeedSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>chorusChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>ChorusDepthSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>qsynthMainForm</receiver>
+        <slot>chorusChanged(int)</slot>
+    </connection>
     <connection>
         <sender>SetupPushButton</sender>
         <signal>clicked()</signal>
@@ -181,10 +1201,31 @@
     </connection>
 </connections>
 <tabstops>
-    <tabstop>MessagesPushButton</tabstop>
-    <tabstop>SetupPushButton</tabstop>
-    <tabstop>AboutPushButton</tabstop>
+    <tabstop>GainDial</tabstop>
+    <tabstop>GainSpinBox</tabstop>
+    <tabstop>ReverbRoomDial</tabstop>
+    <tabstop>ReverbRoomSpinBox</tabstop>
+    <tabstop>ReverbDampDial</tabstop>
+    <tabstop>ReverbDampSpinBox</tabstop>
+    <tabstop>ReverbWidthDial</tabstop>
+    <tabstop>ReverbWidthSpinBox</tabstop>
+    <tabstop>ReverbLevelDial</tabstop>
+    <tabstop>ReverbLevelSpinBox</tabstop>
+    <tabstop>ReverbActiveCheckBox</tabstop>
+    <tabstop>ChorusNrDial</tabstop>
+    <tabstop>ChorusNrSpinBox</tabstop>
+    <tabstop>ChorusLevelDial</tabstop>
+    <tabstop>ChorusLevelSpinBox</tabstop>
+    <tabstop>ChorusSpeedDial</tabstop>
+    <tabstop>ChorusSpeedSpinBox</tabstop>
+    <tabstop>ChorusDepthDial</tabstop>
+    <tabstop>ChorusDepthSpinBox</tabstop>
+    <tabstop>ChorusActiveCheckBox</tabstop>
+    <tabstop>ChorusTypeComboBox</tabstop>
     <tabstop>QuitPushButton</tabstop>
+    <tabstop>SetupPushButton</tabstop>
+    <tabstop>MessagesPushButton</tabstop>
+    <tabstop>AboutPushButton</tabstop>
 </tabstops>
 <includes>
     <include location="global" impldecl="in declaration">qsettings.h</include>
@@ -199,6 +1240,7 @@
 <variables>
     <variable access="public">qsynthSetup *m_pSetup;</variable>
     <variable access="private">QTimer *m_pTimer;</variable>
+    <variable access="private">int m_iTimerSlot;</variable>
     <variable access="private">fluid_synth_t *m_pSynth;</variable>
     <variable access="private">fluid_audio_driver_t *m_pAudioDriver;</variable>
     <variable access="private">fluid_midi_router_t *m_pMidiRouter;</variable>
@@ -207,14 +1249,26 @@
     <variable access="private">fluid_server_t *m_pServer;</variable>
     <variable access="private">QSocketNotifier *m_pStdoutNotifier;</variable>
     <variable access="private">qsynthMessagesForm *m_pMessagesForm;</variable>
+    <variable access="private">int m_iGainChanged;</variable>
+    <variable access="private">int m_iReverbChanged;</variable>
+    <variable access="private">int m_iChorusChanged;</variable>
+    <variable access="private">int m_iGainUpdate;</variable>
+    <variable access="private">int m_iReverbUpdate;</variable>
+    <variable access="private">int m_iChorusUpdate;</variable>
 </variables>
 <slots>
     <slot access="protected" specifier="non virtual">reject( void )</slot>
     <slot specifier="non virtual">stdoutNotifySlot( int fd )</slot>
+    <slot specifier="non virtual">stabilizeForm( void )</slot>
     <slot specifier="non virtual">toggleMessagesForm( void )</slot>
     <slot specifier="non virtual">showSetupForm( void )</slot>
     <slot specifier="non virtual">showAboutForm( void )</slot>
     <slot specifier="non virtual">timerSlot( void )</slot>
+    <slot specifier="non virtual">reverbActivate( bool bActive )</slot>
+    <slot specifier="non virtual">chorusActivate( bool bActive )</slot>
+    <slot specifier="non virtual">gainChanged( int )</slot>
+    <slot specifier="non virtual">reverbChanged( int )</slot>
+    <slot specifier="non virtual">chorusChanged( int )</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
@@ -229,8 +1283,15 @@
     <function access="private" specifier="non virtual">updateMessagesFont( void )</function>
     <function specifier="non virtual" returnType="bool">startSynth( void )</function>
     <function specifier="non virtual">stopSynth( void )</function>
-    <function specifier="non virtual">stabilizeForm( void )</function>
+    <function specifier="non virtual">loadPanelSettings( void )</function>
+    <function specifier="non virtual">savePanelSettings( void )</function>
+    <function specifier="non virtual">updateGain( void )</function>
+    <function specifier="non virtual">updateReverb( void )</function>
+    <function specifier="non virtual">updateChorus( void )</function>
+    <function specifier="non virtual">refreshGain( void )</function>
+    <function specifier="non virtual">refreshReverb( void )</function>
+    <function specifier="non virtual">refreshChorus( void )</function>
 </functions>
 <pixmapinproject/>
-<layoutdefaults spacing="0" margin="0"/>
+<layoutdefaults spacing="4" margin="4"/>
 </UI>
