@@ -605,57 +605,6 @@ bool qsynthSetup::deletePreset ( const QString& sPreset )
 
 
 //---------------------------------------------------------------------------
-// Combo box history persistence helper implementation.
-
-void qsynthSetup::add2ComboBoxHistory ( QComboBox *pComboBox, const QString& sNewText, int iIndex, int iLimit )
-{
-    int iCount = pComboBox->count();
-    for (int i = 0; i < iCount; i++) {
-        QString sText = pComboBox->text(i);
-        if (sText == sNewText) {
-            pComboBox->removeItem(i);
-            iCount--;
-            break;
-        }
-    }
-    while (iCount >= iLimit)
-        pComboBox->removeItem(--iCount);
-    pComboBox->insertItem(sNewText, iIndex);
-}
-
-
-void qsynthSetup::loadComboBoxHistory ( QComboBox *pComboBox, int iLimit )
-{
-    pComboBox->setUpdatesEnabled(false);
-    pComboBox->setDuplicatesEnabled(false);
-
-    m_settings.beginGroup("/History/" + QString(pComboBox->name()));
-    for (int i = 0; i < iLimit; i++) {
-        QString sText = m_settings.readEntry("/Item" + QString::number(i + 1), QString::null);
-        if (sText.isEmpty())
-            break;
-        add2ComboBoxHistory(pComboBox, sText, -1, iLimit);  // Append.
-    }
-    m_settings.endGroup();
-
-    pComboBox->setUpdatesEnabled(true);
-}
-
-
-void qsynthSetup::saveComboBoxHistory ( QComboBox *pComboBox, int iLimit )
-{
-    m_settings.beginGroup("/History/" + QString(pComboBox->name()));
-    for (int i = 0; i < iLimit && i < pComboBox->count(); i++) {
-        QString sText = pComboBox->text(i);
-        if (sText.isEmpty())
-            break;
-        m_settings.writeEntry("/Item" + QString::number(i + 1), sText);
-    }
-    m_settings.endGroup();
-}
-
-
-//---------------------------------------------------------------------------
 // Widget geometry persistence helper methods.
 
 void qsynthSetup::loadWidgetGeometry ( QWidget *pWidget )

@@ -112,11 +112,6 @@ public:
     bool savePreset(fluid_synth_t *pSynth, const QString& sPreset);
     bool deletePreset(const QString& sPreset);
 
-    // Combo box history persistence helper prototypes.
-    static void add2ComboBoxHistory(QComboBox *pComboBox, const QString& sNewText, int iIndex = 0, int iLimit = 8);
-    void loadComboBoxHistory(QComboBox *pComboBox, int iLimit = 8);
-    void saveComboBoxHistory(QComboBox *pComboBox, int iLimit = 8);
-
     // Widget geometry persistence helper prototypes.
     void saveWidgetGeometry(QWidget *pWidget);
     void loadWidgetGeometry(QWidget *pWidget);

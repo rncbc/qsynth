@@ -9,6 +9,8 @@ ChangeLog
   and thus are not centered relative to parent main window which has become 
   a strict Qt dialog widget behaviour (as of Qt 3.3+).
 
+- Soundfont setup dialog changed to open and load multiple files at once.
+
 
 0.1.1   2004-01-22  Yet more minor bugfixes.
 

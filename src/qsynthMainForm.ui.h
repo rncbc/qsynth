@@ -201,8 +201,8 @@ void qsynthMainForm::init (void)
     m_pXpmLedOff = new QPixmap(QPixmap::fromMimeSource("ledoff1.png"));
 
     // All forms are to be created right now.
-    m_pMessagesForm = new qsynthMessagesForm(this, 0, Qt::WType_TopLevel);
-    m_pChannelsForm = new qsynthChannelsForm(this, 0, Qt::WType_TopLevel);
+    m_pMessagesForm = new qsynthMessagesForm(this, 0, Qt::WType_TopLevel | Qt::WStyle_Tool);
+    m_pChannelsForm = new qsynthChannelsForm(this, 0, Qt::WType_TopLevel | Qt::WStyle_Tool);
 }
 
 

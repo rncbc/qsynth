@@ -29,7 +29,7 @@
             <x>0</x>
             <y>0</y>
             <width>514</width>
-            <height>265</height>
+            <height>412</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -639,7 +639,7 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QListView" row="0" column="0" rowspan="2" colspan="1">
+                    <widget class="QListView" row="0" column="0">
                         <column>
                             <property name="text">
                                 <string>ID</string>
@@ -675,17 +675,17 @@
                             <string>Soundfont stack</string>
                         </property>
                     </widget>
-                    <widget class="QLayoutWidget" row="2" column="0" rowspan="1" colspan="2">
+                    <widget class="QLayoutWidget" row="0" column="1">
                         <property name="name">
-                            <cstring>layout3</cstring>
+                            <cstring>layout7</cstring>
                         </property>
-                        <hbox>
+                        <vbox>
                             <property name="name">
                                 <cstring>unnamed</cstring>
                             </property>
                             <widget class="QPushButton">
                                 <property name="name">
-                                    <cstring>SoundFontBrowsePushButton</cstring>
+                                    <cstring>SoundFontOpenPushButton</cstring>
                                 </property>
                                 <property name="maximumSize">
                                     <size>
@@ -694,10 +694,10 @@
                                     </size>
                                 </property>
                                 <property name="text">
-                                    <string>&amp;Browse...</string>
+                                    <string>&amp;Open...</string>
                                 </property>
                                 <property name="accel">
-                                    <string>Alt+B</string>
+                                    <string>Alt+O</string>
                                 </property>
                                 <property name="iconSet">
                                     <iconset>open1.png</iconset>
@@ -706,58 +706,6 @@
                                     <string>Open soundfont file for loading</string>
                                 </property>
                             </widget>
-                            <widget class="QComboBox">
-                                <property name="name">
-                                    <cstring>SoundFontComboBox</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>3</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="editable">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Soundfont file name</string>
-                                </property>
-                            </widget>
-                            <widget class="QPushButton">
-                                <property name="name">
-                                    <cstring>SoundFontAddPushButton</cstring>
-                                </property>
-                                <property name="maximumSize">
-                                    <size>
-                                        <width>80</width>
-                                        <height>32767</height>
-                                    </size>
-                                </property>
-                                <property name="text">
-                                    <string>&amp;Add</string>
-                                </property>
-                                <property name="accel">
-                                    <string>Alt+A</string>
-                                </property>
-                                <property name="iconSet">
-                                    <iconset>add1.png</iconset>
-                                </property>
-                                <property name="toolTip" stdset="0">
-                                    <string>Add current file into soundfont stack</string>
-                                </property>
-                            </widget>
-                        </hbox>
-                    </widget>
-                    <widget class="QLayoutWidget" row="1" column="1">
-                        <property name="name">
-                            <cstring>layout12</cstring>
-                        </property>
-                        <vbox>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
                             <widget class="QPushButton">
                                 <property name="name">
                                     <cstring>SoundFontRemovePushButton</cstring>
@@ -793,8 +741,8 @@
                                 </property>
                                 <property name="sizeHint">
                                     <size>
-                                        <width>8</width>
-                                        <height>120</height>
+                                        <width>20</width>
+                                        <height>140</height>
                                     </size>
                                 </property>
                             </spacer>
@@ -846,23 +794,6 @@
                             </widget>
                         </vbox>
                     </widget>
-                    <spacer row="0" column="1">
-                        <property name="name">
-                            <cstring>spacer18</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>8</width>
-                                <height>16</height>
-                            </size>
-                        </property>
-                    </spacer>
                 </grid>
             </widget>
             <widget class="QWidget">
@@ -1310,22 +1241,10 @@
         <slot>stabilizeForm()</slot>
     </connection>
     <connection>
-        <sender>SoundFontBrowsePushButton</sender>
+        <sender>SoundFontOpenPushButton</sender>
         <signal>clicked()</signal>
         <receiver>qsynthSetupForm</receiver>
-        <slot>browseSoundFont()</slot>
-    </connection>
-    <connection>
-        <sender>SoundFontComboBox</sender>
-        <signal>textChanged(const QString &amp;)</signal>
-        <receiver>qsynthSetupForm</receiver>
-        <slot>stabilizeForm()</slot>
-    </connection>
-    <connection>
-        <sender>SoundFontAddPushButton</sender>
-        <signal>clicked()</signal>
-        <receiver>qsynthSetupForm</receiver>
-        <slot>addSoundFont()</slot>
+        <slot>openSoundFont()</slot>
     </connection>
     <connection>
         <sender>SoundFontRemovePushButton</sender>
@@ -1387,15 +1306,14 @@
     <tabstop>PolyphonySpinBox</tabstop>
     <tabstop>JackAutoConnectCheckBox</tabstop>
     <tabstop>SoundFontListView</tabstop>
+    <tabstop>SoundFontOpenPushButton</tabstop>
     <tabstop>SoundFontRemovePushButton</tabstop>
     <tabstop>SoundFontMoveUpPushButton</tabstop>
     <tabstop>SoundFontMoveDownPushButton</tabstop>
-    <tabstop>SoundFontBrowsePushButton</tabstop>
-    <tabstop>SoundFontComboBox</tabstop>
-    <tabstop>SoundFontAddPushButton</tabstop>
     <tabstop>SettingsListView</tabstop>
     <tabstop>MessagesFontPushButton</tabstop>
     <tabstop>QueryCloseCheckBox</tabstop>
+    <tabstop>StdoutCaptureCheckBox</tabstop>
     <tabstop>OkPushButton</tabstop>
     <tabstop>CancelPushButton</tabstop>
 </tabstops>
@@ -1417,8 +1335,7 @@
     <slot specifier="non virtual">settingsChanged()</slot>
     <slot specifier="non virtual">stabilizeForm()</slot>
     <slot specifier="non virtual">contextMenu(QListViewItem *, const QPoint&amp;, int)</slot>
-    <slot specifier="non virtual">browseSoundFont()</slot>
-    <slot specifier="non virtual">addSoundFont()</slot>
+    <slot specifier="non virtual">openSoundFont()</slot>
     <slot specifier="non virtual">removeSoundFont()</slot>
     <slot specifier="non virtual">moveUpSoundFont()</slot>
     <slot specifier="non virtual">moveDownSoundFont()</slot>

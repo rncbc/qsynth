@@ -151,8 +151,6 @@ static void qsynth_settings_foreach ( void *pvData, char *pszName, int iType )
 }
 
 
-
-
 // Kind of constructor.
 void qsynthSetupForm::init (void)
 {
@@ -197,10 +195,6 @@ void qsynthSetupForm::setup ( qsynthSetup *pSetup, fluid_synth_t *pSynth )
     m_iDirtyCount = 0;
     // Avoid nested changes.
     m_iDirtySetup++;
-
-    // Load combobox stories.
-    m_pSetup->loadComboBoxHistory(SoundFontComboBox);
-    SoundFontComboBox->setCurrentText(QString::null);
 
     // Some defaults first.
     m_sSoundFontDir = m_pSetup->sSoundFontDir;
@@ -330,8 +324,6 @@ void qsynthSetupForm::accept (void)
         m_iDirtyCount = 0;
     }
 
-    // Save combobox stories.
-    m_pSetup->saveComboBoxHistory(SoundFontComboBox);
     // And the defaults too.
     m_pSetup->sSoundFontDir = m_sSoundFontDir;
 
@@ -390,10 +382,7 @@ void qsynthSetupForm::stabilizeForm()
 
     JackAutoConnectCheckBox->setEnabled(AudioDriverComboBox->currentText() == "jack");
 
-    const QString& sSoundFont = SoundFontComboBox->currentText();
-    SoundFontComboBox->setEnabled(true);
-    SoundFontBrowsePushButton->setEnabled(true);
-    SoundFontAddPushButton->setEnabled(!sSoundFont.isEmpty() && QFileInfo(sSoundFont).exists());
+    SoundFontOpenPushButton->setEnabled(true);
     QListViewItem *pSelectedItem = SoundFontListView->selectedItem();
     if (pSelectedItem) {
         SoundFontRemovePushButton->setEnabled(true);
@@ -417,12 +406,8 @@ void qsynthSetupForm::contextMenu( QListViewItem *pItem, const QPoint& pos, int 
     // Build the soundfont context menu...
     QPopupMenu* pContextMenu = new QPopupMenu(this);
 
-    const QString& sSoundFont = SoundFontComboBox->currentText();
-    iItemID = pContextMenu->insertItem(tr("Browse..."), this, SLOT(browseSoundFont()));
-    iItemID = pContextMenu->insertItem(tr("Add"), this, SLOT(addSoundFont()));
-    pContextMenu->setItemEnabled(iItemID, !sSoundFont.isEmpty() && QFileInfo(sSoundFont).exists());
+    iItemID = pContextMenu->insertItem(tr("Open..."), this, SLOT(openSoundFont()));
     pContextMenu->insertSeparator();
-
     bool bEnabled = (pItem != NULL);
     iItemID = pContextMenu->insertItem(tr("Remove"), this, SLOT(removeSoundFont()));
     pContextMenu->setItemEnabled(iItemID, bEnabled);
@@ -451,66 +436,58 @@ void qsynthSetupForm::refreshSoundFonts()
 
 
 // Browse for a soundfont file on the filesystem.
-void qsynthSetupForm::browseSoundFont()
+void qsynthSetupForm::openSoundFont()
 {
-    QString sSoundFont = QFileDialog::getOpenFileName(
+    QStringList soundfonts = QFileDialog::getOpenFileNames(
+            tr("Soundfont files") + " (*.sf2 *.SF2)",   // Filter (SF2 files)
             m_sSoundFontDir,                            // Start here.
-            tr("Soundfont files") + " (*.sf2 *.SF2)",   // Filter (XML files)
             this, 0,                                    // Parent and name (none)
-            tr("Soundfont file")                        // Caption.
+            tr("Soundfont files")                       // Caption.
     );
     
-    if (!sSoundFont.isEmpty())
-        SoundFontComboBox->setCurrentText(sSoundFont);
-}
-
-// Load current sound font filename...
-void qsynthSetupForm::addSoundFont()
-{
-    const QString& sSoundFont = SoundFontComboBox->currentText();
-    if (sSoundFont.isEmpty())
-        return;
-
-    // Check if not already there...
-    if (SoundFontListView->findItem(sSoundFont, 1) &&
-        QMessageBox::warning(this, tr("Warning"),
-            tr("Soundfont file already on list") + ":\n\n" +
-            "\"" + sSoundFont + "\"\n\n" +
-            tr("Add anyway?"),
-            tr("OK"), tr("Cancel")) > 0) {
-        return;
-    }
-
-    // Ready to add this soundfont to list.
     QListViewItem *pItem = NULL;
-    if (::fluid_is_soundfont((char *) sSoundFont.latin1())) {
-        pItem = SoundFontListView->selectedItem();
-        QListViewItem *pItem = SoundFontListView->selectedItem();
-        if (pItem)
-            pItem->setSelected(false);
-        else
-            pItem = SoundFontListView->lastItem();
-        pItem = new QListViewItem(SoundFontListView, pItem);
-        if (pItem) {
-            pItem->setPixmap(0, *m_pXpmSoundFont);
-            pItem->setText(1, sSoundFont);
-            pItem->setSelected(true);
-            SoundFontListView->setCurrentItem(pItem);
-            qsynthSetup::add2ComboBoxHistory(SoundFontComboBox, sSoundFont);
-            SoundFontComboBox->setCurrentText(QString::null);
-            m_sSoundFontDir = QFileInfo(sSoundFont).dirPath(true);
-            m_iDirtyCount++;
+    // For avery selected soundfont to load...
+    for (QStringList::Iterator iter = soundfonts.begin(); iter != soundfonts.end(); iter++) {
+        const QString& sSoundFont = *iter;
+        char *pszFilename = (char *) sSoundFont.latin1();
+        // Is it a soundfont file...
+        if (::fluid_is_soundfont(pszFilename)) {
+            // Check if not already there...
+            if (SoundFontListView->findItem(sSoundFont, 1) &&
+                QMessageBox::warning(this, tr("Warning"),
+                    tr("Soundfont file already on list") + ":\n\n" +
+                    "\"" + sSoundFont + "\"\n\n" +
+                    tr("Add anyway?"),
+                    tr("OK"), tr("Cancel")) > 0) {
+                continue;
+            }
+            // Start inserting in the current selected or last item...
+            if (pItem == NULL) {
+                pItem = SoundFontListView->selectedItem();
+                if (pItem)
+                    pItem->setSelected(false);
+                else
+                    pItem = SoundFontListView->lastItem();
+            }
+            // New item on the block :-)
+            pItem = new QListViewItem(SoundFontListView, pItem);
+            if (pItem) {
+                pItem->setPixmap(0, *m_pXpmSoundFont);
+                pItem->setText(1, sSoundFont);
+                pItem->setSelected(true);
+                SoundFontListView->setCurrentItem(pItem);
+                m_sSoundFontDir = QFileInfo(sSoundFont).dirPath(true);
+                m_iDirtyCount++;
+            }
         }
-    } else {
-        QMessageBox::critical(this, tr("Error"),
-            tr("Failed to add soundfont file") + ":\n\n" +
-            "\"" + sSoundFont + "\"\n\n" +
-            tr("Please, check for a valid soundfont file."),
-            tr("Cancel"));
+        else {
+            QMessageBox::critical(this, tr("Error"),
+                tr("Failed to add soundfont file") + ":\n\n" +
+                "\"" + sSoundFont + "\"\n\n" +
+                tr("Please, check for a valid soundfont file."),
+                tr("Cancel"));
+        }
     }
-    
-    refreshSoundFonts();
-    stabilizeForm();
 }
 
 
