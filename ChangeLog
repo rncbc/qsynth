@@ -3,7 +3,7 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.0   2004-03-18  Multi-instance comes to town.
+0.2.0   2004-03-19  Multi-instance comes to town.
 
 - Multiple fluidsynth engines can now be maintained, with different
   settings, MIDI and Audio drivers, and more interestingly distinct

@@ -677,6 +677,9 @@ bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
     if (bResult) {
         // First we try to stop the angine.
         stopEngine(pEngine);
+        // Better nullify the current reference, if applicable.
+        if (g_pCurrentEngine == pEngine)
+            g_pCurrentEngine = NULL;
         // Nows time to remove those crappy entries...
         m_pOptions->deleteEngine(pEngine);
         // Then, we delete the instance (note that the engine object
