@@ -483,6 +483,9 @@ void qsynthMainForm::appendMessagesText( const QString& s )
 
 void qsynthMainForm::appendMessagesError( const QString& s )
 {
+    if (m_pMessagesForm)
+        m_pMessagesForm->show();
+
     appendMessagesColor(s, "#ff0000");
 
     QMessageBox::critical(this, tr("Error"), s, tr("Cancel"));
