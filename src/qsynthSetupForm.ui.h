@@ -295,7 +295,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
                     pItem->setText(0, QString::number(pSoundFont->id));
                     pItem->setText(1, pSoundFont->get_name(pSoundFont));
 #ifdef CONFIG_FLUID_BANK_OFFSET
-                    pItem->setText(2, QString::number(pSoundFont->bank_offset));
+                    pItem->setText(2, QString::number(::fluid_synth_get_bank_offset(pEngine->pSynth, pSoundFont->id)));
                     pItem->setRenameEnabled(2, true);
 #endif
                 }

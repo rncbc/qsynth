@@ -1081,13 +1081,16 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
         // Is it a soundfont file...
         if (::fluid_is_soundfont(pszFilename)) {
             int iBankOffset = pSetup->bankoffsets[i].toInt();
-            appendMessagesColor(sPrefix + tr("Loading soundfont") + ": \"" + *iter + "\" (bank offset " + QString::number(iBankOffset) + ")" + sElipsis, "#999933");
-#ifdef CONFIG_FLUID_BANK_OFFSET
-            if (::fluid_synth_sfload_bank_offset(pEngine->pSynth, pszFilename, 1, iBankOffset) < 0)
-#else
-            if (::fluid_synth_sfload(pEngine->pSynth, pszFilename, 1) < 0)
-#endif
+            appendMessagesColor(sPrefix + tr("Loading soundfont") + ": \"" + *iter + "\" (" + tr("bank offset") + " " + QString::number(iBankOffset) + ")" + sElipsis, "#999933");
+            int iSFID = ::fluid_synth_sfload(pEngine->pSynth, pszFilename, 1);
+            if (iSFID < 0)
                 appendMessagesError(sPrefix + tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
+#ifdef CONFIG_FLUID_BANK_OFFSET
+            else {
+                if (::fluid_synth_set_bank_offset(pEngine->pSynth, iSFID, iBankOffset) < 0)
+                    appendMessagesError(sPrefix + tr("Failed to set bank offset for soundfont") + ": \"" + *iter + "\".");
+            }
+#endif
         }
         i++;
     }
