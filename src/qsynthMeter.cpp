@@ -22,10 +22,12 @@
 #include "qsynthMeter.h"
 
 #include <qpopupmenu.h>
+#include <qpainter.h>
 #include <qtooltip.h>
-#include <qtimer.h>
+#include <qpixmap.h>
 
 #include <unistd.h>
+#include <math.h>
 
 // Meter level limits (in dB).
 #define QSYNTHMETER_MAXDB		(+3.0)
@@ -33,8 +35,8 @@
 
 // The peak decay rate (magic goes here :).
 #define QSYNTHMETER_DECAY_RATE	(1.0 - 3E-2)
-// Number of cycles the peak stays on hold.
-#define QSYNTHMETER_DECAY_HOLD	(10)
+// Number of cycles the peak stays on hold (falloff).
+#define QSYNTHMETER_DECAY_HOLD	16
 
 
 //----------------------------------------------------------------------------
@@ -58,22 +60,22 @@ qsynthMeterScale::~qsynthMeterScale (void)
 
 
 // Draw IEC scale line and label; assumes labels drawed from top to bottom.
-void qsynthMeterScale::drawLineLabel ( QPainter& p, int y, const char* pszLabel )
+void qsynthMeterScale::drawLineLabel ( QPainter *p, int y, const char* pszLabel )
 {
-	const QFontMetrics& fm = p.fontMetrics();
+	const QFontMetrics& fm = p->fontMetrics();
 
-	int iCurrY  = QWidget::height() - y;
-	int iWidth  = QWidget::width();
+	int iCurrY = QWidget::height() - y;
+	int iWidth = QWidget::width();
 
 	if (fm.width(pszLabel) < iWidth - 5) {
-		p.drawLine(0, iCurrY, 2, iCurrY);
+		p->drawLine(0, iCurrY, 2, iCurrY);
 		if (m_pMeter->portCount() > 1)
-			p.drawLine(iWidth - 3, iCurrY, iWidth - 1, iCurrY);
+			p->drawLine(iWidth - 3, iCurrY, iWidth - 1, iCurrY);
 	}
 
 	int iMidHeight = (fm.height() >> 1);
 	if (iCurrY > m_iLastY + iMidHeight) {
-		p.drawText(2, iCurrY - iMidHeight, iWidth - 3, fm.height(),
+		p->drawText(2, iCurrY - iMidHeight, iWidth - 3, fm.height(),
 			Qt::AlignHCenter | Qt::AlignVCenter, pszLabel);
 		m_iLastY = iCurrY + 1;
 	}
@@ -90,13 +92,13 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 
 	m_iLastY = 0;
 
-	drawLineLabel(p, m_pMeter->iec_level(QSYNTHMETER_0DB),  "0");
-	drawLineLabel(p, m_pMeter->iec_level(QSYNTHMETER_3DB),  "3");
-	drawLineLabel(p, m_pMeter->iec_level(QSYNTHMETER_6DB),  "6");
-	drawLineLabel(p, m_pMeter->iec_level(QSYNTHMETER_10DB), "10");
+	drawLineLabel(&p, m_pMeter->iec_level(QSYNTHMETER_0DB),  "0");
+	drawLineLabel(&p, m_pMeter->iec_level(QSYNTHMETER_3DB),  "3");
+	drawLineLabel(&p, m_pMeter->iec_level(QSYNTHMETER_6DB),  "6");
+	drawLineLabel(&p, m_pMeter->iec_level(QSYNTHMETER_10DB), "10");
 
 	for (float dB = -20.0; dB > QSYNTHMETER_MINDB; dB -= 10.0)
-		drawLineLabel(p, m_pMeter->iec_scale(dB), QString::number((int) -dB));
+		drawLineLabel(&p, m_pMeter->iec_scale(dB), QString::number((int) -dB));
 }
 
 
@@ -137,6 +139,13 @@ qsynthMeterValue::~qsynthMeterValue (void)
 void qsynthMeterValue::setValue ( float fValue )
 {
 	m_fValue = fValue;
+}
+
+
+// Reset peak holder.
+void qsynthMeterValue::peakReset (void)
+{
+	m_iPeak = 0;
 }
 
 
@@ -246,11 +255,12 @@ void qsynthMeterValue::resizeEvent ( QResizeEvent * )
 qsynthMeter::qsynthMeter ( QWidget *pParent, const char *pszName )
 	: QHBox(pParent, pszName)
 {
-	m_iPortCount  = 2;	// FIXME: Default port count.
-	m_iScaleCount = m_iPortCount;
-	m_ppValues    = NULL;
-	m_ppScales    = NULL;
-	m_fScale      = 0.0;
+	m_iPortCount   = 2;	// FIXME: Default port count.
+	m_iScaleCount  = m_iPortCount;
+	m_ppValues     = NULL;
+	m_ppScales     = NULL;
+	m_fScale       = 0.0;
+	m_iPeakFalloff = QSYNTHMETER_DECAY_HOLD;
 
 	for (int i = 0; i < QSYNTHMETER_LEVELS; i++)
 	    m_iLevels[i] = 0;
@@ -310,7 +320,7 @@ qsynthMeter::~qsynthMeter (void)
 
 
 // Child widget accessors.
-int qsynthMeter::iec_scale ( float dB )
+int qsynthMeter::iec_scale ( float dB ) const
 {
 	float fDef = 1.0;
 
@@ -333,15 +343,36 @@ int qsynthMeter::iec_scale ( float dB )
 }
 
 
-int qsynthMeter::iec_level ( int iIndex )
+int qsynthMeter::iec_level ( int iIndex ) const
 {
 	return m_iLevels[iIndex];
 }
 
 
-int qsynthMeter::portCount (void)
+int qsynthMeter::portCount (void) const
 {
 	return m_iPortCount;
+}
+
+
+
+// Peak falloff mode setting.
+void qsynthMeter::setPeakFalloff ( int iPeakFalloff )
+{
+	m_iPeakFalloff = iPeakFalloff;
+}
+
+int qsynthMeter::peakFalloff (void) const
+{
+	return m_iPeakFalloff;
+}
+
+
+// Reset peak holder.
+void qsynthMeter::peakReset (void)
+{
+	for (int iPort = 0; iPort < m_iPortCount; iPort++)
+	    m_ppValues[iPort]->peakReset();
 }
 
 
@@ -373,7 +404,7 @@ void qsynthMeter::setValue ( int iPort, float fValue )
 
 
 // Common resource accessor.
-QColor& qsynthMeter::color ( int iIndex )
+const QColor& qsynthMeter::color ( int iIndex ) const
 {
 	return *m_pColors[iIndex];
 }

@@ -22,13 +22,8 @@
 #ifndef __qsynthMeter_h
 #define __qsynthMeter_h
 
-#include <qhbox.h>
-#include <qlayout.h>
 #include <qptrlist.h>
-#include <qpixmap.h>
-#include <qpainter.h>
-
-#include <math.h>
+#include <qhbox.h>
 
 // Color/level indexes.
 #define QSYNTHMETER_OVER    0
@@ -60,10 +55,6 @@ public:
     // Default destructor.
     ~qsynthMeterScale();
 
-    // IEC scaling helpers.
-    int iec_scale (float dB);
-    int iec_level (int iIndex);
-
 protected:
 
     // Specific event handlers.
@@ -73,7 +64,7 @@ protected:
 private:
 
     // Draw IEC scale line and label.
-    void drawLineLabel(QPainter& p, int y, const char* pszLabel);
+    void drawLineLabel(QPainter *p, int y, const char* pszLabel);
 
     // Local instance variables.
     qsynthMeter *m_pMeter;
@@ -99,6 +90,9 @@ public:
 
     // Frame value accessors.
     void setValue(float fValue);
+
+	// Reset peak holder.
+	void peakReset();
 
 protected:
 
@@ -136,20 +130,27 @@ public:
     ~qsynthMeter();
 
     // Port count accessor.
-    int portCount();
+    int portCount() const;
 
     // Value proxy.    
     void setValue(int iPort, float fValue);
 
     // IEC scale accessors.
-    int iec_scale(float dB);
-    int iec_level(int iIndex);
+    int iec_scale(float dB) const;
+    int iec_level(int iIndex) const;
 
     // Slot refreshment.
     void refresh();
 
     // Common resource accessors.
-    QColor& color(int iIndex);
+    const QColor& color(int iIndex) const;
+
+	// Peak falloff mode setting.
+	void setPeakFalloff(int bPeakFalloff);
+	int peakFalloff() const;
+
+	// Reset peak holder.
+	void peakReset();
 
 protected:
 
@@ -166,6 +167,9 @@ private:
     int                m_iLevels[QSYNTHMETER_LEVELS];
     QColor            *m_pColors[QSYNTHMETER_COLORS];
     float              m_fScale;
+
+	// Peak falloff mode setting (0=no peak falloff).
+    int m_iPeakFalloff;
 };
 
     
