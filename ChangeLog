@@ -3,9 +3,9 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.0.4   2003-12-15  The fix of fixes.
+0.0.4   2003-12-17  Channel preset breakout.
 
-- Added channels breakout and preset view windows.
+- Added channels breakout and preset view and edit windows.
 
 - Messages window fallback fix.
 

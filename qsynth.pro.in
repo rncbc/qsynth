@@ -11,6 +11,7 @@ HEADERS += src/qsynthAbout.h \
 FORMS    = src/qsynthMainForm.ui \
            src/qsynthMessagesForm.ui \
            src/qsynthChannelsForm.ui \
+	       src/qsynthPresetForm.ui \
            src/qsynthSetupForm.ui \
            src/qsynthAboutForm.ui
 

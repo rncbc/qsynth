@@ -10,6 +10,7 @@ headers = config.h \
 	src/qsynthMainForm.ui.h \
 	src/qsynthMessagesForm.ui.h \
 	src/qsynthChannelsForm.ui.h \
+	src/qsynthPresetForm.ui.h \
 	src/qsynthSetupForm.ui.h \
 	src/qsynthAboutForm.ui.h
           
@@ -19,6 +20,7 @@ sources = src/main.cpp \
 	src/qsynthMainForm.ui \
 	src/qsynthMessagesForm.ui \
 	src/qsynthChannelsForm.ui \
+	src/qsynthPresetForm.ui \
 	src/qsynthSetupForm.ui \
 	src/qsynthAboutForm.ui
 

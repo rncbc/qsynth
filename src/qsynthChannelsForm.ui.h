@@ -21,6 +21,8 @@
 *****************************************************************************/
 
 #include <qvalidator.h>
+#include <qpopupmenu.h>
+#include <qfileinfo.h>
 
 #include "config.h"
 
@@ -132,12 +134,14 @@ void qsynthChannelsForm::updateChannel ( int iChan )
     fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, iChan);
     if (pPreset) {
         pItem->setText(QSYNTH_CHANNELS_SFID, QString::number((pPreset->sfont)->id));
+        pItem->setText(QSYNTH_CHANNELS_SFNAME, QFileInfo((pPreset->sfont)->get_name(pPreset->sfont)).baseName());
         pItem->setText(QSYNTH_CHANNELS_BANK, QString::number(pPreset->get_banknum(pPreset)));
         pItem->setText(QSYNTH_CHANNELS_PROG, QString::number(pPreset->get_num(pPreset)));
         pItem->setText(QSYNTH_CHANNELS_NAME, pPreset->get_name(pPreset));
     } else {
         QString n = "-";
         pItem->setText(QSYNTH_CHANNELS_SFID, n);
+        pItem->setText(QSYNTH_CHANNELS_SFNAME, n);
         pItem->setText(QSYNTH_CHANNELS_BANK, n);
         pItem->setText(QSYNTH_CHANNELS_PROG, n);
         pItem->setText(QSYNTH_CHANNELS_NAME, n);
@@ -168,6 +172,55 @@ void qsynthChannelsForm::setChannelOn ( int iChan, bool bOn )
 }
 
 
+// Channel view context menu handler.
+void qsynthChannelsForm::contextMenu( QListViewItem *pItem, const QPoint& pos, int )
+{
+    int iItemID;
+
+    // Build the channel context menu...
+    QPopupMenu* pContextMenu = new QPopupMenu(this);
+
+    bool bEnabled = (m_pSynth && pItem);
+    iItemID = pContextMenu->insertItem(tr("Edit"), this, SLOT(editSelectedChannel()));
+    pContextMenu->setItemEnabled(iItemID, bEnabled);
+    pContextMenu->insertSeparator();
+    iItemID = pContextMenu->insertItem(tr("Refresh"), this, SLOT(updateAllChannels()));
+    pContextMenu->setItemEnabled(iItemID, bEnabled);
+
+    pContextMenu->exec(pos);
+}
+
+
+// Edit detail dialog.
+void qsynthChannelsForm::editSelectedChannel (void)
+{
+    doubleClick(ChannelsListView->selectedItem());
+}
+
+
+// Show detail dialog.
+void qsynthChannelsForm::doubleClick( QListViewItem *pItem )
+{
+    if (pItem == NULL)
+        return;
+    if (m_pSynth == NULL || m_ppChannels == NULL)
+        return;
+
+    int iChan = (pItem->text(QSYNTH_CHANNELS_CHAN).toInt() - 1);
+    if (iChan < 0 || iChan >= m_iChannels)
+        return;
+        
+    qsynthPresetForm *pPresetForm = new qsynthPresetForm(this);
+    if (pPresetForm) {
+        // The the proper context.
+        pPresetForm->setup(m_pSynth, iChan);
+        // Show the channel preset dialog...
+        if (pPresetForm->exec())
+            updateChannel(iChan);
+        // Done.
+        delete pPresetForm;
+    }
+}
 
 // Channels preset naming slots.
 void qsynthChannelsForm::changePreset( const QString& sPreset )
@@ -191,3 +244,4 @@ void qsynthChannelsForm::resetPresets (void)
 
 
 // end of qsynthChannelsForm.ui.h
+

@@ -59,10 +59,11 @@ int qsynthChannelsViewItem::compare ( QListViewItem* pItem, int iColumn, bool bA
             break;
         }
 
+        case QSYNTH_CHANNELS_SFNAME:
         case QSYNTH_CHANNELS_NAME:
         {
-            const QString sName1 = text(QSYNTH_CHANNELS_NAME);
-            const QString sName2 = pItem->text(QSYNTH_CHANNELS_NAME);
+            const QString sName1 = text(iColumn);
+            const QString sName2 = pItem->text(iColumn);
             if (sName1 > sName2)
                 return (bAscending ?  1 : -1);
             else if (sName1 < sName2)

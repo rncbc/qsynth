@@ -29,7 +29,7 @@
             <x>0</x>
             <y>0</y>
             <width>603</width>
-            <height>362</height>
+            <height>368</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -46,6 +46,9 @@
     </property>
     <property name="caption">
         <string>qsynth: Channels</string>
+    </property>
+    <property name="icon">
+        <pixmap>channels1.png</pixmap>
     </property>
     <property name="sizeGripEnabled">
         <bool>true</bool>
@@ -175,6 +178,17 @@
             </column>
             <column>
                 <property name="text">
+                    <string>Soundfont</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property name="text">
                     <string>Bank</string>
                 </property>
                 <property name="clickable">
@@ -254,6 +268,18 @@
         <receiver>qsynthChannelsForm</receiver>
         <slot>deletePreset()</slot>
     </connection>
+    <connection>
+        <sender>ChannelsListView</sender>
+        <signal>contextMenuRequested(QListViewItem*,const QPoint&amp;,int)</signal>
+        <receiver>qsynthChannelsForm</receiver>
+        <slot>contextMenu(QListViewItem*,const QPoint&amp;,int)</slot>
+    </connection>
+    <connection>
+        <sender>ChannelsListView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>qsynthChannelsForm</receiver>
+        <slot>doubleClick(QListViewItem*)</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>PresetComboBox</tabstop>
@@ -265,6 +291,7 @@
     <include location="global" impldecl="in declaration">qsynthChannels.h</include>
     <include location="local" impldecl="in declaration">qsynthSetup.h</include>
     <include location="local" impldecl="in implementation">qsynthMainForm.h</include>
+    <include location="local" impldecl="in implementation">qsynthPresetForm.h</include>
     <include location="local" impldecl="in implementation">qsynthChannelsForm.ui.h</include>
 </includes>
 <variables>
@@ -276,10 +303,14 @@
     <variable access="private">QPixmap *m_pXpmLedOff;</variable>
 </variables>
 <slots>
+    <slot specifier="non virtual">doubleClick(QListViewItem*)</slot>
     <slot specifier="non virtual">changePreset( const QString&amp; sPreset )</slot>
     <slot specifier="non virtual">savePreset()</slot>
     <slot specifier="non virtual">deletePreset()</slot>
     <slot specifier="non virtual">resetPresets()</slot>
+    <slot specifier="non virtual">updateAllChannels( void )</slot>
+    <slot specifier="non virtual">editSelectedChannel( void )</slot>
+    <slot specifier="non virtual">contextMenu(QListViewItem *, const QPoint&amp;, int)</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
@@ -287,9 +318,8 @@
     <function access="private" specifier="non virtual">showEvent( QShowEvent * pShowEvent )</function>
     <function access="private" specifier="non virtual">hideEvent( QHideEvent * pHideEvent )</function>
     <function specifier="non virtual">setup( qsynthSetup *pSetup, fluid_synth_t *pSynth )</function>
-    <function specifier="non virtual">updateChannel( int iChan )</function>
-    <function specifier="non virtual">updateAllChannels( void )</function>
     <function specifier="non virtual">setChannelOn( int iChan, bool bOn )</function>
+    <function specifier="non virtual">updateChannel( int iChan )</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="4" margin="4"/>
