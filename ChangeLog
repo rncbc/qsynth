@@ -3,7 +3,7 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.2   2004-08-23  Output level peak meters and other fixes.
+0.2.2   2004-08-28  Output level peak meters and other fixes.
 
 - Engine panel settings are now properly saved on stop/restart.
 
@@ -16,7 +16,8 @@ ChangeLog
   please note that fluidsynth 1.0.5 is needed to build on this feature, 
   which is being properly detected and only enabled at configure time.
 
-- Output level peak meters are now featured as an option (EXPERIMENTAL).
+- Output level peak meters are now featured as an option (EXPERIMENTAL);
+  in addition, overall GUI refresh cycle period reduced to 100 msec.
 
 - Top level sub-windows are now always raised and set with active focus
   when shown to visibility.

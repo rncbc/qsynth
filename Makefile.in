@@ -21,8 +21,8 @@ headers = config.h \
           
 sources = src/main.cpp \
 	src/qsynthSetup.cpp \
-	src/qsynthSetup.cpp \
 	src/qsynthEngine.cpp \
+	src/qsynthOptions.cpp \
 	src/qsynthChannels.cpp \
 	src/qsynthTabBar.cpp \
 	src/qsynthMeter.cpp \

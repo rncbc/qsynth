@@ -29,6 +29,7 @@
 // Constructor.
 qsynthEngine::qsynthEngine ( qsynthOptions *pOptions, const QString& sName )
 {
+    // We're the default (first) engine whether we've given a name...
     m_bDefault = sName.isEmpty();
     if (m_bDefault) {
         m_pSetup = pOptions->defaultSetup();
@@ -36,6 +37,8 @@ qsynthEngine::qsynthEngine ( qsynthOptions *pOptions, const QString& sName )
         m_pSetup = new qsynthSetup();
         pOptions->loadSetup(m_pSetup, sName);
     }
+
+    // From now on, we must have a name.
     m_sName = m_pSetup->sDisplayName;
 
     pSynth       = NULL;

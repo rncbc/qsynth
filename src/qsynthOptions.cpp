@@ -109,8 +109,6 @@ qsynthOptions::~qsynthOptions (void)
     m_settings.writeEntry("/OutputMeters",  bOutputMeters);
     m_settings.endGroup();
 
-    // Load previous/default fluidsynth settings...
-    saveSetup(m_pDefaultSetup, QString::null);
     // Create default setup descriptor.
     delete m_pDefaultSetup;
     m_pDefaultSetup = NULL;
@@ -460,7 +458,6 @@ bool qsynthOptions::renameEngine ( qsynthEngine *pEngine )
 
     return true;
 }
-
 
 
 void qsynthOptions::deleteEngine ( qsynthEngine *pEngine )

@@ -32,7 +32,7 @@
 #define QSYNTHMETER_MINDB        (-70.0)
 
 // The peak decay rate (magic goes here :).
-#define QSYNTHMETER_DECAY_RATE   (0.998)
+#define QSYNTHMETER_DECAY_RATE   (0.9999998)
 
 
 //----------------------------------------------------------------------------

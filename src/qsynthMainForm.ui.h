@@ -35,7 +35,7 @@
 #include "qsynthAbout.h"
 
 // Timer constant stuff.
-#define QSYNTH_TIMER_MSECS  200
+#define QSYNTH_TIMER_MSECS  100
 #define QSYNTH_DELAY_MSECS  200
 
 // Scale factors.
@@ -239,11 +239,8 @@ void qsynthMainForm::destroy (void)
         qsynthTab *pTab = (qsynthTab *) TabBar->tabAt(i);
         if (pTab) {
             qsynthEngine *pEngine = pTab->engine();
-            if (pEngine) {
-                if (!pEngine->isDefault())
-                    m_pOptions->saveSetup(pEngine->setup(), pEngine->name());
+            if (pEngine)
                 stopEngine(pEngine);
-            }
         }
     }
 
@@ -380,7 +377,7 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine, const QStringList& f
         // Is it a soundfont file...
         if (::fluid_is_soundfont(pszFilename)) {
             if (bSetup || pSetup->soundfonts.find(*iter) == pSetup->soundfonts.end()) {
-                appendMessagesColor(sPrefix + tr("Loading soundfont") + ": \"" + *iter + "\"" + sElipsis, "#999933");
+                appendMessagesColor(sPrefix + tr("Loading soundfont: \"%1\"").arg(*iter) + sElipsis, "#999933");
                 if (::fluid_synth_sfload(pEngine->pSynth, pszFilename, 1) >= 0) {
                     iSoundfonts++;
                     if (!bSetup) {
@@ -388,15 +385,15 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine, const QStringList& f
                         pSetup->bankoffsets.append("0");
                     }
                 }
-                else appendMessagesError(sPrefix + tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
+                else appendMessagesError(sPrefix + tr("Failed to load the soundfont: \"%1\".").arg(*iter));
             }
         }  // Or is it a bare midifile?
         else if (::fluid_is_midifile(pszFilename) && pEngine->pPlayer) {
-            appendMessagesColor(sPrefix + tr("Playing MIDI file") + ": \"" + *iter + "\"" + sElipsis, "#99cc66");
+            appendMessagesColor(sPrefix + tr("Playing MIDI file: \"%1\"").arg(*iter) + sElipsis, "#99cc66");
             if (::fluid_player_add(pEngine->pPlayer, pszFilename) >= 0)
                 iMidiFiles++;
             else
-                appendMessagesError(sPrefix + tr("Failed to play MIDI file") + ": \"" + *iter + "\".");
+                appendMessagesError(sPrefix + tr("Failed to play MIDI file: \"%1\".").arg(*iter));
         }
     }
     
@@ -515,7 +512,7 @@ void qsynthMainForm::appendMessagesError( const QString& s )
     if (m_pMessagesForm)
         m_pMessagesForm->show();
 
-    appendMessagesColor(s, "#ff0000");
+    appendMessagesColor(s.simplifyWhiteSpace(), "#ff0000");
 
     QMessageBox::critical(this, tr("Error"), s, tr("Cancel"));
 }
@@ -888,17 +885,12 @@ void qsynthMainForm::tabSelect ( int iTab )
     if (iTab == m_iCurrentTab)
         return;
 
-    const QString sElipsis = "...";
-    const QString sColon   = ": ";
-
     // Try to save old tab settings...
     qsynthTab *pTab = (qsynthTab *) TabBar->tab(m_iCurrentTab);
     if (pTab) {
         qsynthEngine *pEngine = pTab->engine();
-        if (pEngine) {
-            appendMessages(pEngine->name() + sColon + tr("Saving panel settings") + sElipsis);
+        if (pEngine)
             savePanelSettings(pEngine);
-        }
     }
     
     // Make it official.
@@ -913,7 +905,6 @@ void qsynthMainForm::tabSelect ( int iTab )
             g_pCurrentEngine = pEngine;
             // And do the change.
             setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + " [" + pEngine->name() + "]");
-            appendMessages(pEngine->name() + sColon + tr("Loading panel settings") + sElipsis);
             loadPanelSettings(pEngine, false);
             resetChannelsForm(pEngine, false);
         }
@@ -1070,7 +1061,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
     appendMessages(sPrefix + tr("Creating synthesizer engine") + sElipsis);
     pEngine->pSynth = ::new_fluid_synth(pSetup->fluid_settings());
     if (pEngine->pSynth == NULL) {
-        appendMessagesError(sPrefix + tr("Failed to create the synthesizer. Cannot continue without it."));
+        appendMessagesError(sPrefix + tr("Failed to create the synthesizer.\n\nCannot continue without it."));
         return false;
     }
 
@@ -1081,14 +1072,14 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
         // Is it a soundfont file...
         if (::fluid_is_soundfont(pszFilename)) {
             int iBankOffset = pSetup->bankoffsets[i].toInt();
-            appendMessagesColor(sPrefix + tr("Loading soundfont") + ": \"" + *iter + "\" (" + tr("bank offset") + " " + QString::number(iBankOffset) + ")" + sElipsis, "#999933");
+            appendMessagesColor(sPrefix + tr("Loading soundfont: \"%1\" (bank offset %2)").arg(*iter).arg(iBankOffset) + sElipsis, "#999933");
             int iSFID = ::fluid_synth_sfload(pEngine->pSynth, pszFilename, 1);
             if (iSFID < 0)
-                appendMessagesError(sPrefix + tr("Failed to load the soundfont") + ": \"" + *iter + "\".");
+                appendMessagesError(sPrefix + tr("Failed to load the soundfont: \"%1\".").arg(*iter));
 #ifdef CONFIG_FLUID_BANK_OFFSET
             else {
                 if (::fluid_synth_set_bank_offset(pEngine->pSynth, iSFID, iBankOffset) < 0)
-                    appendMessagesError(sPrefix + tr("Failed to set bank offset for soundfont") + ": \"" + *iter + "\".");
+                    appendMessagesError(sPrefix + tr("Failed to set bank offset (%1) for soundfont: \"%2\".").arg(iBankOffset).arg(*iter));
             }
 #endif
         }
@@ -1096,7 +1087,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
     }
 
     // Start the synthesis thread...
-    appendMessages(sPrefix + tr("Creating audio driver") + " (" + pSetup->sAudioDriver + ")" + sElipsis);
+    appendMessages(sPrefix + tr("Creating audio driver (%1)").arg(pSetup->sAudioDriver) + sElipsis);
     pEngine->pAudioDriver  = NULL;
     pEngine->bMeterEnabled = false;
     if (m_pOptions->bOutputMeters) {
@@ -1106,7 +1097,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
     if (pEngine->pAudioDriver == NULL)
         pEngine->pAudioDriver = ::new_fluid_audio_driver(pSetup->fluid_settings(), pEngine->pSynth);
     if (pEngine->pAudioDriver == NULL) {
-        appendMessagesError(sPrefix + tr("Failed to create the audio driver") + " (" + pSetup->sAudioDriver + "). " + tr("Cannot continue without it."));
+        appendMessagesError(sPrefix + tr("Failed to create the audio driver (%1).\n\nCannot continue without it.").arg(pSetup->sAudioDriver));
         stopEngine(pEngine);
         return false;
     }
@@ -1116,20 +1107,20 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
         // In dump mode, text output is generated for events going into
         // and out of the router. The example dump functions are put into
         // the chain before and after the router..
-        appendMessages(sPrefix + tr("Creating MIDI router") + " (" + pSetup->sMidiDriver + ")" + sElipsis);
+        appendMessages(sPrefix + tr("Creating MIDI router (%1)").arg(pSetup->sMidiDriver) + sElipsis);
         pEngine->pMidiRouter = ::new_fluid_midi_router(pSetup->fluid_settings(),
             pSetup->bMidiDump ? qsynth_dump_postrouter : qsynth_handle_midi_event,
             (void *) pEngine);
         if (pEngine->pMidiRouter == NULL) {
-            appendMessagesError(sPrefix + tr("Failed to create the MIDI input router") + " (" + pSetup->sMidiDriver + "); " + tr("no MIDI input will be available."));
+            appendMessagesError(sPrefix + tr("Failed to create the MIDI input router (%1).\n\nNo MIDI input will be available.").arg(pSetup->sMidiDriver));
         } else {
             ::fluid_synth_set_midi_router(pEngine->pSynth, pEngine->pMidiRouter);
-            appendMessages(sPrefix + tr("Creating MIDI driver") + " (" + pSetup->sMidiDriver + ")" + sElipsis);
+            appendMessages(sPrefix + tr("Creating MIDI driver (%1)").arg(pSetup->sMidiDriver) + sElipsis);
             pEngine->pMidiDriver = ::new_fluid_midi_driver(pSetup->fluid_settings(),
                 pSetup->bMidiDump ? ::fluid_midi_dump_prerouter : ::fluid_midi_router_handle_midi_event,
                (void *) pEngine->pMidiRouter);
             if (pEngine->pMidiDriver == NULL)
-                appendMessagesError(sPrefix + tr("Failed to create the MIDI driver") + " (" + pSetup->sMidiDriver + "); " + tr("no MIDI input will be available."));
+                appendMessagesError(sPrefix + tr("Failed to create the MIDI driver (%1).\n\nNo MIDI input will be available.").arg(pSetup->sMidiDriver));
         }
     }
 
@@ -1137,7 +1128,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
     appendMessages(sPrefix + tr("Creating MIDI player") + sElipsis);
     pEngine->pPlayer = ::new_fluid_player(pEngine->pSynth);
     if (pEngine->pPlayer == NULL) {
-        appendMessagesError(sPrefix + tr("Failed to create the MIDI player. Continuing without a player."));
+        appendMessagesError(sPrefix + tr("Failed to create the MIDI player.\n\nContinuing without a player."));
     } else {
         // Play the midi files, if any.
         playLoadFiles(pEngine, pSetup->midifiles, false);
@@ -1149,9 +1140,9 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
         appendMessages(sPrefix + tr("Creating server") + sElipsis);
         pEngine->pServer = ::new_fluid_server(pSetup->fluid_settings(), qsynth_newclient, pEngine->pSynth);
         if (pEngine->pServer == NULL)
-            appendMessagesError(sPrefix + tr("Failed to create the server. Continuing without it."));
+            appendMessagesError(sPrefix + tr("Failed to create the server.\n\nContinuing without it."));
 #else
-        appendMessagesError(sPrefix + tr("Server mode disabled. Continuing without it."));
+        appendMessagesError(sPrefix + tr("Server mode disabled.\n\nContinuing without it."));
 #endif
     }
 
@@ -1190,8 +1181,14 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
     if (pSetup == NULL)
         return;
 
-    // Before all else save current engine panel settings...
-    savePanelSettings(pEngine);
+    // Only if there's a legal audio driver...
+    if (pEngine->pAudioDriver) {
+        // Before all else save current engine panel settings...
+        if (pEngine == currentEngine())
+            savePanelSettings(pEngine);
+        // Make those settings persist over...
+        m_pOptions->saveSetup(pSetup, pEngine->isDefault() ? QString::null : pEngine->name());
+    }
 
     // Flush anything that maybe pending...
     flushStdoutBuffer();
@@ -1382,8 +1379,8 @@ void qsynthMainForm::loadPanelSettings ( qsynthEngine *pEngine, bool bUpdate )
 {
     if (pEngine == NULL)
         return;
-    if (pEngine->pSynth == NULL)
-        return;
+//  if (pEngine->pSynth == NULL || pEngine->pAudioDriver == NULL)
+//      return;
 
     qsynthSetup *pSetup = pEngine->setup();
     if (pSetup == NULL)
@@ -1433,7 +1430,7 @@ void qsynthMainForm::savePanelSettings ( qsynthEngine *pEngine )
 {
     if (pEngine == NULL)
         return;
-    if (pEngine->pSynth == NULL)
+    if (pEngine->pSynth == NULL || pEngine->pAudioDriver == NULL)
         return;
 
     qsynthSetup *pSetup = pEngine->setup();
