@@ -28,7 +28,7 @@ and optionally as root:
 This procedure will end installing the following couple of files:
 
     ${prefix}/bin/qsynth
-    ${prefix}/share/icons/qsynth.xpm
+    ${prefix}/share/icons/qsynth.png
 
 Just launch ${prefix}/bin/qsynth and you're off (hopefully).
 

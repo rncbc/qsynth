@@ -93,6 +93,7 @@
 </includes>
 <variables>
     <variable access="private">int m_iMessagesLimit;</variable>
+    <variable access="private">int m_iMessagesHigh;</variable>
 </variables>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
