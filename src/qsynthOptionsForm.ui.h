@@ -77,6 +77,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
     QueryCloseCheckBox->setChecked(m_pOptions->bQueryClose);
     KeepOnTopCheckBox->setChecked(m_pOptions->bKeepOnTop);
     StdoutCaptureCheckBox->setChecked(m_pOptions->bStdoutCapture);
+    OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
 
     // Done.
     m_iDirtySetup--;
@@ -89,12 +90,13 @@ void qsynthOptionsForm::accept (void)
 {
     // Save options...
     if (m_iDirtyCount > 0) {
-        m_pOptions->sMessagesFont        = MessagesFontTextLabel->font().toString();
-        m_pOptions->bMessagesLimit       = MessagesLimitCheckBox->isChecked();
-        m_pOptions->iMessagesLimitLines  = MessagesLimitLinesComboBox->currentText().toInt();
-        m_pOptions->bQueryClose          = QueryCloseCheckBox->isChecked();
-        m_pOptions->bKeepOnTop           = KeepOnTopCheckBox->isChecked();
-        m_pOptions->bStdoutCapture       = StdoutCaptureCheckBox->isChecked();
+        m_pOptions->sMessagesFont       = MessagesFontTextLabel->font().toString();
+        m_pOptions->bMessagesLimit      = MessagesLimitCheckBox->isChecked();
+        m_pOptions->iMessagesLimitLines = MessagesLimitLinesComboBox->currentText().toInt();
+        m_pOptions->bQueryClose         = QueryCloseCheckBox->isChecked();
+        m_pOptions->bKeepOnTop          = KeepOnTopCheckBox->isChecked();
+        m_pOptions->bStdoutCapture      = StdoutCaptureCheckBox->isChecked();
+        m_pOptions->bOutputMeters       = OutputMetersCheckBox->isChecked();
         // Reset dirty flag.
         m_iDirtyCount = 0;
     }

@@ -49,6 +49,7 @@ qsynthOptions::qsynthOptions (void)
     bQueryClose    = m_settings.readBoolEntry("/QueryClose",    true);
     bKeepOnTop     = m_settings.readBoolEntry("/KeepOnTop",     true);
     bStdoutCapture = m_settings.readBoolEntry("/StdoutCapture", true);
+    bOutputMeters  = m_settings.readBoolEntry("/OutputMeters",  true);
     m_settings.endGroup();
 
     // Load defaults...
@@ -105,6 +106,7 @@ qsynthOptions::~qsynthOptions (void)
     m_settings.writeEntry("/QueryClose",    bQueryClose);
     m_settings.writeEntry("/KeepOnTop",     bKeepOnTop);
     m_settings.writeEntry("/StdoutCapture", bStdoutCapture);
+    m_settings.writeEntry("/OutputMeters",  bOutputMeters);
     m_settings.endGroup();
 
     // Load previous/default fluidsynth settings...

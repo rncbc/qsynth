@@ -57,6 +57,7 @@ public:
     bool    bQueryClose;
     bool    bKeepOnTop;
     bool    bStdoutCapture;
+    bool    bOutputMeters;
 
     // Default options...
     QString sSoundFontDir;

@@ -288,6 +288,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
     // Set defaults...
     updateMessagesFont();
     updateMessagesLimit();
+    updateOutputMeters();
 
     // Check if we can redirect our own stdout/stderr...
     if (m_pOptions->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
@@ -546,6 +547,21 @@ void qsynthMainForm::updateMessagesLimit (void)
         else
             m_pMessagesForm->setMessagesLimit(0);
     }
+}
+
+
+// Force update of the output meters visibility.
+void qsynthMainForm::updateOutputMeters (void)
+{
+    if (m_pOptions == NULL)
+        return;
+
+    if (m_pOptions->bOutputMeters)
+        OutputGroupBox->show();
+    else
+        OutputGroupBox->hide();
+        
+    adjustSize();
 }
 
 
@@ -817,6 +833,7 @@ void qsynthMainForm::showOptionsForm (void)
             m_pOptions->sMessagesFont = m_pMessagesForm->messagesFont().toString();
         // To track down deferred or immediate changes.
         QString sOldMessagesFont = m_pOptions->sMessagesFont;
+        bool    bOutputMeters    = m_pOptions->bOutputMeters;
         bool    bStdoutCapture   = m_pOptions->bStdoutCapture;
         bool    bKeepOnTop       = m_pOptions->bKeepOnTop;
         int     bMessagesLimit   = m_pOptions->bMessagesLimit;
@@ -841,6 +858,12 @@ void qsynthMainForm::showOptionsForm (void)
                 (!bMessagesLimit &&  m_pOptions->bMessagesLimit) ||
                 (iMessagesLimitLines !=  m_pOptions->iMessagesLimitLines))
                 updateMessagesLimit();
+            // There's some option(s) that need a global restart...
+            if (( bOutputMeters  && !m_pOptions->bOutputMeters) ||
+                (!bOutputMeters  &&  m_pOptions->bOutputMeters)) {
+                updateOutputMeters();
+                restartAllEngines();
+            }
         }
         // Done.
         delete pOptionsForm;
@@ -1004,11 +1027,13 @@ void qsynthMainForm::timerSlot (void)
         updateChorus();
 
     // Meter update.
-    OutputMeter->setValue(0, g_pCurrentEngine->fMeterValue[0]);
-    OutputMeter->setValue(1, g_pCurrentEngine->fMeterValue[1]);
-    OutputMeter->refresh();
-    g_pCurrentEngine->fMeterValue[0] = 0.0;
-    g_pCurrentEngine->fMeterValue[1] = 0.0;
+    if (g_pCurrentEngine->bMeterEnabled) {
+        OutputMeter->setValue(0, g_pCurrentEngine->fMeterValue[0]);
+        OutputMeter->setValue(1, g_pCurrentEngine->fMeterValue[1]);
+        OutputMeter->refresh();
+        g_pCurrentEngine->fMeterValue[0] = 0.0;
+        g_pCurrentEngine->fMeterValue[1] = 0.0;
+    }
 
     // Register for the next timer slot.
     QTimer::singleShot(QSYNTH_TIMER_MSECS, this, SLOT(timerSlot()));
@@ -1069,8 +1094,12 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 
     // Start the synthesis thread...
     appendMessages(sPrefix + tr("Creating audio driver") + " (" + pSetup->sAudioDriver + ")" + sElipsis);
-    pEngine->pAudioDriver  = ::new_fluid_audio_driver2(pSetup->fluid_settings(), qsynth_process, pEngine);
-    pEngine->bMeterEnabled = (pEngine->pAudioDriver != NULL);
+    pEngine->pAudioDriver  = NULL;
+    pEngine->bMeterEnabled = false;
+    if (m_pOptions->bOutputMeters) {
+        pEngine->pAudioDriver  = ::new_fluid_audio_driver2(pSetup->fluid_settings(), qsynth_process, pEngine);
+        pEngine->bMeterEnabled = (pEngine->pAudioDriver != NULL);
+    }
     if (pEngine->pAudioDriver == NULL)
         pEngine->pAudioDriver = ::new_fluid_audio_driver(pSetup->fluid_settings(), pEngine->pSynth);
     if (pEngine->pAudioDriver == NULL) {
@@ -1227,6 +1256,32 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
     t.start();
     while (t.elapsed() < QSYNTH_DELAY_MSECS)
         QApplication::eventLoop()->processEvents(QEventLoop::ExcludeUserInput);
+}
+
+
+// Restart all synth engines.
+void qsynthMainForm::restartAllEngines (void)
+{
+    // Always prompt user...
+    bool  bRestart = (QMessageBox::warning(this, tr("Warning"),
+            tr("New settings will be effective after\n"
+               "restarting all fluidsynth engines.") + "\n\n" +
+            tr("Please note that this operation may cause\n"
+               "temporary MIDI and Audio disruption.") + "\n\n" +
+            tr("Do you want to restart all engines now?"),
+            tr("Yes"), tr("No")) == 0);
+
+    // Just restart every engine out there...
+    if (bRestart) {
+        // Restarting means stopping an engine...
+        for (int i = 0; i < TabBar->count(); i++) {
+            qsynthTab *pTab = (qsynthTab *) TabBar->tabAt(i);
+            if (pTab)
+                stopEngine(pTab->engine());
+        }
+        // And making room for immediate restart...
+        m_iTimerDelay = 0;
+    }
 }
 
 

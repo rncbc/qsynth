@@ -1663,12 +1663,14 @@
     <function specifier="non virtual">appendMessagesError( const QString &amp; s )</function>
     <function access="private" specifier="non virtual">updateMessagesFont( void )</function>
     <function access="private" specifier="non virtual">updateMessagesLimit( void )</function>
+    <function access="private" specifier="non virtual">updateOutputMeters( void )</function>
     <function specifier="non virtual" returnType="bool">newEngineTab( void )</function>
     <function specifier="non virtual" returnType="bool">deleteEngineTab( qsynthEngine *pEngine, qsynthTab *pTab )</function>
     <function specifier="non virtual" returnType="bool">setupEngineTab( qsynthEngine *pEngine, qsynthTab *pTab )</function>
     <function access="private" specifier="non virtual" returnType="qsynthEngine *">currentEngine( void )</function>
     <function specifier="non virtual" returnType="bool">startEngine( qsynthEngine *pEngine )</function>
     <function specifier="non virtual">stopEngine( qsynthEngine *pEngine )</function>
+    <function specifier="non virtual">restartAllEngines( void )</function>
     <function specifier="non virtual">restartEngine( qsynthEngine *pEngine )</function>
     <function specifier="non virtual">resetEngine( qsynthEngine *pEngine )</function>
     <function access="private" specifier="non virtual">setEngineGain( qsynthEngine *pEngine, float fGain )</function>

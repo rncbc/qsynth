@@ -370,6 +370,25 @@
                                     <string>Whether to capture standard output (stdout/stderr) into messages window</string>
                                 </property>
                             </widget>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>OutputMetersCheckBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>Output &amp;peak level meters</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+P</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Whether to monitor and show engine output peak leval meters</string>
+                                </property>
+                            </widget>
                         </vbox>
                     </widget>
                 </vbox>
@@ -398,6 +417,12 @@
     </connection>
     <connection>
         <sender>StdoutCaptureCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>settingsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>OutputMetersCheckBox</sender>
         <signal>stateChanged(int)</signal>
         <receiver>qsynthOptionsForm</receiver>
         <slot>settingsChanged()</slot>
@@ -435,6 +460,7 @@
     <tabstop>QueryCloseCheckBox</tabstop>
     <tabstop>KeepOnTopCheckBox</tabstop>
     <tabstop>StdoutCaptureCheckBox</tabstop>
+    <tabstop>OutputMetersCheckBox</tabstop>
     <tabstop>OkPushButton</tabstop>
     <tabstop>CancelPushButton</tabstop>
 </tabstops>
