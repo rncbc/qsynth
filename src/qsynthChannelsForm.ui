@@ -280,6 +280,12 @@
         <receiver>qsynthChannelsForm</receiver>
         <slot>doubleClick(QListViewItem*)</slot>
     </connection>
+    <connection>
+        <sender>ChannelsListView</sender>
+        <signal>returnPressed(QListViewItem*)</signal>
+        <receiver>qsynthChannelsForm</receiver>
+        <slot>doubleClick(QListViewItem*)</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>PresetComboBox</tabstop>

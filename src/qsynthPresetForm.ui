@@ -28,8 +28,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>402</width>
-            <height>350</height>
+            <width>433</width>
+            <height>298</height>
         </rect>
     </property>
     <property name="caption">
@@ -121,28 +121,20 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QComboBox" row="1" column="0" rowspan="1" colspan="2">
+                    <widget class="QListView" row="0" column="0">
+                        <column>
+                            <property name="text">
+                                <string>Bank</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
                         <property name="name">
-                            <cstring>SoundFontComboBox</cstring>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string>Soundfont selector</string>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>SoundFontTextLabel</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Soundfont:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                            <cstring>SoundFontComboBox</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QListBox" row="3" column="0">
-                        <property name="name">
-                            <cstring>BankListBox</cstring>
+                            <cstring>BankListView</cstring>
                         </property>
                         <property name="sizePolicy">
                             <sizepolicy>
@@ -152,44 +144,84 @@
                                 <verstretch>0</verstretch>
                             </sizepolicy>
                         </property>
-                        <property name="maximumSize">
+                        <property name="minimumSize">
                             <size>
                                 <width>80</width>
-                                <height>32767</height>
+                                <height>0</height>
                             </size>
+                        </property>
+                        <property name="allColumnsShowFocus">
+                            <bool>true</bool>
+                        </property>
+                        <property name="showSortIndicator">
+                            <bool>true</bool>
+                        </property>
+                        <property name="resizeMode">
+                            <enum>AllColumns</enum>
                         </property>
                         <property name="toolTip" stdset="0">
                             <string>Bank selector</string>
                         </property>
                     </widget>
-                    <widget class="QListBox" row="3" column="1">
+                    <widget class="QListView" row="0" column="1">
+                        <column>
+                            <property name="text">
+                                <string>Prog</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>Name</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>SFID</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <column>
+                            <property name="text">
+                                <string>Soundfont</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
                         <property name="name">
-                            <cstring>ProgramListBox</cstring>
+                            <cstring>ProgListView</cstring>
+                        </property>
+                        <property name="allColumnsShowFocus">
+                            <bool>true</bool>
+                        </property>
+                        <property name="showSortIndicator">
+                            <bool>true</bool>
+                        </property>
+                        <property name="resizeMode">
+                            <enum>LastColumn</enum>
                         </property>
                         <property name="toolTip" stdset="0">
                             <string>Program selector</string>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="2" column="1">
-                        <property name="name">
-                            <cstring>ProgramTextLabel</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Program:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                            <cstring>ProgramListBox</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="2" column="0">
-                        <property name="name">
-                            <cstring>BankTextLabel</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Bank:</string>
-                        </property>
-                        <property name="buddy" stdset="0">
-                            <cstring>BankListBox</cstring>
                         </property>
                     </widget>
                 </grid>
@@ -199,26 +231,26 @@
 </widget>
 <connections>
     <connection>
-        <sender>SoundFontComboBox</sender>
-        <signal>activated(int)</signal>
-        <receiver>qsynthPresetForm</receiver>
-        <slot>soundfontChanged()</slot>
-    </connection>
-    <connection>
-        <sender>BankListBox</sender>
-        <signal>highlighted(int)</signal>
+        <sender>BankListView</sender>
+        <signal>selectionChanged()</signal>
         <receiver>qsynthPresetForm</receiver>
         <slot>bankChanged()</slot>
     </connection>
     <connection>
-        <sender>ProgramListBox</sender>
-        <signal>highlighted(int)</signal>
+        <sender>ProgListView</sender>
+        <signal>selectionChanged()</signal>
         <receiver>qsynthPresetForm</receiver>
         <slot>stabilizeForm()</slot>
     </connection>
     <connection>
-        <sender>ProgramListBox</sender>
-        <signal>selected(int)</signal>
+        <sender>ProgListView</sender>
+        <signal>doubleClicked(QListViewItem*,const QPoint&amp;,int)</signal>
+        <receiver>qsynthPresetForm</receiver>
+        <slot>acceptForm()</slot>
+    </connection>
+    <connection>
+        <sender>ProgListView</sender>
+        <signal>returnPressed(QListViewItem*)</signal>
         <receiver>qsynthPresetForm</receiver>
         <slot>acceptForm()</slot>
     </connection>
@@ -237,9 +269,8 @@
 </connections>
 <tabstops>
     <tabstop>PresetTabWidget</tabstop>
-    <tabstop>SoundFontComboBox</tabstop>
-    <tabstop>BankListBox</tabstop>
-    <tabstop>ProgramListBox</tabstop>
+    <tabstop>BankListView</tabstop>
+    <tabstop>ProgListView</tabstop>
     <tabstop>OkPushButton</tabstop>
     <tabstop>CancelPushButton</tabstop>
 </tabstops>
@@ -250,12 +281,10 @@
 <variables>
     <variable access="private">fluid_synth_t *m_pSynth;</variable>
     <variable access="private">int m_iChan;</variable>
-    <variable access="private">fluid_preset_t *m_pPreset;</variable>
 </variables>
 <slots>
     <slot specifier="non virtual">stabilizeForm()</slot>
     <slot specifier="non virtual">acceptForm()</slot>
-    <slot specifier="non virtual">soundfontChanged()</slot>
     <slot specifier="non virtual">bankChanged()</slot>
 </slots>
 <functions>
@@ -263,9 +292,8 @@
     <function access="private" specifier="non virtual">destroy()</function>
     <function specifier="non virtual">setup( fluid_synth_t *pSynth, int iChan )</function>
     <function access="private" specifier="non virtual" returnType="bool">validateForm()</function>
-    <function access="private" specifier="non virtual" returnType="int">findSoundFontIndex(int iSFID)</function>
-    <function access="private" specifier="non virtual" returnType="int">findBankIndex(int iBank)</function>
-    <function access="private" specifier="non virtual" returnType="int">findProgramIndex(int iProgram)</function>
+    <function access="private" specifier="non virtual" returnType="QListViewItem*">findBankItem( int iBank )</function>
+    <function access="private" specifier="non virtual" returnType="QListViewItem*">findProgItem( int iProg )</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="4" margin="8"/>

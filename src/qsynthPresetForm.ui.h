@@ -20,15 +20,16 @@
 
 *****************************************************************************/
 
+#include <qfileinfo.h>
+
 #include "config.h"
 
 
 // Kind of constructor.
 void qsynthPresetForm::init()
 {
-    m_pSynth  = NULL;
-    m_iChan   = 0;
-    m_pPreset = NULL;
+    m_pSynth = NULL;
+    m_iChan  = 0;
 }
 
 
@@ -47,38 +48,41 @@ void qsynthPresetForm::setup ( fluid_synth_t *pSynth, int iChan )
     // set the proper caption...
     setCaption(tr("Channel") + " " + QString::number(m_iChan + 1));
     
-    // Load soundfont view from actual synth stack...
-    SoundFontComboBox->clear();
+    // Load bank list from actual synth stack...
+    BankListView->clear();
+    QListViewItem *pBankItem = NULL;
+    QListViewItem *pProgItem = NULL;
+    fluid_preset_t preset;
+    // For all soundfonts (in reversed stack order) fill the available banks...
     int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
-    for (int i = cSoundFonts - 1; i >= 0; i--) {
-        fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(pSynth, i);
+    for (int i = 0; i < cSoundFonts; i++) {
+        fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
         if (pSoundFont) {
-            QString sSoundFontText = QString::number(pSoundFont->id);
-            sSoundFontText += ":";
-            sSoundFontText += pSoundFont->get_name(pSoundFont);
-            SoundFontComboBox->insertItem(sSoundFontText);
+            pSoundFont->iteration_start(pSoundFont);
+            while (pSoundFont->iteration_next(pSoundFont, &preset)) {
+                int iBank = preset.get_banknum(&preset);
+                if (!findBankItem(iBank)) {
+                    pBankItem = new QListViewItem(BankListView, pBankItem);
+                    if (pBankItem)
+                        pBankItem->setText(0, QString::number(iBank));
+                }
+            }
         }
     }
-    
-    // Load and set the dialog controls.
+
+    // Set the selected bank.
+    pBankItem = NULL;
     fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, m_iChan);
-
-    int iSoundFontIndex = 0;
     if (pPreset)
-        iSoundFontIndex = findSoundFontIndex((pPreset->sfont)->id);
-    SoundFontComboBox->setCurrentItem(iSoundFontIndex);
-    soundfontChanged();
-
-    int iBankIndex = 0;
-    if (pPreset)
-        iBankIndex = findBankIndex(pPreset->get_banknum(pPreset));
-    BankListBox->setCurrentItem(iBankIndex);
+        pBankItem = findBankItem(pPreset->get_banknum(pPreset));
+    BankListView->setSelected(pBankItem, true);
     bankChanged();
 
-    int iProgramIndex = 0;
+    // Set the selected program.
+    pProgItem = NULL;
     if (pPreset)
-        iProgramIndex = findProgramIndex(pPreset->get_num(pPreset));
-    ProgramListBox->setCurrentItem(iProgramIndex);
+        pProgItem = findProgItem(pPreset->get_num(pPreset));
+    ProgListView->setSelected(pProgItem, true);
 }
 
 
@@ -94,9 +98,8 @@ bool qsynthPresetForm::validateForm()
 {
     bool bValid = true;
 
-    bValid = bValid && (SoundFontComboBox->currentItem() >= 0);
-    bValid = bValid && (BankListBox->currentItem() >= 0);
-    bValid = bValid && (ProgramListBox->currentItem() >= 0);
+    bValid = bValid && (BankListView->selectedItem() != NULL);
+    bValid = bValid && (ProgListView->selectedItem() != NULL);
 
     return bValid;
 }
@@ -106,11 +109,11 @@ void qsynthPresetForm::acceptForm()
 {
     if (validateForm()) {
         // Unload from current selected dialog items.
-        int iSFID = SoundFontComboBox->currentText().section(':', 0, 0).toInt();
-        int iBank = BankListBox->currentText().toInt();
-        int iProgram = ProgramListBox->currentText().section(':', 0, 0).toInt();
+        int iBank = (BankListView->selectedItem())->text(0).toInt();
+        int iProg = (ProgListView->selectedItem())->text(0).toInt();
         // And set it right away...
-        ::fluid_synth_program_select(m_pSynth, m_iChan, iSFID, iBank, iProgram);
+        ::fluid_synth_bank_select(m_pSynth, m_iChan, iBank);
+        ::fluid_synth_program_change(m_pSynth, m_iChan, iProg);
         // Maybe this is needed to stabilize things around.
         ::fluid_synth_program_reset(m_pSynth);
         // We got it.
@@ -119,89 +122,59 @@ void qsynthPresetForm::acceptForm()
 }
 
 
-// Find the soundfont item index of given id.
-int qsynthPresetForm::findSoundFontIndex ( int iSFID )
+// Find the bank item of given bank number id.
+QListViewItem *qsynthPresetForm::findBankItem ( int iBank )
 {
-    int cItems = SoundFontComboBox->count();
-    for (int iItem = 0; iItem < cItems; iItem++) {
-        if (iSFID == SoundFontComboBox->text(iItem).section(':', 0, 0).toInt())
-            return iItem;
-    }
-    return -1;
+    return BankListView->findItem(QString::number(iBank), 0);
 }
 
 
-// Find the bank item index of given bank number id.
-int qsynthPresetForm::findBankIndex ( int iBank )
+// Find the program item of given program number id.
+QListViewItem *qsynthPresetForm::findProgItem ( int iProg )
 {
-    int cItems = BankListBox->count();
-    for (int iItem = 0; iItem < cItems; iItem++) {
-        if (iBank == BankListBox->text(iItem).toInt())
-            return iItem;
-    }
-    return -1;
+    return ProgListView->findItem(QString::number(iProg), 0);
 }
 
-
-// Find the program item index of given program number id.
-int qsynthPresetForm::findProgramIndex ( int iProgram )
-{
-    int cItems = ProgramListBox->count();
-    for (int iItem = 0; iItem < cItems; iItem++) {
-        if (iProgram == ProgramListBox->text(iItem).section(':', 0, 0).toInt())
-            return iItem;
-    }
-    return -1;
-}
-
-
-// Soundfont change slot.
-void qsynthPresetForm::soundfontChanged (void)
-{
-    // Clear up the banks listbox.
-    int iBankIndex = BankListBox->currentItem();
-    BankListBox->clear();
-    // Grab soundfont id from combobox item text.
-    int iSFID = SoundFontComboBox->currentText().section(':', 0, 0).toInt();
-    // Grab the soundfont...
-    fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont_by_id(m_pSynth, iSFID);
-    if (pSoundFont) {
-        fluid_preset_t preset;
-        pSoundFont->iteration_start(pSoundFont);
-        while (pSoundFont->iteration_next(pSoundFont, &preset)) {
-            int iBank = preset.get_banknum(&preset);
-            if (findBankIndex(iBank) < 0)
-                BankListBox->insertItem(QString::number(iBank));
-        }
-    }
-    // Stabilize the bank list.
-    BankListBox->setCurrentItem(iBankIndex);
-//  bankChanged();
-}
 
 
 // Bank change slot.
 void qsynthPresetForm::bankChanged (void)
 {
-    // Clear up the program listbox.
-    ProgramListBox->clear();
-    // Grab soundfont id from combobox item text.
-    int iSFID = SoundFontComboBox->currentText().section(':', 0, 0).toInt();
-    int iBank = BankListBox->currentText().toInt();
-    // Grab the soundfont...
-    fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont_by_id(m_pSynth, iSFID);
-    if (pSoundFont) {
-        fluid_preset_t preset;
-        pSoundFont->iteration_start(pSoundFont);
-        while (pSoundFont->iteration_next(pSoundFont, &preset)) {
-            if (iBank == preset.get_banknum(&preset)) {
-                QString sProgramText = QString::number(preset.get_num(&preset));
-                sProgramText += ":";
-                sProgramText += preset.get_name(&preset);
-                ProgramListBox->insertItem(sProgramText);
+    if (m_pSynth == NULL)
+        return;
+        
+    QListViewItem *pBankItem = BankListView->selectedItem();
+    if (pBankItem == NULL)
+        pBankItem = BankListView->currentItem();
+    if (pBankItem == NULL)
+        return;
+    int iBank = pBankItem->text(0).toInt();
+    
+    // Clear up the program listview.
+    ProgListView->clear();
+    QListViewItem *pProgItem = NULL;
+    fluid_preset_t preset;
+    // For all soundfonts (in reversed stack order) fill the available programs...
+    int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
+    for (int i = 0; i < cSoundFonts; i++) {
+        fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
+        if (pSoundFont) {
+            pSoundFont->iteration_start(pSoundFont);
+            while (pSoundFont->iteration_next(pSoundFont, &preset)) {
+                int iProg = preset.get_num(&preset);
+                if (iBank == preset.get_banknum(&preset) && !findProgItem(iProg)) {
+                    pProgItem = new QListViewItem(ProgListView, pProgItem);
+                    if (pProgItem) {
+                        pProgItem->setText(0, QString::number(iProg));
+                        pProgItem->setText(1, preset.get_name(&preset));
+                        pProgItem->setText(2, QString::number(pSoundFont->id));
+                        pProgItem->setText(3, QFileInfo(pSoundFont->get_name(pSoundFont)).baseName());
+                    }
+                }
             }
         }
     }
+
     // Stabilize the form.
     stabilizeForm();
 }
