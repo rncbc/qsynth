@@ -44,7 +44,7 @@
         <string>qsynth: Setup</string>
     </property>
     <property name="icon">
-        <pixmap>qsynth.xpm</pixmap>
+        <pixmap>qsynth.png</pixmap>
     </property>
     <property name="sizeGripEnabled">
         <bool>true</bool>

@@ -48,7 +48,7 @@
         <string>qsynth: Messages</string>
     </property>
     <property name="icon">
-        <pixmap>qsynth.xpm</pixmap>
+        <pixmap>qsynth.png</pixmap>
     </property>
     <grid>
         <property name="name">

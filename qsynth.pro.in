@@ -24,7 +24,7 @@ FORMS    = src/qsynthMainForm.ui \
            src/qsynthSetupForm.ui \
            src/qsynthAboutForm.ui
 
-IMAGES   = icons/qsynth.xpm \
+IMAGES   = icons/qsynth.png \
            icons/messages1.png \
            icons/options1.png \
            icons/about1.png \

@@ -48,7 +48,7 @@
         <string>About qsynth</string>
     </property>
     <property name="icon">
-        <pixmap>qsynth.xpm</pixmap>
+        <pixmap>qsynth.png</pixmap>
     </property>
     <property name="sizeGripEnabled">
         <bool>true</bool>
@@ -73,7 +73,7 @@
                 <number>2</number>
             </property>
             <property name="pixmap">
-                <pixmap>qsynth.xpm</pixmap>
+                <pixmap>qsynth.png</pixmap>
             </property>
             <property name="alignment">
                 <set>AlignCenter</set>

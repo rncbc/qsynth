@@ -3,7 +3,9 @@ qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.2   2004-08-28  Output level peak meters and other fixes.
+0.2.2   2004-09-22  Output level peak meters and other fixes.
+
+- Meanwhile, XPM icon(s) were brainlessly converted to PNG format.
 
 - Engine panel settings are now properly saved on stop/restart.
 
