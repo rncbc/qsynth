@@ -2,7 +2,7 @@
 //
 // ui.h extension file, included from the uic-generated form implementation.
 /****************************************************************************
-   Copyright (C) 2003, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -514,7 +514,7 @@ void qsynthMainForm::stabilizeForm (void)
 void qsynthMainForm::programReset (void)
 {
     if (m_pSynth) {
-        appendMessages("fluid_synth_program_reset");
+        appendMessagesColor("fluid_synth_program_reset", "#996666");
         ::fluid_synth_program_reset(m_pSynth);
         if (m_pChannelsForm)
             m_pChannelsForm->resetAllChannels();
@@ -528,10 +528,10 @@ void qsynthMainForm::systemReset (void)
 {
     if (m_pSynth) {
 #ifdef CONFIG_FLUID_RESET
-        appendMessages("fluid_synth_system_reset");
+        appendMessagesColor("fluid_synth_system_reset", "#993366");
         ::fluid_synth_system_reset(m_pSynth);
 #else
-        appendMessages("fluid_synth_program_reset");
+        appendMessagesColor("fluid_synth_program_reset", "#996666");
         ::fluid_synth_program_reset(m_pSynth);
 #endif
         if (m_pChannelsForm)
@@ -973,7 +973,7 @@ void qsynthMainForm::reverbActivate ( bool bActive )
     if (m_pSynth == NULL)
         return;
 
-    appendMessages("fluid_synth_set_reverb_on(" + QString::number((int) bActive) + ")");
+    appendMessagesColor("fluid_synth_set_reverb_on(" + QString::number((int) bActive) + ")", "#99cc33");
 
     ::fluid_synth_set_reverb_on(m_pSynth, (int) bActive);
 
@@ -990,7 +990,7 @@ void qsynthMainForm::chorusActivate ( bool bActive )
     if (m_pSynth == NULL)
         return;
 
-    appendMessages("fluid_synth_set_chorus_on(" + QString::number((int) bActive) + ")");
+    appendMessagesColor("fluid_synth_set_chorus_on(" + QString::number((int) bActive) + ")", "#cc9933");
 
     ::fluid_synth_set_chorus_on(m_pSynth, (int) bActive);
 
@@ -1034,7 +1034,7 @@ void qsynthMainForm::updateGain (void)
 
     float fGain = qsynth_fscale_clip(GainSpinBox->value(), QSYNTH_GAIN_SCALE);
 
-    appendMessages("fluid_synth_set_gain(" + QString::number(fGain) + ")");
+    appendMessagesColor("fluid_synth_set_gain(" + QString::number(fGain) + ")", "#6699cc");
 
     ::fluid_synth_set_gain(m_pSynth, fGain);
     refreshGain();
@@ -1056,11 +1056,11 @@ void qsynthMainForm::updateReverb (void)
     double fReverbWidth = qsynth_fscale_clip(ReverbWidthSpinBox->value(), QSYNTH_REVERB_SCALE);
     double fReverbLevel = qsynth_fscale_clip(ReverbLevelSpinBox->value(), QSYNTH_REVERB_SCALE);
 
-    appendMessages("fluid_synth_set_reverb("
+    appendMessagesColor("fluid_synth_set_reverb("
         + QString::number(fReverbRoom)  + ","
         + QString::number(fReverbDamp)  + ","
         + QString::number(fReverbWidth) + ","
-        + QString::number(fReverbLevel) + ")");
+        + QString::number(fReverbLevel) + ")", "#99cc66");
 
     ::fluid_synth_set_reverb(m_pSynth, fReverbRoom, fReverbDamp, fReverbWidth, fReverbLevel);
     refreshReverb();
@@ -1083,12 +1083,12 @@ void qsynthMainForm::updateChorus (void)
     double fChorusDepth = qsynth_fscale_clip(ChorusDepthSpinBox->value(), QSYNTH_CHORUS_SCALE);
     int    iChorusType  = ChorusTypeComboBox->currentItem();
 
-    appendMessages("fluid_synth_set_chorus("
+    appendMessagesColor("fluid_synth_set_chorus("
         + QString::number(iChorusNr)    + ","
         + QString::number(fChorusLevel) + ","
         + QString::number(fChorusSpeed) + ","
         + QString::number(fChorusDepth) + ","
-        + QString::number(iChorusType)  + ")");
+        + QString::number(iChorusType)  + ")", "#cc9966");
 
     ::fluid_synth_set_chorus(m_pSynth, iChorusNr, fChorusLevel, fChorusSpeed, fChorusDepth, iChorusType);
     refreshChorus();
