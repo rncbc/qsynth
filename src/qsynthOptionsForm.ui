@@ -386,7 +386,7 @@
                                     <string>Alt+P</string>
                                 </property>
                                 <property name="toolTip" stdset="0">
-                                    <string>Whether to monitor and show engine output peak leval meters</string>
+                                    <string>Whether to monitor and show engine output peak level meters</string>
                                 </property>
                             </widget>
                         </vbox>

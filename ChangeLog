@@ -8,9 +8,12 @@ ChangeLog
 - Master gain front panel control gets rescaled and now ranges
   from 0..200, with midpoint at 100 (unit gain).
 
-- Soundfont bank offset option gets its trial (EXPERIMENTAL).
+- Soundfont bank offset option gets its trial time (EXPERIMENTAL);
+  please note that Ken Elliwood's patch is needed upon fluidsynth
+  to build on this feature, which is being properly detected and
+  only enabled at configure time.
 
-- Output level peak meters are now featured (EXPERIMENTAL).
+- Output level peak meters are now featured as an option (EXPERIMENTAL).
 
 - Top level sub-windows are now always raised and set with active focus
   when shown to visibility.
