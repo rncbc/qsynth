@@ -47,9 +47,6 @@
     <property name="caption">
         <string>qsynth: Channels</string>
     </property>
-    <property name="icon">
-        <pixmap>channels1.png</pixmap>
-    </property>
     <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
