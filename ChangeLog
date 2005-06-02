@@ -3,6 +3,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+0.2.4   2005-06-02  More work in progress...
+
+- Minor configure fix, a debian specialty.
+
+
 0.2.3   2005-05-24  System tray icon and menu option.
 
 - New option for system tray icon and menu, which is known to be effective
