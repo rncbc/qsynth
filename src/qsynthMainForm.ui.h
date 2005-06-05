@@ -770,6 +770,8 @@ void qsynthMainForm::stabilizeForm (void)
     }
     RestartPushButton->setEnabled(true);
 
+	DeleteEnginePushButton->setEnabled(bEnabled && !pEngine->isDefault());
+
     MessagesPushButton->setOn(m_pMessagesForm && m_pMessagesForm->isVisible());
     ChannelsPushButton->setOn(m_pChannelsForm && m_pChannelsForm->isVisible());
 }

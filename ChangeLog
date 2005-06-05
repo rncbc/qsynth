@@ -3,9 +3,14 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.4   2005-06-02  More work in progress...
+0.2.4   2005-06-03  More work in progress...
 
-- Minor configure fix, a debian specialty.
+- New tool buttons were added to the main widget, for adding a new engine
+  and removing the current one, while trying to increase the visibility of
+  multiple fluidsynth engine capability (for new users, at least :)
+
+- Minor configure fix, a debian specialty. Also, install does the right
+  thing with target file modes (thanks to Matt Flax for pointing this out).
 
 
 0.2.3   2005-05-24  System tray icon and menu option.
