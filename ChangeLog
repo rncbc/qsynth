@@ -9,8 +9,9 @@ ChangeLog
   and removing the current one, while trying to increase the visibility of
   multiple fluidsynth engine capability (for new users, at least :)
 
-- Minor configure fix, a debian specialty. Also, install does the right
-  thing with target file modes (thanks to Matt Flax for pointing this out).
+- Minor configure and Makefile install fixes, as Debian and Mac OS X
+  specialties. Also, install does the right thing with target file modes
+  (thanks to Matt Flax and Ebrahim Mayat, for pointing these out).
 
 
 0.2.3   2005-05-24  System tray icon and menu option.
