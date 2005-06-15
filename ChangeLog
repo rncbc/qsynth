@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.4   2005-06-12  More work in progress...
+0.2.4   2005-06-15  More work in progress...
 
 - New tool buttons were added to the main widget, for adding a new engine
   and removing the current one, while trying to increase the visibility of
