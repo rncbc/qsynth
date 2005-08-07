@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
 <class>qsynthMainForm</class>
 <comment>qsynth - A fluidsynth Qt GUI Interface.
 
@@ -29,7 +29,7 @@
             <x>0</x>
             <y>0</y>
             <width>829</width>
-            <height>192</height>
+            <height>194</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -1332,6 +1332,37 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>NewEnginePushButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="focusPolicy">
+                        <enum>NoFocus</enum>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="pixmap">
+                        <pixmap>add1.png</pixmap>
+                    </property>
+                    <property name="accel">
+                        <string>Ins</string>
+                    </property>
+                    <property name="flat">
+                        <bool>true</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Add a new engine</string>
+                    </property>
+                </widget>
                 <widget class="qsynthTabBar">
                     <property name="name">
                         <cstring>TabBar</cstring>
@@ -1359,27 +1390,18 @@
                 </widget>
                 <widget class="QPushButton">
                     <property name="name">
-                        <cstring>NewEnginePushButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string></string>
-                    </property>
-                    <property name="pixmap">
-                        <pixmap>add1.png</pixmap>
-                    </property>
-                    <property name="accel">
-                        <string>Ins</string>
-                    </property>
-                    <property name="flat">
-                        <bool>true</bool>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Add a new engine</string>
-                    </property>
-                </widget>
-                <widget class="QPushButton">
-                    <property name="name">
                         <cstring>DeleteEnginePushButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="focusPolicy">
+                        <enum>NoFocus</enum>
                     </property>
                     <property name="text">
                         <string></string>
@@ -1635,7 +1657,9 @@
     </connection>
 </connections>
 <tabstops>
+    <tabstop>NewEnginePushButton</tabstop>
     <tabstop>TabBar</tabstop>
+    <tabstop>DeleteEnginePushButton</tabstop>
     <tabstop>SetupPushButton</tabstop>
     <tabstop>GainDial</tabstop>
     <tabstop>GainSpinBox</tabstop>

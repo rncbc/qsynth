@@ -940,6 +940,9 @@
                                 <property name="accel">
                                     <string>Alt+E</string>
                                 </property>
+                                <property name="iconSet">
+                                    <iconset>edit1.png</iconset>
+                                </property>
                                 <property name="toolTip" stdset="0">
                                     <string>Edit selected soundfont bank offset</string>
                                 </property>

@@ -209,8 +209,10 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 
     // Start clean?
     m_iDirtyCount = 0;
-    if (bNew)
-        m_iDirtyCount++;
+	if (bNew) {
+		m_pSetup->realize();
+		m_iDirtyCount++;
+	}
     // Avoid nested changes.
     m_iDirtySetup++;
 
@@ -491,27 +493,40 @@ void qsynthSetupForm::stabilizeForm (void)
 // Soundfont view context menu handler.
 void qsynthSetupForm::contextMenu( QListViewItem *pItem, const QPoint& pos, int )
 {
-    int iItemID;
+	int iItemID;
 
-    // Build the soundfont context menu...
-    QPopupMenu* pContextMenu = new QPopupMenu(this);
+	// Build the soundfont context menu...
+	QPopupMenu* pContextMenu = new QPopupMenu(this);
 
-    iItemID = pContextMenu->insertItem(tr("Open..."), this, SLOT(openSoundFont()));
-    pContextMenu->insertSeparator();
-    bool bEnabled = (pItem != NULL);
-    iItemID = pContextMenu->insertItem(tr("Edit"), this, SLOT(editSoundFont()));
-    pContextMenu->setItemEnabled(iItemID, bEnabled && pItem->renameEnabled(2));
-    iItemID = pContextMenu->insertItem(tr("Remove"), this, SLOT(removeSoundFont()));
-    pContextMenu->setItemEnabled(iItemID, bEnabled);
-    pContextMenu->insertSeparator();
-    iItemID = pContextMenu->insertItem(tr("Move Up"), this, SLOT(moveUpSoundFont()));
-    pContextMenu->setItemEnabled(iItemID, (bEnabled && pItem->itemAbove() != NULL));
-    iItemID = pContextMenu->insertItem(tr("Move Down"), this, SLOT(moveDownSoundFont()));
-    pContextMenu->setItemEnabled(iItemID, (bEnabled && pItem->nextSibling() != NULL));
+	iItemID = pContextMenu->insertItem(
+		QIconSet(QPixmap::fromMimeSource("open1.png")),
+		tr("Open..."), this, SLOT(openSoundFont()));
+	pContextMenu->insertSeparator();
+	bool bEnabled = (pItem != NULL);
+	iItemID = pContextMenu->insertItem(
+		QIconSet(QPixmap::fromMimeSource("edit1.png")),
+		tr("Edit"), this, SLOT(editSoundFont()));
+	pContextMenu->setItemEnabled(iItemID,
+		bEnabled && pItem->renameEnabled(2));
+	iItemID = pContextMenu->insertItem(
+		QIconSet(QPixmap::fromMimeSource("remove1.png")),
+		tr("Remove"), this, SLOT(removeSoundFont()));
+	pContextMenu->setItemEnabled(iItemID, bEnabled);
+	pContextMenu->insertSeparator();
+	iItemID = pContextMenu->insertItem(
+		QIconSet(QPixmap::fromMimeSource("up1.png")),
+		tr("Move Up"), this, SLOT(moveUpSoundFont()));
+	pContextMenu->setItemEnabled(iItemID,
+		(bEnabled && pItem->itemAbove() != NULL));
+	iItemID = pContextMenu->insertItem(
+		QIconSet(QPixmap::fromMimeSource("down1.png")),
+		tr("Move Down"), this, SLOT(moveDownSoundFont()));
+	pContextMenu->setItemEnabled(iItemID,
+		(bEnabled && pItem->nextSibling() != NULL));
 
-    pContextMenu->exec(pos);
-    
-    delete pContextMenu;
+	pContextMenu->exec(pos);
+
+	delete pContextMenu;
 }
 
 

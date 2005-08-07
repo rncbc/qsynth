@@ -3,7 +3,15 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.4   2005-06-18  More work in progress...
+0.2.4   2005-08-06  Bug and some other usability fixes.
+
+- Missing icons on channels and soundfont setup context menus are now up;
+  bank/program splitter widget added to channel preset dialog.
+
+- An abrupt segfault on engine restart have been finally fixed; this issue
+  has been quite an annoyance which has been around for ages and was a
+  highly probable showstopper just when restarting an engine due to changes
+  on the setup settings. Not anymore, hopefully.
 
 - New tool buttons were added to the main widget, for adding a new engine
   and removing the current one, while trying to increase the visibility of

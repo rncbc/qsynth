@@ -68,10 +68,10 @@ static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
 
 int qsynth_process ( void *pvData, int len, int nin, float **in, int nout, float **out )
 {
-    qsynthEngine *pEngine = (qsynthEngine *) pvData;
+	qsynthEngine *pEngine = (qsynthEngine *) pvData;
 	// Call the synthesizer process function to fill
 	// the output buffers with its audio output.
-    if (::fluid_synth_process(pEngine->pSynth, len, nin, in, nout, out) != 0)
+	if (::fluid_synth_process(pEngine->pSynth, len, nin, in, nout, out) != 0)
 		return -1;
 	// Now find the peak level for this buffer run...
 	if (pEngine == g_pCurrentEngine) {
@@ -87,7 +87,7 @@ int qsynth_process ( void *pvData, int len, int nin, float **in, int nout, float
 	// Surely a success :)
 	return 0;
 }
- 
+
 //-------------------------------------------------------------------------
 // Midi router stubs to have some midi activity feedback.
 
@@ -586,7 +586,7 @@ void qsynthMainForm::updateMessagesLimit (void)
         if (m_pOptions->bMessagesLimit)
             m_pMessagesForm->setMessagesLimit(m_pOptions->iMessagesLimitLines);
         else
-            m_pMessagesForm->setMessagesLimit(0);
+            m_pMessagesForm->setMessagesLimit(-1);
     }
 }
 
@@ -601,7 +601,7 @@ void qsynthMainForm::updateOutputMeters (void)
         OutputGroupBox->show();
     else
         OutputGroupBox->hide();
-        
+
     adjustSize();
 }
 
@@ -684,12 +684,12 @@ void qsynthMainForm::systemTrayContextMenu ( const QPoint& pos )
         qsynthTab *pTab = (qsynthTab *) TabBar->tabAt(iTab);
         if (pTab) {
             pEngine = pTab->engine();
-            if (pEngine) {
-        		iItemID = m_pEnginesMenu->insertItem(pEngine->name());
-        		m_pEnginesMenu->setItemChecked(iItemID, pEngine == currentEngine());
-        		m_pEnginesMenu->setItemParameter(iItemID, iTab);
+			if (pEngine) {
+				iItemID = m_pEnginesMenu->insertItem(pEngine->name());
+				m_pEnginesMenu->setItemChecked(iItemID, pEngine == currentEngine());
+				m_pEnginesMenu->setItemParameter(iItemID, iTab);
 			}
-        }
+		}
     }
     QObject::connect(m_pEnginesMenu, SIGNAL(activated(int)), this, SLOT(activateEnginesMenu(int)));
     // Add presets menu to the main context menu...
@@ -1163,12 +1163,12 @@ void qsynthMainForm::timerSlot (void)
                     pEngine->iMidiState++;
                     pTab->setOn(true);
                     iTabUpdate++;
-                    // Change the system tray icon background color!
-                    if (m_pSystemTray && m_iSystemTrayState == 0) {
-                        m_iSystemTrayState++;
-				        m_pSystemTray->setBackgroundMode(Qt::PaletteBackground);
-				        m_pSystemTray->setPaletteBackgroundColor(Qt::green);
-				        m_pSystemTray->repaint(true);
+					// Change the system tray icon background color!
+					if (m_pSystemTray && m_iSystemTrayState == 0) {
+						m_iSystemTrayState++;
+						m_pSystemTray->setBackgroundMode(Qt::PaletteBackground);
+						m_pSystemTray->setPaletteBackgroundColor(Qt::green);
+						m_pSystemTray->repaint(true);
 					}
                 }
             }
@@ -1177,10 +1177,10 @@ void qsynthMainForm::timerSlot (void)
                 pTab->setOn(false);
                 iTabUpdate++;
                 // Reset the system tray icon background!
-                if (m_pSystemTray && m_iSystemTrayState > 0) {
-                    m_iSystemTrayState--;
-			        m_pSystemTray->setBackgroundMode(Qt::X11ParentRelative);
-			        m_pSystemTray->repaint(true);
+				if (m_pSystemTray && m_iSystemTrayState > 0) {
+					m_iSystemTrayState--;
+					m_pSystemTray->setBackgroundMode(Qt::X11ParentRelative);
+					m_pSystemTray->repaint(true);
 				}
             }
         }
@@ -1488,6 +1488,8 @@ void qsynthMainForm::restartAllEngines (void)
             if (pTab)
                 stopEngine(pTab->engine());
         }
+		// Must make this one grayed out for a while...
+		RestartPushButton->setEnabled(false);
         // And making room for immediate restart...
         m_iTimerDelay = 0;
     }
@@ -1515,6 +1517,9 @@ void qsynthMainForm::restartEngine ( qsynthEngine *pEngine )
     if (bRestart) {
         // Restarting means stopping current engine...
         stopEngine(pEngine);
+		// Must make current one grayed out for a while...
+		if (pEngine == currentEngine())
+			RestartPushButton->setEnabled(false);
         // And making room for immediate restart...
         m_iTimerDelay = 0;
     }

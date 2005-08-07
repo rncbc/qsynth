@@ -211,21 +211,24 @@ void qsynthChannelsForm::setChannelOn ( int iChan, bool bOn )
 // Channel view context menu handler.
 void qsynthChannelsForm::contextMenu( QListViewItem *pItem, const QPoint& pos, int )
 {
-    int iItemID;
+	int iItemID;
 
-    // Build the channel context menu...
-    QPopupMenu* pContextMenu = new QPopupMenu(this);
+	// Build the channel context menu...
+	QPopupMenu* pContextMenu = new QPopupMenu(this);
 
-    bool bEnabled = (m_pSynth && pItem);
-    iItemID = pContextMenu->insertItem(tr("Edit") + "...", this, SLOT(editSelectedChannel()));
-    pContextMenu->setItemEnabled(iItemID, bEnabled);
-    pContextMenu->insertSeparator();
-    iItemID = pContextMenu->insertItem(tr("Refresh"), this, SLOT(updateAllChannels()));
-    pContextMenu->setItemEnabled(iItemID, bEnabled);
+	bool bEnabled = (m_pSynth && pItem);
+	iItemID = pContextMenu->insertItem(
+		QIconSet(QPixmap::fromMimeSource("edit1.png")),
+		tr("Edit") + "...", this, SLOT(editSelectedChannel()));
+	pContextMenu->setItemEnabled(iItemID, bEnabled);
+	pContextMenu->insertSeparator();
+	iItemID = pContextMenu->insertItem(
+		tr("Refresh"), this, SLOT(updateAllChannels()));
+	pContextMenu->setItemEnabled(iItemID, bEnabled);
 
-    pContextMenu->exec(pos);
-    
-    delete pContextMenu;
+	pContextMenu->exec(pos);
+
+	delete pContextMenu;
 }
 
 

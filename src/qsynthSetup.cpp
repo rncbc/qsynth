@@ -33,8 +33,8 @@
 // Constructor.
 qsynthSetup::qsynthSetup (void)
 {
-    m_pFluidSettings = ::new_fluid_settings();
-    
+	m_pFluidSettings = NULL;
+
     sDefPresetName = QObject::tr("(default)");
 }
 
@@ -42,8 +42,9 @@ qsynthSetup::qsynthSetup (void)
 // Default Destructor.
 qsynthSetup::~qsynthSetup (void)
 {
-    ::delete_fluid_settings(m_pFluidSettings);
-    m_pFluidSettings = NULL;
+	if (m_pFluidSettings)
+		::delete_fluid_settings(m_pFluidSettings);
+	m_pFluidSettings = NULL;
 }
 
 
@@ -60,6 +61,10 @@ fluid_settings_t *qsynthSetup::fluid_settings (void)
 
 void qsynthSetup::realize (void)
 {
+	if (m_pFluidSettings)
+		::delete_fluid_settings(m_pFluidSettings);
+	m_pFluidSettings = ::new_fluid_settings();
+
     // The 'groups' setting is only relevant for LADSPA operation
     // If not given, set number groups to number of audio channels, because
     // they are the same (there is nothing between synth output and 'sound card')
@@ -68,27 +73,27 @@ void qsynthSetup::realize (void)
 
     if (!sMidiDriver.isEmpty())
         ::fluid_settings_setstr(m_pFluidSettings, "midi.driver", (char *) sMidiDriver.latin1());
-    if (!sMidiDevice.isEmpty()) {
+	if (!sMidiDevice.isEmpty()) {
 		QString sMidiKey = "midi.";
 		if (sMidiDriver == "alsa_raw")
 			sMidiKey += "alsa";
 		else
-            sMidiKey += sMidiDriver;
+			sMidiKey += sMidiDriver;
 		sMidiKey += + ".device";
-        ::fluid_settings_setstr(m_pFluidSettings, (char *) sMidiKey.latin1(), (char *) sMidiDevice.latin1());
+		::fluid_settings_setstr(m_pFluidSettings, (char *) sMidiKey.latin1(), (char *) sMidiDevice.latin1());
 	}
     if (!sAlsaName.isEmpty())
         ::fluid_settings_setstr(m_pFluidSettings, "midi.alsa_seq.id", (char *) sAlsaName.latin1());
 
     if (!sAudioDriver.isEmpty())
         ::fluid_settings_setstr(m_pFluidSettings, "audio.driver", (char *) sAudioDriver.latin1());
-    if (!sAudioDevice.isEmpty()) {
+	if (!sAudioDevice.isEmpty()) {
 		QString sAudioKey = "audio." + sAudioDriver + '.';
 		if (sAudioDriver == "file")
 			sAudioKey += "name";
 		else
-            sAudioKey += "device";
-        ::fluid_settings_setstr(m_pFluidSettings, (char *) sAudioKey.latin1(), (char *) sAudioDevice.latin1());
+			sAudioKey += "device";
+		::fluid_settings_setstr(m_pFluidSettings, (char *) sAudioKey.latin1(), (char *) sAudioDevice.latin1());
 	}
     if (!sJackName.isEmpty())
         ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.id", (char *) sJackName.latin1());

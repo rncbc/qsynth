@@ -28,8 +28,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>433</width>
-            <height>301</height>
+            <width>450</width>
+            <height>286</height>
         </rect>
     </property>
     <property name="caption">
@@ -44,7 +44,7 @@
         </property>
         <widget class="QLayoutWidget" row="1" column="0">
             <property name="name">
-                <cstring>layout2</cstring>
+                <cstring>layout1</cstring>
             </property>
             <hbox>
                 <property name="name">
@@ -52,7 +52,7 @@
                 </property>
                 <spacer>
                     <property name="name">
-                        <cstring>spacer2</cstring>
+                        <cstring>spacer1</cstring>
                     </property>
                     <property name="orientation">
                         <enum>Horizontal</enum>
@@ -117,114 +117,120 @@
                 <attribute name="title">
                     <string>Preset</string>
                 </attribute>
-                <grid>
+                <vbox>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QListView" row="0" column="1">
-                        <column>
-                            <property name="text">
-                                <string>Prog</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <column>
-                            <property name="text">
-                                <string>Name</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <column>
-                            <property name="text">
-                                <string>SFID</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <column>
-                            <property name="text">
-                                <string>Soundfont</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
+                    <widget class="QSplitter">
                         <property name="name">
-                            <cstring>ProgListView</cstring>
+                            <cstring>splitter1</cstring>
                         </property>
-                        <property name="allColumnsShowFocus">
-                            <bool>true</bool>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
                         </property>
-                        <property name="showSortIndicator">
-                            <bool>true</bool>
-                        </property>
-                        <property name="resizeMode">
-                            <enum>LastColumn</enum>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string>Program selector</string>
-                        </property>
-                    </widget>
-                    <widget class="QListView" row="0" column="0">
-                        <column>
-                            <property name="text">
-                                <string>Bank</string>
+                        <widget class="QListView">
+                            <column>
+                                <property name="text">
+                                    <string>Bank</string>
+                                </property>
+                                <property name="clickable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="resizable">
+                                    <bool>true</bool>
+                                </property>
+                            </column>
+                            <property name="name">
+                                <cstring>BankListView</cstring>
                             </property>
-                            <property name="clickable">
+                            <property name="minimumSize">
+                                <size>
+                                    <width>20</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>80</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                            <property name="allColumnsShowFocus">
                                 <bool>true</bool>
                             </property>
-                            <property name="resizable">
+                            <property name="showSortIndicator">
                                 <bool>true</bool>
                             </property>
-                        </column>
-                        <property name="name">
-                            <cstring>BankListView</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>1</hsizetype>
-                                <vsizetype>7</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>72</width>
-                                <height>0</height>
-                            </size>
-                        </property>
-                        <property name="allColumnsShowFocus">
-                            <bool>true</bool>
-                        </property>
-                        <property name="showSortIndicator">
-                            <bool>true</bool>
-                        </property>
-                        <property name="resizeMode">
-                            <enum>AllColumns</enum>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string>Bank selector</string>
-                        </property>
+                            <property name="resizeMode">
+                                <enum>AllColumns</enum>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Bank selector</string>
+                            </property>
+                        </widget>
+                        <widget class="QListView">
+                            <column>
+                                <property name="text">
+                                    <string>Prog</string>
+                                </property>
+                                <property name="clickable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="resizable">
+                                    <bool>true</bool>
+                                </property>
+                            </column>
+                            <column>
+                                <property name="text">
+                                    <string>Name</string>
+                                </property>
+                                <property name="clickable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="resizable">
+                                    <bool>true</bool>
+                                </property>
+                            </column>
+                            <column>
+                                <property name="text">
+                                    <string>SFID</string>
+                                </property>
+                                <property name="clickable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="resizable">
+                                    <bool>true</bool>
+                                </property>
+                            </column>
+                            <column>
+                                <property name="text">
+                                    <string>Soundfont</string>
+                                </property>
+                                <property name="clickable">
+                                    <bool>true</bool>
+                                </property>
+                                <property name="resizable">
+                                    <bool>true</bool>
+                                </property>
+                            </column>
+                            <property name="name">
+                                <cstring>ProgListView</cstring>
+                            </property>
+                            <property name="allColumnsShowFocus">
+                                <bool>true</bool>
+                            </property>
+                            <property name="showSortIndicator">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizeMode">
+                                <enum>LastColumn</enum>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Program selector</string>
+                            </property>
+                        </widget>
                     </widget>
-                    <widget class="QCheckBox" row="1" column="0">
+                    <widget class="QCheckBox">
                         <property name="name">
                             <cstring>PreviewCheckBox</cstring>
                         </property>
@@ -238,7 +244,7 @@
                             <string>Whether to preview the current selection</string>
                         </property>
                     </widget>
-                </grid>
+                </vbox>
             </widget>
         </widget>
     </grid>
@@ -309,21 +315,21 @@
     <variable access="private">int m_iDirtyCount;</variable>
 </variables>
 <slots>
+    <slot specifier="non virtual">stabilizeForm()</slot>
     <slot specifier="non virtual">accept()</slot>
     <slot specifier="non virtual">reject()</slot>
     <slot specifier="non virtual">bankChanged()</slot>
     <slot specifier="non virtual">progChanged()</slot>
     <slot specifier="non virtual">previewChanged()</slot>
-    <slot specifier="non virtual">stabilizeForm()</slot>
 </slots>
 <functions>
     <function access="private" specifier="non virtual">init()</function>
     <function access="private" specifier="non virtual">destroy()</function>
     <function specifier="non virtual">setup( qsynthOptions *pOptions, fluid_synth_t *pSynth, int iChan )</function>
     <function access="private" specifier="non virtual" returnType="bool">validateForm()</function>
+    <function access="private" specifier="non virtual">setBankProg( int iBank, int iProg )</function>
     <function access="private" specifier="non virtual" returnType="QListViewItem*">findBankItem( int iBank )</function>
     <function access="private" specifier="non virtual" returnType="QListViewItem*">findProgItem( int iProg )</function>
-    <function access="private" specifier="non virtual">setBankProg( int iBank, int iProg )</function>
 </functions>
 <pixmapinproject/>
 <layoutdefaults spacing="4" margin="8"/>
