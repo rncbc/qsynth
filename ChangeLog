@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.4   2005-08-06  Bug and some other usability fixes.
+0.2.4   2005-08-20  Bug and some other usability fixes.
 
 - Missing icons on channels and soundfont setup context menus are now up;
   bank/program splitter widget added to channel preset dialog.
@@ -16,6 +16,10 @@ ChangeLog
 - New tool buttons were added to the main widget, for adding a new engine
   and removing the current one, while trying to increase the visibility of
   multiple fluidsynth engine capability (for new users, at least :)
+
+- Set to use QApplication::setMainWidget() instead of registering the
+  traditional lastWindowClosed() signal to quit() /slot, just to let
+  the -geometry command line argument have some optional effect on X11.
 
 - Minor configure and Makefile install fixes, as Debian and Mac OS X
   specialties. Also, install does the right thing with target file modes

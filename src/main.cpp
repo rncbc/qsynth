@@ -55,14 +55,15 @@ int main ( int argc, char **argv )
         app.quit();
         return 1;
     }
-    
+
     // Construct, setup and show the main form.
     qsynthMainForm w;
+    app.setMainWidget(&w);
     w.setup(&settings);
     w.show();
 
     // Register the quit signal/slot.
-    app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
+    // app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
 
     return app.exec();
 }
