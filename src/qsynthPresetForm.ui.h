@@ -20,9 +20,9 @@
 
 *****************************************************************************/
 
-#include <qfileinfo.h>
+#include "qsynthAbout.h"
 
-#include "config.h"
+#include <qfileinfo.h>
 
 
 // Kind of constructor.

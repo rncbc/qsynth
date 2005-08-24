@@ -20,15 +20,13 @@
 
 *****************************************************************************/
 
+#include "qsynthAbout.h"
+#include "qsynthChannels.h"
+
 #include <qvalidator.h>
 #include <qmessagebox.h>
 #include <qpopupmenu.h>
 #include <qfileinfo.h>
-
-#include "config.h"
-
-#include "qsynthChannels.h"
-#include "qsynthAbout.h"
 
 
 // Kind of constructor.
@@ -41,7 +39,7 @@ void qsynthChannelsForm::init (void)
     m_pOptions = NULL;
     m_pEngine  = NULL;
     m_pSynth   = NULL;
-    
+
     // Initialize dirty control state.
     m_iDirtySetup = 0;
     m_iDirtyCount = 0;

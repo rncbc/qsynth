@@ -20,11 +20,9 @@
 
 *****************************************************************************/
 
-#include <qmessagebox.h>
-
-#include "config.h"
-
 #include "qsynthAbout.h"
+
+#include <qmessagebox.h>
 
 
 // Kind of constructor.

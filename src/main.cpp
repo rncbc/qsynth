@@ -19,14 +19,13 @@
 
 *****************************************************************************/
 
-#include <qapplication.h>
-#include <qtextcodec.h>
-
 #include "qsynthAbout.h"
 #include "qsynthOptions.h"
 #include "qsynthMainForm.h"
 
-#include "config.h"
+#include <qapplication.h>
+#include <qtextcodec.h>
+
 
 //-------------------------------------------------------------------------
 // main - The main program trunk.

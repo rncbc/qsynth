@@ -20,11 +20,11 @@
 
 *****************************************************************************/
 
+#include "qsynthAbout.h"
+
 #include <qvalidator.h>
 #include <qmessagebox.h>
 #include <qfontdialog.h>
-
-#include "config.h"
 
 
 // Kind of constructor.

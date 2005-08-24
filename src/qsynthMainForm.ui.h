@@ -20,6 +20,8 @@
 
 *****************************************************************************/
 
+#include "qsynthAbout.h"
+
 #include <qapplication.h>
 #include <qeventloop.h>
 #include <qmessagebox.h>
@@ -30,13 +32,9 @@
 
 #include <math.h>
 
-#include "config.h"
-
 #ifdef HAVE_SIGNAL_H
 #include <signal.h>
 #endif
-
-#include "qsynthAbout.h"
 
 // Timer constant stuff.
 #define QSYNTH_TIMER_MSECS  100

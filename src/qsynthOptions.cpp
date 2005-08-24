@@ -19,11 +19,9 @@
 
 *****************************************************************************/
 
+#include "qsynthAbout.h"
 #include "qsynthOptions.h"
 #include "qsynthEngine.h"
-#include "qsynthAbout.h"
-
-#include "config.h"
 
 
 //-------------------------------------------------------------------------

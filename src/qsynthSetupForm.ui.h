@@ -20,6 +20,8 @@
 
 *****************************************************************************/
 
+#include "qsynthAbout.h"
+
 #include <qvalidator.h>
 #include <qmessagebox.h>
 #include <qpopupmenu.h>
@@ -27,10 +29,6 @@
 #include <qfileinfo.h>
 #include <qfontdialog.h>
 #include <qlistbox.h>
-
-#include "config.h"
-
-#include "qsynthAbout.h"
 
 
 // Our local parameter data struct.
@@ -45,7 +43,7 @@ struct qsynth_settings_data
 static void qsynth_settings_foreach_option ( void *pvData, char *, char *pszOption )
 {
     qsynth_settings_data *pData = (qsynth_settings_data *) pvData;
-    
+
     pData->options.append(pszOption);
 }
 

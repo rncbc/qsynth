@@ -20,7 +20,8 @@
 
 *****************************************************************************/
 
-#include "config.h"
+#include "qsynthAbout.h"
+
 
 // The maximum number of message lines.
 #define QSYNTH_MESSAGES_MAXLINES  1000
