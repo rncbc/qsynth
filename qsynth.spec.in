@@ -1,0 +1,50 @@
+%define name    @PACKAGE_TARNAME@
+%define version @PACKAGE_VERSION@
+%define release 1
+%define prefix  /usr/local
+
+Summary:	A fluidsynth Qt GUI Interface.
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
+Prefix:		%{prefix}
+Copyright:	GPL
+Group:		Sound
+Source0:	%{name}-%{version}.tar.gz
+URL:		http://qsynth.sourceforge.net/
+BuildRoot:	/var/tmp/%{name}-%{version}-buildroot
+Requires:	fluidsynth >= 1.0.6
+
+%description
+Qsynth is a fluidsynth GUI front-end application, written in C++ around the
+Qt3 toolkit, using Qt Designer. Eventually it may evolve into a softsynth
+management application allowing the user to control and manage a variety of
+command line softsynths.
+
+%prep
+
+%setup
+[ -f Makefile.cvs ] && make -f Makefile.cvs
+
+%build
+export PATH=$QTDIR/bin:$PATH
+./configure --prefix=%{prefix}
+make
+
+%install
+if [ -d $RPM_BUILD_ROOT ]; then rm -rf $RPM_BUILD_ROOT; fi
+mkdir -p $RPM_BUILD_ROOT
+make prefix=$RPM_BUILD_ROOT%{prefix} install
+
+%clean
+if [ -d $RPM_BUILD_ROOT ]; then rm -rf $RPM_BUILD_ROOT; fi
+
+%files
+%defattr(-,root,root)
+%doc AUTHORS COPYING ChangeLog README TODO
+%{prefix}/bin/qsynth
+%{prefix}/share/icons/qsynth.png
+
+%changelog
+* Wed Aug 24 2004 Rui Nuno Capela <rncbc@users.sourceforge.net>
+- Created initial qsynth.spec
