@@ -45,7 +45,7 @@
         </font>
     </property>
     <property name="caption">
-        <string>qsynth - A fluidsynth Qt GUI Interface</string>
+        <string>Qsynth - A fluidsynth Qt GUI Interface</string>
     </property>
     <property name="icon">
         <pixmap>qsynth.png</pixmap>

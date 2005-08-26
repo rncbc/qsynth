@@ -351,7 +351,8 @@ bool qsynthMainForm::queryClose (void)
                 if (pTab) {
                     qsynthEngine *pEngine = pTab->engine();
                     if (pEngine && pEngine->pSynth) {
-                        bQueryClose = (QMessageBox::warning(this, tr("Warning"),
+                        bQueryClose = (QMessageBox::warning(this,
+							QSYNTH_TITLE ": " + tr("Warning"),
                             QSYNTH_TITLE " " + tr("is about to terminate.") + "\n\n" +
                             tr("Are you sure?"),
                             tr("OK"), tr("Cancel")) == 0);
@@ -556,7 +557,8 @@ void qsynthMainForm::appendMessagesError( const QString& s )
 
     appendMessagesColor(s.simplifyWhiteSpace(), "#ff0000");
 
-    QMessageBox::critical(this, tr("Error"), s, tr("Cancel"));
+    QMessageBox::critical(this,
+		QSYNTH_TITLE ": " + tr("Error"), s, tr("Cancel"));
 }
 
 
@@ -876,12 +878,13 @@ bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
         return false;
 
     // Try to prompt user if he/she really wants this...
-    bool bResult = (QMessageBox::warning(this, tr("Warning"),
+    bool bResult = (QMessageBox::warning(this,
+		QSYNTH_TITLE ": " + tr("Warning"),
         tr("Delete fluidsynth engine:") + "\n\n" +
         pEngine->name() + "\n\n" +
         tr("Are you sure?"),
         tr("OK"), tr("Cancel")) == 0);
-    
+
     if (bResult) {
         // First we try to stop the angine.
         stopEngine(pEngine);
@@ -1033,7 +1036,8 @@ void qsynthMainForm::showOptionsForm (void)
                 (!bStdoutCapture &&  m_pOptions->bStdoutCapture) ||
                 ( bKeepOnTop     && !m_pOptions->bKeepOnTop)     ||
                 (!bKeepOnTop     &&  m_pOptions->bKeepOnTop)) {
-                QMessageBox::information(this, tr("Information"),
+                QMessageBox::information(this,
+					QSYNTH_TITLE ": " + tr("Information"),
                     tr("Some settings will be only effective\n"
                        "next time you start this program."), tr("OK"));
             }
@@ -1470,7 +1474,8 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 void qsynthMainForm::restartAllEngines (void)
 {
     // Always prompt user...
-    bool  bRestart = (QMessageBox::warning(this, tr("Warning"),
+    bool  bRestart = (QMessageBox::warning(this,
+			QSYNTH_TITLE ": " + tr("Warning"),
             tr("New settings will be effective after\n"
                "restarting all fluidsynth engines.") + "\n\n" +
             tr("Please note that this operation may cause\n"
@@ -1498,10 +1503,11 @@ void qsynthMainForm::restartAllEngines (void)
 void qsynthMainForm::restartEngine ( qsynthEngine *pEngine )
 {
     bool bRestart = true;
-    
+
     // If currently running, prompt user...
     if (pEngine && pEngine->pSynth) {
-        bRestart = (QMessageBox::warning(this, tr("Warning"),
+        bRestart = (QMessageBox::warning(this,
+			QSYNTH_TITLE ": " + tr("Warning"),
             tr("New settings will be effective after\n"
                "restarting the fluidsynth engine:") + "\n\n" +
             pEngine->name() + "\n\n" +

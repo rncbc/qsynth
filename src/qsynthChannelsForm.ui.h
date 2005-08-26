@@ -96,7 +96,7 @@ void qsynthChannelsForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine,
     m_pOptions = pOptions;
     m_pEngine  = pEngine;
     m_pSynth   = pEngine ? pEngine->pSynth : NULL;
-        
+
     // Update caption.
     QString sCaption = QSYNTH_TITLE ": " + tr("Channels");
     if (pEngine)
@@ -109,7 +109,7 @@ void qsynthChannelsForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine,
         m_ppChannels = NULL;
         m_iChannels  = 0;
     }
-    
+
     // Allocate a new channel list view...
     ChannelsListView->clear();
     if (m_pSynth && m_ppChannels == NULL) {
@@ -323,7 +323,8 @@ void qsynthChannelsForm::deletePreset (void)
         return;
 
     // Try to prompt user if he/she really wants this...
-    if (QMessageBox::warning(this, tr("Warning"),
+    if (QMessageBox::warning(this,
+		QSYNTH_TITLE ": " + tr("Warning"),
         tr("Delete preset:") + "\n\n" +
         sPreset + "\n\n" +
         tr("Are you sure?"),

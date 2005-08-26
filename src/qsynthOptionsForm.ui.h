@@ -120,7 +120,8 @@ void qsynthOptionsForm::reject (void)
 
     // Check if there's any pending changes...
     if (m_iDirtyCount > 0) {
-        switch (QMessageBox::warning(this, tr("Warning"),
+        switch (QMessageBox::warning(this,
+			QSYNTH_TITLE ": " + tr("Warning"),
             tr("Some options have been changed.") + "\n\n" +
             tr("Do you want to apply the changes?"),
             tr("Apply"), tr("Discard"), tr("Cancel"))) {

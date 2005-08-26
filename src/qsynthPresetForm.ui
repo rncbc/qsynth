@@ -33,7 +33,7 @@
         </rect>
     </property>
     <property name="caption">
-        <string>Channel Preset</string>
+        <string>Qsynth: Channel Preset</string>
     </property>
     <property name="icon">
         <pixmap>channels1.png</pixmap>

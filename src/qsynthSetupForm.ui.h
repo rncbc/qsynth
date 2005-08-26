@@ -380,7 +380,8 @@ void qsynthSetupForm::reject (void)
 
     // Check if there's any pending changes...
     if (m_iDirtyCount > 0) {
-        switch (QMessageBox::warning(this, tr("Warning"),
+        switch (QMessageBox::warning(this,
+			QSYNTH_TITLE ": " + tr("Warning"),
             tr("Some settings have been changed.") + "\n\n" +
             tr("Do you want to apply the changes?"),
             tr("Apply"), tr("Discard"), tr("Cancel"))) {
@@ -544,12 +545,12 @@ void qsynthSetupForm::refreshSoundFonts (void)
 void qsynthSetupForm::openSoundFont()
 {
     QStringList soundfonts = QFileDialog::getOpenFileNames(
-            tr("Soundfont files") + " (*.sf2 *.SF2)",   // Filter (SF2 files)
-            m_pOptions->sSoundFontDir,                  // Start here.
-            this, 0,                                    // Parent and name (none)
-            tr("Soundfont files")                       // Caption.
+		tr("Soundfont files") + " (*.sf2 *.SF2)",   // Filter (SF2 files)
+		m_pOptions->sSoundFontDir,                  // Start here.
+		this, 0,                                    // Parent and name (none)
+		QSYNTH_TITLE ": " + tr("Soundfont files")	// Caption.
     );
-    
+
     QListViewItem *pItem = NULL;
     // For avery selected soundfont to load...
     for (QStringList::Iterator iter = soundfonts.begin(); iter != soundfonts.end(); iter++) {
@@ -559,7 +560,8 @@ void qsynthSetupForm::openSoundFont()
         if (::fluid_is_soundfont(pszFilename)) {
             // Check if not already there...
             if (SoundFontListView->findItem(sSoundFont, 1) &&
-                QMessageBox::warning(this, tr("Warning"),
+                QMessageBox::warning(this,
+					QSYNTH_TITLE ": " + tr("Warning"),
                     tr("Soundfont file already on list") + ":\n\n" +
                     "\"" + sSoundFont + "\"\n\n" +
                     tr("Add anyway?"),
@@ -590,7 +592,8 @@ void qsynthSetupForm::openSoundFont()
             }
         }
         else {
-            QMessageBox::critical(this, tr("Error"),
+            QMessageBox::critical(this,
+				QSYNTH_TITLE ": " + tr("Error"),
                 tr("Failed to add soundfont file") + ":\n\n" +
                 "\"" + sSoundFont + "\"\n\n" +
                 tr("Please, check for a valid soundfont file."),

@@ -45,7 +45,7 @@
         </font>
     </property>
     <property name="caption">
-        <string>qsynth: Channels</string>
+        <string>Qsynth: Channels</string>
     </property>
     <vbox>
         <property name="name">

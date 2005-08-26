@@ -59,9 +59,10 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 
     // We'll goinfg to changes the whole thing...
     m_iDirtySetup++;
-    
+
     // Set the proper caption...
-    setCaption(tr("Channel") + " " + QString::number(m_iChan + 1));
+	setCaption(QSYNTH_TITLE ": "
+		+ tr("Channel") + " " + QString::number(m_iChan + 1));
 
     QListViewItem *pBankItem = NULL;
     QListViewItem *pProgItem = NULL;

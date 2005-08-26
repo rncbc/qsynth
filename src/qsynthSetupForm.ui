@@ -41,7 +41,7 @@
         </sizepolicy>
     </property>
     <property name="caption">
-        <string>qsynth: Setup</string>
+        <string>Qsynth: Setup</string>
     </property>
     <property name="icon">
         <pixmap>qsynth.png</pixmap>
