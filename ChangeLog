@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.2.4   2005-08-26  Bug and some other usability fixes.
+0.2.4   2005-10-02  Bug and some other usability fixes.
 
 - All widget captions changed to include proper application title prefix.
 

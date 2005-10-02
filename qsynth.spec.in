@@ -1,7 +1,7 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
 %define release 1
-%define prefix  /usr/local
+%define prefix  /usr
 
 Summary:	A fluidsynth Qt GUI Interface.
 Name:		%{name}
@@ -46,5 +46,7 @@ if [ -d $RPM_BUILD_ROOT ]; then rm -rf $RPM_BUILD_ROOT; fi
 %{prefix}/share/icons/qsynth.png
 
 %changelog
-* Wed Aug 24 2004 Rui Nuno Capela <rncbc@users.sourceforge.net>
+* Sun Oct 2 2005 Rui Nuno Capela <rncbc@users.sourceforge.net>
+- Made public as for 0.2.4 release.
+* Wed Aug 24 2005 Rui Nuno Capela <rncbc@users.sourceforge.net>
 - Created initial qsynth.spec
