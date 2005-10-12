@@ -325,6 +325,7 @@ void qsynthKnob::wheelEvent ( QWheelEvent *pWheelEvent )
 		if (pWheelEvent->delta() > 0)
 			iValue -= pageStep();
 		else
+			iValue += pageStep();
 		if (iValue > maxValue())
 			iValue = maxValue();
 		else
