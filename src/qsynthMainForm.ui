@@ -238,7 +238,7 @@
                                 <property name="margin">
                                     <number>4</number>
                                 </property>
-                                <widget class="QDial" row="1" column="0">
+                                <widget class="qsynthKnob" row="1" column="0">
                                     <property name="name">
                                         <cstring>ReverbDampDial</cstring>
                                     </property>
@@ -320,7 +320,7 @@
                                 <property name="margin">
                                     <number>4</number>
                                 </property>
-                                <widget class="QDial" row="1" column="0">
+                                <widget class="qsynthKnob" row="1" column="0">
                                     <property name="name">
                                         <cstring>ReverbRoomDial</cstring>
                                     </property>
@@ -402,7 +402,7 @@
                                 <property name="margin">
                                     <number>4</number>
                                 </property>
-                                <widget class="QDial" row="1" column="0">
+                                <widget class="qsynthKnob" row="1" column="0">
                                     <property name="name">
                                         <cstring>ReverbWidthDial</cstring>
                                     </property>
@@ -484,7 +484,7 @@
                                 <property name="margin">
                                     <number>4</number>
                                 </property>
-                                <widget class="QDial" row="1" column="0">
+                                <widget class="qsynthKnob" row="1" column="0">
                                     <property name="name">
                                         <cstring>ReverbLevelDial</cstring>
                                     </property>
@@ -647,7 +647,7 @@
                                         <cstring>GainSpinBox</cstring>
                                     </property>
                                 </widget>
-                                <widget class="QDial" row="1" column="0">
+                                <widget class="qsynthKnob" row="1" column="0">
                                     <property name="name">
                                         <cstring>GainDial</cstring>
                                     </property>
@@ -656,6 +656,13 @@
                                             <width>50</width>
                                             <height>40</height>
                                         </size>
+                                    </property>
+                                    <property name="meterColor">
+                                        <color>
+                                            <red>204</red>
+                                            <green>51</green>
+                                            <blue>0</blue>
+                                        </color>
                                     </property>
                                     <property name="font">
                                         <font>
@@ -732,7 +739,7 @@
                                 <property name="margin">
                                     <number>4</number>
                                 </property>
-                                <widget class="QDial" row="1" column="0">
+                                <widget class="qsynthKnob" row="1" column="0">
                                     <property name="name">
                                         <cstring>ChorusLevelDial</cstring>
                                     </property>
@@ -817,7 +824,7 @@
                                 <property name="margin">
                                     <number>4</number>
                                 </property>
-                                <widget class="QDial" row="1" column="0">
+                                <widget class="qsynthKnob" row="1" column="0">
                                     <property name="name">
                                         <cstring>ChorusSpeedDial</cstring>
                                     </property>
@@ -908,7 +915,7 @@
                                 <property name="margin">
                                     <number>4</number>
                                 </property>
-                                <widget class="QDial" row="1" column="0">
+                                <widget class="qsynthKnob" row="1" column="0">
                                     <property name="name">
                                         <cstring>ChorusNrDial</cstring>
                                     </property>
@@ -990,7 +997,7 @@
                                 <property name="margin">
                                     <number>4</number>
                                 </property>
-                                <widget class="QDial" row="1" column="0">
+                                <widget class="qsynthKnob" row="1" column="0">
                                     <property name="name">
                                         <cstring>ChorusDepthDial</cstring>
                                     </property>
@@ -1456,6 +1463,24 @@
         </sizepolicy>
         <pixmap>image0</pixmap>
     </customwidget>
+    <customwidget>
+        <class>qsynthKnob</class>
+        <header location="local">qsynthKnob.h</header>
+        <sizehint>
+            <width>40</width>
+            <height>40</height>
+        </sizehint>
+        <container>0</container>
+        <sizepolicy>
+            <hordata>5</hordata>
+            <verdata>5</verdata>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+        <pixmap>image0</pixmap>
+        <property type="Color">knobColor</property>
+        <property type="Color">meterColor</property>
+    </customwidget>
 </customwidgets>
 <images>
     <image name="image0">
@@ -1797,7 +1822,8 @@
 <pixmapinproject/>
 <layoutdefaults spacing="4" margin="8"/>
 <includehints>
-    <includehint>qsynthmeter.h</includehint>
-    <includehint>qsynthtabbar.h</includehint>
+    <includehint>qsynthMeter.h</includehint>
+    <includehint>qsynthTabBar.h</includehint>
+    <includehint>qsynthKnob.h</includehint>
 </includehints>
 </UI>

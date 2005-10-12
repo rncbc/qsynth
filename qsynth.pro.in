@@ -7,7 +7,8 @@ SOURCES += src/main.cpp \
            src/qsynthChannels.cpp \
            src/qsynthTabBar.cpp \
            src/qsynthMeter.cpp \
-           src/qsynthSystemTray.cpp
+           src/qsynthSystemTray.cpp \
+           src/qsynthKnob.cpp
 
 HEADERS += src/qsynthAbout.h \
            src/qsynthSetup.h \
@@ -16,13 +17,14 @@ HEADERS += src/qsynthAbout.h \
            src/qsynthChannels.h \
            src/qsynthTabBar.h \
            src/qsynthMeter.h \
-           src/qsynthSystemTray.h
+           src/qsynthSystemTray.h \
+           src/qsynthKnob.h
 
 FORMS    = src/qsynthMainForm.ui \
            src/qsynthMessagesForm.ui \
            src/qsynthChannelsForm.ui \
            src/qsynthOptionsForm.ui \
-	       src/qsynthPresetForm.ui \
+           src/qsynthPresetForm.ui \
            src/qsynthSetupForm.ui \
            src/qsynthAboutForm.ui
 

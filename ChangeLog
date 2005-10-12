@@ -3,6 +3,15 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+CVS HEAD
+
+- A new fancy widget has arrived, qsynthKnob, with some modifications to
+  replace the actual *ugly* QDial widgets in the main window. This widget
+  is based on a design by Thorsten Wilms, formerly implemented by Chris
+  Cannam in Rosegarden, and finally adapted and brought to Qsynth by
+  Pedro Lopez-Cabanillas. Thankyou all.
+
+
 0.2.4   2005-10-02  Bug and some other usability fixes.
 
 - All widget captions changed to include proper application title prefix.
