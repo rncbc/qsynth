@@ -90,7 +90,7 @@ qsynthOptions::~qsynthOptions (void)
     for (++iEngine; !m_settings.readEntry(sEnginePrefix + QString::number(iEngine)).isEmpty(); iEngine++)
         m_settings.removeEntry(sEnginePrefix + QString::number(iEngine));
     m_settings.endGroup();
-    
+
     // Save defaults...
     m_settings.beginGroup("/Defaults");
     m_settings.writeEntry("/SoundFontDir",  sSoundFontDir);
@@ -112,7 +112,7 @@ qsynthOptions::~qsynthOptions (void)
     // Create default setup descriptor.
     delete m_pDefaultSetup;
     m_pDefaultSetup = NULL;
-    
+
     m_settings.endGroup();
 }
 
@@ -196,7 +196,7 @@ bool qsynthOptions::parse_option ( char *optarg )
     }
 
     fluid_settings_t *pFluidSettings = m_pDefaultSetup->fluid_settings();
-    
+
     switch (::fluid_settings_get_type(pFluidSettings, optarg)) {
     case FLUID_NUM_TYPE:
         if (::fluid_settings_setnum(pFluidSettings, optarg, ::atof(val)))
@@ -403,7 +403,7 @@ void qsynthOptions::deleteKey ( const QString& sKey )
         if (!sEntry.isEmpty())
             m_settings.removeEntry(sKey + "/" + sEntry);
     }
-        
+
     // Then, we'll recurse under sub-keys...
     QStringList subkeys = m_settings.subkeyList(sKey);
     for (QStringList::Iterator subkey = subkeys.begin(); subkey != subkeys.end(); ++subkey) {
@@ -411,7 +411,7 @@ void qsynthOptions::deleteKey ( const QString& sKey )
         if (!sSubKey.isEmpty())
             deleteKey(sKey + "/" + sSubKey);
     }
-    
+
     // Finally we remove our-selves.
     m_settings.removeEntry(sKey);
 }
@@ -441,14 +441,14 @@ bool qsynthOptions::renameEngine ( qsynthEngine *pEngine )
     qsynthSetup *pSetup = pEngine->setup();
     if (pSetup == NULL)
         return false;
-        
+
     const QString sOldName = pEngine->name();
     const QString sNewName = pSetup->sDisplayName;
     if (sOldName == sNewName)
         return false;
-        
+
     pEngine->setName(sNewName);
-    
+
     if (!pEngine->isDefault()) {
         QStringList::Iterator iter = engines.find(sOldName);
         if (iter != engines.end())
@@ -469,7 +469,7 @@ void qsynthOptions::deleteEngine ( qsynthEngine *pEngine )
 
     const QString& sName = pEngine->name();
     engines.remove(sName);
-    
+
     deleteKey("/Engine/" + sName);
 }
 
@@ -482,7 +482,7 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 {
     if (pSetup == NULL)
         return;
-        
+
     // Begin at key group?
     if (!sName.isEmpty())
         m_settings.beginGroup("/Engine/" + sName);
@@ -665,7 +665,7 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
     qsynthSetup *pSetup = pEngine->setup();
     if (pSetup == NULL)
         return false;
-    
+
     QString sSuffix;
     if (sPreset != pSetup->sDefPresetName && !sPreset.isEmpty()) {
         sSuffix = "/" + sPreset;
@@ -730,9 +730,10 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
     for ( ; iChan < iChannels; iChan++) {
         fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(pEngine->pSynth, iChan);
         if (pPreset) {
+			int iBankOffset = ::fluid_synth_get_bank_offset(pEngine->pSynth, (pPreset->sfont)->id);
             QString sEntry = QString::number(iChan);
             sEntry += ":";
-            sEntry += QString::number(pPreset->get_banknum(pPreset));
+			sEntry += QString::number(pPreset->get_banknum(pPreset) + iBankOffset);
             sEntry += ":";
             sEntry += QString::number(pPreset->get_num(pPreset));
             m_settings.writeEntry(sPrefix + QString::number(iChan + 1), sEntry);

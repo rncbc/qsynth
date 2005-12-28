@@ -5,6 +5,11 @@ ChangeLog
 
 CVS HEAD
 
+- Bank offset finally gets its due effect, while on the channels and
+  channel preset selection dialogs. Regretfully, the soundfont bank
+  offset feature has been lurking ever since its inception, but now
+  its live and hopefully effective.
+
 - A new fancy widget has arrived, qsynthKnob, with some modifications to
   replace the actual *ugly* QDial widgets in the main window. This widget
   is based on a design by Thorsten Wilms, formerly implemented by Chris

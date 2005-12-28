@@ -76,9 +76,10 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
     for (int i = 0; i < cSoundFonts; i++) {
         fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
         if (pSoundFont) {
+			int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, pSoundFont->id);
             pSoundFont->iteration_start(pSoundFont);
             while (pSoundFont->iteration_next(pSoundFont, &preset)) {
-                int iBank = preset.get_banknum(&preset);
+                int iBank = preset.get_banknum(&preset) + iBankOffset;
                 if (!findBankItem(iBank)) {
                     pBankItem = new QListViewItem(BankListView, pBankItem);
                     if (pBankItem)
@@ -91,8 +92,10 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 
     // Set the selected bank.
     fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, m_iChan);
-    if (pPreset)
-        m_iBank = pPreset->get_banknum(pPreset);
+	if (pPreset) {
+		int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, (pPreset->sfont)->id);
+		m_iBank = pPreset->get_banknum(pPreset) + iBankOffset;
+	}
     pBankItem = findBankItem(m_iBank);
     BankListView->setSelected(pBankItem, true);
     BankListView->ensureItemVisible(pBankItem);
@@ -215,10 +218,12 @@ void qsynthPresetForm::bankChanged (void)
     for (int i = 0; i < cSoundFonts; i++) {
         fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
         if (pSoundFont) {
+			int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, pSoundFont->id);
             pSoundFont->iteration_start(pSoundFont);
             while (pSoundFont->iteration_next(pSoundFont, &preset)) {
                 int iProg = preset.get_num(&preset);
-                if (iBank == preset.get_banknum(&preset) && !findProgItem(iProg)) {
+				if (iBank == preset.get_banknum(&preset) + iBankOffset
+					&& !findProgItem(iProg)) {
                     pProgItem = new QListViewItem(ProgListView, pProgItem);
                     if (pProgItem) {
                         pProgItem->setText(0, QString::number(iProg));

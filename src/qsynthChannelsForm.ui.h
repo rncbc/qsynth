@@ -149,7 +149,9 @@ void qsynthChannelsForm::updateChannel ( int iChan )
 
     fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, iChan);
     if (pPreset) {
-        pItem->setText(QSYNTH_CHANNELS_BANK, QString::number(pPreset->get_banknum(pPreset)));
+		int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, (pPreset->sfont)->id);
+		pItem->setText(QSYNTH_CHANNELS_BANK,
+			QString::number(pPreset->get_banknum(pPreset) + iBankOffset));
         pItem->setText(QSYNTH_CHANNELS_PROG, QString::number(pPreset->get_num(pPreset)));
         pItem->setText(QSYNTH_CHANNELS_NAME, pPreset->get_name(pPreset));
         pItem->setText(QSYNTH_CHANNELS_SFID, QString::number((pPreset->sfont)->id));
@@ -201,7 +203,7 @@ void qsynthChannelsForm::setChannelOn ( int iChan, bool bOn )
         return;
     if (iChan < 0 || iChan >= m_iChannels)
         return;
-        
+
     m_ppChannels[iChan]->setPixmap(QSYNTH_CHANNELS_IN, (bOn ? *m_pXpmLedOn : *m_pXpmLedOff));
 }
 
@@ -348,7 +350,7 @@ void qsynthChannelsForm::resetPresets (void)
 {
     if (m_pEngine == NULL)
         return;
-        
+
     qsynthSetup *pSetup = m_pEngine->setup();
     if (pSetup == NULL)
         return;
@@ -364,7 +366,7 @@ void qsynthChannelsForm::stabilizeForm (void)
 {
     if (m_pEngine == NULL)
         return;
-        
+
     qsynthSetup *pSetup = m_pEngine->setup();
     if (pSetup == NULL)
         return;
