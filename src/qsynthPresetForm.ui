@@ -159,7 +159,7 @@
                                 <bool>true</bool>
                             </property>
                             <property name="showSortIndicator">
-                                <bool>true</bool>
+                                <bool>false</bool>
                             </property>
                             <property name="resizeMode">
                                 <enum>AllColumns</enum>
@@ -220,7 +220,7 @@
                                 <bool>true</bool>
                             </property>
                             <property name="showSortIndicator">
-                                <bool>true</bool>
+                                <bool>false</bool>
                             </property>
                             <property name="resizeMode">
                                 <enum>LastColumn</enum>

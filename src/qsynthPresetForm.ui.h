@@ -25,6 +25,34 @@
 #include <qfileinfo.h>
 
 
+// Custom list-view item (as for first column numerical sort purposes...)
+class qsynthPresetListViewItem : public QListViewItem
+{
+public:
+
+	// Constructor.
+	qsynthPresetListViewItem(QListView *pListView, int iNum)
+		: QListViewItem(pListView, QString::number(iNum)) {}
+
+	// Sort/compare overriden method.
+	int compare(QListViewItem *pItem, int iColumn, bool bAscending) const
+	{
+		if (iColumn == 0) {
+			int iNum1 = text(0).toInt();
+			int iNum2 = pItem->text(0).toInt();
+			if (iNum1 < iNum2)
+				return (bAscending ? -1 : +1);
+			else if (iNum1 > iNum2)
+				return (bAscending ? +1 : -1);
+			// Exact match.
+			return 0;
+		}
+		// Otherwise, get default behavior...
+		return QListViewItem::compare(pItem, iColumn, bAscending);
+	}
+};
+
+
 // Kind of constructor.
 void qsynthPresetForm::init()
 {
@@ -37,9 +65,9 @@ void qsynthPresetForm::init()
     m_iDirtySetup = 0;
     m_iDirtyCount = 0;
 
-    // No default sorting, initially.
-    BankListView->setSorting(BankListView->columns() + 1);
-    ProgListView->setSorting(ProgListView->columns() + 1);
+    // Some default sorting, initially.
+    BankListView->setSorting(0);
+    ProgListView->setSorting(0);
 }
 
 
@@ -64,12 +92,8 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 	setCaption(QSYNTH_TITLE ": "
 		+ tr("Channel") + " " + QString::number(m_iChan + 1));
 
-    QListViewItem *pBankItem = NULL;
-    QListViewItem *pProgItem = NULL;
-
     // Load bank list from actual synth stack...
     BankListView->clear();
-    BankListView->setUpdatesEnabled(false);
     fluid_preset_t preset;
     // For all soundfonts (in reversed stack order) fill the available banks...
     int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
@@ -80,15 +104,12 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
             pSoundFont->iteration_start(pSoundFont);
             while (pSoundFont->iteration_next(pSoundFont, &preset)) {
                 int iBank = preset.get_banknum(&preset) + iBankOffset;
-                if (!findBankItem(iBank)) {
-                    pBankItem = new QListViewItem(BankListView, pBankItem);
-                    if (pBankItem)
-                        pBankItem->setText(0, QString::number(iBank));
-                }
+				if (!findBankItem(iBank)) {
+					new qsynthPresetListViewItem(BankListView, iBank);
+				}
             }
         }
     }
-    BankListView->setUpdatesEnabled(true);
 
     // Set the selected bank.
     fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, m_iChan);
@@ -96,7 +117,8 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 		int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, (pPreset->sfont)->id);
 		m_iBank = pPreset->get_banknum(pPreset) + iBankOffset;
 	}
-    pBankItem = findBankItem(m_iBank);
+
+    QListViewItem *pBankItem = findBankItem(m_iBank);
     BankListView->setSelected(pBankItem, true);
     BankListView->ensureItemVisible(pBankItem);
     bankChanged();
@@ -104,7 +126,7 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
     // Set the selected program.
     if (pPreset)
         m_iProg = pPreset->get_num(pPreset);
-    pProgItem = findProgItem(m_iProg);
+    QListViewItem *pProgItem = findProgItem(m_iProg);
     ProgListView->setSelected(pProgItem, true);
     ProgListView->ensureItemVisible(pProgItem);
 
@@ -208,10 +230,6 @@ void qsynthPresetForm::bankChanged (void)
 
     // Clear up the program listview.
     ProgListView->clear();
-    // Start freeze...
-    BankListView->setUpdatesEnabled(false);
-    ProgListView->setUpdatesEnabled(false);
-    QListViewItem *pProgItem = NULL;
     fluid_preset_t preset;
     // For all soundfonts (in reversed stack order) fill the available programs...
     int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
@@ -224,9 +242,9 @@ void qsynthPresetForm::bankChanged (void)
                 int iProg = preset.get_num(&preset);
 				if (iBank == preset.get_banknum(&preset) + iBankOffset
 					&& !findProgItem(iProg)) {
-                    pProgItem = new QListViewItem(ProgListView, pProgItem);
+					qsynthPresetListViewItem *pProgItem
+						= new qsynthPresetListViewItem(ProgListView, iProg);
                     if (pProgItem) {
-                        pProgItem->setText(0, QString::number(iProg));
                         pProgItem->setText(1, preset.get_name(&preset));
                         pProgItem->setText(2, QString::number(pSoundFont->id));
                         pProgItem->setText(3, QFileInfo(pSoundFont->get_name(pSoundFont)).baseName());
@@ -235,10 +253,6 @@ void qsynthPresetForm::bankChanged (void)
             }
         }
     }
-    // Freeze's over.
-    BankListView->setUpdatesEnabled(true);
-    ProgListView->setUpdatesEnabled(true);
-
     // Stabilize the form.
     stabilizeForm();
 }
