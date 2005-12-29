@@ -41,9 +41,9 @@ public:
 			int iNum1 = text(0).toInt();
 			int iNum2 = pItem->text(0).toInt();
 			if (iNum1 < iNum2)
-				return (bAscending ? -1 : +1);
+				return -1;	// (bAscending ? -1 : +1);
 			else if (iNum1 > iNum2)
-				return (bAscending ? +1 : -1);
+				return +1;	// (bAscending ? +1 : -1);
 			// Exact match.
 			return 0;
 		}
@@ -96,7 +96,7 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
     BankListView->clear();
 	int iSortColumn = BankListView->sortColumn();
 	bool bSortOrder = (BankListView->sortOrder() == Qt::Ascending);
-	BankListView->setSorting(BankListView->columns() + 1);
+	BankListView->setSorting(-1);
     fluid_preset_t preset;
 	QListViewItem *pBankItem = NULL;
     // For all soundfonts (in reversed stack order) fill the available banks...
@@ -247,7 +247,7 @@ void qsynthPresetForm::bankChanged (void)
     ProgListView->clear();
 	int iSortColumn = ProgListView->sortColumn();
 	bool bSortOrder = (ProgListView->sortOrder() == Qt::Ascending);
-	ProgListView->setSorting(ProgListView->columns() + 1);
+	ProgListView->setSorting(-1);
     fluid_preset_t preset;
 	QListViewItem *pProgItem = NULL;
     // For all soundfonts (in reversed stack order) fill the available programs...
