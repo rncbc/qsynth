@@ -25,6 +25,8 @@
 #define __qsynthKnob_h
 
 #include <qdial.h>
+#include <qmap.h>
+
 
 //-------------------------------------------------------------------------
 // qsynthKnob - A better QDial for QSynth.
@@ -75,40 +77,6 @@ private:
 
 	QColor m_knobColor;
 	QColor m_meterColor;
-
-	struct CacheIndex
-	{
-		CacheIndex(int _s, int _kc, int _mc, int _a, int _n, int _c) :
-			size(_s), knobColor(_kc), meterColor(_mc),
-			angle(_a), numTicks(_n), centered(_c) {}
-
-		bool operator<(const CacheIndex &i) const {
-			// woo!
-			if (size < i.size) return true;
-			else if (size > i.size) return false;
-			else if (knobColor < i.knobColor) return true;
-			else if (knobColor > i.knobColor) return false;
-			else if (meterColor < i.meterColor) return true;
-			else if (meterColor > i.meterColor) return false;
-			else if (angle < i.angle) return true;
-			else if (angle > i.angle) return false;
-			else if (numTicks < i.numTicks) return true;
-			else if (numTicks > i.numTicks) return false;
-			else if (centered == i.centered) return false;
-			else if (!centered) return true;
-			return false;
-		}
-
-		int          size;
-		unsigned int knobColor;
-		unsigned int meterColor;
-		int          angle;
-		int          numTicks;
-		bool         centered;
-	};
-
-	typedef std::map<CacheIndex, QPixmap> PixmapCache;
-	static PixmapCache m_pixmaps;
 
 	// Alternate mouse behavior tracking.
 	bool m_bMouseDial;

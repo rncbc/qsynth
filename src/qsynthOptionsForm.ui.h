@@ -80,6 +80,11 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
     OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
     SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
 
+#if defined(WIN32)
+    StdoutCaptureCheckBox->setChecked(false);
+    StdoutCaptureCheckBox->setEnabled(false);
+#endif
+
 #ifndef CONFIG_SYSTEM_TRAY
     SystemTrayCheckBox->setChecked(false);
     SystemTrayCheckBox->setEnabled(false);

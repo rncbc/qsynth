@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- After some source code tweaks, a win32 build is now possible.
+  (instructions will be provided on demand :)
+
 - Bank offset finally gets its due effect, while on the channels and
   channel preset selection dialogs. Regretfully, the soundfont bank
   offset feature has been lurking ever since its inception, but now

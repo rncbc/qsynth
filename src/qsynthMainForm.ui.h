@@ -30,6 +30,10 @@
 #include <qtimer.h>
 #include <qpopupmenu.h>
 
+#if !defined(WIN32)
+#include <unistd.h>
+#endif
+
 #include <math.h>
 
 #ifdef HAVE_SIGNAL_H
@@ -45,12 +49,13 @@
 #define QSYNTH_REVERB_SCALE 100.0
 #define QSYNTH_CHORUS_SCALE 10.0
 
+#if !defined(WIN32)
 // Notification pipe descriptors
 #define QSYNTH_FDNIL     -1
 #define QSYNTH_FDREAD     0
 #define QSYNTH_FDWRITE    1
-
 static int g_fdStdout[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
+#endif
 
 static qsynthEngine *g_pCurrentEngine = NULL;
 
@@ -309,6 +314,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
     updateOutputMeters();
     updateSystemTray();
 
+#if !defined(WIN32)
     // Check if we can redirect our own stdout/stderr...
     if (m_pOptions->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
         ::dup2(g_fdStdout[QSYNTH_FDWRITE], STDOUT_FILENO);
@@ -316,6 +322,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
         m_pStdoutNotifier = new QSocketNotifier(g_fdStdout[QSYNTH_FDREAD], QSocketNotifier::Read, this);
         QObject::connect(m_pStdoutNotifier, SIGNAL(activated(int)), this, SLOT(stdoutNotifySlot(int)));
     }
+#endif
 
     // We'll accept drops from now on...
     setAcceptDrops(true);
@@ -496,12 +503,14 @@ void qsynthMainForm::dropEvent ( QDropEvent* pDropEvent )
 // Own stdout/stderr socket notifier slot.
 void qsynthMainForm::stdoutNotifySlot ( int fd )
 {
+#if !defined(WIN32)
     char achBuffer[1024];
     int  cchBuffer = ::read(fd, achBuffer, sizeof(achBuffer) - 1);
     if (cchBuffer > 0) {
         achBuffer[cchBuffer] = (char) 0;
         appendStdoutBuffer(achBuffer);
     }
+#endif
 }
 
 

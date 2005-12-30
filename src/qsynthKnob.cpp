@@ -31,6 +31,42 @@
 #include "qsynthKnob.h"
 
 
+struct qsynthKnobCacheIndex
+{
+	// Constructor.
+	qsynthKnobCacheIndex(int s = 0, int kc = 0, int mc = 0,
+		int a = 0, int n = 0, int c = 0) :
+			size(s), knobColor(kc), meterColor(mc),
+			angle(a), numTicks(n), centered(c) {}
+
+	bool operator<(const qsynthKnobCacheIndex &i) const {
+		// woo!
+		if (size < i.size) return true;
+		else if (size > i.size) return false;
+		else if (knobColor < i.knobColor) return true;
+		else if (knobColor > i.knobColor) return false;
+		else if (meterColor < i.meterColor) return true;
+		else if (meterColor > i.meterColor) return false;
+		else if (angle < i.angle) return true;
+		else if (angle > i.angle) return false;
+		else if (numTicks < i.numTicks) return true;
+		else if (numTicks > i.numTicks) return false;
+		else if (centered == i.centered) return false;
+		else if (!centered) return true;
+		return false;
+	}
+
+	int          size;
+	unsigned int knobColor;
+	unsigned int meterColor;
+	int          angle;
+	int          numTicks;
+	bool         centered;
+};
+
+typedef QMap<qsynthKnobCacheIndex, QPixmap> qsynthKnobPixmapCache;
+
+
 //-------------------------------------------------------------------------
 // qsynthKnob - Instance knob widget class.
 //
@@ -38,8 +74,6 @@
 #define QSYNTHKNOB_MIN      (0.25 * M_PI)
 #define QSYNTHKNOB_MAX      (1.75 * M_PI)
 #define QSYNTHKNOB_RANGE    (QSYNTHKNOB_MAX - QSYNTHKNOB_MIN)
-
-qsynthKnob::PixmapCache qsynthKnob::m_pixmaps;
 
 
 // Constructor.
@@ -59,6 +93,8 @@ qsynthKnob::~qsynthKnob (void)
 
 void qsynthKnob::repaintScreen ( const QRect */*pRect*/ )
 {
+	static qsynthKnobPixmapCache s_pixmaps;
+
 	QPainter paint;
 
 	float angle = QSYNTHKNOB_MIN // offset
@@ -81,12 +117,12 @@ void qsynthKnob::repaintScreen ( const QRect */*pRect*/ )
 		meterColor = colorGroup().highlight();
 
 	int m_size = width() < height() ? width() : height();
-	CacheIndex index(m_size, knobColor.pixel(), meterColor.pixel(),
+	qsynthKnobCacheIndex index(m_size, knobColor.pixel(), meterColor.pixel(),
 		degrees, numTicks, false);
 
-	if (m_pixmaps.find(index) != m_pixmaps.end()) {
+	if (s_pixmaps.find(index) != s_pixmaps.end()) {
 		paint.begin(this);
-		paint.drawPixmap(0, 0, m_pixmaps[index]);
+		paint.drawPixmap(0, 0, s_pixmaps[index]);
 		paint.end();
 		return;
 	}
@@ -217,9 +253,9 @@ void qsynthKnob::repaintScreen ( const QRect */*pRect*/ )
 	// Image rendering...
 
 	QImage img = map.convertToImage().smoothScale(m_size, m_size);
-	m_pixmaps[index] = QPixmap(img);
+	s_pixmaps[index] = QPixmap(img);
 	paint.begin(this);
-	paint.drawPixmap(0, 0, m_pixmaps[index]);
+	paint.drawPixmap(0, 0, s_pixmaps[index]);
 	paint.end();
 }
 

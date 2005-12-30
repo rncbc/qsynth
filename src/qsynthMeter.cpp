@@ -26,7 +26,6 @@
 #include <qtooltip.h>
 #include <qpixmap.h>
 
-#include <unistd.h>
 #include <math.h>
 
 // Meter level limits (in dB).

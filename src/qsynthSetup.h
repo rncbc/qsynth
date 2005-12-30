@@ -27,7 +27,6 @@
 #include <qsettings.h>
 
 #include <stdlib.h>
-#include <unistd.h>
 
 #include <fluidsynth.h>
 
