@@ -55,5 +55,5 @@ TEMPLATE = app
 CONFIG  += qt @ac_thread@ warn_on @ac_debug@
 LANGUAGE = C++
 
-LIBS    += -lfluidsynth
-
+LIBS    += @ac_libs@
+INCPATH += @ac_incpath@

@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.2.4.7, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.2.4.8, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui.h)
 AC_CONFIG_HEADERS(config.h)
@@ -35,6 +35,11 @@ if test "x$ac_system_tray" = "xyes"; then
    AC_DEFINE(CONFIG_SYSTEM_TRAY, 1, [Define if system tray is enabled.])
 fi
 
+# Set for alternate fluidsynth installation dir.
+AC_ARG_WITH(fluidsynth,
+  AC_HELP_STRING([--with-fluidsynth=PATH], [use alternate fluidsynth install path]),
+  [ac_with_paths="$ac_with_paths $withval"])
+
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_CPP
@@ -45,6 +50,19 @@ AC_PROG_GCC_TRADITIONAL
 # Checks for languages.
 AC_LANG_C
 AC_LANG_CPLUSPLUS
+
+# Prepend alternate dependencies paths.
+for X in $ac_with_paths; do
+  if test -d $X/include; then
+    CFLAGS="$CFLAGS -I$X/include"
+    CPPFLAGS="$CPPFLAGS -I$X/include"
+    ac_incpath="$X/include $ac_incpath"
+  fi
+  if test -d $X/lib; then
+    LIBS="$LIBS -L$X/lib"
+    ac_libs="-L$X/lib $ac_libs"
+  fi
+done
 
 # Check for QTDIR environment variable.
 AC_MSG_CHECKING([whether QTDIR environment variable is set])
@@ -57,7 +75,7 @@ fi
 
 CFLAGS="$CFLAGS -I$QTDIR/include"
 CPPFLAGS="$CPPFLAGS -I$QTDIR/include"
-LIBS="-L$QTDIR/lib"
+LIBS="$LIBS -L$QTDIR/lib"
 for X in qt qt3; do
   if test -d $QTDIR/include/$X; then
     CFLAGS="$CFLAGS -I$QTDIR/include/$X"
@@ -128,6 +146,10 @@ AC_CHECK_LIB(fluidsynth, main, [ac_fluidsynth_lib="yes"], [ac_fluidsynth_lib="no
 if test "x$ac_fluidsynth_lib" = "xno"; then
    AC_MSG_ERROR([fluidsynth library not found.])
 fi
+ac_libs="$ac_libs -lfluidsynth"
+
+AC_SUBST(ac_libs)
+AC_SUBST(ac_incpath)
 
 # Checks for header files.
 AC_HEADER_STDC

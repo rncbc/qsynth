@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- Optional specification of alternate fluidsynth installation path
+  has been added to configure command arguments (--with-fluidsynth).
+
 - After some source code tweaks, a win32 build is now possible.
   (instructions will be provided on demand :)
 
