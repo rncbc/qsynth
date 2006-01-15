@@ -1,6 +1,8 @@
 // qsynthKnob.cpp
 //
 /****************************************************************************
+   Copyright (C) 2005-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+
    This widget is based on a design by Thorsten Wilms, 
    implemented by Chris Cannam in Rosegarden,
    adapted for QSynth by Pedro Lopez-Cabanillas
@@ -80,7 +82,8 @@ typedef QMap<qsynthKnobCacheIndex, QPixmap> qsynthKnobPixmapCache;
 qsynthKnob::qsynthKnob ( QWidget *pParent, const char *pszName )
 	: QDial(pParent, pszName),
 	m_knobColor(Qt::black), m_meterColor(Qt::white),
-	m_bMouseDial(false), m_bMousePressed(false)
+	m_bMouseDial(false), m_bMousePressed(false),
+	m_iDefaultValue(-1)
 {
 }
 
@@ -306,6 +309,12 @@ void qsynthKnob::setMouseDial ( bool bMouseDial )
 }
 
 
+void qsynthKnob::setDefaultValue ( int iDefaultValue )
+{
+	m_iDefaultValue = iDefaultValue;
+}
+
+
 // Alternate mouse behavior event handlers.
 void qsynthKnob::mousePressEvent ( QMouseEvent *pMouseEvent )
 {
@@ -316,7 +325,10 @@ void qsynthKnob::mousePressEvent ( QMouseEvent *pMouseEvent )
 		m_posMouse = pMouseEvent->pos();
 		emit dialPressed();
 	} else if (pMouseEvent->button() == Qt::MidButton) {
-		setValue((maxValue() + minValue()) / 2);
+		// Reset to default value...
+		if (m_iDefaultValue < minValue() || m_iDefaultValue > maxValue())
+			m_iDefaultValue = (maxValue() + minValue()) / 2;
+		setValue(m_iDefaultValue);
 	}
 }
 

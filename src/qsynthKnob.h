@@ -1,6 +1,8 @@
 // qsynthKnob.h
 //
 /****************************************************************************
+   Copyright (C) 2005-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+
    This widget is based on a design by Thorsten Wilms, 
    implemented by Chris Cannam in Rosegarden,
    adapted for QSynth by Pedro Lopez-Cabanillas
@@ -37,6 +39,7 @@ class qsynthKnob : public QDial
 	Q_PROPERTY( QColor knobColor READ getKnobColor WRITE setKnobColor )
 	Q_PROPERTY( QColor meterColor READ getMeterColor WRITE setMeterColor )
 	Q_PROPERTY( bool mouseDial READ getMouseDial WRITE setMouseDial )
+	Q_PROPERTY( int defaultValue READ getDefaultValue WRITE setDefaultValue )
 
 public:
 
@@ -50,6 +53,8 @@ public:
 
 	bool getMouseDial() const { return m_bMouseDial; }
 
+	int getDefaultValue() const { return m_iDefaultValue; }
+
 public slots:
 
 	// Set the colour of the knob
@@ -60,6 +65,9 @@ public slots:
 
 	// (old) QDial mouse behavior.
 	void setMouseDial(bool bMouseDial);
+
+	// Set default (mid) value.
+	void setDefaultValue(int iDefaultValue);
 
 protected:
 
@@ -82,6 +90,9 @@ private:
 	bool m_bMouseDial;
 	bool m_bMousePressed;
 	QPoint m_posMouse;
+
+	// Default (mid) value.
+	int m_iDefaultValue;
 };
 
 

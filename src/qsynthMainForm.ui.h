@@ -2,7 +2,7 @@
 //
 // ui.h extension file, included from the uic-generated form implementation.
 /****************************************************************************
-   Copyright (C) 2003-2004, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2006, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -116,7 +116,7 @@ static qsynth_midi_channel *g_pMidiChannels  = NULL;
 static void qsynth_midi_event ( qsynthEngine *pEngine, fluid_midi_event_t *pMidiEvent )
 {
     pEngine->iMidiEvent++;
-    
+
     if (g_pMidiChannels && pEngine == g_pCurrentEngine) {
         int iChan = ::fluid_midi_event_get_channel(pMidiEvent);
 #ifdef CONFIG_DEBUG
@@ -167,7 +167,7 @@ static int qsynth_handle_midi_event (void *pvData, fluid_midi_event_t *pMidiEven
 //-------------------------------------------------------------------------
 // Scaling & Clipping helpers.
 
-static void qsynth_set_range_value ( QRangeControl *pRange, double fScale, double fValue )
+static int qsynth_set_range_value ( QRangeControl *pRange, double fScale, double fValue )
 {
 #ifdef CONFIG_ROUND
     int iValue = (int) ::round(fScale * fValue);
@@ -186,22 +186,24 @@ static void qsynth_set_range_value ( QRangeControl *pRange, double fScale, doubl
         iValue = pRange->minValue();
     else if (iValue > pRange->maxValue())
         iValue = pRange->maxValue();
-        
+
     pRange->setValue(iValue);
+
+	return iValue;
 }
 
 static double qsynth_get_range_value ( QRangeControl *pRange, double fScale )
 {
     double fValue = ((double) pRange->value() / fScale);
-    
+
     double fMinValue = ((double) pRange->minValue() / fScale);
     double fMaxValue = ((double) pRange->maxValue() / fScale);
-    
+
     if (fValue < fMinValue)
         fValue = fMinValue;
     else if (fValue > fMaxValue)
         fValue = fMaxValue;
-        
+
     return fValue;
 }
 
@@ -231,7 +233,7 @@ void qsynthMainForm::init (void)
     // All forms are to be created later on setup.
     m_pMessagesForm  = NULL;
     m_pChannelsForm  = NULL;
-    
+
     // The eventual system tray widget.
     m_pSystemTray = NULL;
     m_iSystemTrayState = 0;
@@ -446,7 +448,7 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine, const QStringList& f
                 appendMessagesError(sPrefix + tr("Failed to play MIDI file: \"%1\".").arg(*iter));
         }
     }
-    
+
     // Reset all presets, if applicable...
     if (!bSetup && iSoundfonts > 0)
         resetEngine(pEngine);
@@ -460,7 +462,7 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine, const QStringList& f
 bool qsynthMainForm::decodeDragFiles ( const QMimeSource *pEvent, QStringList& files )
 {
     bool bDecode = false;
-    
+
     if (QTextDrag::canDecode(pEvent)) {
         QString sText;
         bDecode = QTextDrag::decode(pEvent, sText);
@@ -470,14 +472,14 @@ bool qsynthMainForm::decodeDragFiles ( const QMimeSource *pEvent, QStringList& f
                 *iter = (*iter).stripWhiteSpace().replace(QRegExp("^file:"), "");
         }
     }
-    
+
     return bDecode;
 }
 
 void qsynthMainForm::dragEnterEvent ( QDragEnterEvent* pDragEnterEvent )
 {
     bool bAccept = false;
-    
+
     if (QTextDrag::canDecode(pDragEnterEvent)) {
         QStringList files;
         if (decodeDragFiles(pDragEnterEvent, files)) {
@@ -488,7 +490,7 @@ void qsynthMainForm::dragEnterEvent ( QDragEnterEvent* pDragEnterEvent )
             }
         }
     }
-    
+
     pDragEnterEvent->accept(bAccept);
 }
 
@@ -730,16 +732,16 @@ void qsynthMainForm::systemTrayContextMenu ( const QPoint& pos )
 void qsynthMainForm::stabilizeForm (void)
 {
     qsynthEngine *pEngine = currentEngine();
-    
+
     bool bEnabled = (pEngine && pEngine->pSynth);
-    
+
     GainGroupBox->setEnabled(bEnabled);
     ReverbGroupBox->setEnabled(bEnabled);
     ChorusGroupBox->setEnabled(bEnabled);
     OutputGroupBox->setEnabled(bEnabled && pEngine->bMeterEnabled);
     ProgramResetPushButton->setEnabled(bEnabled);
     SystemResetPushButton->setEnabled(bEnabled);
-    
+
     if (bEnabled) {
         bool bReverbActive = ReverbActiveCheckBox->isChecked();
         ReverbRoomTextLabel->setEnabled(bReverbActive);
@@ -790,7 +792,7 @@ void qsynthMainForm::stabilizeForm (void)
 void qsynthMainForm::programReset (void)
 {
     ProgramResetPushButton->setEnabled(false);
-    
+
     resetEngine(currentEngine());
     if (m_pChannelsForm)
         m_pChannelsForm->resetAllChannels(true);
@@ -802,7 +804,7 @@ void qsynthMainForm::programReset (void)
 void qsynthMainForm::systemReset (void)
 {
     SystemResetPushButton->setEnabled(false);
-    
+
     qsynthEngine *pEngine = currentEngine();
     if (pEngine && pEngine->pSynth) {
 #ifdef CONFIG_FLUID_RESET
@@ -832,7 +834,7 @@ void qsynthMainForm::newEngine (void)
 {
     qsynthEngine *pEngine;
     QString sName;
-    
+
     // Simple hack for finding a unused engine name...
     const QString sPrefix = QSYNTH_TITLE;
     int   iSuffix = TabBar->count() + 1;    // One is always there, so try after...
@@ -908,7 +910,7 @@ bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
         TabBar->update();
         tabSelect(TabBar->currentTab());
     }
-    
+
     return bResult;
 }
 
@@ -1097,7 +1099,7 @@ void qsynthMainForm::tabSelect ( int iTab )
         if (pEngine)
             savePanelSettings(pEngine);
     }
-    
+
     // Make it official.
     m_iCurrentTab = iTab;
 
@@ -1379,7 +1381,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
         setEngineReverb(pEngine, pSetup->fReverbRoom, pSetup->fReverbDamp, pSetup->fReverbWidth, pSetup->fReverbLevel);
         setEngineChorus(pEngine, pSetup->iChorusNr, pSetup->fChorusLevel, pSetup->fChorusSpeed, pSetup->fChorusDepth, pSetup->iChorusType);
     }
-    
+
     // All is right.
     appendMessages(sPrefix + tr("Synthesizer engine started."));
 
@@ -1615,25 +1617,34 @@ void qsynthMainForm::loadPanelSettings ( qsynthEngine *pEngine, bool bUpdate )
     m_iGainChanged   = 0;
     m_iReverbChanged = 0;
     m_iChorusChanged = 0;
-    
+
     // Avoid update races: set update counters > 0)...
     m_iGainUpdated   = 1;
     m_iReverbUpdated = 1;
     m_iChorusUpdated = 1;
 
-    qsynth_set_range_value(GainDial, QSYNTH_GAIN_SCALE, pSetup->fGain);
+	GainDial->setDefaultValue(qsynth_set_range_value(
+		GainDial, QSYNTH_GAIN_SCALE, pSetup->fGain));
 
     ReverbActiveCheckBox->setChecked(pSetup->bReverbActive);
-    qsynth_set_range_value(ReverbRoomDial,  QSYNTH_REVERB_SCALE, pSetup->fReverbRoom);
-    qsynth_set_range_value(ReverbDampDial,  QSYNTH_REVERB_SCALE, pSetup->fReverbDamp);
-    qsynth_set_range_value(ReverbWidthDial, QSYNTH_REVERB_SCALE, pSetup->fReverbWidth);
-    qsynth_set_range_value(ReverbLevelDial, QSYNTH_REVERB_SCALE, pSetup->fReverbLevel);
+	ReverbRoomDial->setDefaultValue(qsynth_set_range_value(
+		ReverbRoomDial,  QSYNTH_REVERB_SCALE, pSetup->fReverbRoom));
+    ReverbDampDial->setDefaultValue(qsynth_set_range_value(
+		ReverbDampDial,  QSYNTH_REVERB_SCALE, pSetup->fReverbDamp));
+    ReverbWidthDial->setDefaultValue(qsynth_set_range_value(
+		ReverbWidthDial, QSYNTH_REVERB_SCALE, pSetup->fReverbWidth));
+    ReverbLevelDial->setDefaultValue(qsynth_set_range_value(
+		ReverbLevelDial, QSYNTH_REVERB_SCALE, pSetup->fReverbLevel));
 
     ChorusActiveCheckBox->setChecked(pSetup->bChorusActive);
+	ChorusNrDial->setDefaultValue(pSetup->iChorusNr);
     ChorusNrDial->setValue(pSetup->iChorusNr);
-    qsynth_set_range_value(ChorusLevelDial, QSYNTH_CHORUS_SCALE, pSetup->fChorusLevel);
-    qsynth_set_range_value(ChorusSpeedDial, QSYNTH_CHORUS_SCALE, pSetup->fChorusSpeed);
-    qsynth_set_range_value(ChorusDepthDial, QSYNTH_CHORUS_SCALE, pSetup->fChorusDepth);
+	ChorusLevelDial->setDefaultValue(qsynth_set_range_value(
+		ChorusLevelDial, QSYNTH_CHORUS_SCALE, pSetup->fChorusLevel));
+	ChorusSpeedDial->setDefaultValue(qsynth_set_range_value(
+		ChorusSpeedDial, QSYNTH_CHORUS_SCALE, pSetup->fChorusSpeed));
+	ChorusDepthDial->setDefaultValue(qsynth_set_range_value(
+		ChorusDepthDial, QSYNTH_CHORUS_SCALE, pSetup->fChorusDepth));
     ChorusTypeComboBox->setCurrentItem(pSetup->iChorusType);
 
     // Make them dirty.
@@ -1642,7 +1653,7 @@ void qsynthMainForm::loadPanelSettings ( qsynthEngine *pEngine, bool bUpdate )
         m_iReverbChanged++;
         m_iChorusChanged++;
     }
-    
+
     // Let them get updated, possibly on next tick.
     m_iGainUpdated   = 0;
     m_iReverbUpdated = 0;
@@ -1684,10 +1695,10 @@ void qsynthMainForm::resetChannelsForm ( qsynthEngine *pEngine, bool bPreset )
 {
     if (m_pChannelsForm == NULL)
         return;
-        
+
     // Setup the channels view window.
     m_pChannelsForm->setup(m_pOptions, pEngine, bPreset);
-    
+
     // Reset the channel event state flaggers.
     if (g_pMidiChannels)
         delete [] g_pMidiChannels;
@@ -1713,7 +1724,7 @@ void qsynthMainForm::reverbActivate ( bool bActive )
 {
     if (m_iReverbUpdated > 0)
         return;
-        
+
     qsynthEngine *pEngine = currentEngine();
     if (pEngine == NULL)
         return;
@@ -1734,7 +1745,7 @@ void qsynthMainForm::chorusActivate ( bool bActive )
 {
     if (m_iChorusUpdated > 0)
         return;
-    
+
     qsynthEngine *pEngine = currentEngine();
     if (pEngine == NULL)
         return;
@@ -1779,7 +1790,7 @@ void qsynthMainForm::updateGain (void)
 {
     if (m_iGainUpdated > 0)
         return;
-        
+
     qsynthEngine *pEngine = currentEngine();
     if (pEngine == NULL)
         return;
@@ -1802,7 +1813,7 @@ void qsynthMainForm::updateReverb (void)
 {
     if (m_iReverbUpdated > 0)
         return;
-        
+
     qsynthEngine *pEngine = currentEngine();
     if (pEngine == NULL)
         return;
@@ -1828,7 +1839,7 @@ void qsynthMainForm::updateChorus (void)
 {
     if (m_iChorusUpdated > 0)
         return;
-    
+
     qsynthEngine *pEngine = currentEngine();
     if (pEngine == NULL)
         return;

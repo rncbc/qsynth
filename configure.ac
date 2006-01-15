@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.2.4.8, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.2.4.9, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui.h)
 AC_CONFIG_HEADERS(config.h)
@@ -56,11 +56,11 @@ for X in $ac_with_paths; do
   if test -d $X/include; then
     CFLAGS="$CFLAGS -I$X/include"
     CPPFLAGS="$CPPFLAGS -I$X/include"
-    ac_incpath="$X/include $ac_incpath"
+    ac_incpath="$ac_incpath $X/include"
   fi
   if test -d $X/lib; then
     LIBS="$LIBS -L$X/lib"
-    ac_libs="-L$X/lib $ac_libs"
+    ac_libs="$ac_libs -L$X/lib"
   fi
 done
 
