@@ -100,10 +100,10 @@ void qsynthKnob::repaintScreen ( const QRect */*pRect*/ )
 
 	QPainter paint;
 
-	float angle = QSYNTHKNOB_MIN // offset
+	double angle = QSYNTHKNOB_MIN // offset
 		+ (QSYNTHKNOB_RANGE *
-			(float(value() - minValue()) /
-			(float(maxValue() - minValue()))));
+			(double(value() - minValue()) /
+			(double(maxValue() - minValue()))));
 	int degrees = int(angle * 180.0 / M_PI);
 
 	int ns = notchSize();
@@ -236,15 +236,15 @@ void qsynthKnob::repaintScreen ( const QRect */*pRect*/ )
 
 	// Pointer notch...
 
-	float hyp = float(width) / 2.0;
-	float len = hyp - indent;
+	double hyp = double(width) / 2.0;
+	double len = hyp - indent;
 	--len;
 
-	float x0 = hyp;
-	float y0 = hyp;
+	double x0 = hyp;
+	double y0 = hyp;
 
-	float x = hyp - len * sin(angle);
-	float y = hyp + len * cos(angle);
+	double x = hyp - len * sin(angle);
+	double y = hyp + len * cos(angle);
 
 	c = colorGroup().dark();
 	pen.setColor(isEnabled() ? c.dark(130) : c);
@@ -264,25 +264,25 @@ void qsynthKnob::repaintScreen ( const QRect */*pRect*/ )
 
 
 void qsynthKnob::drawTick ( QPainter& paint,
-	float angle, int size, bool internal )
+	double angle, int size, bool internal )
 {
-	float hyp = float(size) / 2.0;
-	float x0 = hyp - (hyp - 1) * sin(angle);
-	float y0 = hyp + (hyp - 1) * cos(angle);
+	double hyp = double(size) / 2.0;
+	double x0 = hyp - (hyp - 1) * sin(angle);
+	double y0 = hyp + (hyp - 1) * cos(angle);
 
 	if (internal) {
 
-		float len = hyp / 4;
-		float x1 = hyp - (hyp - len) * sin(angle);
-		float y1 = hyp + (hyp - len) * cos(angle);
+		double len = hyp / 4;
+		double x1 = hyp - (hyp - len) * sin(angle);
+		double y1 = hyp + (hyp - len) * cos(angle);
 		
 		paint.drawLine(int(x0), int(y0), int(x1), int(y1));
 
 	} else {
 
-		float len = hyp / 4;
-		float x1 = hyp - (hyp + len) * sin(angle);
-		float y1 = hyp + (hyp + len) * cos(angle);
+		double len = hyp / 4;
+		double x1 = hyp - (hyp + len) * sin(angle);
+		double y1 = hyp + (hyp + len) * cos(angle);
 
 		paint.drawLine(int(x0), int(y0), int(x1), int(y1));
 	}
@@ -316,21 +316,11 @@ void qsynthKnob::setDefaultValue ( int iDefaultValue )
 
 
 // Mouse angle determination.
-float qsynthKnob::mouseAngle ( const QPoint& pos )
+double qsynthKnob::mouseAngle ( const QPoint& pos )
 {
 	int dx = pos.x() - (QDial::width() / 2);
 	int dy = (QDial::height() / 2) - pos.y();
-	float angle = ::atan((float) dy / (float) dx);
-#if 0
-	if ((dx < 0 && dy < 0) || (dx < 0 && dy >= 0))
-		angle = (M_PI / 2.0) - angle;
-	else
-		angle = 3.0 * (M_PI / 2.0) - angle;
-	angle = (angle / M_PI) - 1.0;
-	fprintf(stderr, "qsynthKnob::mouseAngle(%d,%d): dx=%d dy=%d angle=%g\n",
-		pos.x(), pos.y(), dx, dy, angle);
-#endif
-	return angle;
+	return (dx ? atan((double) dy / (double) dx) : 0.0);
 }
 
 

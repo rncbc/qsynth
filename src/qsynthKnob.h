@@ -71,11 +71,11 @@ public slots:
 
 protected:
 
-	void drawTick(QPainter& paint, float angle, int size, bool internal);
+	void drawTick(QPainter& paint, double angle, int size, bool internal);
 	virtual void repaintScreen(const QRect *pRect = 0);
 
 	// Mouse angle determination.
-	float mouseAngle(const QPoint& pos);
+	double mouseAngle(const QPoint& pos);
 
 	// Alternate mouse behavior event handlers.
 	virtual void mousePressEvent(QMouseEvent *pMouseEvent);
