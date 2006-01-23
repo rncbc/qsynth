@@ -315,6 +315,25 @@ void qsynthKnob::setDefaultValue ( int iDefaultValue )
 }
 
 
+// Mouse angle determination.
+float qsynthKnob::mouseAngle ( const QPoint& pos )
+{
+	int dx = pos.x() - (QDial::width() / 2);
+	int dy = (QDial::height() / 2) - pos.y();
+	float angle = ::atan((float) dy / (float) dx);
+#if 0
+	if ((dx < 0 && dy < 0) || (dx < 0 && dy >= 0))
+		angle = (M_PI / 2.0) - angle;
+	else
+		angle = 3.0 * (M_PI / 2.0) - angle;
+	angle = (angle / M_PI) - 1.0;
+	fprintf(stderr, "qsynthKnob::mouseAngle(%d,%d): dx=%d dy=%d angle=%g\n",
+		pos.x(), pos.y(), dx, dy, angle);
+#endif
+	return angle;
+}
+
+
 // Alternate mouse behavior event handlers.
 void qsynthKnob::mousePressEvent ( QMouseEvent *pMouseEvent )
 {
@@ -341,14 +360,14 @@ void qsynthKnob::mouseMoveEvent ( QMouseEvent *pMouseEvent )
 		// Dragging by x or y axis when clicked modifies value.
 		const QPoint& posMouse = pMouseEvent->pos();
 		int iValue = value()
-			+ ((posMouse.x() - m_posMouse.x())
-			+ (m_posMouse.y() - posMouse.y())) * lineStep();
+			+ (mouseAngle(m_posMouse) < mouseAngle(posMouse) ? -1 : +1)
+			* lineStep();
+		m_posMouse = posMouse;
 		if (iValue > maxValue())
 			iValue = maxValue();
 		else
 		if (iValue < minValue())
 			iValue = minValue();
-		m_posMouse = posMouse;
 		setValue(iValue);
 		emit dialMoved(value());
 	}

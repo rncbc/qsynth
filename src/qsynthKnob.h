@@ -74,6 +74,9 @@ protected:
 	void drawTick(QPainter& paint, float angle, int size, bool internal);
 	virtual void repaintScreen(const QRect *pRect = 0);
 
+	// Mouse angle determination.
+	float mouseAngle(const QPoint& pos);
+
 	// Alternate mouse behavior event handlers.
 	virtual void mousePressEvent(QMouseEvent *pMouseEvent);
 	virtual void mouseMoveEvent(QMouseEvent *pMouseEvent);
@@ -87,8 +90,8 @@ private:
 	QColor m_meterColor;
 
 	// Alternate mouse behavior tracking.
-	bool m_bMouseDial;
-	bool m_bMousePressed;
+	bool   m_bMouseDial;
+	bool   m_bMousePressed;
 	QPoint m_posMouse;
 
 	// Default (mid) value.

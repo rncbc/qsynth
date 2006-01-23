@@ -5,6 +5,10 @@ ChangeLog
 
 CVS HEAD
 
+- New dial-knob behavior now follows mouse pointer angular position,
+  almost similar to old QDial, but this time avoiding that nasty and
+  rather abrupt change on first mouse click.
+
 - By simple use of widget subclassing, the value/position of any dial
   knob can now be reset to its default or original position at any time,
   by simply pressing the mouse mid-button. These default value positions
