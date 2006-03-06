@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-CVS HEAD
+0.2.5   2006-03-05  Fancy dial knobs and effective bank-offsets.
 
 - New dial-knob behavior now follows mouse pointer angular position,
   almost similar to old QDial, but this time avoiding that nasty and
