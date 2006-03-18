@@ -58,6 +58,10 @@ for X in $ac_with_paths; do
     CPPFLAGS="$CPPFLAGS -I$X/include"
     ac_incpath="$ac_incpath $X/include"
   fi
+  if test -d $X/lib64; then
+    LIBS="$LIBS -L$X/lib64"
+    ac_libs="$ac_libs -L$X/lib64"
+  fi
   if test -d $X/lib; then
     LIBS="$LIBS -L$X/lib"
     ac_libs="$ac_libs -L$X/lib"
@@ -75,7 +79,11 @@ fi
 
 CFLAGS="$CFLAGS -I$QTDIR/include"
 CPPFLAGS="$CPPFLAGS -I$QTDIR/include"
-LIBS="$LIBS -L$QTDIR/lib"
+if test -d $QTDIR/lib64; then
+  LIBS="$LIBS -L$QTDIR/lib64"
+else
+  LIBS="$LIBS -L$QTDIR/lib"
+fi
 for X in qt qt3; do
   if test -d $QTDIR/include/$X; then
     CFLAGS="$CFLAGS -I$QTDIR/include/$X"
