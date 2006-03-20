@@ -3,6 +3,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+CVS HEAD
+
+- Added configure support for x86_64 libraries (Pedro Lopez-Cabanillas).
+
+
 0.2.5   2006-03-05  Fancy dial knobs and effective bank-offsets.
 
 - New dial-knob behavior now follows mouse pointer angular position,
