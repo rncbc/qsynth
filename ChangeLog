@@ -5,6 +5,8 @@ ChangeLog
 
 CVS HEAD
 
+- Changed deprecated copyright attribute to license, on qsynth.spec (RPM).
+
 - Added configure support for x86_64 libraries (Pedro Lopez-Cabanillas).
 
 
