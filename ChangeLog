@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- Engine name gets through the respective tab title when created. Fixed
+  engine delete button enabling on the main window.
+
 - Changed deprecated copyright attribute to license, on qsynth.spec (RPM).
 
 - Added configure support for x86_64 libraries (Pedro Lopez-Cabanillas).

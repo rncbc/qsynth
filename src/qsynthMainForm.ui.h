@@ -781,7 +781,7 @@ void qsynthMainForm::stabilizeForm (void)
     }
     RestartPushButton->setEnabled(true);
 
-	DeleteEnginePushButton->setEnabled(bEnabled && !pEngine->isDefault());
+	DeleteEnginePushButton->setEnabled(pEngine && !pEngine->isDefault());
 
     MessagesPushButton->setOn(m_pMessagesForm && m_pMessagesForm->isVisible());
     ChannelsPushButton->setOn(m_pChannelsForm && m_pChannelsForm->isVisible());
@@ -856,10 +856,12 @@ void qsynthMainForm::newEngine (void)
     pEngine = new qsynthEngine(m_pOptions, sName);
     if (setupEngineTab(pEngine, NULL)) {
         // Success, add a new tab...
-        TabBar->addTab(new qsynthTab(pEngine));
+		qsynthTab *pTab = new qsynthTab(pEngine);
+        TabBar->addTab(pTab);
         // And try to be persistent...
         m_pOptions->newEngine(pEngine);
         // Update bar...
+		TabBar->setCurrentTab(pTab);
         TabBar->update();
     } else {
         // As this will not be mangaed by a qsynthTab instance,
@@ -921,31 +923,30 @@ bool qsynthMainForm::setupEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
     bool bResult = false;
 
     if (pEngine == NULL || pEngine->setup() == NULL)
-        return bResult;
+        return false;
 
-    qsynthSetupForm *pSetupForm = new qsynthSetupForm(this);
-    if (pSetupForm) {
-        // Load the current instance settings.
-        pSetupForm->setup(m_pOptions, pEngine, (pTab == NULL));
-        // Show the instance setup dialog, then ask for a engine restart?
-        bResult = pSetupForm->exec();
-        if (bResult) {
-            // Have we changed names? Ugly uh?
-            if (pTab && m_pOptions->renameEngine(pEngine)) {
-                // Update main caption, if we're on current engine tab...
-                if (pTab->identifier() == TabBar->currentTab())
-                    setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + " [" + pEngine->name() + "]");
-                // Finally update tab text...
-                pTab->setText(pEngine->name());
-            }
-            // Now we may restart this.
-            restartEngine(pEngine);
-        }
-        // Done.
-        delete pSetupForm;
-    }
+    qsynthSetupForm setupForm(this);
+	// Load the current instance settings.
+	setupForm.setup(m_pOptions, pEngine, (pTab == NULL));
+	// Show the instance setup dialog, then ask for a engine restart?
+	if (!setupForm.exec())
+		return false;
 
-    return bResult;
+	// Have we changed names? Ugly uh?
+	m_pOptions->renameEngine(pEngine);
+	if (pTab) {
+		// Update main caption, if we're on current engine tab...
+		if (pTab->identifier() == TabBar->currentTab())
+			setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + " [" + pEngine->name() + "]");
+		// Finally update tab text...
+		pTab->setText(pEngine->name());
+	}
+
+	// Now we may restart this.
+	restartEngine(pEngine);
+
+    // Done.
+    return true;
 }
 
 
