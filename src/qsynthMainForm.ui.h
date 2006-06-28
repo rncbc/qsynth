@@ -920,8 +920,6 @@ bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
 // Edit settings of a given engine instance.
 bool qsynthMainForm::setupEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
 {
-    bool bResult = false;
-
     if (pEngine == NULL || pEngine->setup() == NULL)
         return false;
 
@@ -936,8 +934,10 @@ bool qsynthMainForm::setupEngineTab ( qsynthEngine *pEngine, qsynthTab *pTab )
 	m_pOptions->renameEngine(pEngine);
 	if (pTab) {
 		// Update main caption, if we're on current engine tab...
-		if (pTab->identifier() == TabBar->currentTab())
-			setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + " [" + pEngine->name() + "]");
+		if (pTab->identifier() == TabBar->currentTab()) {
+			setCaption(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE)
+				+ " [" + pEngine->name() + "]");
+		}
 		// Finally update tab text...
 		pTab->setText(pEngine->name());
 	}
