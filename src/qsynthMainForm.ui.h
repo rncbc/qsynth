@@ -231,20 +231,33 @@ struct qsynthEngineNode
 
 static int qsynth_sfont_free ( fluid_sfont_t *pSoundFont )
 {
+#ifdef CONFIG_DEBUG
+	fprintf(stderr, "qsynth_sfont_free(%p)\n", pSoundFont);
+#endif
 	if (pSoundFont)	::free(pSoundFont);
 	return 0;
 }
 
 static int qsynth_sfloader_free ( fluid_sfloader_t * pLoader )
 {
+#ifdef CONFIG_DEBUG
+	fprintf(stderr, "qsynth_sfloader_free(%p)\n", pLoader);
+#endif
 	if (pLoader) ::free(pLoader);
 	return 0;
 }
 
 
 static fluid_sfont_t *qsynth_sfloader_load (
-	fluid_sfloader_t *, const char *pszFilename )
+	fluid_sfloader_t *pLoader, const char *pszFilename )
 {
+#ifdef CONFIG_DEBUG
+	fprintf(stderr, "qsynth_sfloader_load(%p, \"%s\")\n", pLoader, pszFilename);
+#endif
+
+	if (pLoader == NULL)
+		return NULL;
+
 	// Look thru all the synths' sfonts for the requested one...
 	qsynthEngineNode *pNode = g_pEngineList;
 	while (pNode) {
@@ -355,7 +368,11 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
     m_pOptions = pOptions;
 
     // What style do we create these forms?
-    WFlags wflags = Qt::WType_TopLevel;
+	WFlags wflags = Qt::WStyle_Customize
+		| Qt::WStyle_Title
+		| Qt::WStyle_SysMenu
+		| Qt::WStyle_MinMax
+		| Qt::WType_TopLevel;
     if (m_pOptions->bKeepOnTop)
         wflags |= Qt::WStyle_Tool;
     // All forms are to be created right now.
@@ -1562,6 +1579,21 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
         pEngine->pAudioDriver = NULL;
         pEngine->bMeterEnabled = false;
     }
+
+#if 0
+	// Unload soundfonts from actual synth stack...
+	int cSoundFonts = ::fluid_synth_sfcount(pEngine->pSynth);
+	for (int i = cSoundFonts - 1; i >= 0; i--) {
+		fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(pEngine->pSynth, i);
+		if (pSoundFont) {
+			int iSFID = pSoundFont->id;
+			const QString sName = pSoundFont->get_name(pSoundFont);
+			appendMessagesColor(sPrefix + tr("Unloading soundfont: \"%1\" (SFID=%2)").arg(sName).arg(iSFID) + sElipsis, "#999933");
+			if (::fluid_synth_sfunload(pEngine->pSynth, iSFID, 0) < 0)
+				appendMessagesError(sPrefix + tr("Failed to unload the soundfont: \"%1\".").arg(sName));
+		}
+	}
+#endif
 
     // And finally, destroy the synthesizer engine.
     if (pEngine->pSynth) {

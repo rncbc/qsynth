@@ -451,12 +451,12 @@ void qsynthSetupForm::stabilizeForm (void)
     MidiDumpCheckBox->setEnabled(bEnabled);
     VerboseCheckBox->setEnabled(bEnabled);
 
-    AlsaNameTextLabel->setEnabled(bAlsaEnabled);
-    AlsaNameComboBox->setEnabled(bAlsaEnabled);
-    
+    AlsaNameTextLabel->setEnabled(bEnabled && bAlsaEnabled);
+    AlsaNameComboBox->setEnabled(bEnabled && bAlsaEnabled);
+
     bool bJackEnabled = (AudioDriverComboBox->currentText() == "jack");
-    AudioDeviceTextLabel->setEnabled(bEnabled && !bJackEnabled);
-    AudioDeviceLineEdit->setEnabled(bEnabled && !bJackEnabled);
+    AudioDeviceTextLabel->setEnabled(!bJackEnabled);
+    AudioDeviceLineEdit->setEnabled(!bJackEnabled);
     JackMultiCheckBox->setEnabled(bJackEnabled);
     JackAutoConnectCheckBox->setEnabled(bJackEnabled);
     JackNameTextLabel->setEnabled(bJackEnabled);
