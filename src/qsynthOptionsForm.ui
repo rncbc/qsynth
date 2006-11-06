@@ -408,6 +408,25 @@
                                     <string>Whether to enable the system tray icon</string>
                                 </property>
                             </widget>
+                            <widget class="QCheckBox">
+                                <property name="name">
+                                    <cstring>CustomLoaderCheckBox</cstring>
+                                </property>
+                                <property name="font">
+                                    <font>
+                                        <bold>0</bold>
+                                    </font>
+                                </property>
+                                <property name="text">
+                                    <string>Enable cu&amp;stom loader (soundfont sharing)</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+S</string>
+                                </property>
+                                <property name="toolTip" stdset="0">
+                                    <string>Whether to enable custom loader (soundfont sharing)</string>
+                                </property>
+                            </widget>
                         </vbox>
                     </widget>
                 </vbox>
@@ -448,6 +467,12 @@
     </connection>
     <connection>
         <sender>SystemTrayCheckBox</sender>
+        <signal>stateChanged(int)</signal>
+        <receiver>qsynthOptionsForm</receiver>
+        <slot>optionsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>CustomLoaderCheckBox</sender>
         <signal>stateChanged(int)</signal>
         <receiver>qsynthOptionsForm</receiver>
         <slot>optionsChanged()</slot>

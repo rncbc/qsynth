@@ -49,6 +49,7 @@ qsynthOptions::qsynthOptions (void)
     bStdoutCapture = m_settings.readBoolEntry("/StdoutCapture", true);
     bOutputMeters  = m_settings.readBoolEntry("/OutputMeters",  false);
     bSystemTray    = m_settings.readBoolEntry("/SystemTray",    false);
+    bCustomLoader  = m_settings.readBoolEntry("/CustomLoader",  false);
     m_settings.endGroup();
 
     // Load defaults...
@@ -107,6 +108,7 @@ qsynthOptions::~qsynthOptions (void)
     m_settings.writeEntry("/StdoutCapture", bStdoutCapture);
     m_settings.writeEntry("/OutputMeters",  bOutputMeters);
     m_settings.writeEntry("/SystemTray",    bSystemTray);
+    m_settings.writeEntry("/CustomLoader",  bCustomLoader);
     m_settings.endGroup();
 
     // Create default setup descriptor.

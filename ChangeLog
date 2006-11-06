@@ -5,7 +5,10 @@ ChangeLog
 
 CVS HEAD
 
-- GPL address update.
+- New experimental soundfont loader which prevents RAM image duplication
+  if more than one engine loads the same soundfont file. Server-mode is
+  now supported on multi-engine configurations (both patches handed by
+  Dave Searls, thanks).
 
 - Engine name gets through the respective tab title when created. Fixed
   engine delete button enabling on the main window.
@@ -13,6 +16,8 @@ CVS HEAD
 - Changed deprecated copyright attribute to license, on qsynth.spec (RPM).
 
 - Added configure support for x86_64 libraries (Pedro Lopez-Cabanillas).
+
+- GPL address update.
 
 
 0.2.5   2006-03-05  Fancy dial knobs and effective bank-offsets.

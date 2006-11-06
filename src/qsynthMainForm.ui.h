@@ -59,6 +59,13 @@ static int g_fdStdout[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
 
 static qsynthEngine *g_pCurrentEngine = NULL;
 
+
+#ifdef CONFIG_FLUID_SERVER
+// Hold last shell/server port in use.
+static int g_iLastShellPort = 0;
+#endif
+
+
 //-------------------------------------------------------------------------
 // Needed for server mode.
 static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
@@ -205,6 +212,63 @@ static double qsynth_get_range_value ( QRangeControl *pRange, double fScale )
         fValue = fMaxValue;
 
     return fValue;
+}
+
+
+//-------------------------------------------------------------------------
+// (EXPERIMENTAL) Soundfont loader: feature to avoid loading
+// duplicate soundfonts for multiple engines.
+
+static
+struct qsynthEngineNode
+{
+	qsynthEngine     *pEngine;
+	qsynthEngineNode *pPrev;
+	qsynthEngineNode *pNext;
+
+} *g_pEngineList = NULL;
+
+
+static int qsynth_sfont_free ( fluid_sfont_t *pSoundFont )
+{
+	if (pSoundFont)	::free(pSoundFont);
+	return 0;
+}
+
+static int qsynth_sfloader_free ( fluid_sfloader_t * pLoader )
+{
+	if (pLoader) ::free(pLoader);
+	return 0;
+}
+
+
+static fluid_sfont_t *qsynth_sfloader_load (
+	fluid_sfloader_t *, const char *pszFilename )
+{
+	// Look thru all the synths' sfonts for the requested one...
+	qsynthEngineNode *pNode = g_pEngineList;
+	while (pNode) {
+		fluid_synth_t *pSynth = (pNode->pEngine)->pSynth;
+		int cSoundFonts = ::fluid_synth_sfcount(pSynth);
+		for (int i = 0; i < cSoundFonts; i++) {
+			fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(pSynth, i);
+			// Somehow get the name of this sfont...
+			char *pszName = pSoundFont->get_name(pSoundFont);
+			// Create a dup sfont node with our 'free' routine,
+			// when we have a match
+			if (::strcmp(pszName, pszFilename) == 0) {
+				fluid_sfont_t *pNewSoundFont
+					= (fluid_sfont_t *) ::malloc(sizeof(fluid_sfont_t));
+				::memcpy(pNewSoundFont, pSoundFont, sizeof(fluid_sfont_t));
+				pNewSoundFont->free = qsynth_sfont_free;
+				return pNewSoundFont;
+			}
+		}
+		pNode = pNode->pNext;
+	}
+	
+	// fluidsynth will call next (or default) loader...
+	return NULL;
 }
 
 
@@ -1032,12 +1096,13 @@ void qsynthMainForm::showOptionsForm (void)
         if (m_pOptions->sMessagesFont.isEmpty() && m_pMessagesForm)
             m_pOptions->sMessagesFont = m_pMessagesForm->messagesFont().toString();
         // To track down deferred or immediate changes.
-        QString sOldMessagesFont = m_pOptions->sMessagesFont;
-        bool    bOldSystemTray   = m_pOptions->bSystemTray;
-        bool    bOutputMeters    = m_pOptions->bOutputMeters;
-        bool    bStdoutCapture   = m_pOptions->bStdoutCapture;
-        bool    bKeepOnTop       = m_pOptions->bKeepOnTop;
-        int     bMessagesLimit   = m_pOptions->bMessagesLimit;
+        QString sMessagesFont  = m_pOptions->sMessagesFont;
+        bool    bCustomLoader  = m_pOptions->bCustomLoader;
+        bool    bSystemTray    = m_pOptions->bSystemTray;
+        bool    bOutputMeters  = m_pOptions->bOutputMeters;
+        bool    bStdoutCapture = m_pOptions->bStdoutCapture;
+        bool    bKeepOnTop     = m_pOptions->bKeepOnTop;
+        int     bMessagesLimit = m_pOptions->bMessagesLimit;
         int     iMessagesLimitLines = m_pOptions->iMessagesLimitLines;
         // Load the current setup settings.
         pOptionsForm->setup(m_pOptions);
@@ -1054,18 +1119,20 @@ void qsynthMainForm::showOptionsForm (void)
                        "next time you start this program."), tr("OK"));
             }
             // Check wheather something immediate has changed.
-            if (sOldMessagesFont != m_pOptions->sMessagesFont)
+            if (sMessagesFont != m_pOptions->sMessagesFont)
                 updateMessagesFont();
             if (( bMessagesLimit && !m_pOptions->bMessagesLimit) ||
                 (!bMessagesLimit &&  m_pOptions->bMessagesLimit) ||
                 (iMessagesLimitLines !=  m_pOptions->iMessagesLimitLines))
                 updateMessagesLimit();
-            if (( bOldSystemTray && !m_pOptions->bSystemTray) ||
-                (!bOldSystemTray &&  m_pOptions->bSystemTray))
+            if (( bSystemTray && !m_pOptions->bSystemTray) ||
+                (!bSystemTray &&  m_pOptions->bSystemTray))
                 updateSystemTray();
             // There's some option(s) that need a global restart...
             if (( bOutputMeters  && !m_pOptions->bOutputMeters) ||
-                (!bOutputMeters  &&  m_pOptions->bOutputMeters)) {
+                (!bOutputMeters  &&  m_pOptions->bOutputMeters) ||
+				( bCustomLoader  && !m_pOptions->bCustomLoader) ||
+                (!bCustomLoader  &&  m_pOptions->bCustomLoader)) {
                 updateOutputMeters();
                 restartAllEngines();
             }
@@ -1286,6 +1353,25 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
         return false;
     }
 
+	// Check custom soundfont loader option...
+	if (m_pOptions && m_pOptions->bCustomLoader) {
+		// Add special loader to mirror fonts in use by another engine...
+		fluid_sfloader_t *pLoader
+			= (fluid_sfloader_t *) ::malloc(sizeof(fluid_sfloader_t));
+		pLoader->data = (void *) pEngine;
+		pLoader->load = qsynth_sfloader_load;
+		pLoader->free = qsynth_sfloader_free;
+		::fluid_synth_add_sfloader(pEngine->pSynth, pLoader);
+		// Push on to engine list.
+		qsynthEngineNode *pNode = new qsynthEngineNode;
+		pNode->pEngine = pEngine;
+		pNode->pNext   = g_pEngineList;
+		pNode->pPrev   = NULL;
+		if (g_pEngineList)
+			g_pEngineList->pPrev = pNode;
+		g_pEngineList = pNode;
+	}
+
     // Load soundfonts...
     int i = 0;
     for (QStringList::ConstIterator iter = pSetup->soundfonts.begin(); iter != pSetup->soundfonts.end(); iter++) {
@@ -1359,6 +1445,23 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
     if (pSetup->bServer) {
 #ifdef CONFIG_FLUID_SERVER
         appendMessages(sPrefix + tr("Creating server") + sElipsis);
+        // Server port must be different for each engine...
+		char *pszShellPort = "shell.port";
+		if (g_iLastShellPort > 0) {
+			g_iLastShellPort++;
+		} else {
+			g_iLastShellPort = 0;
+			::fluid_settings_getint(
+				pSetup->fluid_settings(), pszShellPort, &g_iLastShellPort);
+			if (g_iLastShellPort == 0) {
+				g_iLastShellPort = ::fluid_settings_getint_default(
+					pSetup->fluid_settings(), pszShellPort);
+			}
+		}
+		// Set the (new) server port for this engne...
+		::fluid_settings_setint(
+			pSetup->fluid_settings(), pszShellPort, g_iLastShellPort);
+		// Create the server now...
         pEngine->pServer = ::new_fluid_server(pSetup->fluid_settings(), qsynth_newclient, pEngine->pSynth);
         if (pEngine->pServer == NULL)
             appendMessagesError(sPrefix + tr("Failed to create the server.\n\nContinuing without it."));
@@ -1420,8 +1523,9 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 #ifdef CONFIG_FLUID_SERVER
     // Destroy server.
     if (pEngine->pServer) {
-        appendMessages(sPrefix + tr("Waiting for server to terminate") + sElipsis);
-        ::fluid_server_join(pEngine->pServer);
+    //  Server join is not necessary, causes seg fault when multiple engines.
+    //  appendMessages(sPrefix + tr("Waiting for server to terminate") + sElipsis);
+    //  ::fluid_server_join(pEngine->pServer);
         appendMessages(sPrefix + tr("Destroying server") + sElipsis);
         ::delete_fluid_server(pEngine->pServer);
         pEngine->pServer = NULL;
@@ -1467,6 +1571,22 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
         // We're done.
         appendMessages(sPrefix + tr("Synthesizer engine terminated."));
     }
+
+    // Remove engine from custom loader list, if any...
+	qsynthEngineNode *pNode = g_pEngineList;
+	while (pNode) {
+		if (pNode->pEngine == pEngine ) {
+			if (pNode->pPrev)
+				(pNode->pPrev)->pNext = pNode->pNext;
+			else
+				g_pEngineList = pNode->pNext;
+			if (pNode->pNext)
+				(pNode->pNext)->pPrev = pNode->pPrev;
+			delete pNode;
+			break;
+		}
+		pNode = pNode->pNext;
+	}
 
     // Show up our efforts, if we're currently selected :p
     if (pEngine == currentEngine()) {
