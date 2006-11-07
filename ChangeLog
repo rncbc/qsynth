@@ -5,10 +5,16 @@ ChangeLog
 
 CVS HEAD
 
-- New experimental soundfont loader which prevents RAM image duplication
+- Messages and channels window captions can now be set smaller as
+  tool-widgets, in effect when child windows are kept always on top.
+
+- While on the engine setup dialog, the ALSA sequencer client identifier
+  is now also disabled depending on the MIDI input option setting.
+
+- Experimental soundfont loader which prevents RAM image duplication
   if more than one engine loads the same soundfont file. Server-mode is
-  now supported on multi-engine configurations (both patches handed by
-  Dave Searls, thanks).
+  now supported on multi-engine configurations by auto-increnmenting the
+  shell socket listening port (both patches handed by Dave Searls, thanks).
 
 - Engine name gets through the respective tab title when created. Fixed
   engine delete button enabling on the main window.

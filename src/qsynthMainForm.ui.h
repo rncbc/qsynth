@@ -215,6 +215,7 @@ static double qsynth_get_range_value ( QRangeControl *pRange, double fScale )
 }
 
 
+#ifdef QSYNTH_CUSTOM_LOADER
 //-------------------------------------------------------------------------
 // (EXPERIMENTAL) Soundfont loader: feature to avoid loading
 // duplicate soundfonts for multiple engines.
@@ -283,6 +284,8 @@ static fluid_sfont_t *qsynth_sfloader_load (
 	// fluidsynth will call next (or default) loader...
 	return NULL;
 }
+
+#endif	// QSYNTH_CUSTOM_LOADER
 
 
 //-------------------------------------------------------------------------
@@ -503,7 +506,7 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine, const QStringList& f
     // Add each list item to Soundfont stack or MIDI player playlist...
     const QString sPrefix  = pEngine->name() + ": ";
     const QString sElipsis = "...";
-    int   iSoundfonts = 0;
+    int   iSoundFonts = 0;
     int   iMidiFiles  = 0;
     for (QStringList::ConstIterator iter = files.begin(); iter != files.end(); iter++) {
         char *pszFilename = (char *) (*iter).latin1();
@@ -512,7 +515,7 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine, const QStringList& f
             if (bSetup || pSetup->soundfonts.find(*iter) == pSetup->soundfonts.end()) {
                 appendMessagesColor(sPrefix + tr("Loading soundfont: \"%1\"").arg(*iter) + sElipsis, "#999933");
                 if (::fluid_synth_sfload(pEngine->pSynth, pszFilename, 1) >= 0) {
-                    iSoundfonts++;
+                    iSoundFonts++;
                     if (!bSetup) {
                         pSetup->soundfonts.append(*iter);
                         pSetup->bankoffsets.append("0");
@@ -531,7 +534,7 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine, const QStringList& f
     }
 
     // Reset all presets, if applicable...
-    if (!bSetup && iSoundfonts > 0)
+    if (!bSetup && iSoundFonts > 0)
         resetEngine(pEngine);
     // Start playing, if any...
     if (pEngine->pPlayer && iMidiFiles > 0)
@@ -1114,7 +1117,6 @@ void qsynthMainForm::showOptionsForm (void)
             m_pOptions->sMessagesFont = m_pMessagesForm->messagesFont().toString();
         // To track down deferred or immediate changes.
         QString sMessagesFont  = m_pOptions->sMessagesFont;
-        bool    bCustomLoader  = m_pOptions->bCustomLoader;
         bool    bSystemTray    = m_pOptions->bSystemTray;
         bool    bOutputMeters  = m_pOptions->bOutputMeters;
         bool    bStdoutCapture = m_pOptions->bStdoutCapture;
@@ -1147,9 +1149,7 @@ void qsynthMainForm::showOptionsForm (void)
                 updateSystemTray();
             // There's some option(s) that need a global restart...
             if (( bOutputMeters  && !m_pOptions->bOutputMeters) ||
-                (!bOutputMeters  &&  m_pOptions->bOutputMeters) ||
-				( bCustomLoader  && !m_pOptions->bCustomLoader) ||
-                (!bCustomLoader  &&  m_pOptions->bCustomLoader)) {
+                (!bOutputMeters  &&  m_pOptions->bOutputMeters)) {
                 updateOutputMeters();
                 restartAllEngines();
             }
@@ -1370,24 +1370,23 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
         return false;
     }
 
-	// Check custom soundfont loader option...
-	if (m_pOptions && m_pOptions->bCustomLoader) {
-		// Add special loader to mirror fonts in use by another engine...
-		fluid_sfloader_t *pLoader
-			= (fluid_sfloader_t *) ::malloc(sizeof(fluid_sfloader_t));
-		pLoader->data = (void *) pEngine;
-		pLoader->load = qsynth_sfloader_load;
-		pLoader->free = qsynth_sfloader_free;
-		::fluid_synth_add_sfloader(pEngine->pSynth, pLoader);
-		// Push on to engine list.
-		qsynthEngineNode *pNode = new qsynthEngineNode;
-		pNode->pEngine = pEngine;
-		pNode->pNext   = g_pEngineList;
-		pNode->pPrev   = NULL;
-		if (g_pEngineList)
-			g_pEngineList->pPrev = pNode;
-		g_pEngineList = pNode;
-	}
+#ifdef QSYNTH_CUSTOM_LOADER
+	// Add special loader to mirror fonts in use by another engine...
+	fluid_sfloader_t *pLoader
+		= (fluid_sfloader_t *) ::malloc(sizeof(fluid_sfloader_t));
+	pLoader->data = (void *) pEngine;
+	pLoader->load = qsynth_sfloader_load;
+	pLoader->free = qsynth_sfloader_free;
+	::fluid_synth_add_sfloader(pEngine->pSynth, pLoader);
+	// Push on to engine list.
+	qsynthEngineNode *pNode = new qsynthEngineNode;
+	pNode->pEngine = pEngine;
+	pNode->pNext   = g_pEngineList;
+	pNode->pPrev   = NULL;
+	if (g_pEngineList)
+		g_pEngineList->pPrev = pNode;
+	g_pEngineList = pNode;
+#endif
 
     // Load soundfonts...
     int i = 0;
@@ -1580,20 +1579,22 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
         pEngine->bMeterEnabled = false;
     }
 
-#if 0
 	// Unload soundfonts from actual synth stack...
 	int cSoundFonts = ::fluid_synth_sfcount(pEngine->pSynth);
-	for (int i = cSoundFonts - 1; i >= 0; i--) {
-		fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(pEngine->pSynth, i);
+	for (int i = 0; i < cSoundFonts; i++) {
+		fluid_sfont_t *pSoundFont
+			= ::fluid_synth_get_sfont(pEngine->pSynth, i);
 		if (pSoundFont) {
 			int iSFID = pSoundFont->id;
 			const QString sName = pSoundFont->get_name(pSoundFont);
-			appendMessagesColor(sPrefix + tr("Unloading soundfont: \"%1\" (SFID=%2)").arg(sName).arg(iSFID) + sElipsis, "#999933");
+			appendMessagesColor(sPrefix +
+				tr("Unloading soundfont: \"%1\" (SFID=%2)")
+				.arg(sName).arg(iSFID) + sElipsis, "#999933");
 			if (::fluid_synth_sfunload(pEngine->pSynth, iSFID, 0) < 0)
-				appendMessagesError(sPrefix + tr("Failed to unload the soundfont: \"%1\".").arg(sName));
+				appendMessagesError(sPrefix +
+					tr("Failed to unload the soundfont: \"%1\".").arg(sName));
 		}
 	}
-#endif
 
     // And finally, destroy the synthesizer engine.
     if (pEngine->pSynth) {
@@ -1604,6 +1605,7 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
         appendMessages(sPrefix + tr("Synthesizer engine terminated."));
     }
 
+#ifdef QSYNTH_CUSTOM_LOADER
     // Remove engine from custom loader list, if any...
 	qsynthEngineNode *pNode = g_pEngineList;
 	while (pNode) {
@@ -1619,6 +1621,7 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 		}
 		pNode = pNode->pNext;
 	}
+#endif
 
     // Show up our efforts, if we're currently selected :p
     if (pEngine == currentEngine()) {

@@ -59,7 +59,6 @@ public:
     bool    bStdoutCapture;
     bool    bOutputMeters;
     bool    bSystemTray;
-    bool    bCustomLoader;
 
     // Default options...
     QString sSoundFontDir;

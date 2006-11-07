@@ -79,7 +79,6 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
     StdoutCaptureCheckBox->setChecked(m_pOptions->bStdoutCapture);
     OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
     SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
-    CustomLoaderCheckBox->setChecked(m_pOptions->bCustomLoader);
 
 #if defined(WIN32)
     StdoutCaptureCheckBox->setChecked(false);
@@ -110,7 +109,6 @@ void qsynthOptionsForm::accept (void)
         m_pOptions->bStdoutCapture      = StdoutCaptureCheckBox->isChecked();
         m_pOptions->bOutputMeters       = OutputMetersCheckBox->isChecked();
         m_pOptions->bSystemTray         = SystemTrayCheckBox->isChecked();
-        m_pOptions->bCustomLoader       = CustomLoaderCheckBox->isChecked();
         // Reset dirty flag.
         m_iDirtyCount = 0;
     }
