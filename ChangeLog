@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- Most top-level widgets were missing the normal-widget flag, which
+  were causing some sticky size behavior on some window managers.
+
 - Messages and channels window captions can now be set smaller as
   tool-widgets, in effect when child windows are kept always on top.
 

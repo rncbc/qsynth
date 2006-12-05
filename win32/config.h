@@ -1,6 +1,6 @@
 
 #define PACKAGE_NAME    "Qsynth"
-#define PACKAGE_VERSION "0.2.5.8"
+#define PACKAGE_VERSION "0.2.5.9"
 
 
 #define CONFIG_PREFIX   "."

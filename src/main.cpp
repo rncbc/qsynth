@@ -55,8 +55,17 @@ int main ( int argc, char **argv )
         return 1;
     }
 
-    // Construct, setup and show the main form.
-    qsynthMainForm w;
+	// What style do we create these forms?
+	Qt::WFlags wflags = Qt::WStyle_Customize
+		| Qt::WStyle_NormalBorder
+		| Qt::WStyle_Title
+		| Qt::WStyle_SysMenu
+		| Qt::WStyle_MinMax
+		| Qt::WType_TopLevel;
+	if (settings.bKeepOnTop)
+		wflags |= Qt::WStyle_Tool;
+	// Construct the main form, and show it to the world.
+	qsynthMainForm w(0, 0, wflags);
     app.setMainWidget(&w);
     w.setup(&settings);
     w.show();
