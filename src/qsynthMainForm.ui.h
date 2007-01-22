@@ -2,7 +2,7 @@
 //
 // ui.h extension file, included from the uic-generated form implementation.
 /****************************************************************************
-   Copyright (C) 2003-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -34,7 +34,18 @@
 #include <unistd.h>
 #endif
 
+// Needed for lroundf()
 #include <math.h>
+
+#ifndef CONFIG_ROUND
+static inline long lroundf ( float x )
+{
+	if (x >= 0.0f)
+		return long(x + 0.5f);
+	else
+		return long(x - 0.5f);
+}
+#endif
 
 #ifdef HAVE_SIGNAL_H
 #include <signal.h>
@@ -176,18 +187,7 @@ static int qsynth_handle_midi_event (void *pvData, fluid_midi_event_t *pMidiEven
 
 static int qsynth_set_range_value ( QRangeControl *pRange, double fScale, double fValue )
 {
-#ifdef CONFIG_ROUND
-    int iValue = (int) ::round(fScale * fValue);
-#else
-    double fIPart = 0.0;
-    double fFPart = ::modf(fScale * fValue, &fIPart);
-    int iValue = (int) fIPart;
-    if (fFPart >= +0.5)
-        iValue++;
-    else
-    if (fFPart <= -0.5)
-        iValue--;
-#endif
+	int iValue = (int) ::lroundf(fScale * fValue);
 
     if (iValue < pRange->minValue())
         iValue = pRange->minValue();

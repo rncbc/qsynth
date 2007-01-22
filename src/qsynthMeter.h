@@ -1,7 +1,7 @@
 // qsynthMeter.h
 //
 /****************************************************************************
-   Copyright (C) 2004-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2007, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -90,6 +90,9 @@ public:
 
     // Frame value accessors.
     void setValue(float fValue);
+
+	// Value refreshment.
+	void refresh();
 
 	// Reset peak holder.
 	void peakReset();

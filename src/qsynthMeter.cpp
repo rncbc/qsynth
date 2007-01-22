@@ -1,7 +1,7 @@
 // qsynthMeter.cpp
 //
 /****************************************************************************
-   Copyright (C) 2004-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2007, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -29,11 +29,11 @@
 #include <math.h>
 
 // Meter level limits (in dB).
-#define QSYNTHMETER_MAXDB		(+3.0)
-#define QSYNTHMETER_MINDB		(-70.0)
+#define QSYNTHMETER_MAXDB		(+3.0f)
+#define QSYNTHMETER_MINDB		(-70.0f)
 
 // The peak decay rate (magic goes here :).
-#define QSYNTHMETER_DECAY_RATE	(1.0 - 3E-2)
+#define QSYNTHMETER_DECAY_RATE	(1.0f - 3E-2f)
 // Number of cycles the peak stays on hold (falloff).
 #define QSYNTHMETER_DECAY_HOLD	16
 
@@ -116,7 +116,7 @@ qsynthMeterValue::qsynthMeterValue( qsynthMeter *pMeter )
     : QWidget(pMeter)
 {
 	m_pMeter      = pMeter;
-	m_fValue      = 0.0;
+	m_fValue      = 0.0f;
 	m_iValue      = 0;
 	m_fValueDecay = QSYNTHMETER_DECAY_RATE;
 	m_iPeak       = 0;
@@ -148,6 +148,14 @@ void qsynthMeterValue::peakReset (void)
 }
 
 
+// Value refreshment.
+void qsynthMeterValue::refresh (void)
+{
+	if (m_fValue > 0.001f || m_iPeak > 0)
+		update();
+}
+
+
 // Paint event handler.
 void qsynthMeterValue::paintEvent ( QPaintEvent * )
 {
@@ -171,8 +179,8 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 	}
 
 	float dB = QSYNTHMETER_MINDB;
-	if (m_fValue > 0.0)
-	    dB = 20.0 * ::log(m_fValue) / M_LN10;
+	if (m_fValue > 0.0f)
+	    dB = 20.0f * ::log(m_fValue) / M_LN10;
 
 	if (dB < QSYNTHMETER_MINDB)
 	    dB = QSYNTHMETER_MINDB;
@@ -215,14 +223,14 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 			m_pMeter->color(QSYNTHMETER_OVER));
 	}
 
-	if (y > m_iPeak) {
+	if (m_iPeak < y) {
 		m_iPeak = y;
-		m_iPeakHold  = 0;
+		m_iPeakHold = 0;
 		m_fPeakDecay = QSYNTHMETER_DECAY_RATE;
 		m_iPeakColor = iLevel;
 	} else if (++m_iPeakHold > QSYNTHMETER_DECAY_HOLD) {
-		m_iPeak = (int) ((float) m_iPeak * m_fPeakDecay);
-		if (y > m_iPeak) {
+		m_iPeak = int(float(m_iPeak * m_fPeakDecay));
+		if (m_iPeak < y) {
 			m_iPeak = y;
 		} else {
 			if (m_iPeak < m_pMeter->iec_level(QSYNTHMETER_10DB))
@@ -379,7 +387,7 @@ void qsynthMeter::peakReset (void)
 void qsynthMeter::refresh (void)
 {
 	for (int iPort = 0; iPort < m_iPortCount; iPort++)
-	    m_ppValues[iPort]->update();
+	    m_ppValues[iPort]->refresh();
 }
 
 

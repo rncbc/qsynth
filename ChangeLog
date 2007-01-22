@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- Minor optimization in peak level meters update rate. Alternate but
+  faster inline lroundf() function implementation is now used.
+
 - Most top-level widgets were missing the normal-widget flag, which
   were causing some sticky size behavior on some window managers.
 
