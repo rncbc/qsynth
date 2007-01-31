@@ -56,9 +56,9 @@ static inline long lroundf ( float x )
 #define QSYNTH_DELAY_MSECS  200
 
 // Scale factors.
-#define QSYNTH_GAIN_SCALE   100.0
-#define QSYNTH_REVERB_SCALE 100.0
-#define QSYNTH_CHORUS_SCALE 10.0
+#define QSYNTH_GAIN_SCALE   100.0f
+#define QSYNTH_REVERB_SCALE 100.0f
+#define QSYNTH_CHORUS_SCALE 10.0f
 
 #if !defined(WIN32)
 // Notification pipe descriptors
@@ -1324,12 +1324,12 @@ void qsynthMainForm::timerSlot (void)
         updateChorus();
 
     // Meter update.
-    if (g_pCurrentEngine->bMeterEnabled) {
+    if (g_pCurrentEngine && g_pCurrentEngine->bMeterEnabled) {
         OutputMeter->setValue(0, g_pCurrentEngine->fMeterValue[0]);
         OutputMeter->setValue(1, g_pCurrentEngine->fMeterValue[1]);
         OutputMeter->refresh();
-        g_pCurrentEngine->fMeterValue[0] = 0.0;
-        g_pCurrentEngine->fMeterValue[1] = 0.0;
+        g_pCurrentEngine->fMeterValue[0] = 0.0f;
+        g_pCurrentEngine->fMeterValue[1] = 0.0f;
     }
 
     // Register for the next timer slot.

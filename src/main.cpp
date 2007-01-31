@@ -68,7 +68,11 @@ int main ( int argc, char **argv )
 	qsynthMainForm w(0, 0, wflags);
     app.setMainWidget(&w);
     w.setup(&settings);
-    w.show();
+	// If we have a systray icon, we'll skip this.
+	if (!settings.bSystemTray) {
+		w.show();
+		w.adjustSize();
+	}
 
     // Register the quit signal/slot.
     // app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));

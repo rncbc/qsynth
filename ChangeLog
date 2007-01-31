@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- Main panel window now keeps its previous iconic state on system tray,
+  on application restart (thanks to Chris Cannam for hinting this one).
+ 
 - Minor optimization in peak level meters update rate. Alternate but
   faster inline lroundf() function implementation is now used.
 
