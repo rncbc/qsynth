@@ -909,7 +909,6 @@ void qsynthMainForm::systemReset (void)
 // Complete engine restart.
 void qsynthMainForm::promptRestart (void)
 {
-    RestartPushButton->setEnabled(false);
     restartEngine(currentEngine());
 }
 
@@ -1687,11 +1686,11 @@ void qsynthMainForm::restartEngine ( qsynthEngine *pEngine )
 
     // If allowed, just restart the engine...
     if (bRestart) {
-        // Restarting means stopping current engine...
-        stopEngine(pEngine);
 		// Must make current one grayed out for a while...
 		if (pEngine == currentEngine())
 			RestartPushButton->setEnabled(false);
+        // Restarting means stopping the engine...
+        stopEngine(pEngine);
         // And making room for immediate restart...
         m_iTimerDelay = 0;
     }
