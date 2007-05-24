@@ -3,6 +3,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+CVS HEAD
+
+- Autoconf (configure) scripting gets an update.
+
+
 0.2.6   2007-04-14  Nitpicking season closed :)
 
 - Main panel window now keeps its previous iconic state on system tray,
