@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -45,7 +45,7 @@ qsynthOptions::qsynthOptions (void)
     bMessagesLimit = m_settings.readBoolEntry("/MessagesLimit", true);
     iMessagesLimitLines = m_settings.readNumEntry("/MessagesLimitLines", 1000);
     bQueryClose    = m_settings.readBoolEntry("/QueryClose",    true);
-    bKeepOnTop     = m_settings.readBoolEntry("/KeepOnTop",     true);
+    bKeepOnTop     = m_settings.readBoolEntry("/KeepOnTop",     false);
     bStdoutCapture = m_settings.readBoolEntry("/StdoutCapture", true);
     bOutputMeters  = m_settings.readBoolEntry("/OutputMeters",  false);
     bSystemTray    = m_settings.readBoolEntry("/SystemTray",    false);

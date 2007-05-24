@@ -86,7 +86,7 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 {
 	QPainter p(this);
 
-	p.setFont(QFont("Helvetica", 5));
+	p.setFont(QFont("Sans Serif", 5));
 	p.setPen(m_pMeter->color(QSYNTHMETER_FORE));
 
 	m_iLastY = 0;

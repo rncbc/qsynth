@@ -5,6 +5,13 @@ ChangeLog
 
 CVS HEAD
 
+- Default font option names were adjusted to "Sans Serif" and
+  "Monospace", wherever available.
+
+- The "keep child windows always on top" option is not set as
+  default anymore, because window focus behavior gets tricky
+  on some desktop environments (eg. Mac OS X, Gnome).
+
 - Autoconf (configure) scripting gets an update.
 
 

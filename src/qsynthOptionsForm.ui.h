@@ -2,7 +2,7 @@
 //
 // ui.h extension file, included from the uic-generated form implementation.
 /****************************************************************************
-   Copyright (C) 2003-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -65,7 +65,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
     // Load Display options...
     QFont font;
     if (m_pOptions->sMessagesFont.isEmpty() || !font.fromString(m_pOptions->sMessagesFont))
-        font = QFont("Fixed", 8);
+        font = QFont("Monospace", 8);
     MessagesFontTextLabel->setFont(font);
     MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
 
