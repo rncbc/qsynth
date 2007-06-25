@@ -1,7 +1,7 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 2
-%define prefix  /usr
+%define release 3
+%define prefix  @ac_prefix@
 
 Summary:	A fluidsynth Qt GUI Interface.
 Name:		%{name}
@@ -12,8 +12,14 @@ License:	GPL
 Group:		Sound
 Source0:	%{name}-%{version}.tar.gz
 URL:		http://qsynth.sourceforge.net/
-BuildRoot:	/var/tmp/%{name}-%{version}-buildroot
+
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+
+Requires:	qt3 >= 3.1
 Requires:	fluidsynth >= 1.0.6
+
+BuildRequires:	qt3-devel >= 3.1
+BuildRequires:	fluidsynth-devel >= 1.0.6
 
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
@@ -22,30 +28,33 @@ management application allowing the user to control and manage a variety of
 command line softsynths.
 
 %prep
-
 %setup
-[ -f Makefile.cvs ] && make -f Makefile.cvs
+[ -f Makefile.cvs ] && %__make -f Makefile.cvs
 
 %build
 export PATH=$QTDIR/bin:$PATH
-./configure --prefix=%{prefix}
-make
+%configure
+%__make
 
 %install
-if [ -d $RPM_BUILD_ROOT ]; then rm -rf $RPM_BUILD_ROOT; fi
-mkdir -p $RPM_BUILD_ROOT
-make prefix=$RPM_BUILD_ROOT%{prefix} install
+%makeinstall
 
 %clean
-if [ -d $RPM_BUILD_ROOT ]; then rm -rf $RPM_BUILD_ROOT; fi
+[ -d %{buildroot} -a "%{buildroot}" != "" ] && %__rm -rf  %{buildroot}
 
 %files
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog README TODO
-%{prefix}/bin/qsynth
-%{prefix}/share/icons/qsynth.png
+%{_bindir}/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Mon Jun 25 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
+- Application icon is now installed to (prefix)/share/pixmaps.
+- Declared fundamental build and run-time requirements.
+- Destination install directory prefix is now in spec.
+- Spec is now a bit more openSUSE compliant.
 * Thu Jun 01 2006 Rui Nuno Capela <rncbc@users.sourceforge.net>
 - Changed deprecated copyright attribute to license.
 * Sun Oct 2 2005 Rui Nuno Capela <rncbc@users.sourceforge.net>

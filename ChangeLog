@@ -5,6 +5,11 @@ ChangeLog
 
 CVS HEAD
 
+- Application icon is now installed to ${prefix}/share/pixmaps;
+  application desktop entry file is now included in installation;
+  spec file (RPM) is now a bit more openSUSE compliant; initial
+  debianization.
+
 - Default font option names were adjusted to "Sans Serif" and
   "Monospace", wherever available.
 
