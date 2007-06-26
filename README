@@ -1,11 +1,14 @@
 qsynth - A fluidsynth Qt GUI Interface
 --------------------------------------
 
-Qsynth is a fluidsynth GUI front-end application written in C++ around the Qt3
-toolkit using Qt Designer. Eventually it may evolve into a softsynth management
-application allowing the user to control and manage a variety of command line
-softsynths but for the moment it wraps the excellent FluidSynth (http://www.fluidsynth.org).
-FluidSynth is a command line software synthesiser based on the Soundfont specification.
+Qsynth is a fluidsynth GUI front-end application written in C++
+around the Qt3 toolkit using Qt Designer. Eventually it may evolve
+into a softsynth management application allowing the user to control
+and manage a variety of command line softsynths but for the moment
+it wraps the excellent FluidSynth (http://www.fluidsynth.org).
+
+FluidSynth is a command line software synthesiser based on the
+Soundfont specification.
 
 Homepage: http://qsynth.sourceforge.net
 
@@ -28,11 +31,17 @@ and optionally as root:
 This procedure will end installing the following couple of files:
 
     ${prefix}/bin/qsynth
-    ${prefix}/share/icons/qsynth.png
+    ${prefix}/share/pixmaps/qsynth.png
+    ${prefix}/share/applications/qsynth.desktop
 
 Just launch ${prefix}/bin/qsynth and you're off (hopefully).
 
 Note that the default installation path ${prefix} is /usr/local.
+
+If you're checking out from CVS, you'll have to prepare the configure
+script just before you proceed with the above instructions:
+
+   make -f Makefile.cvs
 
 
 Configuration
