@@ -29,65 +29,65 @@
 // Constructor.
 qsynthEngine::qsynthEngine ( qsynthOptions *pOptions, const QString& sName )
 {
-    // We're the default (first) engine whether we've given a name...
-    m_bDefault = sName.isEmpty();
-    if (m_bDefault) {
-        m_pSetup = pOptions->defaultSetup();
-    } else {
-        m_pSetup = new qsynthSetup();
-        pOptions->loadSetup(m_pSetup, sName);
-    }
+	// We're the default (first) engine whether we've given a name...
+	m_bDefault = sName.isEmpty();
+	if (m_bDefault) {
+		m_pSetup = pOptions->defaultSetup();
+	} else {
+		m_pSetup = new qsynthSetup();
+		pOptions->loadSetup(m_pSetup, sName);
+	}
 
-    // From now on, we must have a name.
-    m_sName = m_pSetup->sDisplayName;
+	// From now on, we must have a name.
+	m_sName = m_pSetup->sDisplayName;
 
-    pSynth       = NULL;
-    pAudioDriver = NULL;
-    pMidiRouter  = NULL;
-    pMidiDriver  = NULL;
-    pPlayer      = NULL;
-    pServer      = NULL;
+	pSynth       = NULL;
+	pAudioDriver = NULL;
+	pMidiRouter  = NULL;
+	pMidiDriver  = NULL;
+	pPlayer      = NULL;
+	pServer      = NULL;
 
-    iMidiEvent = 0;
-    iMidiState = 0;
+	iMidiEvent = 0;
+	iMidiState = 0;
 
-    bMeterEnabled  = false;
-    fMeterValue[0] = 0.0;
-    fMeterValue[1] = 0.0;
+	bMeterEnabled  = false;
+	fMeterValue[0] = 0.0f;
+	fMeterValue[1] = 0.0f;
 }
 
 
 // Default destructor.
 qsynthEngine::~qsynthEngine (void)
 {
-    if (!m_bDefault && m_pSetup) {
-        delete m_pSetup;
-        m_pSetup = NULL;
-    }
+	if (!m_bDefault && m_pSetup) {
+		delete m_pSetup;
+		m_pSetup = NULL;
+	}
 }
 
 // Engine predicate.
-bool qsynthEngine::isDefault (void)
+bool qsynthEngine::isDefault (void) const
 {
-    return m_bDefault;
+	return m_bDefault;
 }
 
 
 // Engine setup accessor.
 qsynthSetup *qsynthEngine::setup (void)
 {
-    return m_pSetup;
+	return m_pSetup;
 }
 
 // Engine name accessors.
-const QString& qsynthEngine::name (void)
+const QString& qsynthEngine::name (void) const
 {
-    return m_sName;
+	return m_sName;
 }
 
 void qsynthEngine::setName ( const QString& sName )
 {
-    m_sName = sName;
+	m_sName = sName;
 }
 
 

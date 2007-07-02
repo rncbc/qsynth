@@ -31,6 +31,8 @@
 #define QSYNTH_WEBSITE      "http://qsynth.sourceforge.net"
 #define QSYNTH_COPYRIGHT    "Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved."
 
+#define QSYNTH_DOMAIN       "rncbc.org"
+
 #endif  // __qsynthAbout_h
 
 // end of qsynthAbout.h

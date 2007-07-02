@@ -1,4 +1,4 @@
-// qsynthSystemTray.h
+// qsynthPresetForm.h
 //
 /****************************************************************************
    Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
@@ -19,58 +19,75 @@
 
 *****************************************************************************/
 
-#ifndef __qsynthSystemTray_h
-#define __qsynthSystemTray_h
+#ifndef __qsynthPresetForm_h
+#define __qsynthPresetForm_h
 
-#include <QWidget>
-#include <QPixmap>
+#include "ui_qsynthPresetForm.h"
+
+#include <fluidsynth.h>
+
+// Forward declarations.
+class qsynthOptions;
 
 
 //----------------------------------------------------------------------------
-// qsynthSystemTray -- Custom system tray widget.
+// qsynthPresetForm -- UI wrapper form.
 
-class qsynthSystemTray : public QWidget
+class qsynthPresetForm : public QDialog
 {
 	Q_OBJECT
 
 public:
 
 	// Constructor.
-	qsynthSystemTray(QWidget *pParent = 0);
-	// Default destructor.
-	~qsynthSystemTray();
+	qsynthPresetForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
+	// Destructor.
+	~qsynthPresetForm();
 
-	// Background mask methods.
-	void setBackground(const QColor& background);
-	const QColor& background() const;
 
-	// System tray icon method.
-	void updateIcon();
+    void setup(qsynthOptions *pOptions, fluid_synth_t *pSynth, int iChan);
 
-signals:
+public slots:
 
-	// Clicked signal.
-	void clicked();
+    void stabilizeForm();
+    void bankChanged();
+    void progChanged();
+    void previewChanged();
 
-	// Context menu signal.
-	void contextMenuRequested(const QPoint& pos);
+protected slots:
+
+    void accept();
+    void reject();
 
 protected:
 
-	// Self-drawable methods.
-	void paintEvent(QPaintEvent *);
+    void setBankProg(int iBank, int iProg);
 
-	// Overriden mouse event method.
-	void mousePressEvent(QMouseEvent *);
+    QTreeWidgetItem *findBankItem(int iBank);
+    QTreeWidgetItem *findProgItem(int iProg);
+
+    bool validateForm();
 
 private:
 
-	// Instance pixmap and background color.
-	QPixmap m_pixmap;
-	QColor  m_background;
+	// The Qt-designer UI struct...
+	Ui::qsynthPresetForm m_ui;
+
+	// Instance variables.
+    qsynthOptions *m_pOptions;
+    fluid_synth_t *m_pSynth;
+
+    int m_iChan;
+    int m_iBank;
+    int m_iProg;
+
+    int m_iDirtySetup;
+    int m_iDirtyCount;
 };
 
 
-#endif  // __qsynthSystemTray_h
+#endif	// __qsynthPresetForm_h
 
-// end of qsynthSystemTray.h
+
+// end of qsynthPresetForm.h
+

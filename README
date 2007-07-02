@@ -2,7 +2,7 @@ qsynth - A fluidsynth Qt GUI Interface
 --------------------------------------
 
 Qsynth is a fluidsynth GUI front-end application written in C++
-around the Qt3 toolkit using Qt Designer. Eventually it may evolve
+around the Qt4 toolkit using Qt Designer. Eventually it may evolve
 into a softsynth management application allowing the user to control
 and manage a variety of command line softsynths but for the moment
 it wraps the excellent FluidSynth (http://www.fluidsynth.org).
@@ -13,6 +13,22 @@ Soundfont specification.
 Homepage: http://qsynth.sourceforge.net
 
 License: GNU General Public License (GPL)
+
+
+Requirements
+------------
+
+The software requirements for build and runtime are listed as follows:
+
+  Mandatory:
+
+  - Qt4 (core, gui, xml), C++ class library and tools for
+        crossplatform development and internationalization
+        http://www.trolltech.org/products/qt/
+
+  - fluidsynth, real-time software synthesizer
+        based on the SoundFont 2 specifications.
+        http://www.fluidsynth.org/
 
 
 Installation
@@ -48,8 +64,10 @@ Configuration
 -------------
 
 Qsynth holds its settings and configuration state per user, in a file
-located as $HOME/.qt/qsynthrc. Normally, there's no need to edit this file,
-as it is recreated and rewritten everytime qsynth is run.
+located as $HOME/.config/rncbc.org/Qsynth.conf . Normally, there's no
+need to edit this file, as it is recreated and rewritten everytime
+qsynth is run.
+
 
 Bugs
 ----

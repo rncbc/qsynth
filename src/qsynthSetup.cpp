@@ -34,7 +34,7 @@ qsynthSetup::qsynthSetup (void)
 {
 	m_pFluidSettings = NULL;
 
-    sDefPresetName = QObject::tr("(default)");
+	sDefPresetName = QObject::tr("(default)");
 }
 
 
@@ -50,7 +50,7 @@ qsynthSetup::~qsynthSetup (void)
 // Fluidsynth settings accessor.
 fluid_settings_t *qsynthSetup::fluid_settings (void)
 {
-    return m_pFluidSettings;
+	return m_pFluidSettings;
 }
 
 
@@ -64,14 +64,15 @@ void qsynthSetup::realize (void)
 		::delete_fluid_settings(m_pFluidSettings);
 	m_pFluidSettings = ::new_fluid_settings();
 
-    // The 'groups' setting is only relevant for LADSPA operation
-    // If not given, set number groups to number of audio channels, because
-    // they are the same (there is nothing between synth output and 'sound card')
-    if ((iAudioGroups == 0) && (iAudioChannels != 0))
-        iAudioGroups = iAudioChannels;
+	// The 'groups' setting is only relevant for LADSPA operation
+	// If not given, set number groups to number of audio channels, because
+	// they are the same (there is nothing between synth output and 'sound card')
+	if ((iAudioGroups == 0) && (iAudioChannels != 0))
+		iAudioGroups = iAudioChannels;
 
-    if (!sMidiDriver.isEmpty())
-        ::fluid_settings_setstr(m_pFluidSettings, "midi.driver", (char *) sMidiDriver.latin1());
+	if (!sMidiDriver.isEmpty())
+		::fluid_settings_setstr(m_pFluidSettings, "midi.driver",
+			const_cast<char *> (sMidiDriver.toUtf8().constData()));
 	if (!sMidiDevice.isEmpty()) {
 		QString sMidiKey = "midi.";
 		if (sMidiDriver == "alsa_raw")
@@ -79,51 +80,73 @@ void qsynthSetup::realize (void)
 		else
 			sMidiKey += sMidiDriver;
 		sMidiKey += + ".device";
-		::fluid_settings_setstr(m_pFluidSettings, (char *) sMidiKey.latin1(), (char *) sMidiDevice.latin1());
+		::fluid_settings_setstr(m_pFluidSettings,
+			const_cast<char *> (sMidiKey.toUtf8().constData()),
+			const_cast<char *> (sMidiDevice.toUtf8().constData()));
 	}
-    if (!sAlsaName.isEmpty())
-        ::fluid_settings_setstr(m_pFluidSettings, "midi.alsa_seq.id", (char *) sAlsaName.latin1());
+	if (!sAlsaName.isEmpty())
+		::fluid_settings_setstr(m_pFluidSettings, "midi.alsa_seq.id",
+			const_cast<char *> (sAlsaName.toUtf8().constData()));
 
-    if (!sAudioDriver.isEmpty())
-        ::fluid_settings_setstr(m_pFluidSettings, "audio.driver", (char *) sAudioDriver.latin1());
+	if (!sAudioDriver.isEmpty())
+		::fluid_settings_setstr(m_pFluidSettings, "audio.driver",
+			const_cast<char *> (sAudioDriver.toUtf8().constData()));
 	if (!sAudioDevice.isEmpty()) {
 		QString sAudioKey = "audio." + sAudioDriver + '.';
 		if (sAudioDriver == "file")
 			sAudioKey += "name";
 		else
 			sAudioKey += "device";
-		::fluid_settings_setstr(m_pFluidSettings, (char *) sAudioKey.latin1(), (char *) sAudioDevice.latin1());
+		::fluid_settings_setstr(m_pFluidSettings,
+			const_cast<char *> (sAudioKey.toUtf8().constData()),
+			const_cast<char *> (sAudioDevice.toUtf8().constData()));
 	}
-    if (!sJackName.isEmpty())
-        ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.id", (char *) sJackName.latin1());
+	if (!sJackName.isEmpty())
+		::fluid_settings_setstr(m_pFluidSettings, "audio.jack.id",
+			const_cast<char *> (sJackName.toUtf8().constData()));
 
-    ::fluid_settings_setint(m_pFluidSettings, "audio.jack.autoconnect", (int) bJackAutoConnect);
-    ::fluid_settings_setstr(m_pFluidSettings, "audio.jack.multi", (char *) (bJackMulti ? "yes" : "no"));
-    ::fluid_settings_setstr(m_pFluidSettings, "audio.sample-format", (char *) sSampleFormat.latin1());
-    if (iAudioBufSize > 0)
-        ::fluid_settings_setint(m_pFluidSettings, "audio.period-size", iAudioBufSize);
-    if (iAudioBufCount > 0)
-        ::fluid_settings_setint(m_pFluidSettings, "audio.periods", iAudioBufCount);
+	::fluid_settings_setint(m_pFluidSettings, "audio.jack.autoconnect",
+		int(bJackAutoConnect));
+	::fluid_settings_setstr(m_pFluidSettings, "audio.jack.multi",
+		const_cast<char *> (bJackMulti ? "yes" : "no"));
+	::fluid_settings_setstr(m_pFluidSettings, "audio.sample-format",
+		const_cast<char *> (sSampleFormat.toUtf8().constData()));
+	if (iAudioBufSize > 0)
+		::fluid_settings_setint(m_pFluidSettings, "audio.period-size",
+			iAudioBufSize);
+	if (iAudioBufCount > 0)
+		::fluid_settings_setint(m_pFluidSettings, "audio.periods",
+			iAudioBufCount);
 
-    if (iMidiChannels > 0)
-        ::fluid_settings_setint(m_pFluidSettings, "synth.midi-channels", iMidiChannels);
-    if (iAudioChannels > 0)
-        ::fluid_settings_setint(m_pFluidSettings, "synth.audio-channels", iAudioChannels);
-    if (iAudioGroups > 0)
-        ::fluid_settings_setint(m_pFluidSettings, "synth.audio-groups", iAudioGroups);
-    if (fSampleRate > 0.0)
-        ::fluid_settings_setnum(m_pFluidSettings, "synth.sample-rate", fSampleRate);
-    if (iPolyphony > 0)
-        ::fluid_settings_setint(m_pFluidSettings, "synth.polyphony", iPolyphony);
+	if (iMidiChannels > 0)
+		::fluid_settings_setint(m_pFluidSettings, "synth.midi-channels",
+			iMidiChannels);
+	if (iAudioChannels > 0)
+		::fluid_settings_setint(m_pFluidSettings, "synth.audio-channels",
+			iAudioChannels);
+	if (iAudioGroups > 0)
+		::fluid_settings_setint(m_pFluidSettings, "synth.audio-groups",
+			iAudioGroups);
+	if (fSampleRate > 0.0)
+		::fluid_settings_setnum(m_pFluidSettings, "synth.sample-rate",
+			fSampleRate);
+	if (iPolyphony > 0)
+		::fluid_settings_setint(m_pFluidSettings, "synth.polyphony",
+			iPolyphony);
 
 //  Gain is set on realtime (don't need to set it here)
 //  if (fGain > 0.0)
 //      ::fluid_settings_setnum(m_pFluidSettings, "synth.gain", fGain);
-    ::fluid_settings_setstr(m_pFluidSettings, "synth.reverb.active", (char *) (bReverbActive ? "yes" : "no"));
-    ::fluid_settings_setstr(m_pFluidSettings, "synth.chorus.active", (char *) (bChorusActive ? "yes" : "no"));
-    ::fluid_settings_setstr(m_pFluidSettings, "synth.ladspa.active", (char *) (bLadspaActive ? "yes" : "no"));
-    ::fluid_settings_setstr(m_pFluidSettings, "synth.dump",          (char *) (bMidiDump     ? "yes" : "no"));
-    ::fluid_settings_setstr(m_pFluidSettings, "synth.verbose",       (char *) (bVerbose      ? "yes" : "no"));
+	::fluid_settings_setstr(m_pFluidSettings, "synth.reverb.active",
+		const_cast<char *> (bReverbActive ? "yes" : "no"));
+	::fluid_settings_setstr(m_pFluidSettings, "synth.chorus.active",
+		const_cast<char *> (bChorusActive ? "yes" : "no"));
+	::fluid_settings_setstr(m_pFluidSettings, "synth.ladspa.active",
+		const_cast<char *> (bLadspaActive ? "yes" : "no"));
+	::fluid_settings_setstr(m_pFluidSettings, "synth.dump",
+		const_cast<char *> (bMidiDump     ? "yes" : "no"));
+	::fluid_settings_setstr(m_pFluidSettings, "synth.verbose",
+		const_cast<char *> (bVerbose      ? "yes" : "no"));
 }
 
 

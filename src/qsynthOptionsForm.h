@@ -1,7 +1,7 @@
-// qsynthTabBar.h
+// qsynthOptionsForm.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -19,57 +19,58 @@
 
 *****************************************************************************/
 
-#ifndef __qsynthTabBar_h
-#define __qsynthTabBar_h
+#ifndef __qsynthOptionsForm_h
+#define __qsynthOptionsForm_h
 
-#include <QTabBar>
+#include "ui_qsynthOptionsForm.h"
 
 // Forward declarations.
-class qsynthEngine;
+class qsynthOptions;
 
 
-//-------------------------------------------------------------------------
-// qsynthTabBar - Instance tab widget class.
-//
+//----------------------------------------------------------------------------
+// qsynthOptionsForm -- UI wrapper form.
 
-
-class qsynthTabBar : public QTabBar
+class qsynthOptionsForm : public QDialog
 {
 	Q_OBJECT
-	
+
 public:
 
 	// Constructor.
-	qsynthTabBar(QWidget *pParent);
+	qsynthOptionsForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
 	// Destructor.
-	~qsynthTabBar();
+	~qsynthOptionsForm();
 
-	// Engine accessor.
-	qsynthEngine *engine(int iTab) const;
-	// Current engine accessor.
-	qsynthEngine *currentEngine() const;
+    void setup(qsynthOptions *pOptions);
 
-	// Engine adder.
-	int addEngine(qsynthEngine *pEngine);
-	// Engine removal.
-	void removeEngine(int iTab);
+public slots:
 
-	// Engine tab icon accessor.
-	void setOn(int iTab, bool bOn);
+    void optionsChanged();
 
-signals:
+    void chooseMessagesFont();
+    void stabilizeForm();
 
-	// Context menu signal.
-	void contextMenuRequested(int iTab, const QPoint& pos);
+protected slots:
 
-protected:
+    void accept();
+    void reject();
 
-	// Context menu event.
-	void contextMenuEvent(QContextMenuEvent *pContextMenuEvent);
+private:
+
+	// The Qt-designer UI struct...
+	Ui::qsynthOptionsForm m_ui;
+
+	// Instance variables.
+    qsynthOptions *m_pOptions;
+
+    int m_iDirtySetup;
+    int m_iDirtyCount;
 };
 
 
-#endif  // __qsynthTabBar_h
+#endif	// __qsynthOptionsForm_h
 
 
-// end of qsynthTabBar.h
+// end of qsynthOptionsForm.h
+

@@ -21,7 +21,10 @@
 
 #include "qsynthAbout.h"
 #include "qsynthOptions.h"
+
 #include "qsynthEngine.h"
+
+#include <QTextStream>
 
 
 //-------------------------------------------------------------------------
@@ -30,10 +33,8 @@
 
 // Constructor.
 qsynthOptions::qsynthOptions (void)
+	: m_settings(QSYNTH_DOMAIN, QSYNTH_TITLE)
 {
-    // Begin master key group.
-    m_settings.beginGroup("/qsynth");
-
     // Create default setup descriptor.
     m_pDefaultSetup = new qsynthSetup();
     // Load previous/default fluidsynth settings...
@@ -41,28 +42,28 @@ qsynthOptions::qsynthOptions (void)
 
     // Load display options...
     m_settings.beginGroup("/Options");
-    sMessagesFont  = m_settings.readEntry("/MessagesFont", QString::null);
-    bMessagesLimit = m_settings.readBoolEntry("/MessagesLimit", true);
-    iMessagesLimitLines = m_settings.readNumEntry("/MessagesLimitLines", 1000);
-    bQueryClose    = m_settings.readBoolEntry("/QueryClose",    true);
-    bKeepOnTop     = m_settings.readBoolEntry("/KeepOnTop",     false);
-    bStdoutCapture = m_settings.readBoolEntry("/StdoutCapture", true);
-    bOutputMeters  = m_settings.readBoolEntry("/OutputMeters",  false);
-    bSystemTray    = m_settings.readBoolEntry("/SystemTray",    false);
+    sMessagesFont  = m_settings.value("/MessagesFont").toString();
+    bMessagesLimit = m_settings.value("/MessagesLimit", true).toBool();
+    iMessagesLimitLines = m_settings.value("/MessagesLimitLines", 1000).toInt();
+    bQueryClose    = m_settings.value("/QueryClose",    true).toBool();
+    bKeepOnTop     = m_settings.value("/KeepOnTop",     false).toBool();
+    bStdoutCapture = m_settings.value("/StdoutCapture", true).toBool();
+    bOutputMeters  = m_settings.value("/OutputMeters",  false).toBool();
+    bSystemTray    = m_settings.value("/SystemTray",    false).toBool();
     m_settings.endGroup();
 
     // Load defaults...
     m_settings.beginGroup("/Defaults");
-    sSoundFontDir  = m_settings.readEntry("/SoundFontDir", QString::null);
-    bPresetPreview = m_settings.readBoolEntry("/PresetPreview", false);
+    sSoundFontDir  = m_settings.value("/SoundFontDir").toString();
+    bPresetPreview = m_settings.value("/PresetPreview", false).toBool();
     m_settings.endGroup();
 
     // Load custom additional engines.
     m_settings.beginGroup("/Engines");
-    const QString sEnginePrefix = "/Engine";
+    const QString sEnginePrefix = "/Engine%1";
     int iEngine = 0;
     for (;;) {
-        QString sItem = m_settings.readEntry(sEnginePrefix + QString::number(++iEngine), QString::null);
+        QString sItem = m_settings.value(sEnginePrefix.arg(++iEngine)).toString();
         if (sItem.isEmpty())
             break;
         engines.append(sItem);
@@ -76,44 +77,43 @@ qsynthOptions::~qsynthOptions (void)
 {
     // Make program version available in the future.
     m_settings.beginGroup("/Program");
-    m_settings.writeEntry("/Version", QSYNTH_VERSION);
+    m_settings.setValue("/Version", QSYNTH_VERSION);
     m_settings.endGroup();
 
     // Save engines list...
     m_settings.beginGroup("/Engines");
     // Save last preset list.
-    const QString sEnginePrefix = "/Engine";
+    const QString sEnginePrefix = "/Engine%1";
     int iEngine = 0;
-    for (QStringList::Iterator iter = engines.begin(); iter != engines.end(); iter++)
-        m_settings.writeEntry(sEnginePrefix + QString::number(++iEngine), *iter);
+    QStringListIterator iter(engines);
+	while (iter.hasNext())
+        m_settings.setValue(sEnginePrefix.arg(++iEngine), iter.next());
     // Cleanup old entries, if any...
-    for (++iEngine; !m_settings.readEntry(sEnginePrefix + QString::number(iEngine)).isEmpty(); iEngine++)
-        m_settings.removeEntry(sEnginePrefix + QString::number(iEngine));
+    while (!m_settings.value(sEnginePrefix.arg(++iEngine)).toString().isEmpty())
+        m_settings.remove(sEnginePrefix.arg(iEngine));
     m_settings.endGroup();
 
     // Save defaults...
     m_settings.beginGroup("/Defaults");
-    m_settings.writeEntry("/SoundFontDir",  sSoundFontDir);
-    m_settings.writeEntry("/PresetPreview", bPresetPreview);
+    m_settings.setValue("/SoundFontDir",  sSoundFontDir);
+    m_settings.setValue("/PresetPreview", bPresetPreview);
     m_settings.endGroup();
 
     // Save last display options.
     m_settings.beginGroup("/Options");
-    m_settings.writeEntry("/MessagesFont",  sMessagesFont);
-    m_settings.writeEntry("/MessagesLimit", bMessagesLimit);
-    m_settings.writeEntry("/MessagesLimitLines", iMessagesLimitLines);
-    m_settings.writeEntry("/QueryClose",    bQueryClose);
-    m_settings.writeEntry("/KeepOnTop",     bKeepOnTop);
-    m_settings.writeEntry("/StdoutCapture", bStdoutCapture);
-    m_settings.writeEntry("/OutputMeters",  bOutputMeters);
-    m_settings.writeEntry("/SystemTray",    bSystemTray);
+    m_settings.setValue("/MessagesFont",  sMessagesFont);
+    m_settings.setValue("/MessagesLimit", bMessagesLimit);
+    m_settings.setValue("/MessagesLimitLines", iMessagesLimitLines);
+    m_settings.setValue("/QueryClose",    bQueryClose);
+    m_settings.setValue("/KeepOnTop",     bKeepOnTop);
+    m_settings.setValue("/StdoutCapture", bStdoutCapture);
+    m_settings.setValue("/OutputMeters",  bOutputMeters);
+    m_settings.setValue("/SystemTray",    bSystemTray);
     m_settings.endGroup();
 
     // Create default setup descriptor.
     delete m_pDefaultSetup;
     m_pDefaultSetup = NULL;
-
-    m_settings.endGroup();
 }
 
 
@@ -131,55 +131,54 @@ qsynthSetup *qsynthOptions::defaultSetup (void)
 // Help about command line options.
 void qsynthOptions::print_usage ( const char *arg0 )
 {
+	QTextStream out(stderr);
     const QString sEot = "\n\t";
     const QString sEol = "\n\n";
 
-    fprintf(stderr, QObject::tr("Usage") + ": %s"
-        " [" + QObject::tr("options")    + "]"
-        " [" + QObject::tr("soundfonts") + "]"
-        " [" + QObject::tr("midifiles")  + "]" + sEol, arg0);
-    fprintf(stderr, QSYNTH_TITLE " - " + QObject::tr(QSYNTH_SUBTITLE) + sEol);
-    fprintf(stderr, QObject::tr("Options") + ":" + sEol);
-    fprintf(stderr, "  -n, --no-midi-in" + sEot +
-        QObject::tr("Don't create a midi driver to read MIDI input events [default = yes]") + sEol);
-    fprintf(stderr, "  -m, --midi-driver=[label]" + sEot +
-        QObject::tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]") + sEol);
-    fprintf(stderr, "  -K, --midi-channels=[num]" + sEot +
-        QObject::tr("The number of midi channels [default = 16]") + sEol);
-    fprintf(stderr, "  -a, --audio-driver=[label]" + sEot +
-        QObject::tr("The audio driver [alsa,jack,oss,dsound,...]") + sEol);
-    fprintf(stderr, "  -j, --connect-jack-outputs" + sEot +
-        QObject::tr("Attempt to connect the jack outputs to the physical ports") + sEol);
-    fprintf(stderr, "  -L, --audio-channels=[num]" + sEot +
-        QObject::tr("The number of stereo audio channels [default = 1]") + sEol);
-    fprintf(stderr, "  -G, --audio-groups=[num]" + sEot +
-        QObject::tr("The number of audio groups [default = 1]") + sEol);
-    fprintf(stderr, "  -z, --audio-bufsize=[size]" + sEot +
-        QObject::tr("Size of each audio buffer") + sEol);
-    fprintf(stderr, "  -c, --audio-bufcount=[count]" + sEot +
-        QObject::tr("Number of audio buffers") + sEol);
-    fprintf(stderr, "  -r, --sample-rate=[rate]" + sEot +
-        QObject::tr("Set the sample rate") + sEol);
-    fprintf(stderr, "  -R, --reverb=[flag]" + sEot +
-        QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]") + sEol);
-    fprintf(stderr, "  -C, --chorus=[flag]" + sEot +
-        QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]") + sEol);
-    fprintf(stderr, "  -g, --gain=[gain]" + sEot +
-        QObject::tr("Set the master gain [0 < gain < 10, default = 0.2]") + sEol);
-    fprintf(stderr, "  -o, --option [name=value]" + sEot +
-        QObject::tr("Define a setting name=value") + sEol);
-    fprintf(stderr, "  -s, --server" + sEot +
-        QObject::tr("Create and start server [default = no]") + sEol);
-    fprintf(stderr, "  -i, --no-shell" + sEot +
-        QObject::tr("Don't read commands from the shell [ignored]") + sEol);
-    fprintf(stderr, "  -d, --dump" + sEot +
-        QObject::tr("Dump midi router events") + sEol);
-    fprintf(stderr, "  -v, --verbose" + sEot +
-        QObject::tr("Print out verbose messages about midi events") + sEol);
-    fprintf(stderr, "  -h, --help" + sEot +
-        QObject::tr("Show help about command line options") + sEol);
-    fprintf(stderr, "  -V, --version" + sEot +
-        QObject::tr("Show version information") + sEol);
+    out << QObject::tr("Usage: %1"
+        " [options] [soundfonts] [midifiles]").arg(arg0) + sEol;
+    out << QSYNTH_TITLE " - " + QObject::tr(QSYNTH_SUBTITLE) + sEol;
+    out << QObject::tr("Options") + ":" + sEol;
+    out << "  -n, --no-midi-in" + sEot +
+        QObject::tr("Don't create a midi driver to read MIDI input events [default = yes]") + sEol;
+    out << "  -m, --midi-driver=[label]" + sEot +
+        QObject::tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]") + sEol;
+    out << "  -K, --midi-channels=[num]" + sEot +
+        QObject::tr("The number of midi channels [default = 16]") + sEol;
+    out << "  -a, --audio-driver=[label]" + sEot +
+        QObject::tr("The audio driver [alsa,jack,oss,dsound,...]") + sEol;
+    out << "  -j, --connect-jack-outputs" + sEot +
+        QObject::tr("Attempt to connect the jack outputs to the physical ports") + sEol;
+    out << "  -L, --audio-channels=[num]" + sEot +
+        QObject::tr("The number of stereo audio channels [default = 1]") + sEol;
+    out << "  -G, --audio-groups=[num]" + sEot +
+        QObject::tr("The number of audio groups [default = 1]") + sEol;
+    out << "  -z, --audio-bufsize=[size]" + sEot +
+        QObject::tr("Size of each audio buffer") + sEol;
+    out << "  -c, --audio-bufcount=[count]" + sEot +
+        QObject::tr("Number of audio buffers") + sEol;
+    out << "  -r, --sample-rate=[rate]" + sEot +
+        QObject::tr("Set the sample rate") + sEol;
+    out << "  -R, --reverb=[flag]" + sEot +
+        QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]") + sEol;
+    out << "  -C, --chorus=[flag]" + sEot +
+        QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]") + sEol;
+    out << "  -g, --gain=[gain]" + sEot +
+        QObject::tr("Set the master gain [0 < gain < 10, default = 0.2]") + sEol;
+    out << "  -o, --option [name=value]" + sEot +
+        QObject::tr("Define a setting name=value") + sEol;
+    out << "  -s, --server" + sEot +
+        QObject::tr("Create and start server [default = no]") + sEol;
+    out << "  -i, --no-shell" + sEot +
+        QObject::tr("Don't read commands from the shell [ignored]") + sEol;
+    out << "  -d, --dump" + sEot +
+        QObject::tr("Dump midi router events") + sEol;
+    out << "  -v, --verbose" + sEot +
+        QObject::tr("Print out verbose messages about midi events") + sEol;
+    out << "  -h, --help" + sEot +
+        QObject::tr("Show help about command line options") + sEol;
+    out << "  -V, --version" + sEot +
+        QObject::tr("Show version information") + sEol;
 }
 
 
@@ -218,14 +217,15 @@ bool qsynthOptions::parse_option ( char *optarg )
 // Parse command line arguments into fluidsynth settings.
 bool qsynthOptions::parse_args ( int argc, char **argv )
 {
+	QTextStream out(stderr);
     const QString sEol = "\n\n";
     int iSoundFontOverride = 0;
 
     for (int i = 1; i < argc; i++) {
 
+        QString sVal;
         QString sArg = argv[i];
-        QString sVal = QString::null;
-        int iEqual = sArg.find("=");
+        int iEqual = sArg.indexOf('=');
         if (iEqual >= 0) {
             sVal = sArg.right(sArg.length() - iEqual - 1);
             sArg = sArg.left(iEqual);
@@ -237,8 +237,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
             m_pDefaultSetup->bMidiIn = false;
         }
         else if (sArg == "-m" || sArg == "--midi-driver") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -m requires an argument (midi-driver).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -m requires an argument (midi-driver).") + sEol;
                 return false;
             }
             m_pDefaultSetup->sMidiDriver = sVal;
@@ -246,8 +246,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-K" || sArg == "--midi-channels") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -K requires an argument (midi-channels).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -K requires an argument (midi-channels).") + sEol;
                 return false;
             }
             m_pDefaultSetup->iMidiChannels = sVal.toInt();
@@ -255,8 +255,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-a" || sArg == "--audio-driver") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -a requires an argument (audio-driver).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -a requires an argument (audio-driver).") + sEol;
                 return false;
             }
             m_pDefaultSetup->sAudioDriver = sVal;
@@ -267,8 +267,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
             m_pDefaultSetup->bJackAutoConnect = true;
         }
         else if (sArg == "-L" || sArg == "--audio-channels") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -L requires an argument (audio-channels).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -L requires an argument (audio-channels).") + sEol;
                 return false;
             }
             m_pDefaultSetup->iAudioChannels = sVal.toInt();
@@ -276,8 +276,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-G" || sArg == "--audio-groups") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -G requires an argument (audio-groups).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -G requires an argument (audio-groups).") + sEol;
                 return false;
          }
             m_pDefaultSetup->iAudioGroups = sVal.toInt();
@@ -285,8 +285,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-z" || sArg == "--audio-bufsize") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -z requires an argument (audio-bufsize).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -z requires an argument (audio-bufsize).") + sEol;
                 return false;
             }
             m_pDefaultSetup->iAudioBufSize = sVal.toInt();
@@ -294,8 +294,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-c" || sArg == "--audio-bufcount") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -c requires an argument (audio-bufcount).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -c requires an argument (audio-bufcount).") + sEol;
                 return false;
             }
             m_pDefaultSetup->iAudioBufCount = sVal.toInt();
@@ -303,8 +303,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-r" || sArg == "--sample-rate") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -r requires an argument (sample-rate).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -r requires an argument (sample-rate).") + sEol;
                 return false;
             }
             m_pDefaultSetup->fSampleRate = sVal.toFloat();
@@ -312,8 +312,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-R" || sArg == "--reverb") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -R requires an argument (reverb).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -R requires an argument (reverb).") + sEol;
                 return false;
             }
             m_pDefaultSetup->bReverbActive = !(sVal == "0" || sVal == "no" || sVal == "off");
@@ -321,8 +321,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-C" || sArg == "--chorus") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -C requires an argument (chorus).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -C requires an argument (chorus).") + sEol;
                 return false;
             }
             m_pDefaultSetup->bChorusActive = !(sVal == "0" || sVal == "no" || sVal == "off");
@@ -330,8 +330,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
                 i++;
         }
         else if (sArg == "-g" || sArg == "--gain") {
-        	if (sVal.isNull()) {
-                fprintf(stderr, QObject::tr("Option -g requires an argument (gain).") + sEol);
+        	if (sVal.isEmpty()) {
+                out << QObject::tr("Option -g requires an argument (gain).") + sEol;
                 return false;
             }
             m_pDefaultSetup->fGain = sVal.toFloat();
@@ -340,11 +340,11 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
         }
         else if (sArg == "-o" || sArg == "--option") {
         	if (++i >= argc) {
-                fprintf(stderr, QObject::tr("Option -o requires an argument.") + sEol);
+                out << QObject::tr("Option -o requires an argument.") + sEol;
                 return false;
             }
             if (!parse_option(argv[i])) {
-                fprintf(stderr, QObject::tr("Option -o failed to set") + " \"%s\"." + sEol, argv[i]);
+                out << QObject::tr("Option -o failed to set '%1'.").arg(argv[i]) + sEol;
                 return false;
             }
         }
@@ -365,8 +365,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
             return false;
         }
         else if (sArg == "-V" || sArg == "--version") {
-            fprintf(stderr, "Qt: %s\n", qVersion());
-            fprintf(stderr, "qsynth: %s\n", QSYNTH_VERSION);
+            out << QObject::tr("Qt: %1\n").arg(qVersion());
+            out << QObject::tr(QSYNTH_TITLE ": %1\n").arg(QSYNTH_VERSION);
             return false;
         }
         else if (::fluid_is_soundfont(argv[i])) {
@@ -381,7 +381,7 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
             m_pDefaultSetup->midifiles.append(argv[i]);
         }
         else {
-            fprintf(stderr, QObject::tr("Unknown option") + " %s" + sEol, argv[i]);
+            out << QObject::tr("Unknown option '%1'.").arg(argv[i]) + sEol;
             print_usage(argv[0]);
             return false;
         }
@@ -396,24 +396,29 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
 
 void qsynthOptions::deleteKey ( const QString& sKey )
 {
+#ifdef QSYNTH_QT3
     // First, delete all stand-alone entries...
     QStringList entries = m_settings.entryList(sKey);
-    for (QStringList::Iterator entry = entries.begin(); entry != entries.end(); ++entry) {
+    QStringList::Iterator entry = entries.begin();
+    while (entry != entries.end()) {
         const QString& sEntry = *entry;
         if (!sEntry.isEmpty())
-            m_settings.removeEntry(sKey + "/" + sEntry);
+            m_settings.remove(sKey + '/' + sEntry);
+		++entry;
     }
 
     // Then, we'll recurse under sub-keys...
     QStringList subkeys = m_settings.subkeyList(sKey);
-    for (QStringList::Iterator subkey = subkeys.begin(); subkey != subkeys.end(); ++subkey) {
+    QStringList::Iterator subkey = subkeys.begin();
+    while (subkey != subkeys.end()) {
         const QString& sSubKey = *subkey;
         if (!sSubKey.isEmpty())
-            deleteKey(sKey + "/" + sSubKey);
+            deleteKey(sKey + '/' + sSubKey);
+		++subkey;
     }
-
+#endif
     // Finally we remove our-selves.
-    m_settings.removeEntry(sKey);
+    m_settings.remove(sKey);
 }
 
 
@@ -428,7 +433,7 @@ void qsynthOptions::newEngine ( qsynthEngine *pEngine )
         return;
 
     const QString& sName = pEngine->name();
-    if (engines.find(sName) == engines.end())
+    if (!engines.contains(sName))
         engines.append(sName);
 }
 
@@ -450,9 +455,7 @@ bool qsynthOptions::renameEngine ( qsynthEngine *pEngine )
     pEngine->setName(sNewName);
 
     if (!pEngine->isDefault()) {
-        QStringList::Iterator iter = engines.find(sOldName);
-        if (iter != engines.end())
-            *iter = sNewName;
+		engines = engines.replaceInStrings(sOldName, sNewName);
         deleteKey("/Engine/" + sOldName);
     }
 
@@ -468,7 +471,9 @@ void qsynthOptions::deleteEngine ( qsynthEngine *pEngine )
         return;
 
     const QString& sName = pEngine->name();
-    engines.remove(sName);
+	int iEngine = engines.indexOf(sName);
+	if (iEngine >= 0)
+    	engines.removeAt(iEngine);
 
     deleteKey("/Engine/" + sName);
 }
@@ -494,51 +499,51 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 
     // Load previous/default fluidsynth m_settings...
     m_settings.beginGroup("/Settings");
-    pSetup->sDisplayName     = m_settings.readEntry        ("/DisplayName",     sDisplayName);
-    pSetup->bMidiIn          = m_settings.readBoolEntry    ("/MidiIn",          true);
-    pSetup->sMidiDriver      = m_settings.readEntry        ("/MidiDriver",      "alsa_seq");
-    pSetup->sMidiDevice      = m_settings.readEntry        ("/MidiDevice",      QString::null);
-    pSetup->iMidiChannels    = m_settings.readNumEntry     ("/MidiChannels",    16);
-    pSetup->sAlsaName        = m_settings.readEntry        ("/AlsaName",        "pid");
-    pSetup->sAudioDriver     = m_settings.readEntry        ("/AudioDriver",     "jack");
-    pSetup->sAudioDevice     = m_settings.readEntry        ("/AudioDevice",     QString::null);
-    pSetup->sJackName        = m_settings.readEntry        ("/JackName",        "qsynth");
-    pSetup->bJackAutoConnect = m_settings.readBoolEntry    ("/JackAutoConnect", true);
-    pSetup->bJackMulti       = m_settings.readBoolEntry    ("/JackMulti",       false);
-    pSetup->iAudioChannels   = m_settings.readNumEntry     ("/AudioChannels",   1);
-    pSetup->iAudioGroups     = m_settings.readNumEntry     ("/AudioGroups",     1);
-    pSetup->iAudioBufSize    = m_settings.readNumEntry     ("/AudioBufSize",    64);
-    pSetup->iAudioBufCount   = m_settings.readNumEntry     ("/AudioBufCount",   2);
-    pSetup->sSampleFormat    = m_settings.readEntry        ("/SampleFormat",    "16bits");
-    pSetup->fSampleRate      = m_settings.readDoubleEntry  ("/SampleRate",      44100.0);
-    pSetup->iPolyphony       = m_settings.readNumEntry     ("/Polyphony",       256);
-    pSetup->bReverbActive    = m_settings.readBoolEntry    ("/ReverbActive",    true);
-    pSetup->fReverbRoom      = m_settings.readDoubleEntry  ("/ReverbRoom",      FLUID_REVERB_DEFAULT_ROOMSIZE);
-    pSetup->fReverbDamp      = m_settings.readDoubleEntry  ("/ReverbDamp",      FLUID_REVERB_DEFAULT_DAMP);
-    pSetup->fReverbWidth     = m_settings.readDoubleEntry  ("/ReverbWidth",     FLUID_REVERB_DEFAULT_WIDTH);
-    pSetup->fReverbLevel     = m_settings.readDoubleEntry  ("/ReverbLevel",     FLUID_REVERB_DEFAULT_LEVEL);
-    pSetup->bChorusActive    = m_settings.readBoolEntry    ("/ChorusActive",    true);
-    pSetup->iChorusNr        = m_settings.readNumEntry     ("/ChorusNr",        FLUID_CHORUS_DEFAULT_N);
-    pSetup->fChorusLevel     = m_settings.readDoubleEntry  ("/ChorusLevel",     FLUID_CHORUS_DEFAULT_LEVEL);
-    pSetup->fChorusSpeed     = m_settings.readDoubleEntry  ("/ChorusSpeed",     FLUID_CHORUS_DEFAULT_SPEED);
-    pSetup->fChorusDepth     = m_settings.readDoubleEntry  ("/ChorusDepth",     FLUID_CHORUS_DEFAULT_DEPTH);
-    pSetup->iChorusType      = m_settings.readNumEntry     ("/ChorusType",      FLUID_CHORUS_DEFAULT_TYPE);
-    pSetup->bLadspaActive    = m_settings.readBoolEntry    ("/LadspaActive",    false);
-    pSetup->fGain            = m_settings.readDoubleEntry  ("/Gain",            1.0);
-    pSetup->bServer          = m_settings.readBoolEntry    ("/Server",          false);
-    pSetup->bMidiDump        = m_settings.readBoolEntry    ("/MidiDump",        false);
-    pSetup->bVerbose         = m_settings.readBoolEntry    ("/Verbose",         false);
+    pSetup->sDisplayName     = m_settings.value("/DisplayName", sDisplayName).toString();
+    pSetup->bMidiIn          = m_settings.value("/MidiIn", true).toBool();
+    pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "alsa_seq").toString();
+    pSetup->sMidiDevice      = m_settings.value("/MidiDevice").toString();
+    pSetup->iMidiChannels    = m_settings.value("/MidiChannels", 16).toInt();
+    pSetup->sAlsaName        = m_settings.value("/AlsaName", "pid").toString();
+    pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "jack").toString();
+    pSetup->sAudioDevice     = m_settings.value("/AudioDevice").toString();
+    pSetup->sJackName        = m_settings.value("/JackName", "qsynth").toString();
+    pSetup->bJackAutoConnect = m_settings.value("/JackAutoConnect", true).toBool();
+    pSetup->bJackMulti       = m_settings.value("/JackMulti", false).toBool();
+    pSetup->iAudioChannels   = m_settings.value("/AudioChannels", 1).toInt();
+    pSetup->iAudioGroups     = m_settings.value("/AudioGroups", 1).toInt();
+    pSetup->iAudioBufSize    = m_settings.value("/AudioBufSize", 64).toInt();
+    pSetup->iAudioBufCount   = m_settings.value("/AudioBufCount", 2).toInt();
+    pSetup->sSampleFormat    = m_settings.value("/SampleFormat", "16bits").toString();
+    pSetup->fSampleRate      = m_settings.value("/SampleRate", 44100.0).toDouble();
+    pSetup->iPolyphony       = m_settings.value("/Polyphony", 256).toInt();
+    pSetup->bReverbActive    = m_settings.value("/ReverbActive", true).toBool();
+    pSetup->fReverbRoom      = m_settings.value("/ReverbRoom",  FLUID_REVERB_DEFAULT_ROOMSIZE).toDouble();
+    pSetup->fReverbDamp      = m_settings.value("/ReverbDamp",  FLUID_REVERB_DEFAULT_DAMP).toDouble();
+    pSetup->fReverbWidth     = m_settings.value("/ReverbWidth", FLUID_REVERB_DEFAULT_WIDTH).toDouble();
+    pSetup->fReverbLevel     = m_settings.value("/ReverbLevel", FLUID_REVERB_DEFAULT_LEVEL).toDouble();
+    pSetup->bChorusActive    = m_settings.value("/ChorusActive", true).toBool();
+    pSetup->iChorusNr        = m_settings.value("/ChorusNr",    FLUID_CHORUS_DEFAULT_N).toInt();
+    pSetup->fChorusLevel     = m_settings.value("/ChorusLevel", FLUID_CHORUS_DEFAULT_LEVEL).toDouble();
+    pSetup->fChorusSpeed     = m_settings.value("/ChorusSpeed", FLUID_CHORUS_DEFAULT_SPEED).toDouble();
+    pSetup->fChorusDepth     = m_settings.value("/ChorusDepth", FLUID_CHORUS_DEFAULT_DEPTH).toDouble();
+    pSetup->iChorusType      = m_settings.value("/ChorusType",  FLUID_CHORUS_DEFAULT_TYPE).toInt();
+    pSetup->bLadspaActive    = m_settings.value("/LadspaActive", false).toBool();
+    pSetup->fGain            = m_settings.value("/Gain", 1.0).toDouble();
+    pSetup->bServer          = m_settings.value("/Server", false).toBool();
+    pSetup->bMidiDump        = m_settings.value("/MidiDump", false).toBool();
+    pSetup->bVerbose         = m_settings.value("/Verbose", false).toBool();
     m_settings.endGroup();
 
     // Load soundfont list...
     m_settings.beginGroup("/SoundFonts");
-    const QString sSoundFontPrefix  = "/SoundFont";
-    const QString sBankOffsetPrefix = "/BankOffset";
+    const QString sSoundFontPrefix  = "/SoundFont%1";
+    const QString sBankOffsetPrefix = "/BankOffset%1";
     int i = 0;
     for (;;) {
-        QString sNumber     = QString::number(++i);
-        QString sSoundFont  = m_settings.readEntry(sSoundFontPrefix  + sNumber, QString::null);
-        QString sBankOffset = m_settings.readEntry(sBankOffsetPrefix + sNumber, QString::null);
+		++i;
+        QString sSoundFont  = m_settings.value(sSoundFontPrefix.arg(i)).toString();
+        QString sBankOffset = m_settings.value(sBankOffsetPrefix.arg(i)).toString();
         if (sSoundFont.isEmpty())
             break;
         pSetup->soundfonts.append(sSoundFont);
@@ -548,11 +553,11 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 
     // Load channel presets list.
     m_settings.beginGroup("/Presets");
-    pSetup->sDefPreset = m_settings.readEntry("/DefPreset", pSetup->sDefPresetName);
-    const QString sPresetPrefix = "/Preset";
+    pSetup->sDefPreset = m_settings.value("/DefPreset", pSetup->sDefPresetName).toString();
+    const QString sPresetPrefix = "/Preset%1";
     int iPreset = 0;
     for (;;) {
-        QString sItem = m_settings.readEntry(sPresetPrefix + QString::number(++iPreset), QString::null);
+        QString sItem = m_settings.value(sPresetPrefix.arg(++iPreset)).toString();
         if (sItem.isEmpty())
             break;
         pSetup->presets.append(sItem);
@@ -577,75 +582,73 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
 
     // Save presets list...
     m_settings.beginGroup("/Presets");
-    m_settings.writeEntry("/DefPreset", pSetup->sDefPreset);
+    m_settings.setValue("/DefPreset", pSetup->sDefPreset);
     // Save last preset list.
-    const QString sPresetPrefix = "/Preset";
+    const QString sPresetPrefix = "/Preset%1";
     int iPreset = 0;
-    for (QStringList::Iterator iter = pSetup->presets.begin(); iter != pSetup->presets.end(); iter++)
-        m_settings.writeEntry(sPresetPrefix + QString::number(++iPreset), *iter);
+    QStringListIterator iter(pSetup->presets);
+    while (iter.hasNext())
+        m_settings.setValue(sPresetPrefix.arg(++iPreset), iter.next());
     // Cleanup old entries, if any...
-    for (++iPreset; !m_settings.readEntry(sPresetPrefix + QString::number(iPreset)).isEmpty(); iPreset++)
-        m_settings.removeEntry(sPresetPrefix + QString::number(iPreset));
+    while (!m_settings.value(sPresetPrefix.arg(++iPreset)).toString().isEmpty())
+        m_settings.remove(sPresetPrefix.arg(iPreset));
     m_settings.endGroup();
 
     // Save last soundfont list.
     m_settings.beginGroup("/SoundFonts");
-    const QString sSoundFontPrefix  = "/SoundFont";
-    const QString sBankOffsetPrefix = "/BankOffset";
+    const QString sSoundFontPrefix  = "/SoundFont%1";
+    const QString sBankOffsetPrefix = "/BankOffset%1";
     int i = 0;
-    for (QStringList::Iterator iter = pSetup->soundfonts.begin();
-            iter != pSetup->soundfonts.end(); iter++) {
-        QString sNumber = QString::number(i + 1);
-        m_settings.writeEntry(sSoundFontPrefix  + sNumber, *iter);
-        m_settings.writeEntry(sBankOffsetPrefix + sNumber, pSetup->bankoffsets[i]);
-        i++;
+    QStringListIterator sfiter(pSetup->soundfonts);
+    while (sfiter.hasNext()) {
+        m_settings.setValue(sSoundFontPrefix.arg(++i), sfiter.next());
+        m_settings.setValue(sBankOffsetPrefix.arg(i), pSetup->bankoffsets[i - 1]);
     }
     // Cleanup old entries, if any...
     for (;;) {
-        QString sNumber = QString::number(++i);
-        if (m_settings.readEntry(sSoundFontPrefix + sNumber).isEmpty())
+        if (m_settings.value(sSoundFontPrefix.arg(++i)).toString().isEmpty())
             break;
-        m_settings.removeEntry(sSoundFontPrefix  + sNumber);
-        m_settings.removeEntry(sBankOffsetPrefix + sNumber);
+        m_settings.remove(sSoundFontPrefix.arg(i));
+        m_settings.remove(sBankOffsetPrefix.arg(i));
     }
     m_settings.endGroup();
 
     // Save last fluidsynth m_settings.
     m_settings.beginGroup("/Settings");
-    m_settings.writeEntry("/DisplayName",      pSetup->sDisplayName);
-    m_settings.writeEntry("/MidiIn",           pSetup->bMidiIn);
-    m_settings.writeEntry("/MidiDriver",       pSetup->sMidiDriver);
-    m_settings.writeEntry("/MidiDevice",       pSetup->sMidiDevice);
-    m_settings.writeEntry("/MidiChannels",     pSetup->iMidiChannels);
-    m_settings.writeEntry("/AlsaName",         pSetup->sAlsaName);
-    m_settings.writeEntry("/AudioDriver",      pSetup->sAudioDriver);
-    m_settings.writeEntry("/AudioDevice",      pSetup->sAudioDevice);
-    m_settings.writeEntry("/JackName",         pSetup->sJackName);
-    m_settings.writeEntry("/JackAutoConnect",  pSetup->bJackAutoConnect);
-    m_settings.writeEntry("/JackMulti",        pSetup->bJackMulti);
-    m_settings.writeEntry("/AudioChannels",    pSetup->iAudioChannels);
-    m_settings.writeEntry("/AudioGroups",      pSetup->iAudioGroups);
-    m_settings.writeEntry("/AudioBufSize",     pSetup->iAudioBufSize);
-    m_settings.writeEntry("/AudioBufCount",    pSetup->iAudioBufCount);
-    m_settings.writeEntry("/SampleFormat",     pSetup->sSampleFormat);
-    m_settings.writeEntry("/SampleRate",       pSetup->fSampleRate);
-    m_settings.writeEntry("/Polyphony",        pSetup->iPolyphony);
-    m_settings.writeEntry("/ReverbActive",     pSetup->bReverbActive);
-    m_settings.writeEntry("/ReverbRoom",       pSetup->fReverbRoom);
-    m_settings.writeEntry("/ReverbDamp",       pSetup->fReverbDamp);
-    m_settings.writeEntry("/ReverbWidth",      pSetup->fReverbWidth);
-    m_settings.writeEntry("/ReverbLevel",      pSetup->fReverbLevel);
-    m_settings.writeEntry("/ChorusActive",     pSetup->bChorusActive);
-    m_settings.writeEntry("/ChorusNr",         pSetup->iChorusNr);
-    m_settings.writeEntry("/ChorusLevel",      pSetup->fChorusLevel);
-    m_settings.writeEntry("/ChorusSpeed",      pSetup->fChorusSpeed);
-    m_settings.writeEntry("/ChorusDepth",      pSetup->fChorusDepth);
-    m_settings.writeEntry("/ChorusType",       pSetup->iChorusType);
-    m_settings.writeEntry("/LadspaActive",     pSetup->bLadspaActive);
-    m_settings.writeEntry("/Gain",             pSetup->fGain);
-    m_settings.writeEntry("/Server",           pSetup->bServer);
-    m_settings.writeEntry("/MidiDump",         pSetup->bMidiDump);
-    m_settings.writeEntry("/Verbose",          pSetup->bVerbose);
+    m_settings.setValue("/DisplayName",      pSetup->sDisplayName);
+    m_settings.setValue("/MidiIn",           pSetup->bMidiIn);
+    m_settings.setValue("/MidiDriver",       pSetup->sMidiDriver);
+    m_settings.setValue("/MidiDevice",       pSetup->sMidiDevice);
+    m_settings.setValue("/MidiChannels",     pSetup->iMidiChannels);
+    m_settings.setValue("/AlsaName",         pSetup->sAlsaName);
+    m_settings.setValue("/AudioDriver",      pSetup->sAudioDriver);
+    m_settings.setValue("/AudioDevice",      pSetup->sAudioDevice);
+    m_settings.setValue("/JackName",         pSetup->sJackName);
+    m_settings.setValue("/JackAutoConnect",  pSetup->bJackAutoConnect);
+    m_settings.setValue("/JackMulti",        pSetup->bJackMulti);
+    m_settings.setValue("/AudioChannels",    pSetup->iAudioChannels);
+    m_settings.setValue("/AudioGroups",      pSetup->iAudioGroups);
+    m_settings.setValue("/AudioBufSize",     pSetup->iAudioBufSize);
+    m_settings.setValue("/AudioBufCount",    pSetup->iAudioBufCount);
+    m_settings.setValue("/SampleFormat",     pSetup->sSampleFormat);
+    m_settings.setValue("/SampleRate",       pSetup->fSampleRate);
+    m_settings.setValue("/Polyphony",        pSetup->iPolyphony);
+    m_settings.setValue("/ReverbActive",     pSetup->bReverbActive);
+    m_settings.setValue("/ReverbRoom",       pSetup->fReverbRoom);
+    m_settings.setValue("/ReverbDamp",       pSetup->fReverbDamp);
+    m_settings.setValue("/ReverbWidth",      pSetup->fReverbWidth);
+    m_settings.setValue("/ReverbLevel",      pSetup->fReverbLevel);
+    m_settings.setValue("/ChorusActive",     pSetup->bChorusActive);
+    m_settings.setValue("/ChorusNr",         pSetup->iChorusNr);
+    m_settings.setValue("/ChorusLevel",      pSetup->fChorusLevel);
+    m_settings.setValue("/ChorusSpeed",      pSetup->fChorusSpeed);
+    m_settings.setValue("/ChorusDepth",      pSetup->fChorusDepth);
+    m_settings.setValue("/ChorusType",       pSetup->iChorusType);
+    m_settings.setValue("/LadspaActive",     pSetup->bLadspaActive);
+    m_settings.setValue("/Gain",             pSetup->fGain);
+    m_settings.setValue("/Server",           pSetup->bServer);
+    m_settings.setValue("/MidiDump",         pSetup->bMidiDump);
+    m_settings.setValue("/Verbose",          pSetup->bVerbose);
     m_settings.endGroup();
 
     // Done with the key group?
@@ -668,9 +671,9 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 
     QString sSuffix;
     if (sPreset != pSetup->sDefPresetName && !sPreset.isEmpty()) {
-        sSuffix = "/" + sPreset;
+        sSuffix = '/' + sPreset;
         // Check if on list.
-        if (pSetup->presets.find(sPreset) == pSetup->presets.end())
+        if (!pSetup->presets.contains(sPreset))
             return false;
     }
 
@@ -679,11 +682,11 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
         m_settings.beginGroup("/Engine/" + pEngine->name());
 
     // Load as current presets.
-    const QString sPrefix = "/Chan";
+    const QString sPrefix = "/Chan%1";
     m_settings.beginGroup("/Preset" + sSuffix);
     int iChannels = ::fluid_synth_count_midi_channels(pEngine->pSynth);
     for (int iChan = 0; iChan < iChannels; iChan++) {
-        QString sEntry = m_settings.readEntry(sPrefix + QString::number(iChan + 1), QString::null);
+        QString sEntry = m_settings.value(sPrefix.arg(iChan + 1)).toString();
         if (!sEntry.isEmpty() && iChan == sEntry.section(':', 0, 0).toInt()) {
             ::fluid_synth_bank_select(pEngine->pSynth, iChan, sEntry.section(':', 1, 1).toInt());
             ::fluid_synth_program_change(pEngine->pSynth, iChan, sEntry.section(':', 2, 2).toInt());
@@ -712,9 +715,9 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 
     QString sSuffix;
     if (sPreset != pSetup->sDefPresetName && !sPreset.isEmpty()) {
-        sSuffix = "/" + sPreset;
+        sSuffix = '/' + sPreset;
         // Append to list if not already.
-        if (pSetup->presets.find(sPreset) == pSetup->presets.end())
+        if (!pSetup->presets.contains(sPreset))
             pSetup->presets.prepend(sPreset);
     }
 
@@ -723,7 +726,7 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
         m_settings.beginGroup("/Engine/" + pEngine->name());
 
     // Unload current presets.
-    const QString sPrefix = "/Chan";
+    const QString sPrefix = "/Chan%1";
     m_settings.beginGroup("/Preset" + sSuffix);
     int iChannels = ::fluid_synth_count_midi_channels(pEngine->pSynth);
     int iChan = 0;
@@ -735,16 +738,16 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 			iBank += ::fluid_synth_get_bank_offset(pEngine->pSynth, (pPreset->sfont)->id);
 #endif
             QString sEntry = QString::number(iChan);
-            sEntry += ":";
+            sEntry += ':';
 			sEntry += QString::number(iBank);
-            sEntry += ":";
+            sEntry += ':';
             sEntry += QString::number(pPreset->get_num(pPreset));
-            m_settings.writeEntry(sPrefix + QString::number(iChan + 1), sEntry);
+            m_settings.setValue(sPrefix.arg(iChan + 1), sEntry);
         }
     }
     // Cleanup old entries, if any...
-    for (++iChan; !m_settings.readEntry(sPrefix + QString::number(iChan)).isEmpty(); iChan++)
-        m_settings.removeEntry(sPrefix + QString::number(iChan));
+    while (!m_settings.value(sPrefix.arg(++iChan)).toString().isEmpty())
+        m_settings.remove(sPrefix.arg(iChan));
     m_settings.endGroup();
 
     // Done with the key group?
@@ -769,12 +772,13 @@ bool qsynthOptions::deletePreset ( qsynthEngine *pEngine, const QString& sPreset
     QString sSuffix;
     if (sPreset != pSetup->sDefPresetName && !sPreset.isEmpty()) {
         sSuffix = "/" + sPreset;
-        QStringList::Iterator iter = pSetup->presets.find(sPreset);
-        if (iter == pSetup->presets.end())
+        int iPreset = pSetup->presets.indexOf(sPreset);
+        if (iPreset < 0)
             return false;
-        pSetup->presets.remove(iter);
-        m_settings.removeEntry(sPrefix + "/Preset" + sSuffix);
+        pSetup->presets.removeAt(iPreset);
+        m_settings.remove(sPrefix + "/Preset" + sSuffix);
     }
+
     return true;
 }
 
@@ -784,49 +788,51 @@ bool qsynthOptions::deletePreset ( qsynthEngine *pEngine, const QString& sPreset
 
 void qsynthOptions::loadWidgetGeometry ( QWidget *pWidget )
 {
-    // Try to restore old form window positioning.
-    if (pWidget) {
-        QPoint fpos;
-        QSize  fsize;
-        bool bVisible;
-        m_settings.beginGroup("/Geometry/" + QString(pWidget->name()));
-        fpos.setX(m_settings.readNumEntry("/x", -1));
-        fpos.setY(m_settings.readNumEntry("/y", -1));
-        fsize.setWidth(m_settings.readNumEntry("/width", -1));
-        fsize.setHeight(m_settings.readNumEntry("/height", -1));
-        bVisible = m_settings.readBoolEntry("/visible", false);
-        m_settings.endGroup();
-        if (fpos.x() > 0 && fpos.y() > 0)
-            pWidget->move(fpos);
-        if (fsize.width() > 0 && fsize.height() > 0)
-            pWidget->resize(fsize);
-        else
-            pWidget->adjustSize();
-        if (bVisible)
-            pWidget->show();
-    }
+	// Try to restore old form window positioning.
+	if (pWidget) {
+		QPoint fpos;
+		QSize  fsize;
+		bool bVisible;
+		m_settings.beginGroup("/Geometry/" + pWidget->objectName());
+		fpos.setX(m_settings.value("/x", -1).toInt());
+		fpos.setY(m_settings.value("/y", -1).toInt());
+		fsize.setWidth(m_settings.value("/width", -1).toInt());
+		fsize.setHeight(m_settings.value("/height", -1).toInt());
+		bVisible = m_settings.value("/visible", false).toBool();
+		m_settings.endGroup();
+		if (fpos.x() > 0 && fpos.y() > 0)
+			pWidget->move(fpos);
+		if (fsize.width() > 0 && fsize.height() > 0)
+			pWidget->resize(fsize);
+		else
+			pWidget->adjustSize();
+		if (bVisible)
+			pWidget->show();
+		else
+			pWidget->hide();
+	}
 }
 
 
 void qsynthOptions::saveWidgetGeometry ( QWidget *pWidget )
 {
-    // Try to save form window position...
-    // (due to X11 window managers ideossincrasies, we better
-    // only save the form geometry while its up and visible)
-    if (pWidget) {
-        m_settings.beginGroup("/Geometry/" + QString(pWidget->name()));
-        bool bVisible = pWidget->isVisible();
-        if (bVisible) {
-            QPoint fpos  = pWidget->pos();
-            QSize  fsize = pWidget->size();
-            m_settings.writeEntry("/x", fpos.x());
-            m_settings.writeEntry("/y", fpos.y());
-            m_settings.writeEntry("/width", fsize.width());
-            m_settings.writeEntry("/height", fsize.height());
-        }
-        m_settings.writeEntry("/visible", bVisible);
-        m_settings.endGroup();
-    }
+	// Try to save form window position...
+	// (due to X11 window managers ideossincrasies, we better
+	// only save the form geometry while its up and visible)
+	if (pWidget) {
+		m_settings.beginGroup("/Geometry/" + pWidget->objectName());
+		bool bVisible = pWidget->isVisible();
+		if (bVisible) {
+			QPoint fpos  = pWidget->pos();
+			QSize  fsize = pWidget->size();
+			m_settings.setValue("/x", fpos.x());
+			m_settings.setValue("/y", fpos.y());
+			m_settings.setValue("/width", fsize.width());
+			m_settings.setValue("/height", fsize.height());
+		}
+		m_settings.setValue("/visible", bVisible);
+		m_settings.endGroup();
+	}
 }
 
 

@@ -1,8 +1,7 @@
-// qsynthMessagesForm.ui.h
+// qsynthMessagesForm.cpp
 //
-// ui.h extension file, included from the uic-generated form implementation.
 /****************************************************************************
-   Copyright (C) 2003-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -21,25 +20,38 @@
 *****************************************************************************/
 
 #include "qsynthAbout.h"
+#include "qsynthMessagesForm.h"
+
+#include "qsynthMainForm.h"
+
+#include <QDateTime>
+#include <QTextBlock>
 
 
 // The maximum number of message lines.
 #define QSYNTH_MESSAGES_MAXLINES  1000
 
 
-// Kind of constructor.
-void qsynthMessagesForm::init (void)
+//----------------------------------------------------------------------------
+// qsynthMessagesForm -- UI wrapper form.
+
+// Constructor.
+qsynthMessagesForm::qsynthMessagesForm (
+	QWidget *pParent, Qt::WFlags wflags ) : QWidget(pParent, wflags)
 {
-#if QT_VERSION >= 0x030200
-    MessagesTextView->setTextFormat(Qt::LogText);
-#endif
-    // Initialize default message limit.
-    setMessagesLimit(QSYNTH_MESSAGES_MAXLINES);
+	// Setup UI struct...
+	m_ui.setupUi(this);
+
+//  m_ui.MessagesTextView->setTextFormat(Qt::LogText);
+
+	// Initialize default message limit.
+	m_iMessagesLines = 0;
+	setMessagesLimit(QSYNTH_MESSAGES_MAXLINES);
 }
 
 
-// Kind of destructor.
-void qsynthMessagesForm::destroy (void)
+// Destructor.
+qsynthMessagesForm::~qsynthMessagesForm (void)
 {
 }
 
@@ -47,7 +59,7 @@ void qsynthMessagesForm::destroy (void)
 // Notify our parent that we're emerging.
 void qsynthMessagesForm::showEvent ( QShowEvent *pShowEvent )
 {
-    qsynthMainForm *pMainForm = (qsynthMainForm *) QWidget::parentWidget();
+    qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
     if (pMainForm)
         pMainForm->stabilizeForm();
 
@@ -59,26 +71,26 @@ void qsynthMessagesForm::hideEvent ( QHideEvent *pHideEvent )
 {
     QWidget::hideEvent(pHideEvent);
 
-    qsynthMainForm *pMainForm = (qsynthMainForm *) QWidget::parentWidget();
+    qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
     if (pMainForm)
         pMainForm->stabilizeForm();
 }
 
 
 // Messages view font accessors.
-QFont qsynthMessagesForm::messagesFont (void)
+QFont qsynthMessagesForm::messagesFont (void) const
 {
-    return MessagesTextView->font();
+    return m_ui.MessagesTextView->font();
 }
 
 void qsynthMessagesForm::setMessagesFont ( const QFont & font )
 {
-    MessagesTextView->setFont(font);
+    m_ui.MessagesTextView->setFont(font);
 }
 
 
 // Messages line limit accessors.
-int qsynthMessagesForm::messagesLimit (void)
+int qsynthMessagesForm::messagesLimit (void) const
 {
     return m_iMessagesLimit;
 }
@@ -87,9 +99,8 @@ void qsynthMessagesForm::setMessagesLimit( int iMessagesLimit )
 {
     m_iMessagesLimit = iMessagesLimit;
     m_iMessagesHigh  = iMessagesLimit + (iMessagesLimit / 3);
-#if QT_VERSION >= 0x030200
-	MessagesTextView->setMaxLogLines(iMessagesLimit);
-#endif
+
+//	m_ui.MessagesTextView->setMaxLogLines(iMessagesLimit);
 }
 
 
@@ -106,24 +117,25 @@ void qsynthMessagesForm::appendMessagesColor( const QString& s, const QString& c
 
 void qsynthMessagesForm::appendMessagesText( const QString& s )
 {
-#if QT_VERSION < 0x030200
     // Check for message line limit...
-    if (m_iMessagesLimit > 0) {
-        int iParagraphs = MessagesTextView->paragraphs();
-        if (iParagraphs > m_iMessagesHigh) {
-            MessagesTextView->setUpdatesEnabled(false);
-            while (iParagraphs > m_iMessagesLimit) {
-                MessagesTextView->removeParagraph(0);
-                iParagraphs--;
-            }
-            MessagesTextView->scrollToBottom();
-            MessagesTextView->setUpdatesEnabled(true);
-        }
+    if (m_iMessagesLines > m_iMessagesHigh) {
+		m_ui.MessagesTextView->setUpdatesEnabled(false);
+		QTextCursor textCursor(m_ui.MessagesTextView->document()->begin());
+		while (m_iMessagesLines > m_iMessagesLimit) {
+			// Move cursor extending selection
+			// from start to next line-block...
+			textCursor.movePosition(
+				QTextCursor::NextBlock, QTextCursor::KeepAnchor);
+			m_iMessagesLines--;
+		}
+		// Remove the excessive line-blocks...
+		textCursor.removeSelectedText();
+		m_ui.MessagesTextView->setUpdatesEnabled(true);
     }
-#endif
-    MessagesTextView->append(s);
+
+    m_ui.MessagesTextView->append(s);
 }
 
 
-// end of qsynthMessagesForm.ui.h
+// end of qsynthMessagesForm.cpp
 

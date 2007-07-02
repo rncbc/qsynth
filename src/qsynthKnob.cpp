@@ -23,67 +23,35 @@
 
 *****************************************************************************/
 
-#include <cmath>
-#include <qtimer.h>
-#include <qtooltip.h>
-#include <qpainter.h>
-#include <qpixmap.h>
-#include <qimage.h>
-
 #include "qsynthKnob.h"
 
+#include <QTimer>
+#include <QToolTip>
+#include <QPainter>
+#include <QImage>
 
-struct qsynthKnobCacheIndex
-{
-	// Constructor.
-	qsynthKnobCacheIndex(int s = 0, int kc = 0, int mc = 0,
-		int a = 0, int n = 0, int c = 0) :
-			size(s), knobColor(kc), meterColor(mc),
-			angle(a), numTicks(n), centered(c) {}
+#include <QMouseEvent>
+#include <QWheelEvent>
 
-	bool operator<(const qsynthKnobCacheIndex &i) const {
-		// woo!
-		if (size < i.size) return true;
-		else if (size > i.size) return false;
-		else if (knobColor < i.knobColor) return true;
-		else if (knobColor > i.knobColor) return false;
-		else if (meterColor < i.meterColor) return true;
-		else if (meterColor > i.meterColor) return false;
-		else if (angle < i.angle) return true;
-		else if (angle > i.angle) return false;
-		else if (numTicks < i.numTicks) return true;
-		else if (numTicks > i.numTicks) return false;
-		else if (centered == i.centered) return false;
-		else if (!centered) return true;
-		return false;
-	}
+#include <QRadialGradient>
+#include <QColormap>
 
-	int          size;
-	unsigned int knobColor;
-	unsigned int meterColor;
-	int          angle;
-	int          numTicks;
-	bool         centered;
-};
-
-typedef QMap<qsynthKnobCacheIndex, QPixmap> qsynthKnobPixmapCache;
+#include <cmath>
 
 
 //-------------------------------------------------------------------------
 // qsynthKnob - Instance knob widget class.
 //
 
-#define QSYNTHKNOB_MIN      (0.25 * M_PI)
-#define QSYNTHKNOB_MAX      (1.75 * M_PI)
-#define QSYNTHKNOB_RANGE    (QSYNTHKNOB_MAX - QSYNTHKNOB_MIN)
+#define QSYNTH_KNOB_MIN      (0.25 * M_PI)
+#define QSYNTH_KNOB_MAX      (1.75 * M_PI)
+#define QSYNTH_KNOB_RANGE    (QSYNTH_KNOB_MAX - QSYNTH_KNOB_MIN)
 
 
 // Constructor.
-qsynthKnob::qsynthKnob ( QWidget *pParent, const char *pszName )
-	: QDial(pParent, pszName),
-	m_knobColor(Qt::black), m_meterColor(Qt::white),
-	m_bMouseDial(false), m_bMousePressed(false),
-	m_iDefaultValue(-1)
+qsynthKnob::qsynthKnob ( QWidget *pParent )
+	: QDial(pParent), m_iDefaultValue(-1), m_dialMode(AngularMode),
+	m_bMousePressed(false), m_lastDragValue(0.0)
 {
 }
 
@@ -94,218 +62,191 @@ qsynthKnob::~qsynthKnob (void)
 }
 
 
-void qsynthKnob::repaintScreen ( const QRect */*pRect*/ )
+void qsynthKnob::paintEvent ( QPaintEvent * )
 {
-	static qsynthKnobPixmapCache s_pixmaps;
-
-	QPainter paint;
-
-	double angle = QSYNTHKNOB_MIN // offset
-		+ (QSYNTHKNOB_RANGE *
-			(double(value() - minValue()) /
-			(double(maxValue() - minValue()))));
+	double angle = QSYNTH_KNOB_MIN // offset
+		+ (QSYNTH_KNOB_RANGE *
+			(double(value() - minimum()) /
+			(double(maximum() - minimum()))));
 	int degrees = int(angle * 180.0 / M_PI);
 
+	int side = width() < height() ? width() : height();
+	int xcenter = width()  / 2;
+	int ycenter = height() / 2;
+
+	int notchWidth   = 1 + side / 400;
+	int pointerWidth = 2 + side / 30;
+
+	int scaleShadowWidth = 1 + side / 100;
+	int knobBorderWidth  = 4 + side / 50;;
+
 	int ns = notchSize();
-	int numTicks = 1 + (maxValue() + ns - minValue()) / ns;
+	int numTicks = 1 + (maximum() + ns - minimum()) / ns;
+	int indent = int(0.15 * side) + 2;
+	int knobWidth = side - 2 * indent;
+	int shineFocus = knobWidth / 4;
+	int shineCenter = knobWidth / 5;
+	int shineExtension = shineCenter * 4;
+	int shadowShift = shineCenter * 2;
+	int meterWidth = side - 2 * scaleShadowWidth;
 	
 	QColor knobColor(m_knobColor);
-	if (knobColor == Qt::black)
-		knobColor = colorGroup().mid();
+	if (!knobColor.isValid())
+		knobColor = palette().mid().color();
+
+	QColor borderColor(m_borderColor);
+	if (!borderColor.isValid())
+		knobBorderWidth = 0;
+	//	borderColor = knobColor.light();
 
 	QColor meterColor(m_meterColor);
 	if (!isEnabled())
-		meterColor = colorGroup().mid();
-	else if (m_meterColor == Qt::white)
-		meterColor = colorGroup().highlight();
+		meterColor = palette().mid().color();
+	else if (!m_meterColor.isValid())
+		meterColor = palette().highlight().color();
+	QColor background = palette().window().color();
 
-	int m_size = width() < height() ? width() : height();
-	qsynthKnobCacheIndex index(m_size, knobColor.pixel(), meterColor.pixel(),
-		degrees, numTicks, false);
-
-	if (s_pixmaps.find(index) != s_pixmaps.end()) {
-		paint.begin(this);
-		paint.drawPixmap(0, 0, s_pixmaps[index]);
-		paint.end();
-		return;
-	}
-
-	int scale = 4;
-	int width = m_size * scale;
-	QPixmap map(width, width);
-	map.fill(paletteBackgroundColor());
-	paint.begin(&map);
-
-	QPen pen;
-	QColor c;
-
-	// Knob body and face...
-
-	c = knobColor;
-	pen.setColor(knobColor);
-	pen.setWidth(scale);
-	
-	paint.setPen(pen);
-	paint.setBrush(c);
-
-	int indent = (int)(width * 0.15 + 1);
-
-	paint.drawEllipse(indent, indent, width-2*indent, width-2*indent);
-
-	pen.setWidth(2 * scale);
-	int pos = indent + (width-2*indent) / 20;
-	int darkWidth = (width-2*indent) * 3 / 4;
-	while (darkWidth) {
-		c = c.light(101);
-		pen.setColor(c);
-		paint.setPen(pen);
-		paint.drawEllipse(pos, pos, darkWidth, darkWidth);
-		if (!--darkWidth) break;
-		paint.drawEllipse(pos, pos, darkWidth, darkWidth);
-		if (!--darkWidth) break;
-		paint.drawEllipse(pos, pos, darkWidth, darkWidth);
-		++pos; --darkWidth;
-	}
+	QPainter paint(this);
+	paint.setRenderHint(QPainter::Antialiasing, true);
 
 	// The bright metering bit...
 
-	c = meterColor;
-	pen.setColor(c);
-	pen.setWidth(indent);
+	QConicalGradient meterShadow(xcenter, ycenter, -90);
+	meterShadow.setColorAt(0, meterColor.dark());
+	meterShadow.setColorAt(0.5, meterColor);
+	meterShadow.setColorAt(1.0, meterColor.light().light());
+	paint.setBrush(meterShadow);
+	paint.setPen(Qt::transparent);
+	paint.drawPie(xcenter - meterWidth / 2, ycenter - meterWidth / 2,
+		meterWidth, meterWidth, (180 + 45) * 16, -(degrees - 45) * 16);
+
+	// Knob projected shadow
+	QRadialGradient projectionGradient(
+		xcenter + shineCenter, ycenter + shineCenter,
+		shineExtension,	xcenter + shadowShift, ycenter + shadowShift);
+	projectionGradient.setColorAt(0, QColor(  0, 0, 0, 100));
+	projectionGradient.setColorAt(1, QColor(200, 0, 0,  10));
+	QBrush shadowBrush(projectionGradient);
+	paint.setBrush(shadowBrush);
+	paint.drawEllipse(xcenter - shadowShift, ycenter - shadowShift,
+		knobWidth, knobWidth);
+
+	// Knob body and face...
+
+	QPen pen;
+	pen.setColor(knobColor);
+	pen.setWidth(knobBorderWidth);
 	paint.setPen(pen);
 
-	paint.drawArc(indent/2, indent/2,
-		width-indent, width-indent, (180 + 45) * 16, -(degrees - 45) * 16);
+	QRadialGradient gradient(
+		xcenter - shineCenter, ycenter - shineCenter,
+		shineExtension,	xcenter - shineFocus, ycenter - shineFocus);
+	gradient.setColorAt(0.2, knobColor.light().light());
+	gradient.setColorAt(0.5, knobColor);
+	gradient.setColorAt(1.0, knobColor.dark(150));
+	QBrush knobBrush(gradient);
+	paint.setBrush(knobBrush);
+	paint.drawEllipse(xcenter - knobWidth / 2, ycenter - knobWidth / 2,
+		knobWidth, knobWidth);
 
 	// Tick notches...
 
-	paint.setBrush(QBrush::NoBrush);
+	paint.setBrush(Qt::NoBrush);
 
-	if ( notchesVisible() ) {
-		pen.setColor(colorGroup().dark());
-		pen.setWidth(scale);
+	if (notchesVisible()) {
+		pen.setColor(palette().dark().color());
+		pen.setWidth(notchWidth);
 		paint.setPen(pen);
+		double hyp = double(side - scaleShadowWidth) / 2.0;
+		double len = hyp / 4;
 		for (int i = 0; i < numTicks; ++i) {
 			int div = numTicks;
 			if (div > 1) --div;
-			drawTick(paint, QSYNTHKNOB_MIN +
-				(QSYNTHKNOB_MAX - QSYNTHKNOB_MIN) * i / div,
-				width, i != 0 && i != numTicks-1 );
+			bool internal = (i != 0 && i != numTicks - 1);
+			double angle = QSYNTH_KNOB_MIN
+				+ (QSYNTH_KNOB_MAX - QSYNTH_KNOB_MIN) * i / div;
+			double dir = (internal ? -1 : len);
+			double sinAngle = sin(angle);
+			double cosAngle = cos(angle);
+			double x0 = xcenter - (hyp - len) * sinAngle;
+			double y0 = ycenter + (hyp - len) * cosAngle;
+			double x1 = xcenter - (hyp + dir) * sinAngle;
+			double y1 = ycenter + (hyp + dir) * cosAngle;
+			paint.drawLine(QLineF(x0, y0, x1, y1));
 		}
 	}
 
 	// Shadowing...
 
-	pen.setWidth(scale);
-	paint.setPen(pen);
-
 	// Knob shadow...
-
-	int shadowAngle = -720;
-	c = knobColor.dark();
-	for (int arc = 120; arc < 2880; arc += 240) {
-		pen.setColor(c);
-		paint.setPen(pen);
-		paint.drawArc(indent, indent,
-			width-2*indent, width-2*indent, shadowAngle + arc, 240);
-		paint.drawArc(indent, indent,
-			width-2*indent, width-2*indent, shadowAngle - arc, 240);
-		c = c.light(110);
+	if (knobBorderWidth > 0) {
+		QLinearGradient inShadow(xcenter - side / 4, ycenter - side / 4,
+			xcenter + side / 4, ycenter + side / 4);
+		inShadow.setColorAt(0.0, borderColor.light());
+		inShadow.setColorAt(1.0, borderColor.dark());
+		paint.setPen(QPen(QBrush(inShadow), knobBorderWidth * 7 / 8));
+		paint.drawEllipse(xcenter - side / 2 + indent,
+			ycenter - side / 2 + indent,
+			side - 2 * indent, side - 2 * indent);
 	}
 
 	// Scale shadow...
-
-	shadowAngle = 2160;
-	c = colorGroup().dark();
-	for (int arc = 120; arc < 2880; arc += 240) {
-		pen.setColor(c);
-		paint.setPen(pen);
-		paint.drawArc(scale/2, scale/2,
-			width-scale, width-scale, shadowAngle + arc, 240);
-		paint.drawArc(scale/2, scale/2,
-			width-scale, width-scale, shadowAngle - arc, 240);
-		c = c.light(108);
-	}
-
-	// Undraw the bottom part...
-
-	pen.setColor(paletteBackgroundColor());
-	paint.setPen(pen);
-	paint.drawArc(scale/2, scale/2,
-		width-scale, width-scale, -45 * 16, -90 * 16);
+	QLinearGradient outShadow(xcenter - side / 3, ycenter - side / 3,
+		xcenter + side / 3, ycenter + side / 3);
+	outShadow.setColorAt(0.0, background.dark().dark());
+	outShadow.setColorAt(1.0, background.light().light());
+	paint.setPen(QPen(QBrush(outShadow), scaleShadowWidth));
+	paint.drawArc(xcenter - side / 2 + scaleShadowWidth / 2,
+		ycenter - side / 2 + scaleShadowWidth / 2,
+		side - scaleShadowWidth, side - scaleShadowWidth, -45 * 16, 270 * 16);
 
 	// Pointer notch...
 
-	double hyp = double(width) / 2.0;
-	double len = hyp - indent;
-	--len;
+	double hyp = double(side) / 2.0;
+	double len = hyp - indent - 1;
 
-	double x0 = hyp;
-	double y0 = hyp;
+	double x = xcenter - len * sin(angle);
+	double y = ycenter + len * cos(angle);
 
-	double x = hyp - len * sin(angle);
-	double y = hyp + len * cos(angle);
-
-	c = colorGroup().dark();
-	pen.setColor(isEnabled() ? c.dark(130) : c);
-	pen.setWidth(scale * 2);
+	QColor pointerColor = m_pointerColor;
+	if (!pointerColor.isValid()) 
+		pointerColor = palette().dark().color();
+	pen.setColor(isEnabled() ? pointerColor.dark(140) : pointerColor);
+	pen.setWidth(pointerWidth + 2);
 	paint.setPen(pen);
-	paint.drawLine(int(x0), int(y0), int(x), int(y));
-	paint.end();
-
-	// Image rendering...
-
-	QImage img = map.convertToImage().smoothScale(m_size, m_size);
-	s_pixmaps[index] = QPixmap(img);
-	paint.begin(this);
-	paint.drawPixmap(0, 0, s_pixmaps[index]);
-	paint.end();
-}
-
-
-void qsynthKnob::drawTick ( QPainter& paint,
-	double angle, int size, bool internal )
-{
-	double hyp = double(size) / 2.0;
-	double x0 = hyp - (hyp - 1) * sin(angle);
-	double y0 = hyp + (hyp - 1) * cos(angle);
-
-	if (internal) {
-
-		double len = hyp / 4;
-		double x1 = hyp - (hyp - len) * sin(angle);
-		double y1 = hyp + (hyp - len) * cos(angle);
-		
-		paint.drawLine(int(x0), int(y0), int(x1), int(y1));
-
-	} else {
-
-		double len = hyp / 4;
-		double x1 = hyp - (hyp + len) * sin(angle);
-		double y1 = hyp + (hyp + len) * cos(angle);
-
-		paint.drawLine(int(x0), int(y0), int(x1), int(y1));
-	}
+	paint.drawLine(QLineF(xcenter, ycenter, x, y));
+	pen.setColor(isEnabled() ? pointerColor.light() : pointerColor.light(140));
+	pen.setWidth(pointerWidth);
+	paint.setPen(pen);
+	paint.drawLine(QLineF(xcenter - 1, ycenter - 1, x - 1, y - 1));
 }
 
 
 void qsynthKnob::setKnobColor ( const QColor& color )
 {
 	m_knobColor = color;
-	repaint();
+	update();
 }
 
 
 void qsynthKnob::setMeterColor ( const QColor& color )
 {
 	m_meterColor = color;
-	repaint();
+	update();
 }
 
 
-void qsynthKnob::setMouseDial ( bool bMouseDial )
+void qsynthKnob::setPointerColor ( const QColor& color )
 {
-	m_bMouseDial = bMouseDial;
+	m_pointerColor = color;
+	update();
+}
+
+
+void qsynthKnob::setBorderColor ( const QColor& color )
+{
+	m_borderColor = color;
+	update();
 }
 
 
@@ -315,28 +256,35 @@ void qsynthKnob::setDefaultValue ( int iDefaultValue )
 }
 
 
+void qsynthKnob::setDialMode ( qsynthKnob::DialMode dialMode )
+{
+	m_dialMode = dialMode;
+}
+
+
 // Mouse angle determination.
 double qsynthKnob::mouseAngle ( const QPoint& pos )
 {
-	int dx = pos.x() - (QDial::width() / 2);
-	int dy = (QDial::height() / 2) - pos.y();
-	return (dx ? atan((double) dy / (double) dx) : 0.0);
+	double dx = pos.x() - (width() / 2);
+	double dy = (height() / 2) - pos.y();
+	return 180.0 * atan2(dx, dy) / M_PI;
 }
 
 
 // Alternate mouse behavior event handlers.
 void qsynthKnob::mousePressEvent ( QMouseEvent *pMouseEvent )
 {
-	if (m_bMouseDial) {
+	if (m_dialMode == QDialMode) {
 		QDial::mousePressEvent(pMouseEvent);
 	} else if (pMouseEvent->button() == Qt::LeftButton) {
 		m_bMousePressed = true;
 		m_posMouse = pMouseEvent->pos();
-		emit dialPressed();
+		m_lastDragValue = double(value());
+		emit sliderPressed();
 	} else if (pMouseEvent->button() == Qt::MidButton) {
 		// Reset to default value...
-		if (m_iDefaultValue < minValue() || m_iDefaultValue > maxValue())
-			m_iDefaultValue = (maxValue() + minValue()) / 2;
+		if (m_iDefaultValue < minimum() || m_iDefaultValue > maximum())
+			m_iDefaultValue = (maximum() + minimum()) / 2;
 		setValue(m_iDefaultValue);
 	}
 }
@@ -344,28 +292,50 @@ void qsynthKnob::mousePressEvent ( QMouseEvent *pMouseEvent )
 
 void qsynthKnob::mouseMoveEvent ( QMouseEvent *pMouseEvent )
 {
-	if (m_bMouseDial) {
+	if (m_dialMode == QDialMode) {
 		QDial::mouseMoveEvent(pMouseEvent);
-	} else if (m_bMousePressed) {
-		// Dragging by x or y axis when clicked modifies value.
-		const QPoint& posMouse = pMouseEvent->pos();
-		int iValue = value()
-			+ (mouseAngle(m_posMouse) < mouseAngle(posMouse) ? -1 : +1)
-			* lineStep();
-		m_posMouse = posMouse;
-		if (iValue > maxValue())
-			iValue = maxValue();
-		else
-		if (iValue < minValue())
-			iValue = minValue();
-		setValue(iValue);
-		emit dialMoved(value());
+		return;
 	}
+
+	if (!m_bMousePressed)
+		return;
+
+	const QPoint& posMouse = pMouseEvent->pos();
+	int xdelta = posMouse.x() - m_posMouse.x();
+	int ydelta = posMouse.y() - m_posMouse.y();
+	double angleDelta =  mouseAngle(posMouse) - mouseAngle(m_posMouse);
+
+	int iNewValue = value();
+
+	switch (m_dialMode)	{
+	case LinearMode:
+		iNewValue = int(m_lastDragValue + xdelta - ydelta);
+		break;
+	case AngularMode:
+	default:
+		// Forget about the drag origin to be robust on full rotations
+		if (angleDelta > +180.0) angleDelta = angleDelta - 360.0;
+		if (angleDelta < -180.0) angleDelta = angleDelta + 360.0;
+		m_lastDragValue += double(maximum() - minimum()) * angleDelta / 270.0;
+		if (m_lastDragValue > double(maximum()))
+			m_lastDragValue = double(maximum());
+		if (m_lastDragValue < double(minimum()))
+			m_lastDragValue = double(minimum());
+		m_posMouse = posMouse;
+		iNewValue = int(m_lastDragValue + 0.5);
+		break;
+	}
+
+	setValue(iNewValue);
+	update();
+
+	emit sliderMoved(value());
 }
+
 
 void qsynthKnob::mouseReleaseEvent ( QMouseEvent *pMouseEvent )
 {
-	if (m_bMouseDial) {
+	if (m_dialMode == QDialMode) {
 		QDial::mouseReleaseEvent(pMouseEvent);
 	} else if (m_bMousePressed) {
 		m_bMousePressed = false;
@@ -375,7 +345,7 @@ void qsynthKnob::mouseReleaseEvent ( QMouseEvent *pMouseEvent )
 
 void qsynthKnob::wheelEvent ( QWheelEvent *pWheelEvent )
 {
-	if (m_bMouseDial) {
+	if (m_dialMode == QDialMode) {
 		QDial::wheelEvent(pWheelEvent);
 	} else {
 		int iValue = value();
@@ -383,23 +353,13 @@ void qsynthKnob::wheelEvent ( QWheelEvent *pWheelEvent )
 			iValue -= pageStep();
 		else
 			iValue += pageStep();
-		if (iValue > maxValue())
-			iValue = maxValue();
+		if (iValue > maximum())
+			iValue = maximum();
 		else
-		if (iValue < minValue())
-			iValue = minValue();
+		if (iValue < minimum())
+			iValue = minimum();
 		setValue(iValue);
 	}
-}
-
-
-void qsynthKnob::valueChange (void)
-{
-	repaintScreen();
-	emit valueChanged(value());
-#if defined(QT_ACCESSIBILITY_SUPPORT)
-	QAccessible::updateAccessibility(this, 0, QAccessible::ValueChanged);
-#endif
 }
 
 

@@ -22,23 +22,12 @@
 #ifndef __qsynthMeter_h
 #define __qsynthMeter_h
 
-#include <qptrlist.h>
-#include <qhbox.h>
-
-// Color/level indexes.
-#define QSYNTHMETER_OVER    0
-#define QSYNTHMETER_0DB     1
-#define QSYNTHMETER_3DB     2
-#define QSYNTHMETER_6DB     3
-#define QSYNTHMETER_10DB    4
-#define QSYNTHMETER_BACK    5
-#define QSYNTHMETER_FORE    6
-
-#define QSYNTHMETER_LEVELS  5
-#define QSYNTHMETER_COLORS  7
+#include <QFrame>
 
 // Forward declarations.
 class qsynthMeter;
+
+class QHBoxLayout;
 
 
 //----------------------------------------------------------------------------
@@ -58,26 +47,26 @@ public:
 protected:
 
     // Specific event handlers.
-    virtual void paintEvent(QPaintEvent *);
-    virtual void resizeEvent(QResizeEvent *);
+    void paintEvent(QPaintEvent *);
+    void resizeEvent(QResizeEvent *);
+
+    // Draw IEC scale line and label.
+    void drawLineLabel(QPainter *p, int y, const QString& sLabel);
 
 private:
 
-    // Draw IEC scale line and label.
-    void drawLineLabel(QPainter *p, int y, const char* pszLabel);
-
     // Local instance variables.
     qsynthMeter *m_pMeter;
+
     // Running variables.
-    float m_fScale;
-    int   m_iLastY;
+    int m_iLastY;
 };
 
 
 //----------------------------------------------------------------------------
 // qsynthMeterValue -- Meter bridge value widget.
 
-class qsynthMeterValue : public QWidget
+class qsynthMeterValue : public QFrame
 {
     Q_OBJECT
 
@@ -100,8 +89,8 @@ public:
 protected:
 
     // Specific event handlers.
-    virtual void paintEvent(QPaintEvent *);
-    virtual void resizeEvent(QResizeEvent *);
+    void paintEvent(QPaintEvent *);
+    void resizeEvent(QResizeEvent *);
 
 private:
 
@@ -109,7 +98,7 @@ private:
     qsynthMeter *m_pMeter;
     // Running variables.
     float m_fValue;
-    int   m_iValue;
+    int   m_iValueHold;
     float m_fValueDecay;
     int   m_iPeak;
     int   m_iPeakHold;
@@ -121,14 +110,14 @@ private:
 //----------------------------------------------------------------------------
 // qsynthMeter -- Meter bridge slot widget.
 
-class qsynthMeter : public QHBox
+class qsynthMeter : public QWidget
 {
     Q_OBJECT
 
 public:
 
     // Constructor.
-    qsynthMeter(QWidget *pParent = 0, const char *pszName = 0);
+    qsynthMeter(QWidget *pParent = 0);
     // Default destructor.
     ~qsynthMeter();
 
@@ -144,6 +133,19 @@ public:
 
     // Slot refreshment.
     void refresh();
+
+	// Color/level indexes.
+	enum {
+		ColorOver	= 0,
+		Color0dB	= 1,
+		Color3dB	= 2,
+		Color6dB	= 3,
+		Color10dB	= 4,
+		LevelCount	= 5,
+		ColorBack	= 5,
+		ColorFore	= 6,
+		ColorCount	= 7
+	};
 
     // Common resource accessors.
     const QColor& color(int iIndex) const;
@@ -163,13 +165,16 @@ protected:
 private:
 
     // Local instance variables.
+	QHBoxLayout       *m_pHBoxLayout;
     int                m_iPortCount;
     int                m_iScaleCount;
     qsynthMeterValue **m_ppValues;
     qsynthMeterScale **m_ppScales;
-    int                m_iLevels[QSYNTHMETER_LEVELS];
-    QColor            *m_pColors[QSYNTHMETER_COLORS];
-    float              m_fScale;
+
+    float   m_fScale;
+
+    int     m_levels[LevelCount];
+    QColor  m_colors[ColorCount];
 
 	// Peak falloff mode setting (0=no peak falloff).
     int m_iPeakFalloff;

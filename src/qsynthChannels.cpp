@@ -24,61 +24,38 @@
 
 
 //-------------------------------------------------------------------------
-// qsynthChannels - Prototype settings structure.
+// qsynthChannelsItem - Channel view item class.
 //
 
 // Constructor.
-qsynthChannelsViewItem::qsynthChannelsViewItem ( QListView *pParent )
-    : QListViewItem(pParent)
+qsynthChannelsItem::qsynthChannelsItem ( QTreeWidget *pParent )
+	: QTreeWidgetItem(pParent)
 {
 }
 
 
 // Default Destructor.
-qsynthChannelsViewItem::~qsynthChannelsViewItem (void)
+qsynthChannelsItem::~qsynthChannelsItem (void)
 {
 }
+
 
 // Special column sorting virtual comparator.
-int qsynthChannelsViewItem::compare ( QListViewItem* pItem, int iColumn, bool bAscending ) const
+// Sort/compare overriden method.
+bool qsynthChannelsItem::operator< (const QTreeWidgetItem& other) const
 {
-    switch (iColumn) {
-
-        case QSYNTH_CHANNELS_BANK:
-        case QSYNTH_CHANNELS_PROG:
-        case QSYNTH_CHANNELS_SFID:
-        {
-            int iNum1 = text(iColumn).toInt();
-            int iNum2 = pItem->text(iColumn).toInt();
-            if (iNum1 > iNum2)
-                return (bAscending ?  1 : -1);
-            else if (iNum1 < iNum2)
-                return (bAscending ? -1 :  1);
-            break;
-        }
-
-        case QSYNTH_CHANNELS_NAME:
-        case QSYNTH_CHANNELS_SFNAME:
-        {
-            const QString sName1 = text(iColumn);
-            const QString sName2 = pItem->text(iColumn);
-            if (sName1 > sName2)
-                return (bAscending ?  1 : -1);
-            else if (sName1 < sName2)
-                return (bAscending ? -1 :  1);
-            break;
-        }
-    }
-
-    int iChan1 = text(QSYNTH_CHANNELS_CHAN).toInt();
-    int iChan2 = pItem->text(QSYNTH_CHANNELS_CHAN).toInt();
-    if (iChan1 > iChan2)
-        return (bAscending ?  1 : -1);
-    else
-    if (iChan1 < iChan2)
-        return (bAscending ? -1 :  1);
-
-    return 0;
+	int iColumn = QTreeWidgetItem::treeWidget()->sortColumn();
+	const QString& s1 = text(iColumn);
+	const QString& s2 = other.text(iColumn);
+	if (iColumn == QSYNTH_CHANNELS_CHAN ||
+		iColumn == QSYNTH_CHANNELS_BANK ||
+		iColumn == QSYNTH_CHANNELS_PROG ||
+		iColumn == QSYNTH_CHANNELS_SFID) {
+		return (s1.toInt() < s2.toInt());
+	} else {
+		return (s1 < s2);
+	}
 }
+
 
 // end of qsynthChannels.cpp

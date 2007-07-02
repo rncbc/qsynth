@@ -21,47 +21,17 @@
 
 #include "qsynthTabBar.h"
 
-#include <qiconset.h>
+#include "qsynthEngine.h"
+
+#include <QIcon>
+
+#include <QContextMenuEvent>
+
 
 // Common icon set.
-static int       g_iIconRefCount = 0;
-static QIconSet *g_pIconLedOn    = NULL;
-static QIconSet *g_pIconLedOff   = NULL;
-
-
-//-------------------------------------------------------------------------
-// qsynthTab - Instance tab structure class.
-//
-
-// Constructor.
-qsynthTab::qsynthTab ( qsynthEngine *pEngine )
-    : QTab(*g_pIconLedOff, pEngine->name())
-{
-    m_pEngine = pEngine;
-}
-
-
-// Destructor.
-qsynthTab::~qsynthTab (void)
-{
-    if (m_pEngine)
-        delete m_pEngine;
-    m_pEngine = NULL;
-}
-
-
-// Engine property accessor.
-qsynthEngine *qsynthTab::engine (void) const
-{
-    return m_pEngine;
-}
-
-
-// Icon toggler.
-void qsynthTab::setOn ( bool bOn )
-{
-    QTab::setIconSet(bOn ? *g_pIconLedOn : *g_pIconLedOff);
-}
+static int    g_iIconRefCount = 0;
+static QIcon *g_pIconLedOn    = NULL;
+static QIcon *g_pIconLedOff   = NULL;
 
 
 //-------------------------------------------------------------------------
@@ -69,50 +39,92 @@ void qsynthTab::setOn ( bool bOn )
 //
 
 // Constructor.
-qsynthTabBar::qsynthTabBar ( QWidget *pParent, const char *pszName )
-    : QTabBar(pParent, pszName)
+qsynthTabBar::qsynthTabBar ( QWidget *pParent ) : QTabBar(pParent)
 {
-    QTabBar::setShape(QTabBar::RoundedBelow);
+	QTabBar::setShape(QTabBar::RoundedSouth);
 
-    if (g_iIconRefCount == 0) {
-        g_pIconLedOn  = new QIconSet(QPixmap::fromMimeSource("ledon1.png"));
-        g_pIconLedOff = new QIconSet(QPixmap::fromMimeSource("ledoff1.png"));
-    }
-    g_iIconRefCount++;
+	if (++g_iIconRefCount == 1) {
+		g_pIconLedOn  = new QIcon(":/icons/ledon1.png");
+		g_pIconLedOff = new QIcon(":/icons/ledoff1.png");
+	}
 }
 
 
 // Destructor.
 qsynthTabBar::~qsynthTabBar (void)
 {
-    if (--g_iIconRefCount == 0) {
-        delete g_pIconLedOn;
-        delete g_pIconLedOff;
-        g_pIconLedOn  = NULL;
-        g_pIconLedOff = NULL;
-    }
+	if (--g_iIconRefCount == 0) {
+		delete g_pIconLedOn;
+		delete g_pIconLedOff;
+		g_pIconLedOn  = NULL;
+		g_pIconLedOff = NULL;
+	}
+}
+
+
+// Engine accessor.
+qsynthEngine *qsynthTabBar::engine ( int iTab ) const
+{
+	return static_cast<qsynthEngine *> (QTabBar::tabData(iTab).value<void *>());
 }
 
 
 // Current engine accessor.
-qsynthEngine *qsynthTabBar::currentEngine (void)
+qsynthEngine *qsynthTabBar::currentEngine (void) const
 {
-    qsynthTab *pTab = (qsynthTab *) QTabBar::tab(QTabBar::currentTab());
-    if (pTab == NULL)
-        return NULL;
-    return pTab->engine();
+	return engine(QTabBar::currentIndex());
+}
+
+
+// Engine adder.
+int qsynthTabBar::addEngine ( qsynthEngine *pEngine )
+{
+	int iTab = QTabBar::addTab(*g_pIconLedOff, pEngine->name());
+	if (iTab >= 0) {
+		QTabBar::setTabData(iTab,
+			qVariantFromValue(static_cast<void *> (pEngine)));
+	}
+	return iTab;
+}
+
+
+// Engine removal.
+void qsynthTabBar::removeEngine ( int iTab )
+{
+	qsynthEngine *pEngine = engine(iTab);
+	if (pEngine)
+		delete pEngine;
+
+	QTabBar::removeTab(iTab);
+}
+
+
+// Engine tab icon accessor.
+void qsynthTabBar::setOn ( int iTab, bool bOn )
+{
+	QTabBar::setTabIcon(iTab, bOn ? *g_pIconLedOn : *g_pIconLedOff);
 }
 
 
 // Context menu event.
 void qsynthTabBar::contextMenuEvent ( QContextMenuEvent *pContextMenuEvent )
 {
-    qsynthTab *pTab = (qsynthTab *) QTabBar::selectTab(pContextMenuEvent->pos());
-    if (pTab)
-        QTabBar::setCurrentTab(pTab);
+#if QT_VERSION < 0x040300
+	int iTab = 0;
+	while (iTab < QTabBar::count()) {
+		const QRect& rect = QTabBar::tabRect(iTab);
+		if (rect.contains(pContextMenuEvent->pos()))
+			break;
+		iTab++;
+	}
+#else
+	int iTab = QTabBar::tabAt(pContextMenuEvent->pos());
+	if (iTab >= 0)
+		QTabBar::setCurrentIndex(iTab);
+#endif
 
-    // Emit context menu signal.
-    emit contextMenuRequested(pTab, pContextMenuEvent->globalPos());
+	// Emit context menu signal.
+	emit contextMenuRequested(iTab, pContextMenuEvent->globalPos());
 }
 
 

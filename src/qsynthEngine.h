@@ -33,43 +33,43 @@ class qsynthEngine
 {
 public:
 
-    // Constructor.
-    qsynthEngine(qsynthOptions *pOptions, const QString& sName = QString::null);
-    // Default destructor.
-    ~qsynthEngine();
+	// Constructor.
+	qsynthEngine(qsynthOptions *pOptions, const QString& sName = QString::null);
+	// Default destructor.
+	~qsynthEngine();
 
-    // Engine predicate.
-    bool isDefault();
-    
-    // Engine setup accessor.
-    qsynthSetup *setup();
-    
-    // Engine name accessors.
-    const QString& name();
-    void setName(const QString& sName);
+	// Engine predicate.
+	bool isDefault() const;
 
-    // Engine member public variables.
-    fluid_synth_t        *pSynth;
-    fluid_audio_driver_t *pAudioDriver;
-    fluid_midi_router_t  *pMidiRouter;
-    fluid_midi_driver_t  *pMidiDriver;
-    fluid_player_t       *pPlayer;
-    fluid_server_t       *pServer;
+	// Engine setup accessor.
+	qsynthSetup *setup();
+	
+	// Engine name accessors.
+	const QString& name() const;
+	void setName(const QString& sName);
 
-    // Dirty MIDI event trackers.
-    int iMidiEvent;
-    int iMidiState;
+	// Engine member public variables.
+	fluid_synth_t        *pSynth;
+	fluid_audio_driver_t *pAudioDriver;
+	fluid_midi_router_t  *pMidiRouter;
+	fluid_midi_driver_t  *pMidiDriver;
+	fluid_player_t       *pPlayer;
+	fluid_server_t       *pServer;
 
-    // Current peak level meters (pseudo-stereo).
-    bool  bMeterEnabled;
-    float fMeterValue[2];
+	// Dirty MIDI event trackers.
+	int iMidiEvent;
+	int iMidiState;
+
+	// Current peak level meters (pseudo-stereo).
+	bool  bMeterEnabled;
+	float fMeterValue[2];
 
 private:
 
-    // Engine member variables.
-    bool           m_bDefault;
-    qsynthSetup   *m_pSetup;
-    QString        m_sName;
+	// Engine member variables.
+	bool           m_bDefault;
+	qsynthSetup   *m_pSetup;
+	QString        m_sName;
 };
 
 

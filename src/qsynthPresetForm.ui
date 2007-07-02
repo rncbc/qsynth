@@ -1,8 +1,8 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
-<class>qsynthPresetForm</class>
-<comment>qsynth - A fluidsynth Qt GUI Interface.
+<ui version="4.0" >
+ <author>rncbc aka Rui Nuno Capela</author>
+ <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -19,318 +19,226 @@
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 </comment>
-<author>rncbc aka Rui Nuno Capela</author>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>qsynthPresetForm</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>450</width>
-            <height>286</height>
-        </rect>
-    </property>
-    <property name="caption">
-        <string>Qsynth: Channel Preset</string>
-    </property>
-    <property name="icon">
-        <pixmap>channels1.png</pixmap>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QLayoutWidget" row="1" column="0">
-            <property name="name">
-                <cstring>layout1</cstring>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <spacer>
-                    <property name="name">
-                        <cstring>spacer1</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>120</width>
-                            <height>8</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>OkPushButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>OK</string>
-                    </property>
-                    <property name="default">
-                        <bool>true</bool>
-                    </property>
-                    <property name="iconSet">
-                        <iconset>accept1.png</iconset>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string></string>
-                    </property>
-                </widget>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>CancelPushButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Cancel</string>
-                    </property>
-                    <property name="iconSet">
-                        <iconset>quit1.png</iconset>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string></string>
-                    </property>
-                </widget>
-            </hbox>
+ <class>qsynthPresetForm</class>
+ <widget class="QDialog" name="qsynthPresetForm" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>520</width>
+    <height>320</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Qsynth: Channel Preset</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset/>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>8</number>
+   </property>
+   <property name="spacing" >
+    <number>4</number>
+   </property>
+   <item row="1" column="0" >
+    <layout class="QHBoxLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>4</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType" >
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>120</width>
+         <height>8</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="OkPushButton" >
+       <property name="toolTip" >
+        <string/>
+       </property>
+       <property name="text" >
+        <string>OK</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../icons/qsynth.qrc" >:/icons/accept1.png</iconset>
+       </property>
+       <property name="default" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="CancelPushButton" >
+       <property name="toolTip" >
+        <string/>
+       </property>
+       <property name="text" >
+        <string>Cancel</string>
+       </property>
+       <property name="icon" >
+        <iconset resource="../icons/qsynth.qrc" >:/icons/quit1.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0" >
+    <widget class="QTabWidget" name="PresetTabWidget" >
+     <property name="tabShape" >
+      <enum>QTabWidget::Rounded</enum>
+     </property>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>Preset</string>
+      </attribute>
+      <layout class="QVBoxLayout" >
+       <property name="margin" >
+        <number>8</number>
+       </property>
+       <property name="spacing" >
+        <number>4</number>
+       </property>
+       <item>
+        <widget class="QSplitter" name="splitter1" >
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <widget class="QTreeWidget" name="BankListView" >
+          <property name="minimumSize" >
+           <size>
+            <width>20</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>80</width>
+            <height>32767</height>
+           </size>
+          </property>
+          <property name="toolTip" >
+           <string>Bank selector</string>
+          </property>
+          <property name="alternatingRowColors" >
+           <bool>true</bool>
+          </property>
+          <property name="indentation" >
+           <number>4</number>
+          </property>
+          <property name="rootIsDecorated" >
+           <bool>false</bool>
+          </property>
+          <property name="uniformRowHeights" >
+           <bool>true</bool>
+          </property>
+          <property name="itemsExpandable" >
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled" >
+           <bool>true</bool>
+          </property>
+          <property name="allColumnsShowFocus" >
+           <bool>true</bool>
+          </property>
+          <column>
+           <property name="text" >
+            <string>Bank</string>
+           </property>
+          </column>
+         </widget>
+         <widget class="QTreeWidget" name="ProgListView" >
+          <property name="toolTip" >
+           <string>Program selector</string>
+          </property>
+          <property name="alternatingRowColors" >
+           <bool>true</bool>
+          </property>
+          <property name="indentation" >
+           <number>4</number>
+          </property>
+          <property name="rootIsDecorated" >
+           <bool>false</bool>
+          </property>
+          <property name="uniformRowHeights" >
+           <bool>true</bool>
+          </property>
+          <property name="itemsExpandable" >
+           <bool>false</bool>
+          </property>
+          <property name="sortingEnabled" >
+           <bool>true</bool>
+          </property>
+          <property name="allColumnsShowFocus" >
+           <bool>true</bool>
+          </property>
+          <column>
+           <property name="text" >
+            <string>Prog</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>SFID</string>
+           </property>
+          </column>
+          <column>
+           <property name="text" >
+            <string>Soundfont</string>
+           </property>
+          </column>
+         </widget>
         </widget>
-        <widget class="QTabWidget" row="0" column="0">
-            <property name="name">
-                <cstring>PresetTabWidget</cstring>
-            </property>
-            <property name="tabPosition">
-                <enum>Top</enum>
-            </property>
-            <property name="tabShape">
-                <enum>Rounded</enum>
-            </property>
-            <widget class="QWidget">
-                <property name="name">
-                    <cstring>tab</cstring>
-                </property>
-                <attribute name="title">
-                    <string>Preset</string>
-                </attribute>
-                <vbox>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <widget class="QSplitter">
-                        <property name="name">
-                            <cstring>splitter1</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                        <widget class="QListView">
-                            <column>
-                                <property name="text">
-                                    <string>Bank</string>
-                                </property>
-                                <property name="clickable">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="resizable">
-                                    <bool>true</bool>
-                                </property>
-                            </column>
-                            <property name="name">
-                                <cstring>BankListView</cstring>
-                            </property>
-                            <property name="minimumSize">
-                                <size>
-                                    <width>20</width>
-                                    <height>0</height>
-                                </size>
-                            </property>
-                            <property name="maximumSize">
-                                <size>
-                                    <width>80</width>
-                                    <height>32767</height>
-                                </size>
-                            </property>
-                            <property name="allColumnsShowFocus">
-                                <bool>true</bool>
-                            </property>
-                            <property name="showSortIndicator">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizeMode">
-                                <enum>AllColumns</enum>
-                            </property>
-                            <property name="toolTip" stdset="0">
-                                <string>Bank selector</string>
-                            </property>
-                        </widget>
-                        <widget class="QListView">
-                            <column>
-                                <property name="text">
-                                    <string>Prog</string>
-                                </property>
-                                <property name="clickable">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="resizable">
-                                    <bool>true</bool>
-                                </property>
-                            </column>
-                            <column>
-                                <property name="text">
-                                    <string>Name</string>
-                                </property>
-                                <property name="clickable">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="resizable">
-                                    <bool>true</bool>
-                                </property>
-                            </column>
-                            <column>
-                                <property name="text">
-                                    <string>SFID</string>
-                                </property>
-                                <property name="clickable">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="resizable">
-                                    <bool>true</bool>
-                                </property>
-                            </column>
-                            <column>
-                                <property name="text">
-                                    <string>Soundfont</string>
-                                </property>
-                                <property name="clickable">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="resizable">
-                                    <bool>true</bool>
-                                </property>
-                            </column>
-                            <property name="name">
-                                <cstring>ProgListView</cstring>
-                            </property>
-                            <property name="allColumnsShowFocus">
-                                <bool>true</bool>
-                            </property>
-                            <property name="showSortIndicator">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizeMode">
-                                <enum>LastColumn</enum>
-                            </property>
-                            <property name="toolTip" stdset="0">
-                                <string>Program selector</string>
-                            </property>
-                        </widget>
-                    </widget>
-                    <widget class="QCheckBox">
-                        <property name="name">
-                            <cstring>PreviewCheckBox</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Preview</string>
-                        </property>
-                        <property name="accel">
-                            <string></string>
-                        </property>
-                        <property name="toolTip" stdset="0">
-                            <string>Whether to preview the current selection</string>
-                        </property>
-                    </widget>
-                </vbox>
-            </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="PreviewCheckBox" >
+         <property name="toolTip" >
+          <string>Whether to preview the current selection</string>
+         </property>
+         <property name="text" >
+          <string>Preview</string>
+         </property>
+         <property name="shortcut" >
+          <string/>
+         </property>
         </widget>
-    </grid>
-</widget>
-<connections>
-    <connection>
-        <sender>BankListView</sender>
-        <signal>selectionChanged()</signal>
-        <receiver>qsynthPresetForm</receiver>
-        <slot>bankChanged()</slot>
-    </connection>
-    <connection>
-        <sender>ProgListView</sender>
-        <signal>selectionChanged()</signal>
-        <receiver>qsynthPresetForm</receiver>
-        <slot>progChanged()</slot>
-    </connection>
-    <connection>
-        <sender>PreviewCheckBox</sender>
-        <signal>clicked()</signal>
-        <receiver>qsynthPresetForm</receiver>
-        <slot>previewChanged()</slot>
-    </connection>
-    <connection>
-        <sender>ProgListView</sender>
-        <signal>doubleClicked(QListViewItem*)</signal>
-        <receiver>qsynthPresetForm</receiver>
-        <slot>accept()</slot>
-    </connection>
-    <connection>
-        <sender>ProgListView</sender>
-        <signal>returnPressed(QListViewItem*)</signal>
-        <receiver>qsynthPresetForm</receiver>
-        <slot>accept()</slot>
-    </connection>
-    <connection>
-        <sender>OkPushButton</sender>
-        <signal>clicked()</signal>
-        <receiver>qsynthPresetForm</receiver>
-        <slot>accept()</slot>
-    </connection>
-    <connection>
-        <sender>CancelPushButton</sender>
-        <signal>clicked()</signal>
-        <receiver>qsynthPresetForm</receiver>
-        <slot>reject()</slot>
-    </connection>
-</connections>
-<tabstops>
-    <tabstop>PresetTabWidget</tabstop>
-    <tabstop>BankListView</tabstop>
-    <tabstop>ProgListView</tabstop>
-    <tabstop>PreviewCheckBox</tabstop>
-    <tabstop>OkPushButton</tabstop>
-    <tabstop>CancelPushButton</tabstop>
-</tabstops>
-<includes>
-    <include location="local" impldecl="in declaration">qsynthOptions.h</include>
-    <include location="local" impldecl="in implementation">qsynthPresetForm.ui.h</include>
-</includes>
-<variables>
-    <variable access="private">qsynthOptions *m_pOptions;</variable>
-    <variable access="private">fluid_synth_t *m_pSynth;</variable>
-    <variable access="private">int m_iChan;</variable>
-    <variable access="private">int m_iBank;</variable>
-    <variable access="private">int m_iProg;</variable>
-    <variable access="private">int m_iDirtySetup;</variable>
-    <variable access="private">int m_iDirtyCount;</variable>
-</variables>
-<slots>
-    <slot specifier="non virtual">stabilizeForm()</slot>
-    <slot specifier="non virtual">accept()</slot>
-    <slot specifier="non virtual">reject()</slot>
-    <slot specifier="non virtual">bankChanged()</slot>
-    <slot specifier="non virtual">progChanged()</slot>
-    <slot specifier="non virtual">previewChanged()</slot>
-</slots>
-<functions>
-    <function access="private" specifier="non virtual">init()</function>
-    <function access="private" specifier="non virtual">destroy()</function>
-    <function specifier="non virtual">setup( qsynthOptions *pOptions, fluid_synth_t *pSynth, int iChan )</function>
-    <function access="private" specifier="non virtual" returnType="bool">validateForm()</function>
-    <function access="private" specifier="non virtual">setBankProg( int iBank, int iProg )</function>
-    <function access="private" specifier="non virtual" returnType="QListViewItem*">findBankItem( int iBank )</function>
-    <function access="private" specifier="non virtual" returnType="QListViewItem*">findProgItem( int iProg )</function>
-</functions>
-<pixmapinproject/>
-<layoutdefaults spacing="4" margin="8"/>
-</UI>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="4" margin="4" />
+ <tabstops>
+  <tabstop>PresetTabWidget</tabstop>
+  <tabstop>BankListView</tabstop>
+  <tabstop>ProgListView</tabstop>
+  <tabstop>PreviewCheckBox</tabstop>
+  <tabstop>OkPushButton</tabstop>
+  <tabstop>CancelPushButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../icons/qsynth.qrc" />
+ </resources>
+ <connections/>
+</ui>

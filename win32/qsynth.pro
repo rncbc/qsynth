@@ -1,66 +1,57 @@
-INCLUDEPATH += ../src
-
-SOURCES += ../src/main.cpp \
-           ../src/qsynthSetup.cpp \
-           ../src/qsynthEngine.cpp \
-           ../src/qsynthOptions.cpp \
-           ../src/qsynthChannels.cpp \
-           ../src/qsynthTabBar.cpp \
-           ../src/qsynthMeter.cpp \
-           ../src/qsynthSystemTray.cpp \
-           ../src/qsynthKnob.cpp
+INCPATH += ../src
 
 HEADERS += ../src/qsynthAbout.h \
-           ../src/qsynthSetup.h \
            ../src/qsynthEngine.h \
-           ../src/qsynthOptions.h \
            ../src/qsynthChannels.h \
-           ../src/qsynthTabBar.h \
+           ../src/qsynthKnob.h \
            ../src/qsynthMeter.h \
+           ../src/qsynthSetup.h \
+           ../src/qsynthOptions.h \
            ../src/qsynthSystemTray.h \
-           ../src/qsynthKnob.h
+           ../src/qsynthTabBar.h \
+           ../src/qsynthAboutForm.h \
+           ../src/qsynthChannelsForm.h \
+           ../src/qsynthMainForm.h \
+           ../src/qsynthMessagesForm.h \
+           ../src/qsynthOptionsForm.h \
+           ../src/qsynthPresetForm.h \
+           ../src/qsynthSetupForm.h
 
-FORMS    = ../src/qsynthMainForm.ui \
-           ../src/qsynthMessagesForm.ui \
+SOURCES += ../src/main.cpp \
+           ../src/qsynthEngine.cpp \
+           ../src/qsynthChannels.cpp \
+           ../src/qsynthKnob.cpp \
+           ../src/qsynthMeter.cpp \
+           ../src/qsynthSetup.cpp \
+           ../src/qsynthOptions.cpp \
+           ../src/qsynthSystemTray.cpp \
+           ../src/qsynthTabBar.cpp \
+           ../src/qsynthAboutForm.cpp \
+           ../src/qsynthChannelsForm.cpp \
+           ../src/qsynthMainForm.cpp \
+           ../src/qsynthMessagesForm.cpp \
+           ../src/qsynthOptionsForm.cpp \
+           ../src/qsynthPresetForm.cpp \
+           ../src/qsynthSetupForm.cpp
+
+FORMS    = ../src/qsynthAboutForm.ui \
            ../src/qsynthChannelsForm.ui \
+           ../src/qsynthMainForm.ui \
+           ../src/qsynthMessagesForm.ui \
            ../src/qsynthOptionsForm.ui \
-	       ../src/qsynthPresetForm.ui \
-           ../src/qsynthSetupForm.ui \
-           ../src/qsynthAboutForm.ui
+           ../src/qsynthPresetForm.ui \
+           ../src/qsynthSetupForm.ui
 
-IMAGES   = ../icons/qsynth.png \
-           ../icons/messages1.png \
-           ../icons/options1.png \
-           ../icons/about1.png \
-           ../icons/accept1.png \
-           ../icons/quit1.png \
-           ../icons/setup1.png \
-           ../icons/reset1.png \
-           ../icons/panic1.png \
-           ../icons/restart1.png \
-           ../icons/channels1.png \
-           ../icons/ledoff1.png \
-           ../icons/ledon1.png \
-           ../icons/sfont1.png \
-           ../icons/open1.png \
-           ../icons/save1.png \
-           ../icons/add1.png \
-           ../icons/remove1.png \
-           ../icons/up1.png \
-           ../icons/down1.png \
-           ../icons/qtlogo.png
+RESOURCES += ../icons/qsynth.qrc
 
 TEMPLATE = app
-CONFIG  += qt warn_on debug
+CONFIG  += qt thread warn_on release
 LANGUAGE = C++
 
 win32 {
 	CONFIG  += console
-	INCLUDEPATH	+= C:\usr\local\include
-	LIBS    += C:\usr\local\lib\libfluidsynth.lib
+	INCPATH += C:\usr\local\include
+	LIBS    += -LC:\usr\local\lib
 }
 
-unix {
-	LIBS    += -lfluidsynth
-}
-
+LIBS += -lfluidsynth

@@ -5,44 +5,54 @@ name    = qsynth
 
 headers = config.h \
 	src/qsynthAbout.h \
-	src/qsynthSetup.h \
 	src/qsynthEngine.h \
-	src/qsynthOptions.h \
 	src/qsynthChannels.h \
-	src/qsynthTabBar.h \
-	src/qsynthMeter.h \
-	src/qsynthSystemTray.h \
 	src/qsynthKnob.h \
-	src/qsynthMainForm.ui.h \
-	src/qsynthMessagesForm.ui.h \
-	src/qsynthChannelsForm.ui.h \
-	src/qsynthOptionsForm.ui.h \
-	src/qsynthPresetForm.ui.h \
-	src/qsynthSetupForm.ui.h \
-	src/qsynthAboutForm.ui.h
-          
+	src/qsynthMeter.h \
+	src/qsynthSetup.h \
+	src/qsynthOptions.h \
+	src/qsynthSystemTray.h \
+	src/qsynthTabBar.h \
+	src/qsynthAboutForm.h \
+	src/qsynthChannelsForm.h \
+	src/qsynthMainForm.h \
+	src/qsynthMessagesForm.h \
+	src/qsynthOptionsForm.h \
+	src/qsynthPresetForm.h \
+	src/qsynthSetupForm.h
+
 sources = src/main.cpp \
-	src/qsynthSetup.cpp \
 	src/qsynthEngine.cpp \
-	src/qsynthOptions.cpp \
 	src/qsynthChannels.cpp \
-	src/qsynthTabBar.cpp \
-	src/qsynthMeter.cpp \
-	src/qsynthSystemTray.cpp \
 	src/qsynthKnob.cpp \
+	src/qsynthMeter.cpp \
+	src/qsynthSetup.cpp \
+	src/qsynthOptions.cpp \
+	src/qsynthSystemTray.cpp \
+	src/qsynthTabBar.cpp \
+	src/qsynthAboutForm.cpp \
+	src/qsynthChannelsForm.cpp \
+	src/qsynthMainForm.cpp \
+	src/qsynthMessagesForm.cpp \
+	src/qsynthOptionsForm.cpp \
+	src/qsynthPresetForm.cpp \
+	src/qsynthSetupForm.cpp
+
+forms = \
+	src/qsynthAboutForm.ui \
+	src/qsynthChannelsForm.ui \
 	src/qsynthMainForm.ui \
 	src/qsynthMessagesForm.ui \
-	src/qsynthChannelsForm.ui \
+	src/qsynthOptionsForm.ui \
 	src/qsynthPresetForm.ui \
-	src/qsynthSetupForm.ui \
-	src/qsynthAboutForm.ui
+	src/qsynthSetupForm.ui
 
 all:	$(name)
 
 $(name).mak:	$(name).pro
 	@$(qmake) -o $(name).mak $(name).pro
 
-$(name):	$(name).mak $(sources) $(headers)
+$(name):	$(name).mak $(sources) $(headers) $(forms)
 	@make -f $(name).mak
 
 install:	$(name) icons/$(name).png

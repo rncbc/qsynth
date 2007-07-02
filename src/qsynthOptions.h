@@ -24,7 +24,8 @@
 
 #include "qsynthSetup.h"
 
-#include <qcombobox.h>
+#include <QComboBox>
+
 
 //-------------------------------------------------------------------------
 // qsynthOptions - Prototype settings class.

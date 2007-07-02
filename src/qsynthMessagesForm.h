@@ -1,4 +1,4 @@
-// qsynthSystemTray.h
+// qsynthMessagesForm.h
 //
 /****************************************************************************
    Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
@@ -19,58 +19,56 @@
 
 *****************************************************************************/
 
-#ifndef __qsynthSystemTray_h
-#define __qsynthSystemTray_h
+#ifndef __qsynthMessagesForm_h
+#define __qsynthMessagesForm_h
 
-#include <QWidget>
-#include <QPixmap>
+#include "ui_qsynthMessagesForm.h"
 
 
 //----------------------------------------------------------------------------
-// qsynthSystemTray -- Custom system tray widget.
+// qsynthMessagesForm -- UI wrapper form.
 
-class qsynthSystemTray : public QWidget
+class qsynthMessagesForm : public QWidget
 {
 	Q_OBJECT
 
 public:
 
 	// Constructor.
-	qsynthSystemTray(QWidget *pParent = 0);
-	// Default destructor.
-	~qsynthSystemTray();
+	qsynthMessagesForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
+	// Destructor.
+	~qsynthMessagesForm();
 
-	// Background mask methods.
-	void setBackground(const QColor& background);
-	const QColor& background() const;
 
-	// System tray icon method.
-	void updateIcon();
+    QFont messagesFont() const;
+    void setMessagesFont(const QFont& font);
 
-signals:
+    int messagesLimit() const;
+    void setMessagesLimit(int iLimit);
 
-	// Clicked signal.
-	void clicked();
-
-	// Context menu signal.
-	void contextMenuRequested(const QPoint& pos);
+    void appendMessages(const QString& s);
+    void appendMessagesColor(const QString& s, const QString& c);
+    void appendMessagesText(const QString& s);
 
 protected:
 
-	// Self-drawable methods.
-	void paintEvent(QPaintEvent *);
-
-	// Overriden mouse event method.
-	void mousePressEvent(QMouseEvent *);
+    void showEvent(QShowEvent * pShowEvent);
+    void hideEvent(QHideEvent * pHideEvent);
 
 private:
 
-	// Instance pixmap and background color.
-	QPixmap m_pixmap;
-	QColor  m_background;
+	// The Qt-designer UI struct...
+	Ui::qsynthMessagesForm m_ui;
+
+	// Instance variables.
+	int m_iMessagesLines;
+    int m_iMessagesLimit;
+    int m_iMessagesHigh;
 };
 
 
-#endif  // __qsynthSystemTray_h
+#endif	// __qsynthMessagesForm_h
 
-// end of qsynthSystemTray.h
+
+// end of qsynthMessagesForm.h
+

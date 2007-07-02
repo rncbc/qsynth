@@ -22,11 +22,8 @@
 #ifndef __qsynthSetup_h
 #define __qsynthSetup_h
 
-#include <qstring.h>
-#include <qstringlist.h>
-#include <qsettings.h>
-
-#include <stdlib.h>
+#include <QStringList>
+#include <QSettings>
 
 #include <fluidsynth.h>
 

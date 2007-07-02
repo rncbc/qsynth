@@ -1,7 +1,7 @@
-// qsynthChannels.h
+// qsynthAboutForm.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2006, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -19,40 +19,39 @@
 
 *****************************************************************************/
 
-#ifndef __qsynthChannels_h
-#define __qsynthChannels_h
+#ifndef __qsynthAboutForm_h
+#define __qsynthAboutForm_h
 
-#include <QTreeWidget>
-
-// Column index helpers.
-#define QSYNTH_CHANNELS_IN      0
-#define QSYNTH_CHANNELS_CHAN    1
-#define QSYNTH_CHANNELS_BANK    2
-#define QSYNTH_CHANNELS_PROG    3
-#define QSYNTH_CHANNELS_NAME    4
-#define QSYNTH_CHANNELS_SFID    5
-#define QSYNTH_CHANNELS_SFNAME  6
+#include "ui_qsynthAboutForm.h"
 
 
-// The channels list view item.
-class qsynthChannelsItem : public QTreeWidgetItem
+//----------------------------------------------------------------------------
+// qsynthAboutForm -- UI wrapper form.
+
+class qsynthAboutForm : public QDialog
 {
+	Q_OBJECT
+
 public:
 
 	// Constructor.
-	qsynthChannelsItem(QTreeWidget *pParent);
-	// Default destructor.
-	~qsynthChannelsItem();
+	qsynthAboutForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
+	// Destructor.
+	~qsynthAboutForm();
 
-	// Special column sorting virtual comparator.
-	// Sort/compare overriden method.
-	bool operator< (const QTreeWidgetItem& other) const;
+public slots:
+
+	void aboutQt();
+
+private:
+
+	// The Qt-designer UI struct...
+	Ui::qsynthAboutForm m_ui;
 };
 
-typedef qsynthChannelsItem * qsynthChannelsItemPtr;
+
+#endif	// __qsynthAboutForm_h
 
 
-#endif  // __qsynthChannels_h
-
-// end of qsynthChannels.h
+// end of qsynthAboutForm.h
 
