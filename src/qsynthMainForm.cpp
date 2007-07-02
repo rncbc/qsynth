@@ -526,8 +526,8 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 		wflags |= Qt::Tool;
 
 	// All forms are to be created right now.
-	m_pMessagesForm = new qsynthMessagesForm(this, wflags);
-	m_pChannelsForm = new qsynthChannelsForm(this, wflags);
+	m_pMessagesForm = new qsynthMessagesForm(0, wflags);
+	m_pChannelsForm = new qsynthChannelsForm(0, wflags);
 
 	// Get the default setup and dummy instace tab.
 	m_ui.TabBar->addEngine(new qsynthEngine(m_pOptions));

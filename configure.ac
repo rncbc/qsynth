@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.2.9.8, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.2.9.9, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
@@ -143,7 +143,7 @@ AC_CHECK_LIB(Xext, main)
 AC_CHECK_LIB($ac_qtlib, main)
 
 # Check for round math function.
-AC_CHECK_LIB(m, round, [ac_round="yes"], [ac_round="no"])
+AC_CHECK_LIB(m, lroundf, [ac_round="yes"], [ac_round="no"])
 if test "x$ac_round" = "xyes"; then
    AC_DEFINE(CONFIG_ROUND, 1, [Define if round is available.])
 fi
