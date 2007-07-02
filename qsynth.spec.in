@@ -9,17 +9,17 @@ Version:	%{version}
 Release:	%{release}
 Prefix:		%{prefix}
 License:	GPL
-Group:		Sound
+Group:		Productivity/Multimedia/Sound/Midi
 Source0:	%{name}-%{version}.tar.gz
 URL:		http://qsynth.sourceforge.net/
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 Requires:	qt >= 4.1
-Requires:	fluidsynth >= 1.0.6
+Requires:	fluidsynth >= 1.0.3
 
-BuildRequires:	qt-devel >= 3.1
-BuildRequires:	fluidsynth-devel >= 1.0.6
+BuildRequires:	qt-devel >= 4.1
+BuildRequires:	fluidsynth-devel >= 1.0.3
 
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
