@@ -642,10 +642,13 @@ bool qsynthMainForm::queryClose (void)
 
 void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 {
-	if (queryClose())
+	// Let's be sure about that...
+	if (queryClose()) {
 		pCloseEvent->accept();
-	else
+		QApplication::quit();
+	} else {
 		pCloseEvent->ignore();
+	}
 }
 
 
