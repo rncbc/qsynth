@@ -47,33 +47,33 @@ public:
 	~qsynthSetupForm();
 
 
-    void setup(qsynthOptions *pOptions, qsynthEngine *pEngine, bool bNew);
+	void setup(qsynthOptions *pOptions, qsynthEngine *pEngine, bool bNew);
 
 public slots:
 
-    void nameChanged(const QString&);
-    void settingsChanged();
+	void nameChanged(const QString&);
+	void settingsChanged();
 
-    void contextMenuRequested(const QPoint&);
+	void contextMenuRequested(const QPoint&);
 
-    void openSoundFont();
-    void editSoundFont();
-    void removeSoundFont();
-    void moveUpSoundFont();
-    void moveDownSoundFont();
+	void openSoundFont();
+	void editSoundFont();
+	void removeSoundFont();
+	void moveUpSoundFont();
+	void moveDownSoundFont();
 
-    void stabilizeForm();
+	void stabilizeForm();
 
 protected slots:
 
-    void itemRenamed();
+	void itemRenamed();
 
-    void accept();
-    void reject();
+	void accept();
+	void reject();
 
 protected:
 
-    void refreshSoundFonts();
+	void refreshSoundFonts();
 
 private:
 
@@ -81,14 +81,14 @@ private:
 	Ui::qsynthSetupForm m_ui;
 
 	// Instance variables.
-    qsynthOptions *m_pOptions;
-    qsynthSetup   *m_pSetup;
+	qsynthOptions *m_pOptions;
+	qsynthSetup   *m_pSetup;
 
-    int m_iDirtySetup;
-    int m_iDirtyCount;
+	int m_iDirtySetup;
+	int m_iDirtyCount;
 
-    QString  m_sSoundFontDir;
-    QPixmap *m_pXpmSoundFont;
+	QString  m_sSoundFontDir;
+	QPixmap *m_pXpmSoundFont;
 };
 
 
@@ -96,4 +96,3 @@ private:
 
 
 // end of qsynthSetupForm.h
-

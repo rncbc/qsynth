@@ -97,7 +97,8 @@ software sequencers.
 Inspired by Rui's work on QjackCtl (http://qjackctl.sourceforge.net).
 
 Ebrahim Mayat <ebmayat at mac dot com> also contributed with instructions
-to build QSynth on Mac OSX (see README-OSX).
+to build Qsynth on Mac OSX (see README-OSX). This might be outdated now that
+Qsynth has migrated to Qt4, but nevertheless...
 
 Enjoy.
 

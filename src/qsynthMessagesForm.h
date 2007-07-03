@@ -40,20 +40,20 @@ public:
 	~qsynthMessagesForm();
 
 
-    QFont messagesFont() const;
-    void setMessagesFont(const QFont& font);
+	QFont messagesFont() const;
+	void setMessagesFont(const QFont& font);
 
-    int messagesLimit() const;
-    void setMessagesLimit(int iLimit);
+	int messagesLimit() const;
+	void setMessagesLimit(int iLimit);
 
-    void appendMessages(const QString& s);
-    void appendMessagesColor(const QString& s, const QString& c);
-    void appendMessagesText(const QString& s);
+	void appendMessages(const QString& s);
+	void appendMessagesColor(const QString& s, const QString& c);
+	void appendMessagesText(const QString& s);
 
 protected:
 
-    void showEvent(QShowEvent * pShowEvent);
-    void hideEvent(QHideEvent * pHideEvent);
+	void showEvent(QShowEvent * pShowEvent);
+	void hideEvent(QHideEvent * pHideEvent);
 
 private:
 
@@ -62,8 +62,8 @@ private:
 
 	// Instance variables.
 	int m_iMessagesLines;
-    int m_iMessagesLimit;
-    int m_iMessagesHigh;
+	int m_iMessagesLimit;
+	int m_iMessagesHigh;
 };
 
 
@@ -71,4 +71,3 @@ private:
 
 
 // end of qsynthMessagesForm.h
-

@@ -105,4 +105,3 @@ private:
 
 
 // end of qsynthChannelsForm.h
-

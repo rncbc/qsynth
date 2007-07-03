@@ -42,19 +42,19 @@ public:
 	// Destructor.
 	~qsynthOptionsForm();
 
-    void setup(qsynthOptions *pOptions);
+	void setup(qsynthOptions *pOptions);
 
 public slots:
 
-    void optionsChanged();
+	void optionsChanged();
 
-    void chooseMessagesFont();
-    void stabilizeForm();
+	void chooseMessagesFont();
+	void stabilizeForm();
 
 protected slots:
 
-    void accept();
-    void reject();
+	void accept();
+	void reject();
 
 private:
 
@@ -62,10 +62,10 @@ private:
 	Ui::qsynthOptionsForm m_ui;
 
 	// Instance variables.
-    qsynthOptions *m_pOptions;
+	qsynthOptions *m_pOptions;
 
-    int m_iDirtySetup;
-    int m_iDirtyCount;
+	int m_iDirtySetup;
+	int m_iDirtyCount;
 };
 
 
@@ -73,4 +73,3 @@ private:
 
 
 // end of qsynthOptionsForm.h
-

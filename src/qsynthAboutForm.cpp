@@ -101,4 +101,3 @@ void qsynthAboutForm::aboutQt()
 
 
 // end of qsynthAboutForm.cpp
-

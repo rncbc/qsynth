@@ -45,28 +45,28 @@ public:
 	~qsynthPresetForm();
 
 
-    void setup(qsynthOptions *pOptions, fluid_synth_t *pSynth, int iChan);
+	void setup(qsynthOptions *pOptions, fluid_synth_t *pSynth, int iChan);
 
 public slots:
 
-    void stabilizeForm();
-    void bankChanged();
-    void progChanged();
-    void previewChanged();
+	void stabilizeForm();
+	void bankChanged();
+	void progChanged();
+	void previewChanged();
 
 protected slots:
 
-    void accept();
-    void reject();
+	void accept();
+	void reject();
 
 protected:
 
-    void setBankProg(int iBank, int iProg);
+	void setBankProg(int iBank, int iProg);
 
-    QTreeWidgetItem *findBankItem(int iBank);
-    QTreeWidgetItem *findProgItem(int iProg);
+	QTreeWidgetItem *findBankItem(int iBank);
+	QTreeWidgetItem *findProgItem(int iProg);
 
-    bool validateForm();
+	bool validateForm();
 
 private:
 
@@ -74,15 +74,15 @@ private:
 	Ui::qsynthPresetForm m_ui;
 
 	// Instance variables.
-    qsynthOptions *m_pOptions;
-    fluid_synth_t *m_pSynth;
+	qsynthOptions *m_pOptions;
+	fluid_synth_t *m_pSynth;
 
-    int m_iChan;
-    int m_iBank;
-    int m_iProg;
+	int m_iChan;
+	int m_iBank;
+	int m_iProg;
 
-    int m_iDirtySetup;
-    int m_iDirtyCount;
+	int m_iDirtySetup;
+	int m_iDirtyCount;
 };
 
 
@@ -90,4 +90,3 @@ private:
 
 
 // end of qsynthPresetForm.h
-

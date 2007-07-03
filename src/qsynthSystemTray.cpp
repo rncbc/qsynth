@@ -211,4 +211,3 @@ void qsynthSystemTray::mousePressEvent ( QMouseEvent *pMouseEvent )
 
 
 // end of qsynthSystemTray.cpp
-

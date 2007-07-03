@@ -59,46 +59,46 @@ qsynthMessagesForm::~qsynthMessagesForm (void)
 // Notify our parent that we're emerging.
 void qsynthMessagesForm::showEvent ( QShowEvent *pShowEvent )
 {
-    qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
-    if (pMainForm)
-        pMainForm->stabilizeForm();
+	qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
+	if (pMainForm)
+		pMainForm->stabilizeForm();
 
-    QWidget::showEvent(pShowEvent);
+	QWidget::showEvent(pShowEvent);
 }
 
 // Notify our parent that we're closing.
 void qsynthMessagesForm::hideEvent ( QHideEvent *pHideEvent )
 {
-    QWidget::hideEvent(pHideEvent);
+	QWidget::hideEvent(pHideEvent);
 
-    qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
-    if (pMainForm)
-        pMainForm->stabilizeForm();
+	qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
+	if (pMainForm)
+		pMainForm->stabilizeForm();
 }
 
 
 // Messages view font accessors.
 QFont qsynthMessagesForm::messagesFont (void) const
 {
-    return m_ui.MessagesTextView->font();
+	return m_ui.MessagesTextView->font();
 }
 
 void qsynthMessagesForm::setMessagesFont ( const QFont & font )
 {
-    m_ui.MessagesTextView->setFont(font);
+	m_ui.MessagesTextView->setFont(font);
 }
 
 
 // Messages line limit accessors.
 int qsynthMessagesForm::messagesLimit (void) const
 {
-    return m_iMessagesLimit;
+	return m_iMessagesLimit;
 }
 
 void qsynthMessagesForm::setMessagesLimit( int iMessagesLimit )
 {
-    m_iMessagesLimit = iMessagesLimit;
-    m_iMessagesHigh  = iMessagesLimit + (iMessagesLimit / 3);
+	m_iMessagesLimit = iMessagesLimit;
+	m_iMessagesHigh  = iMessagesLimit + (iMessagesLimit / 3);
 
 //	m_ui.MessagesTextView->setMaxLogLines(iMessagesLimit);
 }
@@ -107,18 +107,18 @@ void qsynthMessagesForm::setMessagesLimit( int iMessagesLimit )
 // Messages widget output method.
 void qsynthMessagesForm::appendMessages( const QString& s )
 {
-    appendMessagesColor(s, "#999999");
+	appendMessagesColor(s, "#999999");
 }
 
 void qsynthMessagesForm::appendMessagesColor( const QString& s, const QString& c )
 {
-    appendMessagesText("<font color=\"" + c + "\">" + QTime::currentTime().toString("hh:mm:ss.zzz") + " " + s + "</font>");
+	appendMessagesText("<font color=\"" + c + "\">" + QTime::currentTime().toString("hh:mm:ss.zzz") + " " + s + "</font>");
 }
 
 void qsynthMessagesForm::appendMessagesText( const QString& s )
 {
-    // Check for message line limit...
-    if (m_iMessagesLines > m_iMessagesHigh) {
+	// Check for message line limit...
+	if (m_iMessagesLines > m_iMessagesHigh) {
 		m_ui.MessagesTextView->setUpdatesEnabled(false);
 		QTextCursor textCursor(m_ui.MessagesTextView->document()->begin());
 		while (m_iMessagesLines > m_iMessagesLimit) {
@@ -131,11 +131,10 @@ void qsynthMessagesForm::appendMessagesText( const QString& s )
 		// Remove the excessive line-blocks...
 		textCursor.removeSelectedText();
 		m_ui.MessagesTextView->setUpdatesEnabled(true);
-    }
+	}
 
-    m_ui.MessagesTextView->append(s);
+	m_ui.MessagesTextView->append(s);
 }
 
 
 // end of qsynthMessagesForm.cpp
-

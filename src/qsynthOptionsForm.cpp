@@ -39,18 +39,18 @@ qsynthOptionsForm::qsynthOptionsForm (
 	// Setup UI struct...
 	m_ui.setupUi(this);
 
-    // No options descriptor initially (the caller will set it).
-    m_pOptions = NULL;
+	// No options descriptor initially (the caller will set it).
+	m_pOptions = NULL;
 
-    // Initialize dirty control state.
-    m_iDirtySetup = 0;
-    m_iDirtyCount = 0;
+	// Initialize dirty control state.
+	m_iDirtySetup = 0;
+	m_iDirtyCount = 0;
 
-    // Set dialog validators...
-    m_ui.MessagesLimitLinesComboBox->setValidator(new QIntValidator(m_ui.MessagesLimitLinesComboBox));
+	// Set dialog validators...
+	m_ui.MessagesLimitLinesComboBox->setValidator(new QIntValidator(m_ui.MessagesLimitLinesComboBox));
 
-    // Try to restore old window positioning.
-    adjustSize();
+	// Try to restore old window positioning.
+	adjustSize();
 
 	// UI connections...
 	QObject::connect(m_ui.MessagesFontPushButton,
@@ -95,13 +95,13 @@ qsynthOptionsForm::~qsynthOptionsForm (void)
 // Populate (setup) dialog controls from options descriptors.
 void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 {
-    // Set reference descriptor.
-    m_pOptions = pOptions;
+	// Set reference descriptor.
+	m_pOptions = pOptions;
 
-    // Start clean.
-    m_iDirtyCount = 0;
-    // Avoid nested changes.
-    m_iDirtySetup++;
+	// Start clean.
+	m_iDirtyCount = 0;
+	// Avoid nested changes.
+	m_iDirtySetup++;
 
 	// Load Display options...
 	QFont font;
@@ -116,116 +116,115 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.MessagesFontTextLabel->setText(
 		font.family() + " " + QString::number(font.pointSize()));
 
-    // Messages limit option.
-    m_ui.MessagesLimitCheckBox->setChecked(m_pOptions->bMessagesLimit);
-    m_ui.MessagesLimitLinesComboBox->setItemText(
+	// Messages limit option.
+	m_ui.MessagesLimitCheckBox->setChecked(m_pOptions->bMessagesLimit);
+	m_ui.MessagesLimitLinesComboBox->setItemText(
 		m_ui.MessagesLimitLinesComboBox->currentIndex(),
 			QString::number(m_pOptions->iMessagesLimitLines));
 
-    // Other options finally.
-    m_ui.QueryCloseCheckBox->setChecked(m_pOptions->bQueryClose);
-    m_ui.KeepOnTopCheckBox->setChecked(m_pOptions->bKeepOnTop);
-    m_ui.StdoutCaptureCheckBox->setChecked(m_pOptions->bStdoutCapture);
-    m_ui.OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
-    m_ui.SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
+	// Other options finally.
+	m_ui.QueryCloseCheckBox->setChecked(m_pOptions->bQueryClose);
+	m_ui.KeepOnTopCheckBox->setChecked(m_pOptions->bKeepOnTop);
+	m_ui.StdoutCaptureCheckBox->setChecked(m_pOptions->bStdoutCapture);
+	m_ui.OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
+	m_ui.SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
 
 #if defined(WIN32)
-    m_ui.StdoutCaptureCheckBox->setChecked(false);
-    m_ui.StdoutCaptureCheckBox->setEnabled(false);
+	m_ui.StdoutCaptureCheckBox->setChecked(false);
+	m_ui.StdoutCaptureCheckBox->setEnabled(false);
 #endif
 
 #ifndef CONFIG_SYSTEM_TRAY
-    m_ui.SystemTrayCheckBox->setChecked(false);
-    m_ui.SystemTrayCheckBox->setEnabled(false);
+	m_ui.SystemTrayCheckBox->setChecked(false);
+	m_ui.SystemTrayCheckBox->setEnabled(false);
 #endif
 
-    // Done.
-    m_iDirtySetup--;
-    stabilizeForm();
+	// Done.
+	m_iDirtySetup--;
+	stabilizeForm();
 }
 
 
 // Accept options (OK button slot).
 void qsynthOptionsForm::accept (void)
 {
-    // Save options...
-    if (m_iDirtyCount > 0) {
-        m_pOptions->sMessagesFont       = m_ui.MessagesFontTextLabel->font().toString();
-        m_pOptions->bMessagesLimit      = m_ui.MessagesLimitCheckBox->isChecked();
-        m_pOptions->iMessagesLimitLines = m_ui.MessagesLimitLinesComboBox->currentText().toInt();
-        m_pOptions->bQueryClose         = m_ui.QueryCloseCheckBox->isChecked();
-        m_pOptions->bKeepOnTop          = m_ui.KeepOnTopCheckBox->isChecked();
-        m_pOptions->bStdoutCapture      = m_ui.StdoutCaptureCheckBox->isChecked();
-        m_pOptions->bOutputMeters       = m_ui.OutputMetersCheckBox->isChecked();
-        m_pOptions->bSystemTray         = m_ui.SystemTrayCheckBox->isChecked();
-        // Reset dirty flag.
-        m_iDirtyCount = 0;
-    }
+	// Save options...
+	if (m_iDirtyCount > 0) {
+		m_pOptions->sMessagesFont       = m_ui.MessagesFontTextLabel->font().toString();
+		m_pOptions->bMessagesLimit      = m_ui.MessagesLimitCheckBox->isChecked();
+		m_pOptions->iMessagesLimitLines = m_ui.MessagesLimitLinesComboBox->currentText().toInt();
+		m_pOptions->bQueryClose         = m_ui.QueryCloseCheckBox->isChecked();
+		m_pOptions->bKeepOnTop          = m_ui.KeepOnTopCheckBox->isChecked();
+		m_pOptions->bStdoutCapture      = m_ui.StdoutCaptureCheckBox->isChecked();
+		m_pOptions->bOutputMeters       = m_ui.OutputMetersCheckBox->isChecked();
+		m_pOptions->bSystemTray         = m_ui.SystemTrayCheckBox->isChecked();
+		// Reset dirty flag.
+		m_iDirtyCount = 0;
+	}
 
-    // Just go with dialog acceptance.
-    QDialog::accept();
+	// Just go with dialog acceptance.
+	QDialog::accept();
 }
 
 
 // Reject options (Cancel button slot).
 void qsynthOptionsForm::reject (void)
 {
-    bool bReject = true;
+	bool bReject = true;
 
-    // Check if there's any pending changes...
-    if (m_iDirtyCount > 0) {
-        switch (QMessageBox::warning(this,
+	// Check if there's any pending changes...
+	if (m_iDirtyCount > 0) {
+		switch (QMessageBox::warning(this,
 			QSYNTH_TITLE ": " + tr("Warning"),
-            tr("Some options have been changed.") + "\n\n" +
-            tr("Do you want to apply the changes?"),
-            tr("Apply"), tr("Discard"), tr("Cancel"))) {
-        case 0:     // Apply...
-            accept();
-            return;
-        case 1:     // Discard
-            break;
-        default:    // Cancel.
-            bReject = false;
-        }
-    }
+			tr("Some options have been changed.") + "\n\n" +
+			tr("Do you want to apply the changes?"),
+			tr("Apply"), tr("Discard"), tr("Cancel"))) {
+		case 0:     // Apply...
+			accept();
+			return;
+		case 1:     // Discard
+			break;
+		default:    // Cancel.
+			bReject = false;
+		}
+	}
 
-    if (bReject)
-        QDialog::reject();
+	if (bReject)
+		QDialog::reject();
 }
 
 
 // Dirty up options.
 void qsynthOptionsForm::optionsChanged()
 {
-    if (m_iDirtySetup > 0)
-        return;
+	if (m_iDirtySetup > 0)
+		return;
 
-    m_iDirtyCount++;
-    stabilizeForm();
+	m_iDirtyCount++;
+	stabilizeForm();
 }
 
 
 // Stabilize current form state.
 void qsynthOptionsForm::stabilizeForm()
 {
-    m_ui.MessagesLimitLinesComboBox->setEnabled(m_ui.MessagesLimitCheckBox->isChecked());
+	m_ui.MessagesLimitLinesComboBox->setEnabled(m_ui.MessagesLimitCheckBox->isChecked());
 
-    m_ui.OkPushButton->setEnabled(m_iDirtyCount > 0);
+	m_ui.OkPushButton->setEnabled(m_iDirtyCount > 0);
 }
 
 
 // The messages font selection dialog.
 void qsynthOptionsForm::chooseMessagesFont()
 {
-    bool  bOk  = false;
-    QFont font = QFontDialog::getFont(&bOk, m_ui.MessagesFontTextLabel->font(), this);
-    if (bOk) {
-        m_ui.MessagesFontTextLabel->setFont(font);
-        m_ui.MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
-        optionsChanged();
-    }
+	bool  bOk  = false;
+	QFont font = QFontDialog::getFont(&bOk, m_ui.MessagesFontTextLabel->font(), this);
+	if (bOk) {
+		m_ui.MessagesFontTextLabel->setFont(font);
+		m_ui.MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
+		optionsChanged();
+	}
 }
 
 
 // end of qsynthOptionsForm.cpp
-

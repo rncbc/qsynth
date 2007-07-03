@@ -124,7 +124,7 @@ void qsynthMeterScale::resizeEvent ( QResizeEvent *pResizeEvent )
 
 // Constructor.
 qsynthMeterValue::qsynthMeterValue ( qsynthMeter *pMeter )
-    : QFrame(pMeter)
+	: QFrame(pMeter)
 {
 	m_pMeter      = pMeter;
 	m_fValue      = 0.0f;
@@ -192,12 +192,12 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 
 	float dB = QSYNTH_METER_MINDB;
 	if (m_fValue > 0.0f)
-	    dB = 20.0f * ::log10f(m_fValue);
+		dB = 20.0f * ::log10f(m_fValue);
 
 	if (dB < QSYNTH_METER_MINDB)
-	    dB = QSYNTH_METER_MINDB;
+		dB = QSYNTH_METER_MINDB;
 	else if (dB > QSYNTH_METER_MAXDB)
-	    dB = QSYNTH_METER_MAXDB;
+		dB = QSYNTH_METER_MAXDB;
 
 	int y_over = 0;
 	int y_curr = 0;
@@ -283,7 +283,7 @@ qsynthMeter::qsynthMeter ( QWidget *pParent )
 	m_iPeakFalloff = QSYNTH_METER_PEAK_FALLOFF;
 
 	for (int i = 0; i < LevelCount; i++)
-	    m_levels[i] = 0;
+		m_levels[i] = 0;
 
 	m_colors[ColorOver] = QColor(240,  0, 20);
 	m_colors[Color0dB]  = QColor(240,160, 20);
@@ -301,26 +301,26 @@ qsynthMeter::qsynthMeter ( QWidget *pParent )
 	QWidget::setBackgroundRole(QPalette::NoRole);
 
 	if (m_iPortCount > 0) {
-	    if (m_iPortCount > 1)
-	        m_iScaleCount--;
-	    m_ppValues = new qsynthMeterValue *[m_iPortCount];
-	    m_ppScales = new qsynthMeterScale *[m_iScaleCount];
-	    for (int iPort = 0; iPort < m_iPortCount; iPort++) {
-	        m_ppValues[iPort] = new qsynthMeterValue(this);
+		if (m_iPortCount > 1)
+			m_iScaleCount--;
+		m_ppValues = new qsynthMeterValue *[m_iPortCount];
+		m_ppScales = new qsynthMeterScale *[m_iScaleCount];
+		for (int iPort = 0; iPort < m_iPortCount; iPort++) {
+			m_ppValues[iPort] = new qsynthMeterValue(this);
 			m_pHBoxLayout->addWidget(m_ppValues[iPort]);
-	        if (iPort < m_iScaleCount) {
-	            m_ppScales[iPort] = new qsynthMeterScale(this);
+			if (iPort < m_iScaleCount) {
+				m_ppScales[iPort] = new qsynthMeterScale(this);
 				m_pHBoxLayout->addWidget(m_ppScales[iPort]);
 			}
-	    }
-	    int iStripCount = 2 * m_iPortCount;
-	    if (m_iPortCount > 1)
-	        iStripCount--;
-	    QWidget::setMinimumSize(12 * iStripCount, 120);
-	    QWidget::setMaximumWidth(16 * iStripCount);
+		}
+		int iStripCount = 2 * m_iPortCount;
+		if (m_iPortCount > 1)
+			iStripCount--;
+		QWidget::setMinimumSize(12 * iStripCount, 120);
+		QWidget::setMaximumWidth(16 * iStripCount);
 	} else {
-	    QWidget::setMinimumSize(2, 120);
-	    QWidget::setMaximumWidth(4);
+		QWidget::setMinimumSize(2, 120);
+		QWidget::setMaximumWidth(4);
 	}
 
 	QWidget::setSizePolicy(
@@ -332,15 +332,15 @@ qsynthMeter::qsynthMeter ( QWidget *pParent )
 qsynthMeter::~qsynthMeter (void)
 {
 	for (int iPort = 0; iPort < m_iPortCount; iPort++) {
-	    delete m_ppValues[iPort];
-	    if (iPort < m_iScaleCount)
-	        delete m_ppScales[iPort];
+		delete m_ppValues[iPort];
+		if (iPort < m_iScaleCount)
+			delete m_ppScales[iPort];
 	}
 
 	delete [] m_ppScales;
 	delete [] m_ppValues;
 
-    delete m_pHBoxLayout;
+	delete m_pHBoxLayout;
 }
 
 
@@ -350,19 +350,19 @@ int qsynthMeter::iec_scale ( float dB ) const
 	float fDef = 1.0;
 
 	if (dB < -70.0)
-	    fDef = 0.0;
+		fDef = 0.0;
 	else if (dB < -60.0)
-	    fDef = (dB + 70.0) * 0.0025;
+		fDef = (dB + 70.0) * 0.0025;
 	else if (dB < -50.0)
-	    fDef = (dB + 60.0) * 0.005 + 0.025;
+		fDef = (dB + 60.0) * 0.005 + 0.025;
 	else if (dB < -40.0)
-	    fDef = (dB + 50.0) * 0.0075 + 0.075;
+		fDef = (dB + 50.0) * 0.0075 + 0.075;
 	else if (dB < -30.0)
-	    fDef = (dB + 40.0) * 0.015 + 0.15;
+		fDef = (dB + 40.0) * 0.015 + 0.15;
 	else if (dB < -20.0)
-	    fDef = (dB + 30.0) * 0.02 + 0.3;
+		fDef = (dB + 30.0) * 0.02 + 0.3;
 	else /* if (dB < 0.0) */
-	    fDef = (dB + 20.0) * 0.025 + 0.5;
+		fDef = (dB + 20.0) * 0.025 + 0.5;
 
 	return (int) (fDef * m_fScale);
 }
@@ -397,7 +397,7 @@ int qsynthMeter::peakFalloff (void) const
 void qsynthMeter::peakReset (void)
 {
 	for (int iPort = 0; iPort < m_iPortCount; iPort++)
-	    m_ppValues[iPort]->peakReset();
+		m_ppValues[iPort]->peakReset();
 }
 
 
@@ -405,7 +405,7 @@ void qsynthMeter::peakReset (void)
 void qsynthMeter::refresh (void)
 {
 	for (int iPort = 0; iPort < m_iPortCount; iPort++)
-	    m_ppValues[iPort]->refresh();
+		m_ppValues[iPort]->refresh();
 }
 
 

@@ -38,67 +38,67 @@ class qsynthOptions
 {
 public:
 
-    // Constructor.
-    qsynthOptions();
-    // Default destructor.
-    ~qsynthOptions();
+	// Constructor.
+	qsynthOptions();
+	// Default destructor.
+	~qsynthOptions();
 
-    // Command line arguments parser.
-    bool parse_args(int argc, char **argv);
-    // Command line usage helper.
-    void print_usage(const char *arg0);
+	// Command line arguments parser.
+	bool parse_args(int argc, char **argv);
+	// Command line usage helper.
+	void print_usage(const char *arg0);
 
-    // Default instance setup accessor.
-    qsynthSetup *defaultSetup();
-    
-    // Display options...
-    QString sMessagesFont;
-    bool    bMessagesLimit;
-    int     iMessagesLimitLines;
-    bool    bQueryClose;
-    bool    bKeepOnTop;
-    bool    bStdoutCapture;
-    bool    bOutputMeters;
-    bool    bSystemTray;
+	// Default instance setup accessor.
+	qsynthSetup *defaultSetup();
 
-    // Default options...
-    QString sSoundFontDir;
-    bool    bPresetPreview;
+	// Display options...
+	QString sMessagesFont;
+	bool    bMessagesLimit;
+	int     iMessagesLimitLines;
+	bool    bQueryClose;
+	bool    bKeepOnTop;
+	bool    bStdoutCapture;
+	bool    bOutputMeters;
+	bool    bSystemTray;
 
-    // Available custom engines list.
-    QStringList engines;
+	// Default options...
+	QString sSoundFontDir;
+	bool    bPresetPreview;
 
-    // Engine management methods.
-    void newEngine(qsynthEngine *pEngine);
-    bool renameEngine(qsynthEngine *pEngine);
-    void deleteEngine(qsynthEngine *pEngine);
+	// Available custom engines list.
+	QStringList engines;
 
-    // Setup registry methods.
-    void loadSetup(qsynthSetup *pSetup, const QString& sName);
-    void saveSetup(qsynthSetup *pSetup, const QString& sName);
+	// Engine management methods.
+	void newEngine(qsynthEngine *pEngine);
+	bool renameEngine(qsynthEngine *pEngine);
+	void deleteEngine(qsynthEngine *pEngine);
 
-    // Preset management methods.
-    bool loadPreset(qsynthEngine *pEngine, const QString& sPreset);
-    bool savePreset(qsynthEngine *pEngine, const QString& sPreset);
-    bool deletePreset(qsynthEngine *pEngine, const QString& sPreset);
+	// Setup registry methods.
+	void loadSetup(qsynthSetup *pSetup, const QString& sName);
+	void saveSetup(qsynthSetup *pSetup, const QString& sName);
 
-    // Widget geometry persistence helper prototypes.
-    void saveWidgetGeometry(QWidget *pWidget);
-    void loadWidgetGeometry(QWidget *pWidget);
+	// Preset management methods.
+	bool loadPreset(qsynthEngine *pEngine, const QString& sPreset);
+	bool savePreset(qsynthEngine *pEngine, const QString& sPreset);
+	bool deletePreset(qsynthEngine *pEngine, const QString& sPreset);
+
+	// Widget geometry persistence helper prototypes.
+	void saveWidgetGeometry(QWidget *pWidget);
+	void loadWidgetGeometry(QWidget *pWidget);
 
 private:
 
-    // Special parsing of '-o' command-line option into fluidsynth settings.
-    bool parse_option(char *optarg);
+	// Special parsing of '-o' command-line option into fluidsynth settings.
+	bool parse_option(char *optarg);
 
-    // A recursive QSettings key entry remover.
-    void deleteKey(const QString& sKey);
+	// A recursive QSettings key entry remover.
+	void deleteKey(const QString& sKey);
 
-    // Settings member variables.
-    QSettings m_settings;
-    
-    // The default setup descriptor.
-    qsynthSetup *m_pDefaultSetup;
+	// Settings member variables.
+	QSettings m_settings;
+	
+	// The default setup descriptor.
+	qsynthSetup *m_pDefaultSetup;
 };
 
 

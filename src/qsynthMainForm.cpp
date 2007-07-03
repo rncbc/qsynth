@@ -2318,4 +2318,3 @@ void qsynthMainForm::contextMenuEvent( QContextMenuEvent *pEvent )
 
 
 // end of qsynthMainForm.cpp
-

@@ -377,4 +377,3 @@ void qsynthPresetForm::previewChanged (void)
 
 
 // end of qsynthPresetForm.cpp
-

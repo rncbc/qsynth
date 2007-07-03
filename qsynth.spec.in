@@ -16,10 +16,10 @@ URL:		http://qsynth.sourceforge.net/
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 Requires:	qt >= 4.1
-Requires:	fluidsynth >= 1.0.3
+Requires:	fluidsynth >= 1.0.7
 
 BuildRequires:	qt-devel >= 4.1
-BuildRequires:	fluidsynth-devel >= 1.0.3
+BuildRequires:	fluidsynth-devel >= 1.0.7
 
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
@@ -32,7 +32,6 @@ command line softsynths.
 [ -f Makefile.cvs ] && %__make -f Makefile.cvs
 
 %build
-export PATH=$QTDIR/bin:$PATH
 %configure
 %__make
 
@@ -50,8 +49,8 @@ export PATH=$QTDIR/bin:$PATH
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
-* Tue Jun 26 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
-- Qt4 migration has comenced.
+* Tue Jul 03 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
+- Qt4 migration was complete.
 * Mon Jun 25 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
 - Application icon is now installed to (prefix)/share/pixmaps.
 - Declared fundamental build and run-time requirements.

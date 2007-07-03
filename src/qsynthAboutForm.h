@@ -54,4 +54,3 @@ private:
 
 
 // end of qsynthAboutForm.h
-

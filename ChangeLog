@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-0.3.0   2007-7-03  Qt4 migration was complete.
+0.3.0   2007-07-03  Qt4 migration was complete.
 
 - Qt4 migration has comenced and is now complete. Care must be
   taken with this new configuration file and location: this

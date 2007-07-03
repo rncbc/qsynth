@@ -189,4 +189,3 @@ private:
 
 
 // end of qsynthMainForm.h
-

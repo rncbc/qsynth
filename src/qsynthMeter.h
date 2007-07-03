@@ -35,31 +35,31 @@ class QHBoxLayout;
 
 class qsynthMeterScale : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
 
-    // Constructor.
-    qsynthMeterScale(qsynthMeter *pMeter);
-    // Default destructor.
-    ~qsynthMeterScale();
+	// Constructor.
+	qsynthMeterScale(qsynthMeter *pMeter);
+	// Default destructor.
+	~qsynthMeterScale();
 
 protected:
 
-    // Specific event handlers.
-    void paintEvent(QPaintEvent *);
-    void resizeEvent(QResizeEvent *);
+	// Specific event handlers.
+	void paintEvent(QPaintEvent *);
+	void resizeEvent(QResizeEvent *);
 
-    // Draw IEC scale line and label.
-    void drawLineLabel(QPainter *p, int y, const QString& sLabel);
+	// Draw IEC scale line and label.
+	void drawLineLabel(QPainter *p, int y, const QString& sLabel);
 
 private:
 
-    // Local instance variables.
-    qsynthMeter *m_pMeter;
+	// Local instance variables.
+	qsynthMeter *m_pMeter;
 
-    // Running variables.
-    int m_iLastY;
+	// Running variables.
+	int m_iLastY;
 };
 
 
@@ -68,17 +68,17 @@ private:
 
 class qsynthMeterValue : public QFrame
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
 
-    // Constructor.
-    qsynthMeterValue(qsynthMeter *pMeter);
-    // Default destructor.
-    ~qsynthMeterValue();
+	// Constructor.
+	qsynthMeterValue(qsynthMeter *pMeter);
+	// Default destructor.
+	~qsynthMeterValue();
 
-    // Frame value accessors.
-    void setValue(float fValue);
+	// Frame value accessors.
+	void setValue(float fValue);
 
 	// Value refreshment.
 	void refresh();
@@ -88,22 +88,22 @@ public:
 
 protected:
 
-    // Specific event handlers.
-    void paintEvent(QPaintEvent *);
-    void resizeEvent(QResizeEvent *);
+	// Specific event handlers.
+	void paintEvent(QPaintEvent *);
+	void resizeEvent(QResizeEvent *);
 
 private:
 
-    // Local instance variables.
-    qsynthMeter *m_pMeter;
-    // Running variables.
-    float m_fValue;
-    int   m_iValueHold;
-    float m_fValueDecay;
-    int   m_iPeak;
-    int   m_iPeakHold;
-    float m_fPeakDecay;
-    int   m_iPeakColor;
+	// Local instance variables.
+	qsynthMeter *m_pMeter;
+	// Running variables.
+	float m_fValue;
+	int   m_iValueHold;
+	float m_fValueDecay;
+	int   m_iPeak;
+	int   m_iPeakHold;
+	float m_fPeakDecay;
+	int   m_iPeakColor;
 };
 
 
@@ -112,27 +112,27 @@ private:
 
 class qsynthMeter : public QWidget
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
 
-    // Constructor.
-    qsynthMeter(QWidget *pParent = 0);
-    // Default destructor.
-    ~qsynthMeter();
+	// Constructor.
+	qsynthMeter(QWidget *pParent = 0);
+	// Default destructor.
+	~qsynthMeter();
 
-    // Port count accessor.
-    int portCount() const;
+	// Port count accessor.
+	int portCount() const;
 
-    // Value proxy.    
-    void setValue(int iPort, float fValue);
+	// Value proxy.    
+	void setValue(int iPort, float fValue);
 
-    // IEC scale accessors.
-    int iec_scale(float dB) const;
-    int iec_level(int iIndex) const;
+	// IEC scale accessors.
+	int iec_scale(float dB) const;
+	int iec_level(int iIndex) const;
 
-    // Slot refreshment.
-    void refresh();
+	// Slot refreshment.
+	void refresh();
 
 	// Color/level indexes.
 	enum {
@@ -147,8 +147,8 @@ public:
 		ColorCount	= 7
 	};
 
-    // Common resource accessors.
-    const QColor& color(int iIndex) const;
+	// Common resource accessors.
+	const QColor& color(int iIndex) const;
 
 	// Peak falloff mode setting.
 	void setPeakFalloff(int bPeakFalloff);
@@ -159,28 +159,28 @@ public:
 
 protected:
 
-    // Specific event handlers.
-    virtual void resizeEvent(QResizeEvent *);
+	// Specific event handlers.
+	virtual void resizeEvent(QResizeEvent *);
 
 private:
 
-    // Local instance variables.
+	// Local instance variables.
 	QHBoxLayout       *m_pHBoxLayout;
-    int                m_iPortCount;
-    int                m_iScaleCount;
-    qsynthMeterValue **m_ppValues;
-    qsynthMeterScale **m_ppScales;
+	int                m_iPortCount;
+	int                m_iScaleCount;
+	qsynthMeterValue **m_ppValues;
+	qsynthMeterScale **m_ppScales;
 
-    float   m_fScale;
+	float   m_fScale;
 
-    int     m_levels[LevelCount];
-    QColor  m_colors[ColorCount];
+	int     m_levels[LevelCount];
+	QColor  m_colors[ColorCount];
 
 	// Peak falloff mode setting (0=no peak falloff).
-    int m_iPeakFalloff;
+	int m_iPeakFalloff;
 };
 
-    
+
 #endif  // __qsynthMeter_h
 
 // end of qsynthMeter.h

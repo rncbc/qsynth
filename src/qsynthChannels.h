@@ -55,4 +55,3 @@ typedef qsynthChannelsItem * qsynthChannelsItemPtr;
 #endif  // __qsynthChannels_h
 
 // end of qsynthChannels.h
-
