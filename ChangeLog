@@ -3,9 +3,13 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-CVS HEAD
+0.3.0   2007-7-03  Qt4 migration was complete.
 
-- Qt4 migration has comenced and is now complete.
+- Qt4 migration has comenced and is now complete. Care must be
+  taken with this new configuration file and location: this
+  release starts a new one from scratch and won't reuse any of
+  the previous existing ones, although cut and paste might help
+  if you know what you'll be doing :)
 
 - Application icon is now installed to ${prefix}/share/pixmaps;
   application desktop entry file is now included in installation;

@@ -1,6 +1,6 @@
-qsynth (0.2.7-1) unstable; urgency=low
+qsynth (0.3.0-1) unstable; urgency=low
 
-  * Initial debianization
+  * Initial debianization.
 
- -- Rui Nuno Capela <rncbc@rncbc.org>  Mon, 25 Jun 2007 11:15:10 +0100
+ -- Rui Nuno Capela <rncbc@rncbc.org>  Tue,  3 Jul 2007 10:05:01 +0100
 
