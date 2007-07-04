@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.0, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.0.1, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
@@ -29,7 +29,7 @@ AC_SUBST(ac_debug)
 
 # Disable system tray argument option.
 AC_ARG_ENABLE(system_tray,
-  AC_HELP_STRING([--enable-system-tray], [disable system tray (default=yes)]),
+  AC_HELP_STRING([--enable-system-tray], [enable system tray (default=yes)]),
   [ac_system_tray="$enableval"],
   [ac_system_tray="yes"])
 
@@ -140,7 +140,6 @@ AC_SUBST(ac_uic)
 AC_CHECK_LIB(m, main)
 AC_CHECK_LIB(X11, main)
 AC_CHECK_LIB(Xext, main)
-AC_CHECK_LIB($ac_qtlib, main)
 
 # Check for round math function.
 AC_CHECK_LIB(m, lroundf, [ac_round="yes"], [ac_round="no"])
