@@ -26,7 +26,7 @@
     <x>0</x>
     <y>0</y>
     <width>520</width>
-    <height>260</height>
+    <height>280</height>
    </rect>
   </property>
   <property name="font" >
@@ -101,7 +101,7 @@
     </spacer>
    </item>
    <item rowspan="2" row="0" column="1" colspan="2" >
-    <widget class="QTextEdit" name="AboutTextView" >
+    <widget class="QTextBrowser" name="AboutTextView" >
      <property name="lineWidth" >
       <number>1</number>
      </property>
@@ -109,6 +109,9 @@
       <bool>false</bool>
      </property>
      <property name="readOnly" >
+      <bool>true</bool>
+     </property>
+     <property name="openExternalLinks" >
       <bool>true</bool>
      </property>
     </widget>

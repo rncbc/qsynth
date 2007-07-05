@@ -114,7 +114,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.MessagesFontTextLabel->setPalette(pal);
 	m_ui.MessagesFontTextLabel->setFont(font);
 	m_ui.MessagesFontTextLabel->setText(
-		font.family() + " " + QString::number(font.pointSize()));
+		font.family() + ' ' + QString::number(font.pointSize()));
 
 	// Messages limit option.
 	m_ui.MessagesLimitCheckBox->setChecked(m_pOptions->bMessagesLimit);
@@ -221,7 +221,8 @@ void qsynthOptionsForm::chooseMessagesFont()
 	QFont font = QFontDialog::getFont(&bOk, m_ui.MessagesFontTextLabel->font(), this);
 	if (bOk) {
 		m_ui.MessagesFontTextLabel->setFont(font);
-		m_ui.MessagesFontTextLabel->setText(font.family() + " " + QString::number(font.pointSize()));
+		m_ui.MessagesFontTextLabel->setText(
+			font.family() + ' ' + QString::number(font.pointSize()));
 		optionsChanged();
 	}
 }

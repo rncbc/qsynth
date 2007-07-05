@@ -1,16 +1,20 @@
-Compiling qsynth-0.2.3 on Mac OS 10.4 (Tiger)
+Compiling qsynth-0.3.0 on Mac OS 10.4.10 (Tiger)
 ---------------------------------------------
 by: Ebrahim Mayat <emayat at users dot sourceforge dot net>
 
-1. Check that Apple's Xcode and X11SDK.pkg from the Tiger (10.4) CD are installed. (Xcode can be found in the /Developer folder while X11.app is in the /Applications/Utilities folder.)
- 
-2. Install qt3, qt3-designer, qt3-dev, qt3-doc, qt3-linguist and qt3-shlibs from fink.
+Requirements:
 
-3. cd to the qsynth-0.2.3 directory and create config.h.in and configure:
-	make -f Makefile.cvs
+- X11.app (Tiger Install DVD)
 
-4. Configure and make:
-	./configure "CPPFLAGS=-I/sw/include/qt" --disable-system-tray; make
+- XcodeTools.mpkg, X11SDK.pkg, DevSDK.pkg, CoreAudioSDK.pkg, OpenGLSDK.pkg and QuickTimeSDK.pkg <http://developer.apple.com>
+
+- Fink installation <http://fink.sourceforge.net>
+
+- qt4-x11 "$ fink install qt4-x11"
+
+Configure and make:
+
+$ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure --with-qt=/sw/lib/qt4-x11 ; make
 	
 FAIR WARNING: Please, avoid enabling the "Output peak level meters" option,
 which is known to raise a general "bus error" exception on startup, making
@@ -18,4 +22,5 @@ QSynth unusable. Please do report if you ever get the level meters to sneak
 up on Mac OS X.
 
 Enjoy.
+
 

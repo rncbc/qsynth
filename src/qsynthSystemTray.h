@@ -44,7 +44,11 @@ public:
 	void setBackground(const QColor& background);
 	const QColor& background() const;
 
-	// System tray icon method.
+    // Set system tray icon overlay.
+    void setPixmapOverlay(const QPixmap& pmOverlay);
+	const QPixmap& pixmapOverlay() const;
+
+	// System tray icon/pixmaps update method.
 	void updateIcon();
 
 signals:
@@ -67,6 +71,7 @@ private:
 
 	// Instance pixmap and background color.
 	QPixmap m_pixmap;
+	QPixmap m_pixmapOverlay;
 	QColor  m_background;
 };
 

@@ -34,6 +34,9 @@
 #ifdef CONFIG_SYSTEM_TRAY
 
 #include <QX11Info>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QPaintEvent>
 
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
@@ -128,18 +131,26 @@ qsynthSystemTray::~qsynthSystemTray (void)
 }
 
 
-// System tray icon method.
+// System tray icon/pixmaps update method.
 void qsynthSystemTray::updateIcon (void)
 {
 	// Renitialize icon as fit...
 	m_pixmap = QWidget::windowIcon().pixmap(QWidget::size());
 
+    // Merge with the overlay pixmap...
+	if (!m_pixmapOverlay.mask().isNull()) {
+		QBitmap mask = m_pixmap.mask();
+		QPainter(&mask).drawPixmap(0, 0, m_pixmapOverlay.mask());
+		m_pixmap.setMask(mask);
+		QPainter(&m_pixmap).drawPixmap(0, 0, m_pixmapOverlay);
+	}
+
+    // Setup widget drawable pixmap transparency...
 	if (!m_pixmap.mask().isNull() && m_background == Qt::transparent) {
 		QBitmap mask(QWidget::size());
 		mask.fill(Qt::color0);
 		QBitmap maskPixmap = m_pixmap.mask();
-		QPainter p(&mask);
-		p.drawPixmap(
+		QPainter(&mask).drawPixmap(
 			(mask.width()  - maskPixmap.width())  / 2,
 			(mask.height() - maskPixmap.height()) / 2,
 			maskPixmap);
@@ -172,14 +183,26 @@ const QColor& qsynthSystemTray::background (void) const
 }
 
 
+// Set system tray icon overlay.
+void qsynthSystemTray::setPixmapOverlay ( const QPixmap& pmOverlay )
+{
+	m_pixmapOverlay = pmOverlay;
+
+	updateIcon();
+}
+
+const QPixmap& qsynthSystemTray::pixmapOverlay (void) const
+{
+	return m_pixmapOverlay;
+}
+
+
 // Self-drawable methods.
 void qsynthSystemTray::paintEvent ( QPaintEvent * )
 {
-	QPainter p(this);
-
 	const QRect& rect = QWidget::rect();
 
-	p.drawPixmap(
+	QPainter(this).drawPixmap(
 		rect.x() + (rect.width()  - m_pixmap.width())  / 2,
 		rect.y() + (rect.height() - m_pixmap.height()) / 2,
 		m_pixmap);
