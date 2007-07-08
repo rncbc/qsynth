@@ -326,8 +326,9 @@ void qsynthSetupForm::setComboBoxCurrentText (
 	} else {
 		int iIndex = pComboBox->findText(sText);
 		if (iIndex < 0) {
-			pComboBox->insertItem(0, sText);
 			iIndex = 0;
+			if (!sText.isEmpty())
+				pComboBox->insertItem(0, sText);
 		}
 		pComboBox->setCurrentIndex(iIndex);
 	}
