@@ -44,7 +44,8 @@
 
 // Constructor.
 qsynthChannelsForm::qsynthChannelsForm (
-	QWidget *pParent, Qt::WFlags wflags ) : QWidget(pParent, wflags)
+	QWidget *pParent, Qt::WindowFlags wflags )
+	: QWidget(pParent, wflags)
 {
 	// Setup UI struct...
 	m_ui.setupUi(this);
@@ -184,8 +185,7 @@ void qsynthChannelsForm::setup ( qsynthOptions *pOptions,
 		// Load preset list...
 		m_iDirtySetup++;
 		resetPresets();
-		m_ui.PresetComboBox->setItemText(m_ui.PresetComboBox->currentIndex(),
-			(m_pEngine->setup())->sDefPreset);
+		m_ui.PresetComboBox->setEditText((m_pEngine->setup())->sDefPreset);
 		m_iDirtySetup--;
 		// Load default preset and update/refresh the whole thing...
 		resetAllChannels(bPreset);
@@ -367,8 +367,7 @@ void qsynthChannelsForm::savePreset (void)
 	if (m_pOptions->savePreset(m_pEngine, sPreset)) {
 		m_iDirtySetup++;
 		resetPresets();
-		m_ui.PresetComboBox->setItemText(
-			m_ui.PresetComboBox->currentIndex(), sPreset);
+		m_ui.PresetComboBox->setEditText(sPreset);
 		m_iDirtySetup--;
 		// Again special, force this the default preset.
 		(m_pEngine->setup())->sDefPreset = sPreset;

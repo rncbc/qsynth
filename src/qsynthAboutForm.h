@@ -35,7 +35,7 @@ class qsynthAboutForm : public QDialog
 public:
 
 	// Constructor.
-	qsynthAboutForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
+	qsynthAboutForm(QWidget *pParent = 0, Qt::WindowFlags wflags = 0);
 	// Destructor.
 	~qsynthAboutForm();
 

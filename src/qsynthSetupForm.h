@@ -42,10 +42,9 @@ class qsynthSetupForm : public QDialog
 public:
 
 	// Constructor.
-	qsynthSetupForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
+	qsynthSetupForm(QWidget *pParent = 0, Qt::WindowFlags wflags = 0);
 	// Destructor.
 	~qsynthSetupForm();
-
 
 	void setup(qsynthOptions *pOptions, qsynthEngine *pEngine, bool bNew);
 
@@ -72,6 +71,10 @@ protected slots:
 	void reject();
 
 protected:
+
+	// A combo-box text item setter helper.
+	void setComboBoxCurrentText(
+		QComboBox *pComboBox, const QString& sText) const;
 
 	void refreshSoundFonts();
 

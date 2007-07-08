@@ -40,7 +40,7 @@ class qsynthPresetForm : public QDialog
 public:
 
 	// Constructor.
-	qsynthPresetForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
+	qsynthPresetForm(QWidget *pParent = 0, Qt::WindowFlags wflags = 0);
 	// Destructor.
 	~qsynthPresetForm();
 

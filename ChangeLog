@@ -5,6 +5,12 @@ ChangeLog
 
 CVS HEAD
 
+- One programming error has been corrected, which was affecting
+  the editable preset combo-boxes usability.
+
+- Soundfont context menu is now available again even when the
+  setup dialog soundfont list is empty.
+
 - About form link is now browseable externally.
 
 - Updated README-OSX (thanks to Ebrahim Mayat again).

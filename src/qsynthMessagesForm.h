@@ -35,7 +35,7 @@ class qsynthMessagesForm : public QWidget
 public:
 
 	// Constructor.
-	qsynthMessagesForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
+	qsynthMessagesForm(QWidget *pParent = 0, Qt::WindowFlags wflags = 0);
 	// Destructor.
 	~qsynthMessagesForm();
 

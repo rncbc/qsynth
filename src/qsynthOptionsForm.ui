@@ -41,7 +41,7 @@
    <string>Qsynth: Options</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../icons/qsynth.qrc" >:/icons/options1.png</iconset>
+   <iconset/>
   </property>
   <property name="sizeGripEnabled" >
    <bool>true</bool>

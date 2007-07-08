@@ -38,7 +38,7 @@ class qsynthOptionsForm : public QDialog
 public:
 
 	// Constructor.
-	qsynthOptionsForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
+	qsynthOptionsForm(QWidget *pParent = 0, Qt::WindowFlags wflags = 0);
 	// Destructor.
 	~qsynthOptionsForm();
 

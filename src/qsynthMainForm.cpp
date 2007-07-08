@@ -322,7 +322,8 @@ qsynthMainForm *qsynthMainForm::g_pMainForm = NULL;
 
 // Constructor.
 qsynthMainForm::qsynthMainForm (
-	QWidget *pParent, Qt::WFlags wflags ) : QWidget(pParent, wflags)
+	QWidget *pParent, Qt::WindowFlags wflags )
+	: QWidget(pParent, wflags)
 {
 	// Setup UI struct...
 	m_ui.setupUi(this);
@@ -526,8 +527,8 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 		wflags |= Qt::Tool;
 
 	// All forms are to be created right now.
-	m_pMessagesForm = new qsynthMessagesForm(0, wflags);
-	m_pChannelsForm = new qsynthChannelsForm(0, wflags);
+	m_pMessagesForm = new qsynthMessagesForm(this, wflags);
+	m_pChannelsForm = new qsynthChannelsForm(this, wflags);
 
 	// Get the default setup and dummy instace tab.
 	m_ui.TabBar->addEngine(new qsynthEngine(m_pOptions));

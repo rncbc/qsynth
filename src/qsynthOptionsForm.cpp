@@ -34,7 +34,8 @@
 
 // Constructor.
 qsynthOptionsForm::qsynthOptionsForm (
-	QWidget *pParent, Qt::WFlags wflags ) : QDialog(pParent, wflags)
+	QWidget *pParent, Qt::WindowFlags wflags )
+	: QDialog(pParent, wflags)
 {
 	// Setup UI struct...
 	m_ui.setupUi(this);
@@ -118,9 +119,8 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 
 	// Messages limit option.
 	m_ui.MessagesLimitCheckBox->setChecked(m_pOptions->bMessagesLimit);
-	m_ui.MessagesLimitLinesComboBox->setItemText(
-		m_ui.MessagesLimitLinesComboBox->currentIndex(),
-			QString::number(m_pOptions->iMessagesLimitLines));
+	m_ui.MessagesLimitLinesComboBox->setEditText(
+		QString::number(m_pOptions->iMessagesLimitLines));
 
 	// Other options finally.
 	m_ui.QueryCloseCheckBox->setChecked(m_pOptions->bQueryClose);

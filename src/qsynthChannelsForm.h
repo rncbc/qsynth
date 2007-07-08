@@ -45,7 +45,7 @@ class qsynthChannelsForm : public QWidget
 public:
 
 	// Constructor.
-	qsynthChannelsForm(QWidget *pParent = 0, Qt::WFlags wflags = 0);
+	qsynthChannelsForm(QWidget *pParent = 0, Qt::WindowFlags wflags = 0);
 	// Destructor.
 	~qsynthChannelsForm();
 

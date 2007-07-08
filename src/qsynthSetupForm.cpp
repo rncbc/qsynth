@@ -154,7 +154,8 @@ static void qsynth_settings_foreach ( void *pvData, char *pszName, int iType )
 
 // Constructor.
 qsynthSetupForm::qsynthSetupForm (
-	QWidget *pParent, Qt::WFlags wflags ) : QDialog(pParent, wflags)
+	QWidget *pParent, Qt::WindowFlags wflags )
+	: QDialog(pParent, wflags)
 {
 	// Setup UI struct...
 	m_ui.setupUi(this);
@@ -210,7 +211,6 @@ qsynthSetupForm::qsynthSetupForm (
 	m_ui.SettingsListView->resizeColumnToContents(5);	// Min.
 	m_ui.SettingsListView->resizeColumnToContents(6);	// Max.
 	m_ui.SettingsListView->resizeColumnToContents(7);	// Options.
-
 
 	// Try to restore old window positioning.
 	adjustSize();
@@ -317,6 +317,23 @@ qsynthSetupForm::~qsynthSetupForm (void)
 }
 
 
+// A combo-box text item setter helper.
+void qsynthSetupForm::setComboBoxCurrentText (
+	QComboBox *pComboBox, const QString& sText ) const
+{
+	if (pComboBox->isEditable()) {
+		pComboBox->setEditText(sText);
+	} else {
+		int iIndex = pComboBox->findText(sText);
+		if (iIndex < 0) {
+			pComboBox->insertItem(0, sText);
+			iIndex = 0;
+		}
+		pComboBox->setCurrentIndex(iIndex);
+	}
+}
+
+
 // Populate (setup) dialog controls from settings descriptors.
 void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bool bNew )
 {
@@ -381,33 +398,28 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 
 	// Midi settings...
 	m_ui.MidiInCheckBox->setChecked(m_pSetup->bMidiIn);
-	m_ui.MidiDriverComboBox->setItemText(
-		m_ui.MidiDriverComboBox->currentIndex(), m_pSetup->sMidiDriver);
+	setComboBoxCurrentText(m_ui.MidiDriverComboBox,
+		m_pSetup->sMidiDriver);
 	m_ui.MidiDeviceLineEdit->setText(m_pSetup->sMidiDevice);
 	m_ui.MidiChannelsSpinBox->setValue(m_pSetup->iMidiChannels);
 	m_ui.MidiDumpCheckBox->setChecked(m_pSetup->bMidiDump);
 	m_ui.VerboseCheckBox->setChecked(m_pSetup->bVerbose);
 	// ALSA client identifier.
 	m_ui.AlsaNameComboBox->addItem(m_pSetup->sDisplayName);
-	m_ui.AlsaNameComboBox->setItemText(m_ui.AlsaNameComboBox->currentIndex(),
+	setComboBoxCurrentText(m_ui.AlsaNameComboBox,
 		bNew ? m_pSetup->sDisplayName : m_pSetup->sAlsaName);
 
 	// Audio settings...
-	m_ui.AudioDriverComboBox->setItemText(
-		m_ui.AudioDriverComboBox->currentIndex(),
+	setComboBoxCurrentText(m_ui.AudioDriverComboBox,
 		m_pSetup->sAudioDriver);
 	m_ui.AudioDeviceLineEdit->setText(m_pSetup->sAudioDevice);
-	m_ui.SampleFormatComboBox->setItemText(
-		m_ui.SampleFormatComboBox->currentIndex(),
+	setComboBoxCurrentText(m_ui.SampleFormatComboBox,
 		m_pSetup->sSampleFormat);
-	m_ui.SampleRateComboBox->setItemText(
-		m_ui.SampleRateComboBox->currentIndex(),
+	setComboBoxCurrentText(m_ui.SampleRateComboBox,
 		QString::number(m_pSetup->fSampleRate));
-	m_ui.AudioBufSizeComboBox->setItemText(
-		m_ui.AudioBufSizeComboBox->currentIndex(),
+	setComboBoxCurrentText(m_ui.AudioBufSizeComboBox,
 		QString::number(m_pSetup->iAudioBufSize));
-	m_ui.AudioBufCountComboBox->setItemText(
-		m_ui.AudioBufCountComboBox->currentIndex(),
+	setComboBoxCurrentText(m_ui.AudioBufCountComboBox,
 		QString::number(m_pSetup->iAudioBufCount));
 	m_ui.AudioChannelsSpinBox->setValue(m_pSetup->iAudioChannels);
 	m_ui.AudioGroupsSpinBox->setValue(m_pSetup->iAudioGroups);
@@ -420,8 +432,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 		sJackName += QSYNTH_TITLE "_";
 	sJackName += m_pSetup->sDisplayName;
 	m_ui.JackNameComboBox->addItem(sJackName);
-	m_ui.JackNameComboBox->setItemText(
-		m_ui.JackNameComboBox->currentIndex(),
+	setComboBoxCurrentText(m_ui.JackNameComboBox,
 		bNew ? sJackName : m_pSetup->sJackName);
 
 	// Load the soundfonts view.
@@ -640,14 +651,15 @@ void qsynthSetupForm::stabilizeForm (void)
 // Soundfont view context menu handler.
 void qsynthSetupForm::contextMenuRequested ( const QPoint& pos )
 {
+	int iItem = 0;
+	int iItemCount = 0;
 	QTreeWidgetItem *pItem = m_ui.SoundFontListView->itemAt(pos);
 	if (pItem == NULL)
 		pItem = m_ui.SoundFontListView->currentItem();
-	if (pItem == NULL)
-		return;
-
-	int iItem = m_ui.SoundFontListView->indexOfTopLevelItem(pItem);
-	int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
+	if (pItem) {
+		iItem = m_ui.SoundFontListView->indexOfTopLevelItem(pItem);
+		iItemCount = m_ui.SoundFontListView->topLevelItemCount();
+	}
 
 	// Build the soundfont context menu...
 	QMenu menu(this);

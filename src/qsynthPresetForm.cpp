@@ -58,7 +58,8 @@ public:
 
 // Constructor.
 qsynthPresetForm::qsynthPresetForm (
-	QWidget *pParent, Qt::WFlags wflags ) : QDialog(pParent, wflags)
+	QWidget *pParent, Qt::WindowFlags wflags )
+	: QDialog(pParent, wflags)
 {
 	// Setup UI struct...
 	m_ui.setupUi(this);
