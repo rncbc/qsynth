@@ -690,8 +690,7 @@ void qsynthSetupForm::contextMenuRequested ( const QPoint& pos )
 		tr("Move Down"), this, SLOT(moveDownSoundFont()));
 	pAction->setEnabled(bEnabled && iItem < iItemCount - 1);
 
-//	menu.exec(m_ui.SoundFontListView->mapToGlobal(pos));
-	menu.exec(QCursor::pos());
+	menu.exec((m_ui.SoundFontListView->viewport())->mapToGlobal(pos));
 }
 
 

@@ -291,8 +291,7 @@ void qsynthChannelsForm::contextMenuRequested ( const QPoint& pos )
 		tr("Refresh"), this, SLOT(updateAllChannels()));
 	pAction->setEnabled(bEnabled);
 
-//	menu.exec(m_ui.ChannelsListView->mapToGlobal(pos));
-	menu.exec(QCursor::pos());
+	menu.exec((m_ui.ChannelsListView->viewport())->mapToGlobal(pos));
 }
 
 

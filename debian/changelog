@@ -1,3 +1,9 @@
+qsynth (0.3.1-1) unstable; urgency=low
+
+  * Shallowed bug-fix release.
+
+ -- Rui Nuno Capela <rncbc@rncbc.org>  Tue, 10 Jul 2007 09:15:20 +0100
+
 qsynth (0.3.0-1) unstable; urgency=low
 
   * Initial debianization.

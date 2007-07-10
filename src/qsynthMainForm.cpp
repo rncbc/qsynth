@@ -956,6 +956,7 @@ void qsynthMainForm::systemTrayContextMenu ( const QPoint& pos )
 	menu.addSeparator();
 	pAction = menu.addAction(QIcon(":/icons/channels1.png"),
 		tr("&Channels"), this, SLOT(toggleChannelsForm()));
+	pAction->setCheckable(true);
 	pAction->setChecked(m_pChannelsForm && m_pChannelsForm->isVisible());
 	pAction->setEnabled(bEnabled);
 	pAction = menu.addAction(QIcon(":/icons/setup1.png"),
@@ -982,6 +983,7 @@ void qsynthMainForm::systemTrayContextMenu ( const QPoint& pos )
 
 	pAction = menu.addAction(QIcon(":/icons/messages1.png"),
 		tr("&Messages"), this, SLOT(toggleMessagesForm()));
+	pAction->setCheckable(true);
 	pAction->setChecked(m_pMessagesForm && m_pMessagesForm->isVisible());
 	pAction = menu.addAction(QIcon(":/icons/options1.png"),
 		tr("&Options..."), this, SLOT(showOptionsForm()));
@@ -1009,6 +1011,7 @@ void qsynthMainForm::stabilizeForm (void)
 	m_ui.OutputGroupBox->setEnabled(bEnabled && pEngine->bMeterEnabled);
 	m_ui.ProgramResetPushButton->setEnabled(bEnabled);
 	m_ui.SystemResetPushButton->setEnabled(bEnabled);
+	m_ui.ChannelsPushButton->setEnabled(bEnabled);
 
 	if (bEnabled) {
 		bool bReverbActive = m_ui.ReverbActiveCheckBox->isChecked();
@@ -1039,20 +1042,18 @@ void qsynthMainForm::stabilizeForm (void)
 		m_ui.ChorusSpeedSpinBox->setEnabled(bChorusActive);
 		m_ui.ChorusDepthSpinBox->setEnabled(bChorusActive);
 		m_ui.ChorusTypeComboBox->setEnabled(bChorusActive);
-		qsynthSetup *pSetup = pEngine->setup();
-		bool bMidiIn = (pSetup && pSetup->bMidiIn);
-		m_ui.ChannelsPushButton->setEnabled(bMidiIn);
 		m_ui.RestartPushButton->setText(tr("Re&start"));
 	} else {
-		m_ui.ChannelsPushButton->setEnabled(false);
 		m_ui.RestartPushButton->setText(tr("&Start"));
 	}
 	m_ui.RestartPushButton->setEnabled(true);
 
 	m_ui.DeleteEngineToolButton->setEnabled(pEngine && !pEngine->isDefault());
 
-	m_ui.MessagesPushButton->setChecked(m_pMessagesForm && m_pMessagesForm->isVisible());
-	m_ui.ChannelsPushButton->setChecked(m_pChannelsForm && m_pChannelsForm->isVisible());
+	m_ui.MessagesPushButton->setChecked(
+		m_pMessagesForm && m_pMessagesForm->isVisible());
+	m_ui.ChannelsPushButton->setChecked(
+		m_pChannelsForm && m_pChannelsForm->isVisible());
 }
 
 

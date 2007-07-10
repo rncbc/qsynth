@@ -91,9 +91,6 @@ private:
 	// Special parsing of '-o' command-line option into fluidsynth settings.
 	bool parse_option(char *optarg);
 
-	// A recursive QSettings key entry remover.
-	void deleteKey(const QString& sKey);
-
 	// Settings member variables.
 	QSettings m_settings;
 	

@@ -391,36 +391,6 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
 	return true;
 }
 
-//---------------------------------------------------------------------------
-// A recursive QSettings key entry remover.
-
-void qsynthOptions::deleteKey ( const QString& sKey )
-{
-#ifdef QSYNTH_QT3
-	// First, delete all stand-alone entries...
-	QStringList entries = m_settings.entryList(sKey);
-	QStringList::Iterator entry = entries.begin();
-	while (entry != entries.end()) {
-		const QString& sEntry = *entry;
-		if (!sEntry.isEmpty())
-			m_settings.remove(sKey + '/' + sEntry);
-		++entry;
-	}
-
-	// Then, we'll recurse under sub-keys...
-	QStringList subkeys = m_settings.subkeyList(sKey);
-	QStringList::Iterator subkey = subkeys.begin();
-	while (subkey != subkeys.end()) {
-		const QString& sSubKey = *subkey;
-		if (!sSubKey.isEmpty())
-			deleteKey(sKey + '/' + sSubKey);
-		++subkey;
-	}
-#endif
-	// Finally we remove our-selves.
-	m_settings.remove(sKey);
-}
-
 
 //---------------------------------------------------------------------------
 // Engine entry management methods.
@@ -456,7 +426,7 @@ bool qsynthOptions::renameEngine ( qsynthEngine *pEngine )
 
 	if (!pEngine->isDefault()) {
 		engines = engines.replaceInStrings(sOldName, sNewName);
-		deleteKey("/Engine/" + sOldName);
+		m_settings.remove("/Engine/" + sOldName);
 	}
 
 	return true;
@@ -475,7 +445,7 @@ void qsynthOptions::deleteEngine ( qsynthEngine *pEngine )
 	if (iEngine >= 0)
 		engines.removeAt(iEngine);
 
-	deleteKey("/Engine/" + sName);
+	m_settings.remove("/Engine/" + sName);
 }
 
 
