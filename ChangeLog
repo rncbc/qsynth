@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- Combo-box setup history has been corrected on restore, which was
+  discarding the very initial default (factory) contents.
+
 - One programming error has been corrected, which was affecting
   the editable preset combo-boxes usability.
 

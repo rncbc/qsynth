@@ -22,7 +22,7 @@
 #include "qsynthAbout.h"
 #include "qsynthSetup.h"
 
-#include <qobject.h>
+#include <QObject>
 
 
 //-------------------------------------------------------------------------
