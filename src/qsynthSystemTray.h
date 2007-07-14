@@ -23,13 +23,22 @@
 #define __qsynthSystemTray_h
 
 #include <QWidget>
-#include <QPixmap>
+
+#if QT_VERSION >= 0x040200
+#include <QSystemTrayIcon>
+#else
+#include <QIcon>
+#endif
 
 
 //----------------------------------------------------------------------------
 // qsynthSystemTray -- Custom system tray widget.
 
+#if QT_VERSION >= 0x040200
+class qsynthSystemTray : public QSystemTrayIcon
+#else
 class qsynthSystemTray : public QWidget
+#endif
 {
 	Q_OBJECT
 
@@ -49,7 +58,14 @@ public:
 	const QPixmap& pixmapOverlay() const;
 
 	// System tray icon/pixmaps update method.
-	void updateIcon();
+	void updatePixmap();
+
+#if QT_VERSION >= 0x040200
+
+	// Redirect to hide.
+	void close();
+
+#endif
 
 signals:
 
@@ -59,6 +75,15 @@ signals:
 	// Context menu signal.
 	void contextMenuRequested(const QPoint& pos);
 
+#if QT_VERSION >= 0x040200
+
+protected slots:
+
+	// Handle systeam tray activity.
+	void activated(QSystemTrayIcon::ActivationReason);
+
+#else
+
 protected:
 
 	// Self-drawable methods.
@@ -67,9 +92,14 @@ protected:
 	// Overriden mouse event method.
 	void mousePressEvent(QMouseEvent *);
 
+#endif
+
 private:
 
 	// Instance pixmap and background color.
+#if QT_VERSION >= 0x040200
+	QIcon   m_icon;
+#endif
 	QPixmap m_pixmap;
 	QPixmap m_pixmapOverlay;
 	QColor  m_background;

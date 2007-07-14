@@ -5,6 +5,10 @@ ChangeLog
 
 CVS HEAD
 
+- Now using QSystemTrayIcon class facility if available (Qt4 >= 4.2)
+  making the system-tray option available on most platforms, notably
+  on Windows and Mac OS X (UNTESTED).
+
 - Combo-box setup history has been corrected on restore, which was
   discarding the very initial default (factory) contents.
 
