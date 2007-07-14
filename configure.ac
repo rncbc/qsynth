@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.0.8, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.0.9, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
@@ -32,10 +32,6 @@ AC_ARG_ENABLE(system_tray,
   AC_HELP_STRING([--enable-system-tray], [enable system tray (default=yes)]),
   [ac_system_tray="$enableval"],
   [ac_system_tray="yes"])
-
-if test "x$ac_system_tray" = "xyes"; then
-   AC_DEFINE(CONFIG_SYSTEM_TRAY, 1, [Define if system tray is enabled.])
-fi
 
 # Standard installation base dirs.
 ac_with_paths="/usr /usr/local"
@@ -174,6 +170,11 @@ fi
 
 # Checks for library functions.
 AC_CHECK_FUNCS(system)
+
+# Check for system-tray icon.
+if test "x$ac_system_tray" = "xyes"; then
+   AC_DEFINE(CONFIG_SYSTEM_TRAY, 1, [Define if system tray is enabled.])
+fi
 
 # Check for new_fluid_server function.
 AC_CHECK_LIB(fluidsynth, new_fluid_server, [ac_fluid_server="yes"], [ac_fluid_server="no"])
