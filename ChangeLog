@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-CVS HEAD
+0.3.1   2007-07-16  Shallowed bug-fix release.
 
 - Now using QSystemTrayIcon class facility if available (Qt4 >= 4.2)
   making the system-tray option available on most platforms, notably

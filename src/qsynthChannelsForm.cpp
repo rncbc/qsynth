@@ -91,7 +91,7 @@ qsynthChannelsForm::qsynthChannelsForm (
 
 	// UI connections...
 	QObject::connect(m_ui.PresetComboBox,
-		SIGNAL(textChanged(const QString&)),
+		SIGNAL(editTextChanged(const QString&)),
 		SLOT(changePreset(const QString&)));
 	QObject::connect(m_ui.PresetSavePushButton,
 		SIGNAL(clicked()),

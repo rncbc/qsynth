@@ -238,7 +238,7 @@ qsynthSetupForm::qsynthSetupForm (
 		SIGNAL(stateChanged(int)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.AlsaNameComboBox,
-		SIGNAL(textChanged(const QString&)),
+		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.AudioDriverComboBox,
 		SIGNAL(activated(int)),
@@ -250,13 +250,13 @@ qsynthSetupForm::qsynthSetupForm (
 		SIGNAL(activated(int)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.SampleRateComboBox,
-		SIGNAL(textChanged(const QString&)),
+		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.AudioBufSizeComboBox,
-		SIGNAL(textChanged(const QString&)),
+		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.AudioBufCountComboBox,
-		SIGNAL(textChanged(const QString&)),
+		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.AudioChannelsSpinBox,
 		SIGNAL(valueChanged(int)),
@@ -274,7 +274,7 @@ qsynthSetupForm::qsynthSetupForm (
 		SIGNAL(stateChanged(int)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.JackNameComboBox,
-		SIGNAL(textChanged(const QString&)),
+		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.SoundFontListView,
 		SIGNAL(customContextMenuRequested(const QPoint&)),
