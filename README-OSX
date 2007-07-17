@@ -1,8 +1,10 @@
-Compiling qsynth-0.3.0 on Mac OS 10.4.10 (Tiger)
----------------------------------------------
+Compiling qsynth-0.3.1 on Mac OS 10.4.10 (Tiger)
+------------------------------------------------
 by: Ebrahim Mayat <emayat at users dot sourceforge dot net>
 
 Requirements:
+
+- fluidsynth
 
 - X11.app (Tiger Install DVD)
 
@@ -15,11 +17,6 @@ Requirements:
 Configure and make:
 
 $ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure --with-qt=/sw/lib/qt4-x11 ; make
-	
-FAIR WARNING: Please, avoid enabling the "Output peak level meters" option,
-which is known to raise a general "bus error" exception on startup, making
-QSynth unusable. Please do report if you ever get the level meters to sneak
-up on Mac OS X.
 
 Enjoy.
 
