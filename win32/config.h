@@ -1,6 +1,6 @@
 
 #define PACKAGE_NAME    "Qsynth"
-#define PACKAGE_VERSION "0.3.1"
+#define PACKAGE_VERSION "0.3.1.1"
 
 
 #define CONFIG_PREFIX   "."
@@ -13,5 +13,3 @@
 #undef  CONFIG_FLUID_BANK_OFFSET
 
 #undef  CONFIG_ROUND
-
-#undef  HAVE_SIGNAL_H

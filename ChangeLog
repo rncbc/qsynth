@@ -3,6 +3,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+CVS HEAD
+
+- Main panel spin-boxes gets accelerated when stressed (Qt >= 4.2).
+
+
 0.3.1   2007-07-16  Shallowed bug-fix release.
 
 - Now using QSystemTrayIcon class facility if available (Qt4 >= 4.2)

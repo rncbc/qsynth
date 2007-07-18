@@ -48,9 +48,28 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 
+// Timer constant stuff.
+#define QSYNTH_TIMER_MSECS  100
+#define QSYNTH_DELAY_MSECS  200
 
-#if !defined(WIN32)
+// Scale factors.
+#define QSYNTH_GAIN_SCALE   100.0f
+#define QSYNTH_REVERB_SCALE 100.0f
+#define QSYNTH_CHORUS_SCALE 10.0f
+
+#if defined(WIN32)
+#undef HAVE_SIGNAL_H
+#else
 #include <unistd.h>
+// Notification pipe descriptors
+#define QSYNTH_FDNIL     -1
+#define QSYNTH_FDREAD     0
+#define QSYNTH_FDWRITE    1
+static int g_fdStdout[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
+#endif
+
+#ifdef HAVE_SIGNAL_H
+#include <signal.h>
 #endif
 
 // Needed for lroundf()
@@ -66,27 +85,8 @@ static inline long lroundf ( float x )
 }
 #endif
 
-#ifdef HAVE_SIGNAL_H
-#include <signal.h>
-#endif
 
-// Timer constant stuff.
-#define QSYNTH_TIMER_MSECS  100
-#define QSYNTH_DELAY_MSECS  200
-
-// Scale factors.
-#define QSYNTH_GAIN_SCALE   100.0f
-#define QSYNTH_REVERB_SCALE 100.0f
-#define QSYNTH_CHORUS_SCALE 10.0f
-
-#if !defined(WIN32)
-// Notification pipe descriptors
-#define QSYNTH_FDNIL     -1
-#define QSYNTH_FDREAD     0
-#define QSYNTH_FDWRITE    1
-static int g_fdStdout[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
-#endif
-
+// The current selected engine.
 static qsynthEngine *g_pCurrentEngine = NULL;
 
 
@@ -365,6 +365,18 @@ qsynthMainForm::qsynthMainForm (
 #ifdef HAVE_SIGNAL_H
 	// Set to ignore any fatal "Broken pipe" signals.
 	::signal(SIGPIPE, SIG_IGN);
+#endif
+
+#if QT_VERSION >= 0x040200
+	m_ui.GainSpinBox->setAccelerated(true);
+	m_ui.ReverbRoomSpinBox->setAccelerated(true);
+	m_ui.ReverbDampSpinBox->setAccelerated(true);
+	m_ui.ReverbWidthSpinBox->setAccelerated(true);
+	m_ui.ReverbLevelSpinBox->setAccelerated(true);
+	m_ui.ChorusNrSpinBox->setAccelerated(true);
+	m_ui.ChorusLevelSpinBox->setAccelerated(true);
+	m_ui.ChorusSpeedSpinBox->setAccelerated(true);
+	m_ui.ChorusDepthSpinBox->setAccelerated(true);
 #endif
 
 	// UI connections...
