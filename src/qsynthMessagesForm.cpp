@@ -26,6 +26,10 @@
 
 #include <QDateTime>
 #include <QTextBlock>
+#include <QTextCursor>
+
+#include <QShowEvent>
+#include <QHideEvent>
 
 
 // The maximum number of message lines.

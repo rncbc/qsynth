@@ -22,6 +22,12 @@
 #ifndef __qsynthSetupForm_h
 #define __qsynthSetupForm_h
 
+#include <QtGlobal>
+
+#if QT_VERSION < 0x040200
+#define setAllColumnsShowFocus(x) parent()
+#endif
+
 #include "ui_qsynthSetupForm.h"
 
 // Forward declarations.

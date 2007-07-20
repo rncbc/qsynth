@@ -5,6 +5,10 @@ ChangeLog
 
 CVS HEAD
 
+- Inspired on Andreas Persson patch, while on qjackctl-devel, which
+  made it possible to compile and run with older Qt 4.1, similar
+  arrangements were carried out on qsynth too, whithout hesitation.
+
 - Main panel spin-boxes gets accelerated when stressed (Qt >= 4.2).
 
 

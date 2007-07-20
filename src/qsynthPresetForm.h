@@ -22,6 +22,12 @@
 #ifndef __qsynthPresetForm_h
 #define __qsynthPresetForm_h
 
+#include <QtGlobal>
+
+#if QT_VERSION < 0x040200
+#define setAllColumnsShowFocus(x) parent()
+#endif
+
 #include "ui_qsynthPresetForm.h"
 
 #include <fluidsynth.h>

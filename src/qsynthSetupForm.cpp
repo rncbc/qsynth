@@ -742,9 +742,11 @@ void qsynthSetupForm::openSoundFont (void)
 			if (pItem == NULL) {
 				pItem = m_ui.SoundFontListView->currentItem();
 				if (pItem)
+#if QT_VERSION >= 0x040200
 					pItem->setSelected(false);
-				//else
-				//	pItem = m_ui.SoundFontListView->lastItem();
+#else
+					m_ui.SoundFontListView->setItemSelected(pItem, false);
+#endif
 			}
 			// New item on the block :-)
 			pItem = new QTreeWidgetItem(m_ui.SoundFontListView, pItem);
@@ -755,7 +757,11 @@ void qsynthSetupForm::openSoundFont (void)
 				pItem->setText(2, "0");
 				pItem->setFlags(pItem->flags() | Qt::ItemIsEditable);
 #endif
+#if QT_VERSION >= 0x040200
 				pItem->setSelected(true);
+#else
+				m_ui.SoundFontListView->setItemSelected(pItem, true);
+#endif
 				m_ui.SoundFontListView->setCurrentItem(pItem);
 				m_pOptions->sSoundFontDir = QFileInfo(sSoundFont).dir().absolutePath();
 				m_iDirtyCount++;
@@ -808,10 +814,18 @@ void qsynthSetupForm::moveUpSoundFont (void)
 	if (pItem) {
 		int iItem = m_ui.SoundFontListView->indexOfTopLevelItem(pItem);
 		if (iItem > 0) {
+#if QT_VERSION >= 0x040200
 			pItem->setSelected(false);
+#else
+			m_ui.SoundFontListView->setItemSelected(pItem, false);
+#endif
 			pItem = m_ui.SoundFontListView->takeTopLevelItem(iItem);
 			m_ui.SoundFontListView->insertTopLevelItem(iItem - 1, pItem);
+#if QT_VERSION >= 0x040200
 			pItem->setSelected(true);
+#else
+			m_ui.SoundFontListView->setItemSelected(pItem, true);
+#endif
 			m_ui.SoundFontListView->setCurrentItem(pItem);
 			m_iDirtyCount++;
 		}
@@ -830,10 +844,18 @@ void qsynthSetupForm::moveDownSoundFont (void)
 		int iItem = m_ui.SoundFontListView->indexOfTopLevelItem(pItem);
 		int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
 		if (iItem < iItemCount - 1) {
+#if QT_VERSION >= 0x040200
 			pItem->setSelected(false);
+#else
+			m_ui.SoundFontListView->setItemSelected(pItem, false);
+#endif
 			pItem = m_ui.SoundFontListView->takeTopLevelItem(iItem);
 			m_ui.SoundFontListView->insertTopLevelItem(iItem + 1, pItem);
+#if QT_VERSION >= 0x040200
 			pItem->setSelected(true);
+#else
+			m_ui.SoundFontListView->setItemSelected(pItem, true);
+#endif
 			m_ui.SoundFontListView->setCurrentItem(pItem);
 			m_iDirtyCount++;
 		}
