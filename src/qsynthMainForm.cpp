@@ -531,19 +531,22 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 	m_pOptions = pOptions;
 
 	// What style do we create these forms?
+	QWidget *pParent = NULL;
 	Qt::WindowFlags wflags = Qt::Window
 #if QT_VERSION >= 0x040200
-		| Qt::CustomizeWindowHint
+ 		| Qt::CustomizeWindowHint
 #endif
 		| Qt::WindowTitleHint
 		| Qt::WindowSystemMenuHint
 		| Qt::WindowMinMaxButtonsHint;
-	if (m_pOptions->bKeepOnTop)
+	if (m_pOptions->bKeepOnTop) {
+		pParent = this;
 		wflags |= Qt::Tool;
+	}
 
 	// All forms are to be created right now.
-	m_pMessagesForm = new qsynthMessagesForm(this, wflags);
-	m_pChannelsForm = new qsynthChannelsForm(this, wflags);
+	m_pMessagesForm = new qsynthMessagesForm(pParent, wflags);
+	m_pChannelsForm = new qsynthChannelsForm(pParent, wflags);
 
 	// Get the default setup and dummy instace tab.
 	m_ui.TabBar->addEngine(new qsynthEngine(m_pOptions));
