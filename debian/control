@@ -7,7 +7,7 @@ Standards-Version: 3.7.2
 
 Package: qsynth
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libfluidsynth1
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: A fluidsynth Qt GUI Interface
   Qsynth is a fluidsynth GUI front-end application written in C++
   around the Qt4 toolkit using Qt Designer. Eventually it may evolve
