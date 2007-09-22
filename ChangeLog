@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- Simple as it could ever be, the build executive summary report
+  is now given on configure.
+
 - Get configure to try and detect the correct qmake location and
   insert it the search order, so let the qt4 tools take precedence
   when --with-qt option is given and older qt3 ones coexist and
