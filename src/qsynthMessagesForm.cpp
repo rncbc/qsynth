@@ -139,6 +139,7 @@ void qsynthMessagesForm::appendMessagesText( const QString& s )
 	}
 
 	m_ui.MessagesTextView->append(s);
+	m_iMessagesLines++;
 }
 
 
