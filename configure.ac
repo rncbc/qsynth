@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.1.6, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.1.7, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
@@ -211,7 +211,7 @@ AC_OUTPUT
 # Output summary message
 
 echo
-echo "  $PACKAGE_TARNAME $PACKAGE_VERSION"
+echo "  $PACKAGE_NAME $PACKAGE_VERSION"
 echo
 echo "  Build target . . . . . . . . . . . . . . . . . . .: $ac_debug"
 echo

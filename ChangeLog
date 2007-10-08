@@ -5,6 +5,8 @@ ChangeLog
 
 CVS HEAD
 
+- A bit more of precision is achieved over the output peak meters.
+
 - Messages line limit was not being checked, now honored.
 
 - Simple as it could ever be, the build executive summary report

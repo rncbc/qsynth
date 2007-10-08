@@ -203,17 +203,13 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 	int y_curr = 0;
 
 	y = m_pMeter->iec_scale(dB);
-	if (m_iValueHold < y) {
+	if (m_iValueHold > y) {
+		m_iValueHold = int(float(m_iValueHold * m_fValueDecay));
+		m_fValueDecay *= m_fValueDecay;
+		y = m_iValueHold;
+	} else {
 		m_iValueHold = y;
 		m_fValueDecay = QSYNTH_METER_DECAY_RATE1;
-	} else {
-		m_iValueHold = int(float(m_iValueHold * m_fValueDecay));
-		if (m_iValueHold < y) {
-			m_iValueHold = y;
-		} else {
-			m_fValueDecay *= m_fValueDecay;
-			y = m_iValueHold;
-		}
 	}
 
 	int iLevel;
