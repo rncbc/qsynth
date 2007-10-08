@@ -1509,7 +1509,7 @@ void qsynthMainForm::timerSlot (void)
 	if (g_pCurrentEngine && g_pCurrentEngine->bMeterEnabled) {
 		m_ui.OutputMeter->setValue(0, g_pCurrentEngine->fMeterValue[0]);
 		m_ui.OutputMeter->setValue(1, g_pCurrentEngine->fMeterValue[1]);
-		m_ui.OutputMeter->refresh();
+	//	m_ui.OutputMeter->refresh();
 		g_pCurrentEngine->fMeterValue[0] = 0.0f;
 		g_pCurrentEngine->fMeterValue[1] = 0.0f;
 	}

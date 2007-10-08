@@ -151,7 +151,10 @@ qsynthMeterValue::~qsynthMeterValue (void)
 // Frame value one-way accessors.
 void qsynthMeterValue::setValue ( float fValue )
 {
-	m_fValue = fValue;
+	if (m_fValue < fValue)
+		m_fValue = fValue;
+
+	refresh();
 }
 
 
@@ -191,8 +194,10 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 	}
 
 	float dB = QSYNTH_METER_MINDB;
-	if (m_fValue > 0.0f)
+	if (m_fValue > 0.0f) {
 		dB = 20.0f * ::log10f(m_fValue);
+		m_fValue = 0.0f;
+	}
 
 	if (dB < QSYNTH_METER_MINDB)
 		dB = QSYNTH_METER_MINDB;
