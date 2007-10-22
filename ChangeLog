@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- Orphaned MIDI device name no longer mistaken when switching
+  between MIDI drivers on engine setup.
+
 - A bit more of precision is achieved over the output peak meters.
 
 - Messages line limit was not being checked, now honored.

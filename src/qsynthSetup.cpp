@@ -73,6 +73,12 @@ void qsynthSetup::realize (void)
 	if (!sMidiDriver.isEmpty())
 		::fluid_settings_setstr(m_pFluidSettings, "midi.driver",
 			const_cast<char *> (sMidiDriver.toUtf8().constData()));
+	if (sMidiDriver == "alsa_seq") {
+		if (!sAlsaName.isEmpty())
+			::fluid_settings_setstr(m_pFluidSettings, "midi.alsa_seq.id",
+				const_cast<char *> (sAlsaName.toUtf8().constData()));
+	}
+	else
 	if (!sMidiDevice.isEmpty()) {
 		QString sMidiKey = "midi.";
 		if (sMidiDriver == "alsa_raw")
@@ -84,9 +90,6 @@ void qsynthSetup::realize (void)
 			const_cast<char *> (sMidiKey.toUtf8().constData()),
 			const_cast<char *> (sMidiDevice.toUtf8().constData()));
 	}
-	if (!sAlsaName.isEmpty())
-		::fluid_settings_setstr(m_pFluidSettings, "midi.alsa_seq.id",
-			const_cast<char *> (sAlsaName.toUtf8().constData()));
 
 	if (!sAudioDriver.isEmpty())
 		::fluid_settings_setstr(m_pFluidSettings, "audio.driver",
