@@ -140,6 +140,16 @@ void qsynthChannelsForm::hideEvent ( QHideEvent *pHideEvent )
 		pMainForm->stabilizeForm();
 }
 
+// Just about to notify main-window that we're closing.
+void qsynthChannelsForm::closeEvent ( QCloseEvent * /*pCloseEvent*/ )
+{
+	QWidget::hide();
+
+	qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
+	if (pMainForm)
+		pMainForm->stabilizeForm();
+}
+
 
 // Populate (setup) synth settings descriptors.
 void qsynthChannelsForm::setup ( qsynthOptions *pOptions,

@@ -5,6 +5,8 @@ ChangeLog
 
 CVS HEAD
 
+- Tool/child windows position and size preservation fixed.
+
 - Orphaned MIDI device name no longer mistaken when switching
   between MIDI drivers on engine setup.
 

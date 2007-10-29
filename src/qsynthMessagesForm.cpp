@@ -81,6 +81,16 @@ void qsynthMessagesForm::hideEvent ( QHideEvent *pHideEvent )
 		pMainForm->stabilizeForm();
 }
 
+// Just about to notify main-window that we're closing.
+void qsynthMessagesForm::closeEvent ( QCloseEvent * /*pCloseEvent*/ )
+{
+	QWidget::hide();
+
+	qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
+	if (pMainForm)
+		pMainForm->stabilizeForm();
+}
+
 
 // Messages view font accessors.
 QFont qsynthMessagesForm::messagesFont (void) const

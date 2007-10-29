@@ -79,8 +79,10 @@ public slots:
 
 protected:
 
-	void showEvent(QShowEvent * pShowEvent);
-	void hideEvent(QHideEvent * pHideEvent);
+	void showEvent(QShowEvent *);
+	void hideEvent(QHideEvent *);
+	void closeEvent(QCloseEvent *);
+
 	void stabilizeForm();
 	void resetPresets();
 
