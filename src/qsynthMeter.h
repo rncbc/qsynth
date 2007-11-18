@@ -48,7 +48,6 @@ protected:
 
 	// Specific event handlers.
 	void paintEvent(QPaintEvent *);
-	void resizeEvent(QResizeEvent *);
 
 	// Draw IEC scale line and label.
 	void drawLineLabel(QPainter *p, int y, const QString& sLabel);
@@ -96,6 +95,7 @@ private:
 
 	// Local instance variables.
 	qsynthMeter *m_pMeter;
+
 	// Running variables.
 	float m_fValue;
 	int   m_iValueHold;

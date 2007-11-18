@@ -5,6 +5,8 @@ ChangeLog
 
 CVS HEAD
 
+- Minor corrections on the output peak meter scale aesthetics.
+
 - Tool/child windows position and size preservation fixed.
 
 - Orphaned MIDI device name no longer mistaken when switching

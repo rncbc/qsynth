@@ -57,8 +57,7 @@ qsynthMeterScale::qsynthMeterScale( qsynthMeter *pMeter )
 	QWidget::setMinimumWidth(16);
 //	QWidget::setBackgroundRole(QPalette::Mid);
 
-	const QFont& font = QWidget::font();
-	QWidget::setFont(QFont(font.family(), font.pointSize() - 2));
+	QWidget::setFont(QFont(font().family(), 6));
 }
 
 // Default destructor.
@@ -72,19 +71,18 @@ void qsynthMeterScale::drawLineLabel ( QPainter *p,
 	int y, const QString& sLabel )
 {
 	int iCurrY = QWidget::height() - y;
-	int iWidth = QWidget::width();
+	int iWidth = QWidget::width()  - 2;
 
 	const QFontMetrics& fm = p->fontMetrics();
 	int iMidHeight = (fm.height() >> 1);
 
-	if (fm.width(sLabel) < iWidth - 5) {
-		p->drawLine(0, iCurrY, 2, iCurrY);
-		if (m_pMeter->portCount() > 1)
-			p->drawLine(iWidth - 3, iCurrY, iWidth - 1, iCurrY);
-	}
-
 	if (iCurrY < iMidHeight || iCurrY > m_iLastY + iMidHeight) {
-		p->drawText(2, iCurrY - iMidHeight, iWidth - 3, fm.height(),
+		if (fm.width(sLabel) < iWidth - 5) {
+			p->drawLine(0, iCurrY, 2, iCurrY);
+			if (m_pMeter->portCount() > 1)
+				p->drawLine(iWidth - 3, iCurrY, iWidth - 1, iCurrY);
+		}
+		p->drawText(0, iCurrY - iMidHeight, iWidth - 2, fm.height(),
 			Qt::AlignHCenter | Qt::AlignVCenter, sLabel);
 		m_iLastY = iCurrY + 1;
 	}
@@ -96,10 +94,9 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 {
 	QPainter p(this);
 
-	p.setFont(QFont("Sans Serif", 5));
-	p.setPen(QWidget::palette().mid().color());
-
 	m_iLastY = 0;
+
+	p.setPen(QWidget::palette().mid().color().dark(140));
 
 	drawLineLabel(&p, m_pMeter->iec_level(qsynthMeter::Color0dB),   "0");
 	drawLineLabel(&p, m_pMeter->iec_level(qsynthMeter::Color3dB),   "3");
@@ -108,14 +105,6 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 
 	for (float dB = -20.0f; dB > QSYNTH_METER_MINDB; dB -= 10.0f)
 		drawLineLabel(&p, m_pMeter->iec_scale(dB), QString::number(-int(dB)));
-}
-
-
-// Resize event handler.
-void qsynthMeterScale::resizeEvent ( QResizeEvent *pResizeEvent )
-{
-	QWidget::resizeEvent(pResizeEvent);
-//	QWidget::repaint(true);
 }
 
 
@@ -295,8 +284,8 @@ qsynthMeter::qsynthMeter ( QWidget *pParent )
 	m_colors[ColorFore] = QColor( 80, 80, 80);
 
 	m_pHBoxLayout = new QHBoxLayout();
-	m_pHBoxLayout->setMargin(2);
-	m_pHBoxLayout->setSpacing(2);
+	m_pHBoxLayout->setMargin(0);
+	m_pHBoxLayout->setSpacing(0);
 	QWidget::setLayout(m_pHBoxLayout);
 
 	QWidget::setBackgroundRole(QPalette::NoRole);
