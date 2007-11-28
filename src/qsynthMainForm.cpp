@@ -557,6 +557,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 
 	// Try to restore old window positioning.
 	m_pOptions->loadWidgetGeometry(this);
+
 	// And for the whole widget gallore...
 	m_pOptions->loadWidgetGeometry(m_pMessagesForm);
 	m_pOptions->loadWidgetGeometry(m_pChannelsForm);

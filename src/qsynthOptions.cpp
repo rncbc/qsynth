@@ -42,14 +42,15 @@ qsynthOptions::qsynthOptions (void)
 
 	// Load display options...
 	m_settings.beginGroup("/Options");
-	sMessagesFont  = m_settings.value("/MessagesFont").toString();
-	bMessagesLimit = m_settings.value("/MessagesLimit", true).toBool();
+	sMessagesFont   = m_settings.value("/MessagesFont").toString();
+	bMessagesLimit  = m_settings.value("/MessagesLimit", true).toBool();
 	iMessagesLimitLines = m_settings.value("/MessagesLimitLines", 1000).toInt();
-	bQueryClose    = m_settings.value("/QueryClose",    true).toBool();
-	bKeepOnTop     = m_settings.value("/KeepOnTop",     false).toBool();
-	bStdoutCapture = m_settings.value("/StdoutCapture", true).toBool();
-	bOutputMeters  = m_settings.value("/OutputMeters",  false).toBool();
-	bSystemTray    = m_settings.value("/SystemTray",    false).toBool();
+	bQueryClose     = m_settings.value("/QueryClose", true).toBool();
+	bKeepOnTop      = m_settings.value("/KeepOnTop", false).toBool();
+	bStdoutCapture  = m_settings.value("/StdoutCapture", true).toBool();
+	bOutputMeters   = m_settings.value("/OutputMeters", false).toBool();
+	bSystemTray     = m_settings.value("/SystemTray", false).toBool();
+	bStartMinimized = m_settings.value("/StartMinimized", false).toBool();
 	m_settings.endGroup();
 
 	// Load defaults...
@@ -95,20 +96,21 @@ qsynthOptions::~qsynthOptions (void)
 
 	// Save defaults...
 	m_settings.beginGroup("/Defaults");
-	m_settings.setValue("/SoundFontDir",  sSoundFontDir);
+	m_settings.setValue("/SoundFontDir", sSoundFontDir);
 	m_settings.setValue("/PresetPreview", bPresetPreview);
 	m_settings.endGroup();
 
 	// Save last display options.
 	m_settings.beginGroup("/Options");
-	m_settings.setValue("/MessagesFont",  sMessagesFont);
+	m_settings.setValue("/MessagesFont", sMessagesFont);
 	m_settings.setValue("/MessagesLimit", bMessagesLimit);
 	m_settings.setValue("/MessagesLimitLines", iMessagesLimitLines);
-	m_settings.setValue("/QueryClose",    bQueryClose);
-	m_settings.setValue("/KeepOnTop",     bKeepOnTop);
+	m_settings.setValue("/QueryClose", bQueryClose);
+	m_settings.setValue("/KeepOnTop", bKeepOnTop);
 	m_settings.setValue("/StdoutCapture", bStdoutCapture);
-	m_settings.setValue("/OutputMeters",  bOutputMeters);
-	m_settings.setValue("/SystemTray",    bSystemTray);
+	m_settings.setValue("/OutputMeters", bOutputMeters);
+	m_settings.setValue("/SystemTray", bSystemTray);
+	m_settings.setValue("/StartMinimized", bStartMinimized);
 	m_settings.endGroup();
 
 	// Create default setup descriptor.

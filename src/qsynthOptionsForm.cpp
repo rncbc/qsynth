@@ -72,6 +72,9 @@ qsynthOptionsForm::qsynthOptionsForm (
 	QObject::connect(m_ui.SystemTrayCheckBox,
 		SIGNAL(stateChanged(int)),
 		SLOT(optionsChanged()));
+	QObject::connect(m_ui.StartMinimizedCheckBox,
+		SIGNAL(stateChanged(int)),
+		SLOT(optionsChanged()));
 	QObject::connect(m_ui.MessagesLimitCheckBox,
 		SIGNAL(stateChanged(int)),
 		SLOT(optionsChanged()));
@@ -128,6 +131,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.StdoutCaptureCheckBox->setChecked(m_pOptions->bStdoutCapture);
 	m_ui.OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
 	m_ui.SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
+	m_ui.StartMinimizedCheckBox->setChecked(m_pOptions->bStartMinimized);
 
 #if defined(WIN32)
 	m_ui.StdoutCaptureCheckBox->setChecked(false);
@@ -137,6 +141,8 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 #ifndef CONFIG_SYSTEM_TRAY
 	m_ui.SystemTrayCheckBox->setChecked(false);
 	m_ui.SystemTrayCheckBox->setEnabled(false);
+	m_ui.StartMinimizedCheckBox->setChecked(false);
+	m_ui.StartMinimizedCheckBox->setEnabled(false);
 #endif
 
 	// Done.
@@ -150,14 +156,15 @@ void qsynthOptionsForm::accept (void)
 {
 	// Save options...
 	if (m_iDirtyCount > 0) {
-		m_pOptions->sMessagesFont       = m_ui.MessagesFontTextLabel->font().toString();
-		m_pOptions->bMessagesLimit      = m_ui.MessagesLimitCheckBox->isChecked();
+		m_pOptions->sMessagesFont   = m_ui.MessagesFontTextLabel->font().toString();
+		m_pOptions->bMessagesLimit  = m_ui.MessagesLimitCheckBox->isChecked();
 		m_pOptions->iMessagesLimitLines = m_ui.MessagesLimitLinesComboBox->currentText().toInt();
-		m_pOptions->bQueryClose         = m_ui.QueryCloseCheckBox->isChecked();
-		m_pOptions->bKeepOnTop          = m_ui.KeepOnTopCheckBox->isChecked();
-		m_pOptions->bStdoutCapture      = m_ui.StdoutCaptureCheckBox->isChecked();
-		m_pOptions->bOutputMeters       = m_ui.OutputMetersCheckBox->isChecked();
-		m_pOptions->bSystemTray         = m_ui.SystemTrayCheckBox->isChecked();
+		m_pOptions->bQueryClose     = m_ui.QueryCloseCheckBox->isChecked();
+		m_pOptions->bKeepOnTop      = m_ui.KeepOnTopCheckBox->isChecked();
+		m_pOptions->bStdoutCapture  = m_ui.StdoutCaptureCheckBox->isChecked();
+		m_pOptions->bOutputMeters   = m_ui.OutputMetersCheckBox->isChecked();
+		m_pOptions->bSystemTray     = m_ui.SystemTrayCheckBox->isChecked();
+		m_pOptions->bStartMinimized = m_ui.StartMinimizedCheckBox->isChecked();
 		// Reset dirty flag.
 		m_iDirtyCount = 0;
 	}
@@ -208,7 +215,11 @@ void qsynthOptionsForm::optionsChanged()
 // Stabilize current form state.
 void qsynthOptionsForm::stabilizeForm()
 {
-	m_ui.MessagesLimitLinesComboBox->setEnabled(m_ui.MessagesLimitCheckBox->isChecked());
+	m_ui.MessagesLimitLinesComboBox->setEnabled(
+		m_ui.MessagesLimitCheckBox->isChecked());
+
+	m_ui.StartMinimizedCheckBox->setEnabled(
+		m_ui.SystemTrayCheckBox->isChecked());
 
 	m_ui.OkPushButton->setEnabled(m_iDirtyCount > 0);
 }

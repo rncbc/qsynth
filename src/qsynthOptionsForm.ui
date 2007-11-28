@@ -361,6 +361,25 @@
            </widget>
           </item>
           <item>
+           <widget class="QCheckBox" name="StartMinimizedCheckBox" >
+            <property name="font" >
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="toolTip" >
+             <string>Whether to start minimized to system tray</string>
+            </property>
+            <property name="text" >
+             <string>Start minimi&amp;zed to system tray</string>
+            </property>
+            <property name="shortcut" >
+             <string>Alt+Z</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <spacer>
             <property name="orientation" >
              <enum>Qt::Vertical</enum>
@@ -439,6 +458,7 @@
   <tabstop>StdoutCaptureCheckBox</tabstop>
   <tabstop>OutputMetersCheckBox</tabstop>
   <tabstop>SystemTrayCheckBox</tabstop>
+  <tabstop>StartMinimizedCheckBox</tabstop>
   <tabstop>OkPushButton</tabstop>
   <tabstop>CancelPushButton</tabstop>
  </tabstops>

@@ -60,6 +60,7 @@ public:
 	bool    bStdoutCapture;
 	bool    bOutputMeters;
 	bool    bSystemTray;
+	bool    bStartMinimized;
 
 	// Default options...
 	QString sSoundFontDir;
