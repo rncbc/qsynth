@@ -25,6 +25,12 @@
 #include <QWidget>
 
 #if QT_VERSION >= 0x040200
+#if !defined(Q_WS_X11)
+#define QSYNTH_QT4_SYSTEM_TRAY
+#endif
+#endif
+
+#ifdef QSYNTH_QT4_SYSTEM_TRAY
 #include <QSystemTrayIcon>
 #else
 #include <QIcon>
@@ -34,7 +40,7 @@
 //----------------------------------------------------------------------------
 // qsynthSystemTray -- Custom system tray widget.
 
-#if QT_VERSION >= 0x040200
+#ifdef QSYNTH_QT4_SYSTEM_TRAY
 class qsynthSystemTray : public QSystemTrayIcon
 #else
 class qsynthSystemTray : public QWidget
@@ -60,7 +66,7 @@ public:
 	// System tray icon/pixmaps update method.
 	void updatePixmap();
 
-#if QT_VERSION >= 0x040200
+#ifdef QSYNTH_QT4_SYSTEM_TRAY
 
 	// Redirect to hide.
 	void close();
@@ -75,7 +81,7 @@ signals:
 	// Context menu signal.
 	void contextMenuRequested(const QPoint& pos);
 
-#if QT_VERSION >= 0x040200
+#ifdef QSYNTH_QT4_SYSTEM_TRAY
 
 protected slots:
 
@@ -97,7 +103,7 @@ protected:
 private:
 
 	// Instance pixmap and background color.
-#if QT_VERSION >= 0x040200
+#ifdef QSYNTH_QT4_SYSTEM_TRAY
 	QIcon   m_icon;
 #endif
 	QPixmap m_pixmap;

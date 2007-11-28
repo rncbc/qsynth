@@ -25,7 +25,7 @@
 #include <QBitmap>
 #include <QPainter>
 
-#if QT_VERSION < 0x040200
+#ifndef QSYNTH_QT4_SYSTEM_TRAY
 
 #include <QMouseEvent>
 #include <QPaintEvent>
@@ -50,7 +50,7 @@
 //----------------------------------------------------------------------------
 // qsynthSystemTray -- Custom system tray widget.
 
-#if QT_VERSION >= 0x040200
+#ifdef QSYNTH_QT4_SYSTEM_TRAY
 
 // Constructor.
 qsynthSystemTray::qsynthSystemTray ( QWidget *pParent )
@@ -189,7 +189,7 @@ qsynthSystemTray::~qsynthSystemTray (void)
 void qsynthSystemTray::updatePixmap (void)
 {
 	// Renitialize icon as fit...
-#if QT_VERSION >= 0x040200
+#ifdef QSYNTH_QT4_SYSTEM_TRAY
 	m_pixmap = m_icon.pixmap(22, 22);
 #else
 	m_pixmap = QWidget::windowIcon().pixmap(QWidget::size());
@@ -203,7 +203,7 @@ void qsynthSystemTray::updatePixmap (void)
 		QPainter(&m_pixmap).drawPixmap(0, 0, m_pixmapOverlay);
 	}
 
-#if QT_VERSION >= 0x040200
+#ifdef QSYNTH_QT4_SYSTEM_TRAY
 
 	if (m_background != Qt::transparent) {
 		QPixmap pixmap(m_pixmap);
@@ -243,7 +243,7 @@ void qsynthSystemTray::setBackground ( const QColor& background )
 	// Set background color, now.
 	m_background = background;
 
-#if QT_VERSION < 0x040200
+#ifndef QSYNTH_QT4_SYSTEM_TRAY
 
 	QPalette pal(QWidget::palette());
 	pal.setColor(QWidget::backgroundRole(), m_background);
@@ -274,7 +274,7 @@ const QPixmap& qsynthSystemTray::pixmapOverlay (void) const
 }
 
 
-#if QT_VERSION < 0x040200
+#ifndef QSYNTH_QT4_SYSTEM_TRAY
 
 // Self-drawable methods.
 void qsynthSystemTray::paintEvent ( QPaintEvent * )

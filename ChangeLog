@@ -5,6 +5,11 @@ ChangeLog
 
 CVS HEAD
 
+- Regression from QSystemTrayIcon (Qt4 >= 4.2) implementation, at
+  least on X11 environments: while the main application widget was
+  minimized to the system-tray, closing any other top-level widget
+  was causing the immediate and unexpected application shutdown.
+
 - Minor corrections on the output peak meter scale aesthetics.
 
 - Tool/child windows position and size preservation fixed.

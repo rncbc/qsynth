@@ -613,6 +613,11 @@ bool qsynthMainForm::queryClose (void)
 		if (!m_bQuitForce && isVisible()
 			&& m_pOptions->bSystemTray && m_pSystemTray) {
 			m_pOptions->saveWidgetGeometry(this);
+			QMessageBox::information(this,
+				QSYNTH_TITLE ": " + tr("Information"),
+				tr("The program will keep running in the system tray.\n\n"
+				"To terminate the program, please choose \"Quit\" "
+				"in the context menu of the system tray entry."));
 			hide();
 			bQueryClose = false;
 		}
