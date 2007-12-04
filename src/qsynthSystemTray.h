@@ -25,9 +25,7 @@
 #include <QWidget>
 
 #if QT_VERSION >= 0x040200
-#if !defined(Q_WS_X11)
 #define QSYNTH_QT4_SYSTEM_TRAY
-#endif
 #endif
 
 #ifdef QSYNTH_QT4_SYSTEM_TRAY
