@@ -1,4 +1,5 @@
 // qsynthOptions.cpp
+// qsynthOptions.cpp
 //
 /****************************************************************************
    Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
@@ -758,7 +759,7 @@ bool qsynthOptions::deletePreset ( qsynthEngine *pEngine, const QString& sPreset
 //---------------------------------------------------------------------------
 // Widget geometry persistence helper methods.
 
-void qsynthOptions::loadWidgetGeometry ( QWidget *pWidget )
+void qsynthOptions::loadWidgetGeometry ( QWidget *pWidget, bool bMinimized )
 {
 	// Try to restore old form window positioning.
 	if (pWidget) {
@@ -778,7 +779,7 @@ void qsynthOptions::loadWidgetGeometry ( QWidget *pWidget )
 			pWidget->resize(fsize);
 		else
 			pWidget->adjustSize();
-		if (bVisible)
+		if (bVisible && !bMinimized)
 			pWidget->show();
 		else
 			pWidget->hide();
@@ -786,7 +787,7 @@ void qsynthOptions::loadWidgetGeometry ( QWidget *pWidget )
 }
 
 
-void qsynthOptions::saveWidgetGeometry ( QWidget *pWidget )
+void qsynthOptions::saveWidgetGeometry ( QWidget *pWidget, bool bMinimized )
 {
 	// Try to save form window position...
 	// (due to X11 window managers ideossincrasies, we better
@@ -800,7 +801,7 @@ void qsynthOptions::saveWidgetGeometry ( QWidget *pWidget )
 		m_settings.setValue("/y", fpos.y());
 		m_settings.setValue("/width", fsize.width());
 		m_settings.setValue("/height", fsize.height());
-		m_settings.setValue("/visible", bVisible);
+		m_settings.setValue("/visible", bVisible && !bMinimized);
 		m_settings.endGroup();
 	}
 }

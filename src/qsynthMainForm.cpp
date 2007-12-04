@@ -556,7 +556,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 		m_ui.TabBar->addEngine(new qsynthEngine(m_pOptions, iter.next()));
 
 	// Try to restore old window positioning.
-	m_pOptions->loadWidgetGeometry(this);
+	m_pOptions->loadWidgetGeometry(this, m_pOptions->bStartMinimized);
 
 	// And for the whole widget gallore...
 	m_pOptions->loadWidgetGeometry(m_pMessagesForm);
