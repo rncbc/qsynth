@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-CVS HEAD
+0.3.2  2007-12-19  Minor stealth fixes and season greetings. 
 
 - A new option to start the program minimized when the system tray
   icon is enabled, is now available from Setup/Misc/Start minimized
@@ -39,7 +39,7 @@ CVS HEAD
 
 - Inspired on Andreas Persson patch, while on qjackctl-devel, which
   made it possible to compile and run with older Qt 4.1, similar
-  arrangements were carried out on qsynth too, whithout hesitation.
+  arrangements were carried out on qsynth too, without hesitation.
 
 - Main panel spin-boxes gets accelerated when stressed (Qt >= 4.2).
 

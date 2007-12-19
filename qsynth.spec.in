@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 6
+%define release 7
 %define prefix  @ac_prefix@
 
 Summary:	A fluidsynth Qt GUI Interface.
@@ -49,8 +49,10 @@ command line softsynths.
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Wed Dec 19 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
+- Minor stealth fixes and season greetings.
 * Mon Jul 16 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
-- Shallowed bug-fix release..
+- Shallowed bug-fix release.
 * Tue Jul 03 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
 - Qt4 migration was complete.
 * Mon Jun 25 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>

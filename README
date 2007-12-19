@@ -22,7 +22,7 @@ The software requirements for build and runtime are listed as follows:
 
   Mandatory:
 
-  - Qt4 (core, gui, xml), C++ class library and tools for
+  - Qt4 (core, gui), C++ class library and tools for
         crossplatform development and internationalization
         http://www.trolltech.org/products/qt/
 
