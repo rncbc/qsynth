@@ -40,56 +40,135 @@
 
 #define QSYNTH_XUNIQUE "qsynthMainForm_xunique"
 
-static bool qsynth_get_xunique (void)
+#endif
+
+class qsynthApplication : public QApplication
 {
-	Display *pDisplay = QX11Info::display();
-	Atom aSelection = XInternAtom(pDisplay, QSYNTH_XUNIQUE, false);
+public:
 
-	XGrabServer(pDisplay);
-	Window window = XGetSelectionOwner(pDisplay, aSelection);
-	XUngrabServer(pDisplay);
-
-	if (window != None) {
-		Screen *pScreen = XDefaultScreenOfDisplay(pDisplay);
-		int iScreen = XScreenNumberOfScreen(pScreen);
-		XEvent ev;
-		memset(&ev, 0, sizeof(ev));
-		ev.xclient.type = ClientMessage;
-		ev.xclient.display = pDisplay;
-		ev.xclient.window = window;
-		ev.xclient.message_type = XInternAtom(pDisplay, "_NET_ACTIVE_WINDOW", false);
-		ev.xclient.format = 32;
-		ev.xclient.data.l[0] = 0; // Source indication.
-		ev.xclient.data.l[1] = 0; // Timestamp.
-		ev.xclient.data.l[2] = 0; // Requestor's currently active window (none)
-		ev.xclient.data.l[3] = 0;
-		ev.xclient.data.l[4] = 0;
-		XSelectInput(pDisplay, window, StructureNotifyMask);
-		XSendEvent(pDisplay, RootWindow(pDisplay, iScreen), false,
-			(SubstructureNotifyMask | SubstructureRedirectMask), &ev);
-		XSync(pDisplay, false);
-		XRaiseWindow(pDisplay, window);
+	// Constructor.
+	qsynthApplication(int& argc, char **argv)
+		: QApplication(argc, argv), m_pWidget(0)
+	{
+	#if defined(Q_WS_X11)
+		m_pDisplay = QX11Info::display();
+		m_aUnique  = XInternAtom(m_pDisplay, QSYNTH_XUNIQUE, false);
+		XGrabServer(m_pDisplay);
+		m_wOwner = XGetSelectionOwner(m_pDisplay, m_aUnique);
+		XUngrabServer(m_pDisplay);
+	#endif
 	}
 
-//	XFlush(pDisplay);
+	// Main application widget accessors.
+	void setMainWidget(QWidget *pWidget)
+	{
+		m_pWidget = pWidget;
+	#if defined(Q_WS_X11)
+		XGrabServer(m_pDisplay);
+		m_wOwner = m_pWidget->winId();
+		XSetSelectionOwner(m_pDisplay, m_aUnique, m_wOwner, CurrentTime);
+		XUngrabServer(m_pDisplay);
+	#endif
+	}
 
-	return (window != None);
-}
+	QWidget *mainWidget() const { return m_pWidget; }
 
-static void qsynth_set_xunique ( QWidget *pWidget )
-{
-	Display *pDisplay = QX11Info::display();
-	Atom aSelection = XInternAtom(pDisplay, QSYNTH_XUNIQUE, false);
+	// Check if another instance is running,
+    // and raise its proper main widget...
+	bool setup()
+	{
+	#if defined(Q_WS_X11)
+		if (m_wOwner != None) {
+			// First, notify any freedesktop.org WM
+			// that we're about to show the main widget...
+			Screen *pScreen = XDefaultScreenOfDisplay(m_pDisplay);
+			int iScreen = XScreenNumberOfScreen(pScreen);
+			XEvent ev;
+			memset(&ev, 0, sizeof(ev));
+			ev.xclient.type = ClientMessage;
+			ev.xclient.display = m_pDisplay;
+			ev.xclient.window = m_wOwner;
+			ev.xclient.message_type = XInternAtom(m_pDisplay, "_NET_ACTIVE_WINDOW", false);
+			ev.xclient.format = 32;
+			ev.xclient.data.l[0] = 0; // Source indication.
+			ev.xclient.data.l[1] = 0; // Timestamp.
+			ev.xclient.data.l[2] = 0; // Requestor's currently active window (none)
+			ev.xclient.data.l[3] = 0;
+			ev.xclient.data.l[4] = 0;
+			XSelectInput(m_pDisplay, m_wOwner, StructureNotifyMask);
+			XSendEvent(m_pDisplay, RootWindow(m_pDisplay, iScreen), false,
+				(SubstructureNotifyMask | SubstructureRedirectMask), &ev);
+			XSync(m_pDisplay, false);
+			XRaiseWindow(m_pDisplay, m_wOwner);
+			// And then, let it get caught on destination
+			// by QApplication::x11EventFilter...
+			QByteArray value = QSYNTH_XUNIQUE;
+			XChangeProperty(
+				m_pDisplay,
+				m_wOwner,
+				m_aUnique,
+				m_aUnique, 8,
+				PropModeReplace,
+				(unsigned char *) value.data(),
+				value.length());
+			// Done.
+			return true;
+		}
+	#endif
+		return false;
+	}
 
-	XGrabServer(pDisplay);
-	Window window = pWidget->winId();
-	XSetSelectionOwner(pDisplay, aSelection, window, CurrentTime);
-	XUngrabServer(pDisplay);
-
-//	XFlush(pDisplay);
-}
-
+#if defined(Q_WS_X11)
+	bool x11EventFilter(XEvent *pEv)
+	{
+		if (m_pWidget && m_wOwner != None
+			&& pEv->type == PropertyNotify
+			&& pEv->xproperty.window == m_wOwner
+			&& pEv->xproperty.state == PropertyNewValue) {
+			// Always check whether our property-flag is still around...
+			Atom aType;
+			int iFormat = 0;
+			unsigned long iItems = 0;
+			unsigned long iAfter = 0;
+			unsigned char *pData = 0;
+			if (XGetWindowProperty(
+					m_pDisplay,
+					m_wOwner,
+					m_aUnique,
+					0, 1024,
+					false,
+					m_aUnique,
+					&aType,
+					&iFormat,
+					&iItems,
+					&iAfter,
+					&pData) == Success
+				&& aType == m_aUnique && iItems > 0 && iAfter == 0) {
+				// Avoid repeating it-self...
+				XDeleteProperty(m_pDisplay, m_wOwner, m_aUnique);
+				// Just make it always shows up fine...
+				m_pWidget->show();
+				m_pWidget->raise();
+				m_pWidget->activateWindow();
+			}
+			// Free any left-overs...
+			if (iItems > 0 && pData)
+				XFree(pData);
+		}
+		return QApplication::x11EventFilter(pEv);
+	}
 #endif
+	
+private:
+
+	QWidget *m_pWidget;
+
+#if defined(Q_WS_X11)
+	Display *m_pDisplay;
+	Atom     m_aUnique;
+	Window   m_wOwner;
+#endif
+};
 
 
 //-------------------------------------------------------------------------
@@ -98,7 +177,7 @@ static void qsynth_set_xunique ( QWidget *pWidget )
 
 int main ( int argc, char **argv )
 {
-	QApplication app(argc, argv);
+	qsynthApplication app(argc, argv);
 
 	// Load translation support.
 	QTranslator translator(0);
@@ -122,12 +201,11 @@ int main ( int argc, char **argv )
 		return 1;
 	}
 
-#if defined(Q_WS_X11)
-	if (qsynth_get_xunique()) {
+	// Have another instance running?
+	if (app.setup()) {
 		app.quit();
 		return 2;
 	}
-#endif
 
 	// What style do we create these forms?
 	Qt::WindowFlags wflags = Qt::Window
@@ -149,9 +227,8 @@ int main ( int argc, char **argv )
 		w.adjustSize();
 	}
 
-#if defined(Q_WS_X11)
-	qsynth_set_xunique(&w);
-#endif
+	// Settle this one as application main widget...
+	app.setMainWidget(&w);
 
 	// Register the quit signal/slot.
 	// app.connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
