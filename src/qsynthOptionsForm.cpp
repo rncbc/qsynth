@@ -1,7 +1,7 @@
 // qsynthOptionsForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -27,6 +27,7 @@
 #include <QValidator>
 #include <QMessageBox>
 #include <QFontDialog>
+#include <QFileDialog>
 
 
 //----------------------------------------------------------------------------
@@ -57,6 +58,15 @@ qsynthOptionsForm::qsynthOptionsForm (
 	QObject::connect(m_ui.MessagesFontPushButton,
 		SIGNAL(clicked()),
 		SLOT(chooseMessagesFont()));
+	QObject::connect(m_ui.MessagesLogCheckBox,
+		SIGNAL(stateChanged(int)),
+		SLOT(optionsChanged()));
+	QObject::connect(m_ui.MessagesLogPathComboBox,
+		SIGNAL(editTextChanged(const QString&)),
+		SLOT(optionsChanged()));
+	QObject::connect(m_ui.MessagesLogPathToolButton,
+		SIGNAL(clicked()),
+		SLOT(browseMessagesLogPath()));
 	QObject::connect(m_ui.QueryCloseCheckBox,
 		SIGNAL(stateChanged(int)),
 		SLOT(optionsChanged()));
@@ -107,6 +117,9 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	// Avoid nested changes.
 	m_iDirtySetup++;
 
+	// Load combo box history...
+	m_pOptions->loadComboBoxHistory(m_ui.MessagesLogPathComboBox);
+
 	// Load Display options...
 	QFont font;
 	// Messages font.
@@ -124,6 +137,10 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.MessagesLimitCheckBox->setChecked(m_pOptions->bMessagesLimit);
 	m_ui.MessagesLimitLinesComboBox->setEditText(
 		QString::number(m_pOptions->iMessagesLimitLines));
+
+	// Logging options
+	m_ui.MessagesLogCheckBox->setChecked(m_pOptions->bMessagesLog);
+	m_ui.MessagesLogPathComboBox->setEditText(m_pOptions->sMessagesLogPath);
 
 	// Other options finally.
 	m_ui.QueryCloseCheckBox->setChecked(m_pOptions->bQueryClose);
@@ -159,6 +176,8 @@ void qsynthOptionsForm::accept (void)
 		m_pOptions->sMessagesFont   = m_ui.MessagesFontTextLabel->font().toString();
 		m_pOptions->bMessagesLimit  = m_ui.MessagesLimitCheckBox->isChecked();
 		m_pOptions->iMessagesLimitLines = m_ui.MessagesLimitLinesComboBox->currentText().toInt();
+		m_pOptions->bMessagesLog    = m_ui.MessagesLogCheckBox->isChecked();
+		m_pOptions->sMessagesLogPath = m_ui.MessagesLogPathComboBox->currentText();
 		m_pOptions->bQueryClose     = m_ui.QueryCloseCheckBox->isChecked();
 		m_pOptions->bKeepOnTop      = m_ui.KeepOnTopCheckBox->isChecked();
 		m_pOptions->bStdoutCapture  = m_ui.StdoutCaptureCheckBox->isChecked();
@@ -168,6 +187,9 @@ void qsynthOptionsForm::accept (void)
 		// Reset dirty flag.
 		m_iDirtyCount = 0;
 	}
+
+	// Save combobox history...
+	m_pOptions->saveComboBoxHistory(m_ui.MessagesLogPathComboBox);
 
 	// Just go with dialog acceptance.
 	QDialog::accept();
@@ -215,13 +237,41 @@ void qsynthOptionsForm::optionsChanged()
 // Stabilize current form state.
 void qsynthOptionsForm::stabilizeForm()
 {
+	bool bValid = (m_iDirtyCount > 0);
+
 	m_ui.MessagesLimitLinesComboBox->setEnabled(
 		m_ui.MessagesLimitCheckBox->isChecked());
+
+	bool bEnabled = m_ui.MessagesLogCheckBox->isChecked();
+	m_ui.MessagesLogPathComboBox->setEnabled(bEnabled);
+	m_ui.MessagesLogPathToolButton->setEnabled(bEnabled);
+	if (bEnabled && bValid) {
+		const QString& sPath = m_ui.MessagesLogPathComboBox->currentText();
+		bValid = !sPath.isEmpty();
+	}
 
 	m_ui.StartMinimizedCheckBox->setEnabled(
 		m_ui.SystemTrayCheckBox->isChecked());
 
-	m_ui.OkPushButton->setEnabled(m_iDirtyCount > 0);
+	m_ui.OkPushButton->setEnabled(bValid);
+}
+
+
+// Messages log path browse slot.
+void qsynthOptionsForm::browseMessagesLogPath()
+{
+	QString sFileName = QFileDialog::getSaveFileName(
+		this,											// Parent.
+		tr("Messages Log"),				                // Caption.
+		m_ui.MessagesLogPathComboBox->currentText(),	// Start here.
+		tr("Log files") + " (*.log)"	                // Filter (log files)
+	);
+
+	if (!sFileName.isEmpty()) {
+		m_ui.MessagesLogPathComboBox->setEditText(sFileName);
+		m_ui.MessagesLogPathComboBox->setFocus();
+		optionsChanged();
+	}
 }
 
 

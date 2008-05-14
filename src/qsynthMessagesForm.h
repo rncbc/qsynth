@@ -1,7 +1,7 @@
 // qsynthMessagesForm.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -24,6 +24,9 @@
 
 #include "ui_qsynthMessagesForm.h"
 
+// Forward declarations.
+class QFile;
+
 
 //----------------------------------------------------------------------------
 // qsynthMessagesForm -- UI wrapper form.
@@ -39,18 +42,23 @@ public:
 	// Destructor.
 	~qsynthMessagesForm();
 
-
 	QFont messagesFont() const;
 	void setMessagesFont(const QFont& font);
 
 	int messagesLimit() const;
 	void setMessagesLimit(int iLimit);
 
+	bool isLogging() const;
+	void setLogging(bool bEnabled, const QString& sFilename = QString());
+
 	void appendMessages(const QString& s);
 	void appendMessagesColor(const QString& s, const QString& c);
 	void appendMessagesText(const QString& s);
 
 protected:
+
+	void appendMessagesLine(const QString& s);
+	void appendMessagesLog(const QString& s);
 
 	void showEvent(QShowEvent *);
 	void hideEvent(QHideEvent *);
@@ -65,6 +73,9 @@ private:
 	int m_iMessagesLines;
 	int m_iMessagesLimit;
 	int m_iMessagesHigh;
+
+	// Logging stuff.
+	QFile *m_pMessagesLog;
 };
 
 

@@ -26,6 +26,7 @@
 #include "qsynthEngine.h"
 
 #include <QTextStream>
+#include <QComboBox>
 
 
 //-------------------------------------------------------------------------
@@ -46,6 +47,8 @@ qsynthOptions::qsynthOptions (void)
 	sMessagesFont   = m_settings.value("/MessagesFont").toString();
 	bMessagesLimit  = m_settings.value("/MessagesLimit", true).toBool();
 	iMessagesLimitLines = m_settings.value("/MessagesLimitLines", 1000).toInt();
+	bMessagesLog    = m_settings.value("/MessagesLog", false).toBool();
+	sMessagesLogPath = m_settings.value("/MessagesLogPath", "qsynth.log").toString();
 	bQueryClose     = m_settings.value("/QueryClose", true).toBool();
 	bKeepOnTop      = m_settings.value("/KeepOnTop", false).toBool();
 	bStdoutCapture  = m_settings.value("/StdoutCapture", true).toBool();
@@ -106,6 +109,8 @@ qsynthOptions::~qsynthOptions (void)
 	m_settings.setValue("/MessagesFont", sMessagesFont);
 	m_settings.setValue("/MessagesLimit", bMessagesLimit);
 	m_settings.setValue("/MessagesLimitLines", iMessagesLimitLines);
+	m_settings.setValue("/MessagesLog", bMessagesLog);
+	m_settings.setValue("/MessagesLogPath", sMessagesLogPath);
 	m_settings.setValue("/QueryClose", bQueryClose);
 	m_settings.setValue("/KeepOnTop", bKeepOnTop);
 	m_settings.setValue("/StdoutCapture", bStdoutCapture);
@@ -753,6 +758,62 @@ bool qsynthOptions::deletePreset ( qsynthEngine *pEngine, const QString& sPreset
 	}
 
 	return true;
+}
+
+
+//---------------------------------------------------------------------------
+// Combo box history persistence helper implementation.
+
+void qsynthOptions::loadComboBoxHistory ( QComboBox *pComboBox, int iLimit )
+{
+	// Load combobox list from configuration settings file...
+	m_settings.beginGroup("/History/" + pComboBox->objectName());
+
+	if (m_settings.childKeys().count() > 0) {
+		pComboBox->setUpdatesEnabled(false);
+		pComboBox->setDuplicatesEnabled(false);
+		pComboBox->clear();
+		for (int i = 0; i < iLimit; i++) {
+			const QString& sText = m_settings.value(
+				"/Item" + QString::number(i + 1)).toString();
+			if (sText.isEmpty())
+				break;
+			pComboBox->addItem(sText);
+		}
+		pComboBox->setUpdatesEnabled(true);
+	}
+
+	m_settings.endGroup();
+}
+
+
+void qsynthOptions::saveComboBoxHistory ( QComboBox *pComboBox, int iLimit )
+{
+	// Add current text as latest item...
+	const QString& sCurrentText = pComboBox->currentText();
+	int iCount = pComboBox->count();
+	for (int i = 0; i < iCount; i++) {
+		const QString& sText = pComboBox->itemText(i);
+		if (sText == sCurrentText) {
+			pComboBox->removeItem(i);
+			iCount--;
+			break;
+		}
+	}
+	while (iCount >= iLimit)
+		pComboBox->removeItem(--iCount);
+	pComboBox->insertItem(0, sCurrentText);
+	iCount++;
+
+	// Save combobox list to configuration settings file...
+	m_settings.beginGroup("/History/" + pComboBox->objectName());
+	for (int i = 0; i < iCount; i++) {
+		const QString& sText = pComboBox->itemText(i);
+		if (sText.isEmpty())
+			break;
+		m_settings.setValue("/Item" + QString::number(i + 1), sText);
+	}
+	m_settings.endGroup();
 }
 
 

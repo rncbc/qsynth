@@ -548,6 +548,9 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 	m_pMessagesForm = new qsynthMessagesForm(pParent, wflags);
 	m_pChannelsForm = new qsynthChannelsForm(pParent, wflags);
 
+	// Setup appropriately...
+	m_pMessagesForm->setLogging(m_pOptions->bMessagesLog, m_pOptions->sMessagesLogPath);
+
 	// Get the default setup and dummy instace tab.
 	m_ui.TabBar->addEngine(new qsynthEngine(m_pOptions));
 	// And all additional custom ones...
@@ -1319,6 +1322,8 @@ void qsynthMainForm::showOptionsForm (void)
 		if (m_pOptions->sMessagesFont.isEmpty() && m_pMessagesForm)
 			m_pOptions->sMessagesFont = m_pMessagesForm->messagesFont().toString();
 		// To track down deferred or immediate changes.
+		bool    bOldMessagesLog = m_pOptions->bMessagesLog; 
+		QString sOldMessagesLogPath = m_pOptions->sMessagesLogPath;
 		QString sMessagesFont  = m_pOptions->sMessagesFont;
 		bool    bSystemTray    = m_pOptions->bSystemTray;
 		bool    bOutputMeters  = m_pOptions->bOutputMeters;
@@ -1341,6 +1346,11 @@ void qsynthMainForm::showOptionsForm (void)
 					"next time you start this program."), tr("OK"));
 			}
 			// Check wheather something immediate has changed.
+			if (( bOldMessagesLog && !m_pOptions->bMessagesLog) ||
+				(!bOldMessagesLog &&  m_pOptions->bMessagesLog) ||
+				(sOldMessagesLogPath != m_pOptions->sMessagesLogPath))
+				m_pMessagesForm->setLogging(
+					m_pOptions->bMessagesLog, m_pOptions->sMessagesLogPath);
 			if (sMessagesFont != m_pOptions->sMessagesFont)
 				updateMessagesFont();
 			if (( bMessagesLimit && !m_pOptions->bMessagesLimit) ||
