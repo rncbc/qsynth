@@ -1886,6 +1886,13 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 }
 
 
+// Start all synth engines (schedule).
+void qsynthMainForm::startAllEngines (void)
+{
+	m_iTimerDelay = 0;
+}
+
+
 // Restart all synth engines.
 void qsynthMainForm::restartAllEngines (void)
 {
@@ -1907,7 +1914,7 @@ void qsynthMainForm::restartAllEngines (void)
 		// Must make this one grayed out for a while...
 		m_ui.RestartPushButton->setEnabled(false);
 		// And making room for immediate restart...
-		m_iTimerDelay = 0;
+		startAllEngines();
 	}
 }
 
@@ -1938,7 +1945,7 @@ void qsynthMainForm::restartEngine ( qsynthEngine *pEngine )
 		// Restarting means stopping the engine...
 		stopEngine(pEngine);
 		// And making room for immediate restart...
-		m_iTimerDelay = 0;
+		startAllEngines();
 	}
 }
 

@@ -11,7 +11,7 @@ CVS HEAD
 - Only one application instance is now allowed to be up and running,
   with immediate but graceful termination upon startup iif an already
   running instance is detected, which will see its main widget shown
-  up automatically (EXPERIMENTAL, Qt/X11 platform only).
+  up and all engines started automatically (Qt/X11 platform only).
 
 
 0.3.2  2007-12-19  Minor stealth fixes and season greetings. 

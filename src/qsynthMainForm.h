@@ -61,6 +61,8 @@ public:
 	bool deleteEngineTab(qsynthEngine *pEngine, int iTab);
 	bool setupEngineTab(qsynthEngine *pEngine, int iTab);
 
+	void startAllEngines();
+
 	bool startEngine(qsynthEngine *pEngine);
 	void stopEngine(qsynthEngine *pEngine);
 

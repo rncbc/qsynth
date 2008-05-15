@@ -150,6 +150,11 @@ public:
 				m_pWidget->show();
 				m_pWidget->raise();
 				m_pWidget->activateWindow();
+				// FIXME: Do our best speciality, although it should be
+				// done iif configuration says so, we'll do it anyway!
+				qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
+				if (pMainForm)
+					pMainForm->startAllEngines();
 			}
 			// Free any left-overs...
 			if (iItems > 0 && pData)
