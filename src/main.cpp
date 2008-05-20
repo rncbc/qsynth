@@ -1,7 +1,7 @@
 // main.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -24,8 +24,10 @@
 #include "qsynthMainForm.h"
 
 #include <QApplication>
+#include <QLibraryInfo>
 #include <QTranslator>
 #include <QLocale>
+
 
 //-------------------------------------------------------------------------
 // Single application instance stuff (Qt/X11 only atm.)
@@ -185,18 +187,36 @@ int main ( int argc, char **argv )
 	qsynthApplication app(argc, argv);
 
 	// Load translation support.
-	QTranslator translator(0);
 	QLocale loc;
 	if (loc.language() != QLocale::C) {
-		QString sLocName = "qsynth_" + loc.name();
-		if (!translator.load(sLocName, ".")) {
-			QString sLocPath = CONFIG_PREFIX "/share/locale";
-			if (!translator.load(sLocName, sLocPath))
-				fprintf(stderr, "Warning: no locale found: %s/%s.qm\n",
+		QTranslator translator(0);
+		// Try own Qt translation...
+		QString sLocName = "qt_" + loc.name();
+		QString sLocPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+		if (translator.load(sLocName, sLocPath)) {
+			app.installTranslator(&translator);
+	#ifdef CONFIG_DEBUG
+		} else {
+			qWarning("Warning: no Qt translattion found for '%s' locale.",
+					loc.name().toUtf8().constData());
+	#endif
+		}
+		// Try own application translation...
+		sLocName = "qsynth_" + loc.name();
+		if (translator.load(sLocName, sLocPath)) {
+			app.installTranslator(&translator);
+		} else {
+			sLocPath = CONFIG_PREFIX "/share/locale";
+			if (translator.load(sLocName, sLocPath)) {
+				app.installTranslator(&translator);
+	#ifdef CONFIG_DEBUG
+			} else {
+				qWarning("Warning: no locale found: %s/%s.qm",
 					sLocPath.toUtf8().constData(),
 					sLocName.toUtf8().constData());
+	#endif
+			}
 		}
-		app.installTranslator(&translator);
 	}
 
 	// Construct default settings; override with command line arguments.
