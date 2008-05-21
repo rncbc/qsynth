@@ -6,7 +6,8 @@ ChangeLog
 CVS HEAD
 
 - Attempt to load Qt's own translation support and get rid of
-  the ever warning startup message, unless built in debug mode.
+  the ever warning startup message, unless built in debug moderr;
+  also introducing the very first and complete German translation
   (patching transaction by Guido Scholz, thanks).
   
 - Messages file logging makes its first long overdue appearance,

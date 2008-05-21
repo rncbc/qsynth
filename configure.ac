@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.2.8, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.2.9, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
@@ -112,7 +112,7 @@ AC_CACHE_CHECK([for Qt library version >= 4.1],
 ])
 
 # A common error message:
-ac_errmsg="not found in current PATH. Maybe QT development environment isn't available (qt-devel)."
+ac_errmsg="not found in current PATH. Maybe Qt development environment isn't available (qt-devel)."
 
 # Check for Qt qmake utility.
 AC_PATH_PROG(ac_qmake, qmake, [no], $ac_path)
@@ -134,6 +134,20 @@ if test "x$ac_uic" = "xno"; then
    AC_MSG_ERROR([uic $ac_errmsg])
 fi
 AC_SUBST(ac_uic)
+
+# Check for Qt lupdate utility.
+AC_PATH_PROG(ac_lupdate, lupdate, [no], $ac_path)
+if test "x$ac_lupdate" = "xno"; then
+   AC_MSG_ERROR([lupdate $ac_errmsg])
+fi
+AC_SUBST(ac_lupdate)
+
+# Check for Qt lrelease utility.
+AC_PATH_PROG(ac_lrelease, lrelease, [no], $ac_path)
+if test "x$ac_release" = "xno"; then
+   AC_MSG_ERROR([lrelease $ac_errmsg])
+fi
+AC_SUBST(ac_lrelease)
 
 # Checks for libraries.
 AC_CHECK_LIB(m, main)
