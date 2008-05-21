@@ -49,16 +49,64 @@ class qsynthApplication : public QApplication
 public:
 
 	// Constructor.
-	qsynthApplication(int& argc, char **argv)
-		: QApplication(argc, argv), m_pWidget(0)
+	qsynthApplication(int& argc, char **argv) : QApplication(argc, argv),
+		m_pQtTranslator(0), m_pMyTranslator(0), m_pWidget(0)	
 	{
+		// Load translation support.
+		QLocale loc;
+		if (loc.language() != QLocale::C) {
+			// Try own Qt translation...
+			m_pQtTranslator = new QTranslator(this);
+			QString sLocName = "qt_" + loc.name();
+			QString sLocPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+			if (m_pQtTranslator->load(sLocName, sLocPath)) {
+				QApplication::installTranslator(m_pQtTranslator);
+			} else {
+				delete m_pQtTranslator;
+				m_pQtTranslator = 0;
+		#ifdef CONFIG_DEBUG
+				qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
+					loc.name().toUtf8().constData(),
+					sLocPath.toUtf8().constData(),
+					sLocName.toUtf8().constData());
+		#endif
+			}
+			// Try own application translation...
+			m_pMyTranslator = new QTranslator(this);
+			sLocName = "qsynth_" + loc.name();
+			if (m_pMyTranslator->load(sLocName, sLocPath)) {
+				QApplication::installTranslator(m_pMyTranslator);
+			} else {
+				sLocPath = CONFIG_PREFIX "/share/locale";
+				if (m_pMyTranslator->load(sLocName, sLocPath)) {
+					QApplication::installTranslator(m_pMyTranslator);
+				} else {
+					delete m_pMyTranslator;
+					m_pMyTranslator = 0;
+		#ifdef CONFIG_DEBUG
+					qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
+						loc.name().toUtf8().constData(),
+						sLocPath.toUtf8().constData(),
+						sLocName.toUtf8().constData());
+		#endif
+				}
+			}
+		}
 	#if defined(Q_WS_X11)
+		// Instance uniqueness initialization...
 		m_pDisplay = QX11Info::display();
 		m_aUnique  = XInternAtom(m_pDisplay, QSYNTH_XUNIQUE, false);
 		XGrabServer(m_pDisplay);
 		m_wOwner = XGetSelectionOwner(m_pDisplay, m_aUnique);
 		XUngrabServer(m_pDisplay);
 	#endif
+	}
+
+	// Destructor.
+	~qsynthApplication()
+	{
+		if (m_pMyTranslator) delete m_pMyTranslator;
+		if (m_pQtTranslator) delete m_pQtTranslator;
 	}
 
 	// Main application widget accessors.
@@ -168,6 +216,11 @@ public:
 	
 private:
 
+	// Translation support.
+	QTranslator *m_pQtTranslator;
+	QTranslator *m_pMyTranslator;
+
+	// Instance variables.
 	QWidget *m_pWidget;
 
 #if defined(Q_WS_X11)
@@ -185,39 +238,6 @@ private:
 int main ( int argc, char **argv )
 {
 	qsynthApplication app(argc, argv);
-
-	// Load translation support.
-	QLocale loc;
-	if (loc.language() != QLocale::C) {
-		QTranslator translator(0);
-		// Try own Qt translation...
-		QString sLocName = "qt_" + loc.name();
-		QString sLocPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-		if (translator.load(sLocName, sLocPath)) {
-			app.installTranslator(&translator);
-	#ifdef CONFIG_DEBUG
-		} else {
-			qWarning("Warning: no Qt translattion found for '%s' locale.",
-					loc.name().toUtf8().constData());
-	#endif
-		}
-		// Try own application translation...
-		sLocName = "qsynth_" + loc.name();
-		if (translator.load(sLocName, sLocPath)) {
-			app.installTranslator(&translator);
-		} else {
-			sLocPath = CONFIG_PREFIX "/share/locale";
-			if (translator.load(sLocName, sLocPath)) {
-				app.installTranslator(&translator);
-	#ifdef CONFIG_DEBUG
-			} else {
-				qWarning("Warning: no locale found: %s/%s.qm",
-					sLocPath.toUtf8().constData(),
-					sLocName.toUtf8().constData());
-	#endif
-			}
-		}
-	}
 
 	// Construct default settings; override with command line arguments.
 	qsynthOptions settings;
