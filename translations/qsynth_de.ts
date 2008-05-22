@@ -1477,7 +1477,7 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>MIDI-&amp;Router-Ereignisse ausgeben</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="990"/>
+        <location filename="../src/qsynthSetupForm.ui" line="960"/>
         <source>Alt+D</source>
         <translation>Alt+R</translation>
     </message>
@@ -1762,7 +1762,7 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>SFID</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1051"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1021"/>
         <source>Name</source>
         <translation>Name</translation>
     </message>
@@ -1772,122 +1772,122 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Position</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="880"/>
+        <location filename="../src/qsynthSetupForm.ui" line="874"/>
         <source>Open soundfont file for loading</source>
         <translation>Soundfont-Datei zum Laden öffnen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="883"/>
+        <location filename="../src/qsynthSetupForm.ui" line="877"/>
         <source>&amp;Open...</source>
         <translation>&amp;Öffnen...</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="889"/>
+        <location filename="../src/qsynthSetupForm.ui" line="883"/>
         <source>Alt+O</source>
         <translation>Alt+Ö</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="902"/>
+        <location filename="../src/qsynthSetupForm.ui" line="890"/>
         <source>Edit selected soundfont bank offset</source>
         <translation>Positionswert der gewählten Soundfont-Bank bearbeiten</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="905"/>
+        <location filename="../src/qsynthSetupForm.ui" line="893"/>
         <source>&amp;Edit</source>
         <translation>Bea&amp;rbeiten</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="911"/>
+        <location filename="../src/qsynthSetupForm.ui" line="899"/>
         <source>Alt+E</source>
         <translation>Alt+R</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="924"/>
+        <location filename="../src/qsynthSetupForm.ui" line="906"/>
         <source>Remove selected soundfont from stack</source>
         <translation>Gewählten Soundfont aus Stapel entfernen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="927"/>
+        <location filename="../src/qsynthSetupForm.ui" line="909"/>
         <source>&amp;Remove</source>
         <translation>En&amp;tfernen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="933"/>
+        <location filename="../src/qsynthSetupForm.ui" line="915"/>
         <source>Alt+R</source>
         <translation>Alt+T</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="959"/>
+        <location filename="../src/qsynthSetupForm.ui" line="935"/>
         <source>Move up selected soundfont towards the top of stack</source>
         <translation>Gewählten Soundfont im Stapel nach oben bewegen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="962"/>
+        <location filename="../src/qsynthSetupForm.ui" line="938"/>
         <source>&amp;Up</source>
         <translation>A&amp;uf</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="968"/>
+        <location filename="../src/qsynthSetupForm.ui" line="944"/>
         <source>Alt+U</source>
         <translation>Alt+U</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="981"/>
+        <location filename="../src/qsynthSetupForm.ui" line="951"/>
         <source>Move down selected soundfont towards the bottom of stack</source>
         <translation>Gewählten Soundfont im Stapel nach unten bewegen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="984"/>
+        <location filename="../src/qsynthSetupForm.ui" line="954"/>
         <source>&amp;Down</source>
         <translation>A&amp;b</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1000"/>
+        <location filename="../src/qsynthSetupForm.ui" line="970"/>
         <source>S&amp;ettings</source>
         <translation>&amp;Einstellungen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1056"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1026"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1061"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1031"/>
         <source>Realtime</source>
         <translation>Realtime</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1066"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1036"/>
         <source>Current</source>
         <translation>Aktuell</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1071"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1041"/>
         <source>Default</source>
         <translation>Voreinstellung</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1076"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1046"/>
         <source>Min</source>
         <translation>Min</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1081"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1051"/>
         <source>Max</source>
         <translation>Max</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1086"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1056"/>
         <source>Options</source>
         <translation>Optionen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1119"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1089"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/qsynthSetupForm.ui" line="1129"/>
+        <location filename="../src/qsynthSetupForm.ui" line="1099"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>

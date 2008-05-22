@@ -2,7 +2,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -870,12 +870,6 @@
          </property>
          <item>
           <widget class="QPushButton" name="SoundFontOpenPushButton" >
-           <property name="maximumSize" >
-            <size>
-             <width>80</width>
-             <height>32767</height>
-            </size>
-           </property>
            <property name="toolTip" >
             <string>Open soundfont file for loading</string>
            </property>
@@ -892,12 +886,6 @@
          </item>
          <item>
           <widget class="QPushButton" name="SoundFontEditPushButton" >
-           <property name="maximumSize" >
-            <size>
-             <width>80</width>
-             <height>32767</height>
-            </size>
-           </property>
            <property name="toolTip" >
             <string>Edit selected soundfont bank offset</string>
            </property>
@@ -914,12 +902,6 @@
          </item>
          <item>
           <widget class="QPushButton" name="SoundFontRemovePushButton" >
-           <property name="maximumSize" >
-            <size>
-             <width>80</width>
-             <height>32767</height>
-            </size>
-           </property>
            <property name="toolTip" >
             <string>Remove selected soundfont from stack</string>
            </property>
@@ -949,12 +931,6 @@
          </item>
          <item>
           <widget class="QPushButton" name="SoundFontMoveUpPushButton" >
-           <property name="maximumSize" >
-            <size>
-             <width>80</width>
-             <height>32767</height>
-            </size>
-           </property>
            <property name="toolTip" >
             <string>Move up selected soundfont towards the top of stack</string>
            </property>
@@ -971,12 +947,6 @@
          </item>
          <item>
           <widget class="QPushButton" name="SoundFontMoveDownPushButton" >
-           <property name="maximumSize" >
-            <size>
-             <width>80</width>
-             <height>32767</height>
-            </size>
-           </property>
            <property name="toolTip" >
             <string>Move down selected soundfont towards the bottom of stack</string>
            </property>
