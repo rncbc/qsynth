@@ -48,7 +48,8 @@ TEMPLATE = app
 CONFIG  += qt thread warn_on @ac_debug@
 LANGUAGE = C++
 
-TRANSLATIONS += translations/qsynth_de.ts
+TRANSLATIONS += translations/qsynth_de.ts \
+	        translations/qsynth_es.ts
 
 LIBS    += @ac_libs@
 INCPATH += @ac_incpath@
