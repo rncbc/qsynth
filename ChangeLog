@@ -5,11 +5,20 @@ ChangeLog
 
 CVS HEAD
 
+- Knobs: graphic styles are now QStyle derived classes, which are
+  assigned to the knobs using QWidget::setStyle(). Three styles
+  are implemented in this way, supporting also the legacy QDial:
+  * Our former look, tweaked and ported from Sonic Visualiser.
+  * A port of the new look implemented by David Garcia.
+  * Another ported widget style, designed by Giuseppe Cigala.
+
+- Spanish translation added.
+
 - Attempt to load Qt's own translation support and get rid of
   the ever warning startup message, unless built in debug moderr;
   also introducing the very first and complete German translation
   (patching transaction by Guido Scholz, thanks).
-  
+
 - Messages file logging makes its first long overdue appearance,
   with user configurable settings in Options/Logging.
 

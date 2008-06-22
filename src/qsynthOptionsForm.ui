@@ -45,21 +45,6 @@
    <bool>true</bool>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="spacing" >
-    <number>6</number>
-   </property>
-   <property name="leftMargin" >
-    <number>9</number>
-   </property>
-   <property name="topMargin" >
-    <number>9</number>
-   </property>
-   <property name="rightMargin" >
-    <number>9</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>9</number>
-   </property>
    <item>
     <widget class="QTabWidget" name="OptionsTabWidget" >
      <widget class="QWidget" name="DisplayTabPage" >
@@ -82,21 +67,6 @@
           <bool>true</bool>
          </property>
          <layout class="QHBoxLayout" >
-          <property name="spacing" >
-           <number>4</number>
-          </property>
-          <property name="leftMargin" >
-           <number>4</number>
-          </property>
-          <property name="topMargin" >
-           <number>4</number>
-          </property>
-          <property name="rightMargin" >
-           <number>4</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>4</number>
-          </property>
           <item>
            <widget class="QLabel" name="MessagesFontTextLabel" >
             <property name="sizePolicy" >
@@ -267,24 +237,6 @@
           <bool>true</bool>
          </property>
          <layout class="QGridLayout" >
-          <property name="leftMargin" >
-           <number>8</number>
-          </property>
-          <property name="topMargin" >
-           <number>8</number>
-          </property>
-          <property name="rightMargin" >
-           <number>8</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>8</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>4</number>
-          </property>
-          <property name="verticalSpacing" >
-           <number>4</number>
-          </property>
           <item row="0" column="1" colspan="3" >
            <widget class="QComboBox" name="MessagesLogPathComboBox" >
             <property name="sizePolicy" >
@@ -361,7 +313,13 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="groupBox" >
+        <widget class="QGroupBox" name="KnobsGroupBox" >
+         <property name="font" >
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="title" >
           <string>Knobs</string>
          </property>
@@ -371,6 +329,12 @@
          <layout class="QGridLayout" >
           <item row="0" column="0" >
            <widget class="QLabel" name="KnobStyleLabel" >
+            <property name="font" >
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
             <property name="text" >
              <string>Knob graphic style:</string>
             </property>
@@ -381,6 +345,12 @@
           </item>
           <item row="0" column="1" >
            <widget class="QComboBox" name="KnobStyleComboBox" >
+            <property name="font" >
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
             <property name="toolTip" >
              <string>Graphic style for knobs</string>
             </property>
@@ -408,6 +378,12 @@
           </item>
           <item row="1" column="0" >
            <widget class="QLabel" name="KnobMouseMotionLabel" >
+            <property name="font" >
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
             <property name="text" >
              <string>Mouse motion behavior:</string>
             </property>
@@ -418,6 +394,12 @@
           </item>
           <item row="1" column="1" >
            <widget class="QComboBox" name="KnobMouseMotionComboBox" >
+            <property name="font" >
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
             <property name="toolTip" >
              <string>Mouse motion behavior for knobs</string>
             </property>
@@ -580,8 +562,8 @@
             </property>
             <property name="sizeHint" >
              <size>
-              <width>436</width>
-              <height>101</height>
+              <width>20</width>
+              <height>20</height>
              </size>
             </property>
            </spacer>
@@ -595,21 +577,6 @@
    </item>
    <item>
     <layout class="QHBoxLayout" >
-     <property name="spacing" >
-      <number>4</number>
-     </property>
-     <property name="leftMargin" >
-      <number>0</number>
-     </property>
-     <property name="topMargin" >
-      <number>0</number>
-     </property>
-     <property name="rightMargin" >
-      <number>0</number>
-     </property>
-     <property name="bottomMargin" >
-      <number>0</number>
-     </property>
      <item>
       <spacer>
        <property name="orientation" >
@@ -660,6 +627,7 @@
   <tabstop>MessagesLogPathComboBox</tabstop>
   <tabstop>MessagesLogPathToolButton</tabstop>
   <tabstop>KnobStyleComboBox</tabstop>
+  <tabstop>KnobMouseMotionComboBox</tabstop>
   <tabstop>QueryCloseCheckBox</tabstop>
   <tabstop>KeepOnTopCheckBox</tabstop>
   <tabstop>StdoutCaptureCheckBox</tabstop>
