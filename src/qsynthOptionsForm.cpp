@@ -91,6 +91,12 @@ qsynthOptionsForm::qsynthOptionsForm (
 	QObject::connect(m_ui.MessagesLimitLinesComboBox,
 		SIGNAL(activated(int)),
 		SLOT(optionsChanged()));
+	QObject::connect(m_ui.KnobStyleComboBox,
+		SIGNAL(activated(int)),
+		SLOT(optionsChanged()));
+	QObject::connect(m_ui.KnobMouseMotionComboBox,
+		SIGNAL(activated(int)),
+		SLOT(optionsChanged()));
 	QObject::connect(m_ui.OkPushButton,
 		SIGNAL(clicked()),
 		SLOT(accept()));
@@ -149,6 +155,10 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
 	m_ui.SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
 	m_ui.StartMinimizedCheckBox->setChecked(m_pOptions->bStartMinimized);
+	
+	// Knobs
+	m_ui.KnobStyleComboBox->setCurrentIndex(m_pOptions->iKnobStyle);
+	m_ui.KnobMouseMotionComboBox->setCurrentIndex(m_pOptions->iKnobMotion);
 
 #if defined(WIN32)
 	m_ui.StdoutCaptureCheckBox->setChecked(false);
@@ -184,6 +194,9 @@ void qsynthOptionsForm::accept (void)
 		m_pOptions->bOutputMeters   = m_ui.OutputMetersCheckBox->isChecked();
 		m_pOptions->bSystemTray     = m_ui.SystemTrayCheckBox->isChecked();
 		m_pOptions->bStartMinimized = m_ui.StartMinimizedCheckBox->isChecked();
+		// Knobs
+		m_pOptions->iKnobStyle      = m_ui.KnobStyleComboBox->currentIndex();
+		m_pOptions->iKnobMotion     = m_ui.KnobMouseMotionComboBox->currentIndex();
 		// Reset dirty flag.
 		m_iDirtyCount = 0;
 	}

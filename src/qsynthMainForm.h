@@ -70,6 +70,8 @@ public:
 	void restartEngine(qsynthEngine *pEngine);
 	void resetEngine(qsynthEngine *pEngine);
 
+	enum KnobStyle { Classic, Vokimon, Peppino, Legacy };
+	
 public slots:
 
 	void stdoutNotifySlot(int);
@@ -152,6 +154,8 @@ protected:
 
 	void contextMenuEvent(QContextMenuEvent *pEvent);
 
+	void updateKnobs();
+
 private:
 
 	// The Qt-designer UI struct...
@@ -184,6 +188,9 @@ private:
 
 	// Kind-of singleton reference.
 	static qsynthMainForm *g_pMainForm;
+	
+	// Style for qsynthKnob (QDial) widgets 
+	QStyle* m_pKnobStyle;
 };
 
 

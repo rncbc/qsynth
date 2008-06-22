@@ -65,6 +65,9 @@ public:
 	bool    bSystemTray;
 	bool    bStartMinimized;
 
+	int     iKnobStyle;
+	int     iKnobMotion;
+
 	// Default options...
 	QString sSoundFontDir;
 	bool    bPresetPreview;

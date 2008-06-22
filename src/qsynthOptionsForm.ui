@@ -25,14 +25,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>360</height>
+    <width>498</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="sizePolicy" >
-   <sizepolicy>
-    <hsizetype>0</hsizetype>
-    <vsizetype>0</vsizetype>
+   <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -47,11 +45,20 @@
    <bool>true</bool>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>9</number>
-   </property>
    <property name="spacing" >
     <number>6</number>
+   </property>
+   <property name="leftMargin" >
+    <number>9</number>
+   </property>
+   <property name="topMargin" >
+    <number>9</number>
+   </property>
+   <property name="rightMargin" >
+    <number>9</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>9</number>
    </property>
    <item>
     <widget class="QTabWidget" name="OptionsTabWidget" >
@@ -60,12 +67,6 @@
        <string>Display</string>
       </attribute>
       <layout class="QVBoxLayout" >
-       <property name="margin" >
-        <number>9</number>
-       </property>
-       <property name="spacing" >
-        <number>6</number>
-       </property>
        <item>
         <widget class="QGroupBox" name="MessagesGroupBox" >
          <property name="font" >
@@ -81,18 +82,25 @@
           <bool>true</bool>
          </property>
          <layout class="QHBoxLayout" >
-          <property name="margin" >
+          <property name="spacing" >
            <number>4</number>
           </property>
-          <property name="spacing" >
+          <property name="leftMargin" >
+           <number>4</number>
+          </property>
+          <property name="topMargin" >
+           <number>4</number>
+          </property>
+          <property name="rightMargin" >
+           <number>4</number>
+          </property>
+          <property name="bottomMargin" >
            <number>4</number>
           </property>
           <item>
            <widget class="QLabel" name="MessagesFontTextLabel" >
             <property name="sizePolicy" >
-             <sizepolicy>
-              <hsizetype>0</hsizetype>
-              <vsizetype>0</vsizetype>
+             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -259,18 +267,28 @@
           <bool>true</bool>
          </property>
          <layout class="QGridLayout" >
-          <property name="margin" >
+          <property name="leftMargin" >
            <number>8</number>
           </property>
-          <property name="spacing" >
+          <property name="topMargin" >
+           <number>8</number>
+          </property>
+          <property name="rightMargin" >
+           <number>8</number>
+          </property>
+          <property name="bottomMargin" >
+           <number>8</number>
+          </property>
+          <property name="horizontalSpacing" >
+           <number>4</number>
+          </property>
+          <property name="verticalSpacing" >
            <number>4</number>
           </property>
           <item row="0" column="1" colspan="3" >
            <widget class="QComboBox" name="MessagesLogPathComboBox" >
             <property name="sizePolicy" >
-             <sizepolicy>
-              <hsizetype>7</hsizetype>
-              <vsizetype>0</vsizetype>
+             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -343,6 +361,90 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="groupBox" >
+         <property name="title" >
+          <string>Knobs</string>
+         </property>
+         <property name="flat" >
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="KnobStyleLabel" >
+            <property name="text" >
+             <string>Knob graphic style:</string>
+            </property>
+            <property name="buddy" >
+             <cstring>KnobStyleComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <widget class="QComboBox" name="KnobStyleComboBox" >
+            <property name="toolTip" >
+             <string>Graphic style for knobs</string>
+            </property>
+            <item>
+             <property name="text" >
+              <string>Classic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Vokimon</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Peppino</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Legacy</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <widget class="QLabel" name="KnobMouseMotionLabel" >
+            <property name="text" >
+             <string>Mouse motion behavior:</string>
+            </property>
+            <property name="buddy" >
+             <cstring>KnobMouseMotionComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="QComboBox" name="KnobMouseMotionComboBox" >
+            <property name="toolTip" >
+             <string>Mouse motion behavior for knobs</string>
+            </property>
+            <property name="currentIndex" >
+             <number>1</number>
+            </property>
+            <item>
+             <property name="text" >
+              <string>Legacy</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Radial</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Linear</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <widget class="QGroupBox" name="OtherGroupBox" >
          <property name="font" >
           <font>
@@ -357,12 +459,6 @@
           <bool>true</bool>
          </property>
          <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>9</number>
-          </property>
-          <property name="spacing" >
-           <number>6</number>
-          </property>
           <item>
            <widget class="QCheckBox" name="QueryCloseCheckBox" >
             <property name="font" >
@@ -484,8 +580,8 @@
             </property>
             <property name="sizeHint" >
              <size>
-              <width>20</width>
-              <height>8</height>
+              <width>436</width>
+              <height>101</height>
              </size>
             </property>
            </spacer>
@@ -499,11 +595,20 @@
    </item>
    <item>
     <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
      <property name="spacing" >
       <number>4</number>
+     </property>
+     <property name="leftMargin" >
+      <number>0</number>
+     </property>
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
      </property>
      <item>
       <spacer>
@@ -554,6 +659,7 @@
   <tabstop>MessagesLogCheckBox</tabstop>
   <tabstop>MessagesLogPathComboBox</tabstop>
   <tabstop>MessagesLogPathToolButton</tabstop>
+  <tabstop>KnobStyleComboBox</tabstop>
   <tabstop>QueryCloseCheckBox</tabstop>
   <tabstop>KeepOnTopCheckBox</tabstop>
   <tabstop>StdoutCaptureCheckBox</tabstop>

@@ -33,6 +33,10 @@
 #include "qsynthMessagesForm.h"
 #include "qsynthChannelsForm.h"
 
+#include "qsynthDialClassicStyle.h"
+#include "qsynthDialVokiStyle.h"
+#include "qsynthDialPeppinoStyle.h"
+
 #include <QApplication>
 #include <QSocketNotifier>
 #include <QMessageBox>
@@ -485,6 +489,8 @@ qsynthMainForm::qsynthMainForm (
 	QObject::connect(m_ui.DeleteEngineToolButton,
 		SIGNAL(clicked()),
 		SLOT(deleteEngine()));
+
+	m_pKnobStyle = NULL;
 }
 
 
@@ -513,6 +519,9 @@ qsynthMainForm::~qsynthMainForm (void)
 
 	// Pseudo-singleton reference shut-down.
 	g_pMainForm = NULL;
+	
+	if (m_pKnobStyle)
+		delete m_pKnobStyle;
 }
 
 
@@ -571,6 +580,9 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 	updateOutputMeters();
 	updateSystemTray();
 
+	// Knobs
+	updateKnobs();
+	
 #if !defined(WIN32)
 	// Check if we can redirect our own stdout/stderr...
 	if (m_pOptions->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
@@ -1331,6 +1343,8 @@ void qsynthMainForm::showOptionsForm (void)
 		bool    bKeepOnTop     = m_pOptions->bKeepOnTop;
 		int     bMessagesLimit = m_pOptions->bMessagesLimit;
 		int     iMessagesLimitLines = m_pOptions->iMessagesLimitLines;
+		int     iKnobStyle     = m_pOptions->iKnobStyle;
+		int     iKnobMotion    = m_pOptions->iKnobMotion;
 		// Load the current setup settings.
 		pOptionsForm->setup(m_pOptions);
 		// Show the setup dialog...
@@ -1360,6 +1374,9 @@ void qsynthMainForm::showOptionsForm (void)
 			if (( bSystemTray && !m_pOptions->bSystemTray) ||
 				(!bSystemTray &&  m_pOptions->bSystemTray))
 				updateSystemTray();
+			if (( iKnobStyle != m_pOptions->iKnobStyle) ||
+				( iKnobMotion != m_pOptions->iKnobMotion))
+				updateKnobs();
 			// There's some option(s) that need a global restart...
 			if (( bOutputMeters  && !m_pOptions->bOutputMeters) ||
 				(!bOutputMeters  &&  m_pOptions->bOutputMeters)) {
@@ -2357,6 +2374,37 @@ void qsynthMainForm::contextMenuEvent( QContextMenuEvent *pEvent )
 {
 	// We'll just show up the usual system tray menu.
 	systemTrayContextMenu(pEvent->globalPos());
+}
+
+
+void qsynthMainForm::updateKnobs()
+{
+	if (m_pOptions == NULL)
+		return;	
+	qsynthKnob::DialMode mode = qsynthKnob::DialMode(m_pOptions->iKnobMotion);
+	KnobStyle style = KnobStyle(m_pOptions->iKnobStyle); 
+	if (m_pKnobStyle) {
+		delete m_pKnobStyle;
+	}
+	switch (style) {
+	case Classic:
+		m_pKnobStyle = new qsynthDialClassicStyle();
+		break;
+	case Vokimon:
+		m_pKnobStyle = new qsynthDialVokiStyle();
+		break;
+	case Peppino:
+		m_pKnobStyle = new qsynthDialPeppinoStyle();
+		break;
+	default:
+		m_pKnobStyle = NULL;
+		break;
+	}
+	QList<qsynthKnob *> allKnobs = findChildren<qsynthKnob *>();
+	foreach(qsynthKnob* knob, allKnobs) {
+		knob->setStyle(m_pKnobStyle);
+		knob->setDialMode(mode);
+	}
 }
 
 

@@ -55,6 +55,8 @@ qsynthOptions::qsynthOptions (void)
 	bOutputMeters   = m_settings.value("/OutputMeters", false).toBool();
 	bSystemTray     = m_settings.value("/SystemTray", false).toBool();
 	bStartMinimized = m_settings.value("/StartMinimized", false).toBool();
+	iKnobStyle      = m_settings.value("/KnobStyle", 0).toInt();
+	iKnobMotion     = m_settings.value("/KnobMotion", 0).toInt();
 	m_settings.endGroup();
 
 	// Load defaults...
@@ -117,6 +119,8 @@ qsynthOptions::~qsynthOptions (void)
 	m_settings.setValue("/OutputMeters", bOutputMeters);
 	m_settings.setValue("/SystemTray", bSystemTray);
 	m_settings.setValue("/StartMinimized", bStartMinimized);
+	m_settings.setValue("/KnobStyle", iKnobStyle);
+	m_settings.setValue("/KnobMotion", iKnobMotion);
 	m_settings.endGroup();
 
 	// Create default setup descriptor.

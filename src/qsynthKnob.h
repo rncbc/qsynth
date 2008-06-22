@@ -6,7 +6,7 @@
    This widget is based on a design by Thorsten Wilms, 
    implemented by Chris Cannam in Rosegarden,
    adapted for QSynth by Pedro Lopez-Cabanillas,
-   improved for Qt4 by David García Garzon.
+   improved for Qt4 by David Garcï¿½a Garzon.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -37,10 +37,6 @@
 class qsynthKnob : public QDial
 {
 	Q_OBJECT
-	Q_PROPERTY( QColor knobColor READ getKnobColor WRITE setKnobColor )
-	Q_PROPERTY( QColor meterColor READ getMeterColor WRITE setMeterColor )
-	Q_PROPERTY( QColor pointerColor READ getPointerColor WRITE setPointerColor )
-	Q_PROPERTY( QColor borderColor READ getBorderColor WRITE setBorderColor )
 	Q_PROPERTY( int defaultValue READ getDefaultValue WRITE setDefaultValue )
 	Q_PROPERTY( DialMode dialMode READ getDialMode WRITE setDialMode )
 	Q_ENUMS(DialMode)
@@ -51,11 +47,6 @@ public:
 	qsynthKnob(QWidget *pParent = 0);
 	// Destructor.
 	~qsynthKnob();
-
-	const QColor& getKnobColor()    const { return m_knobColor;  }
-	const QColor& getMeterColor()   const { return m_meterColor; }
-	const QColor& getPointerColor() const { return m_pointerColor; }
-	const QColor& getBorderColor()  const { return m_borderColor; }
 
 	int getDefaultValue() const { return m_iDefaultValue; }
 
@@ -70,18 +61,6 @@ public:
 
 public slots:
 
-	// Set the colour of the knob
-	void setKnobColor(const QColor& color);
-
-	// Set the colour of the meter
-	void setMeterColor(const QColor& color);
-
-	// Set the colour of the pointer
-	void setPointerColor(const QColor& color);
-
-	// Set the colour of the border
-	void setBorderColor(const QColor& color);
-
 	// Set default (mid) value.
 	void setDefaultValue(int iDefaultValue);
 
@@ -89,9 +68,6 @@ public slots:
 	void setDialMode(DialMode dialMode);
 
 protected:
-
-	// Paint (drawing) methods.
-	virtual void paintEvent(QPaintEvent *pPaintEvent);
 
 	// Mouse angle determination.
 	double mouseAngle(const QPoint& pos);
@@ -103,12 +79,6 @@ protected:
 	virtual void wheelEvent(QWheelEvent *pWheelEvent);
 
 private:
-
-	// Custom colors.
-	QColor m_knobColor;
-	QColor m_meterColor;
-	QColor m_pointerColor;
-	QColor m_borderColor;
 
 	// Default (mid) value.
 	int m_iDefaultValue;
