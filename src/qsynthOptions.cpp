@@ -56,7 +56,7 @@ qsynthOptions::qsynthOptions (void)
 	bSystemTray     = m_settings.value("/SystemTray", false).toBool();
 	bStartMinimized = m_settings.value("/StartMinimized", false).toBool();
 	iKnobStyle      = m_settings.value("/KnobStyle", 0).toInt();
-	iKnobMotion     = m_settings.value("/KnobMotion", 0).toInt();
+	iKnobMotion     = m_settings.value("/KnobMotion", 1).toInt();
 	m_settings.endGroup();
 
 	// Load defaults...
