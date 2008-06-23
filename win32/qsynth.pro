@@ -15,7 +15,10 @@ HEADERS += ../src/qsynthAbout.h \
            ../src/qsynthMessagesForm.h \
            ../src/qsynthOptionsForm.h \
            ../src/qsynthPresetForm.h \
-           ../src/qsynthSetupForm.h
+           ../src/qsynthSetupForm.h \
+           ../src/qsynthDialClassicStyle.h \
+           ../src/qsynthDialPeppinoStyle.h \
+           ../src/qsynthDialVokiStyle.h
 
 SOURCES += ../src/main.cpp \
            ../src/qsynthEngine.cpp \
@@ -32,7 +35,10 @@ SOURCES += ../src/main.cpp \
            ../src/qsynthMessagesForm.cpp \
            ../src/qsynthOptionsForm.cpp \
            ../src/qsynthPresetForm.cpp \
-           ../src/qsynthSetupForm.cpp
+           ../src/qsynthSetupForm.cpp \
+           ../src/qsynthDialClassicStyle.cpp \
+           ../src/qsynthDialPeppinoStyle.cpp \
+           ../src/qsynthDialVokiStyle.cpp
 
 FORMS    = ../src/qsynthAboutForm.ui \
            ../src/qsynthChannelsForm.ui \
@@ -41,6 +47,7 @@ FORMS    = ../src/qsynthAboutForm.ui \
            ../src/qsynthOptionsForm.ui \
            ../src/qsynthPresetForm.ui \
            ../src/qsynthSetupForm.ui
+
 
 RESOURCES += ../icons/qsynth.qrc
 

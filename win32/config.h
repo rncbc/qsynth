@@ -1,6 +1,6 @@
 
 #define PACKAGE_NAME    "Qsynth"
-#define PACKAGE_VERSION "0.3.2.12"
+#define PACKAGE_VERSION "0.3.2.13"
 
 #define CONFIG_PREFIX   "."
 #define CONFIG_DEBUG    1
@@ -11,5 +11,6 @@
 #undef  CONFIG_FLUID_SERVER
 #undef  CONFIG_FLUID_RESET
 #undef  CONFIG_FLUID_BANK_OFFSET
-#undef  CONFIG_ROUND
 #endif
+
+#define CONFIG_ROUND

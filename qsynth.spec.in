@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 7
+%define release 8
 %define prefix  @ac_prefix@
 
 Summary:	A fluidsynth Qt GUI Interface.
@@ -12,11 +12,9 @@ License:	GPL
 Group:		Productivity/Multimedia/Sound/Midi
 Source0:	%{name}-%{version}.tar.gz
 URL:		http://qsynth.sourceforge.net/
+Packager:	rncbc.org
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-
-Requires:	qt >= 4.1
-Requires:	fluidsynth >= 1.0.7
 
 BuildRequires:	qt-devel >= 4.1
 BuildRequires:	fluidsynth-devel >= 1.0.7
@@ -43,12 +41,16 @@ command line softsynths.
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS COPYING ChangeLog README TODO
+%doc AUTHORS COPYING ChangeLog README TODO TRANSLATORS
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
+%{_datadir}/locale/%{name}_de.qm
+%{_datadir}/locale/%{name}_es.qm
 
 %changelog
+* Mon Jun 23 2008 Rui Nuno Capela <rncbc@users.sourceforge.net>
+- Added germand and spanish translations.
 * Wed Dec 19 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
 - Minor stealth fixes and season greetings.
 * Mon Jul 16 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
