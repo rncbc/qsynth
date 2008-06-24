@@ -482,19 +482,26 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	m_settings.beginGroup("/Settings");
 	pSetup->sDisplayName     = m_settings.value("/DisplayName", sDisplayName).toString();
 	pSetup->bMidiIn          = m_settings.value("/MidiIn", true).toBool();
+#if defined(WIN32)
+	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "winmidi").toString();
+    pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "dsound").toString();
+    pSetup->iAudioBufSize    = m_settings.value("/AudioBufSize", 512).toInt();
+    pSetup->iAudioBufCount   = m_settings.value("/AudioBufCount", 8).toInt();
+#else
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "alsa_seq").toString();
+    pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "jack").toString();
+    pSetup->iAudioBufSize    = m_settings.value("/AudioBufSize", 64).toInt();
+    pSetup->iAudioBufCount   = m_settings.value("/AudioBufCount", 2).toInt();
+#endif
+    pSetup->sAlsaName        = m_settings.value("/AlsaName", "pid").toString();
+    pSetup->sJackName        = m_settings.value("/JackName", "qsynth").toString();
+    pSetup->bJackAutoConnect = m_settings.value("/JackAutoConnect", true).toBool();
+    pSetup->bJackMulti       = m_settings.value("/JackMulti", false).toBool();
 	pSetup->sMidiDevice      = m_settings.value("/MidiDevice").toString();
 	pSetup->iMidiChannels    = m_settings.value("/MidiChannels", 16).toInt();
-	pSetup->sAlsaName        = m_settings.value("/AlsaName", "pid").toString();
-	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "jack").toString();
 	pSetup->sAudioDevice     = m_settings.value("/AudioDevice").toString();
-	pSetup->sJackName        = m_settings.value("/JackName", "qsynth").toString();
-	pSetup->bJackAutoConnect = m_settings.value("/JackAutoConnect", true).toBool();
-	pSetup->bJackMulti       = m_settings.value("/JackMulti", false).toBool();
 	pSetup->iAudioChannels   = m_settings.value("/AudioChannels", 1).toInt();
 	pSetup->iAudioGroups     = m_settings.value("/AudioGroups", 1).toInt();
-	pSetup->iAudioBufSize    = m_settings.value("/AudioBufSize", 64).toInt();
-	pSetup->iAudioBufCount   = m_settings.value("/AudioBufCount", 2).toInt();
 	pSetup->sSampleFormat    = m_settings.value("/SampleFormat", "16bits").toString();
 	pSetup->fSampleRate      = m_settings.value("/SampleRate", 44100.0).toDouble();
 	pSetup->iPolyphony       = m_settings.value("/Polyphony", 256).toInt();
