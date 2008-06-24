@@ -49,10 +49,12 @@ TEMPLATE = app
 CONFIG += qt \
     thread \
     warn_on \
-    debug
+    release
 LANGUAGE = C++
-win32 { 
-    CONFIG += console
+win32 {
+    contains(CONFIG, debug) { 
+        CONFIG += console
+    }
     INCPATH += /usr/local/include
     LIBS += -L/usr/local/lib
     RC_FILE = qsynth.rc
