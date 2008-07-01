@@ -18,7 +18,7 @@
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-</comment>
+ </comment>
  <class>qsynthOptionsForm</class>
  <widget class="QDialog" name="qsynthOptionsForm" >
   <property name="geometry" >
@@ -26,14 +26,8 @@
     <x>0</x>
     <y>0</y>
     <width>498</width>
-    <height>540</height>
+    <height>498</height>
    </rect>
-  </property>
-  <property name="sizePolicy" >
-   <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="windowTitle" >
    <string>Qsynth: Options</string>
@@ -48,7 +42,7 @@
       <attribute name="title" >
        <string>Display</string>
       </attribute>
-      <layout class="QVBoxLayout" >
+      <layout class="QVBoxLayout" name="verticalLayout" >
        <item>
         <widget class="QGroupBox" name="MessagesGroupBox" >
          <property name="font" >
@@ -140,7 +134,7 @@
             <property name="sizeType" >
              <enum>QSizePolicy::Expanding</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>8</width>
               <height>8</height>
@@ -437,8 +431,8 @@
          <property name="flat" >
           <bool>true</bool>
          </property>
-         <layout class="QVBoxLayout" >
-          <item>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
            <widget class="QCheckBox" name="QueryCloseCheckBox" >
             <property name="font" >
              <font>
@@ -457,7 +451,20 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item rowspan="5" row="0" column="1" colspan="3" >
+           <spacer name="horizontalSpacer" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>239</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="0" >
            <widget class="QCheckBox" name="KeepOnTopCheckBox" >
             <property name="font" >
              <font>
@@ -476,7 +483,7 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="2" column="0" >
            <widget class="QCheckBox" name="StdoutCaptureCheckBox" >
             <property name="font" >
              <font>
@@ -495,7 +502,7 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="3" column="0" >
            <widget class="QCheckBox" name="OutputMetersCheckBox" >
             <property name="font" >
              <font>
@@ -514,7 +521,7 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="4" column="0" >
            <widget class="QCheckBox" name="SystemTrayCheckBox" >
             <property name="font" >
              <font>
@@ -533,7 +540,7 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="5" column="0" >
            <widget class="QCheckBox" name="StartMinimizedCheckBox" >
             <property name="font" >
              <font>
@@ -552,15 +559,80 @@
             </property>
            </widget>
           </item>
-          <item>
+          <item row="5" column="1" colspan="2" >
+           <widget class="QLabel" name="BaseFontSizeTextLabel" >
+            <property name="font" >
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text" >
+             <string>&amp;Base font size:</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="buddy" >
+             <cstring>BaseFontSizeComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="5" column="3" >
+           <widget class="QComboBox" name="BaseFontSizeComboBox" >
+            <property name="font" >
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="toolTip" >
+             <string>Base application font size (pt.)</string>
+            </property>
+            <property name="editable" >
+             <bool>true</bool>
+            </property>
+            <item>
+             <property name="text" >
+              <string>(default)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>8</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>9</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>10</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>11</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>12</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="6" column="0" colspan="4" >
            <spacer>
             <property name="orientation" >
              <enum>Qt::Vertical</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>20</width>
-              <height>20</height>
+              <height>8</height>
              </size>
             </property>
            </spacer>
@@ -582,7 +654,7 @@
        <property name="sizeType" >
         <enum>QSizePolicy::Expanding</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
          <width>250</width>
          <height>16</height>
@@ -596,7 +668,8 @@
         <string>OK</string>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >:/icons/accept1.png</iconset>
+        <iconset resource="../icons/qsynth.qrc" >
+         <normaloff>:/icons/accept1.png</normaloff>:/icons/accept1.png</iconset>
        </property>
       </widget>
      </item>
@@ -606,7 +679,8 @@
         <string>Cancel</string>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >:/icons/quit1.png</iconset>
+        <iconset resource="../icons/qsynth.qrc" >
+         <normaloff>:/icons/quit1.png</normaloff>:/icons/quit1.png</iconset>
        </property>
       </widget>
      </item>
@@ -631,6 +705,7 @@
   <tabstop>OutputMetersCheckBox</tabstop>
   <tabstop>SystemTrayCheckBox</tabstop>
   <tabstop>StartMinimizedCheckBox</tabstop>
+  <tabstop>BaseFontSizeComboBox</tabstop>
   <tabstop>OkPushButton</tabstop>
   <tabstop>CancelPushButton</tabstop>
  </tabstops>

@@ -85,6 +85,9 @@ qsynthOptionsForm::qsynthOptionsForm (
 	QObject::connect(m_ui.StartMinimizedCheckBox,
 		SIGNAL(stateChanged(int)),
 		SLOT(optionsChanged()));
+	QObject::connect(m_ui.BaseFontSizeComboBox,
+		SIGNAL(editTextChanged(const QString&)),
+		SLOT(optionsChanged()));
 	QObject::connect(m_ui.MessagesLimitCheckBox,
 		SIGNAL(stateChanged(int)),
 		SLOT(optionsChanged()));
@@ -155,7 +158,13 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
 	m_ui.SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
 	m_ui.StartMinimizedCheckBox->setChecked(m_pOptions->bStartMinimized);
-	
+	if (m_pOptions->iBaseFontSize > 0) {
+		m_ui.BaseFontSizeComboBox->setEditText(
+			QString::number(m_pOptions->iBaseFontSize));
+	} else {
+		m_ui.BaseFontSizeComboBox->setCurrentIndex(0);
+	}
+
 	// Knobs
 	m_ui.KnobStyleComboBox->setCurrentIndex(m_pOptions->iKnobStyle);
 	m_ui.KnobMouseMotionComboBox->setCurrentIndex(m_pOptions->iKnobMotion);
@@ -194,6 +203,7 @@ void qsynthOptionsForm::accept (void)
 		m_pOptions->bOutputMeters   = m_ui.OutputMetersCheckBox->isChecked();
 		m_pOptions->bSystemTray     = m_ui.SystemTrayCheckBox->isChecked();
 		m_pOptions->bStartMinimized = m_ui.StartMinimizedCheckBox->isChecked();
+		m_pOptions->iBaseFontSize   = m_ui.BaseFontSizeComboBox->currentText().toInt();
 		// Knobs
 		m_pOptions->iKnobStyle      = m_ui.KnobStyleComboBox->currentIndex();
 		m_pOptions->iKnobMotion     = m_ui.KnobMouseMotionComboBox->currentIndex();

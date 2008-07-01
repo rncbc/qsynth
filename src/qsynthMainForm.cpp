@@ -1341,6 +1341,7 @@ void qsynthMainForm::showOptionsForm (void)
 		bool    bOutputMeters  = m_pOptions->bOutputMeters;
 		bool    bStdoutCapture = m_pOptions->bStdoutCapture;
 		bool    bKeepOnTop     = m_pOptions->bKeepOnTop;
+		int     iOldBaseFontSize = m_pOptions->iBaseFontSize;
 		int     bMessagesLimit = m_pOptions->bMessagesLimit;
 		int     iMessagesLimitLines = m_pOptions->iMessagesLimitLines;
 		int     iKnobStyle     = m_pOptions->iKnobStyle;
@@ -1353,7 +1354,8 @@ void qsynthMainForm::showOptionsForm (void)
 			if (( bStdoutCapture && !m_pOptions->bStdoutCapture) ||
 				(!bStdoutCapture &&  m_pOptions->bStdoutCapture) ||
 				( bKeepOnTop     && !m_pOptions->bKeepOnTop)     ||
-				(!bKeepOnTop     &&  m_pOptions->bKeepOnTop)) {
+				(!bKeepOnTop     &&  m_pOptions->bKeepOnTop)     ||
+				(iOldBaseFontSize != m_pOptions->iBaseFontSize)) {
 				QMessageBox::information(this,
 					QSYNTH_TITLE ": " + tr("Information"),
 					tr("Some settings will be only effective\n"

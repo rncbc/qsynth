@@ -5,6 +5,10 @@ ChangeLog
 
 CVS HEAD
 
+- Due to some trouble with newer Qt >= 4.4 applications regarding font
+  size configuration, a new global user option is now available to the
+  rescue: Options.../Other/Base font size (default is no-op).
+
 - Knobs: graphic styles are now QStyle derived classes, which are
   assigned to the knobs using QWidget::setStyle(). Three styles
   are implemented in this way, supporting also the legacy QDial:

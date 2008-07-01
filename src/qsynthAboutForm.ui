@@ -18,7 +18,7 @@
    with this program; if not, write to the Free Software Foundation, Inc.,
    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-</comment>
+ </comment>
  <class>qsynthAboutForm</class>
  <widget class="QDialog" name="qsynthAboutForm" >
   <property name="geometry" >
@@ -28,9 +28,6 @@
     <width>520</width>
     <height>280</height>
    </rect>
-  </property>
-  <property name="font" >
-   <font/>
   </property>
   <property name="windowTitle" >
    <string>About Qsynth</string>
