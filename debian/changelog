@@ -1,3 +1,9 @@
+qsynth (0.3.3-1) unstable; urgency=low
+
+  * Knobs galore.
+
+ -- Rui Nuno Capela <rncbc@rncbc.org>  Thu, 10 Jul 2008 16:01:30 +0100
+
 qsynth (0.3.2-1) unstable; urgency=low
 
   * Minor stealth fixes and season greetings.

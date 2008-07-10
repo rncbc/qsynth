@@ -1100,7 +1100,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Descartar</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="679"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="694"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -1130,299 +1130,319 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Mensajes</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="88"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="82"/>
         <source>Sample messages text font display</source>
         <translation>Texto de muestra para visualización de tipografía de mensajes</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="116"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="110"/>
         <source>Select font for the messages text display</source>
         <translation>Seleccionar tipografía para la visualización de texto de mensajes</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="119"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="113"/>
         <source>&amp;Font...</source>
         <translation>&amp;Tipografía...</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="122"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="116"/>
         <source>Alt+F</source>
         <translation>Alt+T</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="154"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="148"/>
         <source>Whether to keep a maximum number of lines in the messages window</source>
         <translation>Determina si se ha de conservar un máximo número de líneas en la ventana de mensajes</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="157"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="151"/>
         <source>&amp;Messages limit:</source>
         <translation>Límite de &amp;mensajes:</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="299"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="154"/>
         <source>Alt+M</source>
         <translation>Alt+m</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="173"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="167"/>
         <source>The maximum number of message lines to keep in view</source>
         <translation>El máximo número de líneas de mensajes que se conservan en la vista</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="183"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="177"/>
         <source>100</source>
         <translation>100</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="188"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="182"/>
         <source>250</source>
         <translation>250</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="193"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="187"/>
         <source>500</source>
         <translation>500</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="198"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="192"/>
         <source>1000</source>
         <translation>1000</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="203"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="197"/>
         <source>2500</source>
         <translation>2500</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="208"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="202"/>
         <source>5000</source>
         <translation>5000</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="225"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="219"/>
         <source>Logging</source>
         <translation>Registro</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="246"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="242"/>
         <source>Messages log file</source>
         <translation>Archivo de registro de mensajes</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="277"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="273"/>
         <source>Browse for the messages log file location</source>
         <translation>Explorar la ubicación del archivo de registro de mensajes</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="280"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="276"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="293"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="289"/>
         <source>Whether to activate a messages logging to file.</source>
         <translation>Determina si se ha de activar el registro de mensajes en un archivo.</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="296"/>
         <source>&amp;Messages log file:</source>
-        <translation>Archivo de registro de &amp;mensajes:</translation>
+        <translation type="obsolete">Archivo de registro de &amp;mensajes:</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="429"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="444"/>
         <source>Other</source>
         <translation>Otros</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="444"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="459"/>
         <source>Whether to ask for confirmation on application exit</source>
         <translation>Determina si se ha de solicitar confirmación para terminar la aplicación</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="447"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="462"/>
         <source>&amp;Confirm application close</source>
         <translation>&amp;Confirmar el cierre de la aplicación</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="450"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="465"/>
         <source>Alt+C</source>
         <translation>Alt+C</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="476"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="491"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Determina si se han de mantener todas las ventanas hijas por encima de la ventana principal</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="479"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="494"/>
         <source>&amp;Keep child windows always on top</source>
         <translation>&amp;Mantener las ventanas hijas siempre encima</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="482"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="497"/>
         <source>Alt+K</source>
         <translation>Alt+M</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="495"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="510"/>
         <source>Whether to capture standard output (stdout/stderr) into messages window</source>
         <translation>Determina si se ha de capturar la salida estándar (stdout/stderr) en la ventana de mensajes</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="498"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="513"/>
         <source>Capture standard &amp;output</source>
         <translation>Capturar la salida &amp;estándard</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="501"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="516"/>
         <source>Alt+O</source>
         <translation>Alt+e</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="514"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="529"/>
         <source>Whether to monitor and show engine output peak level meters</source>
         <translation>Determina si se han de monitorizar y mostrar los medidores de picos de salida del motor</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="517"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="532"/>
         <source>Output &amp;peak level meters</source>
         <translation>Medidores de &amp;picos de nivel de salida</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="520"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="535"/>
         <source>Alt+P</source>
         <translation>Alt+p</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="533"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="548"/>
         <source>Whether to enable the system tray icon</source>
         <translation>Determina si se habilita el icono en la bandeja del sistema</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="536"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="551"/>
         <source>&amp;Enable system tray icon</source>
         <translation>&amp;Habilitar el icono en la bandeja del sistema</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="539"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="554"/>
         <source>Alt+E</source>
         <translation>Alt+H</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="552"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="567"/>
         <source>Whether to start minimized to system tray</source>
         <translation>Determina si se inicia minimizado en la bandeja del sistema</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="555"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="570"/>
         <source>Start minimi&amp;zed to system tray</source>
         <translation>Iniciar minimi&amp;zado en la bandeja del sistema</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="558"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="573"/>
         <source>Alt+Z</source>
         <translation>Alt+z</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="668"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="683"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="315"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="311"/>
         <source>Knobs</source>
         <translation>Botones giratorios</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="346"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="342"/>
         <source>Graphic style for knobs</source>
         <translation>Estilo gráfico para los botones rotatorios</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="350"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="346"/>
         <source>Classic</source>
         <translation>Clásico</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="355"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="351"/>
         <source>Vokimon</source>
         <translation>Vokimon</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="360"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="356"/>
         <source>Peppino</source>
         <translation>Peppino</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="402"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="417"/>
         <source>Legacy</source>
         <translation>Heredado</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="407"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="422"/>
         <source>Radial</source>
         <translation>Radial</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="412"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="427"/>
         <source>Linear</source>
         <translation>Lineal</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="330"/>
         <source>Knob graphic style:</source>
-        <translation>Estilo gráfico de botones:</translation>
+        <translation type="obsolete">Estilo gráfico de botones:</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="379"/>
         <source>Mouse motion behavior:</source>
-        <translation>Comportamiento del ratón:</translation>
+        <translation type="obsolete">Comportamiento del ratón:</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="395"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="410"/>
         <source>Mouse motion behavior for knobs</source>
         <translation>Comportamiento del movimiento del ratón para los botones rotatorios</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="571"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="586"/>
         <source>&amp;Base font size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="590"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="605"/>
         <source>Base application font size (pt.)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="597"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="612"/>
         <source>(default)</source>
         <translation type="unfinished">(por omisión)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="602"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="617"/>
         <source>8</source>
         <translation type="unfinished">8</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="607"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="622"/>
         <source>9</source>
         <translation type="unfinished">9</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="612"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="627"/>
         <source>10</source>
         <translation type="unfinished">10</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="617"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="632"/>
         <source>11</source>
         <translation type="unfinished">11</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="622"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="637"/>
         <source>12</source>
         <translation type="unfinished">12</translation>
+    </message>
+    <message>
+        <location filename="../src/qsynthOptionsForm.ui" line="292"/>
+        <source>Messages &amp;log file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qsynthOptionsForm.ui" line="295"/>
+        <source>Alt+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qsynthOptionsForm.ui" line="326"/>
+        <source>Kno&amp;b graphic style:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qsynthOptionsForm.ui" line="391"/>
+        <source>Mouse motion be&amp;havior:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

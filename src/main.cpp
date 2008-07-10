@@ -40,7 +40,7 @@
 #include <X11/Xatom.h>
 #include <X11/Xlib.h>
 
-#define QSYNTH_XUNIQUE "qsynthMainForm_xunique"
+#define QSYNTH_XUNIQUE "qsynthApplication"
 
 #endif
 

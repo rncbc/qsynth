@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-CVS HEAD
+0.3.3  2008-07-10  Knobs galore.
 
 - Due to some trouble with newer Qt >= 4.4 applications regarding font
   size configuration, a new global user option is now available to the

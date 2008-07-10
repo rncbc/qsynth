@@ -10,7 +10,7 @@ Name QSynth
 !define QSYNTHDIR "C:\msys\1.0\home\pedro\qsynth"
 
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.3.2.13
+!define VERSION 0.3.3
 !define COMPANY QSynth
 !define URL http://qsynth.sourceforge.net/
 
@@ -55,7 +55,7 @@ InstallDir $PROGRAMFILES\QSynth
 CRCCheck on
 XPStyle on
 ShowInstDetails show
-VIProductVersion 0.3.2.13
+VIProductVersion 0.3.3
 VIAddVersionKey ProductName QSynth
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
@@ -131,7 +131,7 @@ Section /o -un.Main UNSEC0000
     Delete /REBOOTOK $INSTDIR\fluidsynth.exe
     Delete /REBOOTOK $INSTDIR\qsynth.exe
     Delete /REBOOTOK $INSTDIR\VintageDreamsWaves-v2.sf2
-    
+
     # Uninstalling library $INSTDIR\libfluidsynth-1.dll
     !insertmacro UnInstallLib DLL SHARED REBOOT_PROTECTED $INSTDIR\libfluidsynth-1.dll
 
