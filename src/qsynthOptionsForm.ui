@@ -60,12 +60,6 @@
          <layout class="QHBoxLayout" >
           <item>
            <widget class="QLabel" name="MessagesFontTextLabel" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="minimumSize" >
              <size>
               <width>180</width>
@@ -231,7 +225,9 @@
           <item row="0" column="1" colspan="3" >
            <widget class="QComboBox" name="MessagesLogPathComboBox" >
             <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
+             <sizepolicy>
+              <hsizetype>7</hsizetype>
+              <vsizetype>0</vsizetype>
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
@@ -293,10 +289,10 @@
              <string>Whether to activate a messages logging to file.</string>
             </property>
             <property name="text" >
-             <string>&amp;Messages log file:</string>
+             <string>Messages &amp;log file:</string>
             </property>
             <property name="shortcut" >
-             <string>Alt+M</string>
+             <string>Alt+L</string>
             </property>
            </widget>
           </item>
@@ -319,7 +315,7 @@
          </property>
          <layout class="QGridLayout" >
           <item row="0" column="0" >
-           <widget class="QLabel" name="KnobStyleLabel" >
+           <widget class="QLabel" name="KnobStyleTextLabel" >
             <property name="font" >
              <font>
               <weight>50</weight>
@@ -327,7 +323,7 @@
              </font>
             </property>
             <property name="text" >
-             <string>Knob graphic style:</string>
+             <string>Kno&amp;b graphic style:</string>
             </property>
             <property name="buddy" >
              <cstring>KnobStyleComboBox</cstring>
@@ -367,8 +363,24 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="KnobMouseMotionLabel" >
+          <item row="0" column="2" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>8</width>
+              <height>8</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="3" >
+           <widget class="QLabel" name="KnobMouseMotionTextLabel" >
             <property name="font" >
              <font>
               <weight>50</weight>
@@ -376,14 +388,17 @@
              </font>
             </property>
             <property name="text" >
-             <string>Mouse motion behavior:</string>
+             <string>Mouse motion be&amp;havior:</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
             <property name="buddy" >
              <cstring>KnobMouseMotionComboBox</cstring>
             </property>
            </widget>
           </item>
-          <item row="1" column="1" >
+          <item row="0" column="4" >
            <widget class="QComboBox" name="KnobMouseMotionComboBox" >
             <property name="font" >
              <font>
