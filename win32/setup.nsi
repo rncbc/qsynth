@@ -7,12 +7,11 @@ Name QSynth
 !define QTFILES "C:\Qt\4.4.0\bin"
 !define MINGWFILES "C:\MinGW\bin"
 !define FLUIDSYNTHDIR "C:\msys\1.0\home\pedro\fluidsynth-new"
-!define QSYNTHDIR "C:\msys\1.0\home\pedro\qsynth"
-
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION 0.3.3
 !define COMPANY QSynth
 !define URL http://qsynth.sourceforge.net/
+!define QSYNTHDIR "C:\msys\1.0\home\pedro\qsynth-${VERSION}"
 
 # MUI defines
 !define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\modern-install.ico"
@@ -50,12 +49,12 @@ Var LibInstall
 !insertmacro MUI_LANGUAGE "Spanish"
 
 # Installer attributes
-OutFile qsynth-setup.exe
+OutFile qsynth-${VERSION}-setup.exe
 InstallDir $PROGRAMFILES\QSynth
 CRCCheck on
 XPStyle on
 ShowInstDetails show
-VIProductVersion 0.3.3
+VIProductVersion 0.3.3.0
 VIAddVersionKey ProductName QSynth
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
@@ -97,6 +96,7 @@ Section -post SEC0001
     SetOutPath $INSTDIR
     WriteUninstaller $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
+    CreateDirectory $SMPROGRAMS\$StartMenuGroup
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\fluidsynth.lnk" $INSTDIR\fluidsynth.exe
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\qsynth.exe
