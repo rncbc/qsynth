@@ -1,7 +1,7 @@
 // qsynthSetupForm.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -57,6 +57,8 @@ public:
 public slots:
 
 	void nameChanged(const QString&);
+	void midiDriverChanged(const QString&);
+	void audioDriverChanged(const QString&);
 	void settingsChanged();
 
 	void contextMenuRequested(const QPoint&);
@@ -81,6 +83,9 @@ protected:
 	// A combo-box text item setter helper.
 	void setComboBoxCurrentText(
 		QComboBox *pComboBox, const QString& sText) const;
+
+	void updateMidiDevices(const QString& sMidiDriver);
+	void updateAudioDevices(const QString& sAudioDriver);
 
 	void refreshSoundFonts();
 

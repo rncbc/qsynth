@@ -1,7 +1,7 @@
 // qsynthSetupForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -223,10 +223,10 @@ qsynthSetupForm::qsynthSetupForm (
 		SIGNAL(stateChanged(int)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.MidiDriverComboBox,
-		SIGNAL(activated(int)),
-		SLOT(settingsChanged()));
-	QObject::connect(m_ui.MidiDeviceLineEdit,
-		SIGNAL(textChanged(const QString&)),
+		SIGNAL(activated(const QString&)),
+		SLOT(midiDriverChanged(const QString&)));
+	QObject::connect(m_ui.MidiDeviceComboBox,
+		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.MidiChannelsSpinBox,
 		SIGNAL(valueChanged(int)),
@@ -241,10 +241,10 @@ qsynthSetupForm::qsynthSetupForm (
 		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.AudioDriverComboBox,
-		SIGNAL(activated(int)),
-		SLOT(settingsChanged()));
-	QObject::connect(m_ui.AudioDeviceLineEdit,
-		SIGNAL(textChanged(const QString&)),
+		SIGNAL(activated(const QString&)),
+		SLOT(audioDriverChanged(const QString&)));
+	QObject::connect(m_ui.AudioDeviceComboBox,
+		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.SampleFormatComboBox,
 		SIGNAL(activated(int)),
@@ -401,7 +401,10 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	m_ui.MidiInCheckBox->setChecked(m_pSetup->bMidiIn);
 	setComboBoxCurrentText(m_ui.MidiDriverComboBox,
 		m_pSetup->sMidiDriver);
-	m_ui.MidiDeviceLineEdit->setText(m_pSetup->sMidiDevice);
+	updateMidiDevices(m_pSetup->sMidiDriver);
+
+	setComboBoxCurrentText(m_ui.MidiDeviceComboBox,
+		m_pSetup->sMidiDevice);
 	m_ui.MidiChannelsSpinBox->setValue(m_pSetup->iMidiChannels);
 	m_ui.MidiDumpCheckBox->setChecked(m_pSetup->bMidiDump);
 	m_ui.VerboseCheckBox->setChecked(m_pSetup->bVerbose);
@@ -413,7 +416,10 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	// Audio settings...
 	setComboBoxCurrentText(m_ui.AudioDriverComboBox,
 		m_pSetup->sAudioDriver);
-	m_ui.AudioDeviceLineEdit->setText(m_pSetup->sAudioDevice);
+	updateAudioDevices(m_pSetup->sAudioDriver);
+
+	setComboBoxCurrentText(m_ui.AudioDeviceComboBox,
+		m_pSetup->sAudioDevice);
 	setComboBoxCurrentText(m_ui.SampleFormatComboBox,
 		m_pSetup->sSampleFormat);
 	setComboBoxCurrentText(m_ui.SampleRateComboBox,
@@ -503,14 +509,14 @@ void qsynthSetupForm::accept (void)
 		// Midi settings...
 		m_pSetup->bMidiIn          = m_ui.MidiInCheckBox->isChecked();
 		m_pSetup->sMidiDriver      = m_ui.MidiDriverComboBox->currentText();
-		m_pSetup->sMidiDevice      = m_ui.MidiDeviceLineEdit->text();
+		m_pSetup->sMidiDevice      = m_ui.MidiDeviceComboBox->currentText();
 		m_pSetup->iMidiChannels    = m_ui.MidiChannelsSpinBox->value();
 		m_pSetup->bMidiDump        = m_ui.MidiDumpCheckBox->isChecked();
 		m_pSetup->bVerbose         = m_ui.VerboseCheckBox->isChecked();
 		m_pSetup->sAlsaName        = m_ui.AlsaNameComboBox->currentText();
 		// Audio settings...
 		m_pSetup->sAudioDriver     = m_ui.AudioDriverComboBox->currentText();
-		m_pSetup->sAudioDevice     = m_ui.AudioDeviceLineEdit->text();
+		m_pSetup->sAudioDevice     = m_ui.AudioDeviceComboBox->currentText();
 		m_pSetup->sSampleFormat    = m_ui.SampleFormatComboBox->currentText();
 		m_pSetup->fSampleRate      = m_ui.SampleRateComboBox->currentText().toDouble();
 		m_pSetup->iAudioBufSize    = m_ui.AudioBufSizeComboBox->currentText().toInt();
@@ -582,6 +588,70 @@ void qsynthSetupForm::nameChanged ( const QString& )
 }
 
 
+// Fill MIDI device options.
+void qsynthSetupForm::updateMidiDevices ( const QString& sMidiDriver )
+{
+	qsynth_settings_data data;
+	data.pSetup    = m_pSetup;
+	data.pListView = NULL;
+	data.pListItem = NULL;
+
+	// MIDI Device combobox options;
+	QString sOldText = m_ui.MidiDeviceComboBox->currentText();
+	m_ui.MidiDeviceComboBox->clear();
+	QString sName = "midi." + sMidiDriver + ".device";
+	data.options.clear();
+	::fluid_settings_foreach_option(m_pSetup->fluid_settings(),
+		(char *) sName.toUtf8().constData(), &data, qsynth_settings_foreach_option);
+
+	m_ui.MidiDeviceComboBox->addItems(data.options);
+}
+
+void qsynthSetupForm::midiDriverChanged ( const QString& sMidiDriver )
+{
+	if (m_iDirtySetup > 0)
+		return;
+
+	QString sMidiDevice = m_ui.MidiDeviceComboBox->currentText();
+	updateMidiDevices(sMidiDriver);
+	setComboBoxCurrentText(m_ui.MidiDeviceComboBox, sMidiDevice);
+
+	settingsChanged();
+}
+
+
+// Fill audio device options.
+void qsynthSetupForm::updateAudioDevices ( const QString& sAudioDriver )
+{
+	qsynth_settings_data data;
+	data.pSetup    = m_pSetup;
+	data.pListView = NULL;
+	data.pListItem = NULL;
+
+	// Audio Device combobox options;
+	QString sOldText = m_ui.AudioDeviceComboBox->currentText();
+	m_ui.AudioDeviceComboBox->clear();
+	QString sName = "audio." + sAudioDriver + ".device";
+	data.options.clear();
+	::fluid_settings_foreach_option(m_pSetup->fluid_settings(),
+		(char *) sName.toUtf8().constData(), &data, qsynth_settings_foreach_option);
+
+	m_ui.AudioDeviceComboBox->addItems(data.options);
+}
+
+void qsynthSetupForm::audioDriverChanged ( const QString& sAudioDriver )
+{
+	if (m_iDirtySetup > 0)
+		return;
+
+	QString sAudioDevice = m_ui.AudioDeviceComboBox->currentText();
+	updateAudioDevices(sAudioDriver);
+	setComboBoxCurrentText(m_ui.AudioDeviceComboBox, sAudioDevice);
+
+	settingsChanged();
+}
+
+
 // Dirty up settings.
 void qsynthSetupForm::settingsChanged (void)
 {
@@ -602,7 +672,7 @@ void qsynthSetupForm::stabilizeForm (void)
 	m_ui.MidiDriverTextLabel->setEnabled(bEnabled);
 	m_ui.MidiDriverComboBox->setEnabled(bEnabled);
 	m_ui.MidiDeviceTextLabel->setEnabled(bEnabled && !bAlsaEnabled);
-	m_ui.MidiDeviceLineEdit->setEnabled(bEnabled && !bAlsaEnabled);
+	m_ui.MidiDeviceComboBox->setEnabled(bEnabled && !bAlsaEnabled);
 	m_ui.MidiChannelsTextLabel->setEnabled(bEnabled);
 	m_ui.MidiChannelsSpinBox->setEnabled(bEnabled);
 	m_ui.MidiDumpCheckBox->setEnabled(bEnabled);
@@ -613,7 +683,7 @@ void qsynthSetupForm::stabilizeForm (void)
 
 	bool bJackEnabled = (m_ui.AudioDriverComboBox->currentText() == "jack");
 	m_ui.AudioDeviceTextLabel->setEnabled(!bJackEnabled);
-	m_ui.AudioDeviceLineEdit->setEnabled(!bJackEnabled);
+	m_ui.AudioDeviceComboBox->setEnabled(!bJackEnabled);
 	m_ui.JackMultiCheckBox->setEnabled(bJackEnabled);
 	m_ui.JackAutoConnectCheckBox->setEnabled(bJackEnabled);
 	m_ui.JackNameTextLabel->setEnabled(bJackEnabled);

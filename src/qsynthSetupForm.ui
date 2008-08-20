@@ -105,9 +105,18 @@
         <number>6</number>
        </property>
        <item row="1" column="4" >
-        <widget class="QLineEdit" name="MidiDeviceLineEdit" >
+        <widget class="QComboBox" name="MidiDeviceComboBox" >
+         <property name="minimumSize" >
+          <size>
+           <width>180</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="toolTip" >
           <string>MIDI device name</string>
+         </property>
+         <property name="editable" >
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -136,7 +145,7 @@
           <bool>false</bool>
          </property>
          <property name="buddy" >
-          <cstring>MidiDeviceLineEdit</cstring>
+          <cstring>MidiDeviceComboBox</cstring>
          </property>
         </widget>
        </item>
@@ -160,6 +169,9 @@
         <widget class="QComboBox" name="MidiDriverComboBox" >
          <property name="toolTip" >
           <string>Input MIDI driver</string>
+         </property>
+         <property name="editable" >
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -360,6 +372,9 @@
           <widget class="QComboBox" name="AudioDriverComboBox" >
            <property name="toolTip" >
             <string>Output audio driver</string>
+           </property>
+           <property name="editable" >
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -578,7 +593,7 @@
             <bool>false</bool>
            </property>
            <property name="buddy" >
-            <cstring>AudioDeviceLineEdit</cstring>
+            <cstring>AudioDeviceComboBox</cstring>
            </property>
           </widget>
          </item>
@@ -641,9 +656,18 @@
           </widget>
          </item>
          <item row="0" column="1" colspan="2" >
-          <widget class="QLineEdit" name="AudioDeviceLineEdit" >
+          <widget class="QComboBox" name="AudioDeviceComboBox" >
+           <property name="minimumSize" >
+            <size>
+             <width>180</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="toolTip" >
             <string>MIDI device name</string>
+           </property>
+           <property name="editable" >
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -1110,13 +1134,13 @@
   <tabstop>SetupTabWidget</tabstop>
   <tabstop>MidiInCheckBox</tabstop>
   <tabstop>MidiDriverComboBox</tabstop>
-  <tabstop>MidiDeviceLineEdit</tabstop>
+  <tabstop>MidiDeviceComboBox</tabstop>
   <tabstop>MidiChannelsSpinBox</tabstop>
   <tabstop>AlsaNameComboBox</tabstop>
   <tabstop>VerboseCheckBox</tabstop>
   <tabstop>MidiDumpCheckBox</tabstop>
   <tabstop>AudioDriverComboBox</tabstop>
-  <tabstop>AudioDeviceLineEdit</tabstop>
+  <tabstop>AudioDeviceComboBox</tabstop>
   <tabstop>SampleFormatComboBox</tabstop>
   <tabstop>SampleRateComboBox</tabstop>
   <tabstop>AudioBufSizeComboBox</tabstop>

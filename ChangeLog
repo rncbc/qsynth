@@ -3,6 +3,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+CVS HEAD
+
+- MIDI and audio device names are now user selectable options through
+  respective drop-down lists on each engine setup dialog.
+
+
 0.3.3  2008-07-10  Knobs galore.
 
 - Due to some trouble with newer Qt >= 4.4 applications regarding font
