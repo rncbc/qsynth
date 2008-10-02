@@ -162,7 +162,7 @@ void qsynthMeterValue::refresh (void)
 
 	float dB = QSYNTH_METER_MINDB;
 	if (m_fValue > 0.0f) {
-		dB = ::log10f(m_fValue);
+		dB = 20.0f * ::log10f(m_fValue);
 		m_fValue = 0.0f;
 	}
 
