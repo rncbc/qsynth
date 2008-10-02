@@ -5,6 +5,8 @@ ChangeLog
 
 CVS HEAD
 
+- Slight optimizations to the output peak meters refresh rate.
+
 - MIDI and audio device names are now user selectable options through
   respective drop-down lists on each engine setup dialog.
 

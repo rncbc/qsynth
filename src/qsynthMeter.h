@@ -1,7 +1,7 @@
 // qsynthMeter.h
 //
 /****************************************************************************
-   Copyright (C) 2004-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2008, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -98,9 +98,11 @@ private:
 
 	// Running variables.
 	float m_fValue;
-	int   m_iValueHold;
+
+	int   m_iValue;
 	float m_fValueDecay;
 	int   m_iPeak;
+
 	int   m_iPeakHold;
 	float m_fPeakDecay;
 	int   m_iPeakColor;

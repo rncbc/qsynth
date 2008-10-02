@@ -1,7 +1,7 @@
 // qsynthMeter.cpp
 //
 /****************************************************************************
-   Copyright (C) 2004-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2008, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -49,9 +49,8 @@
 
 // Constructor.
 qsynthMeterScale::qsynthMeterScale( qsynthMeter *pMeter )
-	: QWidget(pMeter)
+	: QWidget(pMeter), m_pMeter(pMeter)
 {
-	m_pMeter = pMeter;
 	m_iLastY = 0;
 
 	QWidget::setMinimumWidth(16);
@@ -113,12 +112,13 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 
 // Constructor.
 qsynthMeterValue::qsynthMeterValue ( qsynthMeter *pMeter )
-	: QFrame(pMeter)
+	: QFrame(pMeter), m_pMeter(pMeter)
 {
-	m_pMeter      = pMeter;
 	m_fValue      = 0.0f;
-	m_iValueHold  = 0;
+
+	m_iValue      = 0;
 	m_fValueDecay = QSYNTH_METER_DECAY_RATE1;
+
 	m_iPeak       = 0;
 	m_iPeakHold   = 0;
 	m_fPeakDecay  = QSYNTH_METER_DECAY_RATE2;
@@ -157,8 +157,55 @@ void qsynthMeterValue::peakReset (void)
 // Value refreshment.
 void qsynthMeterValue::refresh (void)
 {
-	if (m_fValue > 0.001f || m_iPeak > 0)
-		update();
+	if (m_fValue < 0.001f && m_iPeak < 1)
+		return;
+
+	float dB = QSYNTH_METER_MINDB;
+	if (m_fValue > 0.0f) {
+		dB = ::log10f(m_fValue);
+		m_fValue = 0.0f;
+	}
+
+	if (dB < QSYNTH_METER_MINDB)
+		dB = QSYNTH_METER_MINDB;
+	else if (dB > QSYNTH_METER_MAXDB)
+		dB = QSYNTH_METER_MAXDB;
+
+	int iValue = m_pMeter->iec_scale(dB);
+	if (iValue < m_iValue) {
+		iValue = int(m_fValueDecay * float(m_iValue));
+		m_fValueDecay *= m_fValueDecay;
+	} else {
+		m_fValueDecay = QSYNTH_METER_DECAY_RATE1;
+	}
+
+	int iPeak = m_iPeak;
+	if (iPeak < iValue) {
+		iPeak = iValue;
+		m_iPeakHold = 0;
+		m_fPeakDecay = QSYNTH_METER_DECAY_RATE2;
+		m_iPeakColor = qsynthMeter::Color10dB;
+		for (; m_iPeakColor > qsynthMeter::ColorOver
+			&& iPeak >= m_pMeter->iec_level(m_iPeakColor); --m_iPeakColor)
+			/* empty body loop */;
+	} else if (++m_iPeakHold > m_pMeter->peakFalloff()) {
+		iPeak = int(m_fPeakDecay * float(iPeak));
+		if (iPeak < iValue) {
+			iPeak = iValue;
+		} else {
+			if (iPeak < m_pMeter->iec_level(qsynthMeter::Color10dB))
+				m_iPeakColor = qsynthMeter::Color6dB;
+			m_fPeakDecay *= m_fPeakDecay;
+		}
+	}
+
+	if (iValue == m_iValue && iPeak == m_iPeak)
+		return;
+
+	m_iValue = iValue;
+	m_iPeak  = iPeak;
+
+	update();
 }
 
 
@@ -182,40 +229,20 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 		painter.fillRect(0, 0, w, h, QWidget::palette().dark().color());
 	}
 
-	float dB = QSYNTH_METER_MINDB;
-	if (m_fValue > 0.0f) {
-		dB = 20.0f * ::log10f(m_fValue);
-		m_fValue = 0.0f;
-	}
-
-	if (dB < QSYNTH_METER_MINDB)
-		dB = QSYNTH_METER_MINDB;
-	else if (dB > QSYNTH_METER_MAXDB)
-		dB = QSYNTH_METER_MAXDB;
+	y = m_iValue;
 
 	int y_over = 0;
 	int y_curr = 0;
 
-	y = m_pMeter->iec_scale(dB);
-	if (m_iValueHold > y) {
-		m_iValueHold = int(float(m_iValueHold * m_fValueDecay));
-		m_fValueDecay *= m_fValueDecay;
-		y = m_iValueHold;
-	} else {
-		m_iValueHold = y;
-		m_fValueDecay = QSYNTH_METER_DECAY_RATE1;
-	}
-
-	int iLevel;
-	for (iLevel = qsynthMeter::Color10dB;
-			iLevel > qsynthMeter::ColorOver && y >= y_over; iLevel--) {
-		y_curr = m_pMeter->iec_level(iLevel);
+	for (int i = qsynthMeter::Color10dB;
+			i > qsynthMeter::ColorOver && y >= y_over; --i) {
+		y_curr = m_pMeter->iec_level(i);
 		if (y < y_curr) {
 			painter.fillRect(0, h - y, w, y - y_over,
-				m_pMeter->color(iLevel));
+				m_pMeter->color(i));
 		} else {
 			painter.fillRect(0, h - y_curr, w, y_curr - y_over,
-				m_pMeter->color(iLevel));
+				m_pMeter->color(i));
 		}
 		y_over = y_curr;
 	}
@@ -223,22 +250,6 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 	if (y > y_over) {
 		painter.fillRect(0, h - y, w, y - y_over,
 			m_pMeter->color(qsynthMeter::ColorOver));
-	}
-
-	if (m_iPeak < y) {
-		m_iPeak = y;
-		m_iPeakHold = 0;
-		m_fPeakDecay = QSYNTH_METER_DECAY_RATE2;
-		m_iPeakColor = iLevel;
-	} else if (++m_iPeakHold > m_pMeter->peakFalloff()) {
-		m_iPeak = int(float(m_iPeak * m_fPeakDecay));
-		if (m_iPeak < y) {
-			m_iPeak = y;
-		} else {
-			if (m_iPeak < m_pMeter->iec_level(qsynthMeter::Color10dB))
-				m_iPeakColor = qsynthMeter::Color6dB;
-			m_fPeakDecay *= m_fPeakDecay;
-		}
 	}
 
 	painter.setPen(m_pMeter->color(m_iPeakColor));
