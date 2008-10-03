@@ -193,8 +193,6 @@ void qsynthMeterValue::refresh (void)
 		if (iPeak < iValue) {
 			iPeak = iValue;
 		} else {
-			if (iPeak < m_pMeter->iec_level(qsynthMeter::Color10dB))
-				m_iPeakColor = qsynthMeter::Color6dB;
 			m_fPeakDecay *= m_fPeakDecay;
 		}
 	}
