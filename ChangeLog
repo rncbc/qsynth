@@ -5,6 +5,8 @@ ChangeLog
 
 CVS HEAD
 
+- Fait-divers: desktop menu file touched to openSUSE conventions.
+
 - Slight optimizations to the output peak meters refresh rate.
 
 - MIDI and audio device names are now user selectable options through
