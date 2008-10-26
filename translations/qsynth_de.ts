@@ -1186,11 +1186,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Meldungen in einer Protokolldatei aufzeichen.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="296"/>
-        <source>&amp;Messages log file:</source>
-        <translation type="obsolete">Protokoll&amp;datei:</translation>
-    </message>
-    <message>
         <location filename="../src/qsynthOptionsForm.ui" line="444"/>
         <source>Other</source>
         <translation>Weiteres</translation>
@@ -1336,11 +1331,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Drehregler</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="330"/>
-        <source>Knob graphic style:</source>
-        <translation type="obsolete">Dreh&amp;reglerstil:</translation>
-    </message>
-    <message>
         <location filename="../src/qsynthOptionsForm.ui" line="342"/>
         <source>Graphic style for knobs</source>
         <translation>Graphischer Stil der Drehregler</translation>
@@ -1364,11 +1354,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../src/qsynthOptionsForm.ui" line="417"/>
         <source>Legacy</source>
         <translation>Vermächtnis</translation>
-    </message>
-    <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="379"/>
-        <source>Mouse motion behavior:</source>
-        <translation type="obsolete">Reaktion auf Mausbe&amp;wegung:</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="410"/>
@@ -1428,7 +1413,7 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="292"/>
         <source>Messages &amp;log file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Protokoll&amp;datei:</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="295"/>
@@ -1438,12 +1423,12 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="326"/>
         <source>Kno&amp;b graphic style:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dreh&amp;reglerstil:</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="391"/>
         <source>Mouse motion be&amp;havior:</source>
-        <translation type="unfinished"></translation>
+        <translation>Reaktion auf Mausbe&amp;wegung:</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="617"/>
