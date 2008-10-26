@@ -1286,12 +1286,12 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Alt+B</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="683"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="693"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="694"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="704"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
@@ -1401,27 +1401,27 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>(voreingestellt)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="617"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="627"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="622"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="632"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="627"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="637"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="632"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="642"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="637"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="647"/>
         <source>12</source>
         <translation>12</translation>
     </message>
@@ -1444,6 +1444,16 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../src/qsynthOptionsForm.ui" line="391"/>
         <source>Mouse motion be&amp;havior:</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qsynthOptionsForm.ui" line="617"/>
+        <source>6</source>
+        <translation type="unfinished">6</translation>
+    </message>
+    <message>
+        <location filename="../src/qsynthOptionsForm.ui" line="622"/>
+        <source>7</source>
+        <translation type="unfinished">7</translation>
     </message>
 </context>
 <context>

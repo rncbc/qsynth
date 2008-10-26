@@ -1100,7 +1100,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Descartar</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="694"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="704"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
@@ -1325,7 +1325,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Alt+z</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="683"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="693"/>
         <source>OK</source>
         <translation>Aceptar</translation>
     </message>
@@ -1400,27 +1400,27 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="unfinished">(por omisión)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="617"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="627"/>
         <source>8</source>
         <translation type="unfinished">8</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="622"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="632"/>
         <source>9</source>
         <translation type="unfinished">9</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="627"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="637"/>
         <source>10</source>
         <translation type="unfinished">10</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="632"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="642"/>
         <source>11</source>
         <translation type="unfinished">11</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptionsForm.ui" line="637"/>
+        <location filename="../src/qsynthOptionsForm.ui" line="647"/>
         <source>12</source>
         <translation type="unfinished">12</translation>
     </message>
@@ -1443,6 +1443,16 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../src/qsynthOptionsForm.ui" line="391"/>
         <source>Mouse motion be&amp;havior:</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qsynthOptionsForm.ui" line="617"/>
+        <source>6</source>
+        <translation type="unfinished">6</translation>
+    </message>
+    <message>
+        <location filename="../src/qsynthOptionsForm.ui" line="622"/>
+        <source>7</source>
+        <translation type="unfinished">7</translation>
     </message>
 </context>
 <context>
