@@ -3,7 +3,7 @@
 %define release 8
 %define prefix  @ac_prefix@
 
-Summary:	A fluidsynth Qt GUI Interface.
+Summary:	A fluidsynth Qt GUI Interface
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
