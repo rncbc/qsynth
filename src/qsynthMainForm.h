@@ -70,8 +70,8 @@ public:
 	void restartEngine(qsynthEngine *pEngine);
 	void resetEngine(qsynthEngine *pEngine);
 
-	enum KnobStyle { Classic, Vokimon, Peppino, Legacy };
-	
+	enum KnobStyle { Classic, Vokimon, Peppino, Skulpture, Legacy };
+
 public slots:
 
 	void stdoutNotifySlot(int);
@@ -188,8 +188,8 @@ private:
 
 	// Kind-of singleton reference.
 	static qsynthMainForm *g_pMainForm;
-	
-	// Style for qsynthKnob (QDial) widgets 
+
+	// Style for qsynthKnob (QDial) widgets
 	QStyle* m_pKnobStyle;
 };
 

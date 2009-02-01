@@ -17,7 +17,8 @@ HEADERS += ../src/qsynthAbout.h \
     ../src/qsynthSetupForm.h \
     ../src/qsynthDialClassicStyle.h \
     ../src/qsynthDialPeppinoStyle.h \
-    ../src/qsynthDialVokiStyle.h
+    ../src/qsynthDialVokiStyle.h \
+    ../src/qsynthDialSkulptureStyle.h
 SOURCES += ../src/main.cpp \
     ../src/qsynthEngine.cpp \
     ../src/qsynthChannels.cpp \
@@ -36,7 +37,8 @@ SOURCES += ../src/main.cpp \
     ../src/qsynthSetupForm.cpp \
     ../src/qsynthDialClassicStyle.cpp \
     ../src/qsynthDialPeppinoStyle.cpp \
-    ../src/qsynthDialVokiStyle.cpp
+    ../src/qsynthDialVokiStyle.cpp \
+    ../src/qsynthDialSkulptureStyle.cpp
 FORMS = ../src/qsynthAboutForm.ui \
     ../src/qsynthChannelsForm.ui \
     ../src/qsynthMainForm.ui \

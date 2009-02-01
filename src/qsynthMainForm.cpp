@@ -36,6 +36,7 @@
 #include "qsynthDialClassicStyle.h"
 #include "qsynthDialVokiStyle.h"
 #include "qsynthDialPeppinoStyle.h"
+#include "qsynthDialSkulptureStyle.h"
 
 #include <QApplication>
 #include <QSocketNotifier>
@@ -310,7 +311,7 @@ static fluid_sfont_t *qsynth_sfloader_load (
 		}
 		pNode = pNode->pNext;
 	}
-	
+
 	// fluidsynth will call next (or default) loader...
 	return NULL;
 }
@@ -519,7 +520,7 @@ qsynthMainForm::~qsynthMainForm (void)
 
 	// Pseudo-singleton reference shut-down.
 	g_pMainForm = NULL;
-	
+
 	if (m_pKnobStyle)
 		delete m_pKnobStyle;
 }
@@ -582,7 +583,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 
 	// Knobs
 	updateKnobs();
-	
+
 #if !defined(WIN32)
 	// Check if we can redirect our own stdout/stderr...
 	if (m_pOptions->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
@@ -1334,7 +1335,7 @@ void qsynthMainForm::showOptionsForm (void)
 		if (m_pOptions->sMessagesFont.isEmpty() && m_pMessagesForm)
 			m_pOptions->sMessagesFont = m_pMessagesForm->messagesFont().toString();
 		// To track down deferred or immediate changes.
-		bool    bOldMessagesLog = m_pOptions->bMessagesLog; 
+		bool    bOldMessagesLog = m_pOptions->bMessagesLog;
 		QString sOldMessagesLogPath = m_pOptions->sMessagesLogPath;
 		QString sMessagesFont  = m_pOptions->sMessagesFont;
 		bool    bSystemTray    = m_pOptions->bSystemTray;
@@ -1623,7 +1624,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 					tr("Failed to load the soundfont: \"%1\".")
 					.arg(sFilename));
 #ifdef CONFIG_FLUID_BANK_OFFSET
-			else 
+			else
 			if (::fluid_synth_set_bank_offset(
 				pEngine->pSynth, iSFID, iBankOffset) < 0) {
 				appendMessagesError(sPrefix +
@@ -2382,9 +2383,9 @@ void qsynthMainForm::contextMenuEvent( QContextMenuEvent *pEvent )
 void qsynthMainForm::updateKnobs()
 {
 	if (m_pOptions == NULL)
-		return;	
+		return;
 	qsynthKnob::DialMode mode = qsynthKnob::DialMode(m_pOptions->iKnobMotion);
-	KnobStyle style = KnobStyle(m_pOptions->iKnobStyle); 
+	KnobStyle style = KnobStyle(m_pOptions->iKnobStyle);
 	if (m_pKnobStyle) {
 		delete m_pKnobStyle;
 	}
@@ -2398,6 +2399,9 @@ void qsynthMainForm::updateKnobs()
 	case Peppino:
 		m_pKnobStyle = new qsynthDialPeppinoStyle();
 		break;
+	case Skulpture:
+	    m_pKnobStyle = new qsynthDialSkulptureStyle();
+	    break;
 	default:
 		m_pKnobStyle = NULL;
 		break;

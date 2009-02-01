@@ -358,6 +358,11 @@
             </item>
             <item>
              <property name="text" >
+              <string>Skulpture</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
               <string>Legacy</string>
              </property>
             </item>

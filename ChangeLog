@@ -16,6 +16,7 @@ CVS HEAD
 - MIDI and audio device names are now user selectable options through
   respective drop-down lists on each engine setup dialog.
 
+- New knob style: Skulpture.
 
 0.3.3  2008-07-10  Knobs galore.
 
