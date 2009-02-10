@@ -57,7 +57,8 @@ CONFIG  += qt thread warn_on @ac_debug@
 LANGUAGE = C++
 
 TRANSLATIONS += translations/qsynth_de.ts \
-	        translations/qsynth_es.ts
+	        translations/qsynth_es.ts \
+	        translations/qsynth_ru.ts
 
 LIBS    += @ac_libs@
 INCPATH += @ac_incpath@

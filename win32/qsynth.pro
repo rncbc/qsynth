@@ -63,4 +63,5 @@ win32 {
 }
 LIBS += -lfluidsynth
 TRANSLATIONS = ../translations/qsynth_de.ts \
-    ../translations/qsynth_es.ts
+    ../translations/qsynth_es.ts \
+    ../translations/qsynth_ru.ts

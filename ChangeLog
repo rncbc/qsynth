@@ -5,6 +5,8 @@ ChangeLog
 
 CVS HEAD
 
+- Russian translation added (thanks to Alexandre Prokoudine).
+
 - Grayed/disabled palette color group fix for dark color themes.
 
 - Qt Software logo update.
