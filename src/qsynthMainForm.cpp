@@ -1742,7 +1742,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 	}
 
 	// Make an initial program reset.
-	resetEngine(pEngine);
+	m_pOptions->loadPreset(pEngine, pSetup->sDefPreset);
 
 	// Show up our efforts, if we're currently selected :)
 	if (pEngine == currentEngine()) {
