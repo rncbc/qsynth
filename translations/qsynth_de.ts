@@ -1391,7 +1391,7 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../src/qsynthOptionsForm.ui" line="366"/>
         <location filename="../src/qsynthOptionsForm.ui" line="422"/>
         <source>Legacy</source>
-        <translation>Vermächtnis</translation>
+        <translation>Legacy</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="415"/>
@@ -1456,7 +1456,7 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="295"/>
         <source>Alt+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="326"/>
@@ -1471,17 +1471,17 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="622"/>
         <source>6</source>
-        <translation type="unfinished">6</translation>
+        <translation>6</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="627"/>
         <source>7</source>
-        <translation type="unfinished">7</translation>
+        <translation>7</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="361"/>
         <source>Skulpture</source>
-        <translation type="unfinished"></translation>
+        <translation>Skulpture</translation>
     </message>
 </context>
 <context>
