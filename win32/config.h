@@ -7,10 +7,9 @@
 
 #define CONFIG_SYSTEM_TRAY
 
-#if !defined(__MINGW32__)
 #undef  CONFIG_FLUID_SERVER
-#undef  CONFIG_FLUID_RESET
-#undef  CONFIG_FLUID_BANK_OFFSET
-#endif
+
+#define CONFIG_FLUID_RESET
+#define CONFIG_FLUID_BANK_OFFSET
 
 #define CONFIG_ROUND
