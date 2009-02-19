@@ -5,6 +5,8 @@ ChangeLog
 
 CVS HEAD
 
+- Converted obsolete QMessageBox forms to standard buttons.
+
 - Saved channel presets are now effectively loaded on engine startup.
 
 - Russian translation added (thanks to Alexandre Prokoudine).

@@ -1,7 +1,7 @@
 // qsynthSetupForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2009, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -547,11 +547,11 @@ void qsynthSetupForm::reject (void)
 			QSYNTH_TITLE ": " + tr("Warning"),
 			tr("Some settings have been changed.") + "\n\n" +
 			tr("Do you want to apply the changes?"),
-			tr("Apply"), tr("Discard"), tr("Cancel"))) {
-		case 0:     // Apply...
+			QMessageBox::Apply | QMessageBox::Discard | QMessageBox::Cancel)) {
+		case QMessageBox::Apply:
 			accept();
 			return;
-		case 1:     // Discard
+		case QMessageBox::Discard:
 			break;
 		default:    // Cancel.
 			bReject = false;
@@ -805,7 +805,8 @@ void qsynthSetupForm::openSoundFont (void)
 					tr("Soundfont file already on list") + ":\n\n" +
 					"\"" + sSoundFont + "\"\n\n" +
 					tr("Add anyway?"),
-					tr("OK"), tr("Cancel")) > 0) {
+					QMessageBox::Ok | QMessageBox::Cancel)
+					== QMessageBox::Cancel) {
 				continue;
 			}
 			// Start inserting in the current selected or last item...
@@ -843,7 +844,7 @@ void qsynthSetupForm::openSoundFont (void)
 				tr("Failed to add soundfont file") + ":\n\n" +
 				"\"" + sSoundFont + "\"\n\n" +
 				tr("Please, check for a valid soundfont file."),
-				tr("Cancel"));
+				QMessageBox::Cancel);
 		}
 	}
 

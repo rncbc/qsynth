@@ -651,7 +651,8 @@ bool qsynthMainForm::queryClose (void)
 						QSYNTH_TITLE ": " + tr("Warning"),
 						QSYNTH_TITLE " " + tr("is about to terminate.") + "\n\n" +
 						tr("Are you sure?"),
-						tr("OK"), tr("Cancel")) == 0);
+						QMessageBox::Ok | QMessageBox::Cancel)
+						== QMessageBox::Ok);
 					break;
 				}
 			}
@@ -882,7 +883,7 @@ void qsynthMainForm::appendMessagesError( const QString& s )
 	appendMessagesColor(s.simplified(), "#ff0000");
 
 	QMessageBox::critical(this,
-		QSYNTH_TITLE ": " + tr("Error"), s, tr("Cancel"));
+		QSYNTH_TITLE ": " + tr("Error"), s, QMessageBox::Cancel);
 }
 
 
@@ -1200,7 +1201,8 @@ bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, int iTab )
 		tr("Delete fluidsynth engine:") + "\n\n" +
 		pEngine->name() + "\n\n" +
 		tr("Are you sure?"),
-		tr("OK"), tr("Cancel")) == 0);
+		QMessageBox::Ok | QMessageBox::Cancel)
+		== QMessageBox::Ok);
 
 	if (bResult) {
 		// First we try to stop the angine.
@@ -1363,7 +1365,7 @@ void qsynthMainForm::showOptionsForm (void)
 				QMessageBox::information(this,
 					QSYNTH_TITLE ": " + tr("Information"),
 					tr("Some settings will be only effective\n"
-					"next time you start this program."), tr("OK"));
+					"next time you start this program."));
 			}
 			// Check wheather something immediate has changed.
 			if (( bOldMessagesLog && !m_pOptions->bMessagesLog) ||
@@ -1927,7 +1929,7 @@ void qsynthMainForm::restartAllEngines (void)
 			tr("Please note that this operation may cause\n"
 			"temporary MIDI and Audio disruption.") + "\n\n" +
 			tr("Do you want to restart all engines now?"),
-			tr("Yes"), tr("No")) == 0);
+			QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes);
 
 	// Just restart every engine out there...
 	if (bRestart) {
@@ -1957,7 +1959,7 @@ void qsynthMainForm::restartEngine ( qsynthEngine *pEngine )
 			tr("Please note that this operation may cause\n"
 			"temporary MIDI and Audio disruption.") + "\n\n" +
 			tr("Do you want to restart the engine now?"),
-			tr("Yes"), tr("No")) == 0);
+			QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes);
 	}
 
 	// If allowed, just restart the engine...
