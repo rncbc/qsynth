@@ -719,13 +719,13 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine,
 	while (iter.hasNext()) {
 		const QString& sFilename = iter.next();
 		// Is it a soundfont file...
-		if (::fluid_is_soundfont(sFilename.toUtf8().data())) {
+		if (::fluid_is_soundfont(sFilename.toLocal8Bit().data())) {
 			if (bSetup || !pSetup->soundfonts.contains(sFilename)) {
 				appendMessagesColor(sPrefix +
 					tr("Loading soundfont: \"%1\"")
 					.arg(sFilename) + sElipsis, "#999933");
 				if (::fluid_synth_sfload(
-						pEngine->pSynth, sFilename.toUtf8().data(), 1) >= 0) {
+						pEngine->pSynth, sFilename.toLocal8Bit().data(), 1) >= 0) {
 					iSoundFonts++;
 					if (!bSetup) {
 						pSetup->soundfonts.append(sFilename);
@@ -739,12 +739,12 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine,
 			}
 		}
 		else  // Or is it a bare midifile?
-		if (::fluid_is_midifile(sFilename.toUtf8().data()) && pEngine->pPlayer) {
+		if (::fluid_is_midifile(sFilename.toLocal8Bit().data()) && pEngine->pPlayer) {
 			appendMessagesColor(sPrefix +
 				tr("Playing MIDI file: \"%1\"")
 				.arg(sFilename) + sElipsis, "#99cc66");
 			if (::fluid_player_add(
-					pEngine->pPlayer, sFilename.toUtf8().data()) >= 0) {
+					pEngine->pPlayer, sFilename.toLocal8Bit().data()) >= 0) {
 				iMidiFiles++;
 			} else {
 				appendMessagesError(sPrefix +
@@ -778,7 +778,7 @@ void qsynthMainForm::dragEnterEvent ( QDragEnterEvent* pDragEnterEvent )
 				const QString& sFilename
 					= iter.next().toLocalFile();
 				if (!sFilename.isEmpty()) {
-					char *pszFilename = sFilename.toUtf8().data();
+					char *pszFilename = sFilename.toLocal8Bit().data();
 					if (::fluid_is_midifile(pszFilename) ||
 						::fluid_is_soundfont(pszFilename))
 						bAccept = true;
@@ -1617,13 +1617,13 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 	while (iter.hasNext()) {
 		const QString& sFilename = iter.next();
 		// Is it a soundfont file...
-		if (::fluid_is_soundfont(sFilename.toUtf8().data())) {
+		if (::fluid_is_soundfont(sFilename.toLocal8Bit().data())) {
 			int iBankOffset = pSetup->bankoffsets[i].toInt();
 			appendMessagesColor(sPrefix +
 				tr("Loading soundfont: \"%1\" (bank offset %2)")
 				.arg(sFilename).arg(iBankOffset) + sElipsis, "#999933");
 			int iSFID = ::fluid_synth_sfload(
-				pEngine->pSynth, sFilename.toUtf8().data(), 1);
+				pEngine->pSynth, sFilename.toLocal8Bit().data(), 1);
 			if (iSFID < 0)
 				appendMessagesError(sPrefix +
 					tr("Failed to load the soundfont: \"%1\".")
@@ -1717,21 +1717,21 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 #ifdef CONFIG_FLUID_SERVER
 		appendMessages(sPrefix + tr("Creating server") + sElipsis);
 		// Server port must be different for each engine...
-		char *pszShellPort = "shell.port";
+		char szShellPort[] = "shell.port";
 		if (g_iLastShellPort > 0) {
 			g_iLastShellPort++;
 		} else {
 			g_iLastShellPort = 0;
 			::fluid_settings_getint(
-				pSetup->fluid_settings(), pszShellPort, &g_iLastShellPort);
+				pSetup->fluid_settings(), szShellPort, &g_iLastShellPort);
 			if (g_iLastShellPort == 0) {
 				g_iLastShellPort = ::fluid_settings_getint_default(
-					pSetup->fluid_settings(), pszShellPort);
+					pSetup->fluid_settings(), szShellPort);
 			}
 		}
 		// Set the (new) server port for this engne...
 		::fluid_settings_setint(
-			pSetup->fluid_settings(), pszShellPort, g_iLastShellPort);
+			pSetup->fluid_settings(), szShellPort, g_iLastShellPort);
 		// Create the server now...
 		pEngine->pServer = ::new_fluid_server(
 			pSetup->fluid_settings(), qsynth_newclient, pEngine->pSynth);

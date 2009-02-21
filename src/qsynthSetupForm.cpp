@@ -61,14 +61,14 @@ static void qsynth_settings_foreach ( void *pvData, char *pszName, int iType )
 	(pData->pListItem)->setText(iCol++, pszName);
 
 	// Check for type...
-	char *pszType = "?";
+	QString qsType = "?";
 	switch (iType) {
-	case FLUID_NUM_TYPE: pszType = "num"; break;
-	case FLUID_INT_TYPE: pszType = "int"; break;
-	case FLUID_STR_TYPE: pszType = "str"; break;
-	case FLUID_SET_TYPE: pszType = "set"; break;
+	case FLUID_NUM_TYPE: qsType = "num"; break;
+	case FLUID_INT_TYPE: qsType = "int"; break;
+	case FLUID_STR_TYPE: qsType = "str"; break;
+	case FLUID_SET_TYPE: qsType = "set"; break;
 	}
-	(pData->pListItem)->setText(iCol++, pszType);
+	(pData->pListItem)->setText(iCol++, qsType);
 /*
 	// Check for hints...
 	int iHints = ::fluid_settings_get_hints(pFluidSettings, pszName);
@@ -360,7 +360,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 
 	// Display name.
 	m_ui.DisplayNameLineEdit->setText(m_pSetup->sDisplayName);
-	
+
 	// Load Setttings view...
 	qsynth_settings_data data;
 	// Set data context.
@@ -373,8 +373,9 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	// Midi Driver combobox options;
 	// check if intended MIDI driver is available.
 	data.options.clear();
+	char midi_driver[] = "midi.driver";
 	::fluid_settings_foreach_option(m_pSetup->fluid_settings(),
-		"midi.driver", &data, qsynth_settings_foreach_option);
+	    midi_driver, &data, qsynth_settings_foreach_option);
 	m_ui.MidiDriverComboBox->clear();
 	if (!data.options.contains(m_pSetup->sMidiDriver))
 		data.options.append(m_pSetup->sMidiDriver);
@@ -383,8 +384,9 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	// Audio Driver combobox options.
 	// check if intended Audio driver is available.
 	data.options.clear();
+	char audio_driver[] = "audio.driver";
 	::fluid_settings_foreach_option(m_pSetup->fluid_settings(),
-		"audio.driver", &data, qsynth_settings_foreach_option);
+	    audio_driver, &data, qsynth_settings_foreach_option);
 	m_ui.AudioDriverComboBox->clear();
 	if (!data.options.contains(m_pSetup->sAudioDriver))
 		data.options.append(m_pSetup->sAudioDriver);
@@ -392,8 +394,9 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 
 	// Sample Format combobox options.
 	data.options.clear();
+	char audio_sample_fmt[] = "audio.sample-format";
 	::fluid_settings_foreach_option(m_pSetup->fluid_settings(),
-		"audio.sample-format", &data, qsynth_settings_foreach_option);
+	    audio_sample_fmt, &data, qsynth_settings_foreach_option);
 	m_ui.SampleFormatComboBox->clear();
 	m_ui.SampleFormatComboBox->addItems(data.options);
 
@@ -602,7 +605,7 @@ void qsynthSetupForm::updateMidiDevices ( const QString& sMidiDriver )
 	QString sName = "midi." + sMidiDriver + ".device";
 	data.options.clear();
 	::fluid_settings_foreach_option(m_pSetup->fluid_settings(),
-		(char *) sName.toUtf8().constData(), &data, qsynth_settings_foreach_option);
+		sName.toLocal8Bit().data(), &data, qsynth_settings_foreach_option);
 
 	m_ui.MidiDeviceComboBox->addItems(data.options);
 }
@@ -634,7 +637,7 @@ void qsynthSetupForm::updateAudioDevices ( const QString& sAudioDriver )
 	QString sName = "audio." + sAudioDriver + ".device";
 	data.options.clear();
 	::fluid_settings_foreach_option(m_pSetup->fluid_settings(),
-		(char *) sName.toUtf8().constData(), &data, qsynth_settings_foreach_option);
+		sName.toLocal8Bit().data(), &data, qsynth_settings_foreach_option);
 
 	m_ui.AudioDeviceComboBox->addItems(data.options);
 }
@@ -794,7 +797,7 @@ void qsynthSetupForm::openSoundFont (void)
 	QStringListIterator iter(soundfonts);
 	while (iter.hasNext()) {
 		const QString& sSoundFont = iter.next();
-		char *pszFilename = sSoundFont.toUtf8().data();
+		char *pszFilename = sSoundFont.toLocal8Bit().data();
 		// Is it a soundfont file...
 		if (::fluid_is_soundfont(pszFilename)) {
 			// Check if not already there...

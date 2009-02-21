@@ -55,7 +55,7 @@ public:
 
 	// Constructor.
 	qsynthApplication(int& argc, char **argv) : QApplication(argc, argv),
-		m_pQtTranslator(0), m_pMyTranslator(0), m_pWidget(0)	
+		m_pQtTranslator(0), m_pMyTranslator(0), m_pWidget(0)
 	{
 		// Load translation support.
 		QLocale loc;
@@ -71,9 +71,9 @@ public:
 				m_pQtTranslator = 0;
 		#ifdef CONFIG_DEBUG
 				qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
-					loc.name().toUtf8().constData(),
-					sLocPath.toUtf8().constData(),
-					sLocName.toUtf8().constData());
+					loc.name().toLocal8Bit().data(),
+					sLocPath.toLocal8Bit().data(),
+					sLocName.toLocal8Bit().data());
 		#endif
 			}
 			// Try own application translation...
@@ -90,9 +90,9 @@ public:
 					m_pMyTranslator = 0;
 		#ifdef CONFIG_DEBUG
 					qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
-						loc.name().toUtf8().constData(),
-						sLocPath.toUtf8().constData(),
-						sLocName.toUtf8().constData());
+						loc.name().toLocal8Bit().data(),
+						sLocPath.toLocal8Bit().data(),
+						sLocName.toLocal8Bit().data());
 		#endif
 				}
 			}
@@ -218,7 +218,7 @@ public:
 		return QApplication::x11EventFilter(pEv);
 	}
 #endif
-	
+
 private:
 
 	// Translation support.
