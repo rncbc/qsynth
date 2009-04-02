@@ -1,4 +1,4 @@
-Compiling qsynth-0.3.1 on Mac OS 10.4.10 (Tiger)
+Compiling qsynth-0.3.3 on Mac OS 10.5.6 (Leopard)
 ------------------------------------------------
 by: Ebrahim Mayat <emayat at users dot sourceforge dot net>
 
@@ -6,18 +6,17 @@ Requirements:
 
 - fluidsynth
 
-- X11.app (Tiger Install DVD)
-
 - XcodeTools.mpkg, X11SDK.pkg, DevSDK.pkg, CoreAudioSDK.pkg, OpenGLSDK.pkg and QuickTimeSDK.pkg <http://developer.apple.com>
 
 - Fink installation <http://fink.sourceforge.net>
 
-- qt4-x11 "$ fink install qt4-x11"
+- qt4-mac "$ fink install qt4-mac"
 
 Configure and make:
 
-$ PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure --with-qt=/sw/lib/qt4-x11 ; make
+PKG_CONFIG_PATH=/usr/local/lib/pkgconfig ./configure --with-qt=/sw/lib/qt4-mac "LDFAGS=-lfluidsynth" ; make
 
-Enjoy.
+You now have a clickable application icon. Enjoy.
+
 
 
