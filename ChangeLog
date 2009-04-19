@@ -5,6 +5,9 @@ ChangeLog
 
 CVS HEAD
 
+- Main form layout has been given a little bit more slack space, just
+  to accomodate some longer text label translations (eg. German).
+
 - Converted obsolete QMessageBox forms to standard buttons.
 
 - Saved channel presets are now effectively loaded on engine startup.
