@@ -25,8 +25,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>813</width>
-    <height>201</height>
+    <width>800</width>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -233,7 +233,7 @@
         <widget class="QGroupBox" name="GainGroupBox" >
          <property name="maximumSize" >
           <size>
-           <width>120</width>
+           <width>100</width>
            <height>120</height>
           </size>
          </property>
@@ -352,7 +352,7 @@
       <widget class="QGroupBox" name="ReverbGroupBox" >
        <property name="maximumSize" >
         <size>
-         <width>480</width>
+         <width>320</width>
          <height>150</height>
         </size>
        </property>
@@ -660,9 +660,9 @@
      </item>
      <item>
       <widget class="QGroupBox" name="ChorusGroupBox" >
-       <property name="maximumSize" >
+       <property name="minimumSize" >
         <size>
-         <width>480</width>
+         <width>320</width>
          <height>150</height>
         </size>
        </property>
@@ -1032,7 +1032,7 @@
       <widget class="QGroupBox" name="OutputGroupBox" >
        <property name="maximumSize" >
         <size>
-         <width>50</width>
+         <width>60</width>
          <height>150</height>
         </size>
        </property>
