@@ -660,7 +660,7 @@
      </item>
      <item>
       <widget class="QGroupBox" name="ChorusGroupBox" >
-       <property name="minimumSize" >
+       <property name="maximumSize" >
         <size>
          <width>320</width>
          <height>150</height>
