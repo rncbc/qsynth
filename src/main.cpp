@@ -246,7 +246,7 @@ int main ( int argc, char **argv )
 
 	// Construct default settings; override with command line arguments.
 	qsynthOptions settings;
-	if (!settings.parse_args(app.argc(), app.argv())) {
+	if (!settings.parse_args(app.arguments())) {
 		app.quit();
 		return 1;
 	}

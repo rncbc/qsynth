@@ -1,7 +1,7 @@
 // qsynthOptions.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2009, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -45,9 +45,9 @@ public:
 	~qsynthOptions();
 
 	// Command line arguments parser.
-	bool parse_args(int argc, char **argv);
+	bool parse_args(const QStringList& args);
 	// Command line usage helper.
-	void print_usage(const char *arg0);
+	void print_usage(const QString& arg0);
 
 	// Default instance setup accessor.
 	qsynthSetup *defaultSetup();
@@ -100,7 +100,7 @@ public:
 private:
 
 	// Special parsing of '-o' command-line option into fluidsynth settings.
-	bool parse_option(char *optarg);
+	bool parse_option(const QString& optarg);
 
 	// Settings member variables.
 	QSettings m_settings;

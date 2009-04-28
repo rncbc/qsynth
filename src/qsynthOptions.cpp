@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2009, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -142,7 +142,7 @@ qsynthSetup *qsynthOptions::defaultSetup (void)
 //
 
 // Help about command line options.
-void qsynthOptions::print_usage ( const char *arg0 )
+void qsynthOptions::print_usage ( const QString& arg0 )
 {
 	QTextStream out(stderr);
 	const QString sEot = "\n\t";
@@ -196,28 +196,23 @@ void qsynthOptions::print_usage ( const char *arg0 )
 
 
 // Special parsing of '-o' command-line option into fluidsynth settings.
-bool qsynthOptions::parse_option ( char *optarg )
+bool qsynthOptions::parse_option ( const QString& sOptArg )
 {
-	char *val;
-
-	for (val = optarg; *val; val++) {
-		if (*val == '=') {
-			*val++ = (char) 0;
-			break;
-		}
-	}
+	QString sKey = sOptArg.section('=', 0, 0);
+	QString sVal = sOptArg.section('=', 1, 1);
 
 	fluid_settings_t *pFluidSettings = m_pDefaultSetup->fluid_settings();
 
+	char *optarg = sKey.toUtf8().data();
 	switch (::fluid_settings_get_type(pFluidSettings, optarg)) {
 	case FLUID_NUM_TYPE:
-		if (::fluid_settings_setnum(pFluidSettings, optarg, ::atof(val)))
+		if (::fluid_settings_setnum(pFluidSettings, optarg, sVal.toFloat()))
 			break;
 	case FLUID_INT_TYPE:
-		if (::fluid_settings_setint(pFluidSettings, optarg, ::atoi(val)))
+		if (::fluid_settings_setint(pFluidSettings, optarg, sVal.toInt()))
 			break;
 	case FLUID_STR_TYPE:
-		if (::fluid_settings_setstr(pFluidSettings, optarg, val))
+		if (::fluid_settings_setstr(pFluidSettings, optarg, sVal.toUtf8().data()))
 			break;
 	default:
 		return false;
@@ -228,23 +223,24 @@ bool qsynthOptions::parse_option ( char *optarg )
 
 
 // Parse command line arguments into fluidsynth settings.
-bool qsynthOptions::parse_args ( int argc, char **argv )
+bool qsynthOptions::parse_args ( const QStringList& args )
 {
 	QTextStream out(stderr);
 	const QString sEol = "\n\n";
 	int iSoundFontOverride = 0;
+	int argc = args.count();
 
 	for (int i = 1; i < argc; i++) {
 
 		QString sVal;
-		QString sArg = argv[i];
+		QString sArg = args.at(i);
 		int iEqual = sArg.indexOf('=');
 		if (iEqual >= 0) {
 			sVal = sArg.right(sArg.length() - iEqual - 1);
 			sArg = sArg.left(iEqual);
 		}
-		else if (i < argc)
-			sVal = argv[i + 1];
+		else if (i < argc - 1)
+			sVal = args.at(i + 1);
 
 		if (sArg == "-n" || sArg == "--no-midi-in") {
 			m_pDefaultSetup->bMidiIn = false;
@@ -356,8 +352,8 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
 				out << QObject::tr("Option -o requires an argument.") + sEol;
 				return false;
 			}
-			if (!parse_option(argv[i])) {
-				out << QObject::tr("Option -o failed to set '%1'.").arg(argv[i]) + sEol;
+			if (!parse_option(args.at(i))) {
+				out << QObject::tr("Option -o failed to set '%1'.").arg(args.at(i)) + sEol;
 				return false;
 			}
 		}
@@ -374,7 +370,7 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
 			m_pDefaultSetup->bVerbose = true;
 		}
 		else if (sArg == "-h" || sArg == "--help") {
-			print_usage(argv[0]);
+			print_usage(args.at(0));
 			return false;
 		}
 		else if (sArg == "-V" || sArg == "--version") {
@@ -382,21 +378,24 @@ bool qsynthOptions::parse_args ( int argc, char **argv )
 			out << QObject::tr(QSYNTH_TITLE ": %1\n").arg(QSYNTH_VERSION);
 			return false;
 		}
-		else if (::fluid_is_soundfont(argv[i])) {
-			if (++iSoundFontOverride == 1) {
-				m_pDefaultSetup->soundfonts.clear();
-				m_pDefaultSetup->bankoffsets.clear();
-			}
-			m_pDefaultSetup->soundfonts.append(argv[i]);
-			m_pDefaultSetup->bankoffsets.append(QString::null);
-		}
-		else if (::fluid_is_midifile(argv[i])) {
-			m_pDefaultSetup->midifiles.append(argv[i]);
-		}
 		else {
-			out << QObject::tr("Unknown option '%1'.").arg(argv[i]) + sEol;
-			print_usage(argv[0]);
-			return false;
+			char *name = args.at(i).toUtf8().data();
+			if (::fluid_is_soundfont(name)) {
+				if (++iSoundFontOverride == 1) {
+					m_pDefaultSetup->soundfonts.clear();
+					m_pDefaultSetup->bankoffsets.clear();
+				}
+				m_pDefaultSetup->soundfonts.append(name);
+				m_pDefaultSetup->bankoffsets.append(QString::null);
+			}
+			else if (::fluid_is_midifile(name)) {
+				m_pDefaultSetup->midifiles.append(name);
+			}
+			else {
+				out << QObject::tr("Unknown option '%1'.").arg(name) + sEol;
+				print_usage(args.at(0));
+				return false;
+			}
 		}
 	}
 

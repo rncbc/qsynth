@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.3.15, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.3.16, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
@@ -37,7 +37,7 @@ AC_ARG_ENABLE(system_tray,
 ac_with_paths="/usr /usr/local"
 
 # Some a-la-debian alternatives...
-for X in /usr/lib /usr/share; do
+for X in /usr/lib /usr/lib64 /usr/share; do
   for Y in qt qt4; do
     if test -d $X/$Y/bin; then
       ac_with_paths="$ac_with_paths $X/$Y"
