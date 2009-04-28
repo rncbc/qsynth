@@ -927,7 +927,7 @@ void qsynthMainForm::updateOutputMeters (void)
 	else
 		m_ui.OutputGroupBox->hide();
 
-	adjustSize();
+//	adjustSize();
 }
 
 

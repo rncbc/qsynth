@@ -231,12 +231,6 @@
        </item>
        <item rowspan="3" row="0" column="0" >
         <widget class="QGroupBox" name="GainGroupBox" >
-         <property name="maximumSize" >
-          <size>
-           <width>100</width>
-           <height>120</height>
-          </size>
-         </property>
          <property name="font" >
           <font>
            <weight>75</weight>
@@ -350,12 +344,6 @@
      </item>
      <item>
       <widget class="QGroupBox" name="ReverbGroupBox" >
-       <property name="maximumSize" >
-        <size>
-         <width>320</width>
-         <height>150</height>
-        </size>
-       </property>
        <property name="font" >
         <font>
          <weight>75</weight>
@@ -660,12 +648,6 @@
      </item>
      <item>
       <widget class="QGroupBox" name="ChorusGroupBox" >
-       <property name="maximumSize" >
-        <size>
-         <width>320</width>
-         <height>150</height>
-        </size>
-       </property>
        <property name="font" >
         <font>
          <weight>75</weight>
@@ -1030,12 +1012,6 @@
      </item>
      <item>
       <widget class="QGroupBox" name="OutputGroupBox" >
-       <property name="maximumSize" >
-        <size>
-         <width>60</width>
-         <height>150</height>
-        </size>
-       </property>
        <property name="font" >
         <font>
          <weight>75</weight>

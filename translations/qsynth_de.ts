@@ -489,242 +489,242 @@
         <translation>Alt+G</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="247"/>
+        <location filename="../src/qsynthMainForm.ui" line="241"/>
         <source>Master</source>
         <translation>Ausgang</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="265"/>
+        <location filename="../src/qsynthMainForm.ui" line="259"/>
         <source>&amp;Gain</source>
         <translation>&amp;Verstärkung</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="320"/>
+        <location filename="../src/qsynthMainForm.ui" line="314"/>
         <source>Master Gain</source>
         <translation>Verstärkereinstellung für Ausgangsignal</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="336"/>
+        <location filename="../src/qsynthMainForm.ui" line="330"/>
         <source>System reset</source>
         <translation>System zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="339"/>
+        <location filename="../src/qsynthMainForm.ui" line="333"/>
         <source>&amp;Panic</source>
         <translation>&amp;Panik</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="345"/>
+        <location filename="../src/qsynthMainForm.ui" line="339"/>
         <source>Alt+P</source>
         <translation>Alt+P</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="366"/>
+        <location filename="../src/qsynthMainForm.ui" line="354"/>
         <source>Reverb</source>
         <translation>Hall</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="384"/>
+        <location filename="../src/qsynthMainForm.ui" line="372"/>
         <source>Reverb effect activation</source>
         <translation>Halleffekt aktivieren</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="387"/>
+        <location filename="../src/qsynthMainForm.ui" line="375"/>
         <source>Ac&amp;tive</source>
         <translation>Ak&amp;tiv</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="390"/>
+        <location filename="../src/qsynthMainForm.ui" line="378"/>
         <source>Alt+T</source>
         <translation>Alt+T</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="422"/>
+        <location filename="../src/qsynthMainForm.ui" line="410"/>
         <source>Reverb Level</source>
         <translation>Hallintensität</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="447"/>
+        <location filename="../src/qsynthMainForm.ui" line="435"/>
         <source>&amp;Level</source>
         <translation>I&amp;ntensität</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="510"/>
+        <location filename="../src/qsynthMainForm.ui" line="498"/>
         <source>Reverb Width</source>
         <translation>Entfernung zur Schallquelle (Hallradius)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="488"/>
+        <location filename="../src/qsynthMainForm.ui" line="476"/>
         <source>&amp;Width</source>
         <translation>&amp;Entf.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="576"/>
+        <location filename="../src/qsynthMainForm.ui" line="564"/>
         <source>Reverb Damp Factor</source>
         <translation>Halldämpfung</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="554"/>
+        <location filename="../src/qsynthMainForm.ui" line="542"/>
         <source>D&amp;amp</source>
         <translation>D&amp;ämpfung</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="642"/>
+        <location filename="../src/qsynthMainForm.ui" line="630"/>
         <source>Reverb Room Size</source>
         <translation>Hallraumgröße</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="620"/>
+        <location filename="../src/qsynthMainForm.ui" line="608"/>
         <source>R&amp;oom</source>
         <translation>Ra&amp;um</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="676"/>
+        <location filename="../src/qsynthMainForm.ui" line="658"/>
         <source>Chorus</source>
         <translation>Chor</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="694"/>
+        <location filename="../src/qsynthMainForm.ui" line="676"/>
         <source>Chorus Modulation Type</source>
         <translation>Typ für Chor-Modulation</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="698"/>
+        <location filename="../src/qsynthMainForm.ui" line="680"/>
         <source>Sine</source>
         <translation>Sinus</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="703"/>
+        <location filename="../src/qsynthMainForm.ui" line="685"/>
         <source>Triangle</source>
         <translation>Dreieck</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="717"/>
+        <location filename="../src/qsynthMainForm.ui" line="699"/>
         <source>T&amp;ype:</source>
         <translation>T&amp;yp:</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="739"/>
+        <location filename="../src/qsynthMainForm.ui" line="721"/>
         <source>Chorus effect activation</source>
         <translation>Choreffekt aktivieren</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="742"/>
+        <location filename="../src/qsynthMainForm.ui" line="724"/>
         <source>Act&amp;ive</source>
         <translation>&amp;Aktiv</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="745"/>
+        <location filename="../src/qsynthMainForm.ui" line="727"/>
         <source>Alt+I</source>
         <translation>Alt+A</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="805"/>
+        <location filename="../src/qsynthMainForm.ui" line="787"/>
         <source>Number of Chorus Stages</source>
         <translation>Anzahl der Chorstimmen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="783"/>
+        <location filename="../src/qsynthMainForm.ui" line="765"/>
         <source>&amp;N</source>
         <translation>&amp;Stimmen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="874"/>
+        <location filename="../src/qsynthMainForm.ui" line="856"/>
         <source>Chorus Level</source>
         <translation>Chorintensität</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="852"/>
+        <location filename="../src/qsynthMainForm.ui" line="834"/>
         <source>Le&amp;vel</source>
         <translation>&amp;Intensität</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="949"/>
+        <location filename="../src/qsynthMainForm.ui" line="931"/>
         <source>Chorus Speed (Hz)</source>
         <translation>Modulationsrate (Hz)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="924"/>
+        <location filename="../src/qsynthMainForm.ui" line="906"/>
         <source>Chorus Speed Hz</source>
         <translation>Modulationsrate Hz</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="927"/>
+        <location filename="../src/qsynthMainForm.ui" line="909"/>
         <source>Spee&amp;d</source>
         <translation>Ra&amp;te</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1018"/>
+        <location filename="../src/qsynthMainForm.ui" line="1000"/>
         <source>Chorus Depth (ms)</source>
         <translation>Stimmtrennzeit (ms)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="996"/>
+        <location filename="../src/qsynthMainForm.ui" line="978"/>
         <source>Dept&amp;h</source>
         <translation>Trenn&amp;zeit</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1058"/>
+        <location filename="../src/qsynthMainForm.ui" line="1034"/>
         <source>Output peak level</source>
         <translation>Ausgangspegelanzeige</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1078"/>
+        <location filename="../src/qsynthMainForm.ui" line="1054"/>
         <source>Quit this application</source>
         <translation>Diese Anwendung beenden</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1081"/>
+        <location filename="../src/qsynthMainForm.ui" line="1057"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1087"/>
+        <location filename="../src/qsynthMainForm.ui" line="1063"/>
         <source>Alt+Q</source>
         <translation>Alt+B</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1097"/>
+        <location filename="../src/qsynthMainForm.ui" line="1073"/>
         <source>Show general options dialog</source>
         <translation>Dialog für die allgemeinen Optionen anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1100"/>
+        <location filename="../src/qsynthMainForm.ui" line="1076"/>
         <source>&amp;Options...</source>
         <translation>&amp;Optionen...</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1106"/>
+        <location filename="../src/qsynthMainForm.ui" line="1082"/>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1116"/>
+        <location filename="../src/qsynthMainForm.ui" line="1092"/>
         <source>Show/hide the messages log window</source>
         <translation>Meldungsfenster anzeigen/verbergen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1119"/>
+        <location filename="../src/qsynthMainForm.ui" line="1095"/>
         <source>&amp;Messages</source>
         <translation>&amp;Meldungen...</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1125"/>
+        <location filename="../src/qsynthMainForm.ui" line="1101"/>
         <source>Alt+M</source>
         <translation>Alt+M</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1138"/>
+        <location filename="../src/qsynthMainForm.ui" line="1114"/>
         <source>Show information about this application</source>
         <translation>Informationen über diese Anwendung anzeigen</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1141"/>
+        <location filename="../src/qsynthMainForm.ui" line="1117"/>
         <source>A&amp;bout...</source>
         <translation>&amp;Über...</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.ui" line="1147"/>
+        <location filename="../src/qsynthMainForm.ui" line="1123"/>
         <source>Alt+B</source>
         <translation>Alt+B</translation>
     </message>
