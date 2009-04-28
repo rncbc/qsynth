@@ -113,79 +113,79 @@
         <translation>Mostrar información de la versión</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="254"/>
+        <location filename="../src/qsynthOptions.cpp" line="250"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>La opción -m requiere un argumento (controlador MIDI).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="263"/>
+        <location filename="../src/qsynthOptions.cpp" line="259"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>La opción -K requiere un argumento (canales MIDI).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="272"/>
+        <location filename="../src/qsynthOptions.cpp" line="268"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>La opción -a requiere un argumento (controlador de audio).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="284"/>
+        <location filename="../src/qsynthOptions.cpp" line="280"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>La opción -L requiere un argumento (canales de audio).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="293"/>
+        <location filename="../src/qsynthOptions.cpp" line="289"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>La opción -G requiere un argumento (grupos de audio).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="302"/>
+        <location filename="../src/qsynthOptions.cpp" line="298"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>La opción -z requiere un argumento (tamaño de memoria intermedia de audio).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="311"/>
+        <location filename="../src/qsynthOptions.cpp" line="307"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>La opción -c requiere un argumento (número de memorias intermedias de audio).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="320"/>
+        <location filename="../src/qsynthOptions.cpp" line="316"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>La opción -r requiere un argumento (frecuencia de muestreo).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="329"/>
+        <location filename="../src/qsynthOptions.cpp" line="325"/>
         <source>Option -R requires an argument (reverb).</source>
         <translation>La opción -R requiere un argumento (reverberación).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="338"/>
+        <location filename="../src/qsynthOptions.cpp" line="334"/>
         <source>Option -C requires an argument (chorus).</source>
         <translation>La opción -C requiere un argumento (coro).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="347"/>
+        <location filename="../src/qsynthOptions.cpp" line="343"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>La opción -g requiere un argumento (ganancia).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="356"/>
+        <location filename="../src/qsynthOptions.cpp" line="352"/>
         <source>Option -o requires an argument.</source>
         <translation>La opción -o requiere un argumento.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="360"/>
+        <location filename="../src/qsynthOptions.cpp" line="356"/>
         <source>Option -o failed to set &apos;%1&apos;.</source>
         <translation>La opción -o ha fallado al establecer &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="381"/>
+        <location filename="../src/qsynthOptions.cpp" line="377"/>
         <source>Qt: %1
 </source>
         <translation>Qt: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="397"/>
+        <location filename="../src/qsynthOptions.cpp" line="395"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Opción desconocida &apos;%1&apos;.</translation>
     </message>
