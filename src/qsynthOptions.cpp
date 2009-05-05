@@ -195,33 +195,6 @@ void qsynthOptions::print_usage ( const QString& arg0 )
 }
 
 
-// Special parsing of '-o' command-line option into fluidsynth settings.
-bool qsynthOptions::parse_option ( const QString& sOptArg )
-{
-	QString sKey = sOptArg.section('=', 0, 0);
-	QString sVal = sOptArg.section('=', 1, 1);
-
-	fluid_settings_t *pFluidSettings = m_pDefaultSetup->fluid_settings();
-
-	char *optarg = sKey.toUtf8().data();
-	switch (::fluid_settings_get_type(pFluidSettings, optarg)) {
-	case FLUID_NUM_TYPE:
-		if (::fluid_settings_setnum(pFluidSettings, optarg, sVal.toFloat()))
-			break;
-	case FLUID_INT_TYPE:
-		if (::fluid_settings_setint(pFluidSettings, optarg, sVal.toInt()))
-			break;
-	case FLUID_STR_TYPE:
-		if (::fluid_settings_setstr(pFluidSettings, optarg, sVal.toUtf8().data()))
-			break;
-	default:
-		return false;
-	}
-
-	return true;
-}
-
-
 // Parse command line arguments into fluidsynth settings.
 bool qsynthOptions::parse_args ( const QStringList& args )
 {
@@ -230,7 +203,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 	int iSoundFontOverride = 0;
 	int argc = args.count();
 
-	for (int i = 1; i < argc; i++) {
+	for (int i = 1; i < argc; ++i) {
 
 		QString sVal;
 		QString sArg = args.at(i);
@@ -352,10 +325,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 				out << QObject::tr("Option -o requires an argument.") + sEol;
 				return false;
 			}
-			if (!parse_option(args.at(i))) {
-				out << QObject::tr("Option -o failed to set '%1'.").arg(args.at(i)) + sEol;
-				return false;
-			}
+			m_pDefaultSetup->options.append(args.at(i));
 		}
 		else if (sArg == "-s" || sArg == "--server") {
 			m_pDefaultSetup->bServer = true;

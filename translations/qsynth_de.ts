@@ -118,79 +118,79 @@
         <translation>Zeige Versionsinformation an</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="250"/>
+        <location filename="../src/qsynthOptions.cpp" line="223"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>Option -m benötigt ein Argument (midi-driver).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="259"/>
+        <location filename="../src/qsynthOptions.cpp" line="232"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>Option -K benötigt ein Argument (midi-channels).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="268"/>
+        <location filename="../src/qsynthOptions.cpp" line="241"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>Option -a benötigt ein Argument (audio-driver).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="280"/>
+        <location filename="../src/qsynthOptions.cpp" line="253"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>Option -L benötigt ein Argument (audio-channels).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="289"/>
+        <location filename="../src/qsynthOptions.cpp" line="262"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>Option -G benötigt ein Argument (audio-groups).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="298"/>
+        <location filename="../src/qsynthOptions.cpp" line="271"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>Option -z benötigt ein Argument (audio-bufsize).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="307"/>
+        <location filename="../src/qsynthOptions.cpp" line="280"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>Option -c benötigt ein Argument (audio-bufcount).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="316"/>
+        <location filename="../src/qsynthOptions.cpp" line="289"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>Option -R benötigt ein Argument (sample-rate).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="325"/>
+        <location filename="../src/qsynthOptions.cpp" line="298"/>
         <source>Option -R requires an argument (reverb).</source>
         <translation>Option -R benötigt ein Argument (reverb).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="334"/>
+        <location filename="../src/qsynthOptions.cpp" line="307"/>
         <source>Option -C requires an argument (chorus).</source>
         <translation>Option -C benötigt ein Argument (chorus).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="343"/>
+        <location filename="../src/qsynthOptions.cpp" line="316"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Option -g benötigt ein Argument (gain).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="352"/>
+        <location filename="../src/qsynthOptions.cpp" line="325"/>
         <source>Option -o requires an argument.</source>
         <translation>Option -o benötigt ein Argument.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="356"/>
+        <location filename="../src/qsynthOptions.cpp" line="361"/>
         <source>Option -o failed to set &apos;%1&apos;.</source>
-        <translation>Fehler beim Setzen der Option -o &apos;%1&apos;.</translation>
+        <translation type="obsolete">Fehler beim Setzen der Option -o &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="377"/>
+        <location filename="../src/qsynthOptions.cpp" line="347"/>
         <source>Qt: %1
 </source>
         <translation>Qt: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="395"/>
+        <location filename="../src/qsynthOptions.cpp" line="365"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Unbekannte Option: &apos;%1&apos;.</translation>
     </message>
@@ -384,16 +384,6 @@
         <location filename="../src/qsynthChannelsForm.cpp" line="405"/>
         <source>Are you sure?</source>
         <translation>Sind Sie sicher?</translation>
-    </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
     </message>
 </context>
 <context>
@@ -759,16 +749,6 @@ Kontextmenü des Symbols im Benachrichtigungsfeld.</translation>
         <translation>Sind Sie sicher?</translation>
     </message>
     <message>
-        <location filename="" line="0"/>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
-    <message>
         <location filename="../src/qsynthMainForm.cpp" line="726"/>
         <source>Loading soundfont: &quot;%1&quot;</source>
         <translation>Lade Soundfont: &quot;%1&quot;</translation>
@@ -1026,16 +1006,6 @@ MIDI- und Audiounterbrechungen verursacht.</translation>
         <location filename="../src/qsynthMainForm.cpp" line="1931"/>
         <source>Do you want to restart all engines now?</source>
         <translation>Möchten Sie nun alle Klangmodule neu starten?</translation>
-    </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>Yes</source>
-        <translation type="obsolete">Ja</translation>
-    </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>No</source>
-        <translation type="obsolete">Nein</translation>
     </message>
     <message>
         <location filename="../src/qsynthMainForm.cpp" line="1957"/>
@@ -1304,16 +1274,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../src/qsynthOptionsForm.cpp" line="232"/>
         <source>Do you want to apply the changes?</source>
         <translation>Möchten Sie die Änderungen anwenden?</translation>
-    </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>Apply</source>
-        <translation type="obsolete">Anwenden</translation>
-    </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>Discard</source>
-        <translation type="obsolete">Verwerfen</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.cpp" line="288"/>
@@ -2025,16 +1985,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../src/qsynthSetupForm.cpp" line="552"/>
         <source>Do you want to apply the changes?</source>
         <translation>Möchten Sie die Änderungen anwenden?</translation>
-    </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>Apply</source>
-        <translation type="obsolete">Anwenden</translation>
-    </message>
-    <message>
-        <location filename="" line="0"/>
-        <source>Discard</source>
-        <translation type="obsolete">Verwerfen</translation>
     </message>
     <message>
         <location filename="../src/qsynthSetupForm.cpp" line="744"/>

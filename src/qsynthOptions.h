@@ -99,9 +99,6 @@ public:
 
 private:
 
-	// Special parsing of '-o' command-line option into fluidsynth settings.
-	bool parse_option(const QString& optarg);
-
 	// Settings member variables.
 	QSettings m_settings;
 	

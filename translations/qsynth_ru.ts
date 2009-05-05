@@ -108,62 +108,62 @@
         <translation>Показать информацию о версии</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="250"/>
+        <location filename="../src/qsynthOptions.cpp" line="223"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>Ключ -m требует аргумента (midi-driver).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="259"/>
+        <location filename="../src/qsynthOptions.cpp" line="232"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>Ключ -K требует аргумента (midi-channels).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="268"/>
+        <location filename="../src/qsynthOptions.cpp" line="241"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>Ключ -a требует аргумента (audio-driver).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="280"/>
+        <location filename="../src/qsynthOptions.cpp" line="253"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>Ключ -L требует аргумента (audio-channels).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="289"/>
+        <location filename="../src/qsynthOptions.cpp" line="262"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>Ключ -G требует аргумента (audio-groups).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="298"/>
+        <location filename="../src/qsynthOptions.cpp" line="271"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>Ключ -a требует аргумента (audio-bufsize).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="307"/>
+        <location filename="../src/qsynthOptions.cpp" line="280"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>Ключ -c требует аргумента (audio-bufcount).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="316"/>
+        <location filename="../src/qsynthOptions.cpp" line="289"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>Ключ -r требует аргумента (sample-rate).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="325"/>
+        <location filename="../src/qsynthOptions.cpp" line="298"/>
         <source>Option -R requires an argument (reverb).</source>
         <translation>Ключ -R требует аргумента (reverb).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="334"/>
+        <location filename="../src/qsynthOptions.cpp" line="307"/>
         <source>Option -C requires an argument (chorus).</source>
         <translation>Ключ -C требует аргумента (chorus).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="343"/>
+        <location filename="../src/qsynthOptions.cpp" line="316"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Ключ -g требует аргумента (gain).</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="352"/>
+        <location filename="../src/qsynthOptions.cpp" line="325"/>
         <source>Option -o requires an argument.</source>
         <translation>Ключ -o требует аргумента.</translation>
     </message>
@@ -178,19 +178,19 @@
         <translation>Использование: %1 [ключи] [файлы SF2] [файлы MIDI]</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="356"/>
+        <location filename="../src/qsynthOptions.cpp" line="361"/>
         <source>Option -o failed to set &apos;%1&apos;.</source>
-        <translation>Ключу -o не удалось установить &apos;%1&apos;.</translation>
+        <translation type="obsolete">Ключу -o не удалось установить &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="377"/>
+        <location filename="../src/qsynthOptions.cpp" line="347"/>
         <source>Qt: %1
 </source>
         <translation>Qt: %1
 </translation>
     </message>
     <message>
-        <location filename="../src/qsynthOptions.cpp" line="395"/>
+        <location filename="../src/qsynthOptions.cpp" line="365"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>неизвестный ключ &apos;%1&apos;.</translation>
     </message>
