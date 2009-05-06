@@ -76,29 +76,7 @@ void qsynthSetup::realize (void)
 	char *pszKey;
 	char *pszVal;
 
-	// First we set user supplied options...
-	QStringListIterator iter(options);
-	while (iter.hasNext()) {
-		const QString sOpt = iter.next();
-		const QString sKey = sOpt.section('=', 0, 0);
-		const QString sVal = sOpt.section('=', 1, 1);
-		pszKey = sKey.toLocal8Bit().data();
-		pszVal = sVal.toLocal8Bit().data();
-		switch (::fluid_settings_get_type(m_pFluidSettings, pszKey)) {
-		case FLUID_NUM_TYPE:
-			::fluid_settings_setnum(m_pFluidSettings, pszKey, sVal.toFloat());
-			break;
-		case FLUID_INT_TYPE:
-			::fluid_settings_setint(m_pFluidSettings, pszKey, sVal.toInt());
-			break;
-		case FLUID_STR_TYPE:
-		default:
-			::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
-			break;
-		}
-	}
-
-	// Next we'll force all other conmmand line options...
+	// First we'll force all other conmmand line options...
 	if (!sMidiDriver.isEmpty()) {
 		pszKey = (char *) "midi.driver";
 		::fluid_settings_setstr(m_pFluidSettings, pszKey,
@@ -217,6 +195,28 @@ void qsynthSetup::realize (void)
     pszKey = (char *) "synth.verbose";
     pszVal = (char *) (bVerbose ? "yes" : "no");
 	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+
+	// Last we set user supplied options...
+	QStringListIterator iter(options);
+	while (iter.hasNext()) {
+		const QString sOpt = iter.next();
+		const QString sKey = sOpt.section('=', 0, 0);
+		const QString sVal = sOpt.section('=', 1, 1);
+		pszKey = sKey.toLocal8Bit().data();
+		switch (::fluid_settings_get_type(m_pFluidSettings, pszKey)) {
+		case FLUID_NUM_TYPE:
+			::fluid_settings_setnum(m_pFluidSettings, pszKey, sVal.toFloat());
+			break;
+		case FLUID_INT_TYPE:
+			::fluid_settings_setint(m_pFluidSettings, pszKey, sVal.toInt());
+			break;
+		case FLUID_STR_TYPE:
+		default:
+			pszVal = sVal.toLocal8Bit().data();
+			::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+			break;
+		}
+	}
 }
 
 

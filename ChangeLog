@@ -6,8 +6,8 @@ ChangeLog
 CVS HEAD
 
 - Command line option parsing has been slightly refactored to allow
-  extraordinary custom fluidsynth settings (eg. -o name=value; fixes
-  bug #2781579 at last).
+  custom override through extraordinary fluidsynth option settings
+  (eg. -o name=value; fixes bug #2781579).
 
 - Main form layout has been given a little bit more slack space, just
   to accomodate some longer text label translations (eg. German).
