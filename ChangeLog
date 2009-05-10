@@ -3,14 +3,14 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-CVS HEAD
+0.3.4  2009-05-10  New release.
 
 - Command line option parsing has been slightly refactored to allow
   custom override through extraordinary fluidsynth option settings
   (eg. -o name=value; fixes bug #2781579).
 
 - Main form layout has been given a little bit more slack space, just
-  to accomodate some longer text label translations (eg. German).
+  to accommodate some longer text label translations (eg. German).
 
 - Converted obsolete QMessageBox forms to standard buttons.
 

@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 8
+%define release 9
 %define prefix  @ac_prefix@
 
 Summary:	A fluidsynth Qt GUI Interface
@@ -47,10 +47,14 @@ command line softsynths.
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/locale/%{name}_de.qm
 %{_datadir}/locale/%{name}_es.qm
+%{_datadir}/locale/%{name}_ru.qm
 
 %changelog
+* Sun May 10 2009 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.4
+- New release 0.3.4.
+- Added russian translation.
 * Mon Jun 23 2008 Rui Nuno Capela <rncbc@users.sourceforge.net>
-- Added germand and spanish translations.
+- Added german and spanish translations.
 * Wed Dec 19 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
 - Minor stealth fixes and season greetings.
 * Mon Jul 16 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
