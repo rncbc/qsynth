@@ -17,7 +17,7 @@ Packager:	rncbc.org
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires:	qt-devel >= 4.1
-BuildRequires:	fluidsynth-devel >= 1.0.7
+BuildRequires:	libfluidsynth-devel >= 1.0.8
 
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
