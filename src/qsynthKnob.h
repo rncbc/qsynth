@@ -1,12 +1,11 @@
 // qsynthKnob.h
 //
 /****************************************************************************
-   Copyright (C) 2005-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2005-2009, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This widget is based on a design by Thorsten Wilms, 
    implemented by Chris Cannam in Rosegarden,
-   adapted for QSynth by Pedro Lopez-Cabanillas,
-   improved for Qt4 by David Garc�a Garzon.
+   adapted for QSynth by Pedro Lopez-Cabanillas
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -28,17 +27,16 @@
 #define __qsynthKnob_h
 
 #include <QDial>
-#include <QMap>
 
 
 //-------------------------------------------------------------------------
-// qsynthKnob - A better QDial for QSynth.
+// qsynthKnob - A better QDial for everybody
 
 class qsynthKnob : public QDial
 {
 	Q_OBJECT
-	Q_PROPERTY( int defaultValue READ getDefaultValue WRITE setDefaultValue )
-	Q_PROPERTY( DialMode dialMode READ getDialMode WRITE setDialMode )
+	Q_PROPERTY(int defaultValue READ getDefaultValue WRITE setDefaultValue)
+	Q_PROPERTY(DialMode dialMode READ getDialMode WRITE setDialMode)
 	Q_ENUMS(DialMode)
 
 public:
@@ -51,11 +49,11 @@ public:
 	int getDefaultValue() const { return m_iDefaultValue; }
 
 	// Knob dial mode behavior:
-	// QDialMode   - Old QDial BEHAVIOUR.
-	// AngularMode - Angularly relative to widget center.
-	// LinearMode  - Proportionally to distance in one ortogonal axis.
+	// DefaultMode - default (old) QDial behavior.
+	// AngularMode - angularly relative to widget center.
+	// LinearMode  - proportionally to distance in one ortogonal axis.
 
-	enum DialMode {	QDialMode, AngularMode, LinearMode };
+	enum DialMode { DefaultMode, AngularMode, LinearMode };
 
 	DialMode getDialMode() const { return m_dialMode; }
 
@@ -70,7 +68,7 @@ public slots:
 protected:
 
 	// Mouse angle determination.
-	double mouseAngle(const QPoint& pos);
+	float mouseAngle(const QPoint& pos);
 
 	// Alternate mouse behavior event handlers.
 	virtual void mousePressEvent(QMouseEvent *pMouseEvent);
@@ -91,7 +89,7 @@ private:
 	QPoint m_posMouse;
 
 	// Just for more precission on the movement
-	double m_lastDragValue;
+	float m_fLastDragValue;
 };
 
 

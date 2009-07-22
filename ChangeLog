@@ -3,6 +3,16 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+CVS HEAD
+
+- Minimum number of MIDI channels allowed on engine setup has been
+  dropped from the old value 16 to as low as 1 (one), not that it
+  makes a difference, as (lib)fluidsynth internals just rounds it
+  to the nearest multiple of 16 anyway.
+
+- Cleanup to knobs source, simplified from redundant stuff.
+
+
 0.3.4  2009-05-10  New release.
 
 - Command line option parsing has been slightly refactored to allow
