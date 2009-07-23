@@ -5,6 +5,10 @@ ChangeLog
 
 CVS HEAD
 
+- The channel preset selector (Channels/Edit...) has been seriously
+  crippled for ages, only showing the presets of the last loaded
+  soundfont, now fixed.
+
 - Minimum number of MIDI channels allowed on engine setup has been
   dropped from the old value 16 to as low as 1 (one), not that it
   makes a difference, as (lib)fluidsynth internals just rounds it

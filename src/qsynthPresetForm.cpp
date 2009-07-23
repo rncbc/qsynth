@@ -1,7 +1,7 @@
 // qsynthPresetForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2007, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2009, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -138,13 +138,14 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 		+ tr("Channel %1").arg(m_iChan + 1));
 
 	// Load bank list from actual synth stack...
+	m_ui.BankListView->setUpdatesEnabled(false);
 	m_ui.BankListView->setSortingEnabled(false);
 	m_ui.BankListView->clear();
 	fluid_preset_t preset;
 	QTreeWidgetItem *pBankItem = NULL;
 	// For all soundfonts (in reversed stack order) fill the available banks...
 	int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
-	for (int i = 0; i < cSoundFonts; i++) {
+	for (int i = 0; i < cSoundFonts; ++i) {
 		fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
 		if (pSoundFont) {
 #ifdef CONFIG_FLUID_BANK_OFFSET
@@ -165,6 +166,7 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 		}
 	}
 	m_ui.BankListView->setSortingEnabled(true);
+	m_ui.BankListView->setUpdatesEnabled(true);
 
 	// Set the selected bank.
 	m_iBank = 0;
@@ -301,13 +303,14 @@ void qsynthPresetForm::bankChanged (void)
 	int iBankSelected = pBankItem->text(0).toInt();
 
 	// Clear up the program listview.
+	m_ui.ProgListView->setUpdatesEnabled(false);
 	m_ui.ProgListView->setSortingEnabled(false);
 	m_ui.ProgListView->clear();
 	fluid_preset_t preset;
 	QTreeWidgetItem *pProgItem = NULL;
 	// For all soundfonts (in reversed stack order) fill the available programs...
 	int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
-	for (int i = 0; i < cSoundFonts && !pProgItem; i++) {
+	for (int i = 0; i < cSoundFonts; ++i) {
 		fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
 		if (pSoundFont) {
 #ifdef CONFIG_FLUID_BANK_OFFSET
@@ -334,6 +337,7 @@ void qsynthPresetForm::bankChanged (void)
 		}
 	}
 	m_ui.ProgListView->setSortingEnabled(true);
+	m_ui.ProgListView->setUpdatesEnabled(true);
 
 	// Stabilize the form.
 	stabilizeForm();
