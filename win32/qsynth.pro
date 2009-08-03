@@ -62,6 +62,8 @@ win32 {
     RC_FILE = qsynth.rc
 }
 LIBS += -lfluidsynth
-TRANSLATIONS = ../translations/qsynth_de.ts \
+TRANSLATIONS = \
+    ../translations/qsynth_cs.ts \
+    ../translations/qsynth_de.ts \
     ../translations/qsynth_es.ts \
     ../translations/qsynth_ru.ts

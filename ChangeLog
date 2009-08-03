@@ -5,6 +5,8 @@ ChangeLog
 
 CVS HEAD
 
+- Added Czech (cs) translation, contributed by Pavel Fric.
+
 - The channel preset selector (Channels/Edit...) has been seriously
   crippled for ages, only showing the presets of the last loaded
   soundfont, now fixed.

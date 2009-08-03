@@ -61,6 +61,7 @@ translations_sources = \
 	translations/qsynth_ru.ts
 
 translations_targets = \
+	translations/qsynth_cs.qm \
 	translations/qsynth_de.qm \
 	translations/qsynth_es.qm \
 	translations/qsynth_ru.qm
