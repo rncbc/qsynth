@@ -5,6 +5,13 @@ ChangeLog
 
 CVS HEAD
 
+- Output peak level meters get their long deserved gradient look.
+
+- Automatic crash-dump reports, debugger stack-traces (gdb), back-
+  traces, whatever, are being introduced as a brand new configure
+  option (--enable-stacktrace) and default enabled on debug build
+  targets (--enable-debug).
+
 - Added Czech (cs) translation, contributed by Pavel Fric.
 
 - The channel preset selector (Channels/Edit...) has been seriously

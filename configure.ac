@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.4.3, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.4.4, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
@@ -21,17 +21,31 @@ AC_ARG_ENABLE(debug,
 
 if test "x$ac_debug" = "xyes"; then
    AC_DEFINE(CONFIG_DEBUG, 1, [Define if debugging is enabled.])
+   ac_stacktrace="yes"
    ac_debug="debug"
 else
+   ac_stacktrace="no"
    ac_debug="release"
 fi
 AC_SUBST(ac_debug)
 
-# Disable system tray argument option.
+# Enable system tray argument option.
 AC_ARG_ENABLE(system_tray,
   AC_HELP_STRING([--enable-system-tray], [enable system tray (default=yes)]),
   [ac_system_tray="$enableval"],
   [ac_system_tray="yes"])
+
+# Enable gradient eye-candy.
+AC_ARG_ENABLE(gradient,
+  AC_HELP_STRING([--enable-gradient], [enable gradient eye-candy (default=yes)]),
+  [ac_gradient="$enableval"],
+  [ac_gradient="yes"])
+
+# Enable debugger stack-trace option (assumes --enable-debug).
+AC_ARG_ENABLE(stacktrace,
+  AC_HELP_STRING([--enable-stacktrace], [enable debugger stack-trace (default=no)]),
+  [ac_stacktrace="$enableval"])
+
 
 # Standard installation base dirs.
 ac_with_paths="/usr /usr/local"
@@ -168,7 +182,7 @@ else
 fi
 
 AC_SUBST(ac_libs)
-AC_SUBST(ac_incpath)
+
 
 # Checks for header files.
 AC_HEADER_STDC
@@ -180,6 +194,19 @@ AC_CHECK_HEADER(fluidsynth.h, [ac_fluidsynth_h="yes"], [ac_fluidsynth_h="no"])
 if test "x$ac_fluidsynth_h" = "xno"; then
    AC_MSG_ERROR([fluidsynth headers not found.])
 fi
+
+# Check for gradient eye-candy.
+if test "x$ac_gradient" = "xyes"; then
+   AC_DEFINE(CONFIG_GRADIENT, 1, [Define if gradient eye-candy is enabled.])
+fi
+
+# Check for debugging stack-trace.
+if test "x$ac_stacktrace" = "xyes"; then
+   AC_DEFINE(CONFIG_STACKTRACE, 1, [Define if debugger stack-trace is enabled.])
+fi
+
+AC_SUBST(ac_incpath)
+
 
 # Checks for typedefs, structures, and compiler characteristics.
 # AC_C_CONST
@@ -233,6 +260,9 @@ echo "  FluisSynth server support  . . . . . . . . . . . .: $ac_fluid_server"
 echo "  FluisSynth reset support . . . . . . . . . . . . .: $ac_fluid_reset"
 echo "  FluisSynth bank offset support . . . . . . . . . .: $ac_fluid_bank_offset"
 echo "  System tray icon support . . . . . . . . . . . . .: $ac_system_tray"
+echo
+echo "  Gradient eye-candy . . . . . . . . . . . . . . . .: $ac_gradient"
+echo "  Debugger stack-trace (gdb) . . . . . . . . . . . .: $ac_stacktrace"
 echo
 echo "  Install prefix . . . . . . . . . . . . . . . . . .: $ac_prefix"
 echo
