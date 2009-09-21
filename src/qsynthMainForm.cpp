@@ -53,6 +53,15 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 
+#if QT_VERSION < 0x040500
+namespace Qt {
+	enum { WindowCloseButtonHint = 0x08000000 };
+#if QT_VERSION < 0x040200
+	enum { CustomizeWindowHint   = 0x02000000 };
+#endif
+}
+#endif
+
 // Timer constant stuff.
 #define QSYNTH_TIMER_MSECS  100
 #define QSYNTH_DELAY_MSECS  200
@@ -543,15 +552,11 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 	// What style do we create these forms?
 	QWidget *pParent = NULL;
 	Qt::WindowFlags wflags = Qt::Window
-#if QT_VERSION >= 0x040200
- 		| Qt::CustomizeWindowHint
-#if QT_VERSION >= 0x040500
-		| Qt::WindowCloseButtonHint
-#endif
-#endif
+		| Qt::CustomizeWindowHint
 		| Qt::WindowTitleHint
 		| Qt::WindowSystemMenuHint
-		| Qt::WindowMinMaxButtonsHint;
+		| Qt::WindowMinMaxButtonsHint
+		| Qt::WindowCloseButtonHint;
 	if (m_pOptions->bKeepOnTop) {
 		pParent = this;
 		wflags |= Qt::Tool;
