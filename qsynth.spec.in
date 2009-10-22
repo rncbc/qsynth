@@ -27,7 +27,7 @@ command line softsynths.
 
 %prep
 %setup
-[ -f Makefile.cvs ] && %__make -f Makefile.cvs
+[ -f Makefile.svn ] && %__make -f Makefile.svn
 
 %build
 %configure
