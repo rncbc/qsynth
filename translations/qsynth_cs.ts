@@ -1153,22 +1153,22 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="289"/>
         <source>Whether to activate a messages logging to file.</source>
-        <translation>Meldungen in einer Protokolldatei aufzeichen.</translation>
+        <translation>Hlášení zapisovat do souboru.</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="449"/>
         <source>Other</source>
-        <translation>Weiteres</translation>
+        <translation>Další</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="464"/>
         <source>Whether to ask for confirmation on application exit</source>
-        <translation>Beim Schließen der Anwendung nachfragen</translation>
+        <translation>Při ukončení aplikace žádat o potvrzení</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="467"/>
         <source>&amp;Confirm application close</source>
-        <translation>&amp;Schließen der Anwendung bestätigen</translation>
+        <translation>&amp;Potvrdit zavření aplikace</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="470"/>
@@ -1178,12 +1178,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="496"/>
         <source>Whether to keep all child windows on top of the main window</source>
-        <translation>Alle Unterfenster oberhalb des Hauptfensters anordnen</translation>
+        <translation>Všechna podokna rozmístit nad hlavním oknem</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="499"/>
         <source>&amp;Keep child windows always on top</source>
-        <translation>Unterfenster immer &amp;oberhalb anordnen</translation>
+        <translation>Podokna &amp;rozmístit vždy nad hlavním oknem</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="502"/>
@@ -1193,12 +1193,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="515"/>
         <source>Whether to capture standard output (stdout/stderr) into messages window</source>
-        <translation>Standardausgabe (stdout/stderr) in das Meldungsfenster umleiten</translation>
+        <translation>Standardní výstup (stdout/stderr) převádět do hlavního okna</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="518"/>
         <source>Capture standard &amp;output</source>
-        <translation>Standardausgabe &amp;umleiten</translation>
+        <translation>Standardní výstup &amp;převést</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="521"/>
@@ -1208,12 +1208,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="534"/>
         <source>Whether to monitor and show engine output peak level meters</source>
-        <translation>Ausgangspegelinstrument anzeigen</translation>
+        <translation>Sledovat a ukazovat nástroj výstupní hladiny</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="537"/>
         <source>Output &amp;peak level meters</source>
-        <translation>Ausgangs&amp;pegelinstrument anzeigen</translation>
+        <translation>Ukazovat &amp;nástroj výstupní hladiny</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="540"/>
@@ -1223,12 +1223,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="553"/>
         <source>Whether to enable the system tray icon</source>
-        <translation>Anwendungssymbol im Benachrichtigungsfeld anzeigen</translation>
+        <translation>V oznamovací oblasti panelu ukazovat symbol aplikace</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="556"/>
         <source>&amp;Enable system tray icon</source>
-        <translation>S&amp;ymbol im Benachrichtigungsfeld anzeigen</translation>
+        <translation>S&amp;ymbol aplikace ukazovat v oznamovací oblasti panelu</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="559"/>
@@ -1238,12 +1238,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="572"/>
         <source>Whether to start minimized to system tray</source>
-        <translation>Anwendung minimiert als Symbol im Benachrichtigungsfeld starten</translation>
+        <translation>Aplikaci spustit zmenšenou jako symbol v oznamovací oblasti panelu</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="575"/>
         <source>Start minimi&amp;zed to system tray</source>
-        <translation>Minimiert im &amp;Benachrichtigungsfeld starten</translation>
+        <translation>Spustit se &amp;zmenšením do oznamovací oblasti panelu</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="578"/>
@@ -1258,47 +1258,47 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="709"/>
         <source>Cancel</source>
-        <translation>Abbrechen</translation>
+        <translation>Zrušit</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.cpp" line="230"/>
         <source>Warning</source>
-        <translation>Warnung</translation>
+        <translation>Varování</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.cpp" line="231"/>
         <source>Some options have been changed.</source>
-        <translation>Einige Einstellungen wurden verändert.</translation>
+        <translation>Některá nastavení byla změněna.</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.cpp" line="232"/>
         <source>Do you want to apply the changes?</source>
-        <translation>Möchten Sie die Änderungen anwenden?</translation>
+        <translation>Chtěl byste použít změny?</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.cpp" line="288"/>
         <source>Messages Log</source>
-        <translation>Meldungsprotokoll</translation>
+        <translation>Zápis hlášení</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.cpp" line="290"/>
         <source>Log files</source>
-        <translation>Protokolldateien</translation>
+        <translation>Soubory se zápisy</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="311"/>
         <source>Knobs</source>
-        <translation>Drehregler</translation>
+        <translation>Otočný regulátor</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="342"/>
         <source>Graphic style for knobs</source>
-        <translation>Graphischer Stil der Drehregler</translation>
+        <translation>Obrazový styl točných regulátorů</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="346"/>
         <source>Classic</source>
-        <translation>Klassisch</translation>
+        <translation>Klasický</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="351"/>
@@ -1313,37 +1313,37 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="422"/>
         <source>Legacy</source>
-        <translation>Legacy</translation>
+        <translation>Dědictví</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="415"/>
         <source>Mouse motion behavior for knobs</source>
-        <translation>Reaktion der Drehregler auf Mausbewegung</translation>
+        <translation>Odezva otočného regulátoru na pohyb myši</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="427"/>
         <source>Radial</source>
-        <translation>Radial</translation>
+        <translation>Paprskovitý</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="432"/>
         <source>Linear</source>
-        <translation>Linear</translation>
+        <translation>Přímočarý</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="591"/>
         <source>&amp;Base font size:</source>
-        <translation>Schrift&amp;größe:</translation>
+        <translation>Základní velikost &amp;písma:</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="610"/>
         <source>Base application font size (pt.)</source>
-        <translation>Standardschriftgröße für die Anwendung</translation>
+        <translation>Základní velikost písma v aplikaci (v bodech)</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="617"/>
         <source>(default)</source>
-        <translation>(voreingestellt)</translation>
+        <translation>(výchozí)</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="632"/>
@@ -1373,7 +1373,7 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="292"/>
         <source>Messages &amp;log file:</source>
-        <translation>Protokoll&amp;datei:</translation>
+        <translation>Soubor se &amp;zápisem hlášení:</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="295"/>
@@ -1383,12 +1383,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="326"/>
         <source>Kno&amp;b graphic style:</source>
-        <translation>Dreh&amp;reglerstil:</translation>
+        <translation>Obrazový styl točných &amp;regulátorů:</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="396"/>
         <source>Mouse motion be&amp;havior:</source>
-        <translation>Reaktion auf Mausbe&amp;wegung:</translation>
+        <translation>Odezva otočného regulátoru na po&amp;hyb myši:</translation>
     </message>
     <message>
         <location filename="../src/qsynthOptionsForm.ui" line="622"/>
