@@ -3,7 +3,10 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-CVS HEAD
+SVN HEAD
+
+- Global configuration state is now explicitly saved/committed to
+  disk when Options dialog changes are accepted and applied.
 
 - Output peak level meters get their long deserved gradient look.
 

@@ -41,6 +41,24 @@ qsynthOptions::qsynthOptions (void)
 	// Load previous/default fluidsynth settings...
 	loadSetup(m_pDefaultSetup, QString::null);
 
+	loadOptions();
+}
+
+
+// Default Destructor.
+qsynthOptions::~qsynthOptions (void)
+{
+	saveOptions();
+
+	// Delete default setup descriptor.
+	delete m_pDefaultSetup;
+	m_pDefaultSetup = NULL;
+}
+
+
+// Explicit load method.
+void qsynthOptions::loadOptions (void)
+{
 	// Load display options...
 	m_settings.beginGroup("/Options");
 	sMessagesFont   = m_settings.value("/MessagesFont").toString();
@@ -79,8 +97,8 @@ qsynthOptions::qsynthOptions (void)
 }
 
 
-// Default Destructor.
-qsynthOptions::~qsynthOptions (void)
+// Explicit save method.
+void qsynthOptions::saveOptions (void)
 {
 	// Make program version available in the future.
 	m_settings.beginGroup("/Program");
@@ -124,9 +142,8 @@ qsynthOptions::~qsynthOptions (void)
 	m_settings.setValue("/KnobMotion", iKnobMotion);
 	m_settings.endGroup();
 
-	// Create default setup descriptor.
-	delete m_pDefaultSetup;
-	m_pDefaultSetup = NULL;
+	// Save/commit to disk.
+	m_settings.sync();
 }
 
 
