@@ -148,15 +148,15 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 	for (int i = 0; i < cSoundFonts; ++i) {
 		fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
 		if (pSoundFont) {
-#ifdef CONFIG_FLUID_BANK_OFFSET
+		#ifdef CONFIG_FLUID_BANK_OFFSET
 			int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, pSoundFont->id);
-#endif
+		#endif
 			pSoundFont->iteration_start(pSoundFont);
 			while (pSoundFont->iteration_next(pSoundFont, &preset)) {
 				int iBank = preset.get_banknum(&preset);
-#ifdef CONFIG_FLUID_BANK_OFFSET
+			#ifdef CONFIG_FLUID_BANK_OFFSET
 				iBank += iBankOffset;
-#endif
+			#endif
 				if (!findBankItem(iBank)) {
 					pBankItem = new qsynthPresetItem(m_ui.BankListView, pBankItem);
 					if (pBankItem)
@@ -170,13 +170,25 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 
 	// Set the selected bank.
 	m_iBank = 0;
+#ifdef CONFIG_FLUID_CHANNEL_INFO
+	fluid_synth_channel_info_t info;
+	::memset(&info, 0, sizeof(info));
+	::fluid_synth_get_channel_info(m_pSynth, iChan, &info);
+	if (info.assigned) {
+		m_iBank = info.bank;
+	#ifdef CONFIG_FLUID_BANK_OFFSET
+		m_iBank += ::fluid_synth_get_bank_offset(m_pSynth, info.sfont_id);
+	#endif
+	}
+#else
 	fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, m_iChan);
 	if (pPreset) {
 		m_iBank = pPreset->get_banknum(pPreset);
-#ifdef CONFIG_FLUID_BANK_OFFSET
+	#ifdef CONFIG_FLUID_BANK_OFFSET
 		m_iBank += ::fluid_synth_get_bank_offset(m_pSynth, (pPreset->sfont)->id);
-#endif
+	#endif
 	}
+#endif
 
 	pBankItem = findBankItem(m_iBank);
 	m_ui.BankListView->setCurrentItem(pBankItem);
@@ -184,8 +196,14 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 	bankChanged();
 
 	// Set the selected program.
+#ifdef CONFIG_FLUID_CHANNEL_INFO
+	if (info.assigned)
+		m_iProg = info.program;
+#else
 	if (pPreset)
 		m_iProg = pPreset->get_num(pPreset);
+#endif
+
 	QTreeWidgetItem *pProgItem = findProgItem(m_iProg);
 	m_ui.ProgListView->setCurrentItem(pProgItem);
 //  m_ui.ProgListView->ensureItemVisible(pProgItem);

@@ -72,6 +72,7 @@ public slots:
 	void deletePreset();
 
 	void editSelectedChannel();
+	void unsetSelectedChannel();
 
 	void updateAllChannels();
 

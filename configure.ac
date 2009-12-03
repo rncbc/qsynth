@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.4.9, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.4.10, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
@@ -237,6 +237,18 @@ if test "x$ac_fluid_bank_offset" = "xyes"; then
    AC_DEFINE(CONFIG_FLUID_BANK_OFFSET, 1, [Define if fluid_synth_set_bank_offset is available.])
 fi
 
+# Check for fluid_synth_get_channel_info function.
+AC_CHECK_LIB(fluidsynth, fluid_synth_get_channel_info, [ac_fluid_channel_info="yes"], [ac_fluid_channel_info="no"])
+if test "x$ac_fluid_channel_info" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_CHANNEL_INFO, 1, [Define if fluid_synth_get_channel_info is available.])
+fi
+
+# Check for fluid_synth_unset_program function.
+AC_CHECK_LIB(fluidsynth, fluid_synth_unset_program, [ac_fluid_unset_program="yes"], [ac_fluid_unset_program="no"])
+if test "x$ac_fluid_unset_program" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_UNSET_PROGRAM, 1, [Define if fluid_synth_unset_program is available.])
+fi
+
 # Check for round math function.
 AC_CHECK_LIB(m, round, [ac_round="yes"], [ac_round="no"])
 if test "x$ac_round" = "xyes"; then
@@ -259,6 +271,8 @@ echo "  FluisSynth library support . . . . . . . . . . . .: $ac_fluidsynth_lib"
 echo "  FluisSynth server support  . . . . . . . . . . . .: $ac_fluid_server"
 echo "  FluisSynth reset support . . . . . . . . . . . . .: $ac_fluid_reset"
 echo "  FluisSynth bank offset support . . . . . . . . . .: $ac_fluid_bank_offset"
+echo "  FluisSynth channel info support  . . . . . . . . .: $ac_fluid_channel_info"
+echo "  FluisSynth unset program support . . . . . . . . .: $ac_fluid_unset_program"
 echo "  System tray icon support . . . . . . . . . . . . .: $ac_system_tray"
 echo
 echo "  Gradient eye-candy . . . . . . . . . . . . . . . .: $ac_gradient"

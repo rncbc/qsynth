@@ -664,9 +664,14 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 	for (int iChan = 0; iChan < iChannels; iChan++) {
 		QString sEntry = m_settings.value(sPrefix.arg(iChan + 1)).toString();
 		if (!sEntry.isEmpty() && iChan == sEntry.section(':', 0, 0).toInt()) {
-			::fluid_synth_bank_select(pEngine->pSynth, iChan, sEntry.section(':', 1, 1).toInt());
-			::fluid_synth_program_change(pEngine->pSynth, iChan, sEntry.section(':', 2, 2).toInt());
+			::fluid_synth_bank_select(pEngine->pSynth, iChan,
+				sEntry.section(':', 1, 1).toInt());
+			::fluid_synth_program_change(pEngine->pSynth, iChan,
+				sEntry.section(':', 2, 2).toInt());
 		}
+	#ifdef CONFIG_FLUID_UNSET_PROGRAM
+		else ::fluid_synth_unset_program(pEngine->pSynth, iChan);
+	#endif
 	}
 	m_settings.endGroup();
 
@@ -707,12 +712,28 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 	int iChannels = ::fluid_synth_count_midi_channels(pEngine->pSynth);
 	int iChan = 0;
 	for ( ; iChan < iChannels; iChan++) {
+	#ifdef CONFIG_FLUID_CHANNEL_INFO
+		fluid_synth_channel_info_t info;
+		::memset(&info, 0, sizeof(info));
+		::fluid_synth_get_channel_info(pEngine->pSynth, iChan, &info);
+		if (info.assigned) {
+		#ifdef CONFIG_FLUID_BANK_OFFSET
+			info.bank += ::fluid_synth_get_bank_offset(pEngine->pSynth, info.sfont_id);
+		#endif
+			QString sEntry = QString::number(iChan);
+			sEntry += ':';
+			sEntry += QString::number(info.bank);
+			sEntry += ':';
+			sEntry += QString::number(info.program);
+			m_settings.setValue(sPrefix.arg(iChan + 1), sEntry);
+		}
+	#else
 		fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(pEngine->pSynth, iChan);
 		if (pPreset) {
 			int iBank = pPreset->get_banknum(pPreset);
-#ifdef CONFIG_FLUID_BANK_OFFSET
+		#ifdef CONFIG_FLUID_BANK_OFFSET
 			iBank += ::fluid_synth_get_bank_offset(pEngine->pSynth, (pPreset->sfont)->id);
-#endif
+		#endif
 			QString sEntry = QString::number(iChan);
 			sEntry += ':';
 			sEntry += QString::number(iBank);
@@ -720,6 +741,8 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 			sEntry += QString::number(pPreset->get_num(pPreset));
 			m_settings.setValue(sPrefix.arg(iChan + 1), sEntry);
 		}
+	#endif
+		else m_settings.remove(sPrefix.arg(iChan));
 	}
 	// Cleanup old entries, if any...
 	while (!m_settings.value(sPrefix.arg(++iChan)).toString().isEmpty())

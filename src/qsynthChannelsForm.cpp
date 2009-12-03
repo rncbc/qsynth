@@ -213,12 +213,37 @@ void qsynthChannelsForm::updateChannel ( int iChan )
 
 	qsynthChannelsItem *pItem = m_ppChannels[iChan];
 
+	const QString n = "-";
+#ifdef CONFIG_FLUID_CHANNEL_INFO
+	fluid_synth_channel_info_t info;
+	::memset(&info, 0, sizeof(info));
+	::fluid_synth_get_channel_info(m_pSynth, iChan, &info);
+	if (info.assigned) {
+	#ifdef CONFIG_FLUID_BANK_OFFSET
+		info.bank += ::fluid_synth_get_bank_offset(m_pSynth, info.sfont_id);
+	#endif
+		pItem->setText(QSYNTH_CHANNELS_BANK,
+			QString::number(info.bank));
+		pItem->setText(QSYNTH_CHANNELS_PROG,
+			QString::number(info.program));
+		pItem->setText(QSYNTH_CHANNELS_NAME,
+			info.name);
+		pItem->setText(QSYNTH_CHANNELS_SFID,
+			QString::number(info.sfont_id));
+		fluid_sfont_t *sfont
+			= ::fluid_synth_get_sfont_by_id(m_pSynth, info.sfont_id);
+		pItem->setText(QSYNTH_CHANNELS_SFNAME,
+			sfont ? QFileInfo(sfont->get_name(sfont)).baseName() : n);
+		// Make this a dirty-operation.
+		m_iDirtyCount++;
+	} 
+#else
 	fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, iChan);
 	if (pPreset) {
 		int iBank = pPreset->get_banknum(pPreset);
-#ifdef CONFIG_FLUID_BANK_OFFSET
+	#ifdef CONFIG_FLUID_BANK_OFFSET
 		iBank += ::fluid_synth_get_bank_offset(m_pSynth, (pPreset->sfont)->id);
-#endif
+	#endif
 		pItem->setText(QSYNTH_CHANNELS_BANK,
 			QString::number(iBank));
 		pItem->setText(QSYNTH_CHANNELS_PROG,
@@ -231,8 +256,9 @@ void qsynthChannelsForm::updateChannel ( int iChan )
 			QFileInfo((pPreset->sfont)->get_name(pPreset->sfont)).baseName());
 		// Make this a dirty-operation.
 		m_iDirtyCount++;
-	} else {
-		QString n = "-";
+	}
+#endif
+	else {
 		pItem->setText(QSYNTH_CHANNELS_BANK, n);
 		pItem->setText(QSYNTH_CHANNELS_PROG, n);
 		pItem->setText(QSYNTH_CHANNELS_NAME, n);
@@ -296,6 +322,11 @@ void qsynthChannelsForm::contextMenuRequested ( const QPoint& pos )
 		QIcon(":/icons/edit1.png"),
 		tr("Edit") + "...", this, SLOT(editSelectedChannel()));
 	pAction->setEnabled(bEnabled);
+#ifdef CONFIG_FLUID_UNSET_PROGRAM
+	pAction = menu.addAction(
+		QIcon(":/icons/remove1.png"),
+		tr("Unset"), this, SLOT(unsetSelectedChannel()));
+#endif
 	menu.addSeparator();
 	pAction = menu.addAction(
 		tr("Refresh"), this, SLOT(updateAllChannels()));
@@ -309,6 +340,33 @@ void qsynthChannelsForm::contextMenuRequested ( const QPoint& pos )
 void qsynthChannelsForm::editSelectedChannel (void)
 {
 	itemActivated(m_ui.ChannelsListView->currentItem(), 0);
+}
+
+
+// Unset program slot.
+void qsynthChannelsForm::unsetSelectedChannel (void)
+{
+	QTreeWidgetItem *pItem = m_ui.ChannelsListView->currentItem();
+	if (pItem == NULL)
+		return;
+	if (m_ppChannels == NULL)
+		return;
+	if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
+		return;
+
+	int iChan = (pItem->text(QSYNTH_CHANNELS_CHAN).toInt() - 1);
+	if (iChan < 0 || iChan >= m_iChannels)
+		return;
+
+#ifdef CONFIG_FLUID_UNSET_PROGRAM
+	::fluid_synth_unset_program(m_pSynth, iChan);
+	// Make this a dirty-operation.
+	m_iDirtyCount++;
+#endif
+
+	updateChannel(iChan);
+
+	stabilizeForm();
 }
 
 

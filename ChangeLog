@@ -5,6 +5,9 @@ ChangeLog
 
 SVN HEAD
 
+- Fluidsynth channel info and unset program interfaces are now in
+  use where available (libfluidsynth >= 1.1.1, EXPERIMENTAL).
+
 - Global configuration state is now explicitly saved/committed to
   disk when Options dialog changes are accepted and applied.
 
