@@ -679,8 +679,10 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 	if (!pEngine->isDefault())
 		m_settings.endGroup();
 
+#ifndef CONFIG_FLUID_UNSET_PROGRAM
 	// Recommended to post-stabilize things around.
 	::fluid_synth_program_reset(pEngine->pSynth);
+#endif
 
 	return true;
 }
@@ -742,7 +744,7 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 			m_settings.setValue(sPrefix.arg(iChan + 1), sEntry);
 		}
 	#endif
-		else m_settings.remove(sPrefix.arg(iChan));
+		else m_settings.remove(sPrefix.arg(iChan + 1));
 	}
 	// Cleanup old entries, if any...
 	while (!m_settings.value(sPrefix.arg(++iChan)).toString().isEmpty())
