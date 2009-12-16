@@ -679,10 +679,8 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 	if (!pEngine->isDefault())
 		m_settings.endGroup();
 
-#ifndef CONFIG_FLUID_UNSET_PROGRAM
 	// Recommended to post-stabilize things around.
 	::fluid_synth_program_reset(pEngine->pSynth);
-#endif
 
 	return true;
 }

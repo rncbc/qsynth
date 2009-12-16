@@ -244,10 +244,9 @@ void qsynthPresetForm::setBankProg ( int iBank, int iProg )
 	// just select the synth's program preset...
 	::fluid_synth_bank_select(m_pSynth, m_iChan, iBank);
 	::fluid_synth_program_change(m_pSynth, m_iChan, iProg);
-#ifndef CONFIG_FLUID_UNSET_PROGRAM
+
 	// Maybe this is needed to stabilize things around.
 	::fluid_synth_program_reset(m_pSynth);
-#endif
 }
 
 

@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.4.11, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.4.12, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
