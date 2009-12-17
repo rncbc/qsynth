@@ -592,7 +592,7 @@
            <set>Qt::AlignHCenter</set>
           </property>
           <property name="maximum" >
-           <number>100</number>
+           <number>120</number>
           </property>
          </widget>
         </item>
@@ -630,7 +630,7 @@
            <string>Reverb Room Size</string>
           </property>
           <property name="maximum" >
-           <number>100</number>
+           <number>120</number>
           </property>
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
@@ -740,7 +740,7 @@
            <string>Number of Chorus Stages</string>
           </property>
           <property name="maximum" >
-           <number>100</number>
+           <number>99</number>
           </property>
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
@@ -790,7 +790,7 @@
            <set>Qt::AlignHCenter</set>
           </property>
           <property name="maximum" >
-           <number>100</number>
+           <number>99</number>
           </property>
          </widget>
         </item>
@@ -804,9 +804,6 @@
           </property>
           <property name="toolTip" >
            <string>Chorus Level</string>
-          </property>
-          <property name="minimum" >
-           <number>1</number>
           </property>
           <property name="maximum" >
            <number>100</number>
@@ -861,9 +858,6 @@
           <property name="maximum" >
            <number>100</number>
           </property>
-          <property name="minimum" >
-           <number>1</number>
-          </property>
          </widget>
         </item>
         <item row="1" column="2" >
@@ -878,10 +872,10 @@
            <string>Chorus Speed (Hz)</string>
           </property>
           <property name="minimum" >
-           <number>3</number>
+           <number>30</number>
           </property>
           <property name="maximum" >
-           <number>50</number>
+           <number>500</number>
           </property>
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
@@ -934,10 +928,10 @@
            <set>Qt::AlignHCenter</set>
           </property>
           <property name="maximum" >
-           <number>50</number>
+           <number>500</number>
           </property>
           <property name="minimum" >
-           <number>3</number>
+           <number>30</number>
           </property>
          </widget>
         </item>
@@ -953,7 +947,7 @@
            <string>Chorus Depth (ms)</string>
           </property>
           <property name="maximum" >
-           <number>100</number>
+           <number>210</number>
           </property>
           <property name="orientation" >
            <enum>Qt::Horizontal</enum>
@@ -1003,7 +997,7 @@
            <set>Qt::AlignHCenter</set>
           </property>
           <property name="maximum" >
-           <number>100</number>
+           <number>210</number>
           </property>
          </widget>
         </item>

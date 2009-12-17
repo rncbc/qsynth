@@ -5,6 +5,9 @@ ChangeLog
 
 SVN HEAD
 
+- Reverb and Chorus paremeter ranges have been revised to match
+  and comply with fluidsynth back-end (libfluidsynth).
+
 - Fluidsynth channel info and unset program interfaces are now in
   use where available (libfluidsynth >= 1.1.1, EXPERIMENTAL).
 
