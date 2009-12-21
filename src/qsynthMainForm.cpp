@@ -78,7 +78,7 @@ const WindowFlags CustomizeWindowHint   = WindowFlags(0x02000000);
 #define QSYNTH_CHORUS_NR_SCALE      1.0f
 #define QSYNTH_CHORUS_LEVEL_SCALE   100.0f
 #define QSYNTH_CHORUS_SPEED_SCALE   100.0f
-#define QSYNTH_CHORUS_DEPTH_SCALE   100.0f
+#define QSYNTH_CHORUS_DEPTH_SCALE   10.0f
 
 #if defined(WIN32)
 #undef HAVE_SIGNAL_H
