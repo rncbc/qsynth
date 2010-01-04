@@ -278,7 +278,7 @@
     <message>
         <location filename="../src/qsynthChannelsForm.cpp" line="328"/>
         <source>Unset</source>
-        <translation>Desasignar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qsynthChannelsForm.cpp" line="332"/>
