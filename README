@@ -44,11 +44,12 @@ and optionally as root:
 
     make install
 
-This procedure will end installing the following couple of files:
+This procedure will end installing the following files:
 
     ${prefix}/bin/qsynth
     ${prefix}/share/pixmaps/qsynth.png
     ${prefix}/share/applications/qsynth.desktop
+    ${prefix}/share/locale/qsynth_*.qm
 
 Just launch ${prefix}/bin/qsynth and you're off (hopefully).
 
