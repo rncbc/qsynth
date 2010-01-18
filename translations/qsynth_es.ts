@@ -271,32 +271,32 @@
         <translation>Canales</translation>
     </message>
     <message>
-        <location filename="../src/qsynthChannelsForm.cpp" line="323"/>
+        <location filename="../src/qsynthChannelsForm.cpp" line="325"/>
         <source>Edit</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="../src/qsynthChannelsForm.cpp" line="328"/>
+        <location filename="../src/qsynthChannelsForm.cpp" line="330"/>
         <source>Unset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qsynthChannelsForm.cpp" line="332"/>
+        <location filename="../src/qsynthChannelsForm.cpp" line="334"/>
         <source>Refresh</source>
         <translation>Refrescar</translation>
     </message>
     <message>
-        <location filename="../src/qsynthChannelsForm.cpp" line="460"/>
+        <location filename="../src/qsynthChannelsForm.cpp" line="462"/>
         <source>Warning</source>
         <translation>Aviso</translation>
     </message>
     <message>
-        <location filename="../src/qsynthChannelsForm.cpp" line="461"/>
+        <location filename="../src/qsynthChannelsForm.cpp" line="463"/>
         <source>Delete preset:</source>
         <translation>Borrar preajustes:</translation>
     </message>
     <message>
-        <location filename="../src/qsynthChannelsForm.cpp" line="463"/>
+        <location filename="../src/qsynthChannelsForm.cpp" line="465"/>
         <source>Are you sure?</source>
         <translation>¿Está seguro?</translation>
     </message>
