@@ -5,6 +5,9 @@ ChangeLog
 
 SVN HEAD
 
+- Most modal message dialog boxes (eg. critical errors) are now
+  replaced by system tray icon bubble messages where available
+
 - Reverb and Chorus parameter ranges have been revised to match
   and comply with fluidsynth back-end (libfluidsynth).
 

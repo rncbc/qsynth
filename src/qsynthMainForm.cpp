@@ -896,8 +896,19 @@ void qsynthMainForm::appendMessagesError( const QString& s )
 
 	appendMessagesColor(s.simplified(), "#ff0000");
 
-	QMessageBox::critical(this,
-		QSYNTH_TITLE ": " + tr("Error"), s, QMessageBox::Cancel);
+	const QString& sTitle = tr("Error") + " - " QSYNTH_TITLE;
+#ifdef CONFIG_SYSTEM_TRAY
+#ifdef QSYNTH_QT4_SYSTEM_TRAY
+#if QT_VERSION >= 0x040300
+	if (m_pOptions->bSystemTray && m_pSystemTray
+		&& QSystemTrayIcon::supportsMessages()) {
+		m_pSystemTray->showMessage(sTitle, s, QSystemTrayIcon::Critical);
+	}
+	else
+#endif
+#endif
+#endif
+	QMessageBox::critical(this, sTitle, s, QMessageBox::Cancel);
 }
 
 
@@ -1376,10 +1387,24 @@ void qsynthMainForm::showOptionsForm (void)
 				( bKeepOnTop     && !m_pOptions->bKeepOnTop)     ||
 				(!bKeepOnTop     &&  m_pOptions->bKeepOnTop)     ||
 				(iOldBaseFontSize != m_pOptions->iBaseFontSize)) {
-				QMessageBox::information(this,
-					QSYNTH_TITLE ": " + tr("Information"),
-					tr("Some settings will be only effective\n"
-					"next time you start this program."));
+				const QString& sTitle
+					= tr("Information") + " - " QSYNTH_TITLE;
+				const QString& sText
+					= tr("Some settings will be only effective\n"
+						"next time you start this program.");
+			#ifdef CONFIG_SYSTEM_TRAY
+			#ifdef QSYNTH_QT4_SYSTEM_TRAY
+			#if QT_VERSION >= 0x040300
+				if (m_pOptions->bSystemTray && m_pSystemTray
+					&& QSystemTrayIcon::supportsMessages()) {
+					m_pSystemTray->showMessage(
+						sTitle, sText, QSystemTrayIcon::Information);
+				}
+				else
+			#endif
+			#endif
+			#endif
+				QMessageBox::information(this, sTitle, sText);
 			}
 			// Check wheather something immediate has changed.
 			if (( bOldMessagesLog && !m_pOptions->bMessagesLog) ||
