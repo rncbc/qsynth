@@ -429,7 +429,7 @@
         <translation>Ukázat/Skrýt okno s pohledem na kanály</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1027"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1037"/>
         <location filename="../src/qsynthMainForm.ui" line="165"/>
         <source>&amp;Channels</source>
         <translation>&amp;Kanály</translation>
@@ -445,8 +445,8 @@
         <translation>Zvukový modul spustit úplně znovu</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1018"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1114"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1028"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1124"/>
         <location filename="../src/qsynthMainForm.ui" line="187"/>
         <source>Re&amp;start</source>
         <translation>&amp;Spustit znovu</translation>
@@ -462,7 +462,7 @@
         <translation>Nastavit znovu program (všechny kanály)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1020"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1030"/>
         <location filename="../src/qsynthMainForm.ui" line="203"/>
         <source>&amp;Reset</source>
         <translation>&amp;Nastavit znovu</translation>
@@ -478,8 +478,8 @@
         <translation>Ukázat dialog nastavení s nynějším nastavením</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1032"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1502"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1042"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1512"/>
         <location filename="../src/qsynthMainForm.ui" line="219"/>
         <source>Set&amp;up...</source>
         <translation>&amp;Nastavení...</translation>
@@ -511,7 +511,7 @@
         <translation>Znovunastavit systém</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1023"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1033"/>
         <location filename="../src/qsynthMainForm.ui" line="333"/>
         <source>&amp;Panic</source>
         <translation>&amp;Panika</translation>
@@ -685,7 +685,7 @@
         <translation>Ukončit tento program</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1064"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1074"/>
         <location filename="../src/qsynthMainForm.ui" line="1051"/>
         <source>&amp;Quit</source>
         <translation>&amp;Ukončit</translation>
@@ -701,7 +701,7 @@
         <translation>Ukázat dialog pro všeobecné volby</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1058"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1068"/>
         <location filename="../src/qsynthMainForm.ui" line="1070"/>
         <source>&amp;Options...</source>
         <translation>&amp;Volby...</translation>
@@ -717,7 +717,7 @@
         <translation>Ukázat/Skrýt okno se zápisy hlášení</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1054"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1064"/>
         <location filename="../src/qsynthMainForm.ui" line="1089"/>
         <source>&amp;Messages</source>
         <translation>&amp;Hlášení</translation>
@@ -743,128 +743,135 @@
         <translation>Alt+B</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="651"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1391"/>
+        <location filename="../src/qsynthMainForm.cpp" line="650"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1401"/>
         <source>Information</source>
         <translation>Informace</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="652"/>
         <source>The program will keep running in the system tray.
 
 To terminate the program, please choose &quot;Quit&quot; in the context menu of the system tray entry.</source>
-        <translation>Program běží dále viditelný jako symbol v oznamovacím poli.
+        <translation type="obsolete">Program běží dále viditelný jako symbol v oznamovacím poli.
 
 Pro ukončení programu zvolte, prosím, &quot;Ukončit&quot;
 v nabídce k symbolu v oznamovacím poli.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="665"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1225"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1965"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1994"/>
+        <location filename="../src/qsynthMainForm.cpp" line="652"/>
+        <source>The program will keep running in the system tray.
+
+To terminate the program, please choose &quot;Quit&quot;
+in the context menu of the system tray icon.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/qsynthMainForm.cpp" line="675"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1235"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1975"/>
+        <location filename="../src/qsynthMainForm.cpp" line="2004"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="666"/>
+        <location filename="../src/qsynthMainForm.cpp" line="676"/>
         <source>is about to terminate.</source>
         <translation>má být ukončen.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="667"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1228"/>
+        <location filename="../src/qsynthMainForm.cpp" line="677"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1238"/>
         <source>Are you sure?</source>
         <translation>Jste si jistý?</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="739"/>
+        <location filename="../src/qsynthMainForm.cpp" line="749"/>
         <source>Loading soundfont: &quot;%1&quot;</source>
         <translation>Nahrává se zvukové písmo: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="750"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1668"/>
+        <location filename="../src/qsynthMainForm.cpp" line="760"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1678"/>
         <source>Failed to load the soundfont: &quot;%1&quot;.</source>
         <translation>Nahrávání zvukového písma se nezdařilo: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="758"/>
+        <location filename="../src/qsynthMainForm.cpp" line="768"/>
         <source>Playing MIDI file: &quot;%1&quot;</source>
         <translation>Přehrává se soubor MIDI: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="765"/>
+        <location filename="../src/qsynthMainForm.cpp" line="775"/>
         <source>Failed to play MIDI file: &quot;%1&quot;.</source>
         <translation>Přehrávání souboru MIDI se nezdařilo: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="899"/>
+        <location filename="../src/qsynthMainForm.cpp" line="909"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1001"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1011"/>
         <source>&amp;Hide</source>
         <translation>&amp;Skrýt</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1001"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1011"/>
         <source>Mi&amp;nimize</source>
         <translation>&amp;Zmenšit</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1003"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1013"/>
         <source>S&amp;how</source>
         <translation>&amp;Ukázat</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1003"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1013"/>
         <source>Rest&amp;ore</source>
         <translation>&amp;Obnovit</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1010"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1496"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1020"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1506"/>
         <source>&amp;New engine...</source>
         <translation>&amp;Nový zvukový modul...</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1012"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1498"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1022"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1508"/>
         <source>&amp;Delete</source>
         <translation>&amp;Smazat</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1018"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1116"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1028"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1126"/>
         <source>&amp;Start</source>
         <translation>&amp;Spustit</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1038"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1048"/>
         <source>Engines</source>
         <translation>Zvukové moduly</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1226"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1236"/>
         <source>Delete fluidsynth engine:</source>
         <translation>Smazat fluidsynthový zvukový modul:</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1393"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1403"/>
         <source>Some settings will be only effective
 next time you start this program.</source>
         <translation>Některá nastavení začnou působit
 až po novém spuštění programu.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1628"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1638"/>
         <source>Creating synthesizer engine</source>
         <translation>Vytváří se syntetizátorový zvukový modul</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1631"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1641"/>
         <source>Failed to create the synthesizer.
 
 Cannot continue without it.</source>
@@ -873,22 +880,22 @@ Cannot continue without it.</source>
 Bez něj nelze pokračovat.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1662"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1672"/>
         <source>Loading soundfont: &quot;%1&quot; (bank offset %2)</source>
         <translation>Nahrává se zvukové písmo: &quot;%1&quot; (poloha banky %2)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1675"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1685"/>
         <source>Failed to set bank offset (%1) for soundfont: &quot;%2&quot;.</source>
         <translation>Nastavení hodnoty polohy banky (%1) pro zvukové písmo: &quot;%2&quot; se nepodařilo.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1685"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1695"/>
         <source>Creating audio driver (%1)</source>
         <translation>Vytváří se zvukový ovladač (%1)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1699"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1709"/>
         <source>Failed to create the audio driver (%1).
 
 Cannot continue without it.</source>
@@ -897,12 +904,12 @@ Cannot continue without it.</source>
 Bez něj nelze pokračovat.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1712"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1722"/>
         <source>Creating MIDI router (%1)</source>
         <translation>Vytváří se směrovač MIDI (%1)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1721"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1731"/>
         <source>Failed to create the MIDI input router (%1).
 
 No MIDI input will be available.</source>
@@ -911,12 +918,12 @@ No MIDI input will be available.</source>
 Nebude dostupný žádný MIDI vstup.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1727"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1737"/>
         <source>Creating MIDI driver (%1)</source>
         <translation>Vytváří se ovladač MIDI (%1)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1736"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1746"/>
         <source>Failed to create the MIDI driver (%1).
 
 No MIDI input will be available.</source>
@@ -925,12 +932,12 @@ No MIDI input will be available.</source>
 Nebude dostupný žádný MIDI vstup.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1743"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1753"/>
         <source>Creating MIDI player</source>
         <translation>Vytváří se přehrávač MIDI</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1747"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1757"/>
         <source>Failed to create the MIDI player.
 
 Continuing without a player.</source>
@@ -939,12 +946,12 @@ Continuing without a player.</source>
 Pokračuje se bez přehrávače.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1757"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1767"/>
         <source>Creating server</source>
         <translation>Vytváří se server</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1779"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1789"/>
         <source>Failed to create the server.
 
 Continuing without it.</source>
@@ -953,7 +960,7 @@ Continuing without it.</source>
 Pokračuje se bez něj.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1783"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1793"/>
         <source>Server mode disabled.
 
 Continuing without it.</source>
@@ -962,94 +969,94 @@ Continuing without it.</source>
 Pokračuje se bez něj.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1817"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1827"/>
         <source>Synthesizer engine started.</source>
         <translation>Syntetizátorový zvukový modul spuštěn.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1857"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1867"/>
         <source>Destroying server</source>
         <translation>Vypíná se server</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1865"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1875"/>
         <source>Stopping MIDI player</source>
         <translation>Zastavuje se přehrávač MIDI</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1867"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1877"/>
         <source>Waiting for MIDI player to terminate</source>
         <translation>Čeká se na ukončení přehrávače MIDI</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1869"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1879"/>
         <source>Destroying MIDI player</source>
         <translation>Vypíná se přehrávač MIDI</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1877"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1887"/>
         <source>Destroying MIDI driver</source>
         <translation>Vypíná se ovladač MIDI</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1881"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1891"/>
         <source>Destroying MIDI router</source>
         <translation>Vypíná se směrovač MIDI</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1888"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1898"/>
         <source>Destroying audio driver</source>
         <translation>Vypíná se zvukový ovladač</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1903"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1913"/>
         <source>Unloading soundfont: &quot;%1&quot; (SFID=%2)</source>
         <translation>Vyjímá se zvukové písmo: &quot;%1&quot; (SFID=%2)</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1907"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1917"/>
         <source>Failed to unload the soundfont: &quot;%1&quot;.</source>
         <translation>Vyjmutí zvukového písma: &quot;%1&quot; se nezdařilo.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1914"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1924"/>
         <source>Destroying synthesizer engine</source>
         <translation>Vypíná se syntetizátorový zvukový modul</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1918"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1928"/>
         <source>Synthesizer engine terminated.</source>
         <translation>Syntetizátorový zvukový modul ukončen.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1966"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1976"/>
         <source>New settings will be effective after
 restarting all fluidsynth engines.</source>
         <translation>Nová nastavení začnou působit až po novém spuštění
 všech fluidsynthových zvukových modulů.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1968"/>
-        <location filename="../src/qsynthMainForm.cpp" line="1998"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1978"/>
+        <location filename="../src/qsynthMainForm.cpp" line="2008"/>
         <source>Please note that this operation may cause
 temporary MIDI and Audio disruption.</source>
         <translation>Všimněte si, prosím, že toto nové spuštění bude mít
 za následek dočasné přerušení MIDI a Audia.</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1970"/>
+        <location filename="../src/qsynthMainForm.cpp" line="1980"/>
         <source>Do you want to restart all engines now?</source>
         <translation>Chtěl byste nyní spustit všechny zvukové moduly znovu?</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="1995"/>
+        <location filename="../src/qsynthMainForm.cpp" line="2005"/>
         <source>New settings will be effective after
 restarting the fluidsynth engine:</source>
         <translation>Nová nastavení začnou působit až po novém spuštění
 fluidsynthovéhoh zvukového modulu:</translation>
     </message>
     <message>
-        <location filename="../src/qsynthMainForm.cpp" line="2000"/>
+        <location filename="../src/qsynthMainForm.cpp" line="2010"/>
         <source>Do you want to restart the engine now?</source>
         <translation>Chtěl byste nyní spustit zvukový modul znovu?</translation>
     </message>

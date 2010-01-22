@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.4.18, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.4.19, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
 AC_CONFIG_HEADERS(config.h)
@@ -267,12 +267,12 @@ echo "  $PACKAGE_NAME $PACKAGE_VERSION"
 echo
 echo "  Build target . . . . . . . . . . . . . . . . . . .: $ac_debug"
 echo
-echo "  FluisSynth library support . . . . . . . . . . . .: $ac_fluidsynth_lib"
-echo "  FluisSynth server support  . . . . . . . . . . . .: $ac_fluid_server"
-echo "  FluisSynth reset support . . . . . . . . . . . . .: $ac_fluid_reset"
-echo "  FluisSynth bank offset support . . . . . . . . . .: $ac_fluid_bank_offset"
-echo "  FluisSynth channel info support  . . . . . . . . .: $ac_fluid_channel_info"
-echo "  FluisSynth unset program support . . . . . . . . .: $ac_fluid_unset_program"
+echo "  FluidSynth library support . . . . . . . . . . . .: $ac_fluidsynth_lib"
+echo "  FluidSynth server support  . . . . . . . . . . . .: $ac_fluid_server"
+echo "  FluidSynth reset support . . . . . . . . . . . . .: $ac_fluid_reset"
+echo "  FluidSynth bank offset support . . . . . . . . . .: $ac_fluid_bank_offset"
+echo "  FluidSynth channel info support  . . . . . . . . .: $ac_fluid_channel_info"
+echo "  FluidSynth unset program support . . . . . . . . .: $ac_fluid_unset_program"
 echo "  System tray icon support . . . . . . . . . . . . .: $ac_system_tray"
 echo
 echo "  Gradient eye-candy . . . . . . . . . . . . . . . .: $ac_gradient"

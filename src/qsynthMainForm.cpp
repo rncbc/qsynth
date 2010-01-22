@@ -650,7 +650,7 @@ bool qsynthMainForm::queryClose (void)
 			const QString& sTitle = QSYNTH_TITLE ": " + tr("Information");
 			const QString& sText
 				= tr("The program will keep running in the system tray.\n\n"
-					"To terminate the program, please choose \"Quit\" "
+					"To terminate the program, please choose \"Quit\"\n"
 					"in the context menu of the system tray icon.");
 		#ifdef QSYNTH_QT4_SYSTEM_TRAY
 		#if QT_VERSION >= 0x040300
