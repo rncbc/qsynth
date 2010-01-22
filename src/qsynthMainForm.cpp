@@ -647,11 +647,21 @@ bool qsynthMainForm::queryClose (void)
 		if (!m_bQuitForce && isVisible()
 			&& m_pOptions->bSystemTray && m_pSystemTray) {
 			m_pOptions->saveWidgetGeometry(this);
-			QMessageBox::information(this,
-				QSYNTH_TITLE ": " + tr("Information"),
-				tr("The program will keep running in the system tray.\n\n"
-				"To terminate the program, please choose \"Quit\" "
-				"in the context menu of the system tray entry."));
+			const QString& sTitle = QSYNTH_TITLE ": " + tr("Information");
+			const QString& sText
+				= tr("The program will keep running in the system tray.\n\n"
+					"To terminate the program, please choose \"Quit\" "
+					"in the context menu of the system tray icon.");
+		#ifdef QSYNTH_QT4_SYSTEM_TRAY
+		#if QT_VERSION >= 0x040300
+			if (QSystemTrayIcon::supportsMessages()) {
+				m_pSystemTray->showMessage(
+					sTitle, sText, QSystemTrayIcon::Information);
+			}
+			else
+		#endif
+		#endif
+			QMessageBox::information(this, sTitle, sText);
 			hide();
 			bQueryClose = false;
 		}
@@ -896,7 +906,7 @@ void qsynthMainForm::appendMessagesError( const QString& s )
 
 	appendMessagesColor(s.simplified(), "#ff0000");
 
-	const QString& sTitle = tr("Error") + " - " QSYNTH_TITLE;
+	const QString& sTitle = QSYNTH_TITLE ": " + tr("Error");
 #ifdef CONFIG_SYSTEM_TRAY
 #ifdef QSYNTH_QT4_SYSTEM_TRAY
 #if QT_VERSION >= 0x040300
@@ -1388,7 +1398,7 @@ void qsynthMainForm::showOptionsForm (void)
 				(!bKeepOnTop     &&  m_pOptions->bKeepOnTop)     ||
 				(iOldBaseFontSize != m_pOptions->iBaseFontSize)) {
 				const QString& sTitle
-					= tr("Information") + " - " QSYNTH_TITLE;
+					= QSYNTH_TITLE ": " + tr("Information");
 				const QString& sText
 					= tr("Some settings will be only effective\n"
 						"next time you start this program.");
