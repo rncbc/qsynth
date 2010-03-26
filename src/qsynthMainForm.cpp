@@ -1016,29 +1016,29 @@ void qsynthMainForm::systemTrayContextMenu ( const QPoint& pos )
 	menu.addSeparator();
 
 	qsynthEngine *pEngine = currentEngine();
-	pAction = menu.addAction(QIcon(":/icons/add1.png"),
+	pAction = menu.addAction(QIcon(":/images/add1.png"),
 		tr("&New engine..."), this, SLOT(newEngine()));
-	pAction = menu.addAction(QIcon(":/icons/remove1.png"),
+	pAction = menu.addAction(QIcon(":/images/remove1.png"),
 		tr("&Delete"), this, SLOT(deleteEngine()));
 	pAction->setEnabled(pEngine && !pEngine->isDefault());
 	menu.addSeparator();
 
 	bool bEnabled = (pEngine && pEngine->pSynth);
-	pAction = menu.addAction(QIcon(":/icons/restart1.png"),
+	pAction = menu.addAction(QIcon(":/images/restart1.png"),
 		bEnabled ? tr("Re&start") : tr("&Start"), this, SLOT(promptRestart()));
-	pAction = menu.addAction(QIcon(":/icons/reset1.png"),
+	pAction = menu.addAction(QIcon(":/images/reset1.png"),
 		tr("&Reset"), this, SLOT(programReset()));
 	pAction->setEnabled(bEnabled);
-	pAction = menu.addAction(QIcon(":/icons/panic1.png"),
+	pAction = menu.addAction(QIcon(":/images/panic1.png"),
 		tr("&Panic"), this, SLOT(systemReset()));
 	pAction->setEnabled(bEnabled);
 	menu.addSeparator();
-	pAction = menu.addAction(QIcon(":/icons/channels1.png"),
+	pAction = menu.addAction(QIcon(":/images/channels1.png"),
 		tr("&Channels"), this, SLOT(toggleChannelsForm()));
 	pAction->setCheckable(true);
 	pAction->setChecked(m_pChannelsForm && m_pChannelsForm->isVisible());
 	pAction->setEnabled(bEnabled);
-	pAction = menu.addAction(QIcon(":/icons/setup1.png"),
+	pAction = menu.addAction(QIcon(":/images/setup1.png"),
 		tr("Set&up..."), this, SLOT(showSetupForm()));
 	menu.addSeparator();
 
@@ -1060,17 +1060,17 @@ void qsynthMainForm::systemTrayContextMenu ( const QPoint& pos )
 		SLOT(activateEnginesMenu(QAction*)));
 	menu.addSeparator();
 
-	pAction = menu.addAction(QIcon(":/icons/messages1.png"),
+	pAction = menu.addAction(QIcon(":/images/messages1.png"),
 		tr("&Messages"), this, SLOT(toggleMessagesForm()));
 	pAction->setCheckable(true);
 	pAction->setChecked(m_pMessagesForm && m_pMessagesForm->isVisible());
-	pAction = menu.addAction(QIcon(":/icons/options1.png"),
+	pAction = menu.addAction(QIcon(":/images/options1.png"),
 		tr("&Options..."), this, SLOT(showOptionsForm()));
-//  pAction = menu.AddAction(QIcon(":/icons/about1.png"),
+//  pAction = menu.AddAction(QIcon(":/images/about1.png"),
 //      tr("A&bout..."), this, SLOT(showAboutForm()));
 	menu.addSeparator();
 
-	pAction = menu.addAction(QIcon(":/icons/quit1.png"),
+	pAction = menu.addAction(QIcon(":/images/quit1.png"),
 		tr("&Quit"), this, SLOT(quitMainForm()));
 
 	menu.exec(pos);
@@ -1502,13 +1502,13 @@ void qsynthMainForm::tabContextMenu ( int iTab, const QPoint& pos )
 	QMenu menu(this);
 	QAction *pAction;
 
-	pAction = menu.addAction(QIcon(":/icons/add1.png"),
+	pAction = menu.addAction(QIcon(":/images/add1.png"),
 		tr("&New engine..."), this, SLOT(newEngine()));
-	pAction = menu.addAction(QIcon(":/icons/remove1.png"),
+	pAction = menu.addAction(QIcon(":/images/remove1.png"),
 		tr("&Delete"), this, SLOT(deleteEngine()));
 	pAction->setEnabled(pEngine && !pEngine->isDefault());
 	menu.addSeparator();
-	pAction = menu.addAction(QIcon(":/icons/setup1.png"),
+	pAction = menu.addAction(QIcon(":/images/setup1.png"),
 		tr("Set&up..."), this, SLOT(showSetupForm()));
 	pAction->setEnabled(pEngine != NULL);
 

@@ -63,8 +63,8 @@ qsynthChannelsForm::qsynthChannelsForm (
 	m_iDirtyCount = 0;
 
 	// Our activity leds (same of main form :).
-	m_pXpmLedOn  = new QPixmap(":/icons/ledon1.png");
-	m_pXpmLedOff = new QPixmap(":/icons/ledoff1.png");
+	m_pXpmLedOn  = new QPixmap(":/images/ledon1.png");
+	m_pXpmLedOff = new QPixmap(":/images/ledoff1.png");
 
 	// Set validators...
 	m_ui.PresetComboBox->setValidator(
@@ -321,12 +321,12 @@ void qsynthChannelsForm::contextMenuRequested ( const QPoint& pos )
 
 	bool bEnabled = (m_pSynth && pItem);
 	pAction = menu.addAction(
-		QIcon(":/icons/edit1.png"),
+		QIcon(":/images/edit1.png"),
 		tr("Edit") + "...", this, SLOT(editSelectedChannel()));
 	pAction->setEnabled(bEnabled);
 #ifdef CONFIG_FLUID_UNSET_PROGRAM
 	pAction = menu.addAction(
-		QIcon(":/icons/remove1.png"),
+		QIcon(":/images/remove1.png"),
 		tr("Unset"), this, SLOT(unsetSelectedChannel()));
 #endif
 	menu.addSeparator();

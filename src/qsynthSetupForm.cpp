@@ -1,7 +1,7 @@
 // qsynthSetupForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2009, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2010, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -169,7 +169,7 @@ qsynthSetupForm::qsynthSetupForm (
 	m_iDirtyCount = 0;
 
 	// Check for pixmaps.
-	m_pXpmSoundFont = new QPixmap(":/icons/sfont1.png");
+	m_pXpmSoundFont = new QPixmap(":/images/sfont1.png");
 
 	// Set dialog validators...
 	QRegExp rx("[\\w-]+");
@@ -740,26 +740,26 @@ void qsynthSetupForm::contextMenuRequested ( const QPoint& pos )
 	QAction *pAction;
 
 	pAction = menu.addAction(
-		QIcon(":/icons/open1.png"),
+		QIcon(":/images/open1.png"),
 		tr("Open..."), this, SLOT(openSoundFont()));
 	menu.addSeparator();
 	bool bEnabled = (pItem != NULL);
 	pAction = menu.addAction(
-		QIcon(":/icons/edit1.png"),
+		QIcon(":/images/edit1.png"),
 		tr("Edit"), this, SLOT(editSoundFont()));
 	pAction->setEnabled(
 		(bEnabled && (pItem->flags() & Qt::ItemIsEditable)));
 	pAction = menu.addAction(
-		QIcon(":/icons/remove1.png"),
+		QIcon(":/images/remove1.png"),
 		tr("Remove"), this, SLOT(removeSoundFont()));
 	pAction->setEnabled(bEnabled);
 	menu.addSeparator();
 	pAction = menu.addAction(
-		QIcon(":/icons/up1.png"),
+		QIcon(":/images/up1.png"),
 		tr("Move Up"), this, SLOT(moveUpSoundFont()));
 	pAction->setEnabled(bEnabled && iItem > 0);
 	pAction = menu.addAction(
-		QIcon(":/icons/down1.png"),
+		QIcon(":/images/down1.png"),
 		tr("Move Down"), this, SLOT(moveDownSoundFont()));
 	pAction->setEnabled(bEnabled && iItem < iItemCount - 1);
 

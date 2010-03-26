@@ -1,9 +1,9 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.4.20, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.4.21, rncbc@rncbc.org, qsynth)
 
-AC_CONFIG_SRCDIR(src/qsynthMainForm.ui)
-AC_CONFIG_HEADERS(config.h)
-AC_CONFIG_FILES(Makefile qsynth.pro qsynth.spec qsynth.desktop)
+AC_CONFIG_SRCDIR(src/qsynth.cpp)
+AC_CONFIG_HEADERS(src/config.h)
+AC_CONFIG_FILES(Makefile qsynth.spec src/src.pri src/qsynth.desktop)
 
 # Set default installation prefix.
 AC_PREFIX_DEFAULT(/usr/local)

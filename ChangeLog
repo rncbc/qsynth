@@ -5,6 +5,8 @@ ChangeLog
 
 SVN HEAD
 
+- General source tree layout and build configuration change.
+
 - Most modal message dialog boxes (eg. critical errors) are now
   replaced by system tray icon bubble messages where available
 

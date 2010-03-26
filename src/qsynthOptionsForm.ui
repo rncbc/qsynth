@@ -2,7 +2,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2008, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2010, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -698,8 +698,8 @@
         <string>OK</string>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >
-         <normaloff>:/icons/accept1.png</normaloff>:/icons/accept1.png</iconset>
+        <iconset resource="qsynth.qrc" >
+         <normaloff>:/images/accept1.png</normaloff>:/images/accept1.png</iconset>
        </property>
       </widget>
      </item>
@@ -709,8 +709,8 @@
         <string>Cancel</string>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >
-         <normaloff>:/icons/quit1.png</normaloff>:/icons/quit1.png</iconset>
+        <iconset resource="qsynth.qrc" >
+         <normaloff>:/images/quit1.png</normaloff>:/images/quit1.png</iconset>
        </property>
       </widget>
      </item>
@@ -740,7 +740,7 @@
   <tabstop>CancelPushButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../icons/qsynth.qrc" />
+  <include location="qsynth.qrc" />
  </resources>
  <connections/>
 </ui>

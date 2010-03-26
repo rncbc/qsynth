@@ -1,4 +1,4 @@
-// main.cpp
+// qsynth.cpp
 //
 /****************************************************************************
    Copyright (C) 2003-2010, rncbc aka Rui Nuno Capela. All rights reserved.
@@ -380,4 +380,4 @@ int main ( int argc, char **argv )
 	return app.exec();
 }
 
-// end of main.cpp
+// end of qsynth.cpp

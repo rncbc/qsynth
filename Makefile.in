@@ -5,7 +5,10 @@ lrelease = @ac_lrelease@
 
 name    = qsynth
 
-headers = config.h \
+target  = src/$(name)
+
+headers = \
+	src/config.h \
 	src/qsynthAbout.h \
 	src/qsynthEngine.h \
 	src/qsynthChannels.h \
@@ -26,7 +29,8 @@ headers = config.h \
 	src/qsynthDialPeppinoStyle.h \
 	src/qsynthDialVokiStyle.h
 
-sources = src/main.cpp \
+sources = \
+	src/qsynth.cpp \
 	src/qsynthEngine.cpp \
 	src/qsynthChannels.cpp \
 	src/qsynthKnob.cpp \
@@ -56,50 +60,49 @@ forms = \
 	src/qsynthSetupForm.ui
 
 translations_sources = \
-	translations/qsynth_de.ts \
-	translations/qsynth_es.ts \
-	translations/qsynth_ru.ts
+	src/translations/qsynth_de.ts \
+	src/translations/qsynth_es.ts \
+	src/translations/qsynth_ru.ts
 
 translations_targets = \
-	translations/qsynth_cs.qm \
-	translations/qsynth_de.qm \
-	translations/qsynth_es.qm \
-	translations/qsynth_ru.qm
+	src/translations/qsynth_cs.qm \
+	src/translations/qsynth_de.qm \
+	src/translations/qsynth_es.qm \
+	src/translations/qsynth_ru.qm
 
-all:	$(name) $(translations_targets)
+
+all:	$(target) $(translations_targets)
+
+
+$(target):	$(name).mak $(resources) ${forms} $(sources) $(headers)
+	@make -f $(name).mak
 
 $(name).mak:	$(name).pro
 	@$(qmake) -o $(name).mak $(name).pro
 
-$(name):	$(name).mak $(sources) $(headers) $(forms)
-	@make -f $(name).mak
 
-%.ts:	$(name).pro $(sources) $(headers) $(forms)
+%.ts:	$(name).pro $(resources) ${forms} $(sources) $(headers)
 	@$(lupdate) -verbose $(name).pro
 
 %.qm:	%.ts
 	@$(lrelease) -verbose $< -qm $@
 
-install:	$(name) icons/$(name).png $(translations_targets)
-	@install -d -v -m 0755 $(DESTDIR)$(prefix)/bin
-	@install -d -v -m 0755 $(DESTDIR)$(prefix)/share/pixmaps
-	@install -d -v -m 0755 $(DESTDIR)$(prefix)/share/applications
+
+install:	$(target) $(translations_targets)
+	@make -f $(name).mak install
 	@install -d -v -m 0755 $(DESTDIR)$(prefix)/share/locale
-	@install -v -m 0755 $(name) $(DESTDIR)$(prefix)/bin/$(name)
-	@install -v -m 0644 icons/$(name).png $(DESTDIR)$(prefix)/share/pixmaps/$(name).png
-	@install -v -m 0644 $(name).desktop $(DESTDIR)$(prefix)/share/applications/$(name).desktop
+	@install -d -v -m 0755 $(DESTDIR)$(prefix)/share/man/man1
 	@install -v -m 0644 $(translations_targets) $(DESTDIR)$(prefix)/share/locale
 
 uninstall:	$(DESTDIR)$(prefix)/bin/$(name)
-	@rm -vf $(DESTDIR)$(prefix)/bin/$(name)
-	@rm -vf $(DESTDIR)$(prefix)/share/pixmaps/$(name).png
-	@rm -vf $(DESTDIR)$(prefix)/share/applications/$(name).desktop
+	@make -f $(name).mak uninstall
 	@rm -vf $(DESTDIR)$(prefix)/share/locale/$(translations_targets)
 	@for x in $(translations_targets); do \
 		rm -vf $(DESTDIR)$(prefix)/share/locale/`basename $$x`; done
 
+
 clean:	$(name).mak
 	@make -f $(name).mak clean
-	@rm -f $(name) $(name).mak
+	@rm -f $(target) $(target).mak $(name).mak
 	@rm -rf *.cache *.log *.status $(translations_targets)
 

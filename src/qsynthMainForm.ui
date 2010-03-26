@@ -33,7 +33,7 @@
    <string>Qsynth - A fluidsynth Qt GUI Interface</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="../icons/qsynth.qrc" >:/icons/qsynth.png</iconset>
+   <iconset resource="qsynth.qrc" >:/images/qsynth.png</iconset>
   </property>
   <layout class="QGridLayout" >
    <property name="margin" >
@@ -74,7 +74,7 @@
         <string/>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >:/icons/add1.png</iconset>
+        <iconset resource="qsynth.qrc" >:/images/add1.png</iconset>
        </property>
        <property name="shortcut" >
         <string>Ins</string>
@@ -131,7 +131,7 @@
         <string/>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >:/icons/remove1.png</iconset>
+        <iconset resource="qsynth.qrc" >:/images/remove1.png</iconset>
        </property>
        <property name="shortcut" >
         <string>Del</string>
@@ -165,7 +165,7 @@
           <string>&amp;Channels</string>
          </property>
          <property name="icon" >
-          <iconset resource="../icons/qsynth.qrc" >:/icons/channels1.png</iconset>
+          <iconset resource="qsynth.qrc" >:/images/channels1.png</iconset>
          </property>
          <property name="shortcut" >
           <string>Alt+C</string>
@@ -187,7 +187,7 @@
           <string>Re&amp;start</string>
          </property>
          <property name="icon" >
-          <iconset resource="../icons/qsynth.qrc" >:/icons/restart1.png</iconset>
+          <iconset resource="qsynth.qrc" >:/images/restart1.png</iconset>
          </property>
          <property name="shortcut" >
           <string>Alt+S</string>
@@ -203,7 +203,7 @@
           <string>&amp;Reset</string>
          </property>
          <property name="icon" >
-          <iconset resource="../icons/qsynth.qrc" >:/icons/reset1.png</iconset>
+          <iconset resource="qsynth.qrc" >:/images/reset1.png</iconset>
          </property>
          <property name="shortcut" >
           <string>Alt+R</string>
@@ -219,7 +219,7 @@
           <string>Set&amp;up...</string>
          </property>
          <property name="icon" >
-          <iconset resource="../icons/qsynth.qrc" >:/icons/setup1.png</iconset>
+          <iconset resource="qsynth.qrc" >:/images/setup1.png</iconset>
          </property>
          <property name="shortcut" >
           <string>Alt+U</string>
@@ -333,7 +333,7 @@
           <string>&amp;Panic</string>
          </property>
          <property name="icon" >
-          <iconset resource="../icons/qsynth.qrc" >:/icons/panic1.png</iconset>
+          <iconset resource="qsynth.qrc" >:/images/panic1.png</iconset>
          </property>
          <property name="shortcut" >
           <string>Alt+P</string>
@@ -1051,7 +1051,7 @@
         <string>&amp;Quit</string>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >:/icons/quit1.png</iconset>
+        <iconset resource="qsynth.qrc" >:/images/quit1.png</iconset>
        </property>
        <property name="shortcut" >
         <string>Alt+Q</string>
@@ -1070,7 +1070,7 @@
         <string>&amp;Options...</string>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >:/icons/options1.png</iconset>
+        <iconset resource="qsynth.qrc" >:/images/options1.png</iconset>
        </property>
        <property name="shortcut" >
         <string>Alt+O</string>
@@ -1089,7 +1089,7 @@
         <string>&amp;Messages</string>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >:/icons/messages1.png</iconset>
+        <iconset resource="qsynth.qrc" >:/images/messages1.png</iconset>
        </property>
        <property name="shortcut" >
         <string>Alt+M</string>
@@ -1111,7 +1111,7 @@
         <string>A&amp;bout...</string>
        </property>
        <property name="icon" >
-        <iconset resource="../icons/qsynth.qrc" >:/icons/about1.png</iconset>
+        <iconset resource="qsynth.qrc" >:/images/about1.png</iconset>
        </property>
        <property name="shortcut" >
         <string>Alt+B</string>
@@ -1198,7 +1198,7 @@
   <tabstop>AboutPushButton</tabstop>
  </tabstops>
  <resources>
-  <include location="../icons/qsynth.qrc" />
+  <include location="qsynth.qrc" />
  </resources>
  <connections/>
 </ui>
