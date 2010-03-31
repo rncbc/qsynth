@@ -5,6 +5,10 @@ ChangeLog
 
 SVN HEAD
 
+- Initial widget geometry and visibility persistence logic has
+  been slightly revised as much to avoid crash failures due to
+  wrong main widget hidden state.
+
 - General source tree layout and build configuration change.
 
 - Most modal message dialog boxes (eg. critical errors) are now

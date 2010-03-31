@@ -586,7 +586,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 		m_ui.TabBar->addEngine(new qsynthEngine(m_pOptions, iter.next()));
 
 	// Try to restore old window positioning.
-	m_pOptions->loadWidgetGeometry(this, m_pOptions->bStartMinimized);
+	m_pOptions->loadWidgetGeometry(this, true);
 
 	// And for the whole widget gallore...
 	m_pOptions->loadWidgetGeometry(m_pMessagesForm);
@@ -646,7 +646,7 @@ bool qsynthMainForm::queryClose (void)
 		// active system tray icon, then just hide ourselves.
 		if (!m_bQuitForce && isVisible()
 			&& m_pOptions->bSystemTray && m_pSystemTray) {
-			m_pOptions->saveWidgetGeometry(this);
+			m_pOptions->saveWidgetGeometry(this, true);
 			const QString& sTitle = QSYNTH_TITLE ": " + tr("Information");
 			const QString& sText
 				= tr("The program will keep running in the system tray.\n\n"
@@ -688,7 +688,7 @@ bool qsynthMainForm::queryClose (void)
 		if (bQueryClose) {
 			m_pOptions->saveWidgetGeometry(m_pChannelsForm);
 			m_pOptions->saveWidgetGeometry(m_pMessagesForm);
-			m_pOptions->saveWidgetGeometry(this);
+			m_pOptions->saveWidgetGeometry(this, true);
 			// Close popup widgets.
 			if (m_pMessagesForm)
 				m_pMessagesForm->close();
@@ -1299,7 +1299,8 @@ void qsynthMainForm::toggleMainForm (void)
 	if (m_pOptions == NULL)
 		return;
 
-	m_pOptions->saveWidgetGeometry(this);
+	m_pOptions->saveWidgetGeometry(this, true);
+
 	if (isVisible()) {
 		if (m_pOptions->bSystemTray && m_pSystemTray) {
 			// Hide away from sight.
