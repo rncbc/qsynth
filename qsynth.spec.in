@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 9
+%define release 10
 %define prefix  @ac_prefix@
 
 Summary:	A fluidsynth Qt GUI Interface
@@ -16,7 +16,7 @@ Packager:	rncbc.org
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
-BuildRequires:	qt-devel >= 4.1
+BuildRequires:	libqt4-devel >= 4.1
 BuildRequires:	libfluidsynth-devel >= 1.0.8
 
 %description
