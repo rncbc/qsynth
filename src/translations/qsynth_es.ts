@@ -278,7 +278,7 @@
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="330"/>
         <source>Unset</source>
-        <translation type="unfinished"></translation>
+        <translation>Deponer</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="334"/>
@@ -448,7 +448,10 @@ Para terminar el programa, por favor elija &quot;Salir&quot; en el menú context
 
 To terminate the program, please choose &quot;Quit&quot;
 in the context menu of the system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>El programa va a continuar en ejecución en la bandeja del sistema
+
+Para terminar el programa, por favor elija &quot;Terminar&quot; 
+en el menú contextual del icono de la bandeja del sistema.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="749"/>
@@ -509,9 +512,9 @@ in the context menu of the system tray icon.</source>
         <translation>&amp;Borrar</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="187"/>
         <location filename="../qsynthMainForm.cpp" line="1028"/>
         <location filename="../qsynthMainForm.cpp" line="1124"/>
+        <location filename="../qsynthMainForm.ui" line="187"/>
         <source>Re&amp;start</source>
         <translation>Re&amp;iniciar</translation>
     </message>
@@ -522,27 +525,27 @@ in the context menu of the system tray icon.</source>
         <translation>&amp;Arrancar</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="203"/>
         <location filename="../qsynthMainForm.cpp" line="1030"/>
+        <location filename="../qsynthMainForm.ui" line="203"/>
         <source>&amp;Reset</source>
         <translation>&amp;Reajustar</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="333"/>
         <location filename="../qsynthMainForm.cpp" line="1033"/>
+        <location filename="../qsynthMainForm.ui" line="333"/>
         <source>&amp;Panic</source>
         <translation>&amp;Pánico</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="165"/>
         <location filename="../qsynthMainForm.cpp" line="1037"/>
+        <location filename="../qsynthMainForm.ui" line="165"/>
         <source>&amp;Channels</source>
         <translation>&amp;Canales</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="219"/>
         <location filename="../qsynthMainForm.cpp" line="1042"/>
         <location filename="../qsynthMainForm.cpp" line="1513"/>
+        <location filename="../qsynthMainForm.ui" line="219"/>
         <source>Set&amp;up...</source>
         <translation>C&amp;onfiguración...</translation>
     </message>
@@ -552,20 +555,20 @@ in the context menu of the system tray icon.</source>
         <translation>Motores</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1089"/>
         <location filename="../qsynthMainForm.cpp" line="1064"/>
+        <location filename="../qsynthMainForm.ui" line="1089"/>
         <source>&amp;Messages</source>
         <translation>M&amp;ensajes</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1070"/>
         <location filename="../qsynthMainForm.cpp" line="1068"/>
+        <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>&amp;Options...</source>
         <translation>O&amp;pciones...</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1051"/>
         <location filename="../qsynthMainForm.cpp" line="1074"/>
+        <location filename="../qsynthMainForm.ui" line="1051"/>
         <source>&amp;Quit</source>
         <translation>&amp;Terminar</translation>
     </message>
