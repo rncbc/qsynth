@@ -512,9 +512,9 @@ en el menú contextual del icono de la bandeja del sistema.</translation>
         <translation>&amp;Borrar</translation>
     </message>
     <message>
+        <location filename="../qsynthMainForm.ui" line="187"/>
         <location filename="../qsynthMainForm.cpp" line="1028"/>
         <location filename="../qsynthMainForm.cpp" line="1124"/>
-        <location filename="../qsynthMainForm.ui" line="187"/>
         <source>Re&amp;start</source>
         <translation>Re&amp;iniciar</translation>
     </message>
@@ -525,27 +525,27 @@ en el menú contextual del icono de la bandeja del sistema.</translation>
         <translation>&amp;Arrancar</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1030"/>
         <location filename="../qsynthMainForm.ui" line="203"/>
+        <location filename="../qsynthMainForm.cpp" line="1030"/>
         <source>&amp;Reset</source>
         <translation>&amp;Reajustar</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1033"/>
         <location filename="../qsynthMainForm.ui" line="333"/>
+        <location filename="../qsynthMainForm.cpp" line="1033"/>
         <source>&amp;Panic</source>
         <translation>&amp;Pánico</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1037"/>
         <location filename="../qsynthMainForm.ui" line="165"/>
+        <location filename="../qsynthMainForm.cpp" line="1037"/>
         <source>&amp;Channels</source>
         <translation>&amp;Canales</translation>
     </message>
     <message>
+        <location filename="../qsynthMainForm.ui" line="219"/>
         <location filename="../qsynthMainForm.cpp" line="1042"/>
         <location filename="../qsynthMainForm.cpp" line="1513"/>
-        <location filename="../qsynthMainForm.ui" line="219"/>
         <source>Set&amp;up...</source>
         <translation>C&amp;onfiguración...</translation>
     </message>
@@ -555,20 +555,20 @@ en el menú contextual del icono de la bandeja del sistema.</translation>
         <translation>Motores</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1064"/>
         <location filename="../qsynthMainForm.ui" line="1089"/>
+        <location filename="../qsynthMainForm.cpp" line="1064"/>
         <source>&amp;Messages</source>
         <translation>M&amp;ensajes</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1068"/>
         <location filename="../qsynthMainForm.ui" line="1070"/>
+        <location filename="../qsynthMainForm.cpp" line="1068"/>
         <source>&amp;Options...</source>
         <translation>O&amp;pciones...</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1074"/>
         <location filename="../qsynthMainForm.ui" line="1051"/>
+        <location filename="../qsynthMainForm.cpp" line="1074"/>
         <source>&amp;Quit</source>
         <translation>&amp;Terminar</translation>
     </message>
