@@ -1,0 +1,101 @@
+project(QSYNTH)
+
+cmake_minimum_required(VERSION 2.6)
+
+set (VERSION_MAJOR 0)
+set (VERSION_MINOR 3)
+set (VERSION_PATCH 5)
+set (VERSION_SUFFIX "")
+set (VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}${VERSION_SUFFIX}")
+
+set (PACKAGE_NAME "Qsynth")
+set (PACKAGE_VERSION "${VERSION}")
+set (PACKAGE_BUGREPORT "rncbc@rncbc.org")
+set (PACKAGE_STRING "${PACKAGE_NAME} ${PACKAGE_VERSION}")
+set (PACKAGE_TARNAME "qsynth")
+
+set(CONFIG_DEBUG)
+if (CMAKE_BUILD_TYPE MATCHES "debug")
+    set(CONFIG_DEBUG 1)
+endif (CMAKE_BUILD_TYPE MATCHES "debug")
+set (CONFIG_PREFIX ${CMAKE_INSTALL_PREFIX})
+
+# gradient eye-candy.
+option (CONFIG_GRADIENT "Define if gradient eye-candy is enabled." 1)
+# debugging stack-trace.
+option (CONFIG_STACKTRACE "Define if debugger stack-trace is enabled." 0)
+# system-tray icon.
+option (CONFIG_SYSTEM_TRAY "Define if system tray is enabled." 1)
+
+# Check for Qt
+set (QT_MIN_VERSION "4.1.0")
+find_package (Qt4 REQUIRED)
+include (${QT_USE_FILE})
+
+include (CheckIncludeFiles)
+include (CheckFunctionExists)
+
+# Checks for libraries.
+find_library ( MATH_LIBRARY m )
+# Check for round math function.
+if (MATH_LIBRARY)
+    set(CMAKE_REQUIRED_LIBRARIES m)
+    #check_function_exists (lroundf CONFIG_ROUND)
+    check_function_exists (round CONFIG_ROUND)
+else (MATH_LIBRARY)
+    message (FATAL_ERROR "libm not found")    
+endif (MATH_LIBRARY)
+
+# Check for fluidsynth library.
+find_library (FLUIDSYNTH_LIBRARY fluidsynth) 
+
+# Checks for header files.
+check_include_files ("fcntl.h;sys/ioctl.h;unistd.h;signal.h" HAVE_SIGNAL_H)
+
+# Check for fluidsynth headers.
+check_include_files (fluidsynth.h HAVE_FLUIDSYNTH_H)
+
+if (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
+    find_path (FLUIDSYNTH_INCLUDEDIR fluidsynth.h)
+    set(CMAKE_REQUIRED_LIBRARIES fluidsynth)
+    # new_fluid_server function.
+    check_function_exists ( new_fluid_server CONFIG_FLUID_SERVER )
+    # Check for fluid_synth_system_reset function.
+    check_function_exists ( fluid_synth_system_reset CONFIG_FLUID_RESET )
+    # Check for fluid_synth_set_bank_offset function.
+    check_function_exists ( fluid_synth_set_bank_offset CONFIG_FLUID_BANK_OFFSET )
+    # Check for fluid_synth_get_channel_info function.
+    check_function_exists ( fluid_synth_get_channel_info CONFIG_FLUID_CHANNEL_INFO )
+    # Check for fluid_synth_unset_program function.
+    check_function_exists ( fluid_synth_unset_program CONFIG_FLUID_UNSET_PROGRAM  )
+else (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
+    message (FATAL_ERROR "libfluidsynth not found")
+endif (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
+
+add_subdirectory (src)
+
+configure_file (qsynth.spec.in qsynth.spec IMMEDIATE @ONLY)
+
+# Configuration status
+
+macro (SHOW_OPTION text value)
+    if (${value})
+        message( "${text}: Yes" )
+    else (${value})
+        message( "${text}: No" )
+    endif (${value})
+endmacro (SHOW_OPTION)
+
+message ( "\n  ${PACKAGE_NAME} ${PACKAGE_VERSION}\n" )
+message ( "  Build target . . . . . . . . . . . . . . . . . . .: ${CMAKE_BUILD_TYPE}" )
+show_option ( "\n  FluidSynth library support . . . . . . . . . . . ." FLUIDSYNTH_LIBRARY )
+show_option ( "  FluidSynth server support  . . . . . . . . . . . ." CONFIG_FLUID_SERVER )
+show_option ( "  FluidSynth reset support . . . . . . . . . . . . ." CONFIG_FLUID_RESET )
+show_option ( "  FluidSynth bank offset support . . . . . . . . . ." CONFIG_FLUID_BANK_OFFSET )
+show_option ( "  FluidSynth channel info support  . . . . . . . . ." CONFIG_FLUID_CHANNEL_INFO )
+show_option ( "  FluidSynth unset program support . . . . . . . . ." CONFIG_FLUID_UNSET_PROGRAM )
+show_option ( "  System tray icon support . . . . . . . . . . . . ." CONFIG_SYSTEM_TRAY )
+show_option ( "\n  Gradient eye-candy . . . . . . . . . . . . . . . ." CONFIG_GRADIENT )
+show_option ( "  Debugger stack-trace (gdb) . . . . . . . . . . . ." CONFIG_STACKTRACE )
+message ( "\n  Install prefix . . . . . . . . . . . . . . . . . .: ${CMAKE_INSTALL_PREFIX}" )
+message ( "\nNow type 'make', followed by 'make install' as root." )

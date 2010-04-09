@@ -1,0 +1,117 @@
+include_directories (
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${QT_INCLUDES}
+    ${FLUIDSYNTH_INCLUDEDIR}
+)
+
+link_directories (
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${QT_LIBRARY_DIR}
+)
+
+configure_file ( cmakeconfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h ) 
+
+set ( ac_prefix ${CMAKE_INSTALL_PREFIX} )
+configure_file ( qsynth.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop ) 
+
+set ( HEADERS 
+    qsynthKnob.h 
+    qsynthMeter.h 
+    qsynthSystemTray.h 
+    qsynthTabBar.h 
+    qsynthAboutForm.h 
+    qsynthChannelsForm.h 
+    qsynthMainForm.h 
+    qsynthMessagesForm.h 
+    qsynthOptionsForm.h 
+    qsynthPresetForm.h 
+    qsynthSetupForm.h 
+)
+
+set ( SOURCES 
+    qsynth.cpp 
+    qsynthEngine.cpp
+    qsynthChannels.cpp
+    qsynthKnob.cpp
+    qsynthMeter.cpp
+    qsynthSetup.cpp
+    qsynthOptions.cpp
+    qsynthSystemTray.cpp
+    qsynthTabBar.cpp
+    qsynthAboutForm.cpp
+    qsynthChannelsForm.cpp
+    qsynthMainForm.cpp
+    qsynthMessagesForm.cpp
+    qsynthOptionsForm.cpp
+    qsynthPresetForm.cpp
+    qsynthSetupForm.cpp
+    qsynthDialClassicStyle.cpp
+    qsynthDialPeppinoStyle.cpp
+    qsynthDialVokiStyle.cpp
+    qsynthDialSkulptureStyle.cpp
+)
+
+set ( FORMS 
+    qsynthAboutForm.ui
+    qsynthChannelsForm.ui
+    qsynthMainForm.ui
+    qsynthMessagesForm.ui
+    qsynthOptionsForm.ui
+    qsynthPresetForm.ui
+    qsynthSetupForm.ui
+)
+
+set ( RESOURCES 
+    qsynth.qrc
+)
+
+qt4_wrap_ui ( UI_SOURCES ${FORMS} )
+qt4_wrap_cpp ( MOC_SOURCES ${HEADERS} )
+qt4_add_resources ( QRC_SOURCES ${RESOURCES} )
+
+if (WIN32)
+    set ( RC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/win32/qsynth.rc )
+    find_program ( WINDRES_EXECUTABLE NAMES windres )
+    if (MINGW)
+        exec_program( ${WINDRES_EXECUTABLE}
+            ARGS "-i ${RC_FILE} -o ${CMAKE_CURRENT_BINARY_DIR}/qsynth.res --include-dir=${CMAKE_CURRENT_SOURCE_DIR}/images")
+        list (APPEND SOURCES ${CMAKE_CURRENT_BINARY_DIR}/qsynth.res )
+    else(MINGW)
+        list (APPEND SOURCES ${RC_FILE} )
+    endif(MINGW)
+endif (WIN32)
+
+add_executable ( qsynth WIN32 MACOSX_BUNDLE 
+    ${UI_SOURCES}
+    ${MOC_SOURCES}
+    ${QRC_SOURCES}
+    ${SOURCES} 
+)
+
+target_link_libraries ( qsynth
+    ${QT_LIBRARIES}
+    ${MATH_LIBRARY}
+    ${FLUIDSYNTH_LIBRARY}
+)
+
+set ( TRANSLATIONS 
+   translations/qsynth_cs.ts
+   translations/qsynth_de.ts
+   translations/qsynth_es.ts
+   translations/qsynth_ru.ts
+)
+
+qt4_add_translation ( QM_FILES ${TRANSLATIONS} )
+add_custom_target( translations ALL DEPENDS ${QM_FILES} )
+
+if (UNIX AND NOT APPLE)
+    install ( TARGETS qsynth
+              RUNTIME DESTINATION bin )
+    install ( FILES ${QM_FILES}
+              DESTINATION share/locale )
+    install ( FILES ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop
+              DESTINATION share/applications ) 
+    install ( FILES images/qsynth.png
+              DESTINATION share/pixmaps )
+endif (UNIX AND NOT APPLE)
