@@ -72,22 +72,31 @@ qt4_add_resources ( QRC_SOURCES ${RESOURCES} )
 
 if (WIN32)
     set ( RC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/win32/qsynth.rc )
-    find_program ( WINDRES_EXECUTABLE NAMES windres )
+    set ( RES_FILE ${CMAKE_CURRENT_BINARY_DIR}/qsynth.res.obj )
+    find_program ( WINDRES_EXECUTABLE NAMES windres mingw32-windres i686-mingw32-windres)
     if (MINGW)
         exec_program( ${WINDRES_EXECUTABLE}
-            ARGS "-i ${RC_FILE} -o ${CMAKE_CURRENT_BINARY_DIR}/qsynth.res --include-dir=${CMAKE_CURRENT_SOURCE_DIR}/images")
-        list (APPEND SOURCES ${CMAKE_CURRENT_BINARY_DIR}/qsynth.res )
-    else(MINGW)
+            ARGS "-i ${RC_FILE} -o ${RES_FILE} --include-dir=${CMAKE_CURRENT_SOURCE_DIR}/images")
+        list (APPEND SOURCES ${RES_FILE} )
+    else (MINGW)
         list (APPEND SOURCES ${RC_FILE} )
-    endif(MINGW)
+    endif (MINGW)
 endif (WIN32)
 
-add_executable ( qsynth WIN32 MACOSX_BUNDLE 
+add_executable ( qsynth
     ${UI_SOURCES}
     ${MOC_SOURCES}
     ${QRC_SOURCES}
     ${SOURCES} 
 )
+
+if (WIN32)
+    set_target_properties ( qsynth PROPERTIES WIN32_EXECUTABLE true )
+endif (WIN32)
+
+if (APPLE)
+    set_target_properties ( qsynth PROPERTIES MACOSX_BUNDLE true )
+endif (APPLE)
 
 target_link_libraries ( qsynth
     ${QT_LIBRARIES}
@@ -115,3 +124,10 @@ if (UNIX AND NOT APPLE)
     install ( FILES images/qsynth.png
               DESTINATION share/pixmaps )
 endif (UNIX AND NOT APPLE)
+
+if (WIN32)
+    install ( TARGETS qsynth
+              RUNTIME DESTINATION . )
+    install ( FILES ${QM_FILES}
+              DESTINATION share/locale )
+endif (WIN32)

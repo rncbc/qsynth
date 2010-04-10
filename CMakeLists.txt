@@ -32,8 +32,10 @@ set (QT_MIN_VERSION "4.1.0")
 find_package (Qt4 REQUIRED)
 include (${QT_USE_FILE})
 
+include (CheckIncludeFile)
 include (CheckIncludeFiles)
 include (CheckFunctionExists)
+include (CheckLibraryExists)
 
 # Checks for libraries.
 find_library ( MATH_LIBRARY m )
@@ -47,17 +49,18 @@ else (MATH_LIBRARY)
 endif (MATH_LIBRARY)
 
 # Check for fluidsynth library.
-find_library (FLUIDSYNTH_LIBRARY fluidsynth) 
+find_library ( FLUIDSYNTH_LIBRARY fluidsynth ) 
 
 # Checks for header files.
-check_include_files ("fcntl.h;sys/ioctl.h;unistd.h;signal.h" HAVE_SIGNAL_H)
+check_include_files ("fcntl.h;unistd.h;signal.h" HAVE_SIGNAL_H)
 
 # Check for fluidsynth headers.
-check_include_files (fluidsynth.h HAVE_FLUIDSYNTH_H)
+find_path (FLUIDSYNTH_INCLUDEDIR NAMES fluidsynth.h)
+set(CMAKE_REQUIRED_INCLUDES ${FLUIDSYNTH_INCLUDEDIR})
+check_include_file ("fluidsynth.h" HAVE_FLUIDSYNTH_H)
 
 if (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
-    find_path (FLUIDSYNTH_INCLUDEDIR fluidsynth.h)
-    set(CMAKE_REQUIRED_LIBRARIES fluidsynth)
+    set(CMAKE_REQUIRED_LIBRARIES ${FLUIDSYNTH_LIBRARY})
     # new_fluid_server function.
     check_function_exists ( new_fluid_server CONFIG_FLUID_SERVER )
     # Check for fluid_synth_system_reset function.
@@ -69,7 +72,7 @@ if (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
     # Check for fluid_synth_unset_program function.
     check_function_exists ( fluid_synth_unset_program CONFIG_FLUID_UNSET_PROGRAM  )
 else (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
-    message (FATAL_ERROR "libfluidsynth not found")
+    message (FATAL_ERROR "fluidsynth not found")
 endif (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
 
 add_subdirectory (src)
@@ -94,8 +97,8 @@ show_option ( "  FluidSynth reset support . . . . . . . . . . . . ." CONFIG_FLUI
 show_option ( "  FluidSynth bank offset support . . . . . . . . . ." CONFIG_FLUID_BANK_OFFSET )
 show_option ( "  FluidSynth channel info support  . . . . . . . . ." CONFIG_FLUID_CHANNEL_INFO )
 show_option ( "  FluidSynth unset program support . . . . . . . . ." CONFIG_FLUID_UNSET_PROGRAM )
-show_option ( "  System tray icon support . . . . . . . . . . . . ." CONFIG_SYSTEM_TRAY )
-show_option ( "\n  Gradient eye-candy . . . . . . . . . . . . . . . ." CONFIG_GRADIENT )
+show_option ( "\n  System tray icon support . . . . . . . . . . . . ." CONFIG_SYSTEM_TRAY )
+show_option ( "  Gradient eye-candy . . . . . . . . . . . . . . . ." CONFIG_GRADIENT )
 show_option ( "  Debugger stack-trace (gdb) . . . . . . . . . . . ." CONFIG_STACKTRACE )
 message ( "\n  Install prefix . . . . . . . . . . . . . . . . . .: ${CMAKE_INSTALL_PREFIX}" )
 message ( "\nNow type 'make', followed by 'make install' as root." )

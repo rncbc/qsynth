@@ -1,15 +1,11 @@
 Name QSynth
 
 # Defines
-!define QTFILES "C:\Qt\4.5.1\bin"
-!define MINGWFILES "C:\MinGW\bin"
-!define FLUIDSYNTHDIR "C:\msys\1.0\home\pedro\fluidsynth-1.0.9"
-!define JACKDIR "C:\Program Files\Jack v1.9.1"
+!define BINARY_FILES "C:\Projects\build\all"
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.3.3.19
+!define VERSION 0.3.5
 !define COMPANY QSynth
 !define URL http://qsynth.sourceforge.net/
-!define QSYNTHDIR "C:\msys\1.0\home\pedro\qsynth-${VERSION}"
 
 # MUI defines
 !define MUI_ICON "${NSISDIR}\Contrib\Graphics\Icons\modern-install.ico"
@@ -42,10 +38,11 @@ Var LibInstall
 !insertmacro MUI_UNPAGE_INSTFILES
 
 # Installer languages
+!insertmacro MUI_LANGUAGE "Czech"
 !insertmacro MUI_LANGUAGE "English"
 !insertmacro MUI_LANGUAGE "German"
-!insertmacro MUI_LANGUAGE "Spanish"
 !insertmacro MUI_LANGUAGE "Russian"
+!insertmacro MUI_LANGUAGE "Spanish"
 
 # Installer attributes
 OutFile qsynth-${VERSION}-setup.exe
@@ -53,7 +50,7 @@ InstallDir $PROGRAMFILES\QSynth
 CRCCheck on
 XPStyle on
 ShowInstDetails show
-VIProductVersion 0.3.3.19
+VIProductVersion 0.3.5.0
 VIAddVersionKey ProductName QSynth
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
@@ -68,28 +65,37 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File ${QSYNTHDIR}\win32\release\qsynth.exe
-    File ${FLUIDSYNTHDIR}\src\.libs\fluidsynth.exe
-    File ${FLUIDSYNTHDIR}\sf2\VintageDreamsWaves-v2.sf2
+    File ${BINARY_FILES}\qsynth.exe
+    File ${BINARY_FILES}\fluidsynth.exe
     SetOutPath $INSTDIR\share\locale
-    File ${QSYNTHDIR}\translations\qsynth_de.qm
-    File ${QSYNTHDIR}\translations\qsynth_es.qm
-    File ${QSYNTHDIR}\translations\qsynth_ru.qm
+    File ${BINARY_FILES}\qsynth_cs.qm
+    File ${BINARY_FILES}\qsynth_de.qm
+    File ${BINARY_FILES}\qsynth_es.qm
+    File ${BINARY_FILES}\qsynth_ru.qm
 
-    # Installing library libfluidsynth-1.dll
-    !insertmacro InstallLib DLL $LibInstall REBOOT_PROTECTED ${FLUIDSYNTHDIR}\src\.libs\libfluidsynth-1.dll $INSTDIR\libfluidsynth-1.dll $INSTDIR
-
-    # Installing library libjack.dll
-    !insertmacro InstallLib DLL $LibInstall REBOOT_PROTECTED "${JACKDIR}\libjack.dll" $INSTDIR\libjack.dll $INSTDIR
+    # Installing library libfluidsynth.dll
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libfluidsynth.dll $INSTDIR\libfluidsynth.dll $INSTDIR
 
     # Installing library mingwm10.dll
-    !insertmacro InstallLib DLL $LibInstall REBOOT_PROTECTED ${MINGWFILES}\mingwm10.dll $INSTDIR\mingwm10.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\mingwm10.dll $INSTDIR\mingwm10.dll $INSTDIR
 
-    # Installing library QtCored4.dll
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${QTFILES}\QtCore4.dll $INSTDIR\QtCore4.dll $INSTDIR
+    # Installing library libgcc_s_dw2-1.dll
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libgcc_s_dw2-1.dll $INSTDIR\libgcc_s_dw2-1.dll $INSTDIR
 
-    # Installing library QtGuid4.dll
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${QTFILES}\QtGui4.dll $INSTDIR\QtGui4.dll $INSTDIR
+    # Installing library QtCore4.dll
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\QtCore4.dll $INSTDIR\QtCore4.dll $INSTDIR
+
+    # Installing library QtGui4.dll
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\QtGui4.dll $INSTDIR\QtGui4.dll $INSTDIR
+
+    # Installing library libglib.dll
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libglib-2.0-0.dll $INSTDIR\libglib-2.0-0.dll $INSTDIR
+
+    # Installing library libgthread.dll
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libgthread-2.0-0.dll $INSTDIR\libgthread-2.0-0.dll $INSTDIR
+    
+    # Installing library intl.dll
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\intl.dll $INSTDIR\intl.dll $INSTDIR
 
     WriteRegStr HKLM "${REGKEY}\Components" Main 1
 SectionEnd
@@ -132,24 +138,33 @@ Section /o -un.Main UNSEC0000
     Delete /REBOOTOK $INSTDIR\share\locale\qsynth_ru.qm
     Delete /REBOOTOK $INSTDIR\share\locale\qsynth_es.qm
     Delete /REBOOTOK $INSTDIR\share\locale\qsynth_de.qm
+    Delete /REBOOTOK $INSTDIR\share\locale\qsynth_cs.qm
     Delete /REBOOTOK $INSTDIR\fluidsynth.exe
     Delete /REBOOTOK $INSTDIR\qsynth.exe
-    Delete /REBOOTOK $INSTDIR\VintageDreamsWaves-v2.sf2
 
     # Uninstalling library $INSTDIR\libfluidsynth-1.dll
-    !insertmacro UnInstallLib DLL SHARED REBOOT_PROTECTED $INSTDIR\libfluidsynth-1.dll
-
-    # Uninstalling library $INSTDIR\libjack.dll
-    !insertmacro UnInstallLib DLL SHARED REBOOT_PROTECTED $INSTDIR\libjack.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libfluidsynth.dll
 
     # Uninstalling library $INSTDIR\mingwm10.dll
-    !insertmacro UnInstallLib DLL SHARED REBOOT_PROTECTED $INSTDIR\mingwm10.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\mingwm10.dll
+
+    # Uninstalling library $INSTDIR\libgcc_s_dw2-1.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libgcc_s_dw2-1.dll
 
     # Uninstalling library $INSTDIR\QtCore4.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\QtCore4.dll
 
     # Uninstalling library $INSTDIR\QtGui4.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\QtGui4.dll
+    
+    # Uninstalling library $INSTDIR\libglib.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libglib-2.0-0.dll 
+
+    # Uninstalling library $INSTDIR\libgthread.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libgthread-2.0-0.dll 
+    
+    # Uninstalling library $INSTDIR\intl.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\intl.dll 
 
     DeleteRegValue HKLM "${REGKEY}\Components" Main
 SectionEnd
