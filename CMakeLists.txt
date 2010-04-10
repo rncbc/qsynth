@@ -41,11 +41,10 @@ include (CheckLibraryExists)
 find_library ( MATH_LIBRARY m )
 # Check for round math function.
 if (MATH_LIBRARY)
-    set(CMAKE_REQUIRED_LIBRARIES m)
-    #check_function_exists (lroundf CONFIG_ROUND)
-    check_function_exists (round CONFIG_ROUND)
+    set ( CMAKE_REQUIRED_LIBRARIES ${MATH_LIBRARY} )
+    check_function_exists ( lroundf CONFIG_ROUND )
 else (MATH_LIBRARY)
-    message (FATAL_ERROR "libm not found")    
+    message (FATAL_ERROR "math library not found")    
 endif (MATH_LIBRARY)
 
 # Check for fluidsynth library.
@@ -56,7 +55,7 @@ check_include_files ("fcntl.h;unistd.h;signal.h" HAVE_SIGNAL_H)
 
 # Check for fluidsynth headers.
 find_path (FLUIDSYNTH_INCLUDEDIR NAMES fluidsynth.h)
-set(CMAKE_REQUIRED_INCLUDES ${FLUIDSYNTH_INCLUDEDIR})
+set (CMAKE_REQUIRED_INCLUDES ${FLUIDSYNTH_INCLUDEDIR})
 check_include_file ("fluidsynth.h" HAVE_FLUIDSYNTH_H)
 
 if (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
@@ -72,7 +71,7 @@ if (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
     # Check for fluid_synth_unset_program function.
     check_function_exists ( fluid_synth_unset_program CONFIG_FLUID_UNSET_PROGRAM  )
 else (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
-    message (FATAL_ERROR "fluidsynth not found")
+    message (FATAL_ERROR "fluidsynth library not found")
 endif (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
 
 add_subdirectory (src)
