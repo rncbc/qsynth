@@ -363,7 +363,7 @@
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="330"/>
         <source>Unset</source>
-        <translation type="unfinished"></translation>
+        <translation>Снять</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="462"/>
@@ -479,8 +479,8 @@
         <translation>Alt+л</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1051"/>
         <location filename="../qsynthMainForm.cpp" line="1074"/>
+        <location filename="../qsynthMainForm.ui" line="1051"/>
         <source>&amp;Quit</source>
         <translation>В&amp;ыйти</translation>
     </message>
@@ -495,9 +495,9 @@
         <translation>Выйти из программы</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="219"/>
         <location filename="../qsynthMainForm.cpp" line="1042"/>
         <location filename="../qsynthMainForm.cpp" line="1513"/>
+        <location filename="../qsynthMainForm.ui" line="219"/>
         <source>Set&amp;up...</source>
         <translation>&amp;Настроить...</translation>
     </message>
@@ -507,8 +507,8 @@
         <translation>Alt+н</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1089"/>
         <location filename="../qsynthMainForm.cpp" line="1064"/>
+        <location filename="../qsynthMainForm.ui" line="1089"/>
         <source>&amp;Messages</source>
         <translation>&amp;Сообщения</translation>
     </message>
@@ -554,8 +554,8 @@
         <translation>&amp;Усиление</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="203"/>
         <location filename="../qsynthMainForm.cpp" line="1030"/>
+        <location filename="../qsynthMainForm.ui" line="203"/>
         <source>&amp;Reset</source>
         <translation>С&amp;бросить</translation>
     </message>
@@ -712,9 +712,9 @@ next time you start this program.</source>
         <translation>Выбор движка (меню под правой клавишей мыши)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="187"/>
         <location filename="../qsynthMainForm.cpp" line="1028"/>
         <location filename="../qsynthMainForm.cpp" line="1124"/>
+        <location filename="../qsynthMainForm.ui" line="187"/>
         <source>Re&amp;start</source>
         <translation>Пере&amp;запустить</translation>
     </message>
@@ -724,8 +724,8 @@ next time you start this program.</source>
         <translation>Alt+з</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="333"/>
         <location filename="../qsynthMainForm.cpp" line="1033"/>
+        <location filename="../qsynthMainForm.ui" line="333"/>
         <source>&amp;Panic</source>
         <translation>&amp;Паника</translation>
     </message>
@@ -783,8 +783,8 @@ next time you start this program.</source>
         <translation>Включение эффект хора</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="165"/>
         <location filename="../qsynthMainForm.cpp" line="1037"/>
+        <location filename="../qsynthMainForm.ui" line="165"/>
         <source>&amp;Channels</source>
         <translation>&amp;Каналы</translation>
     </message>
@@ -833,8 +833,8 @@ next time you start this program.</source>
 движка синтезатора и диалог настройки</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1070"/>
         <location filename="../qsynthMainForm.cpp" line="1068"/>
+        <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>&amp;Options...</source>
         <translation>&amp;Параметры...</translation>
     </message>
@@ -885,7 +885,10 @@ To terminate the program, please choose &quot;Quit&quot; in the context menu of 
 
 To terminate the program, please choose &quot;Quit&quot;
 in the context menu of the system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Программа продолджит работу в области уведомления.
+
+Для завершения работы с ней выберите пункт «Выход»
+в контекстном меню элемента области уведомления.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="749"/>
@@ -896,7 +899,7 @@ in the context menu of the system tray icon.</source>
         <location filename="../qsynthMainForm.cpp" line="760"/>
         <location filename="../qsynthMainForm.cpp" line="1679"/>
         <source>Failed to load the soundfont: &quot;%1&quot;.</source>
-        <translation>Не удалось загрузить файл SF2: &quot;%1&quot;</translation>
+        <translation>Не удалось загрузить файл SF2: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="768"/>
