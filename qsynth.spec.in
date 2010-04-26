@@ -1,13 +1,13 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 10
-%define prefix  @ac_prefix@
+%define release 11
+
+%define _prefix	@ac_prefix@
 
 Summary:	A fluidsynth Qt GUI Interface
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-Prefix:		%{prefix}
 License:	GPL
 Group:		Productivity/Multimedia/Sound/Midi
 Source0:	%{name}-%{version}.tar.gz
@@ -34,10 +34,10 @@ command line softsynths.
 %__make
 
 %install
-%makeinstall
+%__make DESTDIR=%{buildroot} install
 
 %clean
-[ -d %{buildroot} -a "%{buildroot}" != "" ] && %__rm -rf  %{buildroot}
+[ -d %{buildroot} -a "%{buildroot}" != "" ] && %__rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
