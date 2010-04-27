@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-SVN HEAD
+2010-04-27  0.3.5  Overdue release.
 
 - Initial widget geometry and visibility persistence logic has
   been slightly revised as much to avoid crash failures due to
@@ -12,7 +12,7 @@ SVN HEAD
 - General source tree layout and build configuration change.
 
 - Most modal message dialog boxes (eg. critical errors) are now
-  replaced by system tray icon bubble messages where available
+  replaced by system tray icon bubble messages where available.
 
 - Reverb and Chorus parameter ranges have been revised to match
   and comply with fluidsynth back-end (libfluidsynth).

@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 11
+%define release 12
 
 %define _prefix	@ac_prefix@
 
@@ -50,6 +50,8 @@ command line softsynths.
 %{_datadir}/locale/%{name}_ru.qm
 
 %changelog
+* Tue Apr 27 2010 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.5
+- Overdue release 0.3.5.
 * Sun May 10 2009 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.4
 - New release 0.3.4.
 - Added russian translation.
