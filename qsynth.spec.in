@@ -43,11 +43,18 @@ command line softsynths.
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog README TODO TRANSLATORS
 %{_bindir}/%{name}
+%dir %{_datadir}/applications
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/pixmaps/%{name}.png
+%dir %{_datadir}/icons/hicolor
+%dir %{_datadir}/icons/hicolor/32x32
+%dir %{_datadir}/icons/hicolor/32x32/apps
+%{_datadir}/icons/hicolor/32x32/apps/%{name}.png
+%dir %{_datadir}/locale
 %{_datadir}/locale/%{name}_*.qm
 
 %changelog
+* Mon May 17 2010 Rui Nuno Capela <rncbc@users.sourceforge.net>
+- Standard desktop icon fixing. 
 * Tue Apr 27 2010 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.5
 - Overdue release 0.3.5.
 * Sun May 10 2009 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.4
