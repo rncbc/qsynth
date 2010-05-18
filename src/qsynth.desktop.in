@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=@PACKAGE_NAME@
-Version=@PACKAGE_VERSION@
+Version=1.0
 GenericName=FluidSynth GUI
 Comment=Qsynth is a FluidSynth Qt GUI Interface
 Exec=@ac_prefix@/bin/qsynth
