@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 12
+%define release 13
 
 %define _prefix	@ac_prefix@
 
@@ -42,13 +42,14 @@ command line softsynths.
 %files
 %defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog README TODO TRANSLATORS
-%{_bindir}/%{name}
-%{_datadir}/applications/%{name}.desktop
+#dir %{_datadir}/applications
 %dir %{_datadir}/icons/hicolor
 %dir %{_datadir}/icons/hicolor/32x32
 %dir %{_datadir}/icons/hicolor/32x32/apps
+#dir %{_datadir}/locale
+%{_bindir}/%{name}
+%{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%dir %{_datadir}/locale
 %{_datadir}/locale/%{name}_*.qm
 
 %changelog
