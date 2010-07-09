@@ -300,11 +300,11 @@ qsynthSetupForm::qsynthSetupForm (
 	QObject::connect(m_ui.SoundFontListView->itemDelegate(),
 		SIGNAL(commitData(QWidget*)),
 		SLOT(itemRenamed()));
-	QObject::connect(m_ui.OkPushButton,
-		SIGNAL(clicked()),
+	QObject::connect(m_ui.DialogButtonBox,
+		SIGNAL(accepted()),
 		SLOT(accept()));
-	QObject::connect(m_ui.CancelPushButton,
-		SIGNAL(clicked()),
+	QObject::connect(m_ui.DialogButtonBox,
+		SIGNAL(rejected()),
 		SLOT(reject()));
 }
 
@@ -718,7 +718,7 @@ void qsynthSetupForm::stabilizeForm (void)
 				bEnabled = (sDisplayName != (m_pOptions->defaultSetup())->sDisplayName);
 		}
 	}
-	m_ui.OkPushButton->setEnabled(bEnabled);
+	m_ui.DialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(bEnabled);
 }
 
 

@@ -100,11 +100,11 @@ qsynthOptionsForm::qsynthOptionsForm (
 	QObject::connect(m_ui.KnobMouseMotionComboBox,
 		SIGNAL(activated(int)),
 		SLOT(optionsChanged()));
-	QObject::connect(m_ui.OkPushButton,
-		SIGNAL(clicked()),
+	QObject::connect(m_ui.DialogButtonBox,
+		SIGNAL(accepted()),
 		SLOT(accept()));
-	QObject::connect(m_ui.CancelPushButton,
-		SIGNAL(clicked()),
+	QObject::connect(m_ui.DialogButtonBox,
+		SIGNAL(rejected()),
 		SLOT(reject()));
 }
 
@@ -279,7 +279,7 @@ void qsynthOptionsForm::stabilizeForm()
 	m_ui.StartMinimizedCheckBox->setEnabled(
 		m_ui.SystemTrayCheckBox->isChecked());
 
-	m_ui.OkPushButton->setEnabled(bValid);
+	m_ui.DialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(bValid);
 }
 
 

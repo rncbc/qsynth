@@ -675,46 +675,14 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" >
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType" >
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0" >
-        <size>
-         <width>250</width>
-         <height>16</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="OkPushButton" >
-       <property name="text" >
-        <string>OK</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="qsynth.qrc" >
-         <normaloff>:/images/accept1.png</normaloff>:/images/accept1.png</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="CancelPushButton" >
-       <property name="text" >
-        <string>Cancel</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="qsynth.qrc" >
-         <normaloff>:/images/quit1.png</normaloff>:/images/quit1.png</iconset>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QDialogButtonBox" name="DialogButtonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
@@ -736,8 +704,7 @@
   <tabstop>SystemTrayCheckBox</tabstop>
   <tabstop>StartMinimizedCheckBox</tabstop>
   <tabstop>BaseFontSizeComboBox</tabstop>
-  <tabstop>OkPushButton</tabstop>
-  <tabstop>CancelPushButton</tabstop>
+  <tabstop>DialogButtonBox</tabstop>
  </tabstops>
  <resources>
   <include location="qsynth.qrc" />

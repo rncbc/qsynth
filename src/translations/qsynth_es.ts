@@ -1136,9 +1136,8 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Descartar</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="709"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation type="obsolete">Cancelar</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="291"/>
@@ -1360,9 +1359,8 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Alt+z</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="698"/>
         <source>OK</source>
-        <translation>Aceptar</translation>
+        <translation type="obsolete">Aceptar</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="311"/>
@@ -1497,7 +1495,7 @@ de reiniciar el motor de Fluidsynth:</translation>
 <context>
     <name>qsynthPresetForm</name>
     <message>
-        <location filename="../qsynthPresetForm.cpp" line="138"/>
+        <location filename="../qsynthPresetForm.cpp" line="139"/>
         <source>Channel %1</source>
         <translation>Canal %1</translation>
     </message>
@@ -1507,62 +1505,60 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Qsynth: Preajuste de canal</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="72"/>
         <source>OK</source>
-        <translation>Aceptar</translation>
+        <translation type="obsolete">Aceptar</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="88"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation type="obsolete">Cancelar</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="104"/>
+        <location filename="../qsynthPresetForm.ui" line="59"/>
         <source>Preset</source>
         <translation>Preajuste</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="132"/>
+        <location filename="../qsynthPresetForm.ui" line="87"/>
         <source>Bank selector</source>
         <translation>Selector de canales</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="157"/>
+        <location filename="../qsynthPresetForm.ui" line="112"/>
         <source>Bank</source>
         <translation>Banco</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="163"/>
+        <location filename="../qsynthPresetForm.ui" line="118"/>
         <source>Program selector</source>
         <translation>Selector de programa</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="188"/>
+        <location filename="../qsynthPresetForm.ui" line="143"/>
         <source>Prog</source>
         <translation>Prog</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="193"/>
+        <location filename="../qsynthPresetForm.ui" line="148"/>
         <source>Name</source>
         <translation>Nombre</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="198"/>
+        <location filename="../qsynthPresetForm.ui" line="153"/>
         <source>SFID</source>
         <translation>SFID</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="203"/>
+        <location filename="../qsynthPresetForm.ui" line="158"/>
         <source>Soundfont</source>
         <translation>Soundfont</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="212"/>
+        <location filename="../qsynthPresetForm.ui" line="167"/>
         <source>Whether to preview the current selection</source>
         <translation>Determina si se previsualizará la selección actual</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="215"/>
+        <location filename="../qsynthPresetForm.ui" line="170"/>
         <source>Preview</source>
         <translation>Previsualización</translation>
     </message>
@@ -1599,9 +1595,8 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Descartar</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1120"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation type="obsolete">Cancelar</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="744"/>
@@ -1645,9 +1640,8 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>¿Añadir de todas formas?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1110"/>
         <source>OK</source>
-        <translation>Aceptar</translation>
+        <translation type="obsolete">Aceptar</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="846"/>

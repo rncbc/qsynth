@@ -1292,14 +1292,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Alt+B</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="698"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="709"/>
         <source>Cancel</source>
-        <translation>Zrušit</translation>
+        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="233"/>
@@ -1456,67 +1454,65 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Qsynth: Přednastavení kanálů</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="72"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="88"/>
         <source>Cancel</source>
-        <translation>Zrušit</translation>
+        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="104"/>
+        <location filename="../qsynthPresetForm.ui" line="59"/>
         <source>Preset</source>
         <translation>Přednastavení</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="132"/>
+        <location filename="../qsynthPresetForm.ui" line="87"/>
         <source>Bank selector</source>
         <translation>Přepínač banky</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="157"/>
+        <location filename="../qsynthPresetForm.ui" line="112"/>
         <source>Bank</source>
         <translation>Banka</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="163"/>
+        <location filename="../qsynthPresetForm.ui" line="118"/>
         <source>Program selector</source>
         <translation>Přepínač programu</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="188"/>
+        <location filename="../qsynthPresetForm.ui" line="143"/>
         <source>Prog</source>
         <translation>Prog</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="193"/>
+        <location filename="../qsynthPresetForm.ui" line="148"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="198"/>
+        <location filename="../qsynthPresetForm.ui" line="153"/>
         <source>SFID</source>
         <translation>SFID</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="203"/>
+        <location filename="../qsynthPresetForm.ui" line="158"/>
         <source>Soundfont</source>
         <translation>Zvukové písmo</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="212"/>
+        <location filename="../qsynthPresetForm.ui" line="167"/>
         <source>Whether to preview the current selection</source>
         <translation>Ukázat náhled nynějšího výběru</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.ui" line="215"/>
+        <location filename="../qsynthPresetForm.ui" line="170"/>
         <source>Preview</source>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.cpp" line="138"/>
+        <location filename="../qsynthPresetForm.cpp" line="139"/>
         <source>Channel %1</source>
         <translation>Kanál %1</translation>
     </message>
@@ -2004,14 +2000,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Volby</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1110"/>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation type="obsolete">OK</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1120"/>
         <source>Cancel</source>
-        <translation>Zrušit</translation>
+        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="350"/>

@@ -25,6 +25,7 @@
 #include "qsynthOptions.h"
 
 #include <QHeaderView>
+#include <QPushButton>
 #include <QFileInfo>
 
 
@@ -107,11 +108,11 @@ qsynthPresetForm::qsynthPresetForm (
 	QObject::connect(m_ui.ProgListView,
 		SIGNAL(itemActivated(QTreeWidgetItem*,int)),
 		SLOT(accept()));
-	QObject::connect(m_ui.OkPushButton,
-		SIGNAL(clicked()),
+	QObject::connect(m_ui.DialogButtonBox,
+		SIGNAL(accepted()),
 		SLOT(accept()));
-	QObject::connect(m_ui.CancelPushButton,
-		SIGNAL(clicked()),
+	QObject::connect(m_ui.DialogButtonBox,
+		SIGNAL(rejected()),
 		SLOT(reject()));
 }
 
@@ -219,7 +220,8 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 // Stabilize current state form.
 void qsynthPresetForm::stabilizeForm()
 {
-	m_ui.OkPushButton->setEnabled(validateForm());
+	m_ui.DialogButtonBox->button(
+		QDialogButtonBox::Ok)->setEnabled(validateForm());
 }
 
 

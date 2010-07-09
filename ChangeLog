@@ -3,6 +3,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+SVN TRUNK
+
+- General standard dialog buttons layout is now in place.
+
+
 2010-04-27  0.3.5  Overdue release.
 
 - Initial widget geometry and visibility persistence logic has
