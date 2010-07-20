@@ -65,7 +65,7 @@ const WindowFlags CustomizeWindowHint   = WindowFlags(0x02000000);
 
 // Timer constant stuff.
 #define QSYNTH_TIMER_MSECS  100
-#define QSYNTH_DELAY_MSECS  200
+#define QSYNTH_DELAY_MSECS  300
 
 // Scale factors.
 #define QSYNTH_MASTER_GAIN_SCALE    100.0f
@@ -1606,7 +1606,7 @@ void qsynthMainForm::timerSlot (void)
 	}
 
 	// Register for the next timer slot.
-	QTimer::singleShot(QSYNTH_TIMER_MSECS, this, SLOT(timerSlot()));
+	QTimer::singleShot(QSYNTH_DELAY_MSECS, this, SLOT(timerSlot()));
 }
 
 
