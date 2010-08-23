@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.5.4, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.5.5, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
@@ -180,6 +180,9 @@ if test "x$ac_fluidsynth_lib" = "xno"; then
 else
    ac_libs="$ac_libs -lfluidsynth"
 fi
+
+# Some recent distros (eg. fedora, debian) require this.
+ac_libs="$ac_libs -lX11"
 
 AC_SUBST(ac_libs)
 
