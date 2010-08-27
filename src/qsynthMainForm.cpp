@@ -1606,7 +1606,7 @@ void qsynthMainForm::timerSlot (void)
 	}
 
 	// Register for the next timer slot.
-	QTimer::singleShot(QSYNTH_DELAY_MSECS, this, SLOT(timerSlot()));
+	QTimer::singleShot(QSYNTH_TIMER_MSECS, this, SLOT(timerSlot()));
 }
 
 
