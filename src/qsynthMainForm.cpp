@@ -802,7 +802,8 @@ void qsynthMainForm::dragEnterEvent ( QDragEnterEvent* pDragEnterEvent )
 				const QString& sFilename
 					= iter.next().toLocalFile();
 				if (!sFilename.isEmpty()) {
-					char *pszFilename = sFilename.toLocal8Bit().data();
+                                        QByteArray tmp = sFilename.toLocal8Bit();
+					char *pszFilename = tmp.data();
 					if (::fluid_is_midifile(pszFilename) ||
 						::fluid_is_soundfont(pszFilename))
 						bAccept = true;

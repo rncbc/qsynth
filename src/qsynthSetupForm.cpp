@@ -797,9 +797,8 @@ void qsynthSetupForm::openSoundFont (void)
 	QStringListIterator iter(soundfonts);
 	while (iter.hasNext()) {
 		const QString& sSoundFont = iter.next();
-		char *pszFilename = sSoundFont.toLocal8Bit().data();
 		// Is it a soundfont file...
-		if (::fluid_is_soundfont(pszFilename)) {
+		if (::fluid_is_soundfont(sSoundFont.toLocal8Bit().data())) {
 			// Check if not already there...
 			if (!m_ui.SoundFontListView->findItems(sSoundFont,
 				Qt::MatchExactly, 1).isEmpty() &&

@@ -366,7 +366,8 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			return false;
 		}
 		else {
-			char *name = args.at(i).toUtf8().data();
+		        QByteArray tmp = args.at(i).toUtf8();
+			char *name = tmp.data();
 			if (::fluid_is_soundfont(name)) {
 				if (++iSoundFontOverride == 1) {
 					m_pDefaultSetup->soundfonts.clear();

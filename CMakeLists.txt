@@ -2,11 +2,7 @@ project(QSYNTH)
 
 cmake_minimum_required(VERSION 2.6)
 
-set (VERSION_MAJOR 0)
-set (VERSION_MINOR 3)
-set (VERSION_PATCH 5)
-set (VERSION_SUFFIX "")
-set (VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}${VERSION_SUFFIX}")
+set (VERSION "0.3.5.7")
 
 set (PACKAGE_NAME "Qsynth")
 set (PACKAGE_VERSION "${VERSION}")

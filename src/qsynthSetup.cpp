@@ -96,8 +96,8 @@ void qsynthSetup::realize (void)
 		else
 			sMidiKey += sMidiDriver;
 		sMidiKey += + ".device";
-		pszKey = sMidiKey.toLocal8Bit().data();
-		::fluid_settings_setstr(m_pFluidSettings, pszKey,
+		::fluid_settings_setstr(m_pFluidSettings,
+		        sMidiKey.toLocal8Bit().data(),
 			sMidiDevice.toLocal8Bit().data());
 	}
 
@@ -112,8 +112,8 @@ void qsynthSetup::realize (void)
 			sAudioKey += "name";
 		else
 			sAudioKey += "device";
-		pszKey = sAudioKey.toLocal8Bit().data();
-		::fluid_settings_setstr(m_pFluidSettings, pszKey,
+		::fluid_settings_setstr(m_pFluidSettings,
+                        sAudioKey.toLocal8Bit().data(),
 			sAudioDevice.toLocal8Bit().data());
 	}
 	if (!sJackName.isEmpty()) {
@@ -202,7 +202,8 @@ void qsynthSetup::realize (void)
 		const QString sOpt = iter.next();
 		const QString sKey = sOpt.section('=', 0, 0);
 		const QString sVal = sOpt.section('=', 1, 1);
-		pszKey = sKey.toLocal8Bit().data();
+		QByteArray tmp = sKey.toLocal8Bit();
+		pszKey = tmp.data();
 		switch (::fluid_settings_get_type(m_pFluidSettings, pszKey)) {
 		case FLUID_NUM_TYPE:
 			::fluid_settings_setnum(m_pFluidSettings, pszKey, sVal.toFloat());
@@ -212,8 +213,8 @@ void qsynthSetup::realize (void)
 			break;
 		case FLUID_STR_TYPE:
 		default:
-			pszVal = sVal.toLocal8Bit().data();
-			::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+			::fluid_settings_setstr(m_pFluidSettings, pszKey,
+			                        sVal.toLocal8Bit().data());
 			break;
 		}
 	}
