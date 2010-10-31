@@ -10,27 +10,27 @@ link_directories (
     ${QT_LIBRARY_DIR}
 )
 
-configure_file ( cmakeconfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h ) 
+configure_file ( cmakeconfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h )
 
 set ( ac_prefix ${CMAKE_INSTALL_PREFIX} )
-configure_file ( qsynth.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop ) 
+configure_file ( qsynth.desktop.in ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop )
 
-set ( HEADERS 
-    qsynthKnob.h 
-    qsynthMeter.h 
-    qsynthSystemTray.h 
-    qsynthTabBar.h 
-    qsynthAboutForm.h 
-    qsynthChannelsForm.h 
-    qsynthMainForm.h 
-    qsynthMessagesForm.h 
-    qsynthOptionsForm.h 
-    qsynthPresetForm.h 
-    qsynthSetupForm.h 
+set ( HEADERS
+    qsynthKnob.h
+    qsynthMeter.h
+    qsynthSystemTray.h
+    qsynthTabBar.h
+    qsynthAboutForm.h
+    qsynthChannelsForm.h
+    qsynthMainForm.h
+    qsynthMessagesForm.h
+    qsynthOptionsForm.h
+    qsynthPresetForm.h
+    qsynthSetupForm.h
 )
 
-set ( SOURCES 
-    qsynth.cpp 
+set ( SOURCES
+    qsynth.cpp
     qsynthEngine.cpp
     qsynthChannels.cpp
     qsynthKnob.cpp
@@ -52,7 +52,7 @@ set ( SOURCES
     qsynthDialSkulptureStyle.cpp
 )
 
-set ( FORMS 
+set ( FORMS
     qsynthAboutForm.ui
     qsynthChannelsForm.ui
     qsynthMainForm.ui
@@ -62,7 +62,7 @@ set ( FORMS
     qsynthSetupForm.ui
 )
 
-set ( RESOURCES 
+set ( RESOURCES
     qsynth.qrc
 )
 
@@ -83,11 +83,19 @@ if (WIN32)
     endif (MINGW)
 endif (WIN32)
 
+if (APPLE)
+    set ( ICON_FILE ${CMAKE_CURRENT_SOURCE_DIR}/images/qsynth.icns )
+    list ( APPEND SOURCES ${ICON_FILE} )
+    set ( MACOSX_BUNDLE_ICON_FILE qsynth.icns )
+    set_source_files_properties ( ${ICON_FILE} PROPERTIES
+        MACOSX_PACKAGE_LOCATION Resources )
+endif (APPLE)
+
 add_executable ( qsynth
     ${UI_SOURCES}
     ${MOC_SOURCES}
     ${QRC_SOURCES}
-    ${SOURCES} 
+    ${SOURCES}
 )
 
 if (WIN32)
@@ -104,7 +112,7 @@ target_link_libraries ( qsynth
     ${FLUIDSYNTH_LIBRARY}
 )
 
-set ( TRANSLATIONS 
+set ( TRANSLATIONS
    translations/qsynth_cs.ts
    translations/qsynth_de.ts
    translations/qsynth_es.ts
@@ -120,7 +128,7 @@ if (UNIX AND NOT APPLE)
     install ( FILES ${QM_FILES}
               DESTINATION share/locale )
     install ( FILES ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop
-              DESTINATION share/applications ) 
+              DESTINATION share/applications )
     install ( FILES images/qsynth.png
               DESTINATION share/pixmaps )
 endif (UNIX AND NOT APPLE)

@@ -2,7 +2,7 @@ project(QSYNTH)
 
 cmake_minimum_required(VERSION 2.6)
 
-set (VERSION "0.3.5.7")
+set (VERSION "0.3.5.8")
 
 set (PACKAGE_NAME "Qsynth")
 set (PACKAGE_VERSION "${VERSION}")
@@ -40,11 +40,11 @@ if (MATH_LIBRARY)
     set ( CMAKE_REQUIRED_LIBRARIES ${MATH_LIBRARY} )
     check_function_exists ( lroundf CONFIG_ROUND )
 else (MATH_LIBRARY)
-    message (FATAL_ERROR "math library not found")    
+    message (FATAL_ERROR "math library not found")
 endif (MATH_LIBRARY)
 
 # Check for fluidsynth library.
-find_library ( FLUIDSYNTH_LIBRARY fluidsynth ) 
+find_library ( FLUIDSYNTH_LIBRARY fluidsynth )
 
 # Checks for header files.
 check_include_files ("fcntl.h;unistd.h;signal.h" HAVE_SIGNAL_H)

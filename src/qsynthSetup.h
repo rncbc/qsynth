@@ -36,75 +36,75 @@ class qsynthSetup
 {
 public:
 
-	// Constructor.
-	qsynthSetup();
-	// Default destructor.
-	~qsynthSetup();
+        // Constructor.
+        qsynthSetup();
+        // Default destructor.
+        ~qsynthSetup();
 
-	// Settings cache realization.
-	void realize();
+        // Settings cache realization.
+        void realize();
 
-	// Fluidsynth settings accessor.
-	fluid_settings_t *fluid_settings();
+        // Fluidsynth settings accessor.
+        fluid_settings_t *fluid_settings();
 
-	// Setup display name.
-	QString sDisplayName;
+        // Setup display name.
+        QString sDisplayName;
 
-	// Settings variables.
-	bool    bMidiIn;
-	QString sMidiDriver;
-	QString sMidiDevice;
-	int     iMidiChannels;
-	QString sAlsaName;
-	QString sAudioDriver;
-	QString sAudioDevice;
-	QString sJackName;
-	bool    bJackAutoConnect;
-	bool    bJackMulti;
-	int     iAudioChannels;
-	int     iAudioGroups;
-	int     iAudioBufSize;
-	int     iAudioBufCount;
-	QString sSampleFormat;
-	float   fSampleRate;
-	int     iPolyphony;
-	bool    bReverbActive;
-	double  fReverbRoom;
-	double  fReverbDamp;
-	double  fReverbWidth;
-	double  fReverbLevel;
-	bool    bChorusActive;
-	int     iChorusNr;
-	double  fChorusLevel;
-	double  fChorusSpeed;
-	double  fChorusDepth;
-	int     iChorusType;
-	bool    bLadspaActive;
-	float   fGain;
-	bool    bServer;
-	bool    bMidiDump;
-	bool    bVerbose;
+        // Settings variables.
+        bool    bMidiIn;
+        QString sMidiDriver;
+        QString sMidiDevice;
+        int     iMidiChannels;
+        QString sMidiName;
+        QString sAudioDriver;
+        QString sAudioDevice;
+        QString sJackName;
+        bool    bJackAutoConnect;
+        bool    bJackMulti;
+        int     iAudioChannels;
+        int     iAudioGroups;
+        int     iAudioBufSize;
+        int     iAudioBufCount;
+        QString sSampleFormat;
+        float   fSampleRate;
+        int     iPolyphony;
+        bool    bReverbActive;
+        double  fReverbRoom;
+        double  fReverbDamp;
+        double  fReverbWidth;
+        double  fReverbLevel;
+        bool    bChorusActive;
+        int     iChorusNr;
+        double  fChorusLevel;
+        double  fChorusSpeed;
+        double  fChorusDepth;
+        int     iChorusType;
+        bool    bLadspaActive;
+        float   fGain;
+        bool    bServer;
+        bool    bMidiDump;
+        bool    bVerbose;
 
-	// Optional options.
-	QStringList options;
+        // Optional options.
+        QStringList options;
 
-	// Optional file lists.
-	QStringList soundfonts;
-	QStringList bankoffsets;
-	QStringList midifiles;
+        // Optional file lists.
+        QStringList soundfonts;
+        QStringList bankoffsets;
+        QStringList midifiles;
 
-	// Current (translated) preset name.
-	QString sDefPresetName;
+        // Current (translated) preset name.
+        QString sDefPresetName;
 
-	// Current (default) preset name.
-	QString sDefPreset;
-	// Available presets list.
-	QStringList presets;
+        // Current (default) preset name.
+        QString sDefPreset;
+        // Available presets list.
+        QStringList presets;
 
 private:
 
-	// Fluidsynth settings member variable.
-	fluid_settings_t *m_pFluidSettings;
+        // Fluidsynth settings member variable.
+        fluid_settings_t *m_pFluidSettings;
 };
 
 

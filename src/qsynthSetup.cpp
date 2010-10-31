@@ -32,26 +32,26 @@
 // Constructor.
 qsynthSetup::qsynthSetup (void)
 {
-	m_pFluidSettings = NULL;
+        m_pFluidSettings = NULL;
 
-	sDefPresetName = QObject::tr("(default)");
+        sDefPresetName = QObject::tr("(default)");
 }
 
 
 // Default Destructor.
 qsynthSetup::~qsynthSetup (void)
 {
-	if (m_pFluidSettings)
-		::delete_fluid_settings(m_pFluidSettings);
+        if (m_pFluidSettings)
+                ::delete_fluid_settings(m_pFluidSettings);
 
-	m_pFluidSettings = NULL;
+        m_pFluidSettings = NULL;
 }
 
 
 // Fluidsynth settings accessor.
 fluid_settings_t *qsynthSetup::fluid_settings (void)
 {
-	return m_pFluidSettings;
+        return m_pFluidSettings;
 }
 
 
@@ -61,163 +61,164 @@ fluid_settings_t *qsynthSetup::fluid_settings (void)
 
 void qsynthSetup::realize (void)
 {
-	if (m_pFluidSettings)
-		::delete_fluid_settings(m_pFluidSettings);
+        if (m_pFluidSettings)
+                ::delete_fluid_settings(m_pFluidSettings);
 
-	m_pFluidSettings = ::new_fluid_settings();
+        m_pFluidSettings = ::new_fluid_settings();
 
-	// The 'groups' setting is only relevant for LADSPA operation
-	// If not given, set number groups to number of audio channels, because
-	// they are the same (there is nothing between synth output and 'sound card')
-	if ((iAudioGroups == 0) && (iAudioChannels != 0))
-		iAudioGroups = iAudioChannels;
+        // The 'groups' setting is only relevant for LADSPA operation
+        // If not given, set number groups to number of audio channels, because
+        // they are the same (there is nothing between synth output and 'sound card')
+        if ((iAudioGroups == 0) && (iAudioChannels != 0))
+                iAudioGroups = iAudioChannels;
 
-	// We'll need these to avoid pedandic compiler warnings...
-	char *pszKey;
-	char *pszVal;
+        // We'll need these to avoid pedandic compiler warnings...
+        char *pszKey;
+        char *pszVal;
 
-	// First we'll force all other conmmand line options...
-	if (!sMidiDriver.isEmpty()) {
-		pszKey = (char *) "midi.driver";
-		::fluid_settings_setstr(m_pFluidSettings, pszKey,
-			sMidiDriver.toLocal8Bit().data());
-	}
-	if (sMidiDriver == "alsa_seq") {
-		pszKey = (char *) "midi.alsa_seq.id";
-		if (!sAlsaName.isEmpty())
-			::fluid_settings_setstr(m_pFluidSettings, pszKey,
-				sAlsaName.toLocal8Bit().data());
-	}
-	else
-	if (!sMidiDevice.isEmpty()) {
-		QString sMidiKey = "midi.";
-		if (sMidiDriver == "alsa_raw")
-			sMidiKey += "alsa";
-		else
-			sMidiKey += sMidiDriver;
-		sMidiKey += + ".device";
-		::fluid_settings_setstr(m_pFluidSettings,
-		        sMidiKey.toLocal8Bit().data(),
-			sMidiDevice.toLocal8Bit().data());
-	}
+        // First we'll force all other conmmand line options...
+        if (!sMidiDriver.isEmpty()) {
+                pszKey = (char *) "midi.driver";
+                ::fluid_settings_setstr(m_pFluidSettings, pszKey,
+                        sMidiDriver.toLocal8Bit().data());
+        }
+        if (sMidiDriver == "alsa_seq" || sMidiDriver == "coremidi") {
+                QString sKey = "midi." + sMidiDriver + ".id";
+                if (!sMidiName.isEmpty())
+                        ::fluid_settings_setstr(m_pFluidSettings,
+                                sKey.toLocal8Bit().data(),
+                                sMidiName.toLocal8Bit().data());
+        }
+        else
+        if (!sMidiDevice.isEmpty()) {
+                QString sMidiKey = "midi.";
+                if (sMidiDriver == "alsa_raw")
+                        sMidiKey += "alsa";
+                else
+                        sMidiKey += sMidiDriver;
+                sMidiKey += ".device";
+                ::fluid_settings_setstr(m_pFluidSettings,
+                        sMidiKey.toLocal8Bit().data(),
+                        sMidiDevice.toLocal8Bit().data());
+        }
 
-	if (!sAudioDriver.isEmpty()) {
-		pszKey = (char *) "audio.driver";
-		::fluid_settings_setstr(m_pFluidSettings, pszKey,
-			sAudioDriver.toLocal8Bit().data());
-	}
-	if (!sAudioDevice.isEmpty()) {
-		QString sAudioKey = "audio." + sAudioDriver + '.';
-		if (sAudioDriver == "file")
-			sAudioKey += "name";
-		else
-			sAudioKey += "device";
-		::fluid_settings_setstr(m_pFluidSettings,
+        if (!sAudioDriver.isEmpty()) {
+                pszKey = (char *) "audio.driver";
+                ::fluid_settings_setstr(m_pFluidSettings, pszKey,
+                        sAudioDriver.toLocal8Bit().data());
+        }
+        if (!sAudioDevice.isEmpty()) {
+                QString sAudioKey = "audio." + sAudioDriver + '.';
+                if (sAudioDriver == "file")
+                        sAudioKey += "name";
+                else
+                        sAudioKey += "device";
+                ::fluid_settings_setstr(m_pFluidSettings,
                         sAudioKey.toLocal8Bit().data(),
-			sAudioDevice.toLocal8Bit().data());
-	}
-	if (!sJackName.isEmpty()) {
-		pszKey = (char *) "audio.jack.id";
-		::fluid_settings_setstr(m_pFluidSettings, pszKey,
-			sJackName.toLocal8Bit().data());
-	}
+                        sAudioDevice.toLocal8Bit().data());
+        }
+        if (!sJackName.isEmpty()) {
+                pszKey = (char *) "audio.jack.id";
+                ::fluid_settings_setstr(m_pFluidSettings, pszKey,
+                        sJackName.toLocal8Bit().data());
+        }
 
-	pszKey = (char *) "audio.jack.autoconnect";
-	::fluid_settings_setint(m_pFluidSettings, pszKey,
-		int(bJackAutoConnect));
+        pszKey = (char *) "audio.jack.autoconnect";
+        ::fluid_settings_setint(m_pFluidSettings, pszKey,
+                int(bJackAutoConnect));
 
-	pszKey = (char *) "audio.jack.multi";
-	pszVal = (char *) (bJackMulti ? "yes" : "no");
-	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+        pszKey = (char *) "audio.jack.multi";
+        pszVal = (char *) (bJackMulti ? "yes" : "no");
+        ::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
 
-	if (!sSampleFormat.isEmpty()) {
-		pszKey = (char *) "audio.sample-format";
-		::fluid_settings_setstr(m_pFluidSettings, pszKey,
-			sSampleFormat.toLocal8Bit().data());
-	}
-	if (iAudioBufSize > 0) {
-		pszKey = (char *) "audio.period-size";
-		::fluid_settings_setint(m_pFluidSettings, pszKey,
-			iAudioBufSize);
-	}
-	if (iAudioBufCount > 0) {
-		pszKey = (char *) "audio.periods";
-		::fluid_settings_setint(m_pFluidSettings, pszKey,
-			iAudioBufCount);
-	}
-	if (iMidiChannels > 0) {
-		pszKey = (char *) "synth.midi-channels";
-		::fluid_settings_setint(m_pFluidSettings, pszKey,
-			iMidiChannels);
-	}
-	if (iAudioChannels > 0) {
-		pszKey = (char *) "synth.audio-channels";
-		::fluid_settings_setint(m_pFluidSettings, pszKey,
-			iAudioChannels);
-	}
-	if (iAudioGroups > 0) {
-		pszKey = (char *) "synth.audio-groups";
-		::fluid_settings_setint(m_pFluidSettings, pszKey,
-			iAudioGroups);
-	}
-	if (fSampleRate > 0.0) {
-		pszKey = (char *) "synth.sample-rate";
-		::fluid_settings_setnum(m_pFluidSettings, pszKey,
-			fSampleRate);
-	}
-	if (iPolyphony > 0) {
-		pszKey = (char *) "synth.polyphony";
-		::fluid_settings_setint(m_pFluidSettings, pszKey,
-			iPolyphony);
-	}
+        if (!sSampleFormat.isEmpty()) {
+                pszKey = (char *) "audio.sample-format";
+                ::fluid_settings_setstr(m_pFluidSettings, pszKey,
+                        sSampleFormat.toLocal8Bit().data());
+        }
+        if (iAudioBufSize > 0) {
+                pszKey = (char *) "audio.period-size";
+                ::fluid_settings_setint(m_pFluidSettings, pszKey,
+                        iAudioBufSize);
+        }
+        if (iAudioBufCount > 0) {
+                pszKey = (char *) "audio.periods";
+                ::fluid_settings_setint(m_pFluidSettings, pszKey,
+                        iAudioBufCount);
+        }
+        if (iMidiChannels > 0) {
+                pszKey = (char *) "synth.midi-channels";
+                ::fluid_settings_setint(m_pFluidSettings, pszKey,
+                        iMidiChannels);
+        }
+        if (iAudioChannels > 0) {
+                pszKey = (char *) "synth.audio-channels";
+                ::fluid_settings_setint(m_pFluidSettings, pszKey,
+                        iAudioChannels);
+        }
+        if (iAudioGroups > 0) {
+                pszKey = (char *) "synth.audio-groups";
+                ::fluid_settings_setint(m_pFluidSettings, pszKey,
+                        iAudioGroups);
+        }
+        if (fSampleRate > 0.0) {
+                pszKey = (char *) "synth.sample-rate";
+                ::fluid_settings_setnum(m_pFluidSettings, pszKey,
+                        fSampleRate);
+        }
+        if (iPolyphony > 0) {
+                pszKey = (char *) "synth.polyphony";
+                ::fluid_settings_setint(m_pFluidSettings, pszKey,
+                        iPolyphony);
+        }
 //  Gain is set on realtime (don't need to set it here)
 //  if (fGain > 0.0) {
 //		pszKey = (char *) "synth.gain";
 //      ::fluid_settings_setnum(m_pFluidSettings, pszKey, fGain);
 //	}
 
-	pszKey = (char *) "synth.reverb.active";
-	pszVal = (char *) (bReverbActive ? "yes" : "no");
-	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+        pszKey = (char *) "synth.reverb.active";
+        pszVal = (char *) (bReverbActive ? "yes" : "no");
+        ::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
 
-	pszKey = (char *) "synth.chorus.active";
-	pszVal = (char *) (bChorusActive ? "yes" : "no");
-	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+        pszKey = (char *) "synth.chorus.active";
+        pszVal = (char *) (bChorusActive ? "yes" : "no");
+        ::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
 
     pszKey = (char *) "synth.ladspa.active";
     pszVal = (char *) (bLadspaActive ? "yes" : "no");
-	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+        ::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
 
     pszKey = (char *) "synth.dump";
     pszVal = (char *) (bMidiDump ? "yes" : "no");
-	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+        ::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
 
     pszKey = (char *) "synth.verbose";
     pszVal = (char *) (bVerbose ? "yes" : "no");
-	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+        ::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
 
-	// Last we set user supplied options...
-	QStringListIterator iter(options);
-	while (iter.hasNext()) {
-		const QString sOpt = iter.next();
-		const QString sKey = sOpt.section('=', 0, 0);
-		const QString sVal = sOpt.section('=', 1, 1);
-		QByteArray tmp = sKey.toLocal8Bit();
-		pszKey = tmp.data();
-		switch (::fluid_settings_get_type(m_pFluidSettings, pszKey)) {
-		case FLUID_NUM_TYPE:
-			::fluid_settings_setnum(m_pFluidSettings, pszKey, sVal.toFloat());
-			break;
-		case FLUID_INT_TYPE:
-			::fluid_settings_setint(m_pFluidSettings, pszKey, sVal.toInt());
-			break;
-		case FLUID_STR_TYPE:
-		default:
-			::fluid_settings_setstr(m_pFluidSettings, pszKey,
-			                        sVal.toLocal8Bit().data());
-			break;
-		}
-	}
+        // Last we set user supplied options...
+        QStringListIterator iter(options);
+        while (iter.hasNext()) {
+                const QString sOpt = iter.next();
+                const QString sKey = sOpt.section('=', 0, 0);
+                const QString sVal = sOpt.section('=', 1, 1);
+                QByteArray tmp = sKey.toLocal8Bit();
+                pszKey = tmp.data();
+                switch (::fluid_settings_get_type(m_pFluidSettings, pszKey)) {
+                case FLUID_NUM_TYPE:
+                        ::fluid_settings_setnum(m_pFluidSettings, pszKey, sVal.toFloat());
+                        break;
+                case FLUID_INT_TYPE:
+                        ::fluid_settings_setint(m_pFluidSettings, pszKey, sVal.toInt());
+                        break;
+                case FLUID_STR_TYPE:
+                default:
+                        ::fluid_settings_setstr(m_pFluidSettings, pszKey,
+                                                sVal.toLocal8Bit().data());
+                        break;
+                }
+        }
 }
 
 

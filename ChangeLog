@@ -16,6 +16,9 @@ SVN TRUNK
 
 - Fixed a couple of dangling pointers.
 
+- Mac OSX: Enabled the MIDI name Id option for CoreMIDI driver ports,
+  added the icon to the app bundle.
+
 2010-04-27  0.3.5  Overdue release.
 
 - Initial widget geometry and visibility persistence logic has
@@ -115,7 +118,7 @@ SVN TRUNK
   up and all engines started automatically (Qt/X11 platform only).
 
 
-0.3.2  2007-12-19  Minor stealth fixes and season greetings. 
+0.3.2  2007-12-19  Minor stealth fixes and season greetings.
 
 - A new option to start the program minimized when the system tray
   icon is enabled, is now available from Setup/Misc/Start minimized
@@ -328,7 +331,7 @@ SVN TRUNK
 - Added Mac OS X build instructions (README-OSX, by Ebrahim Mayat).
 
 - Soundfont bank offset option gets its trial time (EXPERIMENTAL);
-  please note that fluidsynth 1.0.5 is needed to build on this feature, 
+  please note that fluidsynth 1.0.5 is needed to build on this feature,
   which is being properly detected and only enabled at configure time.
 
 - Output level peak meters are now featured as an option (EXPERIMENTAL),
@@ -351,7 +354,7 @@ SVN TRUNK
   choose an appropriate driver on certain systems where "alsa_seq" or
   "jack" may not be available by default (e.g. MacOSX, thanks to Ebrahim
   Mayat).
-  
+
 - The dash (-) is now a legal character for preset names.
 
 - Translation support for the default preset name "(default)".
@@ -368,7 +371,7 @@ SVN TRUNK
   soundfont stacks. The main user interface has been minimally
   improved to accomodate this new paradigm, but whole application
   internals have been massively rewritten.
-  
+
 
 0.1.3   2004-02-29  More work in progress.
 
