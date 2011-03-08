@@ -5,19 +5,25 @@ ChangeLog
 
 SVN TRUNK
 
+- Desktop environment session shutdown (eg. logout) is now
+  tapped for graceful application exit, even though the main
+  window is active (visible) and minimizing to system tray
+  is enabled. Both were causing first shutdown/logout attempt
+  to abort. Not anymore, hopefully ;).
+
 - libX11 is now being added explicitly to the build link phase,
   as seen necessary on some bleeding-edge distros eg. Fedora 13,
   Debian 6.
 
 - General standard dialog buttons layout is now in place.
 
-- CMake build system. It was silently available in 0.3.5, but now
-  it is officially unveiled.
+- CMake build system. It was silently available in 0.3.5, but
+  now it is officially unveiled.
 
 - Fixed a couple of dangling pointers.
 
-- Mac OSX: Enabled the MIDI name Id option for CoreMIDI driver ports,
-  added the icon to the app bundle.
+- Mac OSX: Enabled the MIDI name Id option for CoreMIDI driver
+  ports, added the icon to the app bundle.
 
 2010-04-27  0.3.5  Overdue release.
 

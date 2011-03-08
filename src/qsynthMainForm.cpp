@@ -1,7 +1,7 @@
 // qsynthMainForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2010, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2011, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -2491,6 +2491,18 @@ void qsynthMainForm::updateKnobs()
 		knob->setStyle(m_pKnobStyle);
 		knob->setDialMode(mode);
 	}
+}
+
+
+// Session (desktop) shutdown signal handler.
+void qsynthMainForm::setQuitForce ( bool bQuitForce )
+{
+	m_bQuitForce = bQuitForce;
+}
+
+bool qsynthMainForm::isQuitForce (void) const
+{
+	return m_bQuitForce;
 }
 
 
