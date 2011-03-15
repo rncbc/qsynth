@@ -1,7 +1,7 @@
 // qsynthChannelsForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2010, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2011, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -102,8 +102,11 @@ qsynthChannelsForm::qsynthChannelsForm (
 	QObject::connect(m_ui.ChannelsListView,
 		SIGNAL(customContextMenuRequested(const QPoint&)),
 		SLOT(contextMenuRequested(const QPoint&)));
+//	QObject::connect(m_ui.ChannelsListView,
+//		SIGNAL(itemActivated(QTreeWidgetItem*,int)),
+//		SLOT(itemActivated(QTreeWidgetItem*,int)));
 	QObject::connect(m_ui.ChannelsListView,
-		SIGNAL(itemActivated(QTreeWidgetItem*,int)),
+		SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
 		SLOT(itemActivated(QTreeWidgetItem*,int)));
 }
 

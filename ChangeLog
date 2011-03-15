@@ -5,6 +5,8 @@ ChangeLog
 
 SVN TRUNK
 
+- Channels list preset items now activated on double-click.
+
 - Desktop environment session shutdown (eg. logout) is now
   tapped for graceful application exit, even though the main
   window is active (visible) and minimizing to system tray

@@ -1,7 +1,7 @@
 // qsynthPresetForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2010, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2011, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -105,8 +105,11 @@ qsynthPresetForm::qsynthPresetForm (
 	QObject::connect(m_ui.PreviewCheckBox,
 		SIGNAL(toggled(bool)),
 		SLOT(previewChanged()));
+//	QObject::connect(m_ui.ProgListView,
+//		SIGNAL(itemActivated(QTreeWidgetItem*,int)),
+//		SLOT(accept()));
 	QObject::connect(m_ui.ProgListView,
-		SIGNAL(itemActivated(QTreeWidgetItem*,int)),
+		SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),
 		SLOT(accept()));
 	QObject::connect(m_ui.DialogButtonBox,
 		SIGNAL(accepted()),
