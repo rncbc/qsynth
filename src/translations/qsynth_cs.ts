@@ -356,37 +356,37 @@
         <translation>Zvukové písmo</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="164"/>
+        <location filename="../qsynthChannelsForm.cpp" line="167"/>
         <source>Channels</source>
         <translation>Kanály</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="325"/>
+        <location filename="../qsynthChannelsForm.cpp" line="328"/>
         <source>Edit</source>
         <translation>Upravit</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="330"/>
+        <location filename="../qsynthChannelsForm.cpp" line="333"/>
         <source>Unset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="334"/>
+        <location filename="../qsynthChannelsForm.cpp" line="337"/>
         <source>Refresh</source>
         <translation>Obnovit</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="462"/>
+        <location filename="../qsynthChannelsForm.cpp" line="465"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="463"/>
+        <location filename="../qsynthChannelsForm.cpp" line="466"/>
         <source>Delete preset:</source>
         <translation>Smazat přednastavení:</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="465"/>
+        <location filename="../qsynthChannelsForm.cpp" line="468"/>
         <source>Are you sure?</source>
         <translation>Jste si jistý?</translation>
     </message>
@@ -1512,7 +1512,7 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.cpp" line="139"/>
+        <location filename="../qsynthPresetForm.cpp" line="142"/>
         <source>Channel %1</source>
         <translation>Kanál %1</translation>
     </message>

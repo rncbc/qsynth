@@ -266,37 +266,37 @@
 <context>
     <name>qsynthChannelsForm</name>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="164"/>
+        <location filename="../qsynthChannelsForm.cpp" line="167"/>
         <source>Channels</source>
         <translation>Canales</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="325"/>
+        <location filename="../qsynthChannelsForm.cpp" line="328"/>
         <source>Edit</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="330"/>
+        <location filename="../qsynthChannelsForm.cpp" line="333"/>
         <source>Unset</source>
         <translation>Deponer</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="334"/>
+        <location filename="../qsynthChannelsForm.cpp" line="337"/>
         <source>Refresh</source>
         <translation>Refrescar</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="462"/>
+        <location filename="../qsynthChannelsForm.cpp" line="465"/>
         <source>Warning</source>
         <translation>Aviso</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="463"/>
+        <location filename="../qsynthChannelsForm.cpp" line="466"/>
         <source>Delete preset:</source>
         <translation>Borrar preajustes:</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="465"/>
+        <location filename="../qsynthChannelsForm.cpp" line="468"/>
         <source>Are you sure?</source>
         <translation>¿Está seguro?</translation>
     </message>
@@ -1495,7 +1495,7 @@ de reiniciar el motor de Fluidsynth:</translation>
 <context>
     <name>qsynthPresetForm</name>
     <message>
-        <location filename="../qsynthPresetForm.cpp" line="139"/>
+        <location filename="../qsynthPresetForm.cpp" line="142"/>
         <source>Channel %1</source>
         <translation>Canal %1</translation>
     </message>
