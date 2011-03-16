@@ -5,6 +5,9 @@ ChangeLog
 
 SVN TRUNK
 
+- Main window layout fixing with regard to its user preferred
+  size and recall when system-tray icon is not enabled.
+
 - Channels list preset items now activated on double-click.
 
 - Desktop environment session shutdown (eg. logout) is now

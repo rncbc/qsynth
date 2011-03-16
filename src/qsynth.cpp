@@ -379,7 +379,7 @@ int main ( int argc, char **argv )
 	// If we have a systray icon, we'll skip this.
 	if (!settings.bSystemTray) {
 		w.show();
-		w.adjustSize();
+	//	w.adjustSize();
 	}
 
 	// Settle this one as application main widget...

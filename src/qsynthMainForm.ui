@@ -1,4 +1,5 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
@@ -20,86 +21,1075 @@
 
  </comment>
  <class>qsynthMainForm</class>
- <widget class="QWidget" name="qsynthMainForm" >
-  <property name="geometry" >
+ <widget class="QWidget" name="qsynthMainForm">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>200</height>
+    <width>749</width>
+    <height>192</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Qsynth - A fluidsynth Qt GUI Interface</string>
   </property>
-  <property name="windowIcon" >
-   <iconset resource="qsynth.qrc" >:/images/qsynth.png</iconset>
+  <property name="windowIcon">
+   <iconset resource="qsynth.qrc">:/images/qsynth.png</iconset>
   </property>
-  <layout class="QGridLayout" >
-   <property name="margin" >
-    <number>4</number>
-   </property>
-   <property name="spacing" >
-    <number>4</number>
-   </property>
-   <item row="1" column="0" >
-    <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
+  <layout class="QGridLayout">
+   <item row="0" column="0" rowspan="3">
+    <widget class="QGroupBox" name="GainGroupBox">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
-     <property name="spacing" >
+     <property name="title">
+      <string>Master</string>
+     </property>
+     <layout class="QVBoxLayout">
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
+      <item>
+       <widget class="QLabel" name="GainTextLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>&amp;Gain</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>GainSpinBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="qsynthKnob" name="GainDial">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Master Gain</string>
+        </property>
+        <property name="maximum">
+         <number>200</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="notchTarget">
+		 <double>20.0</double>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="GainSpinBox">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Master Gain</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter</set>
+        </property>
+        <property name="maximum">
+         <number>200</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QPushButton" name="RestartPushButton">
+     <property name="toolTip">
+      <string>Complete engine restart</string>
+     </property>
+     <property name="text">
+      <string>Re&amp;start</string>
+     </property>
+     <property name="icon">
+	  <iconset resource="qsynth.qrc">:/images/restart1.png</iconset>
+     </property>
+     <property name="shortcut">
+      <string>Alt+S</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2" rowspan="4">
+    <widget class="QGroupBox" name="ReverbGroupBox">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="title">
+      <string>Reverb</string>
+     </property>
+     <layout class="QGridLayout">
+      <property name="margin">
+       <number>4</number>
+      </property>
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <item row="3" column="0" colspan="4">
+       <widget class="QCheckBox" name="ReverbActiveCheckBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Reverb effect activation</string>
+        </property>
+        <property name="text">
+         <string>Ac&amp;tive</string>
+        </property>
+        <property name="shortcut">
+         <string>Alt+T</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QSpinBox" name="ReverbLevelSpinBox">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Reverb Level</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter</set>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="qsynthKnob" name="ReverbLevelDial">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Reverb Level</string>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="notchTarget">
+		 <double>10.0</double>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="ReverbLevelTextLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>&amp;Level</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>ReverbLevelSpinBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QSpinBox" name="ReverbWidthSpinBox">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Reverb Width</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter</set>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="ReverbWidthTextLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>&amp;Width</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>ReverbWidthSpinBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="qsynthKnob" name="ReverbWidthDial">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Reverb Width</string>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="notchTarget">
+		 <double>10.0</double>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="ReverbDampSpinBox">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Reverb Damp Factor</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter</set>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="ReverbDampTextLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>D&amp;amp</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>ReverbDampSpinBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="qsynthKnob" name="ReverbDampDial">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Reverb Damp Factor</string>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="notchTarget">
+		 <double>10.0</double>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QSpinBox" name="ReverbRoomSpinBox">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Reverb Room Size</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter</set>
+        </property>
+        <property name="maximum">
+         <number>120</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="ReverbRoomTextLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>R&amp;oom</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>ReverbRoomSpinBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="qsynthKnob" name="ReverbRoomDial">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Reverb Room Size</string>
+        </property>
+        <property name="maximum">
+         <number>120</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="notchTarget">
+		 <double>10.0</double>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="3" rowspan="4">
+    <widget class="QGroupBox" name="ChorusGroupBox">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="title">
+      <string>Chorus</string>
+     </property>
+     <layout class="QGridLayout">
+      <property name="margin">
+       <number>4</number>
+      </property>
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <item row="3" column="2" colspan="2">
+       <widget class="QComboBox" name="ChorusTypeComboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Chorus Modulation Type</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Sine</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Triangle</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLabel" name="ChorusTypeTextLabel">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>T&amp;ype:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>ChorusTypeComboBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QCheckBox" name="ChorusActiveCheckBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Chorus effect activation</string>
+        </property>
+        <property name="text">
+         <string>Act&amp;ive</string>
+        </property>
+        <property name="shortcut">
+         <string>Alt+I</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="qsynthKnob" name="ChorusNrDial">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Number of Chorus Stages</string>
+        </property>
+        <property name="maximum">
+         <number>99</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="notchTarget">
+		 <double>10.0</double>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="ChorusNrTextLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>&amp;N</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>ChorusNrSpinBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QSpinBox" name="ChorusNrSpinBox">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Number of Chorus Stages</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter</set>
+        </property>
+        <property name="maximum">
+         <number>99</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="qsynthKnob" name="ChorusLevelDial">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Chorus Level</string>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="notchTarget">
+		 <double>10.0</double>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="ChorusLevelTextLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Le&amp;vel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>ChorusLevelSpinBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="ChorusLevelSpinBox">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Chorus Level</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter</set>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="qsynthKnob" name="ChorusSpeedDial">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Chorus Speed (Hz)</string>
+        </property>
+        <property name="minimum">
+         <number>30</number>
+        </property>
+        <property name="maximum">
+         <number>500</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="notchTarget">
+		 <double>10.0</double>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="ChorusSpeedTextLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Chorus Speed Hz</string>
+        </property>
+        <property name="text">
+         <string>Spee&amp;d</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>ChorusSpeedSpinBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="2">
+       <widget class="QSpinBox" name="ChorusSpeedSpinBox">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Chorus Speed (Hz)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter</set>
+        </property>
+        <property name="minimum">
+         <number>30</number>
+        </property>
+        <property name="maximum">
+         <number>500</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="qsynthKnob" name="ChorusDepthDial">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Chorus Depth (ms)</string>
+        </property>
+        <property name="maximum">
+         <number>210</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="notchTarget">
+		 <double>10.0</double>
+        </property>
+        <property name="notchesVisible">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="ChorusDepthTextLabel">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Dept&amp;h</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+        <property name="buddy">
+         <cstring>ChorusDepthSpinBox</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QSpinBox" name="ChorusDepthSpinBox">
+        <property name="font">
+         <font>
+          <weight>50</weight>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>Chorus Depth (ms)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignHCenter</set>
+        </property>
+        <property name="maximum">
+         <number>210</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="4" rowspan="4">
+    <widget class="QGroupBox" name="OutputGroupBox">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QVBoxLayout">
+      <property name="spacing">
+       <number>4</number>
+      </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
+      <item>
+	   <widget class="qsynthMeter" name="OutputMeter">
+        <property name="toolTip">
+         <string>Output peak level</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="5" rowspan="5">
+    <layout class="QVBoxLayout">
+     <property name="spacing">
+      <number>8</number>
+     </property>
+     <property name="margin">
       <number>4</number>
      </property>
      <item>
-      <widget class="QToolButton" name="NewEngineToolButton" >
-       <property name="minimumSize" >
+      <widget class="QPushButton" name="QuitPushButton">
+       <property name="toolTip">
+        <string>Quit this application</string>
+       </property>
+       <property name="text">
+        <string>&amp;Quit</string>
+       </property>
+       <property name="icon">
+		<iconset resource="qsynth.qrc">:/images/quit1.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Alt+Q</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="OptionsPushButton">
+       <property name="toolTip">
+        <string>Show general options dialog</string>
+       </property>
+       <property name="text">
+        <string>&amp;Options...</string>
+       </property>
+       <property name="icon">
+		<iconset resource="qsynth.qrc">:/images/options1.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Alt+O</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="MessagesPushButton">
+       <property name="toolTip">
+        <string>Show/hide the messages log window</string>
+       </property>
+       <property name="text">
+        <string>&amp;Messages</string>
+       </property>
+       <property name="icon">
+		<iconset resource="qsynth.qrc">:/images/messages1.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Alt+M</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="AboutPushButton">
+       <property name="toolTip">
+        <string>Show information about this application</string>
+       </property>
+       <property name="text">
+        <string>A&amp;bout...</string>
+       </property>
+       <property name="icon">
+		<iconset resource="qsynth.qrc">:/images/about1.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Alt+B</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>8</width>
+         <height>8</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="1">
+    <widget class="QPushButton" name="SystemResetPushButton">
+     <property name="toolTip">
+      <string>System reset</string>
+     </property>
+     <property name="text">
+      <string>&amp;Panic</string>
+     </property>
+     <property name="icon">
+	  <iconset resource="qsynth.qrc">:/images/panic1.png</iconset>
+     </property>
+     <property name="shortcut">
+      <string>Alt+P</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QPushButton" name="ProgramResetPushButton">
+     <property name="toolTip">
+      <string>Program reset (all channels)</string>
+     </property>
+     <property name="text">
+      <string>&amp;Reset</string>
+     </property>
+     <property name="icon">
+	  <iconset resource="qsynth.qrc">:/images/reset1.png</iconset>
+     </property>
+     <property name="shortcut">
+      <string>Alt+R</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="SetupPushButton">
+     <property name="toolTip">
+      <string>Show instance settings and configuration dialog</string>
+     </property>
+     <property name="text">
+      <string>Set&amp;up...</string>
+     </property>
+     <property name="icon">
+	  <iconset resource="qsynth.qrc">:/images/setup1.png</iconset>
+     </property>
+     <property name="shortcut">
+      <string>Alt+U</string>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QPushButton" name="ChannelsPushButton">
+     <property name="toolTip">
+      <string>Show/hide the channels view window</string>
+     </property>
+     <property name="text">
+      <string>&amp;Channels</string>
+     </property>
+     <property name="icon">
+	  <iconset resource="qsynth.qrc">:/images/channels1.png</iconset>
+     </property>
+     <property name="shortcut">
+      <string>Alt+C</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="5">
+    <layout class="QHBoxLayout">
+     <property name="spacing">
+      <number>4</number>
+     </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QToolButton" name="NewEngineToolButton">
+       <property name="minimumSize">
         <size>
          <width>22</width>
          <height>22</height>
         </size>
        </property>
-       <property name="maximumSize" >
+       <property name="maximumSize">
         <size>
          <width>24</width>
          <height>24</height>
         </size>
        </property>
-       <property name="focusPolicy" >
+       <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Add a new engine</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string/>
        </property>
-       <property name="icon" >
-        <iconset resource="qsynth.qrc" >:/images/add1.png</iconset>
+       <property name="icon">
+		<iconset resource="qsynth.qrc">:/images/add1.png</iconset>
        </property>
-       <property name="shortcut" >
+       <property name="shortcut">
         <string>Ins</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="qsynthTabBar" native="1" name="TabBar" >
-       <property name="focusPolicy" >
+	  <widget class="qsynthTabBar" name="TabBar">
+       <property name="focusPolicy">
         <enum>Qt::StrongFocus</enum>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Engine selector (right-click for menu)</string>
        </property>
       </widget>
      </item>
      <item>
       <spacer>
-       <property name="orientation" >
+       <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <property name="sizeType" >
+       <property name="sizeType">
         <enum>QSizePolicy::Expanding</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0">
         <size>
          <width>8</width>
          <height>8</height>
@@ -108,1040 +1098,41 @@
       </spacer>
      </item>
      <item>
-      <widget class="QToolButton" name="DeleteEngineToolButton" >
-       <property name="minimumSize" >
+      <widget class="QToolButton" name="DeleteEngineToolButton">
+       <property name="minimumSize">
         <size>
          <width>22</width>
          <height>22</height>
         </size>
        </property>
-       <property name="maximumSize" >
+       <property name="maximumSize">
         <size>
          <width>24</width>
          <height>24</height>
         </size>
        </property>
-       <property name="focusPolicy" >
+       <property name="focusPolicy">
         <enum>Qt::NoFocus</enum>
        </property>
-       <property name="toolTip" >
+       <property name="toolTip">
         <string>Delete current engine</string>
        </property>
-       <property name="text" >
+       <property name="text">
         <string/>
        </property>
-       <property name="icon" >
-        <iconset resource="qsynth.qrc" >:/images/remove1.png</iconset>
+       <property name="icon">
+		<iconset resource="qsynth.qrc">:/images/remove1.png</iconset>
        </property>
-       <property name="shortcut" >
+       <property name="shortcut">
         <string>Del</string>
        </property>
       </widget>
      </item>
     </layout>
    </item>
-   <item row="0" column="0" >
-    <layout class="QHBoxLayout" >
-     <property name="margin" >
-      <number>0</number>
-     </property>
-     <property name="spacing" >
-      <number>4</number>
-     </property>
-     <item>
-      <layout class="QGridLayout" >
-       <property name="margin" >
-        <number>0</number>
-       </property>
-       <property name="spacing" >
-        <number>4</number>
-       </property>
-       <item row="3" column="1" >
-        <widget class="QPushButton" name="ChannelsPushButton" >
-         <property name="toolTip" >
-          <string>Show/hide the channels view window</string>
-         </property>
-         <property name="text" >
-          <string>&amp;Channels</string>
-         </property>
-         <property name="icon" >
-          <iconset resource="qsynth.qrc" >:/images/channels1.png</iconset>
-         </property>
-         <property name="shortcut" >
-          <string>Alt+C</string>
-         </property>
-         <property name="checkable" >
-          <bool>true</bool>
-         </property>
-         <property name="autoDefault" >
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" >
-        <widget class="QPushButton" name="RestartPushButton" >
-         <property name="toolTip" >
-          <string>Complete engine restart</string>
-         </property>
-         <property name="text" >
-          <string>Re&amp;start</string>
-         </property>
-         <property name="icon" >
-          <iconset resource="qsynth.qrc" >:/images/restart1.png</iconset>
-         </property>
-         <property name="shortcut" >
-          <string>Alt+S</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1" >
-        <widget class="QPushButton" name="ProgramResetPushButton" >
-         <property name="toolTip" >
-          <string>Program reset (all channels)</string>
-         </property>
-         <property name="text" >
-          <string>&amp;Reset</string>
-         </property>
-         <property name="icon" >
-          <iconset resource="qsynth.qrc" >:/images/reset1.png</iconset>
-         </property>
-         <property name="shortcut" >
-          <string>Alt+R</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="0" >
-        <widget class="QPushButton" name="SetupPushButton" >
-         <property name="toolTip" >
-          <string>Show instance settings and configuration dialog</string>
-         </property>
-         <property name="text" >
-          <string>Set&amp;up...</string>
-         </property>
-         <property name="icon" >
-          <iconset resource="qsynth.qrc" >:/images/setup1.png</iconset>
-         </property>
-         <property name="shortcut" >
-          <string>Alt+U</string>
-         </property>
-         <property name="autoDefault" >
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item rowspan="3" row="0" column="0" >
-        <widget class="QGroupBox" name="GainGroupBox" >
-         <property name="font" >
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="title" >
-          <string>Master</string>
-         </property>
-         <layout class="QVBoxLayout" >
-          <property name="margin" >
-           <number>4</number>
-          </property>
-          <property name="spacing" >
-           <number>4</number>
-          </property>
-          <item>
-           <widget class="QLabel" name="GainTextLabel" >
-            <property name="font" >
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="text" >
-             <string>&amp;Gain</string>
-            </property>
-            <property name="alignment" >
-             <set>Qt::AlignCenter</set>
-            </property>
-            <property name="wordWrap" >
-             <bool>false</bool>
-            </property>
-            <property name="buddy" >
-             <cstring>GainSpinBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="qsynthKnob" name="GainDial" >
-            <property name="font" >
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip" >
-             <string>Master Gain</string>
-            </property>
-            <property name="maximum" >
-             <number>200</number>
-            </property>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="notchTarget" >
-             <double>20.0</double>
-            </property>
-            <property name="notchesVisible" >
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QSpinBox" name="GainSpinBox" >
-            <property name="sizePolicy" >
-             <sizepolicy>
-              <hsizetype>5</hsizetype>
-              <vsizetype>0</vsizetype>
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font" >
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip" >
-             <string>Master Gain</string>
-            </property>
-            <property name="alignment" >
-             <set>Qt::AlignHCenter</set>
-            </property>
-            <property name="maximum" >
-             <number>200</number>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item row="1" column="1" >
-        <widget class="QPushButton" name="SystemResetPushButton" >
-         <property name="toolTip" >
-          <string>System reset</string>
-         </property>
-         <property name="text" >
-          <string>&amp;Panic</string>
-         </property>
-         <property name="icon" >
-          <iconset resource="qsynth.qrc" >:/images/panic1.png</iconset>
-         </property>
-         <property name="shortcut" >
-          <string>Alt+P</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="ReverbGroupBox" >
-       <property name="font" >
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="title" >
-        <string>Reverb</string>
-       </property>
-       <layout class="QGridLayout" >
-        <property name="margin" >
-         <number>4</number>
-        </property>
-        <property name="spacing" >
-         <number>4</number>
-        </property>
-        <item row="3" column="0" colspan="4" >
-         <widget class="QCheckBox" name="ReverbActiveCheckBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Reverb effect activation</string>
-          </property>
-          <property name="text" >
-           <string>Ac&amp;tive</string>
-          </property>
-          <property name="shortcut" >
-           <string>Alt+T</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3" >
-         <widget class="QSpinBox" name="ReverbLevelSpinBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Reverb Level</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
-          </property>
-          <property name="maximum" >
-           <number>100</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3" >
-         <widget class="qsynthKnob" name="ReverbLevelDial" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Reverb Level</string>
-          </property>
-          <property name="maximum" >
-           <number>100</number>
-          </property>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="notchTarget" >
-           <double>10.0</double>
-          </property>
-          <property name="notchesVisible" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3" >
-         <widget class="QLabel" name="ReverbLevelTextLabel" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text" >
-           <string>&amp;Level</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="wordWrap" >
-           <bool>false</bool>
-          </property>
-          <property name="buddy" >
-           <cstring>ReverbLevelSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2" >
-         <widget class="QSpinBox" name="ReverbWidthSpinBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Reverb Width</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
-          </property>
-          <property name="maximum" >
-           <number>100</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2" >
-         <widget class="QLabel" name="ReverbWidthTextLabel" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text" >
-           <string>&amp;Width</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="wordWrap" >
-           <bool>false</bool>
-          </property>
-          <property name="buddy" >
-           <cstring>ReverbWidthSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2" >
-         <widget class="qsynthKnob" name="ReverbWidthDial" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Reverb Width</string>
-          </property>
-          <property name="maximum" >
-           <number>100</number>
-          </property>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="notchTarget" >
-           <double>10.0</double>
-          </property>
-          <property name="notchesVisible" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" >
-         <widget class="QSpinBox" name="ReverbDampSpinBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Reverb Damp Factor</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
-          </property>
-          <property name="maximum" >
-           <number>100</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1" >
-         <widget class="QLabel" name="ReverbDampTextLabel" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text" >
-           <string>D&amp;amp</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="wordWrap" >
-           <bool>false</bool>
-          </property>
-          <property name="buddy" >
-           <cstring>ReverbDampSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
-         <widget class="qsynthKnob" name="ReverbDampDial" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Reverb Damp Factor</string>
-          </property>
-          <property name="maximum" >
-           <number>100</number>
-          </property>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="notchTarget" >
-           <double>10.0</double>
-          </property>
-          <property name="notchesVisible" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0" >
-         <widget class="QSpinBox" name="ReverbRoomSpinBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Reverb Room Size</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
-          </property>
-          <property name="maximum" >
-           <number>120</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" >
-         <widget class="QLabel" name="ReverbRoomTextLabel" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text" >
-           <string>R&amp;oom</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="wordWrap" >
-           <bool>false</bool>
-          </property>
-          <property name="buddy" >
-           <cstring>ReverbRoomSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
-         <widget class="qsynthKnob" name="ReverbRoomDial" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Reverb Room Size</string>
-          </property>
-          <property name="maximum" >
-           <number>120</number>
-          </property>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="notchTarget" >
-           <double>10.0</double>
-          </property>
-          <property name="notchesVisible" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="ChorusGroupBox" >
-       <property name="font" >
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="title" >
-        <string>Chorus</string>
-       </property>
-       <layout class="QGridLayout" >
-        <property name="margin" >
-         <number>4</number>
-        </property>
-        <property name="spacing" >
-         <number>4</number>
-        </property>
-        <item row="3" column="2" colspan="2" >
-         <widget class="QComboBox" name="ChorusTypeComboBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Chorus Modulation Type</string>
-          </property>
-          <item>
-           <property name="text" >
-            <string>Sine</string>
-           </property>
-          </item>
-          <item>
-           <property name="text" >
-            <string>Triangle</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="3" column="1" >
-         <widget class="QLabel" name="ChorusTypeTextLabel" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text" >
-           <string>T&amp;ype:</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-          </property>
-          <property name="wordWrap" >
-           <bool>false</bool>
-          </property>
-          <property name="buddy" >
-           <cstring>ChorusTypeComboBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0" >
-         <widget class="QCheckBox" name="ChorusActiveCheckBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Chorus effect activation</string>
-          </property>
-          <property name="text" >
-           <string>Act&amp;ive</string>
-          </property>
-          <property name="shortcut" >
-           <string>Alt+I</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
-         <widget class="qsynthKnob" name="ChorusNrDial" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Number of Chorus Stages</string>
-          </property>
-          <property name="maximum" >
-           <number>99</number>
-          </property>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="notchTarget" >
-           <double>10.0</double>
-          </property>
-          <property name="notchesVisible" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0" >
-         <widget class="QLabel" name="ChorusNrTextLabel" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text" >
-           <string>&amp;N</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="wordWrap" >
-           <bool>false</bool>
-          </property>
-          <property name="buddy" >
-           <cstring>ChorusNrSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0" >
-         <widget class="QSpinBox" name="ChorusNrSpinBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Number of Chorus Stages</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
-          </property>
-          <property name="maximum" >
-           <number>99</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
-         <widget class="qsynthKnob" name="ChorusLevelDial" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Chorus Level</string>
-          </property>
-          <property name="maximum" >
-           <number>100</number>
-          </property>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="notchTarget" >
-           <double>10.0</double>
-          </property>
-          <property name="notchesVisible" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1" >
-         <widget class="QLabel" name="ChorusLevelTextLabel" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text" >
-           <string>Le&amp;vel</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="wordWrap" >
-           <bool>false</bool>
-          </property>
-          <property name="buddy" >
-           <cstring>ChorusLevelSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" >
-         <widget class="QSpinBox" name="ChorusLevelSpinBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Chorus Level</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
-          </property>
-          <property name="maximum" >
-           <number>100</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2" >
-         <widget class="qsynthKnob" name="ChorusSpeedDial" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Chorus Speed (Hz)</string>
-          </property>
-          <property name="minimum" >
-           <number>30</number>
-          </property>
-          <property name="maximum" >
-           <number>500</number>
-          </property>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="notchTarget" >
-           <double>10.0</double>
-          </property>
-          <property name="notchesVisible" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="2" >
-         <widget class="QLabel" name="ChorusSpeedTextLabel" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Chorus Speed Hz</string>
-          </property>
-          <property name="text" >
-           <string>Spee&amp;d</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="wordWrap" >
-           <bool>false</bool>
-          </property>
-          <property name="buddy" >
-           <cstring>ChorusSpeedSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="2" >
-         <widget class="QSpinBox" name="ChorusSpeedSpinBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Chorus Speed (Hz)</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
-          </property>
-          <property name="maximum" >
-           <number>500</number>
-          </property>
-          <property name="minimum" >
-           <number>30</number>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3" >
-         <widget class="qsynthKnob" name="ChorusDepthDial" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Chorus Depth (ms)</string>
-          </property>
-          <property name="maximum" >
-           <number>210</number>
-          </property>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="notchTarget" >
-           <double>10.0</double>
-          </property>
-          <property name="notchesVisible" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3" >
-         <widget class="QLabel" name="ChorusDepthTextLabel" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text" >
-           <string>Dept&amp;h</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="wordWrap" >
-           <bool>false</bool>
-          </property>
-          <property name="buddy" >
-           <cstring>ChorusDepthSpinBox</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="3" >
-         <widget class="QSpinBox" name="ChorusDepthSpinBox" >
-          <property name="font" >
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="toolTip" >
-           <string>Chorus Depth (ms)</string>
-          </property>
-          <property name="alignment" >
-           <set>Qt::AlignHCenter</set>
-          </property>
-          <property name="maximum" >
-           <number>210</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="OutputGroupBox" >
-       <property name="font" >
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="title" >
-        <string/>
-       </property>
-       <layout class="QVBoxLayout" >
-        <property name="margin" >
-         <number>4</number>
-        </property>
-        <property name="spacing" >
-         <number>4</number>
-        </property>
-        <item>
-         <widget class="qsynthMeter" native="1" name="OutputMeter" >
-          <property name="toolTip" >
-           <string>Output peak level</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item rowspan="2" row="0" column="1" >
-    <layout class="QVBoxLayout" >
-     <property name="margin" >
-      <number>4</number>
-     </property>
-     <property name="spacing" >
-      <number>8</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="QuitPushButton" >
-       <property name="toolTip" >
-        <string>Quit this application</string>
-       </property>
-       <property name="text" >
-        <string>&amp;Quit</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="qsynth.qrc" >:/images/quit1.png</iconset>
-       </property>
-       <property name="shortcut" >
-        <string>Alt+Q</string>
-       </property>
-       <property name="autoDefault" >
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="OptionsPushButton" >
-       <property name="toolTip" >
-        <string>Show general options dialog</string>
-       </property>
-       <property name="text" >
-        <string>&amp;Options...</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="qsynth.qrc" >:/images/options1.png</iconset>
-       </property>
-       <property name="shortcut" >
-        <string>Alt+O</string>
-       </property>
-       <property name="autoDefault" >
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="MessagesPushButton" >
-       <property name="toolTip" >
-        <string>Show/hide the messages log window</string>
-       </property>
-       <property name="text" >
-        <string>&amp;Messages</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="qsynth.qrc" >:/images/messages1.png</iconset>
-       </property>
-       <property name="shortcut" >
-        <string>Alt+M</string>
-       </property>
-       <property name="checkable" >
-        <bool>true</bool>
-       </property>
-       <property name="autoDefault" >
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="AboutPushButton" >
-       <property name="toolTip" >
-        <string>Show information about this application</string>
-       </property>
-       <property name="text" >
-        <string>A&amp;bout...</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="qsynth.qrc" >:/images/about1.png</iconset>
-       </property>
-       <property name="shortcut" >
-        <string>Alt+B</string>
-       </property>
-       <property name="autoDefault" >
-        <bool>false</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeType" >
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>8</width>
-         <height>8</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
   </layout>
  </widget>
- <layoutdefault spacing="4" margin="4" />
+ <layoutdefault spacing="4" margin="4"/>
  <customwidgets>
   <customwidget>
    <class>QTabBar</class>
@@ -1158,6 +1149,7 @@
    <class>qsynthTabBar</class>
    <extends>QTabBar</extends>
    <header>qsynthTabBar.h</header>
+   <container>1</container>
   </customwidget>
   <customwidget>
    <class>qsynthMeter</class>
@@ -1198,7 +1190,7 @@
   <tabstop>AboutPushButton</tabstop>
  </tabstops>
  <resources>
-  <include location="qsynth.qrc" />
+  <include location="qsynth.qrc"/>
  </resources>
  <connections/>
 </ui>
