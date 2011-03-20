@@ -2,7 +2,7 @@ project(QSYNTH)
 
 cmake_minimum_required(VERSION 2.6)
 
-set (VERSION "0.3.5.8")
+set (VERSION "0.3.5.12")
 
 set (PACKAGE_NAME "Qsynth")
 set (PACKAGE_VERSION "${VERSION}")
@@ -24,7 +24,7 @@ option (CONFIG_STACKTRACE "Define if debugger stack-trace is enabled." 0)
 option (CONFIG_SYSTEM_TRAY "Define if system tray is enabled." 1)
 
 # Check for Qt
-set (QT_MIN_VERSION "4.1.0")
+set (QT_MIN_VERSION "4.2.0")
 find_package (Qt4 REQUIRED)
 include (${QT_USE_FILE})
 
