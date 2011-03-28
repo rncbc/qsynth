@@ -368,7 +368,7 @@
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="333"/>
         <source>Unset</source>
-        <translation type="unfinished"></translation>
+        <translation>Odložit</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="337"/>
@@ -763,7 +763,11 @@ v nabídce k symbolu v oznamovacím poli.</translation>
 
 To terminate the program, please choose &quot;Quit&quot;
 in the context menu of the system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Program poběží dále v oznamovací oblasti panelu.
+
+Pro ukončení programu vyberte, prosím, &quot;Ukončit&quot;
+v související nabídce vyskakující z ikony v oznamovací
+oblasti panelu.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="675"/>
@@ -1567,12 +1571,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="181"/>
         <source>MIDI Client Name ID (ALSA/CoreMidi):</source>
-        <translation type="unfinished"></translation>
+        <translation>ID názvu klienta MIDI (ALSA/CoreMidi):</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="194"/>
         <source>ALSA Sequencer client name identification</source>
-        <translation>Název zjištění totožnosti pro přihlášení u ALSA sequenceru</translation>
+        <translation>ID názvu klienta u ALSA sequenceru</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="201"/>
@@ -1805,7 +1809,7 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="606"/>
         <source>Number of enabled polyphonic voices</source>
-        <translation>Počet spuštěných vícehlasých hlasů</translation>
+        <translation>Počet povolených vícehlasých hlasů</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="622"/>
@@ -1825,12 +1829,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="709"/>
         <source>JACK Client Name &amp;ID:</source>
-        <translation>Název &amp;zjištění totožnosti (ID) klienta JACK:</translation>
+        <translation>ID názvu klienta JACK:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="722"/>
         <source>JACK client name identification</source>
-        <translation>Název zjištění totožnosti (ID) klienta JACK</translation>
+        <translation>ID názvu klienta JACK</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="732"/>
