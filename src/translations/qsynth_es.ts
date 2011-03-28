@@ -1706,7 +1706,7 @@ de reiniciar el motor de Fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="181"/>
         <source>MIDI Client Name ID (ALSA/CoreMidi):</source>
-        <translation type="unfinished"></translation>
+        <translation>ID de cliente MIDI (ALSA/CoreMidi):</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="194"/>
