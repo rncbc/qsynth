@@ -659,6 +659,9 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 		m_settings.beginGroup("/Engine/" + pEngine->name());
 
 	// Load as current presets.
+#ifdef CONFIG_FLUID_UNSET_PROGRAM
+	int iChannelsSet = 0;
+#endif
 	const QString sPrefix = "/Chan%1";
 	m_settings.beginGroup("/Preset" + sSuffix);
 	int iChannels = ::fluid_synth_count_midi_channels(pEngine->pSynth);
@@ -669,6 +672,9 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 				sEntry.section(':', 1, 1).toInt());
 			::fluid_synth_program_change(pEngine->pSynth, iChan,
 				sEntry.section(':', 2, 2).toInt());
+		#ifdef CONFIG_FLUID_UNSET_PROGRAM
+			++iChannelsSet;
+		#endif
 		}
 	#ifdef CONFIG_FLUID_UNSET_PROGRAM
 		else ::fluid_synth_unset_program(pEngine->pSynth, iChan);
@@ -680,6 +686,20 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 	if (!pEngine->isDefault())
 		m_settings.endGroup();
 
+#ifdef CONFIG_FLUID_UNSET_PROGRAM
+	// If there's none channels set (eg. empty/blank preset)
+	// then fallback to old default fill up all the channels
+	// according to available soundfont stack.
+	if (iChannelsSet < 1) {
+		int iProg = 0;
+		for (int iChan = 0; iChan < iChannels; iChan++) {
+			::fluid_synth_bank_select(pEngine->pSynth, iChan, 0);
+			::fluid_synth_program_change(pEngine->pSynth, iChan, iProg);
+			++iProg;
+		}
+	}
+#endif
+	
 	// Recommended to post-stabilize things around.
 	::fluid_synth_program_reset(pEngine->pSynth);
 
