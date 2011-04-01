@@ -2,7 +2,7 @@ project(QSYNTH)
 
 cmake_minimum_required(VERSION 2.6)
 
-set (VERSION "0.3.5.12")
+set (VERSION "0.3.5.13")
 
 set (PACKAGE_NAME "Qsynth")
 set (PACKAGE_VERSION "${VERSION}")
@@ -34,14 +34,18 @@ include (CheckFunctionExists)
 include (CheckLibraryExists)
 
 # Checks for libraries.
-find_library ( MATH_LIBRARY m )
-# Check for round math function.
-if (MATH_LIBRARY)
-    set ( CMAKE_REQUIRED_LIBRARIES ${MATH_LIBRARY} )
-    check_function_exists ( lroundf CONFIG_ROUND )
-else (MATH_LIBRARY)
-    message (FATAL_ERROR "math library not found")
-endif (MATH_LIBRARY)
+if (WIN32)
+  check_function_exists ( lroundf CONFIG_ROUND )
+else (WIN32)
+  find_library ( MATH_LIBRARY m )
+  # Check for round math function.
+  if (MATH_LIBRARY)
+      set ( CMAKE_REQUIRED_LIBRARIES ${MATH_LIBRARY} )
+      check_function_exists ( lroundf CONFIG_ROUND )
+  else (MATH_LIBRARY)
+      message (FATAL_ERROR "math library not found")
+  endif (MATH_LIBRARY)
+endif (WIN32)
 
 # Check for fluidsynth library.
 find_library ( FLUIDSYNTH_LIBRARY fluidsynth )
