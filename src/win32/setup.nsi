@@ -3,7 +3,7 @@ Name QSynth
 # Defines
 !define BINARY_FILES "C:\Projects\build\all"
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.3.5
+!define VERSION 0.3.6
 !define COMPANY QSynth
 !define URL http://qsynth.sourceforge.net/
 
@@ -50,7 +50,7 @@ InstallDir $PROGRAMFILES\QSynth
 CRCCheck on
 XPStyle on
 ShowInstDetails show
-VIProductVersion 0.3.5.0
+VIProductVersion 0.3.6.0
 VIAddVersionKey ProductName QSynth
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
@@ -81,6 +81,9 @@ Section -Main SEC0000
 
     # Installing library libgcc_s_dw2-1.dll
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libgcc_s_dw2-1.dll $INSTDIR\libgcc_s_dw2-1.dll $INSTDIR
+
+    # Installing library libsndfile-1.dll
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libsndfile-1.dll $INSTDIR\libsndfile-1.dll $INSTDIR
 
     # Installing library QtCore4.dll
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\QtCore4.dll $INSTDIR\QtCore4.dll $INSTDIR
@@ -151,6 +154,9 @@ Section /o -un.Main UNSEC0000
     # Uninstalling library $INSTDIR\libgcc_s_dw2-1.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libgcc_s_dw2-1.dll
 
+    # Uninstalling library $INSTDIR\libsndfile-1.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libsndfile-1.dll
+    
     # Uninstalling library $INSTDIR\QtCore4.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\QtCore4.dll
 
