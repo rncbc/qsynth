@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-SVN TRUNK
+2011-04-07  0.3.6  Slip release.
 
 - Main window layout fixing with regard to its user preferred
   size and recall when system-tray icon is not enabled.
@@ -29,6 +29,7 @@ SVN TRUNK
 
 - Mac OSX: Enabled the MIDI name Id option for CoreMIDI driver
   ports, added the icon to the app bundle.
+
 
 2010-04-27  0.3.5  Overdue release.
 

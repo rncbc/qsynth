@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 13
+%define release 3
 
 %define _prefix	@ac_prefix@
 
@@ -53,11 +53,13 @@ command line softsynths.
 %{_datadir}/locale/%{name}_*.qm
 
 %changelog
+* Sat Apr 07 2011 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.6-3
+- Slip release. 
 * Mon May 17 2010 Rui Nuno Capela <rncbc@users.sourceforge.net>
 - Standard desktop icon fixing. 
-* Tue Apr 27 2010 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.5
+* Tue Apr 27 2010 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.5-2
 - Overdue release 0.3.5.
-* Sun May 10 2009 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.4
+* Sun May 10 2009 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.4-1
 - New release 0.3.4.
 - Added russian translation.
 * Mon Jun 23 2008 Rui Nuno Capela <rncbc@users.sourceforge.net>
