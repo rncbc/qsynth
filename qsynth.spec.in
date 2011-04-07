@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 3
+%define release 2
 
 %define _prefix	@ac_prefix@
 
@@ -17,7 +17,7 @@ Packager:	rncbc.org
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 BuildRequires:	libqt4-devel >= 4.2
-BuildRequires:	fluidsynth-devel >= 1.0.8
+BuildRequires:	libfluidsynth-devel >= 1.0.8
 
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
@@ -53,7 +53,7 @@ command line softsynths.
 %{_datadir}/locale/%{name}_*.qm
 
 %changelog
-* Sat Apr 07 2011 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.6-3
+* Thu Apr 07 2011 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.6-3
 - Slip release. 
 * Mon May 17 2010 Rui Nuno Capela <rncbc@users.sourceforge.net>
 - Standard desktop icon fixing. 
