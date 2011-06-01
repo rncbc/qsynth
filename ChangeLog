@@ -3,6 +3,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+SVN TRUNK
+
+- Debugging stacktrace now applies to all working threads.
+
+
 2011-04-07  0.3.6  Slip release.
 
 - Main window layout fixing with regard to its user preferred
