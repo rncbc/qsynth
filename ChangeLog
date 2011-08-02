@@ -5,6 +5,9 @@ ChangeLog
 
 SVN TRUNK
 
+- Main window is now brought to front and (re)activated when
+  clicking on the system tray icon instead of just hiding it.
+
 - Debugging stacktrace now applies to all working threads.
 
 
