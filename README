@@ -101,6 +101,11 @@ Ebrahim Mayat <ebmayat at mac dot com> also contributed with instructions
 to build Qsynth on Mac OSX (see README-OSX). This might be outdated now that
 Qsynth has migrated to Qt4, but nevertheless...
 
+Pedro Lopez-Cabanillas is currently the most prominent developer, having
+contributed with the awesome knob skins/styles option, the alternate cmake
+build system and the Windows(tm) installer bundle. Kudos to Pedro!
+
+
 Enjoy.
 
 rncbc aka Rui Nuno Capela <rncbc at rncbc dot org>
