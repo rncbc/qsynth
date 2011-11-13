@@ -107,7 +107,7 @@ public:
 			if (m_pMyTranslator->load(sLocName, sLocPath)) {
 				QApplication::installTranslator(m_pMyTranslator);
 			} else {
-				sLocPath = CONFIG_LOCALEDR;
+				sLocPath = CONFIG_LOCALEDIR;
 				if (m_pMyTranslator->load(sLocName, sLocPath)) {
 					QApplication::installTranslator(m_pMyTranslator);
 				} else {
