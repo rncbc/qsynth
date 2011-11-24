@@ -71,6 +71,7 @@ translations_targets = \
 	src/translations/qsynth_ru.qm
 
 
+export datarootdir = @datarootdir@
 export localedir = @localedir@
 
 
