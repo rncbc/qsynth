@@ -5,6 +5,9 @@ ChangeLog
 
 SVN TRUNK
 
+- Make(ing) -jN parallel builds now available to the masses
+  (an awesome patch by kensington, thanks).
+
 - Fixed Makefile.in handling of installation directories to
   the configure script eg. --datadir, --localedir.
 
