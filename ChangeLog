@@ -5,6 +5,9 @@ ChangeLog
 
 SVN TRUNK
 
+- MIDI bank select mode control added to engine setup dialog
+  (after a clean patch ticket by Kurt Stephens, thanks).
+
 - Added include <unistd.h> to shut up gcc 4.7 build failures.
 
 - Make(ing) -jN parallel builds now available to the masses

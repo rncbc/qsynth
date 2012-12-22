@@ -24,7 +24,7 @@ The software requirements for build and runtime are listed as follows:
 
   - Qt4 (core, gui), C++ class library and tools for
         crossplatform development and internationalization
-        http://qt.nokia.com/products/
+        http://qt-project.org/
 
   - fluidsynth, real-time software synthesizer
         based on the SoundFont 2 specifications.
