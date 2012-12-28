@@ -23,10 +23,13 @@
 
 *****************************************************************************/
 
-#include <QtGui>
+#include "qsynthDialPeppinoStyle.h"
+
+#include <QStyleOptionSlider>
+#include <QPainter>
+
 #include <iostream>
 #include <cmath>
-#include "qsynthDialPeppinoStyle.h"
 
 inline void paintBorder(QPainter *p)
 {

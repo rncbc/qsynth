@@ -31,7 +31,7 @@
 #ifndef CLASSICTYLE_H_
 #define CLASSICTYLE_H_
 
-#include <QtGui>
+#include <QCommonStyle>
 
 class qsynthDialClassicStyle : public QCommonStyle
 {

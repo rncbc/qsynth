@@ -187,7 +187,9 @@ qsynthSetupForm::qsynthSetupForm (
 //	pHeader->setResizeMode(QHeaderView::Custom);
 	pHeader->setDefaultAlignment(Qt::AlignLeft);
 //	pHeader->setDefaultSectionSize(300);
+#if QT_VERSION < 0x050000
 	pHeader->setMovable(false);
+#endif
 	pHeader->setStretchLastSection(true);
 
 	m_ui.SoundFontListView->resizeColumnToContents(0);	// SFID.
@@ -199,7 +201,9 @@ qsynthSetupForm::qsynthSetupForm (
 //	pHeader->setResizeMode(QHeaderView::Custom);
 	pHeader->setDefaultAlignment(Qt::AlignLeft);
 //	pHeader->setDefaultSectionSize(160);
+#if QT_VERSION < 0x050000
 	pHeader->setMovable(false);
+#endif
 	pHeader->setStretchLastSection(true);
 
 	pHeader->resizeSection(0, 160);						// Name.

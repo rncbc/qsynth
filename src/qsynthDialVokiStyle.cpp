@@ -22,10 +22,13 @@
 
 *****************************************************************************/
 
-#include <QtGui>
+#include "qsynthDialVokiStyle.h"
+
+#include <QStyleOptionSlider>
+#include <QPainter>
+
 #include <iostream>
 #include <cmath>
-#include "qsynthDialVokiStyle.h"
 
 #define DIAL_MIN      (0.25 * M_PI)
 #define DIAL_MAX      (1.75 * M_PI)

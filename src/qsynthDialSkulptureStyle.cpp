@@ -25,7 +25,11 @@
  */
 
 #include "qsynthDialSkulptureStyle.h"
-#include <QtGui>
+
+#include <QStyleOptionSlider>
+#include <QPixmapCache>
+#include <QPainter>
+
 #include <cmath>
 
 static const bool UsePixmapCache = true;
@@ -354,7 +358,7 @@ paintCachedGrip(QPainter *painter, const QStyleOption *option, QPalette::ColorRo
             state &= ~(QStyle::State_MouseOver | QStyle::State_HasFocus);
         }
         state &= ~(QStyle::State_HasFocus);
-                QByteArray colorName = option->palette.color(QPalette::Button).name().toAscii();
+                QByteArray colorName = option->palette.color(QPalette::Button).name().toLatin1();
                 pixmapName.sprintf("scp-isg-%x-%x-%s-%x-%x", state, option->direction, colorName.constData(), option->rect.width(), option->rect.height());
     }
     paintIndicatorCached(painter, option, paintGrip, useCache, pixmapName);

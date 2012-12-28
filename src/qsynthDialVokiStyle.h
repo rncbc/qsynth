@@ -25,7 +25,7 @@
 #ifndef VOKISTYLE_H_
 #define VOKISTYLE_H_
 
-#include <QtGui>
+#include <QCommonStyle>
 
 class qsynthDialVokiStyle : public QCommonStyle
 {

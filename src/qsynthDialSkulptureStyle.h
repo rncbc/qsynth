@@ -23,7 +23,7 @@
 #ifndef QSYNTHDIALSKULPTURESTYLE_H_
 #define QSYNTHDIALSKULPTURESTYLE_H_
 
-#include <QtGui>
+#include <QCommonStyle>
 
 class qsynthDialSkulptureStyle : public QCommonStyle
 {

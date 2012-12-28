@@ -5,6 +5,8 @@ ChangeLog
 
 SVN TRUNK
 
+- Preparations for Qt5 migration. (TESTING)
+
 - MIDI bank select mode control added to engine setup dialog
   (after a clean patch ticket by Kurt Stephens, thanks).
 

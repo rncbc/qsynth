@@ -1,7 +1,7 @@
 // qsynth.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2011, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2012, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -94,12 +94,12 @@ public:
 			} else {
 				delete m_pQtTranslator;
 				m_pQtTranslator = 0;
-		#ifdef CONFIG_DEBUG
+			#ifdef CONFIG_DEBUG
 				qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
 					loc.name().toLocal8Bit().data(),
 					sLocPath.toLocal8Bit().data(),
 					sLocName.toLocal8Bit().data());
-		#endif
+			#endif
 			}
 			// Try own application translation...
 			m_pMyTranslator = new QTranslator(this);
@@ -113,12 +113,12 @@ public:
 				} else {
 					delete m_pMyTranslator;
 					m_pMyTranslator = 0;
-		#ifdef CONFIG_DEBUG
+				#ifdef CONFIG_DEBUG
 					qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
 						loc.name().toLocal8Bit().data(),
 						sLocPath.toLocal8Bit().data(),
 						sLocName.toLocal8Bit().data());
-		#endif
+				#endif
 				}
 			}
 		}
@@ -251,7 +251,9 @@ public:
 		if (pMainForm)
 			pMainForm->setQuitForce(true);
 
+	#if QT_VERSION < 0x050000
 		QApplication::commitData(sm);
+	#endif
 	}
 
 private:

@@ -26,7 +26,7 @@
 #ifndef PEPPINOSTYLE_H_
 #define PEPPINOSTYLE_H_
 
-#include <QtGui>
+#include <QCommonStyle>
 
 class qsynthDialPeppinoStyle : public QCommonStyle
 {
