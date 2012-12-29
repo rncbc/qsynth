@@ -184,10 +184,13 @@ qsynthSetupForm::qsynthSetupForm (
 
 	// Soundfonts list view...
 	QHeaderView *pHeader = m_ui.SoundFontListView->header();
-//	pHeader->setResizeMode(QHeaderView::Custom);
 	pHeader->setDefaultAlignment(Qt::AlignLeft);
 //	pHeader->setDefaultSectionSize(300);
-#if QT_VERSION < 0x050000
+#if QT_VERSION >= 0x050000
+//	pHeader->setSectionResizeMode(QHeaderView::Custom);
+	pHeader->setSectionsMovable(false);
+#else
+//	pHeader->setResizeMode(QHeaderView::Custom);
 	pHeader->setMovable(false);
 #endif
 	pHeader->setStretchLastSection(true);
@@ -198,10 +201,13 @@ qsynthSetupForm::qsynthSetupForm (
 
 	// Settings list view...
 	pHeader = m_ui.SettingsListView->header();
-//	pHeader->setResizeMode(QHeaderView::Custom);
 	pHeader->setDefaultAlignment(Qt::AlignLeft);
 //	pHeader->setDefaultSectionSize(160);
-#if QT_VERSION < 0x050000
+#if QT_VERSION >= 0x050000
+//	pHeader->setSectionResizeMode(QHeaderView::Custom);
+	pHeader->setSectionsMovable(false);
+#else
+//	pHeader->setResizeMode(QHeaderView::Custom);
 	pHeader->setMovable(false);
 #endif
 	pHeader->setStretchLastSection(true);
