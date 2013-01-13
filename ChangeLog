@@ -5,6 +5,8 @@ ChangeLog
 
 SVN TRUNK
 
+- Reversed (mouse) scroll-wheel effect on dial knob widgets.
+
 - Preparations for Qt5 migration. (TESTING)
 
 - MIDI bank select mode control added to engine setup dialog

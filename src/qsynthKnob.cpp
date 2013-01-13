@@ -1,7 +1,7 @@
 // qsynthKnob.cpp
 //
 /****************************************************************************
-   Copyright (C) 2005-2009, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2005-2013, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This widget is based on a design by Thorsten Wilms, 
    implemented by Chris Cannam in Rosegarden,
@@ -151,9 +151,9 @@ void qsynthKnob::wheelEvent ( QWheelEvent *pWheelEvent )
 	} else {
 		int iValue = value();
 		if (pWheelEvent->delta() > 0)
-			iValue -= pageStep();
-		else
 			iValue += pageStep();
+		else
+			iValue -= pageStep();
 		if (iValue > maximum())
 			iValue = maximum();
 		else
