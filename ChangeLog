@@ -5,6 +5,8 @@ ChangeLog
 
 SVN TRUNK
 
+- New French (fr) translation added (by Yann Collette, thanks).
+
 - Reversed (mouse) scroll-wheel effect on dial knob widgets.
 
 - Preparations for Qt5 migration. (TESTING)
