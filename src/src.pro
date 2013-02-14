@@ -115,6 +115,8 @@ win32 {
     RC_FILE = win32/qsynth.rc
 }
 
-# QT5 support
-QT += widgets
 
+# QT5 support
+!lessThan(QT_MAJOR_VERSION, 5) {
+	QT += widgets
+}
