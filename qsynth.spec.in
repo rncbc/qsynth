@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 2
+%define release 3
 
 %define _prefix	@ac_prefix@
 
@@ -53,31 +53,33 @@ command line softsynths.
 %{_datadir}/locale/%{name}_*.qm
 
 %changelog
-* Thu Apr 07 2011 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.6-3
-- Slip release. 
-* Mon May 17 2010 Rui Nuno Capela <rncbc@users.sourceforge.net>
-- Standard desktop icon fixing. 
-* Tue Apr 27 2010 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.5-2
+* Mon Apr 08 2013 Rui Nuno Capela <rncbc@rncbc.org> 0.3.7-3
+- Spring cleaning sale.
+* Thu Apr 07 2011 Rui Nuno Capela <rncbc@rncbc.org> 0.3.6-2
+- Slip release.
+* Mon May 17 2010 Rui Nuno Capela <rncbc@rncbc.org>
+- Standard desktop icon fixing.
+* Tue Apr 27 2010 Rui Nuno Capela <rncbc@rncbc.org> 0.3.5-1
 - Overdue release 0.3.5.
-* Sun May 10 2009 Rui Nuno Capela <rncbc@users.sourceforge.net> 0.3.4-1
+* Sun May 10 2009 Rui Nuno Capela <rncbc@rncbc.org>
 - New release 0.3.4.
 - Added russian translation.
-* Mon Jun 23 2008 Rui Nuno Capela <rncbc@users.sourceforge.net>
+* Mon Jun 23 2008 Rui Nuno Capela <rncbc@rncbc.org>
 - Added german and spanish translations.
-* Wed Dec 19 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
+* Wed Dec 19 2007 Rui Nuno Capela <rncbc@rncbc.org>
 - Minor stealth fixes and season greetings.
-* Mon Jul 16 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
+* Mon Jul 16 2007 Rui Nuno Capela <rncbc@rncbc.org>
 - Shallowed bug-fix release.
-* Tue Jul 03 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
+* Tue Jul 03 2007 Rui Nuno Capela <rncbc@rncbc.org>
 - Qt4 migration was complete.
-* Mon Jun 25 2007 Rui Nuno Capela <rncbc@users.sourceforge.net>
+* Mon Jun 25 2007 Rui Nuno Capela <rncbc@rncbc.org>
 - Application icon is now installed to (prefix)/share/pixmaps.
 - Declared fundamental build and run-time requirements.
 - Destination install directory prefix is now in spec.
 - Spec is now a bit more openSUSE compliant.
-* Thu Jun 01 2006 Rui Nuno Capela <rncbc@users.sourceforge.net>
+* Thu Jun 01 2006 Rui Nuno Capela <rncbc@rncbc.org>
 - Changed deprecated copyright attribute to license.
-* Sun Oct 2 2005 Rui Nuno Capela <rncbc@users.sourceforge.net>
+* Sun Oct 2 2005 Rui Nuno Capela <rncbc@rncbc.org>
 - Made public as for 0.2.4 release.
-* Wed Aug 24 2005 Rui Nuno Capela <rncbc@users.sourceforge.net>
+* Wed Aug 24 2005 Rui Nuno Capela <rncbc@rncbc.org>
 - Created initial qsynth.spec
