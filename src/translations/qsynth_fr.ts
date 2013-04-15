@@ -81,7 +81,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="199"/>
         <source>Define a setting name=value</source>
-        <translation>Définit un paramètre name=value</translation>
+        <translation>Définit un paramètre nom=valeur</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="201"/>
@@ -116,62 +116,62 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="240"/>
         <source>Option -m requires an argument (midi-driver).</source>
-        <translation>L&apos;option -m requière un argument (midi-driver).</translation>
+        <translation>L&apos;option -m requiert un argument (midi-driver).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="249"/>
         <source>Option -K requires an argument (midi-channels).</source>
-        <translation>L&apos;option -K requière un argument (midi-channels).</translation>
+        <translation>L&apos;option -K requiert un argument (midi-channels).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="258"/>
         <source>Option -a requires an argument (audio-driver).</source>
-        <translation>L&apos;option -a requière un argument (audio-driver).</translation>
+        <translation>L&apos;option -a requiert un argument (audio-driver).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="270"/>
         <source>Option -L requires an argument (audio-channels).</source>
-        <translation>L&apos;option -L requière un argument (audio-channels).</translation>
+        <translation>L&apos;option -L requiert un argument (audio-channels).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="279"/>
         <source>Option -G requires an argument (audio-groups).</source>
-        <translation>L&apos;option -G requière un argument (audio-groups).</translation>
+        <translation>L&apos;option -G requiert un argument (audio-groups).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="288"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
-        <translation>L&apos;option -z requière un argument (audio-bufsize).</translation>
+        <translation>L&apos;option -z requiert un argument (audio-bufsize).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="297"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
-        <translation>L&apos;option -c requière un argument (audio-bufcount).</translation>
+        <translation>L&apos;option -c requiert un argument (audio-bufcount).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="306"/>
         <source>Option -r requires an argument (sample-rate).</source>
-        <translation>L&apos;option -r requière un argument (sample-rate).</translation>
+        <translation>L&apos;option -r requiert un argument (sample-rate).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="315"/>
         <source>Option -R requires an argument (reverb).</source>
-        <translation>L&apos;option -R requière un argument (reverb).</translation>
+        <translation>L&apos;option -R requiert un argument (reverb).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="324"/>
         <source>Option -C requires an argument (chorus).</source>
-        <translation>L&apos;option -C requière un argument (chorus).</translation>
+        <translation>L&apos;option -C requiert un argument (chorus).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="333"/>
         <source>Option -g requires an argument (gain).</source>
-        <translation>L&apos;option -g requière un argument (gain).</translation>
+        <translation>L&apos;option -g requiert un argument (gain).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="342"/>
         <source>Option -o requires an argument.</source>
-        <translation>L&apos;option -o requière un argument.</translation>
+        <translation>L&apos;option -o requiert un argument.</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="364"/>
@@ -255,7 +255,7 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="76"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
-        <translation>sous les termes de la license publique générale GNU version 2 ou plus récenter.</translation>
+        <translation>sous les termes de la license publique générale GNU version 2 ou plus récente.</translation>
     </message>
 </context>
 <context>
@@ -263,7 +263,7 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="36"/>
         <source>Qsynth: Channels</source>
-        <translation>Qsynth: canaux</translation>
+        <translation>Qsynth: Canaux</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="56"/>
@@ -278,7 +278,7 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="84"/>
         <source>(default)</source>
-        <translation>(defaut)</translation>
+        <translation>(défaut)</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="92"/>
@@ -368,7 +368,7 @@
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="342"/>
         <source>Refresh</source>
-        <translation>Raffraichir</translation>
+        <translation>Rafraichir</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="470"/>
@@ -407,7 +407,7 @@
         <location filename="../qsynthMainForm.ui" line="89"/>
         <location filename="../qsynthMainForm.ui" line="114"/>
         <source>Master Gain</source>
-        <translation>Gain maitre</translation>
+        <translation>Gain Maitre</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="130"/>
@@ -429,12 +429,12 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="152"/>
         <source>Reverb</source>
-        <translation>Réverb</translation>
+        <translation>Réverbération</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="176"/>
         <source>Reverb effect activation</source>
-        <translation>Activation de l&apos;effet réverb</translation>
+        <translation>Activation de l&apos;effet de réverbération</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="179"/>
@@ -450,7 +450,7 @@
         <location filename="../qsynthMainForm.ui" line="195"/>
         <location filename="../qsynthMainForm.ui" line="214"/>
         <source>Reverb Level</source>
-        <translation>Niveau de réverb</translation>
+        <translation>Niveau de réverbération</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="239"/>
@@ -461,7 +461,7 @@
         <location filename="../qsynthMainForm.ui" line="261"/>
         <location filename="../qsynthMainForm.ui" line="302"/>
         <source>Reverb Width</source>
-        <translation>Largeur de réverb</translation>
+        <translation>Largeur de réverbération</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="280"/>
@@ -472,7 +472,7 @@
         <location filename="../qsynthMainForm.ui" line="327"/>
         <location filename="../qsynthMainForm.ui" line="368"/>
         <source>Reverb Damp Factor</source>
-        <translation>Facteur d&apos;aténuation de la réverb</translation>
+        <translation>Facteur d&apos;atténuation de la réverbération</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="346"/>
@@ -483,7 +483,7 @@
         <location filename="../qsynthMainForm.ui" line="393"/>
         <location filename="../qsynthMainForm.ui" line="434"/>
         <source>Reverb Room Size</source>
-        <translation>Dimension de la pièce de réverb</translation>
+        <translation>Dimension de la pièce de réverbération</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="412"/>
@@ -534,7 +534,7 @@
         <location filename="../qsynthMainForm.ui" line="562"/>
         <location filename="../qsynthMainForm.ui" line="609"/>
         <source>Number of Chorus Stages</source>
-        <translation>Nombre d&apos;étage de chorus</translation>
+        <translation>Nombre d&apos;Etages de Chorus</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="587"/>
@@ -545,7 +545,7 @@
         <location filename="../qsynthMainForm.ui" line="628"/>
         <location filename="../qsynthMainForm.ui" line="675"/>
         <source>Chorus Level</source>
-        <translation>Niveau de chorus</translation>
+        <translation>Niveau de Chorus</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="653"/>
@@ -556,12 +556,12 @@
         <location filename="../qsynthMainForm.ui" line="694"/>
         <location filename="../qsynthMainForm.ui" line="747"/>
         <source>Chorus Speed (Hz)</source>
-        <translation>Vitesse du chorus (Hz)</translation>
+        <translation>Vitesse du Chorus (Hz)</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="722"/>
         <source>Chorus Speed Hz</source>
-        <translation>Vitesse du chorus (Hz)</translation>
+        <translation>Vitesse du Chorus Hz</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="725"/>
@@ -572,7 +572,7 @@
         <location filename="../qsynthMainForm.ui" line="769"/>
         <location filename="../qsynthMainForm.ui" line="816"/>
         <source>Chorus Depth (ms)</source>
-        <translation>Profondeur du chorus (ms)</translation>
+        <translation>Profondeur du Chorus (ms)</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="794"/>
@@ -725,7 +725,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="1080"/>
         <source>Engine selector (right-click for menu)</source>
-        <translation>Sélectionneur de moteur (click droit pour le menu)</translation>
+        <translation>Sélectionneur de moteur (clic droit pour le menu)</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="1118"/>
@@ -1193,7 +1193,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="295"/>
         <source>Alt+L</source>
-        <translation>Alit+I</translation>
+        <translation>Alt+I</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="311"/>
@@ -1364,7 +1364,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="617"/>
         <source>(default)</source>
-        <translation>(defaut)</translation>
+        <translation>(défaut)</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="622"/>
@@ -1414,7 +1414,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="235"/>
         <source>Do you want to apply the changes?</source>
-        <translation>Vouluez-vous appliquer les changements?</translation>
+        <translation>Voulez-vous appliquer les changements?</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="291"/>
@@ -1432,7 +1432,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthPresetForm.ui" line="33"/>
         <source>Qsynth: Channel Preset</source>
-        <translation>Qsynth: préréglage du canal</translation>
+        <translation>Qsynth: Préréglage du Canal</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="59"/>
@@ -1452,7 +1452,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthPresetForm.ui" line="118"/>
         <source>Program selector</source>
-        <translation>Sélection de programme</translation>
+        <translation>Sélection de Programme</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="143"/>
@@ -1477,7 +1477,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthPresetForm.ui" line="167"/>
         <source>Whether to preview the current selection</source>
-        <translation>Si on doit rendre un aperçu de la sélection courante</translation>
+        <translation>Si on doit générer un aperçu de la sélection courante</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="170"/>
@@ -1500,7 +1500,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="51"/>
         <source>Engine &amp;Name:</source>
-        <translation>&amp;Nom du moteur:</translation>
+        <translation>&amp;Nom du Moteur:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="64"/>
@@ -1537,7 +1537,7 @@ le redémarrage du moteur fluidsynth:</translation>
         <location filename="../qsynthSetupForm.ui" line="134"/>
         <location filename="../qsynthSetupForm.ui" line="694"/>
         <source>MIDI device name</source>
-        <translation>Nom du device MIDI</translation>
+        <translation>Nom du pilote MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="144"/>
@@ -1562,7 +1562,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="167"/>
         <source>MIDI &amp;Device:</source>
-        <translation>&amp;Device MIDI:</translation>
+        <translation>&amp;Pilote MIDI:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="183"/>
@@ -1789,7 +1789,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="614"/>
         <source>Audio &amp;Device:</source>
-        <translation>&amp;Device audio:</translation>
+        <translation>&amp;Pilote audio:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="633"/>
@@ -1915,7 +1915,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="935"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Edite</translation>
+        <translation>&amp;Editer</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="941"/>
@@ -1930,7 +1930,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="951"/>
         <source>&amp;Remove</source>
-        <translation>Supp&amp;rime</translation>
+        <translation>Supp&amp;rimer</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="957"/>
@@ -1940,7 +1940,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="977"/>
         <source>Move up selected soundfont towards the top of stack</source>
-        <translation>Monte la soundfont sélectionnée vers le ahut de la pile</translation>
+        <translation>Déplace la soundfont sélectionnée vers le haut de la pile</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="980"/>
@@ -1955,7 +1955,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="993"/>
         <source>Move down selected soundfont towards the bottom of stack</source>
-        <translation>Descend la soundfont sélectionnée vers le bas de la pile</translation>
+        <translation>Déplace la soundfont sélectionnée vers le bas de la pile</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="996"/>
@@ -2041,12 +2041,12 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="785"/>
         <source>Move Up</source>
-        <translation>Haut</translation>
+        <translation>Déplace vers le Haut</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="789"/>
         <source>Move Down</source>
-        <translation>Bas</translation>
+        <translation>Déplace vers le Bas</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="815"/>
