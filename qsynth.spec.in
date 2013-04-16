@@ -53,7 +53,7 @@ command line softsynths.
 %{_datadir}/locale/%{name}_*.qm
 
 %changelog
-* Mon Apr 08 2013 Rui Nuno Capela <rncbc@rncbc.org> 0.3.7-3
+* Tue Apr 16 2013 Rui Nuno Capela <rncbc@rncbc.org> 0.3.7-3
 - Spring cleaning sale.
 * Thu Apr 07 2011 Rui Nuno Capela <rncbc@rncbc.org> 0.3.6-2
 - Slip release.
