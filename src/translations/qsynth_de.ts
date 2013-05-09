@@ -179,10 +179,6 @@
         <translation>Option -o benötigt ein Argument.</translation>
     </message>
     <message>
-        <source>Option -o failed to set &apos;%1&apos;.</source>
-        <translation type="obsolete">Fehler beim Setzen der Option -o &apos;%1&apos;.</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptions.cpp" line="364"/>
         <source>Qt: %1
 </source>
@@ -368,7 +364,7 @@
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="338"/>
         <source>Unset</source>
-        <translation type="unfinished"></translation>
+        <translation>Aufheben</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="342"/>
@@ -749,21 +745,15 @@
         <translation>Information</translation>
     </message>
     <message>
-        <source>The program will keep running in the system tray.
-
-To terminate the program, please choose &quot;Quit&quot; in the context menu of the system tray entry.</source>
-        <translation type="obsolete">Programm läuft weiter sichtbar als Symbol im Benachrichtigungsfeld.
-
-Zum Beenden des Programms, wählen Sie bitte &quot;Beenden&quot; im
-Kontextmenü des Symbols im Benachrichtigungsfeld.</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.cpp" line="656"/>
         <source>The program will keep running in the system tray.
 
 To terminate the program, please choose &quot;Quit&quot;
 in the context menu of the system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation>Programm läuft weiter sichtbar als Symbol im Benachrichtigungsfeld.
+
+Zum Beenden des Programms, wählen Sie bitte &quot;Beenden&quot; im
+Kontextmenü des Symbols im Benachrichtigungsfeld.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="679"/>
@@ -1292,14 +1282,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Alt+B</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.cpp" line="233"/>
         <source>Warning</source>
         <translation>Warnung</translation>
@@ -1454,14 +1436,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Qsynth: Kanalvoreinstellung</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
-    </message>
-    <message>
         <location filename="../qsynthPresetForm.ui" line="59"/>
         <source>Preset</source>
         <translation>Voreinstellung</translation>
@@ -1561,13 +1535,9 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Treiber für MIDI-Eingang</translation>
     </message>
     <message>
-        <source>&amp;ALSA Sequencer Client ID:</source>
-        <translation type="obsolete">A&amp;LSA Sequenzer-Client-ID:</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="292"/>
         <source>MIDI Client Name ID (ALSA/CoreMidi):</source>
-        <translation type="unfinished"></translation>
+        <translation>MIDI-Client-Name-ID (ALSA/CoreMidi):</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="305"/>
@@ -1642,42 +1612,34 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Alt+D</translation>
     </message>
     <message>
-        <source>MIDI bank select mode</source>
-        <translation type="obsolete">MIDI Bank einstellen</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="245"/>
         <source>gm</source>
-        <translation type="unfinished">gm</translation>
+        <translation>gm</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="250"/>
         <source>gs</source>
-        <translation type="unfinished">gs</translation>
+        <translation>gs</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="255"/>
         <source>mma</source>
-        <translation type="unfinished">mma</translation>
+        <translation>mma</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="260"/>
         <source>xs</source>
-        <translation type="unfinished">xs</translation>
-    </message>
-    <message>
-        <source>MIDI &amp;Bank Select</source>
-        <translation type="obsolete">&amp;Bank einstellen</translation>
+        <translation>xs</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="228"/>
         <source>MIDI &amp;Bank Select mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>MIDI-&amp;Bank Einstellmodus:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="238"/>
         <source>MIDI Bank Select mode</source>
-        <translation type="unfinished"></translation>
+        <translation>MIDI-Bank Einstellmodus</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="367"/>
@@ -2040,14 +2002,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthSetupForm.ui" line="1090"/>
         <source>Options</source>
         <translation>Optionen</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Abbrechen</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="362"/>
