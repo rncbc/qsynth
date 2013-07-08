@@ -1,7 +1,7 @@
 // qsynthTabBar.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2010, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -109,19 +109,9 @@ void qsynthTabBar::setOn ( int iTab, bool bOn )
 // Context menu event.
 void qsynthTabBar::contextMenuEvent ( QContextMenuEvent *pContextMenuEvent )
 {
-#if QT_VERSION < 0x040300
-	int iTab = 0;
-	while (iTab < QTabBar::count()) {
-		const QRect& rect = QTabBar::tabRect(iTab);
-		if (rect.contains(pContextMenuEvent->pos()))
-			break;
-		iTab++;
-	}
-#else
 	int iTab = QTabBar::tabAt(pContextMenuEvent->pos());
 	if (iTab >= 0)
 		QTabBar::setCurrentIndex(iTab);
-#endif
 
 	// Emit context menu signal.
 	emit contextMenuRequested(iTab, pContextMenuEvent->globalPos());

@@ -3,7 +3,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2012, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -95,7 +95,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="notchTarget">
-		 <double>20.0</double>
+         <double>20.0</double>
         </property>
         <property name="notchesVisible">
          <bool>true</bool>
@@ -133,7 +133,7 @@
       <string>Re&amp;start</string>
      </property>
      <property name="icon">
-	  <iconset resource="qsynth.qrc">:/images/restart1.png</iconset>
+      <iconset resource="qsynth.qrc">:/images/restart1.png</iconset>
      </property>
      <property name="shortcut">
       <string>Alt+S</string>
@@ -220,7 +220,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="notchTarget">
-		 <double>10.0</double>
+         <double>10.0</double>
         </property>
         <property name="notchesVisible">
          <bool>true</bool>
@@ -308,7 +308,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="notchTarget">
-		 <double>10.0</double>
+         <double>10.0</double>
         </property>
         <property name="notchesVisible">
          <bool>true</bool>
@@ -374,7 +374,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="notchTarget">
-		 <double>10.0</double>
+         <double>10.0</double>
         </property>
         <property name="notchesVisible">
          <bool>true</bool>
@@ -440,7 +440,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="notchTarget">
-		 <double>10.0</double>
+         <double>10.0</double>
         </property>
         <property name="notchesVisible">
          <bool>true</bool>
@@ -568,7 +568,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="notchTarget">
-		 <double>10.0</double>
+         <double>10.0</double>
         </property>
         <property name="notchesVisible">
          <bool>true</bool>
@@ -634,7 +634,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="notchTarget">
-		 <double>10.0</double>
+         <double>10.0</double>
         </property>
         <property name="notchesVisible">
          <bool>true</bool>
@@ -703,7 +703,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="notchTarget">
-		 <double>10.0</double>
+         <double>10.0</double>
         </property>
         <property name="notchesVisible">
          <bool>true</bool>
@@ -775,7 +775,7 @@
          <enum>Qt::Horizontal</enum>
         </property>
         <property name="notchTarget">
-		 <double>10.0</double>
+         <double>10.0</double>
         </property>
         <property name="notchesVisible">
          <bool>true</bool>
@@ -845,7 +845,7 @@
        <number>4</number>
       </property>
       <item>
-	   <widget class="qsynthMeter" name="OutputMeter">
+       <widget class="qsynthMeter" name="OutputMeter">
         <property name="toolTip">
          <string>Output peak level</string>
         </property>
@@ -871,7 +871,7 @@
         <string>&amp;Quit</string>
        </property>
        <property name="icon">
-		<iconset resource="qsynth.qrc">:/images/quit1.png</iconset>
+        <iconset resource="qsynth.qrc">:/images/quit1.png</iconset>
        </property>
        <property name="shortcut">
         <string>Alt+Q</string>
@@ -890,7 +890,7 @@
         <string>&amp;Options...</string>
        </property>
        <property name="icon">
-		<iconset resource="qsynth.qrc">:/images/options1.png</iconset>
+        <iconset resource="qsynth.qrc">:/images/options1.png</iconset>
        </property>
        <property name="shortcut">
         <string>Alt+O</string>
@@ -909,7 +909,7 @@
         <string>&amp;Messages</string>
        </property>
        <property name="icon">
-		<iconset resource="qsynth.qrc">:/images/messages1.png</iconset>
+        <iconset resource="qsynth.qrc">:/images/messages1.png</iconset>
        </property>
        <property name="shortcut">
         <string>Alt+M</string>
@@ -931,7 +931,7 @@
         <string>A&amp;bout...</string>
        </property>
        <property name="icon">
-		<iconset resource="qsynth.qrc">:/images/about1.png</iconset>
+        <iconset resource="qsynth.qrc">:/images/about1.png</iconset>
        </property>
        <property name="shortcut">
         <string>Alt+B</string>
@@ -968,7 +968,7 @@
       <string>&amp;Panic</string>
      </property>
      <property name="icon">
-	  <iconset resource="qsynth.qrc">:/images/panic1.png</iconset>
+      <iconset resource="qsynth.qrc">:/images/panic1.png</iconset>
      </property>
      <property name="shortcut">
       <string>Alt+P</string>
@@ -984,7 +984,7 @@
       <string>&amp;Reset</string>
      </property>
      <property name="icon">
-	  <iconset resource="qsynth.qrc">:/images/reset1.png</iconset>
+      <iconset resource="qsynth.qrc">:/images/reset1.png</iconset>
      </property>
      <property name="shortcut">
       <string>Alt+R</string>
@@ -1000,7 +1000,7 @@
       <string>Set&amp;up...</string>
      </property>
      <property name="icon">
-	  <iconset resource="qsynth.qrc">:/images/setup1.png</iconset>
+      <iconset resource="qsynth.qrc">:/images/setup1.png</iconset>
      </property>
      <property name="shortcut">
       <string>Alt+U</string>
@@ -1019,7 +1019,7 @@
       <string>&amp;Channels</string>
      </property>
      <property name="icon">
-	  <iconset resource="qsynth.qrc">:/images/channels1.png</iconset>
+      <iconset resource="qsynth.qrc">:/images/channels1.png</iconset>
      </property>
      <property name="shortcut">
       <string>Alt+C</string>
@@ -1064,7 +1064,7 @@
         <string/>
        </property>
        <property name="icon">
-		<iconset resource="qsynth.qrc">:/images/add1.png</iconset>
+        <iconset resource="qsynth.qrc">:/images/add1.png</iconset>
        </property>
        <property name="shortcut">
         <string>Ins</string>
@@ -1072,7 +1072,7 @@
       </widget>
      </item>
      <item>
-	  <widget class="qsynthTabBar" name="TabBar">
+      <widget class="qsynthTabBar" name="TabBar">
        <property name="focusPolicy">
         <enum>Qt::StrongFocus</enum>
        </property>
@@ -1121,7 +1121,7 @@
         <string/>
        </property>
        <property name="icon">
-		<iconset resource="qsynth.qrc">:/images/remove1.png</iconset>
+        <iconset resource="qsynth.qrc">:/images/remove1.png</iconset>
        </property>
        <property name="shortcut">
         <string>Del</string>

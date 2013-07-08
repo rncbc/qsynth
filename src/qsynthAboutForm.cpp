@@ -1,7 +1,7 @@
 // qsynthAboutForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2010, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -76,11 +76,7 @@ qsynthAboutForm::qsynthAboutForm (
 	sText += tr("under the terms of the GNU General Public License version 2 or later.");
 	sText += "</small>";
 	sText += "</p>\n";
-#if QT_VERSION >= 0x040200
 	m_ui.AboutTextView->setText(sText);
-#else
-	m_ui.AboutTextView->setHtml(sText);
-#endif
 
 	// UI connections...
 	QObject::connect(m_ui.AboutQtButton,

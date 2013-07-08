@@ -1,7 +1,7 @@
 // qsynthSystemTray.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2009, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -24,25 +24,13 @@
 
 #include <QWidget>
 
-#if QT_VERSION >= 0x040200
-#define QSYNTH_QT4_SYSTEM_TRAY
-#endif
-
-#ifdef QSYNTH_QT4_SYSTEM_TRAY
 #include <QSystemTrayIcon>
-#else
-#include <QIcon>
-#endif
 
 
 //----------------------------------------------------------------------------
 // qsynthSystemTray -- Custom system tray widget.
 
-#ifdef QSYNTH_QT4_SYSTEM_TRAY
 class qsynthSystemTray : public QSystemTrayIcon
-#else
-class qsynthSystemTray : public QWidget
-#endif
 {
 	Q_OBJECT
 
@@ -64,12 +52,8 @@ public:
 	// System tray icon/pixmaps update method.
 	void updatePixmap();
 
-#ifdef QSYNTH_QT4_SYSTEM_TRAY
-
 	// Redirect to hide.
 	void close();
-
-#endif
 
 signals:
 
@@ -79,31 +63,15 @@ signals:
 	// Context menu signal.
 	void contextMenuRequested(const QPoint& pos);
 
-#ifdef QSYNTH_QT4_SYSTEM_TRAY
-
 protected slots:
 
 	// Handle systeam tray activity.
 	void activated(QSystemTrayIcon::ActivationReason);
 
-#else
-
-protected:
-
-	// Self-drawable methods.
-	void paintEvent(QPaintEvent *);
-
-	// Overriden mouse event method.
-	void mousePressEvent(QMouseEvent *);
-
-#endif
-
 private:
 
 	// Instance pixmap and background color.
-#ifdef QSYNTH_QT4_SYSTEM_TRAY
 	QIcon   m_icon;
-#endif
 	QPixmap m_pixmap;
 	QPixmap m_pixmapOverlay;
 	QColor  m_background;

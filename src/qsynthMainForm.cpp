@@ -1,7 +1,7 @@
 // qsynthMainForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2012, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -60,9 +60,6 @@
 #if QT_VERSION < 0x040500
 namespace Qt {
 const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
-#if QT_VERSION < 0x040200
-const WindowFlags CustomizeWindowHint   = WindowFlags(0x02000000);
-#endif
 }
 #endif
 
@@ -394,7 +391,6 @@ qsynthMainForm::qsynthMainForm (
 	::signal(SIGPIPE, SIG_IGN);
 #endif
 
-#if QT_VERSION >= 0x040200
 	m_ui.GainSpinBox->setAccelerated(true);
 	m_ui.ReverbRoomSpinBox->setAccelerated(true);
 	m_ui.ReverbDampSpinBox->setAccelerated(true);
@@ -404,7 +400,6 @@ qsynthMainForm::qsynthMainForm (
 	m_ui.ChorusLevelSpinBox->setAccelerated(true);
 	m_ui.ChorusSpeedSpinBox->setAccelerated(true);
 	m_ui.ChorusDepthSpinBox->setAccelerated(true);
-#endif
 
 	// UI connections...
 	QObject::connect(m_ui.SetupPushButton,
@@ -656,15 +651,11 @@ bool qsynthMainForm::queryClose (void)
 				= tr("The program will keep running in the system tray.\n\n"
 					"To terminate the program, please choose \"Quit\"\n"
 					"in the context menu of the system tray icon.");
-		#ifdef QSYNTH_QT4_SYSTEM_TRAY
-		#if QT_VERSION >= 0x040300
 			if (QSystemTrayIcon::supportsMessages()) {
 				m_pSystemTray->showMessage(
 					sTitle, sText, QSystemTrayIcon::Information);
 			}
 			else
-		#endif
-		#endif
 			QMessageBox::information(this, sTitle, sText);
 			hide();
 			bQueryClose = false;
@@ -913,15 +904,11 @@ void qsynthMainForm::appendMessagesError( const QString& s )
 
 	const QString& sTitle = QSYNTH_TITLE ": " + tr("Error");
 #ifdef CONFIG_SYSTEM_TRAY
-#ifdef QSYNTH_QT4_SYSTEM_TRAY
-#if QT_VERSION >= 0x040300
 	if (m_pOptions->bSystemTray && m_pSystemTray
 		&& QSystemTrayIcon::supportsMessages()) {
 		m_pSystemTray->showMessage(sTitle, s, QSystemTrayIcon::Critical);
 	}
 	else
-#endif
-#endif
 #endif
 	QMessageBox::critical(this, sTitle, s, QMessageBox::Cancel);
 }
@@ -1414,16 +1401,12 @@ void qsynthMainForm::showOptionsForm (void)
 					= tr("Some settings will be only effective\n"
 						"next time you start this program.");
 			#ifdef CONFIG_SYSTEM_TRAY
-			#ifdef QSYNTH_QT4_SYSTEM_TRAY
-			#if QT_VERSION >= 0x040300
 				if (m_pOptions->bSystemTray && m_pSystemTray
 					&& QSystemTrayIcon::supportsMessages()) {
 					m_pSystemTray->showMessage(
 						sTitle, sText, QSystemTrayIcon::Information);
 				}
 				else
-			#endif
-			#endif
 			#endif
 				QMessageBox::information(this, sTitle, sText);
 			}
