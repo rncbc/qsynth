@@ -71,7 +71,8 @@ TRANSLATIONS += \
    translations/qsynth_de.ts \
    translations/qsynth_es.ts \
    translations/qsynth_fr.ts \
-   translations/qsynth_ru.ts
+   translations/qsynth_ru.ts \
+   translations/qsynth_sr.ts
 
 unix {
 

@@ -2,7 +2,9 @@
 Name=@PACKAGE_NAME@
 Version=1.0
 GenericName=FluidSynth GUI
+GenericName[sr]=Кју-синт
 Comment=Qsynth is a FluidSynth Qt GUI Interface
+Comment[sr]=Програм за управљање програмом Флуид-синт, у графичком окружењу.
 Exec=@ac_prefix@/bin/qsynth
 Icon=qsynth
 Categories=Audio;AudioVideo;Midi;X-Alsa;X-Jack;Qt;

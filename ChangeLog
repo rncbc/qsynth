@@ -3,6 +3,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+SVN TRUNK
+
+- Serbian (sr) translation added (by Jay Alexander Fleming,
+  thanks).
+
+
 0.3.7  2013-04-16  Spring cleaning sale.
 
 - New French (fr) translation added (by Yann Collette, thanks).

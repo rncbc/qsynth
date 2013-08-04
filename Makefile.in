@@ -63,13 +63,15 @@ translations_sources = \
 	src/translations/qsynth_de.ts \
 	src/translations/qsynth_es.ts \
 	src/translations/qsynth_fr.ts \
-	src/translations/qsynth_ru.ts
+	src/translations/qsynth_ru.ts \
+	src/translations/qsynth_sr.ts
 
 translations_targets = \
 	src/translations/qsynth_cs.qm \
 	src/translations/qsynth_de.qm \
 	src/translations/qsynth_fr.qm \
-	src/translations/qsynth_ru.qm
+	src/translations/qsynth_ru.qm \
+	src/translations/qsynth_sr.qm
 
 
 export datarootdir = @datarootdir@
