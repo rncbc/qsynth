@@ -5,6 +5,8 @@ ChangeLog
 
 SVN TRUNK
 
+- More preparations for Qt5 configure build.
+
 - Serbian (sr) translation added (by Jay Alexander Fleming,
   thanks).
 
