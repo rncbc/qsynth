@@ -16,7 +16,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="173"/>
         <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
-        <translation>Ne pas créer un pilote midi pour lire les évènements MIDI d&apos;entrée [defaut = oui]</translation>
+        <translation>Ne pas créer un pilote midi pour lire les évènements MIDI d&apos;entrée [défaut = oui]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="175"/>
@@ -26,7 +26,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="177"/>
         <source>The number of midi channels [default = 16]</source>
-        <translation>Le nombre de canaux midi [defaut = 16]</translation>
+        <translation>Le nombre de canaux midi [défaut = 16]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="179"/>
@@ -41,17 +41,17 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="183"/>
         <source>The number of stereo audio channels [default = 1]</source>
-        <translation>Le nombre de canaux audio stéréo [defaut = 1]</translation>
+        <translation>Le nombre de canaux audio stéréo [défaut = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="185"/>
         <source>The number of audio groups [default = 1]</source>
-        <translation>Le nombre de groupes audio [defaut = 1]</translation>
+        <translation>Le nombre de groupes audio [défaut = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="187"/>
         <source>Size of each audio buffer</source>
-        <translation>Dimension de chaque tampon audio</translation>
+        <translation>Taille de chaque tampon audio</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="189"/>
@@ -66,17 +66,17 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="193"/>
         <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
-        <translation>Met la réverb sur on ou off [1|0|yes|no|on|off, defaut = on]</translation>
+        <translation>Met la réverbération sur on ou off [1|0|yes|no|on|off, défaut = on]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="195"/>
         <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
-        <translation>Met le chorus sur on ou off [1|0|yes|no|on|yes, defaut = on]</translation>
+        <translation>Met le chorus sur on ou off [1|0|yes|no|on|yes, défaut = on]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="197"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
-        <translation>Rêgle le gain principal [0 &lt; gain &lt; 10, defaut = 0.2]</translation>
+        <translation>Rêgle le gain principal [0 &lt; gain &lt; 10, défaut = 0.2]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="199"/>
@@ -86,7 +86,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="201"/>
         <source>Create and start server [default = no]</source>
-        <translation>Crée et démarre le serveur [defaut = no]</translation>
+        <translation>Crée et démarre le serveur [défaut = no]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="203"/>
@@ -101,7 +101,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="207"/>
         <source>Print out verbose messages about midi events</source>
-        <translation>Affiche les messages verbeux concernant les évènements MIDI</translation>
+        <translation>Affiche les messages détaillés concernant les évènements MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="209"/>
@@ -116,47 +116,47 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="240"/>
         <source>Option -m requires an argument (midi-driver).</source>
-        <translation>L&apos;option -m requiert un argument (midi-driver).</translation>
+        <translation>L&apos;option -m requiert un argument (pilote-midi).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="249"/>
         <source>Option -K requires an argument (midi-channels).</source>
-        <translation>L&apos;option -K requiert un argument (midi-channels).</translation>
+        <translation>L&apos;option -K requiert un argument (canaux-midi).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="258"/>
         <source>Option -a requires an argument (audio-driver).</source>
-        <translation>L&apos;option -a requiert un argument (audio-driver).</translation>
+        <translation>L&apos;option -a requiert un argument (pilote-audio).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="270"/>
         <source>Option -L requires an argument (audio-channels).</source>
-        <translation>L&apos;option -L requiert un argument (audio-channels).</translation>
+        <translation>L&apos;option -L requiert un argument (canaux-audio).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="279"/>
         <source>Option -G requires an argument (audio-groups).</source>
-        <translation>L&apos;option -G requiert un argument (audio-groups).</translation>
+        <translation>L&apos;option -G requiert un argument (groupes-audio).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="288"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
-        <translation>L&apos;option -z requiert un argument (audio-bufsize).</translation>
+        <translation>L&apos;option -z requiert un argument (taille-tampon-audio).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="297"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
-        <translation>L&apos;option -c requiert un argument (audio-bufcount).</translation>
+        <translation>L&apos;option -c requiert un argument (compte-tampon-audio).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="306"/>
         <source>Option -r requires an argument (sample-rate).</source>
-        <translation>L&apos;option -r requiert un argument (sample-rate).</translation>
+        <translation>L&apos;option -r requiert un argument (taux-échantillonage).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="315"/>
         <source>Option -R requires an argument (reverb).</source>
-        <translation>L&apos;option -R requiert un argument (reverb).</translation>
+        <translation>L&apos;option -R requiert un argument (réverbération).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="324"/>
@@ -166,7 +166,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="333"/>
         <source>Option -g requires an argument (gain).</source>
-        <translation>L&apos;option -g requiert un argument (gain).</translation>
+        <translation>L&apos;option -g requiert un argument (volume).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="342"/>
@@ -187,7 +187,7 @@
     <message>
         <location filename="../qsynthSetup.cpp" line="37"/>
         <source>(default)</source>
-        <translation>(defaut)</translation>
+        <translation>(défaut)</translation>
     </message>
 </context>
 <context>
@@ -195,7 +195,7 @@
     <message>
         <location filename="../qsynthAboutForm.ui" line="33"/>
         <source>About Qsynth</source>
-        <translation>A propos de Qsynth</translation>
+        <translation>À propos de Qsynth</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.ui" line="61"/>
@@ -210,7 +210,7 @@
     <message>
         <location filename="../qsynthAboutForm.ui" line="74"/>
         <source>About Qt</source>
-        <translation>A propos de Qt</translation>
+        <translation>À propos de Qt</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="43"/>
@@ -220,7 +220,7 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="44"/>
         <source>Build</source>
-        <translation>Build</translation>
+        <translation>Compilé</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="47"/>
@@ -358,7 +358,7 @@
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="333"/>
         <source>Edit</source>
-        <translation>Editer</translation>
+        <translation>Éditer</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="338"/>
@@ -383,7 +383,7 @@
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="473"/>
         <source>Are you sure?</source>
-        <translation>Etes-vous sur?</translation>
+        <translation>Êtes-vous sûr?</translation>
     </message>
 </context>
 <context>
@@ -396,18 +396,18 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="49"/>
         <source>Master</source>
-        <translation>Maitre</translation>
+        <translation>Général</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="67"/>
         <source>&amp;Gain</source>
-        <translation>&amp;Gain</translation>
+        <translation>&amp;Volume</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="89"/>
         <location filename="../qsynthMainForm.ui" line="114"/>
         <source>Master Gain</source>
-        <translation>Gain Maitre</translation>
+        <translation>Volume Général</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="130"/>
@@ -466,7 +466,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="280"/>
         <source>&amp;Width</source>
-        <translation>&amp;Largueur</translation>
+        <translation>&amp;Largeur</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="327"/>
@@ -640,7 +640,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="931"/>
         <source>A&amp;bout...</source>
-        <translation>A &amp;propos...</translation>
+        <translation>À &amp;propos...</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="937"/>
@@ -720,7 +720,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>Ins</source>
-        <translation>Ins</translation>
+        <translation>Entrées</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="1080"/>
@@ -752,7 +752,7 @@ in the context menu of the system tray icon.</source>
         <translation>Le programme continuera de s&apos;exécuter dans la barre d&apos;état du système.
 
 Pour terminer ce programme, veuillez choisir &quot;Quitter&quot;
-dans le menu contextuel de l&apos;icone de la barre d&apos;état du système.</translation>
+dans le menu contextuel de l&apos;icône de la barre d&apos;état du système.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="670"/>
@@ -782,7 +782,7 @@ dans le menu contextuel de l&apos;icone de la barre d&apos;état du système.</t
         <location filename="../qsynthMainForm.cpp" line="755"/>
         <location filename="../qsynthMainForm.cpp" line="1672"/>
         <source>Failed to load the soundfont: &quot;%1&quot;.</source>
-        <translation>Echec du chargement de la soundfont: &quot;%1&quot;.</translation>
+        <translation>Échec du chargement de la soundfont: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="763"/>
@@ -864,7 +864,7 @@ qu&apos;au prochain redémarrage du programme.</translation>
         <source>Failed to create the synthesizer.
 
 Cannot continue without it.</source>
-        <translation>Echec lors de la création du moteur de synthèse.
+        <translation>Échec lors de la création du synthétiseur.
 
 Ne peut pas continuer sans.</translation>
     </message>
@@ -876,7 +876,7 @@ Ne peut pas continuer sans.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1679"/>
         <source>Failed to set bank offset (%1) for soundfont: &quot;%2&quot;.</source>
-        <translation>Echec d&apos;affectation du décalage de banque (%1) pour la soundfont: &quot;%2&quot;.</translation>
+        <translation>Échec d&apos;affectation du décalage de banque (%1) pour la soundfont: &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1689"/>
@@ -888,7 +888,7 @@ Ne peut pas continuer sans.</translation>
         <source>Failed to create the audio driver (%1).
 
 Cannot continue without it.</source>
-        <translation>Echec de création du pilote audio (%1).
+        <translation>Échec de création du pilote audio (%1).
 
 Ne peut pas continuer sans.</translation>
     </message>
@@ -902,7 +902,7 @@ Ne peut pas continuer sans.</translation>
         <source>Failed to create the MIDI input router (%1).
 
 No MIDI input will be available.</source>
-        <translation>Echec de création du routeur MIDI (%1).
+        <translation>Échec de création du routeur MIDI (%1).
 
 Aucune entrée MIDI ne sera disponible.</translation>
     </message>
@@ -916,7 +916,7 @@ Aucune entrée MIDI ne sera disponible.</translation>
         <source>Failed to create the MIDI driver (%1).
 
 No MIDI input will be available.</source>
-        <translation>Echec de création du pilote MIDI (%1).
+        <translation>Échec de création du pilote MIDI (%1).
 
 Aucune entrée MIDI ne sera disponible.</translation>
     </message>
@@ -930,7 +930,7 @@ Aucune entrée MIDI ne sera disponible.</translation>
         <source>Failed to create the MIDI player.
 
 Continuing without a player.</source>
-        <translation>Echec de création du lecteur MIDI.
+        <translation>Échec de création du lecteur MIDI.
 
 Continue sans le lecteur.</translation>
     </message>
@@ -944,7 +944,7 @@ Continue sans le lecteur.</translation>
         <source>Failed to create the server.
 
 Continuing without it.</source>
-        <translation>Echec de création du serveur.
+        <translation>Échec de création du serveur.
 
 Continue sans.</translation>
     </message>
@@ -960,7 +960,7 @@ Continue sans.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1821"/>
         <source>Synthesizer engine started.</source>
-        <translation>Moteur de synthèse démarré.</translation>
+        <translation>Moteur du synthétiseur démarré.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1861"/>
@@ -1010,19 +1010,19 @@ Continue sans.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1918"/>
         <source>Destroying synthesizer engine</source>
-        <translation>Destruction du moteur de synthèse</translation>
+        <translation>Destruction du moteur du synthétiseur</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1922"/>
         <source>Synthesizer engine terminated.</source>
-        <translation>Moteur de synthèse arrêté.</translation>
+        <translation>Moteur du synthétiseur arrêté.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1970"/>
         <source>New settings will be effective after
 restarting all fluidsynth engines.</source>
         <translation>Les nouveaux réglages ne seront effectifs qu&apos;après
-le redémarrage de tous les moteurs fluildsynth.</translation>
+le redémarrage de tous les moteurs de fluildsynth.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1972"/>
@@ -1041,7 +1041,7 @@ une interruption temporaire du MIDI et de l&apos;audio.</translation>
         <location filename="../qsynthMainForm.cpp" line="1999"/>
         <source>New settings will be effective after
 restarting the fluidsynth engine:</source>
-        <translation>Les nouveaux réglages ne seront effectif qu&apos;après
+        <translation>Les nouveaux réglages ne seront effectifs qu&apos;après
 le redémarrage du moteur fluidsynth:</translation>
     </message>
     <message>
@@ -1163,7 +1163,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="219"/>
         <source>Logging</source>
-        <translation>Enregistrement</translation>
+        <translation>Connection</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="242"/>
@@ -1173,7 +1173,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="273"/>
         <source>Browse for the messages log file location</source>
-        <translation>Parcourir l&apos;emplacement du fichier journal des messages</translation>
+        <translation>Parcourir l&apos;emplacement des messages du fichiers log</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="276"/>
@@ -1183,7 +1183,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="289"/>
         <source>Whether to activate a messages logging to file.</source>
-        <translation>Si on doit activer l&apos;enregistrement des messages dans un fichier.</translation>
+        <translation>Doit on activer l&apos;enregistrement des messages dans un fichier.</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="292"/>
@@ -1239,7 +1239,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="396"/>
         <source>Mouse motion be&amp;havior:</source>
-        <translation>Compor&amp;tement du déplacement de souris:</translation>
+        <translation>Compor&amp;tement du déplacement de la souris:</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="415"/>
@@ -1264,7 +1264,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="464"/>
         <source>Whether to ask for confirmation on application exit</source>
-        <translation>Si on doit demander une confirmation lors de la fermeture de l&apos;application</translation>
+        <translation>Doit on demander une confirmation lors de la fermeture de l&apos;application</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="467"/>
@@ -1279,12 +1279,12 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="496"/>
         <source>Whether to keep all child windows on top of the main window</source>
-        <translation>Si on doit conserver toutes les fenêtres enfant au dessus de la fenêtre principale</translation>
+        <translation>Doit on conserver toutes les sous fenêtres au dessus de la fenêtre principale</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="499"/>
         <source>&amp;Keep child windows always on top</source>
-        <translation>Conserver les fenêtres enfant &amp;toujours au dessus</translation>
+        <translation>Conserver les sous fenêtres &amp;toujours au dessus</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="502"/>
@@ -1294,7 +1294,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="515"/>
         <source>Whether to capture standard output (stdout/stderr) into messages window</source>
-        <translation>Si on doit capturer la sortie standard (stdout/stderr) dans la fenêtre de messages</translation>
+        <translation>Doit on capturer la sortie standard (stdout/stderr) dans la fenêtre de messages</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="518"/>
@@ -1309,7 +1309,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="534"/>
         <source>Whether to monitor and show engine output peak level meters</source>
-        <translation>Si on doit suivre et afficher le niveau de la sortie crête du moteur audio</translation>
+        <translation>Doit on suivre et afficher le niveau de la sortie crête du moteur audio</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="537"/>
@@ -1324,12 +1324,12 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="553"/>
         <source>Whether to enable the system tray icon</source>
-        <translation>Si on doit activer l&apos;icone de la barre d&apos;état</translation>
+        <translation>Doit on activer l&apos;icône de la barre d&apos;état</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="556"/>
         <source>&amp;Enable system tray icon</source>
-        <translation>Activ&amp;er l&apos;icone de la barre d&apos;état</translation>
+        <translation>Activ&amp;er l&apos;icône de la barre d&apos;état</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="559"/>
@@ -1339,7 +1339,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="572"/>
         <source>Whether to start minimized to system tray</source>
-        <translation>Si on doit démarrer minimisé dans la barre d&apos;état</translation>
+        <translation>Doit on démarrer minimisé dans la barre d&apos;état</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="575"/>
@@ -1477,7 +1477,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthPresetForm.ui" line="167"/>
         <source>Whether to preview the current selection</source>
-        <translation>Si on doit générer un aperçu de la sélection courante</translation>
+        <translation>Doit on générer un aperçu de la sélection courante</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="170"/>
@@ -1505,7 +1505,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="64"/>
         <source>Engine display name</source>
-        <translation>Nom affiché du moteur</translation>
+        <translation>Nom d&apos;affichage du moteur</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="93"/>
@@ -1854,7 +1854,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="826"/>
         <source>Create multiple JACK output ports for channels, groups and effects</source>
-        <translation>Crée de multiple ports de sortie JACK pour les canaux, groupes et effets</translation>
+        <translation>Crée de multiples ports de sortie JACK pour les canaux, groupes et effets</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="829"/>
@@ -1900,7 +1900,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="919"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Open...</translation>
+        <translation>&amp;Ouvrir...</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="925"/>
@@ -1910,12 +1910,12 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="932"/>
         <source>Edit selected soundfont bank offset</source>
-        <translation>Edite le décalage de banque de la soundfont sélectionnée</translation>
+        <translation>Édite le décalage de banque de la soundfont sélectionnée</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="935"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Editer</translation>
+        <translation>Édit&amp;er</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="941"/>
@@ -2031,7 +2031,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="775"/>
         <source>Edit</source>
-        <translation>Editer</translation>
+        <translation>Éditer</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="780"/>
