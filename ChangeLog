@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-SVN TRUNK
+0.3.8  2013-12-31  A fifth of a Jubilee.
 
 - More preparations for Qt5 configure build.
 

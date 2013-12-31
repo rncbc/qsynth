@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 3
+%define release 4
 
 %define _prefix	@ac_prefix@
 
@@ -53,13 +53,15 @@ command line softsynths.
 %{_datadir}/locale/%{name}_*.qm
 
 %changelog
-* Tue Apr 16 2013 Rui Nuno Capela <rncbc@rncbc.org> 0.3.7-3
+* Tue Dec 31 2013 Rui Nuno Capela <rncbc@rncbc.org> 0.3.8
+- A fifth of a Jubilee release.
+* Tue Apr 16 2013 Rui Nuno Capela <rncbc@rncbc.org> 0.3.7
 - Spring cleaning sale.
-* Thu Apr 07 2011 Rui Nuno Capela <rncbc@rncbc.org> 0.3.6-2
+* Thu Apr 07 2011 Rui Nuno Capela <rncbc@rncbc.org> 0.3.6
 - Slip release.
 * Mon May 17 2010 Rui Nuno Capela <rncbc@rncbc.org>
 - Standard desktop icon fixing.
-* Tue Apr 27 2010 Rui Nuno Capela <rncbc@rncbc.org> 0.3.5-1
+* Tue Apr 27 2010 Rui Nuno Capela <rncbc@rncbc.org> 0.3.5
 - Overdue release 0.3.5.
 * Sun May 10 2009 Rui Nuno Capela <rncbc@rncbc.org>
 - New release 0.3.4.
