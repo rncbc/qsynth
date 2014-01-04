@@ -1648,32 +1648,32 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="245"/>
         <source>gm</source>
-        <translation type="unfinished"></translation>
+        <translation>gm</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="250"/>
         <source>gs</source>
-        <translation type="unfinished"></translation>
+        <translation>gs</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="255"/>
         <source>mma</source>
-        <translation type="unfinished"></translation>
+        <translation>mma</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="260"/>
         <source>xs</source>
-        <translation type="unfinished"></translation>
+        <translation>xs</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="228"/>
         <source>MIDI &amp;Bank Select mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim výběru &amp;banky MIDI:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="238"/>
         <source>MIDI Bank Select mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Režim výběru banky MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="367"/>
@@ -1859,12 +1859,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="762"/>
         <source>JACK Client Name &amp;ID:</source>
-        <translation>ID názvu klienta JACK:</translation>
+        <translation>&amp;ID názvu klienta JACK:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="775"/>
         <source>JACK client name identification</source>
-        <translation>ID názvu klienta JACK</translation>
+        <translation>Identifikátor názvu klienta JACK</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="785"/>
