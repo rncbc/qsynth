@@ -5,6 +5,8 @@ ChangeLog
 
 SVN TRUNK
 
+- Allow the build system to include an user specified LDFLAGS.
+
 - Czech (cs) translation updated (by Pavel Fric, thanks).
 
 

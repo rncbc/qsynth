@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.8.2, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.8.3, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
@@ -79,6 +79,12 @@ AC_ARG_WITH(qt,
 AC_ARG_WITH(fluidsynth,
   AC_HELP_STRING([--with-fluidsynth=PATH], [use alternate fluidsynth install path]),
   [ac_with_paths="$ac_with_paths $withval"])
+
+
+# Honor user specified flags.
+ac_cflags=$CFLAGS
+ac_ldflags=$LDFLAGS
+
 
 # Checks for programs.
 AC_PROG_CC
@@ -252,6 +258,8 @@ if test "x$ac_stacktrace" = "xyes"; then
 fi
 
 AC_SUBST(ac_incpath)
+AC_SUBST(ac_cflags)
+AC_SUBST(ac_ldflags)
 
 
 # Checks for typedefs, structures, and compiler characteristics.
