@@ -5,6 +5,8 @@ ChangeLog
 
 SVN TRUNK
 
+- Translations install directory change. (EXPERIMENTAL)
+
 - Allow the build system to include an user specified LDFLAGS.
 
 - Czech (cs) translation updated (by Pavel Fric, thanks).

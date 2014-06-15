@@ -46,11 +46,12 @@ command line softsynths.
 %dir %{_datadir}/icons/hicolor
 %dir %{_datadir}/icons/hicolor/32x32
 %dir %{_datadir}/icons/hicolor/32x32/apps
-#dir %{_datadir}/locale
+#dir %{_datadir}/%{name}
+#dir %{_datadir}/%{name}/translations
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
-%{_datadir}/locale/%{name}_*.qm
+%{_datadir}/%{name}/translations/%{name}_*.qm
 
 %changelog
 * Tue Dec 31 2013 Rui Nuno Capela <rncbc@rncbc.org> 0.3.8
