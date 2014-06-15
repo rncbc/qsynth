@@ -46,8 +46,8 @@ command line softsynths.
 %dir %{_datadir}/icons/hicolor
 %dir %{_datadir}/icons/hicolor/32x32
 %dir %{_datadir}/icons/hicolor/32x32/apps
-#dir %{_datadir}/%{name}
-#dir %{_datadir}/%{name}/translations
+%dir %{_datadir}/%{name}
+%dir %{_datadir}/%{name}/translations
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/32x32/apps/%{name}.png
