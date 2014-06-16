@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2012, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2014, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -218,7 +218,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 	QTextStream out(stderr);
 	const QString sEol = "\n\n";
 	int iSoundFontOverride = 0;
-	int argc = args.count();
+	const int argc = args.count();
 
 	for (int i = 1; i < argc; ++i) {
 
@@ -229,8 +229,11 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			sVal = sArg.right(sArg.length() - iEqual - 1);
 			sArg = sArg.left(iEqual);
 		}
-		else if (i < argc - 1)
+		else if (i < argc - 1) {
 			sVal = args.at(i + 1);
+			if (sVal[0] == '-')
+				sVal.clear();
+		}
 
 		if (sArg == "-n" || sArg == "--no-midi-in") {
 			m_pDefaultSetup->bMidiIn = false;
@@ -312,21 +315,21 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		}
 		else if (sArg == "-R" || sArg == "--reverb") {
 			if (sVal.isEmpty()) {
-				out << QObject::tr("Option -R requires an argument (reverb).") + sEol;
-				return false;
+				m_pDefaultSetup->bReverbActive = true;
+			} else {
+				m_pDefaultSetup->bReverbActive = !(sVal == "0" || sVal == "no" || sVal == "off");
+				if (iEqual < 0)
+					i++;
 			}
-			m_pDefaultSetup->bReverbActive = !(sVal == "0" || sVal == "no" || sVal == "off");
-			if (iEqual < 0)
-				i++;
 		}
 		else if (sArg == "-C" || sArg == "--chorus") {
 			if (sVal.isEmpty()) {
-				out << QObject::tr("Option -C requires an argument (chorus).") + sEol;
-				return false;
+				m_pDefaultSetup->bChorusActive = true;
+			} else {
+				m_pDefaultSetup->bChorusActive = !(sVal == "0" || sVal == "no" || sVal == "off");
+				if (iEqual < 0)
+					i++;
 			}
-			m_pDefaultSetup->bChorusActive = !(sVal == "0" || sVal == "no" || sVal == "off");
-			if (iEqual < 0)
-				i++;
 		}
 		else if (sArg == "-g" || sArg == "--gain") {
 			if (sVal.isEmpty()) {
@@ -364,14 +367,13 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			out << QObject::tr("Qt: %1\n").arg(qVersion());
 			out << QObject::tr(QSYNTH_TITLE ": %1\n").arg(QSYNTH_VERSION);
 			return false;
-		}
-		else {
-			QByteArray tmp = args.at(i).toUtf8();
-			char *name = tmp.data();
+		} else {
+			CONST QByteArray tmp = args.at(i).toUtf8();
+			CONST char *name = tmp.constData();
 			if (::fluid_is_soundfont(name)) {
 				if (++iSoundFontOverride == 1) {
-						m_pDefaultSetup->soundfonts.clear();
-						m_pDefaultSetup->bankoffsets.clear();
+					m_pDefaultSetup->soundfonts.clear();
+					m_pDefaultSetup->bankoffsets.clear();
 				}
 				m_pDefaultSetup->soundfonts.append(name);
 				m_pDefaultSetup->bankoffsets.append(QString::null);
@@ -851,7 +853,7 @@ void qsynthOptions::saveComboBoxHistory ( QComboBox *pComboBox, int iLimit )
 
 	// Save combobox list to configuration settings file...
 	m_settings.beginGroup("/History/" + pComboBox->objectName());
-	for (int i = 0; i < iCount; i++) {
+	for (int i = 0; i < iCount; ++i) {
 		const QString& sText = pComboBox->itemText(i);
 		if (sText.isEmpty())
 			break;
@@ -897,16 +899,16 @@ void qsynthOptions::saveWidgetGeometry ( QWidget *pWidget, bool bVisible )
 	// (due to X11 window managers ideossincrasies, we better
 	// only save the form geometry while its up and visible)
 	if (pWidget) {
-			m_settings.beginGroup("/Geometry/" + pWidget->objectName());
-			const QPoint& wpos  = pWidget->pos();
-			const QSize&  wsize = pWidget->size();
-			if (!bVisible) bVisible = pWidget->isVisible();
-			m_settings.setValue("/x", wpos.x());
-			m_settings.setValue("/y", wpos.y());
-			m_settings.setValue("/width", wsize.width());
-			m_settings.setValue("/height", wsize.height());
-			m_settings.setValue("/visible", bVisible && !bStartMinimized);
-			m_settings.endGroup();
+		m_settings.beginGroup("/Geometry/" + pWidget->objectName());
+		const QPoint& wpos  = pWidget->pos();
+		const QSize&  wsize = pWidget->size();
+		if (!bVisible) bVisible = pWidget->isVisible();
+		m_settings.setValue("/x", wpos.x());
+		m_settings.setValue("/y", wpos.y());
+		m_settings.setValue("/width", wsize.width());
+		m_settings.setValue("/height", wsize.height());
+		m_settings.setValue("/visible", bVisible && !bStartMinimized);
+		m_settings.endGroup();
 	}
 }
 

@@ -5,6 +5,8 @@ ChangeLog
 
 SVN TRUNK
 
+- A man page has beed added.
+
 - Translations install directory change. (EXPERIMENTAL)
 
 - Allow the build system to include an user specified LDFLAGS.
