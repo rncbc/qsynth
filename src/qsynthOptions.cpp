@@ -224,7 +224,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 
 		QString sVal;
 		QString sArg = args.at(i);
-		int iEqual = sArg.indexOf('=');
+		const int iEqual = sArg.indexOf('=');
 		if (iEqual >= 0) {
 			sVal = sArg.right(sArg.length() - iEqual - 1);
 			sArg = sArg.left(iEqual);

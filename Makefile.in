@@ -100,7 +100,7 @@ translations_lrelease:	translations_lupdate $(translations_targets)
 	@$(lrelease) -verbose $< -qm $@
 
 
-install:	$(target) translations_lrelease
+install:	$(target) translations_lrelease $(name).1
 	@$(MAKE) INSTALL_ROOT=$(DESTDIR) -f $(name).mak install
 	@install -d -v -m 0755 $(DESTDIR)$(translations_dir)
 	@install -d -v -m 0755 $(DESTDIR)$(mandir)/man1
