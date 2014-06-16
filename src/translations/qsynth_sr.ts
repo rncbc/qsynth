@@ -114,74 +114,72 @@
         <translation>Прикажи податке о издању програма</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="240"/>
+        <location filename="../qsynthOptions.cpp" line="243"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>Опција „-m“ захтева аргумент (миди посредник).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="249"/>
+        <location filename="../qsynthOptions.cpp" line="252"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>Опција „-K“ захтева аргумент (миди-канали).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="258"/>
+        <location filename="../qsynthOptions.cpp" line="261"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>Опција „-a“ захтева аргумент (звучни посредник).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="270"/>
+        <location filename="../qsynthOptions.cpp" line="273"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>Опција „-L“ захтева аргумент (звучни канали).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="279"/>
+        <location filename="../qsynthOptions.cpp" line="282"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>Опција „-G“ захтева аргумент (звучне групе).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="288"/>
+        <location filename="../qsynthOptions.cpp" line="291"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>Опција „-z“ захтева аргумент (вел. зв. бафера).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="297"/>
+        <location filename="../qsynthOptions.cpp" line="300"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>Опција „-c“ захтева аргумент (број зв. бафера).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="306"/>
+        <location filename="../qsynthOptions.cpp" line="309"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>Опција „-r“ захтева аргумент (учестаност узорковања).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="315"/>
         <source>Option -R requires an argument (reverb).</source>
-        <translation>Опција „-R“ захтева аргумент (јека).</translation>
+        <translation type="obsolete">Опција „-R“ захтева аргумент (јека).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="324"/>
         <source>Option -C requires an argument (chorus).</source>
-        <translation>Опција „-C“ захтева аргумент (хорус).</translation>
+        <translation type="obsolete">Опција „-C“ захтева аргумент (хорус).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="333"/>
+        <location filename="../qsynthOptions.cpp" line="336"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Опција „-g“ захтева аргумент (појачање).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="342"/>
+        <location filename="../qsynthOptions.cpp" line="345"/>
         <source>Option -o requires an argument.</source>
         <translation>Опција „-o“ захтева аргумент.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="364"/>
+        <location filename="../qsynthOptions.cpp" line="367"/>
         <source>Qt: %1
 </source>
         <translation>КјуТ: %1
 </translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="383"/>
+        <location filename="../qsynthOptions.cpp" line="385"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Непозната опција „%1“.</translation>
     </message>

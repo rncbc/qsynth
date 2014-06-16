@@ -368,8 +368,8 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			out << QObject::tr(QSYNTH_TITLE ": %1\n").arg(QSYNTH_VERSION);
 			return false;
 		} else {
-			CONST QByteArray tmp = args.at(i).toUtf8();
-			CONST char *name = tmp.constData();
+			const QByteArray tmp = args.at(i).toUtf8();
+			const char *name = tmp.constData();
 			if (::fluid_is_soundfont(name)) {
 				if (++iSoundFontOverride == 1) {
 					m_pDefaultSetup->soundfonts.clear();

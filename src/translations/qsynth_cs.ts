@@ -119,62 +119,60 @@
         <translation>Ukázat informaci o verzi</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="240"/>
+        <location filename="../qsynthOptions.cpp" line="243"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>Volba -m potřebuje argument (midi-driver).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="249"/>
+        <location filename="../qsynthOptions.cpp" line="252"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>Volba -K potřebuje argument (midi-channels).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="258"/>
+        <location filename="../qsynthOptions.cpp" line="261"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>Volba -a potřebuje argument (audio-driver).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="270"/>
+        <location filename="../qsynthOptions.cpp" line="273"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>Volba -L potřebuje argument (audio-channels).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="279"/>
+        <location filename="../qsynthOptions.cpp" line="282"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>Volba -G potřebuje argument (audio-groups).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="288"/>
+        <location filename="../qsynthOptions.cpp" line="291"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>Volba -z potřebuje aArgument (audio-bufsize).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="297"/>
+        <location filename="../qsynthOptions.cpp" line="300"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>Volba -c potřebuje argument (audio-bufcount).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="306"/>
+        <location filename="../qsynthOptions.cpp" line="309"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>Volba -r potřebuje argument (sample-rate).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="315"/>
         <source>Option -R requires an argument (reverb).</source>
-        <translation>Volba -R potřebuje argument (reverb).</translation>
+        <translation type="obsolete">Volba -R potřebuje argument (reverb).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="324"/>
         <source>Option -C requires an argument (chorus).</source>
-        <translation>Volba -C potřebuje argument (chorus).</translation>
+        <translation type="obsolete">Volba -C potřebuje argument (chorus).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="333"/>
+        <location filename="../qsynthOptions.cpp" line="336"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Volba -g potřebuje argument (gain).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="342"/>
+        <location filename="../qsynthOptions.cpp" line="345"/>
         <source>Option -o requires an argument.</source>
         <translation>Volba -o potřebuje argument.</translation>
     </message>
@@ -183,14 +181,14 @@
         <translation type="obsolete">Fehler beim Setzen der Option -o &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="364"/>
+        <location filename="../qsynthOptions.cpp" line="367"/>
         <source>Qt: %1
 </source>
         <translation>Qt: %1
 </translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="383"/>
+        <location filename="../qsynthOptions.cpp" line="385"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Neznámá volba: &apos;%1&apos;.</translation>
     </message>
