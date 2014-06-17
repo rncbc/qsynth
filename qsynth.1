@@ -1,4 +1,4 @@
-.TH QSYNTH 1 "June 2014"
+.TH QSYNTH 1 "June 17, 2014"
 .SH NAME
 Qsynth \- A fluidsynth Qt GUI Interface
 .SH SYNOPSIS
@@ -15,89 +15,93 @@ may evolve into a softsynth management application allowing the
 user to control and manage a variety of command line softsynths
 but for the moment it wraps the excellent FluidSynth.
 .PP
-FluidSynth is a command line software synthesiser based on the
-Soundfont specification (http://www.fluidsynth.org).
+\fBFluidSynth\fP is a command line software synthesiser based on the
+Soundfont specification.
 .SH OPTIONS
 .HP
-\fB\-n\fR, \fB-\-no\-midi\-in\fR
+\fB\-n\fR, \fB\-\-no\-midi\-in\fR
 .IP
 Don't create a midi driver to read MIDI input events [default = yes]
 .HP
-\fB\-m\fR, \fB-\-midi\-driver\fR=[\fIlabel\fR]
+\fB\-m\fR, \fB\-\-midi\-driver\fR=[\fIlabel\fR]
 .IP
 The name of the midi driver to use [oss, alsa, alsa_seq, ...]
 .HP
-\fB\-K\fR, \fB-\-midi\-channels\fR=[\fInum\fR]
+\fB\-K\fR, \fB\-\-midi\-channels\fR=[\fInum\fR]
 .IP
 The number of midi channels [default = 16]
 .HP
-\fB\-a\fR, \fB-\-audio\-driver\fR=[\fIlabel\fR]
+\fB\-a\fR, \fB\-\-audio\-driver\fR=[\fIlabel\fR]
 .IP
 The audio driver [alsa,jack,oss,dsound,...]
 .HP
-\fB\-j\fR, \fB-\-connect\-jack\-outputs\fR
+\fB\-j\fR, \fB\-\-connect\-jack\-outputs\fR
 .IP
 Attempt to connect the jack outputs to the physical ports
 .HP
-\fB\-L\fR, \fB-\-audio\-channels\fR=[\fInum\fR]
+\fB\-L\fR, \fB\-\-audio\-channels\fR=[\fInum\fR]
 .IP
 The number of stereo audio channels [default = 1]
 .HP
-\fB\-G\fR, \fB-\-audio\-groups\fR=[\fInum\fR]
+\fB\-G\fR, \fB\-\-audio\-groups\fR=[\fInum\fR]
 .IP
 The number of audio groups [default = 1]
 .HP
-\fB\-z\fR, \fB-\-audio\-bufsize\fR=[\fIsize\fR]
+\fB\-z\fR, \fB\-\-audio\-bufsize\fR=[\fIsize\fR]
 .IP
 Size of each audio buffer
 .HP
-\fB\-c\fR, \fB-\-audio\-bufcount\fR=[\fIcount\fR]
+\fB\-c\fR, \fB\-\-audio\-bufcount\fR=[\fIcount\fR]
 .IP
 Number of audio buffers
 .HP
-\fB\-r\fR, \fB-\-sample\-rate\fR=[\fIrate\fR]
+\fB\-r\fR, \fB\-\-sample\-rate\fR=[\fIrate\fR]
 .IP
 Set the sample rate
 .HP
-\fB\-R\fR, \fB-\-reverb\fR[=\fIflag\fR]
+\fB\-R\fR, \fB\-\-reverb\fR[=\fIflag\fR]
 .IP
 Turn the reverb on or off [1|0|yes|no|on|off, default = on]
 .HP
-\fB\-C\fR, \fB-\-chorus\fR[=\fIflag\fR]
+\fB\-C\fR, \fB\-\-chorus\fR[=\fIflag\fR]
 .IP
 Turn the chorus on or off [1|0|yes|no|on|off, default = on]
 .HP
-\fB\-g\fR, \fB-\-gain\fR=[\fIgain\fR]
+\fB\-g\fR, \fB\-\-gain\fR=[\fIgain\fR]
 .IP
 Set the master gain [0 < gain < 10, default = 0.2]
 .HP
-\fB\-o\fR, \fB-\-option\fR [\fIname=\fIvalue\fR]
+\fB\-o\fR, \fB\-\-option\fR [\fIname\fR=\fIvalue\fR]
 .IP
 Define a setting name=value
 .HP
-\fB\-s\fR, \fB-\-server\fR
+\fB\-s\fR, \fB\-\-server\fR
 .IP
 Create and start server [default = no]
 .HP
-\fB\-i\fR, \fB-\-no\-shell\fR
+\fB\-i\fR, \fB\-\-no\-shell\fR
 .IP
 Don't read commands from the shell [ignored]
 .HP
-\fB\-d\fR, \fB-\-dump\fR
+\fB\-d\fR, \fB\-\-dump\fR
 .IP
 Dump midi router events
 .HP
-\fB\-v\fR, \fB-\-verbose\fR
+\fB\-v\fR, \fB\-\-verbose\fR
 .IP
 Print out verbose messages about midi events
 .HP
-\fB\-h\fR, \fB-\-help\fR
+\fB\-h\fR, \fB\-\-help\fR
 .IP
 Show help about command line options
 .HP
-\fB\-V\fR, \fB-\-version\fR
+\fB\-V\fR, \fB\-\-version\fR
 .IP
 Show version information
+.SH FILES
+Configuration settings are stored in ~/.config/rncbc.org/Qsynth.conf
+.SH SEE ALSO
+.BR fluidsynth (1)
 .SH AUTHOR
-qsynth is written by Rui Nuno Capela, Richard Bown,
+Qsynth is written by Rui Nuno Capela, Richard Bown,
 Chris Cannam, Pedro Lopez-Cabanillas.
