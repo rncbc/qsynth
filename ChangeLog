@@ -5,6 +5,10 @@ ChangeLog
 
 SVN TRUNK
 
+- Application close confirm warning is now raising the main
+  window as visible and active for due top level display,
+  especially applicable when minimized to the system tray.
+
 - A man page has beed added.
 
 - Translations install directory change. (EXPERIMENTAL)

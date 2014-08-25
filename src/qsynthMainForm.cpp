@@ -666,6 +666,9 @@ bool qsynthMainForm::queryClose (void)
 			for (int iTab = 0; iTab < m_ui.TabBar->count(); iTab++) {
 				qsynthEngine *pEngine = m_ui.TabBar->engine(iTab);
 				if (pEngine && pEngine->pSynth) {
+					show();
+					raise();
+					activateWindow();
 					bQueryClose = (QMessageBox::warning(this,
 						QSYNTH_TITLE ": " + tr("Warning"),
 						QSYNTH_TITLE " " + tr("is about to terminate.") + "\n\n" +
