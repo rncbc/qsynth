@@ -3,7 +3,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2014, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -117,9 +117,6 @@
          <property name="text">
           <string>&amp;Dump MIDI router events</string>
          </property>
-         <property name="shortcut">
-          <string>Alt+D</string>
-         </property>
         </widget>
        </item>
        <item row="1" column="5" colspan="2">
@@ -145,9 +142,6 @@
          </property>
          <property name="text">
           <string>Enable MIDI &amp;Input</string>
-         </property>
-         <property name="shortcut">
-          <string>Alt+I</string>
          </property>
         </widget>
        </item>
@@ -184,9 +178,6 @@
          </property>
          <property name="text">
           <string>&amp;Verbose MIDI event messages</string>
-         </property>
-         <property name="shortcut">
-          <string>Alt+V</string>
          </property>
         </widget>
        </item>
@@ -815,9 +806,6 @@
          <property name="text">
           <string>Auto Connect &amp;JACK Outputs</string>
          </property>
-         <property name="shortcut">
-          <string>Alt+J</string>
-         </property>
         </widget>
        </item>
        <item row="5" column="0">
@@ -827,9 +815,6 @@
          </property>
          <property name="text">
           <string>&amp;Multiple JACK Outputs</string>
-         </property>
-         <property name="shortcut">
-          <string>Alt+M</string>
          </property>
         </widget>
        </item>
@@ -921,9 +906,6 @@
            <property name="icon">
             <iconset resource="qsynth.qrc">:/images/open1.png</iconset>
            </property>
-           <property name="shortcut">
-            <string>Alt+O</string>
-           </property>
           </widget>
          </item>
          <item>
@@ -937,9 +919,6 @@
            <property name="icon">
             <iconset resource="qsynth.qrc">:/images/edit1.png</iconset>
            </property>
-           <property name="shortcut">
-            <string>Alt+E</string>
-           </property>
           </widget>
          </item>
          <item>
@@ -952,9 +931,6 @@
            </property>
            <property name="icon">
             <iconset resource="qsynth.qrc">:/images/remove1.png</iconset>
-           </property>
-           <property name="shortcut">
-            <string>Alt+R</string>
            </property>
           </widget>
          </item>
@@ -982,9 +958,6 @@
            <property name="icon">
             <iconset resource="qsynth.qrc">:/images/up1.png</iconset>
            </property>
-           <property name="shortcut">
-            <string>Alt+U</string>
-           </property>
           </widget>
          </item>
          <item>
@@ -997,9 +970,6 @@
            </property>
            <property name="icon">
             <iconset resource="qsynth.qrc">:/images/down1.png</iconset>
-           </property>
-           <property name="shortcut">
-            <string>Alt+D</string>
            </property>
           </widget>
          </item>

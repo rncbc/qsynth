@@ -2,7 +2,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2010, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2014, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -112,9 +112,6 @@
             <property name="text" >
              <string>&amp;Font...</string>
             </property>
-            <property name="shortcut" >
-             <string>Alt+F</string>
-            </property>
             <property name="autoDefault" >
              <bool>false</bool>
             </property>
@@ -149,9 +146,6 @@
             </property>
             <property name="text" >
              <string>&amp;Messages limit:</string>
-            </property>
-            <property name="shortcut" >
-             <string>Alt+M</string>
             </property>
            </widget>
           </item>
@@ -290,9 +284,6 @@
             </property>
             <property name="text" >
              <string>Messages &amp;log file:</string>
-            </property>
-            <property name="shortcut" >
-             <string>Alt+L</string>
             </property>
            </widget>
           </item>
@@ -466,9 +457,6 @@
             <property name="text" >
              <string>&amp;Confirm application close</string>
             </property>
-            <property name="shortcut" >
-             <string>Alt+C</string>
-            </property>
            </widget>
           </item>
           <item rowspan="5" row="0" column="1" colspan="3" >
@@ -498,9 +486,6 @@
             <property name="text" >
              <string>&amp;Keep child windows always on top</string>
             </property>
-            <property name="shortcut" >
-             <string>Alt+K</string>
-            </property>
            </widget>
           </item>
           <item row="2" column="0" >
@@ -516,9 +501,6 @@
             </property>
             <property name="text" >
              <string>Capture standard &amp;output</string>
-            </property>
-            <property name="shortcut" >
-             <string>Alt+O</string>
             </property>
            </widget>
           </item>
@@ -536,9 +518,6 @@
             <property name="text" >
              <string>Output &amp;peak level meters</string>
             </property>
-            <property name="shortcut" >
-             <string>Alt+P</string>
-            </property>
            </widget>
           </item>
           <item row="4" column="0" >
@@ -555,9 +534,6 @@
             <property name="text" >
              <string>&amp;Enable system tray icon</string>
             </property>
-            <property name="shortcut" >
-             <string>Alt+E</string>
-            </property>
            </widget>
           </item>
           <item row="5" column="0" >
@@ -573,9 +549,6 @@
             </property>
             <property name="text" >
              <string>Start minimi&amp;zed to system tray</string>
-            </property>
-            <property name="shortcut" >
-             <string>Alt+Z</string>
             </property>
            </widget>
           </item>

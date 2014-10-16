@@ -206,12 +206,11 @@
         <translation>&amp;Zavřít</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.ui" line="64"/>
         <source>Alt+C</source>
-        <translation>Alt+C</translation>
+        <translation type="obsolete">Alt+C</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.ui" line="74"/>
+        <location filename="../qsynthAboutForm.ui" line="71"/>
         <source>About Qt</source>
         <translation>O Qt</translation>
     </message>
@@ -294,62 +293,60 @@
         <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="101"/>
         <source>Alt+S</source>
-        <translation>Alt+S</translation>
+        <translation type="obsolete">Alt+S</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="111"/>
+        <location filename="../qsynthChannelsForm.ui" line="108"/>
         <source>Delete current settings preset</source>
         <translation>Smazat nynější přednastavení nastavení</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="114"/>
+        <location filename="../qsynthChannelsForm.ui" line="111"/>
         <source>&amp;Delete</source>
         <translation>&amp;Smazat</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="120"/>
         <source>Alt+D</source>
-        <translation>Alt+L</translation>
+        <translation type="obsolete">Alt+L</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="149"/>
+        <location filename="../qsynthChannelsForm.ui" line="143"/>
         <source>Channels view</source>
         <translation>Pohled na kanály</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="174"/>
+        <location filename="../qsynthChannelsForm.ui" line="168"/>
         <source>In</source>
         <translation>Vstup</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="179"/>
+        <location filename="../qsynthChannelsForm.ui" line="173"/>
         <source>Chan</source>
         <translation>Kanál</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="184"/>
+        <location filename="../qsynthChannelsForm.ui" line="178"/>
         <source>Bank</source>
         <translation>Banka</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="189"/>
+        <location filename="../qsynthChannelsForm.ui" line="183"/>
         <source>Prog</source>
         <translation>Prog</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="194"/>
+        <location filename="../qsynthChannelsForm.ui" line="188"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="199"/>
+        <location filename="../qsynthChannelsForm.ui" line="193"/>
         <source>SFID</source>
         <translation>SFID</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.ui" line="204"/>
+        <location filename="../qsynthChannelsForm.ui" line="198"/>
         <source>Soundfont</source>
         <translation>Zvukové písmo</translation>
     </message>
@@ -397,45 +394,42 @@
         <translation>Qsynth - Na Qt založené uživatelské rozhraní pro fluidsynth</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1061"/>
+        <location filename="../qsynthMainForm.ui" line="1028"/>
         <source>Add a new engine</source>
         <translation>Přidat nový zvukový modul</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>Ins</source>
-        <translation>Vložit</translation>
+        <translation type="obsolete">Vložit</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1080"/>
+        <location filename="../qsynthMainForm.ui" line="1044"/>
         <source>Engine selector (right-click for menu)</source>
         <translation>Vybrat zvukový modul (pravým klepnutím v nabídce)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1118"/>
+        <location filename="../qsynthMainForm.ui" line="1082"/>
         <source>Delete current engine</source>
         <translation>Smazat nynější zvukový modul</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1127"/>
         <source>Del</source>
-        <translation>Odstranit</translation>
+        <translation type="obsolete">Odstranit</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1016"/>
+        <location filename="../qsynthMainForm.ui" line="986"/>
         <source>Show/hide the channels view window</source>
         <translation>Ukázat/Skrýt okno s pohledem na kanály</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1019"/>
+        <location filename="../qsynthMainForm.ui" line="989"/>
         <location filename="../qsynthMainForm.cpp" line="1032"/>
         <source>&amp;Channels</source>
         <translation>&amp;Kanály</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1025"/>
         <source>Alt+C</source>
-        <translation>Alt+C</translation>
+        <translation type="obsolete">Alt+C</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="130"/>
@@ -450,42 +444,39 @@
         <translation>&amp;Spustit znovu</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="139"/>
         <source>Alt+S</source>
-        <translation>ALT+S</translation>
+        <translation type="obsolete">ALT+S</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="981"/>
+        <location filename="../qsynthMainForm.ui" line="957"/>
         <source>Program reset (all channels)</source>
         <translation>Nastavit znovu program (všechny kanály)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="984"/>
+        <location filename="../qsynthMainForm.ui" line="960"/>
         <location filename="../qsynthMainForm.cpp" line="1025"/>
         <source>&amp;Reset</source>
         <translation>&amp;Nastavit znovu</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="990"/>
         <source>Alt+R</source>
-        <translation>Alt+R</translation>
+        <translation type="obsolete">Alt+R</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="997"/>
+        <location filename="../qsynthMainForm.ui" line="970"/>
         <source>Show instance settings and configuration dialog</source>
         <translation>Ukázat dialog nastavení s nynějším nastavením</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1000"/>
+        <location filename="../qsynthMainForm.ui" line="973"/>
         <location filename="../qsynthMainForm.cpp" line="1037"/>
         <location filename="../qsynthMainForm.cpp" line="1509"/>
         <source>Set&amp;up...</source>
         <translation>&amp;Nastavení...</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1006"/>
         <source>Alt+U</source>
-        <translation>Alt+U</translation>
+        <translation type="obsolete">Alt+U</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="49"/>
@@ -504,241 +495,234 @@
         <translation>Nastavení zesílení pro výstupní signál</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="965"/>
+        <location filename="../qsynthMainForm.ui" line="944"/>
         <source>System reset</source>
         <translation>Znovunastavit systém</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="968"/>
+        <location filename="../qsynthMainForm.ui" line="947"/>
         <location filename="../qsynthMainForm.cpp" line="1028"/>
         <source>&amp;Panic</source>
         <translation>&amp;Panika</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="974"/>
         <source>Alt+P</source>
-        <translation>Alt+P</translation>
+        <translation type="obsolete">Alt+P</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="152"/>
+        <location filename="../qsynthMainForm.ui" line="149"/>
         <source>Reverb</source>
         <translation>Dozvuk</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="176"/>
+        <location filename="../qsynthMainForm.ui" line="173"/>
         <source>Reverb effect activation</source>
         <translation>Spustit efekt dozvuku</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="179"/>
+        <location filename="../qsynthMainForm.ui" line="176"/>
         <source>Ac&amp;tive</source>
         <translation>&amp;Spuštěný</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="182"/>
         <source>Alt+T</source>
-        <translation>Alt+T</translation>
+        <translation type="obsolete">Alt+T</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="195"/>
-        <location filename="../qsynthMainForm.ui" line="214"/>
+        <location filename="../qsynthMainForm.ui" line="189"/>
+        <location filename="../qsynthMainForm.ui" line="208"/>
         <source>Reverb Level</source>
         <translation>Síla dozvuku</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="239"/>
+        <location filename="../qsynthMainForm.ui" line="233"/>
         <source>&amp;Level</source>
         <translation>&amp;Síla</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="261"/>
-        <location filename="../qsynthMainForm.ui" line="302"/>
+        <location filename="../qsynthMainForm.ui" line="255"/>
+        <location filename="../qsynthMainForm.ui" line="296"/>
         <source>Reverb Width</source>
         <translation>Vzdálenost ke zdroji zvuku (poloměr dozvuku)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="280"/>
+        <location filename="../qsynthMainForm.ui" line="274"/>
         <source>&amp;Width</source>
         <translation>&amp;Vzdálenost</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="327"/>
-        <location filename="../qsynthMainForm.ui" line="368"/>
+        <location filename="../qsynthMainForm.ui" line="321"/>
+        <location filename="../qsynthMainForm.ui" line="362"/>
         <source>Reverb Damp Factor</source>
         <translation>Tlumení dozvuku</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="346"/>
+        <location filename="../qsynthMainForm.ui" line="340"/>
         <source>D&amp;amp</source>
         <translation>&amp;Tlumení</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="393"/>
-        <location filename="../qsynthMainForm.ui" line="434"/>
+        <location filename="../qsynthMainForm.ui" line="387"/>
+        <location filename="../qsynthMainForm.ui" line="428"/>
         <source>Reverb Room Size</source>
         <translation>Velikost prostorui dozvuku</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="412"/>
+        <location filename="../qsynthMainForm.ui" line="406"/>
         <source>R&amp;oom</source>
         <translation>&amp;Prostor</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="462"/>
+        <location filename="../qsynthMainForm.ui" line="456"/>
         <source>Chorus</source>
         <translation>Sbor</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="486"/>
+        <location filename="../qsynthMainForm.ui" line="480"/>
         <source>Chorus Modulation Type</source>
         <translation>Typ obměňování sboru</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="490"/>
+        <location filename="../qsynthMainForm.ui" line="484"/>
         <source>Sine</source>
         <translation>Sinus</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="495"/>
+        <location filename="../qsynthMainForm.ui" line="489"/>
         <source>Triangle</source>
         <translation>Trojúhelník</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="515"/>
+        <location filename="../qsynthMainForm.ui" line="509"/>
         <source>T&amp;ype:</source>
         <translation>&amp;Typ:</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="543"/>
+        <location filename="../qsynthMainForm.ui" line="537"/>
         <source>Chorus effect activation</source>
         <translation>Spuštění efektu sboru</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="546"/>
+        <location filename="../qsynthMainForm.ui" line="540"/>
         <source>Act&amp;ive</source>
         <translation>&amp;Spuštěný</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="549"/>
         <source>Alt+I</source>
-        <translation>Alt+I</translation>
+        <translation type="obsolete">Alt+I</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="562"/>
-        <location filename="../qsynthMainForm.ui" line="609"/>
+        <location filename="../qsynthMainForm.ui" line="553"/>
+        <location filename="../qsynthMainForm.ui" line="600"/>
         <source>Number of Chorus Stages</source>
         <translation>Počet sborových hlasů</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="587"/>
+        <location filename="../qsynthMainForm.ui" line="578"/>
         <source>&amp;N</source>
         <translation>&amp;Hlasy</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="628"/>
-        <location filename="../qsynthMainForm.ui" line="675"/>
+        <location filename="../qsynthMainForm.ui" line="619"/>
+        <location filename="../qsynthMainForm.ui" line="666"/>
         <source>Chorus Level</source>
         <translation>Síla sboru</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="653"/>
+        <location filename="../qsynthMainForm.ui" line="644"/>
         <source>Le&amp;vel</source>
         <translation>&amp;Síla</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="694"/>
-        <location filename="../qsynthMainForm.ui" line="747"/>
+        <location filename="../qsynthMainForm.ui" line="685"/>
+        <location filename="../qsynthMainForm.ui" line="738"/>
         <source>Chorus Speed (Hz)</source>
         <translation>Rychlost obměňování sboru (Hz)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="722"/>
+        <location filename="../qsynthMainForm.ui" line="713"/>
         <source>Chorus Speed Hz</source>
         <translation>Rychlost obměňování sboru Hz</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="725"/>
+        <location filename="../qsynthMainForm.ui" line="716"/>
         <source>Spee&amp;d</source>
         <translation>&amp;Rychlost</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="769"/>
-        <location filename="../qsynthMainForm.ui" line="816"/>
+        <location filename="../qsynthMainForm.ui" line="760"/>
+        <location filename="../qsynthMainForm.ui" line="807"/>
         <source>Chorus Depth (ms)</source>
         <translation>Hloubka sboru - čas oddělení hlasu (ms)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="794"/>
+        <location filename="../qsynthMainForm.ui" line="785"/>
         <source>Dept&amp;h</source>
         <translation>&amp;Hloubka - čas oddělení</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="850"/>
+        <location filename="../qsynthMainForm.ui" line="841"/>
         <source>Output peak level</source>
         <translation>Ukazatel výstupní hladiny</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="868"/>
+        <location filename="../qsynthMainForm.ui" line="859"/>
         <source>Quit this application</source>
         <translation>Ukončit tento program</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="871"/>
+        <location filename="../qsynthMainForm.ui" line="862"/>
         <location filename="../qsynthMainForm.cpp" line="1069"/>
         <source>&amp;Quit</source>
         <translation>&amp;Ukončit</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="877"/>
         <source>Alt+Q</source>
-        <translation>Alt+B</translation>
+        <translation type="obsolete">Alt+B</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="887"/>
+        <location filename="../qsynthMainForm.ui" line="875"/>
         <source>Show general options dialog</source>
         <translation>Ukázat dialog pro všeobecné volby</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="890"/>
+        <location filename="../qsynthMainForm.ui" line="878"/>
         <location filename="../qsynthMainForm.cpp" line="1063"/>
         <source>&amp;Options...</source>
         <translation>&amp;Volby...</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="896"/>
         <source>Alt+O</source>
-        <translation>Alt+O</translation>
+        <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="906"/>
+        <location filename="../qsynthMainForm.ui" line="891"/>
         <source>Show/hide the messages log window</source>
         <translation>Ukázat/Skrýt okno se zápisy hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="909"/>
+        <location filename="../qsynthMainForm.ui" line="894"/>
         <location filename="../qsynthMainForm.cpp" line="1059"/>
         <source>&amp;Messages</source>
         <translation>&amp;Hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="915"/>
         <source>Alt+M</source>
-        <translation>Alt+M</translation>
+        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="928"/>
+        <location filename="../qsynthMainForm.ui" line="910"/>
         <source>Show information about this application</source>
         <translation>Ukázat informace o tomto programu</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="931"/>
+        <location filename="../qsynthMainForm.ui" line="913"/>
         <source>A&amp;bout...</source>
         <translation>&amp;O...</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="937"/>
         <source>Alt+B</source>
-        <translation>Alt+B</translation>
+        <translation type="obsolete">Alt+B</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="649"/>
@@ -1119,179 +1103,171 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>&amp;Písmo...</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="116"/>
         <source>Alt+F</source>
-        <translation>Alt+F</translation>
+        <translation type="obsolete">Alt+F</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="148"/>
+        <location filename="../qsynthOptionsForm.ui" line="145"/>
         <source>Whether to keep a maximum number of lines in the messages window</source>
         <translation>Omezit nejvyšší počet ukázaných řádků hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="151"/>
+        <location filename="../qsynthOptionsForm.ui" line="148"/>
         <source>&amp;Messages limit:</source>
         <translation>&amp;Nejvyšší počet hlášení:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="154"/>
         <source>Alt+M</source>
-        <translation>Alt+M</translation>
+        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="167"/>
+        <location filename="../qsynthOptionsForm.ui" line="161"/>
         <source>The maximum number of message lines to keep in view</source>
         <translation>Nejvyšší počet ukázaných řádků hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="177"/>
+        <location filename="../qsynthOptionsForm.ui" line="171"/>
         <source>100</source>
         <translation>100</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="182"/>
+        <location filename="../qsynthOptionsForm.ui" line="176"/>
         <source>250</source>
         <translation>250</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="187"/>
+        <location filename="../qsynthOptionsForm.ui" line="181"/>
         <source>500</source>
         <translation>500</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="192"/>
+        <location filename="../qsynthOptionsForm.ui" line="186"/>
         <source>1000</source>
         <translation>1000</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="197"/>
+        <location filename="../qsynthOptionsForm.ui" line="191"/>
         <source>2500</source>
         <translation>2500</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="202"/>
+        <location filename="../qsynthOptionsForm.ui" line="196"/>
         <source>5000</source>
         <translation>5000</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="219"/>
+        <location filename="../qsynthOptionsForm.ui" line="213"/>
         <source>Logging</source>
         <translation>Přihlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="242"/>
+        <location filename="../qsynthOptionsForm.ui" line="236"/>
         <source>Messages log file</source>
         <translation>Soubor se zápisem hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="273"/>
+        <location filename="../qsynthOptionsForm.ui" line="267"/>
         <source>Browse for the messages log file location</source>
         <translation>Hledat umístění souboru se zápisem hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="276"/>
+        <location filename="../qsynthOptionsForm.ui" line="270"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="289"/>
+        <location filename="../qsynthOptionsForm.ui" line="283"/>
         <source>Whether to activate a messages logging to file.</source>
         <translation>Hlášení zapisovat do souboru.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="449"/>
+        <location filename="../qsynthOptionsForm.ui" line="440"/>
         <source>Other</source>
         <translation>Další</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="464"/>
+        <location filename="../qsynthOptionsForm.ui" line="455"/>
         <source>Whether to ask for confirmation on application exit</source>
         <translation>Při ukončení aplikace žádat o potvrzení</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="467"/>
+        <location filename="../qsynthOptionsForm.ui" line="458"/>
         <source>&amp;Confirm application close</source>
         <translation>&amp;Potvrdit zavření aplikace</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="470"/>
         <source>Alt+C</source>
-        <translation>Alt+S</translation>
+        <translation type="obsolete">Alt+S</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="496"/>
+        <location filename="../qsynthOptionsForm.ui" line="484"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Všechna podokna rozmístit nad hlavním oknem</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="499"/>
+        <location filename="../qsynthOptionsForm.ui" line="487"/>
         <source>&amp;Keep child windows always on top</source>
         <translation>Podokna &amp;rozmístit vždy nad hlavním oknem</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="502"/>
         <source>Alt+K</source>
-        <translation>Alt+F</translation>
+        <translation type="obsolete">Alt+F</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="515"/>
+        <location filename="../qsynthOptionsForm.ui" line="500"/>
         <source>Whether to capture standard output (stdout/stderr) into messages window</source>
         <translation>Standardní výstup (stdout/stderr) převádět do hlavního okna</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="518"/>
+        <location filename="../qsynthOptionsForm.ui" line="503"/>
         <source>Capture standard &amp;output</source>
         <translation>Standardní výstup &amp;převést</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="521"/>
         <source>Alt+O</source>
-        <translation>Alt+U</translation>
+        <translation type="obsolete">Alt+U</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="534"/>
+        <location filename="../qsynthOptionsForm.ui" line="516"/>
         <source>Whether to monitor and show engine output peak level meters</source>
         <translation>Sledovat a ukazovat nástroj výstupní hladiny</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="537"/>
+        <location filename="../qsynthOptionsForm.ui" line="519"/>
         <source>Output &amp;peak level meters</source>
         <translation>Ukazovat &amp;nástroj výstupní hladiny</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="540"/>
         <source>Alt+P</source>
-        <translation>Alt+P</translation>
+        <translation type="obsolete">Alt+P</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="553"/>
+        <location filename="../qsynthOptionsForm.ui" line="532"/>
         <source>Whether to enable the system tray icon</source>
         <translation>V oznamovací oblasti panelu ukazovat symbol aplikace</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="556"/>
+        <location filename="../qsynthOptionsForm.ui" line="535"/>
         <source>&amp;Enable system tray icon</source>
         <translation>S&amp;ymbol aplikace ukazovat v oznamovací oblasti panelu</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="559"/>
         <source>Alt+E</source>
-        <translation>Alt+S</translation>
+        <translation type="obsolete">Alt+S</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="572"/>
+        <location filename="../qsynthOptionsForm.ui" line="548"/>
         <source>Whether to start minimized to system tray</source>
         <translation>Aplikaci spustit zmenšenou jako symbol v oznamovací oblasti panelu</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="575"/>
+        <location filename="../qsynthOptionsForm.ui" line="551"/>
         <source>Start minimi&amp;zed to system tray</source>
         <translation>Spustit se &amp;zmenšením do oznamovací oblasti panelu</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="578"/>
         <source>Alt+Z</source>
-        <translation>Alt+B</translation>
+        <translation type="obsolete">Alt+B</translation>
     </message>
     <message>
         <source>OK</source>
@@ -1327,123 +1303,122 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Soubory se zápisy</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="311"/>
+        <location filename="../qsynthOptionsForm.ui" line="302"/>
         <source>Knobs</source>
         <translation>Otočný regulátor</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="342"/>
+        <location filename="../qsynthOptionsForm.ui" line="333"/>
         <source>Graphic style for knobs</source>
         <translation>Obrazový styl točných regulátorů</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="346"/>
+        <location filename="../qsynthOptionsForm.ui" line="337"/>
         <source>Classic</source>
         <translation>Klasický</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="351"/>
+        <location filename="../qsynthOptionsForm.ui" line="342"/>
         <source>Vokimon</source>
         <translation>Vokimon</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="356"/>
+        <location filename="../qsynthOptionsForm.ui" line="347"/>
         <source>Peppino</source>
         <translation>Peppino</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="366"/>
-        <location filename="../qsynthOptionsForm.ui" line="422"/>
+        <location filename="../qsynthOptionsForm.ui" line="357"/>
+        <location filename="../qsynthOptionsForm.ui" line="413"/>
         <source>Legacy</source>
         <translation>Dědictví</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="415"/>
+        <location filename="../qsynthOptionsForm.ui" line="406"/>
         <source>Mouse motion behavior for knobs</source>
         <translation>Odezva otočného regulátoru na pohyb myši</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="427"/>
+        <location filename="../qsynthOptionsForm.ui" line="418"/>
         <source>Radial</source>
         <translation>Paprskovitý</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="432"/>
+        <location filename="../qsynthOptionsForm.ui" line="423"/>
         <source>Linear</source>
         <translation>Přímočarý</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="591"/>
+        <location filename="../qsynthOptionsForm.ui" line="564"/>
         <source>&amp;Base font size:</source>
         <translation>Základní velikost &amp;písma:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="610"/>
+        <location filename="../qsynthOptionsForm.ui" line="583"/>
         <source>Base application font size (pt.)</source>
         <translation>Základní velikost písma v aplikaci (v bodech)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="617"/>
+        <location filename="../qsynthOptionsForm.ui" line="590"/>
         <source>(default)</source>
         <translation>(výchozí)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="632"/>
+        <location filename="../qsynthOptionsForm.ui" line="605"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="637"/>
+        <location filename="../qsynthOptionsForm.ui" line="610"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="642"/>
+        <location filename="../qsynthOptionsForm.ui" line="615"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="647"/>
+        <location filename="../qsynthOptionsForm.ui" line="620"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="652"/>
+        <location filename="../qsynthOptionsForm.ui" line="625"/>
         <source>12</source>
         <translation>12</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="292"/>
+        <location filename="../qsynthOptionsForm.ui" line="286"/>
         <source>Messages &amp;log file:</source>
         <translation>Soubor se &amp;zápisem hlášení:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="295"/>
         <source>Alt+L</source>
-        <translation>Alt+D</translation>
+        <translation type="obsolete">Alt+D</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="326"/>
+        <location filename="../qsynthOptionsForm.ui" line="317"/>
         <source>Kno&amp;b graphic style:</source>
         <translation>Obrazový styl točných &amp;regulátorů:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="396"/>
+        <location filename="../qsynthOptionsForm.ui" line="387"/>
         <source>Mouse motion be&amp;havior:</source>
         <translation>Odezva otočného regulátoru na po&amp;hyb myši:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="622"/>
+        <location filename="../qsynthOptionsForm.ui" line="595"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="627"/>
+        <location filename="../qsynthOptionsForm.ui" line="600"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="361"/>
+        <location filename="../qsynthOptionsForm.ui" line="352"/>
         <source>Skulpture</source>
         <translation>Skulpture</translation>
     </message>
@@ -1542,13 +1517,13 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>&amp;MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="134"/>
-        <location filename="../qsynthSetupForm.ui" line="694"/>
+        <location filename="../qsynthSetupForm.ui" line="131"/>
+        <location filename="../qsynthSetupForm.ui" line="685"/>
         <source>MIDI device name</source>
         <translation>Název zařízení MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="167"/>
+        <location filename="../qsynthSetupForm.ui" line="161"/>
         <source>MIDI &amp;Device:</source>
         <translation>&amp;Zařízení MIDI:</translation>
     </message>
@@ -1558,7 +1533,7 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>&amp;Ovladač MIDI:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="157"/>
+        <location filename="../qsynthSetupForm.ui" line="151"/>
         <source>Input MIDI driver</source>
         <translation>Ovladač pro vstup MIDI</translation>
     </message>
@@ -1567,23 +1542,23 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation type="obsolete">&amp;ALSA ID klienta sequenceru:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="292"/>
+        <location filename="../qsynthSetupForm.ui" line="283"/>
         <source>MIDI Client Name ID (ALSA/CoreMidi):</source>
         <translation>ID názvu klienta MIDI (ALSA/CoreMidi):</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="305"/>
+        <location filename="../qsynthSetupForm.ui" line="296"/>
         <source>ALSA Sequencer client name identification</source>
         <translation>ID názvu klienta u ALSA sequenceru</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="312"/>
+        <location filename="../qsynthSetupForm.ui" line="303"/>
         <source>pid</source>
         <translation>pid</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="317"/>
-        <location filename="../qsynthSetupForm.ui" line="790"/>
+        <location filename="../qsynthSetupForm.ui" line="308"/>
+        <location filename="../qsynthSetupForm.ui" line="781"/>
         <source>qsynth</source>
         <translation>qsynth</translation>
     </message>
@@ -1598,440 +1573,430 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>&amp;Vytisknout události směrovače MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="121"/>
-        <location filename="../qsynthSetupForm.ui" line="1002"/>
         <source>Alt+D</source>
-        <translation>Alt+R</translation>
+        <translation type="obsolete">Alt+R</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="183"/>
+        <location filename="../qsynthSetupForm.ui" line="177"/>
         <source>Print out verbose messages about MIDI events</source>
         <translation>Vytisknout podrobná hlášení o událostech MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="186"/>
+        <location filename="../qsynthSetupForm.ui" line="180"/>
         <source>&amp;Verbose MIDI event messages</source>
         <translation>&amp;Podrobná hlášení o událostech MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="189"/>
         <source>Alt+V</source>
-        <translation>Alt+F</translation>
+        <translation type="obsolete">Alt+F</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="212"/>
+        <location filename="../qsynthSetupForm.ui" line="203"/>
         <source>Number of MIDI channels</source>
         <translation>Počet kanálů MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="199"/>
+        <location filename="../qsynthSetupForm.ui" line="190"/>
         <source>MIDI &amp;Channels:</source>
         <translation>&amp;Kanály MIDI:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="144"/>
+        <location filename="../qsynthSetupForm.ui" line="141"/>
         <source>Enable MIDI input</source>
         <translation>Spustit vstup MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="147"/>
+        <location filename="../qsynthSetupForm.ui" line="144"/>
         <source>Enable MIDI &amp;Input</source>
         <translation>Spustit &amp;vstup MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="150"/>
         <source>Alt+I</source>
-        <translation>Alt+D</translation>
+        <translation type="obsolete">Alt+D</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="245"/>
+        <location filename="../qsynthSetupForm.ui" line="236"/>
         <source>gm</source>
         <translation>gm</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="250"/>
+        <location filename="../qsynthSetupForm.ui" line="241"/>
         <source>gs</source>
         <translation>gs</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="255"/>
+        <location filename="../qsynthSetupForm.ui" line="246"/>
         <source>mma</source>
         <translation>mma</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="260"/>
+        <location filename="../qsynthSetupForm.ui" line="251"/>
         <source>xs</source>
         <translation>xs</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="228"/>
+        <location filename="../qsynthSetupForm.ui" line="219"/>
         <source>MIDI &amp;Bank Select mode:</source>
         <translation>Režim výběru &amp;banky MIDI:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="238"/>
+        <location filename="../qsynthSetupForm.ui" line="229"/>
         <source>MIDI Bank Select mode</source>
         <translation>Režim výběru banky MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="367"/>
+        <location filename="../qsynthSetupForm.ui" line="358"/>
         <source>&amp;Audio</source>
         <translation>&amp;Zvuk</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="391"/>
+        <location filename="../qsynthSetupForm.ui" line="382"/>
         <source>Sample &amp;Format:</source>
         <translation>Vzorkovací &amp;formát (rozlišení):</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="404"/>
+        <location filename="../qsynthSetupForm.ui" line="395"/>
         <source>Output audio driver</source>
         <translation>Ovladač zvuku pro výstup</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="414"/>
+        <location filename="../qsynthSetupForm.ui" line="405"/>
         <source>Sample format</source>
         <translation>Vzorkovací formát - Číselný formát zdigitalizovaného zvukového signálu</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="421"/>
+        <location filename="../qsynthSetupForm.ui" line="412"/>
         <source>Period size in bytes (audio buffer size)</source>
         <translation>Velikost periody (velikost zvukové vyrovnávací paměti) v bytech</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="428"/>
-        <location filename="../qsynthSetupForm.ui" line="573"/>
+        <location filename="../qsynthSetupForm.ui" line="419"/>
+        <location filename="../qsynthSetupForm.ui" line="564"/>
         <source>64</source>
         <translation>64</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="433"/>
+        <location filename="../qsynthSetupForm.ui" line="424"/>
         <source>128</source>
         <translation>128</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="438"/>
+        <location filename="../qsynthSetupForm.ui" line="429"/>
         <source>256</source>
         <translation>256</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="443"/>
+        <location filename="../qsynthSetupForm.ui" line="434"/>
         <source>512</source>
         <translation>512</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="448"/>
+        <location filename="../qsynthSetupForm.ui" line="439"/>
         <source>1024</source>
         <translation>1024</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="453"/>
+        <location filename="../qsynthSetupForm.ui" line="444"/>
         <source>2048</source>
         <translation>2048</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="458"/>
+        <location filename="../qsynthSetupForm.ui" line="449"/>
         <source>4096</source>
         <translation>4096</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="463"/>
+        <location filename="../qsynthSetupForm.ui" line="454"/>
         <source>8192</source>
         <translation>8192</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="471"/>
+        <location filename="../qsynthSetupForm.ui" line="462"/>
         <source>Buffer Cou&amp;nt:</source>
         <translation>&amp;Množství vyrovnávací paměti:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="484"/>
+        <location filename="../qsynthSetupForm.ui" line="475"/>
         <source>Sample rate in samples per second (Hz)</source>
         <translation>Vzorkovací kmitočet ve vzorcích za sekundu (Hz)</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="494"/>
+        <location filename="../qsynthSetupForm.ui" line="485"/>
         <source>22050</source>
         <translation>22050</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="499"/>
+        <location filename="../qsynthSetupForm.ui" line="490"/>
         <source>44100</source>
         <translation>44100</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="504"/>
+        <location filename="../qsynthSetupForm.ui" line="495"/>
         <source>48000</source>
         <translation>48000</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="509"/>
+        <location filename="../qsynthSetupForm.ui" line="500"/>
         <source>88200</source>
         <translation>88200</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="514"/>
+        <location filename="../qsynthSetupForm.ui" line="505"/>
         <source>96000</source>
         <translation>96000</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="528"/>
+        <location filename="../qsynthSetupForm.ui" line="519"/>
         <source>Sample &amp;Rate:</source>
         <translation>Vzorkovací &amp;kmitočet:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="541"/>
+        <location filename="../qsynthSetupForm.ui" line="532"/>
         <source>Period count (number of audio buffers)</source>
         <translation>Počet period (počet zvukových vyrovnávacích pamětí)</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="548"/>
+        <location filename="../qsynthSetupForm.ui" line="539"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="553"/>
+        <location filename="../qsynthSetupForm.ui" line="544"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="558"/>
+        <location filename="../qsynthSetupForm.ui" line="549"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="563"/>
+        <location filename="../qsynthSetupForm.ui" line="554"/>
         <source>16</source>
         <translation>16</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="568"/>
+        <location filename="../qsynthSetupForm.ui" line="559"/>
         <source>32</source>
         <translation>32</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="581"/>
+        <location filename="../qsynthSetupForm.ui" line="572"/>
         <source>Buffer &amp;Size:</source>
         <translation>&amp;Velikost vyrovnávací paměti:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="594"/>
+        <location filename="../qsynthSetupForm.ui" line="585"/>
         <source>&amp;Audio Driver:</source>
         <translation>&amp;Zvukový ovladač:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="614"/>
+        <location filename="../qsynthSetupForm.ui" line="605"/>
         <source>Audio &amp;Device:</source>
         <translation>Zvukové &amp;zařízení:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="633"/>
+        <location filename="../qsynthSetupForm.ui" line="624"/>
         <source>Audio &amp;Channels:</source>
         <translation>Zvukové &amp;kanály:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="646"/>
+        <location filename="../qsynthSetupForm.ui" line="637"/>
         <source>Number of audio groups</source>
         <translation>Počet zvukových skupin</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="659"/>
+        <location filename="../qsynthSetupForm.ui" line="650"/>
         <source>Number of enabled polyphonic voices</source>
         <translation>Počet povolených vícehlasých hlasů</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="675"/>
+        <location filename="../qsynthSetupForm.ui" line="666"/>
         <source>Number of stereo audio channels</source>
         <translation>Počet stereo zvukových kanálů</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="707"/>
+        <location filename="../qsynthSetupForm.ui" line="698"/>
         <source>&amp;Polyphony:</source>
         <translation>&amp;Vícehlas:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="736"/>
+        <location filename="../qsynthSetupForm.ui" line="727"/>
         <source>Audio &amp;Groups:</source>
         <translation>Zvukové &amp;skupiny:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="762"/>
+        <location filename="../qsynthSetupForm.ui" line="753"/>
         <source>JACK Client Name &amp;ID:</source>
         <translation>&amp;ID názvu klienta JACK:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="775"/>
+        <location filename="../qsynthSetupForm.ui" line="766"/>
         <source>JACK client name identification</source>
         <translation>Identifikátor názvu klienta JACK</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="785"/>
+        <location filename="../qsynthSetupForm.ui" line="776"/>
         <source>fluidsynth</source>
         <translation>fluidsynth</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="813"/>
+        <location filename="../qsynthSetupForm.ui" line="804"/>
         <source>Attempt to connect the JACK outputs to the physical ports</source>
         <translation>Pokusit se spojit výstupy JACK s fyzickými přípojkami</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="816"/>
+        <location filename="../qsynthSetupForm.ui" line="807"/>
         <source>Auto Connect &amp;JACK Outputs</source>
         <translation>Automaticky spojit výstupy &amp;JACK</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="819"/>
         <source>Alt+J</source>
-        <translation>Alt+J</translation>
+        <translation type="obsolete">Alt+J</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="826"/>
+        <location filename="../qsynthSetupForm.ui" line="814"/>
         <source>Create multiple JACK output ports for channels, groups and effects</source>
         <translation>Vytvořit více připojení výstupů JACK pro kanály, skupiny a efekty</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="829"/>
+        <location filename="../qsynthSetupForm.ui" line="817"/>
         <source>&amp;Multiple JACK Outputs</source>
         <translation>&amp;Více výstupů JACK</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="832"/>
         <source>Alt+M</source>
-        <translation>Alt+M</translation>
+        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="856"/>
+        <location filename="../qsynthSetupForm.ui" line="841"/>
         <source>&amp;Soundfonts</source>
         <translation>&amp;Zvuková písma</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="871"/>
+        <location filename="../qsynthSetupForm.ui" line="856"/>
         <source>Soundfont stack</source>
         <translation>Zásobník zvukových písem</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="893"/>
+        <location filename="../qsynthSetupForm.ui" line="878"/>
         <source>SFID</source>
         <translation>SFID</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="898"/>
-        <location filename="../qsynthSetupForm.ui" line="1055"/>
+        <location filename="../qsynthSetupForm.ui" line="883"/>
+        <location filename="../qsynthSetupForm.ui" line="1025"/>
         <source>Name</source>
         <translation>Název</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="903"/>
+        <location filename="../qsynthSetupForm.ui" line="888"/>
         <source>Offset</source>
         <translation>Poloha</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="916"/>
+        <location filename="../qsynthSetupForm.ui" line="901"/>
         <source>Open soundfont file for loading</source>
         <translation>Otevřít soubor se zvukovým písmem pro nahrání</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="919"/>
+        <location filename="../qsynthSetupForm.ui" line="904"/>
         <source>&amp;Open...</source>
         <translation>&amp;Otevřít...</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="925"/>
         <source>Alt+O</source>
-        <translation>Alt+Ö</translation>
+        <translation type="obsolete">Alt+Ö</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="932"/>
+        <location filename="../qsynthSetupForm.ui" line="914"/>
         <source>Edit selected soundfont bank offset</source>
         <translation>Upravit hodnotu polohy vybrané banky se zvukovým písmem</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="935"/>
+        <location filename="../qsynthSetupForm.ui" line="917"/>
         <source>&amp;Edit</source>
         <translation>&amp;Úpravy</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="941"/>
         <source>Alt+E</source>
-        <translation>Alt+R</translation>
+        <translation type="obsolete">Alt+R</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="948"/>
+        <location filename="../qsynthSetupForm.ui" line="927"/>
         <source>Remove selected soundfont from stack</source>
         <translation>Odstranit vybrané zvukové písmo ze zásobníku</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="951"/>
+        <location filename="../qsynthSetupForm.ui" line="930"/>
         <source>&amp;Remove</source>
         <translation>&amp;Odstranit</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="957"/>
         <source>Alt+R</source>
-        <translation>Alt+T</translation>
+        <translation type="obsolete">Alt+T</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="977"/>
+        <location filename="../qsynthSetupForm.ui" line="953"/>
         <source>Move up selected soundfont towards the top of stack</source>
         <translation>Vybrané zvukové písmo přesunout v zásobníku nahoru</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="980"/>
+        <location filename="../qsynthSetupForm.ui" line="956"/>
         <source>&amp;Up</source>
         <translation>&amp;Nahoru</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="986"/>
         <source>Alt+U</source>
-        <translation>Alt+U</translation>
+        <translation type="obsolete">Alt+U</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="993"/>
+        <location filename="../qsynthSetupForm.ui" line="966"/>
         <source>Move down selected soundfont towards the bottom of stack</source>
         <translation>Vybrané zvukové písmo přesunout v zásobníku dolů</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="996"/>
+        <location filename="../qsynthSetupForm.ui" line="969"/>
         <source>&amp;Down</source>
         <translation>&amp;Dolů</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1012"/>
+        <location filename="../qsynthSetupForm.ui" line="982"/>
         <source>S&amp;ettings</source>
         <translation>&amp;Nastavení</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1060"/>
+        <location filename="../qsynthSetupForm.ui" line="1030"/>
         <source>Type</source>
         <translation>Typ</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1065"/>
+        <location filename="../qsynthSetupForm.ui" line="1035"/>
         <source>Realtime</source>
         <translation>Prováděný v reálném čase</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1070"/>
+        <location filename="../qsynthSetupForm.ui" line="1040"/>
         <source>Current</source>
         <translation>Nynější</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1075"/>
+        <location filename="../qsynthSetupForm.ui" line="1045"/>
         <source>Default</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1080"/>
+        <location filename="../qsynthSetupForm.ui" line="1050"/>
         <source>Min</source>
         <translation>Min</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1085"/>
+        <location filename="../qsynthSetupForm.ui" line="1055"/>
         <source>Max</source>
         <translation>Max</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1090"/>
+        <location filename="../qsynthSetupForm.ui" line="1060"/>
         <source>Options</source>
         <translation>Volby</translation>
     </message>

@@ -3,7 +3,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2014, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -135,9 +135,6 @@
      <property name="icon">
       <iconset resource="qsynth.qrc">:/images/restart1.png</iconset>
      </property>
-     <property name="shortcut">
-      <string>Alt+S</string>
-     </property>
     </widget>
    </item>
    <item row="0" column="2" rowspan="4">
@@ -177,9 +174,6 @@
         </property>
         <property name="text">
          <string>Ac&amp;tive</string>
-        </property>
-        <property name="shortcut">
-         <string>Alt+T</string>
         </property>
        </widget>
       </item>
@@ -545,9 +539,6 @@
         <property name="text">
          <string>Act&amp;ive</string>
         </property>
-        <property name="shortcut">
-         <string>Alt+I</string>
-        </property>
        </widget>
       </item>
       <item row="1" column="0">
@@ -873,9 +864,6 @@
        <property name="icon">
         <iconset resource="qsynth.qrc">:/images/quit1.png</iconset>
        </property>
-       <property name="shortcut">
-        <string>Alt+Q</string>
-       </property>
        <property name="autoDefault">
         <bool>false</bool>
        </property>
@@ -892,9 +880,6 @@
        <property name="icon">
         <iconset resource="qsynth.qrc">:/images/options1.png</iconset>
        </property>
-       <property name="shortcut">
-        <string>Alt+O</string>
-       </property>
        <property name="autoDefault">
         <bool>false</bool>
        </property>
@@ -910,9 +895,6 @@
        </property>
        <property name="icon">
         <iconset resource="qsynth.qrc">:/images/messages1.png</iconset>
-       </property>
-       <property name="shortcut">
-        <string>Alt+M</string>
        </property>
        <property name="checkable">
         <bool>true</bool>
@@ -932,9 +914,6 @@
        </property>
        <property name="icon">
         <iconset resource="qsynth.qrc">:/images/about1.png</iconset>
-       </property>
-       <property name="shortcut">
-        <string>Alt+B</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -970,9 +949,6 @@
      <property name="icon">
       <iconset resource="qsynth.qrc">:/images/panic1.png</iconset>
      </property>
-     <property name="shortcut">
-      <string>Alt+P</string>
-     </property>
     </widget>
    </item>
    <item row="2" column="1">
@@ -986,9 +962,6 @@
      <property name="icon">
       <iconset resource="qsynth.qrc">:/images/reset1.png</iconset>
      </property>
-     <property name="shortcut">
-      <string>Alt+R</string>
-     </property>
     </widget>
    </item>
    <item row="3" column="0">
@@ -1001,9 +974,6 @@
      </property>
      <property name="icon">
       <iconset resource="qsynth.qrc">:/images/setup1.png</iconset>
-     </property>
-     <property name="shortcut">
-      <string>Alt+U</string>
      </property>
      <property name="autoDefault">
       <bool>false</bool>
@@ -1020,9 +990,6 @@
      </property>
      <property name="icon">
       <iconset resource="qsynth.qrc">:/images/channels1.png</iconset>
-     </property>
-     <property name="shortcut">
-      <string>Alt+C</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -1065,9 +1032,6 @@
        </property>
        <property name="icon">
         <iconset resource="qsynth.qrc">:/images/add1.png</iconset>
-       </property>
-       <property name="shortcut">
-        <string>Ins</string>
        </property>
       </widget>
      </item>
@@ -1122,9 +1086,6 @@
        </property>
        <property name="icon">
         <iconset resource="qsynth.qrc">:/images/remove1.png</iconset>
-       </property>
-       <property name="shortcut">
-        <string>Del</string>
        </property>
       </widget>
      </item>
