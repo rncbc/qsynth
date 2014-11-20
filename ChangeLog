@@ -3,7 +3,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
-SVN TRUNK
+GIT HEAD
 
 - Application close confirm warning is now raising the main
   window as visible and active for due top level display,
