@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.8.9, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.8.10, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
@@ -41,12 +41,6 @@ AC_ARG_ENABLE(qt5,
   [ac_qt5="$enableval"],
   [ac_qt5="no"])
 
-if test "x$ac_qt4" = "xno"; then
-   ac_qt5="yes"
-fi
-if test "x$ac_qt5" = "xyes"; then
-   ac_qt4="no"
-fi
 
 # Enable system tray argument option.
 AC_ARG_ENABLE(system_tray,
@@ -70,10 +64,31 @@ AC_ARG_ENABLE(stacktrace,
 # Standard installation base dirs.
 ac_with_paths="/usr /usr/local"
 
-# Set for alternate Qt installation dir.
-AC_ARG_WITH(qt,
-  AC_HELP_STRING([--with-qt=PATH], [use alternate Qt install path]),
-  [ac_with_paths="$ac_with_paths $withval"])
+# Set for alternate Qt4/5 installation dir.
+AC_ARG_WITH(qt4,
+  AC_HELP_STRING([--with-qt4=PATH], [use alternate Qt4 install path]),
+  [ac_qt4_path="$withval"], [ac_qt4_path="no"])
+
+AC_ARG_WITH(qt5,
+  AC_HELP_STRING([--with-qt5=PATH], [use alternate Qt5 install path]),
+  [ac_qt5_path="$withval"], [ac_qt5_path="no"])
+
+if test "x$ac_qt4_path" != "xno"; then
+   ac_with_paths="$ac_with_paths $ac_qt4_path"
+   ac_qt4="yes"
+fi
+
+if test "x$ac_qt5_path" != "xno"; then
+   ac_with_paths="$ac_with_paths $ac_qt5_path"
+   ac_qt5="yes"
+fi
+
+if test "x$ac_qt4" = "xno"; then
+   ac_qt5="yes"
+fi
+if test "x$ac_qt5" = "xyes"; then
+   ac_qt4="no"
+fi
 
 # Set for alternate fluidsynth installation dir.
 AC_ARG_WITH(fluidsynth,
@@ -158,20 +173,34 @@ for X in $ac_with_paths; do
   fi
 done
 
-
-# Check for proper Qt version.
-AC_CACHE_CHECK([for Qt library version >= 4.4],
-  ac_cv_qtversion, [
-  AC_TRY_LINK([#include "QtCore/qglobal.h"], [
-#if QT_VERSION < 0x040400
-#error Qt library 4.4 or greater required.
-#endif
-    ], ac_cv_qtversion="yes", [
-      echo "no; Qt 4.4 or greater is required"
-      exit
-    ])
-])
-
+# Check for proper Qt4/5 version.
+if test "x$ac_qt4" = "xyes"; then
+   AC_CACHE_CHECK([for Qt library version >= 4.4],
+      ac_cv_qtversion, [
+      AC_TRY_LINK([#include "QtCore/qglobal.h"], [
+         #if QT_VERSION < 0x040400
+         #error Qt library 4.4 or greater required.
+         #endif
+      ], ac_cv_qtversion="yes", [
+         echo "no; Qt 4.4 or greater is required"
+         exit 1
+      ])
+   ])
+fi
+ 
+if test "x$ac_qt5" = "xyes"; then
+   AC_CACHE_CHECK([for Qt library version >= 5.1],
+      ac_cv_qtversion, [
+      AC_TRY_LINK([#include "QtCore/qglobal.h"], [
+         #if QT_VERSION < 0x050100
+         #error Qt library 5.1 or greater required.
+         #endif
+      ], ac_cv_qtversion="yes", [
+         echo "no; Qt 5.1 or greater is required"
+         exit 1
+      ])
+   ])
+fi
 
 # A common error message:
 ac_errmsg="not found in current PATH. Maybe Qt development environment isn't available (qt-devel)."
