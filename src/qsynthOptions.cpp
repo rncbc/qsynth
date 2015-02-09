@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2014, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2015, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -71,6 +71,7 @@ void qsynthOptions::loadOptions (void)
 	bStdoutCapture  = m_settings.value("/StdoutCapture", true).toBool();
 	bOutputMeters   = m_settings.value("/OutputMeters", false).toBool();
 	bSystemTray     = m_settings.value("/SystemTray", false).toBool();
+	bSystemTrayQueryClose = m_settings.value("/SystemTrayQueryClsoe", true).toBool();
 	bStartMinimized = m_settings.value("/StartMinimized", false).toBool();
 	iBaseFontSize   = m_settings.value("/BaseFontSize", 0).toInt();
 	iKnobStyle      = m_settings.value("/KnobStyle", 0).toInt();
@@ -136,6 +137,7 @@ void qsynthOptions::saveOptions (void)
 	m_settings.setValue("/StdoutCapture", bStdoutCapture);
 	m_settings.setValue("/OutputMeters", bOutputMeters);
 	m_settings.setValue("/SystemTray", bSystemTray);
+	m_settings.setValue("/SystemTrayQueryClose", bSystemTrayQueryClose);
 	m_settings.setValue("/StartMinimized", bStartMinimized);
 	m_settings.setValue("/BaseFontSize", iBaseFontSize);
 	m_settings.setValue("/KnobStyle", iKnobStyle);

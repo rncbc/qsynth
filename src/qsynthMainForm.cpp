@@ -1,7 +1,7 @@
 // qsynthMainForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2015, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -640,27 +640,45 @@ bool qsynthMainForm::queryClose (void)
 
 	// Now's the time?
 	if (m_pOptions) {
-#ifdef CONFIG_SYSTEM_TRAY
+	#ifdef CONFIG_SYSTEM_TRAY
 		// If we're not quitting explicitly and there's an
 		// active system tray icon, then just hide ourselves.
 		if (!m_bQuitForce && isVisible()
 			&& m_pOptions->bSystemTray && m_pSystemTray) {
 			m_pOptions->saveWidgetGeometry(this, true);
-			const QString& sTitle = QSYNTH_TITLE ": " + tr("Information");
-			const QString& sText
-				= tr("The program will keep running in the system tray.\n\n"
-					"To terminate the program, please choose \"Quit\"\n"
-					"in the context menu of the system tray icon.");
-			if (QSystemTrayIcon::supportsMessages()) {
-				m_pSystemTray->showMessage(
-					sTitle, sText, QSystemTrayIcon::Information);
+			if (m_pOptions->bSystemTrayQueryClose) {
+				const QString& sTitle
+					= QSYNTH_TITLE ": " + tr("Information");
+				const QString& sText
+					= tr("The program will keep running in the system tray.\n\n"
+						"To terminate the program, please choose \"Quit\"\n"
+						"in the context menu of the system tray icon.");
+			#if 0//QSYNTH_SYSTEM_TRAY_QUERY_CLSOE
+				if (QSystemTrayIcon::supportsMessages()) {
+					m_pSystemTray->showMessage(
+						sTitle, sText, QSystemTrayIcon::Information);
+				}
+				else
+				QMessageBox::information(this, sTitle, sText);
+			#else
+				QMessageBox mbox(this);
+				mbox.setIcon(QMessageBox::Information);
+				mbox.setWindowTitle(sTitle);
+				mbox.setText(sText);
+				mbox.setStandardButtons(QMessageBox::Ok);
+				QCheckBox cbox(tr("Don't show this message again"));
+				cbox.setChecked(false);
+				cbox.blockSignals(true);
+				mbox.addButton(&cbox, QMessageBox::ActionRole);
+				mbox.exec();
+				if (cbox.isChecked())
+					m_pOptions->bSystemTrayQueryClose = false;
+			#endif
 			}
-			else
-			QMessageBox::information(this, sTitle, sText);
 			hide();
 			bQueryClose = false;
 		}
-#endif
+	#endif
 		// Dow we quit right away?
 		if (bQueryClose && m_pOptions->bQueryClose) {
 			for (int iTab = 0; iTab < m_ui.TabBar->count(); iTab++) {

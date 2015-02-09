@@ -5,6 +5,10 @@ ChangeLog
 
 GIT HEAD
 
+- New user preference option on whether to show the nagging
+  'program will keep running in the system tray' message, on
+  main window close.
+
 - Application close confirm warning is now raising the main
   window as visible and active for due top level display,
   especially applicable when minimized to the system tray.
