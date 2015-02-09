@@ -1273,12 +1273,12 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Alt+C</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="484"/>
+        <location filename="../qsynthOptionsForm.ui" line="471"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Determina si se han de mantener todas las ventanas hijas por encima de la ventana principal</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="487"/>
+        <location filename="../qsynthOptionsForm.ui" line="474"/>
         <source>&amp;Keep child windows always on top</source>
         <translation>&amp;Mantener las ventanas hijas siempre encima</translation>
     </message>
@@ -1287,12 +1287,12 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="500"/>
+        <location filename="../qsynthOptionsForm.ui" line="487"/>
         <source>Whether to capture standard output (stdout/stderr) into messages window</source>
         <translation>Determina si se ha de capturar la salida estándar (stdout/stderr) en la ventana de mensajes</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="503"/>
+        <location filename="../qsynthOptionsForm.ui" line="490"/>
         <source>Capture standard &amp;output</source>
         <translation>Capturar la salida &amp;estándard</translation>
     </message>
@@ -1301,12 +1301,12 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Alt+e</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="516"/>
+        <location filename="../qsynthOptionsForm.ui" line="503"/>
         <source>Whether to monitor and show engine output peak level meters</source>
         <translation>Determina si se han de monitorizar y mostrar los medidores de picos de salida del motor</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="519"/>
+        <location filename="../qsynthOptionsForm.ui" line="506"/>
         <source>Output &amp;peak level meters</source>
         <translation>Medidores de &amp;picos de nivel de salida</translation>
     </message>
@@ -1411,42 +1411,47 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="580"/>
+        <location filename="../qsynthOptionsForm.ui" line="599"/>
+        <source>Defaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="636"/>
         <source>&amp;Base font size:</source>
         <translation>Tamaño &amp;base de fuentes:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="599"/>
+        <location filename="../qsynthOptionsForm.ui" line="655"/>
         <source>Base application font size (pt.)</source>
         <translation>Tamaño base de fuentes de la aplicación (pt.)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="606"/>
+        <location filename="../qsynthOptionsForm.ui" line="662"/>
         <source>(default)</source>
         <translation>(por omisión)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="621"/>
+        <location filename="../qsynthOptionsForm.ui" line="677"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="626"/>
+        <location filename="../qsynthOptionsForm.ui" line="682"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="631"/>
+        <location filename="../qsynthOptionsForm.ui" line="687"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="636"/>
+        <location filename="../qsynthOptionsForm.ui" line="692"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="641"/>
+        <location filename="../qsynthOptionsForm.ui" line="697"/>
         <source>12</source>
         <translation>12</translation>
     </message>
@@ -1470,12 +1475,12 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Comportamiento del &amp;movimiento del ratón:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="611"/>
+        <location filename="../qsynthOptionsForm.ui" line="667"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="616"/>
+        <location filename="../qsynthOptionsForm.ui" line="672"/>
         <source>7</source>
         <translation>7</translation>
     </message>

@@ -1273,16 +1273,21 @@ restarting the fluidsynth engine:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../qsynthOptionsForm.ui" line="599"/>
+        <source>Defaults</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Alt+C</source>
         <translation type="obsolete">Alt+Z</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="484"/>
+        <location filename="../qsynthOptionsForm.ui" line="471"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Да ли да издигнем потчињене прозоре у први план</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="487"/>
+        <location filename="../qsynthOptionsForm.ui" line="474"/>
         <source>&amp;Keep child windows always on top</source>
         <translation>Потчињени прозори су у првом п&amp;лану</translation>
     </message>
@@ -1291,12 +1296,12 @@ restarting the fluidsynth engine:</source>
         <translation type="obsolete">Alt+L</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="500"/>
+        <location filename="../qsynthOptionsForm.ui" line="487"/>
         <source>Whether to capture standard output (stdout/stderr) into messages window</source>
         <translation>Да ли да пратим стандардни излаз („stdout/stderr“) кроз прозорче са порукама</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="503"/>
+        <location filename="../qsynthOptionsForm.ui" line="490"/>
         <source>Capture standard &amp;output</source>
         <translation>Прати стандардни &amp;излаз</translation>
     </message>
@@ -1305,12 +1310,12 @@ restarting the fluidsynth engine:</source>
         <translation type="obsolete">Alt+I</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="516"/>
+        <location filename="../qsynthOptionsForm.ui" line="503"/>
         <source>Whether to monitor and show engine output peak level meters</source>
         <translation>Да ли да пратим и приказујем ниво излазних вршних вредности сигнала</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="519"/>
+        <location filename="../qsynthOptionsForm.ui" line="506"/>
         <source>Output &amp;peak level meters</source>
         <translation>&amp;Прати ниво вршних вредности покретача</translation>
     </message>
@@ -1347,52 +1352,52 @@ restarting the fluidsynth engine:</source>
         <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="580"/>
+        <location filename="../qsynthOptionsForm.ui" line="636"/>
         <source>&amp;Base font size:</source>
         <translation>Величина &amp;слова:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="599"/>
+        <location filename="../qsynthOptionsForm.ui" line="655"/>
         <source>Base application font size (pt.)</source>
         <translation>Основна величина слова фонта у програму (у тачкама-пт.)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="606"/>
+        <location filename="../qsynthOptionsForm.ui" line="662"/>
         <source>(default)</source>
         <translation>(подразумевано)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="611"/>
+        <location filename="../qsynthOptionsForm.ui" line="667"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="616"/>
+        <location filename="../qsynthOptionsForm.ui" line="672"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="621"/>
+        <location filename="../qsynthOptionsForm.ui" line="677"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="626"/>
+        <location filename="../qsynthOptionsForm.ui" line="682"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="631"/>
+        <location filename="../qsynthOptionsForm.ui" line="687"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="636"/>
+        <location filename="../qsynthOptionsForm.ui" line="692"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="641"/>
+        <location filename="../qsynthOptionsForm.ui" line="697"/>
         <source>12</source>
         <translation>12</translation>
     </message>
