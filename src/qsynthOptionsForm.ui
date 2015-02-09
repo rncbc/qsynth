@@ -691,6 +691,7 @@
   <tabstop>StdoutCaptureCheckBox</tabstop>
   <tabstop>OutputMetersCheckBox</tabstop>
   <tabstop>SystemTrayCheckBox</tabstop>
+  <tabstop>SystemTrayQueryCloseCheckBox</tabstop>
   <tabstop>StartMinimizedCheckBox</tabstop>
   <tabstop>BaseFontSizeComboBox</tabstop>
   <tabstop>DialogButtonBox</tabstop>

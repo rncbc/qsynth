@@ -687,12 +687,28 @@ bool qsynthMainForm::queryClose (void)
 					show();
 					raise();
 					activateWindow();
-					bQueryClose = (QMessageBox::warning(this,
-						QSYNTH_TITLE ": " + tr("Warning"),
-						QSYNTH_TITLE " " + tr("is about to terminate.") + "\n\n" +
-						tr("Are you sure?"),
-						QMessageBox::Ok | QMessageBox::Cancel)
-						== QMessageBox::Ok);
+					const QString& sTitle
+						= QSYNTH_TITLE ": " + tr("Warning");
+					const QString& sText = QSYNTH_TITLE " "
+						+ tr("is about to terminate.") + "\n\n"
+						+ tr("Are you sure?");
+				#if 0//QSYNTH_QUERY_CLOSE
+					bQueryClose = (QMessageBox::warning(this, sTitle, sText,
+						QMessageBox::Ok | QMessageBox::Cancel) == QMessageBox::Ok);
+				#else
+					QMessageBox mbox(this);
+					mbox.setIcon(QMessageBox::Warning);
+					mbox.setWindowTitle(sTitle);
+					mbox.setText(sText);
+					mbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+					QCheckBox cbox(tr("Don't ask this question again"));
+					cbox.setChecked(false);
+					cbox.blockSignals(true);
+					mbox.addButton(&cbox, QMessageBox::ActionRole);
+					bQueryClose = (mbox.exec() == QMessageBox::Ok);
+					if (bQueryClose && cbox.isChecked())
+						m_pOptions->bQueryClose = false;
+				#endif
 					break;
 				}
 			}
