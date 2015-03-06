@@ -814,6 +814,8 @@ bool qsynthOptions::deletePreset ( qsynthEngine *pEngine, const QString& sPreset
 
 void qsynthOptions::loadComboBoxHistory ( QComboBox *pComboBox, int iLimit )
 {
+	const bool bBlockSignals = pComboBox->blockSignals(true);
+
 	// Load combobox list from configuration settings file...
 	m_settings.beginGroup("/History/" + pComboBox->objectName());
 
@@ -821,7 +823,7 @@ void qsynthOptions::loadComboBoxHistory ( QComboBox *pComboBox, int iLimit )
 		pComboBox->setUpdatesEnabled(false);
 		pComboBox->setDuplicatesEnabled(false);
 		pComboBox->clear();
-		for (int i = 0; i < iLimit; i++) {
+		for (int i = 0; i < iLimit; ++i) {
 			const QString& sText = m_settings.value(
 				"/Item" + QString::number(i + 1)).toString();
 			if (sText.isEmpty())
@@ -832,26 +834,31 @@ void qsynthOptions::loadComboBoxHistory ( QComboBox *pComboBox, int iLimit )
 	}
 
 	m_settings.endGroup();
+
+	pComboBox->blockSignals(bBlockSignals);
 }
 
 
 void qsynthOptions::saveComboBoxHistory ( QComboBox *pComboBox, int iLimit )
 {
+	const bool bBlockSignals = pComboBox->blockSignals(true);
+
 	// Add current text as latest item...
-	const QString& sCurrentText = pComboBox->currentText();
+	const QString sCurrentText = pComboBox->currentText();
 	int iCount = pComboBox->count();
 	for (int i = 0; i < iCount; i++) {
 		const QString& sText = pComboBox->itemText(i);
 		if (sText == sCurrentText) {
 			pComboBox->removeItem(i);
-			iCount--;
+			--iCount;
 			break;
 		}
 	}
 	while (iCount >= iLimit)
 		pComboBox->removeItem(--iCount);
 	pComboBox->insertItem(0, sCurrentText);
-	iCount++;
+	pComboBox->setCurrentIndex(0);
+	++iCount;
 
 	// Save combobox list to configuration settings file...
 	m_settings.beginGroup("/History/" + pComboBox->objectName());
@@ -862,6 +869,8 @@ void qsynthOptions::saveComboBoxHistory ( QComboBox *pComboBox, int iLimit )
 		m_settings.setValue("/Item" + QString::number(i + 1), sText);
 	}
 	m_settings.endGroup();
+
+	pComboBox->blockSignals(bBlockSignals);
 }
 
 
