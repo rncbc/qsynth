@@ -763,7 +763,7 @@ in the context menu of the system tray icon.</source>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="704"/>
-        <source>Don&apos;t ask this question again</source>
+        <source>Don&apos;t ask this again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -838,6 +838,11 @@ next time you start this program.</source>
         <translation>собирается завершить работу.</translation>
     </message>
     <message>
+        <location filename="../qsynthMainForm.cpp" line="704"/>
+        <source>Don&apos;t ask this again</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../qsynthMainForm.cpp" line="1057"/>
         <location filename="../qsynthMainForm.cpp" line="1155"/>
         <source>&amp;Start</source>
@@ -877,11 +882,6 @@ in the context menu of the system tray icon.</source>
     <message>
         <location filename="../qsynthMainForm.cpp" line="669"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthMainForm.cpp" line="704"/>
-        <source>Don&apos;t ask this question again</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

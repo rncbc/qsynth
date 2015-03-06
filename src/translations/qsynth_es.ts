@@ -454,11 +454,6 @@ en el menú contextual del icono de la bandeja del sistema.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="704"/>
-        <source>Don&apos;t ask this question again</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.cpp" line="781"/>
         <source>Loading soundfont: &quot;%1&quot;</source>
         <translation>Cargando soundfont: &quot;%1&quot;</translation>
@@ -576,6 +571,11 @@ en el menú contextual del icono de la bandeja del sistema.</translation>
         <location filename="../qsynthMainForm.cpp" line="1103"/>
         <source>&amp;Quit</source>
         <translation>&amp;Terminar</translation>
+    </message>
+    <message>
+        <location filename="../qsynthMainForm.cpp" line="704"/>
+        <source>Don&apos;t ask this again</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1265"/>
