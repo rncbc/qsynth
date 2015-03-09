@@ -3,7 +3,10 @@ Qsynth - A fluidsynth Qt GUI Interface
 
 ChangeLog
 
+
 GIT HEAD
+
+- Added application description as freedesktop.org's AppData.
 
 - New user preference option on whether to show the nagging
   'program will keep running in the system tray' message, on

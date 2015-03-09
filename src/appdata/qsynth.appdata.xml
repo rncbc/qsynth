@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2003-2015 Rui Nuno Capela <rncbc@rncbc.org> -->
+<component type="desktop">
+ <id>qsynth.desktop</id>
+ <metadata_license>GPL-2.0+</metadata_license>
+ <project_license>GPL-2.0+</project_license>
+ <name>Qsynth</name>
+ <summary>A fluidsynth Qt GUI Interface</summary>
+ <description>
+  <p>Qsynth is a fluidsynth GUI front-end application, written in C++ around the
+  Qt4 toolkit, using Qt Designer. Eventually it may evolve into a softsynth
+  management application allowing the user to control and manage a variety of
+  command line softsynths.</p>
+ </description>
+ <screenshots>
+  <screenshot type="default">
+   <image>http://qsynth.sourceforge.net/qsynth-screenshot1.png</image>
+   <caption>The main window showing the application in action</caption>
+  </screenshot>
+ </screenshots>
+ <url type="homepage">http://qsynth.sourceforge.net</url>
+ <updatecontact>rncbc@rncbc.org</updatecontact>
+ <project_group>rncbc.org</project_group>
+</component>
