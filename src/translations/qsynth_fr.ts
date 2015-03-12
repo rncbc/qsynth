@@ -739,7 +739,7 @@ dans le menu contextuel de l&apos;icône de la barre d&apos;état du système.</
     <message>
         <location filename="../qsynthMainForm.cpp" line="669"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne pas montrer ce message à nouveau</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="691"/>
@@ -763,7 +763,7 @@ dans le menu contextuel de l&apos;icône de la barre d&apos;état du système.</
     <message>
         <location filename="../qsynthMainForm.cpp" line="704"/>
         <source>Don&apos;t ask this again</source>
-        <translation type="unfinished"></translation>
+        <translation>Ne pas le redemander</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="781"/>
@@ -1263,17 +1263,17 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="548"/>
         <source>Whether to show system tray message on main window close</source>
-        <translation type="unfinished"></translation>
+        <translation>Si on doit afficher les messages de la barre d&apos;état lors de la fermeture de la fenêtre principale</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="551"/>
         <source>Sho&amp;w system tray message on close</source>
-        <translation type="unfinished"></translation>
+        <translation>Af&amp;ficher les messages de la barre d&apos;état à la fermeture</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="599"/>
         <source>Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Défauts</translation>
     </message>
     <message>
         <source>Alt+C</source>
