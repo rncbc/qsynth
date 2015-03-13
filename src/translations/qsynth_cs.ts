@@ -754,7 +754,7 @@ oblasti panelu.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="669"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Toto hlášení neukazovat znovu</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="691"/>
@@ -778,7 +778,7 @@ oblasti panelu.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="704"/>
         <source>Don&apos;t ask this again</source>
-        <translation type="unfinished"></translation>
+        <translation>Neptat se znovu</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="781"/>
@@ -1361,17 +1361,17 @@ fluidsynthovéhoh zvukového modulu:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="548"/>
         <source>Whether to show system tray message on main window close</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat zprávu v oznamovací oblasti panelu při zavření hlavního okna</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="551"/>
         <source>Sho&amp;w system tray message on close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ukázat zprávu v oznamovací oblasti panelu při zavření</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="599"/>
         <source>Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Výchozí</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="636"/>
