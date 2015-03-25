@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.3.9  2015-03-25  Pre-LAC2015 release frenzy.
 
 - Added application description as freedesktop.org's AppData.
 
@@ -16,9 +16,9 @@ GIT HEAD
   window as visible and active for due top level display,
   especially applicable when minimized to the system tray.
 
-- A man page has beed added.
+- A man page has been added.
 
-- Translations install directory change. (EXPERIMENTAL)
+- Translations install directory change.
 
 - Allow the build system to include an user specified LDFLAGS.
 
