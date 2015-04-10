@@ -740,7 +740,7 @@ Kontextmenü des Symbols im Benachrichtigungsfeld.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="669"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Diese Meldung nicht mehr anzeigen</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="691"/>
@@ -764,7 +764,7 @@ Kontextmenü des Symbols im Benachrichtigungsfeld.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="704"/>
         <source>Don&apos;t ask this again</source>
-        <translation type="unfinished"></translation>
+        <translation>Nicht nochmal nachfragen</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="781"/>
@@ -1339,17 +1339,17 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="548"/>
         <source>Whether to show system tray message on main window close</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachrichten des Benachrichtigungsfelds beim Schließen des Hauptfensters anzeigen</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="551"/>
         <source>Sho&amp;w system tray message on close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nachrichten des Benachrichtigungsfelds beim Beenden anzeigen</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="599"/>
         <source>Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Voreinstellungen</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="636"/>

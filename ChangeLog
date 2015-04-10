@@ -4,6 +4,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- German (de) translation update (by Guido Scholz, thanks).
+
+
 0.3.9  2015-03-25  Pre-LAC2015 release frenzy.
 
 - Added application description as freedesktop.org's AppData.
