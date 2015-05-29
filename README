@@ -2,7 +2,7 @@ qsynth - A fluidsynth Qt GUI Interface
 --------------------------------------
 
 Qsynth is a fluidsynth GUI front-end application written in C++
-around the Qt4 toolkit using Qt Designer. Eventually it may evolve
+around the Qt framework using Qt Designer. Eventually it may evolve
 into a softsynth management application allowing the user to control
 and manage a variety of command line softsynths but for the moment
 it wraps the excellent FluidSynth (http://www.fluidsynth.org).
@@ -22,12 +22,12 @@ The software requirements for build and runtime are listed as follows:
 
   Mandatory:
 
-  - Qt4 (core, gui), C++ class library and tools for
-        crossplatform development and internationalization
-        http://qt-project.org/
+  - Qt framework, C++ class library and tools for
+        cross-platform application and UI development
+        http://qt.io/
 
   - fluidsynth, real-time software synthesizer
-        based on the SoundFont 2 specifications.
+        based on the SoundFont 2 specifications
         http://www.fluidsynth.org/
 
 
