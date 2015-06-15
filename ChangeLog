@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- A new top-level widget window geometry state save and restore
+  sub-routine is now in effect (EXPERIMENTAL).
+
 - Fixed for some strict tests for Qt4 vs. Qt5 configure builds.
 
 - German (de) translation update (by Guido Scholz, thanks).
