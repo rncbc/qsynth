@@ -24,8 +24,8 @@ option (CONFIG_STACKTRACE "Define if debugger stack-trace is enabled." 0)
 option (CONFIG_SYSTEM_TRAY "Define if system tray is enabled." 1)
 
 # Check for Qt
-set (QT_MIN_VERSION "4.4.0")
-find_package (Qt4 REQUIRED)
+set (QT_MIN_VERSION "5.1.0")
+find_package (Qt5 REQUIRED)
 include (${QT_USE_FILE})
 
 include (CheckIncludeFile)

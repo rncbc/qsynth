@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- Prefer Qt5 over Qt4 by default with configure script.
+
 - Complete rewrite of Qt4 vs. Qt5 configure builds. (TESTING)
 
 - A new top-level widget window geometry state save and restore
