@@ -473,7 +473,7 @@
         <translation type="obsolete">Alt+л</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="862"/>
+        <location filename="../qsynthMainForm.ui" line="853"/>
         <location filename="../qsynthMainForm.cpp" line="1103"/>
         <source>&amp;Quit</source>
         <translation>В&amp;ыйти</translation>
@@ -483,12 +483,12 @@
         <translation type="obsolete">Alt+Q</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="859"/>
+        <location filename="../qsynthMainForm.ui" line="850"/>
         <source>Quit this application</source>
         <translation>Выйти из программы</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="973"/>
+        <location filename="../qsynthMainForm.ui" line="964"/>
         <location filename="../qsynthMainForm.cpp" line="1071"/>
         <location filename="../qsynthMainForm.cpp" line="1543"/>
         <source>Set&amp;up...</source>
@@ -499,7 +499,7 @@
         <translation type="obsolete">Alt+н</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="894"/>
+        <location filename="../qsynthMainForm.ui" line="885"/>
         <location filename="../qsynthMainForm.cpp" line="1093"/>
         <source>&amp;Messages</source>
         <translation>&amp;Сообщения</translation>
@@ -509,12 +509,12 @@
         <translation type="obsolete">Alt+с</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="891"/>
+        <location filename="../qsynthMainForm.ui" line="882"/>
         <source>Show/hide the messages log window</source>
         <translation>Показать/скрыть окно отображения сообщений программы</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="913"/>
+        <location filename="../qsynthMainForm.ui" line="904"/>
         <source>A&amp;bout...</source>
         <translation>О &amp;программе...</translation>
     </message>
@@ -523,7 +523,7 @@
         <translation type="obsolete">Alt+п</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="910"/>
+        <location filename="../qsynthMainForm.ui" line="901"/>
         <source>Show information about this application</source>
         <translation>Показать информацию об этом приложении</translation>
     </message>
@@ -544,7 +544,7 @@
         <translation>&amp;Усиление</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="960"/>
+        <location filename="../qsynthMainForm.ui" line="951"/>
         <location filename="../qsynthMainForm.cpp" line="1059"/>
         <source>&amp;Reset</source>
         <translation>С&amp;бросить</translation>
@@ -554,7 +554,7 @@
         <translation type="obsolete">Alt+б</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="957"/>
+        <location filename="../qsynthMainForm.ui" line="948"/>
         <source>Program reset (all channels)</source>
         <translation>Сброс программ (все каналы)</translation>
     </message>
@@ -695,7 +695,7 @@ next time you start this program.</source>
 при следующей загрузке программы.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1044"/>
+        <location filename="../qsynthMainForm.ui" line="1032"/>
         <source>Engine selector (right-click for menu)</source>
         <translation>Выбор движка (меню под правой клавишей мыши)</translation>
     </message>
@@ -711,13 +711,13 @@ next time you start this program.</source>
         <translation type="obsolete">Alt+з</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="947"/>
+        <location filename="../qsynthMainForm.ui" line="938"/>
         <location filename="../qsynthMainForm.cpp" line="1062"/>
         <source>&amp;Panic</source>
         <translation>&amp;Паника</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="944"/>
+        <location filename="../qsynthMainForm.ui" line="935"/>
         <source>System reset</source>
         <translation>Перезагрузка системы</translation>
     </message>
@@ -769,7 +769,7 @@ next time you start this program.</source>
         <translation>Включение эффект хора</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="989"/>
+        <location filename="../qsynthMainForm.ui" line="980"/>
         <location filename="../qsynthMainForm.cpp" line="1066"/>
         <source>&amp;Channels</source>
         <translation>&amp;Каналы</translation>
@@ -779,7 +779,7 @@ next time you start this program.</source>
         <translation type="obsolete">Alt+к</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="986"/>
+        <location filename="../qsynthMainForm.ui" line="977"/>
         <source>Show/hide the channels view window</source>
         <translation>Переключить отображение окна каналов</translation>
     </message>
@@ -812,13 +812,13 @@ next time you start this program.</source>
         <translation>Включение эффекта хора</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="970"/>
+        <location filename="../qsynthMainForm.ui" line="961"/>
         <source>Show instance settings and configuration dialog</source>
         <translation>Показать параметры запущенной копии 
 движка синтезатора и диалог настройки</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="878"/>
+        <location filename="../qsynthMainForm.ui" line="869"/>
         <location filename="../qsynthMainForm.cpp" line="1097"/>
         <source>&amp;Options...</source>
         <translation>&amp;Параметры...</translation>
@@ -828,7 +828,7 @@ next time you start this program.</source>
         <translation type="obsolete">Alt+п</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="875"/>
+        <location filename="../qsynthMainForm.ui" line="866"/>
         <source>Show general options dialog</source>
         <translation>Показать главный диалог настройки параметров</translation>
     </message>
@@ -1058,7 +1058,7 @@ restarting all fluidsynth engines.</source>
         <translation>Qsynth — интерфейс к FluidSynth</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1028"/>
+        <location filename="../qsynthMainForm.ui" line="1019"/>
         <source>Add a new engine</source>
         <translation>Добавить новый движок</translation>
     </message>
@@ -1067,7 +1067,7 @@ restarting all fluidsynth engines.</source>
         <translation type="obsolete">Ins</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1082"/>
+        <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>Delete current engine</source>
         <translation>Удалить активный движок</translation>
     </message>
@@ -1076,7 +1076,7 @@ restarting all fluidsynth engines.</source>
         <translation type="obsolete">Del</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="841"/>
+        <location filename="../qsynthMainForm.ui" line="832"/>
         <source>Output peak level</source>
         <translation>Индикатор уровня громкости</translation>
     </message>

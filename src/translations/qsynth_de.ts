@@ -390,7 +390,7 @@
         <translation>Qsynth - Eine Qt basierte grafische Benutzeroberfläche für fluidsynth</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1028"/>
+        <location filename="../qsynthMainForm.ui" line="1019"/>
         <source>Add a new engine</source>
         <translation>Neues Klangmodul hinzufügen</translation>
     </message>
@@ -399,12 +399,12 @@
         <translation type="obsolete">Einf</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1044"/>
+        <location filename="../qsynthMainForm.ui" line="1032"/>
         <source>Engine selector (right-click for menu)</source>
         <translation>Klangmodul auswählen (Rechtsklick für Menü)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1082"/>
+        <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>Delete current engine</source>
         <translation>Aktuelles Klangmodul löschen</translation>
     </message>
@@ -413,12 +413,12 @@
         <translation type="obsolete">Entf</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="986"/>
+        <location filename="../qsynthMainForm.ui" line="977"/>
         <source>Show/hide the channels view window</source>
         <translation>Zeige/verberge Fenster mit Kanalübersicht</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="989"/>
+        <location filename="../qsynthMainForm.ui" line="980"/>
         <location filename="../qsynthMainForm.cpp" line="1066"/>
         <source>&amp;Channels</source>
         <translation>&amp;Kanäle...</translation>
@@ -444,12 +444,12 @@
         <translation type="obsolete">Alt+N</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="957"/>
+        <location filename="../qsynthMainForm.ui" line="948"/>
         <source>Program reset (all channels)</source>
         <translation>Programm zurücksetzen (alle Kanäle)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="960"/>
+        <location filename="../qsynthMainForm.ui" line="951"/>
         <location filename="../qsynthMainForm.cpp" line="1059"/>
         <source>&amp;Reset</source>
         <translation>&amp;Zurücksetzen</translation>
@@ -459,12 +459,12 @@
         <translation type="obsolete">Alt+Z</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="970"/>
+        <location filename="../qsynthMainForm.ui" line="961"/>
         <source>Show instance settings and configuration dialog</source>
         <translation>Konfigurationsdialog mit den aktuellen Einstellungen anzeigen</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="973"/>
+        <location filename="../qsynthMainForm.ui" line="964"/>
         <location filename="../qsynthMainForm.cpp" line="1071"/>
         <location filename="../qsynthMainForm.cpp" line="1543"/>
         <source>Set&amp;up...</source>
@@ -491,12 +491,12 @@
         <translation>Verstärkereinstellung für Ausgangsignal</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="944"/>
+        <location filename="../qsynthMainForm.ui" line="935"/>
         <source>System reset</source>
         <translation>System zurücksetzen</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="947"/>
+        <location filename="../qsynthMainForm.ui" line="938"/>
         <location filename="../qsynthMainForm.cpp" line="1062"/>
         <source>&amp;Panic</source>
         <translation>&amp;Panik</translation>
@@ -657,17 +657,17 @@
         <translation>Trenn&amp;zeit</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="841"/>
+        <location filename="../qsynthMainForm.ui" line="832"/>
         <source>Output peak level</source>
         <translation>Ausgangspegelanzeige</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="859"/>
+        <location filename="../qsynthMainForm.ui" line="850"/>
         <source>Quit this application</source>
         <translation>Diese Anwendung beenden</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="862"/>
+        <location filename="../qsynthMainForm.ui" line="853"/>
         <location filename="../qsynthMainForm.cpp" line="1103"/>
         <source>&amp;Quit</source>
         <translation>&amp;Beenden</translation>
@@ -677,12 +677,12 @@
         <translation type="obsolete">Alt+B</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="875"/>
+        <location filename="../qsynthMainForm.ui" line="866"/>
         <source>Show general options dialog</source>
         <translation>Dialog für die allgemeinen Optionen anzeigen</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="878"/>
+        <location filename="../qsynthMainForm.ui" line="869"/>
         <location filename="../qsynthMainForm.cpp" line="1097"/>
         <source>&amp;Options...</source>
         <translation>&amp;Optionen...</translation>
@@ -692,12 +692,12 @@
         <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="891"/>
+        <location filename="../qsynthMainForm.ui" line="882"/>
         <source>Show/hide the messages log window</source>
         <translation>Meldungsfenster anzeigen/verbergen</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="894"/>
+        <location filename="../qsynthMainForm.ui" line="885"/>
         <location filename="../qsynthMainForm.cpp" line="1093"/>
         <source>&amp;Messages</source>
         <translation>&amp;Meldungen...</translation>
@@ -707,12 +707,12 @@
         <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="910"/>
+        <location filename="../qsynthMainForm.ui" line="901"/>
         <source>Show information about this application</source>
         <translation>Informationen über diese Anwendung anzeigen</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="913"/>
+        <location filename="../qsynthMainForm.ui" line="904"/>
         <source>A&amp;bout...</source>
         <translation>&amp;Über...</translation>
     </message>

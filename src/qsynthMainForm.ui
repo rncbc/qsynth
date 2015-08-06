@@ -819,15 +819,6 @@
    </item>
    <item row="0" column="4" rowspan="4">
     <widget class="QGroupBox" name="OutputGroupBox">
-     <property name="font">
-      <font>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="title">
-      <string/>
-     </property>
      <layout class="QVBoxLayout">
       <property name="spacing">
        <number>4</number>
@@ -1027,9 +1018,6 @@
        <property name="toolTip">
         <string>Add a new engine</string>
        </property>
-       <property name="text">
-        <string/>
-       </property>
        <property name="icon">
         <iconset resource="qsynth.qrc">:/images/add1.png</iconset>
        </property>
@@ -1080,9 +1068,6 @@
        </property>
        <property name="toolTip">
         <string>Delete current engine</string>
-       </property>
-       <property name="text">
-        <string/>
        </property>
        <property name="icon">
         <iconset resource="qsynth.qrc">:/images/remove1.png</iconset>

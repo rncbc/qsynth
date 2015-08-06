@@ -394,7 +394,7 @@
         <translation>Qsynth - Na Qt založené uživatelské rozhraní pro fluidsynth</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1028"/>
+        <location filename="../qsynthMainForm.ui" line="1019"/>
         <source>Add a new engine</source>
         <translation>Přidat nový zvukový modul</translation>
     </message>
@@ -403,12 +403,12 @@
         <translation type="obsolete">Vložit</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1044"/>
+        <location filename="../qsynthMainForm.ui" line="1032"/>
         <source>Engine selector (right-click for menu)</source>
         <translation>Vybrat zvukový modul (pravým klepnutím v nabídce)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1082"/>
+        <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>Delete current engine</source>
         <translation>Smazat nynější zvukový modul</translation>
     </message>
@@ -417,12 +417,12 @@
         <translation type="obsolete">Odstranit</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="986"/>
+        <location filename="../qsynthMainForm.ui" line="977"/>
         <source>Show/hide the channels view window</source>
         <translation>Ukázat/Skrýt okno s pohledem na kanály</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="989"/>
+        <location filename="../qsynthMainForm.ui" line="980"/>
         <location filename="../qsynthMainForm.cpp" line="1066"/>
         <source>&amp;Channels</source>
         <translation>&amp;Kanály</translation>
@@ -448,12 +448,12 @@
         <translation type="obsolete">ALT+S</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="957"/>
+        <location filename="../qsynthMainForm.ui" line="948"/>
         <source>Program reset (all channels)</source>
         <translation>Nastavit znovu program (všechny kanály)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="960"/>
+        <location filename="../qsynthMainForm.ui" line="951"/>
         <location filename="../qsynthMainForm.cpp" line="1059"/>
         <source>&amp;Reset</source>
         <translation>&amp;Nastavit znovu</translation>
@@ -463,12 +463,12 @@
         <translation type="obsolete">Alt+R</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="970"/>
+        <location filename="../qsynthMainForm.ui" line="961"/>
         <source>Show instance settings and configuration dialog</source>
         <translation>Ukázat dialog nastavení s nynějším nastavením</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="973"/>
+        <location filename="../qsynthMainForm.ui" line="964"/>
         <location filename="../qsynthMainForm.cpp" line="1071"/>
         <location filename="../qsynthMainForm.cpp" line="1543"/>
         <source>Set&amp;up...</source>
@@ -495,12 +495,12 @@
         <translation>Nastavení zesílení pro výstupní signál</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="944"/>
+        <location filename="../qsynthMainForm.ui" line="935"/>
         <source>System reset</source>
         <translation>Znovunastavit systém</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="947"/>
+        <location filename="../qsynthMainForm.ui" line="938"/>
         <location filename="../qsynthMainForm.cpp" line="1062"/>
         <source>&amp;Panic</source>
         <translation>&amp;Panika</translation>
@@ -661,17 +661,17 @@
         <translation>&amp;Hloubka - čas oddělení</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="841"/>
+        <location filename="../qsynthMainForm.ui" line="832"/>
         <source>Output peak level</source>
         <translation>Ukazatel výstupní hladiny</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="859"/>
+        <location filename="../qsynthMainForm.ui" line="850"/>
         <source>Quit this application</source>
         <translation>Ukončit tento program</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="862"/>
+        <location filename="../qsynthMainForm.ui" line="853"/>
         <location filename="../qsynthMainForm.cpp" line="1103"/>
         <source>&amp;Quit</source>
         <translation>&amp;Ukončit</translation>
@@ -681,12 +681,12 @@
         <translation type="obsolete">Alt+B</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="875"/>
+        <location filename="../qsynthMainForm.ui" line="866"/>
         <source>Show general options dialog</source>
         <translation>Ukázat dialog pro všeobecné volby</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="878"/>
+        <location filename="../qsynthMainForm.ui" line="869"/>
         <location filename="../qsynthMainForm.cpp" line="1097"/>
         <source>&amp;Options...</source>
         <translation>&amp;Volby...</translation>
@@ -696,12 +696,12 @@
         <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="891"/>
+        <location filename="../qsynthMainForm.ui" line="882"/>
         <source>Show/hide the messages log window</source>
         <translation>Ukázat/Skrýt okno se zápisy hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="894"/>
+        <location filename="../qsynthMainForm.ui" line="885"/>
         <location filename="../qsynthMainForm.cpp" line="1093"/>
         <source>&amp;Messages</source>
         <translation>&amp;Hlášení</translation>
@@ -711,12 +711,12 @@
         <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="910"/>
+        <location filename="../qsynthMainForm.ui" line="901"/>
         <source>Show information about this application</source>
         <translation>Ukázat informace o tomto programu</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="913"/>
+        <location filename="../qsynthMainForm.ui" line="904"/>
         <source>A&amp;bout...</source>
         <translation>&amp;O...</translation>
     </message>

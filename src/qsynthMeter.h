@@ -1,7 +1,7 @@
 // qsynthMeter.h
 //
 /****************************************************************************
-   Copyright (C) 2004-2009, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2015, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -41,8 +41,6 @@ public:
 
 	// Constructor.
 	qsynthMeterScale(qsynthMeter *pMeter);
-	// Default destructor.
-	~qsynthMeterScale();
 
 protected:
 
@@ -73,8 +71,6 @@ public:
 
 	// Constructor.
 	qsynthMeterValue(qsynthMeter *pMeter);
-	// Default destructor.
-	~qsynthMeterValue();
 
 	// Frame value accessors.
 	void setValue(float fValue);
@@ -101,10 +97,10 @@ private:
 
 	int   m_iValue;
 	float m_fValueDecay;
-	int   m_iPeak;
 
-	int   m_iPeakHold;
+	int   m_iPeak;
 	float m_fPeakDecay;
+	int   m_iPeakHold;
 	int   m_iPeakColor;
 };
 

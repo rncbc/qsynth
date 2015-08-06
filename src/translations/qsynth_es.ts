@@ -525,25 +525,25 @@ en el menú contextual del icono de la bandeja del sistema.</translation>
         <translation>&amp;Arrancar</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="960"/>
+        <location filename="../qsynthMainForm.ui" line="951"/>
         <location filename="../qsynthMainForm.cpp" line="1059"/>
         <source>&amp;Reset</source>
         <translation>&amp;Reajustar</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="947"/>
+        <location filename="../qsynthMainForm.ui" line="938"/>
         <location filename="../qsynthMainForm.cpp" line="1062"/>
         <source>&amp;Panic</source>
         <translation>&amp;Pánico</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="989"/>
+        <location filename="../qsynthMainForm.ui" line="980"/>
         <location filename="../qsynthMainForm.cpp" line="1066"/>
         <source>&amp;Channels</source>
         <translation>&amp;Canales</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="973"/>
+        <location filename="../qsynthMainForm.ui" line="964"/>
         <location filename="../qsynthMainForm.cpp" line="1071"/>
         <location filename="../qsynthMainForm.cpp" line="1543"/>
         <source>Set&amp;up...</source>
@@ -555,19 +555,19 @@ en el menú contextual del icono de la bandeja del sistema.</translation>
         <translation>Motores</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="894"/>
+        <location filename="../qsynthMainForm.ui" line="885"/>
         <location filename="../qsynthMainForm.cpp" line="1093"/>
         <source>&amp;Messages</source>
         <translation>M&amp;ensajes</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="878"/>
+        <location filename="../qsynthMainForm.ui" line="869"/>
         <location filename="../qsynthMainForm.cpp" line="1097"/>
         <source>&amp;Options...</source>
         <translation>O&amp;pciones...</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="862"/>
+        <location filename="../qsynthMainForm.ui" line="853"/>
         <location filename="../qsynthMainForm.cpp" line="1103"/>
         <source>&amp;Quit</source>
         <translation>&amp;Terminar</translation>
@@ -798,7 +798,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Qsynth - Un interfaz gráfico basado en Qt para Fluidsynth</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1028"/>
+        <location filename="../qsynthMainForm.ui" line="1019"/>
         <source>Add a new engine</source>
         <translation>Añadir un nuevo motor</translation>
     </message>
@@ -807,12 +807,12 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Insert</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1044"/>
+        <location filename="../qsynthMainForm.ui" line="1032"/>
         <source>Engine selector (right-click for menu)</source>
         <translation>Selector de motor (clic con el botón derecho del ratón para menú)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="1082"/>
+        <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>Delete current engine</source>
         <translation>Borrar el motor actual</translation>
     </message>
@@ -821,7 +821,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Supr</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="986"/>
+        <location filename="../qsynthMainForm.ui" line="977"/>
         <source>Show/hide the channels view window</source>
         <translation>Mostrar/ocultar la ventana de vista de canales</translation>
     </message>
@@ -839,7 +839,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Alt+S</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="957"/>
+        <location filename="../qsynthMainForm.ui" line="948"/>
         <source>Program reset (all channels)</source>
         <translation>Reajustar el programa (todos los canales)</translation>
     </message>
@@ -848,7 +848,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Alr+R</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="970"/>
+        <location filename="../qsynthMainForm.ui" line="961"/>
         <source>Show instance settings and configuration dialog</source>
         <translation>Mostrar ajustes de la instancia y diálogo de configuración</translation>
     </message>
@@ -873,7 +873,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Ganancia de la salida principal</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="944"/>
+        <location filename="../qsynthMainForm.ui" line="935"/>
         <source>System reset</source>
         <translation>Reajuste del sistema</translation>
     </message>
@@ -1033,12 +1033,12 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>&amp;Intensidad</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="841"/>
+        <location filename="../qsynthMainForm.ui" line="832"/>
         <source>Output peak level</source>
         <translation>Nivel de pico de salida</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="859"/>
+        <location filename="../qsynthMainForm.ui" line="850"/>
         <source>Quit this application</source>
         <translation>Terminar esta aplcación</translation>
     </message>
@@ -1047,7 +1047,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Alt+Q</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="875"/>
+        <location filename="../qsynthMainForm.ui" line="866"/>
         <source>Show general options dialog</source>
         <translation>Mostrar diálogo de opciones generales</translation>
     </message>
@@ -1056,7 +1056,7 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="891"/>
+        <location filename="../qsynthMainForm.ui" line="882"/>
         <source>Show/hide the messages log window</source>
         <translation>Mostrar/ocultar la ventana de registro de mensajes</translation>
     </message>
@@ -1065,12 +1065,12 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="910"/>
+        <location filename="../qsynthMainForm.ui" line="901"/>
         <source>Show information about this application</source>
         <translation>Mostrar información sobre esta aplicación</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.ui" line="913"/>
+        <location filename="../qsynthMainForm.ui" line="904"/>
         <source>A&amp;bout...</source>
         <translation>A&amp;cerca de...</translation>
     </message>

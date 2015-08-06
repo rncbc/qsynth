@@ -1,7 +1,7 @@
 // qsynthMeter.cpp
 //
 /****************************************************************************
-   Copyright (C) 2004-2009, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2015, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -57,24 +57,20 @@ qsynthMeterScale::qsynthMeterScale( qsynthMeter *pMeter )
 	QWidget::setMinimumWidth(16);
 //	QWidget::setBackgroundRole(QPalette::Mid);
 
-	QWidget::setFont(QFont(font().family(), 6));
-}
-
-// Default destructor.
-qsynthMeterScale::~qsynthMeterScale (void)
-{
+	const QFont& font = QWidget::font();
+	QWidget::setFont(QFont(font.family(), font.pointSize() - 4));
 }
 
 
 // Draw IEC scale line and label; assumes labels drawed from top to bottom.
-void qsynthMeterScale::drawLineLabel ( QPainter *p,
-	int y, const QString& sLabel )
+void qsynthMeterScale::drawLineLabel (
+	QPainter *p, int y, const QString& sLabel )
 {
-	int iCurrY = QWidget::height() - y;
-	int iWidth = QWidget::width()  - 2;
+	const int iCurrY = QWidget::height() - y;
+	const int iWidth = QWidget::width()  - 2;
 
 	const QFontMetrics& fm = p->fontMetrics();
-	int iMidHeight = (fm.height() >> 1);
+	const int iMidHeight = (fm.height() >> 1);
 
 	if (iCurrY < iMidHeight || iCurrY > m_iLastY + iMidHeight) {
 		if (fm.width(sLabel) < iWidth - 5) {
@@ -96,7 +92,10 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 
 	m_iLastY = 0;
 
-	p.setPen(QWidget::palette().mid().color().dark(140));
+	const QPalette& pal = QWidget::palette();
+	const bool bDark = (pal.base().color().value() < 0x7f);
+	const QColor& color = pal.midlight().color();
+	p.setPen(bDark ? color.lighter() : color.darker());
 
 	drawLineLabel(&p, m_pMeter->iec_level(qsynthMeter::Color0dB),   "0");
 	drawLineLabel(&p, m_pMeter->iec_level(qsynthMeter::Color3dB),   "3");
@@ -115,26 +114,21 @@ void qsynthMeterScale::paintEvent ( QPaintEvent * )
 qsynthMeterValue::qsynthMeterValue ( qsynthMeter *pMeter )
 	: QFrame(pMeter), m_pMeter(pMeter)
 {
-	m_fValue      = 0.0f;
+	m_fValue = 0.0f;
 
-	m_iValue      = 0;
+	m_iValue = 0;
 	m_fValueDecay = QSYNTH_METER_DECAY_RATE1;
 
-	m_iPeak       = 0;
-	m_iPeakHold   = 0;
-	m_fPeakDecay  = QSYNTH_METER_DECAY_RATE2;
-	m_iPeakColor  = qsynthMeter::Color6dB;
+	m_iPeak = 0;
+	m_fPeakDecay = QSYNTH_METER_DECAY_RATE2;
+	m_iPeakHold  = 0;
+	m_iPeakColor = qsynthMeter::Color6dB;
 
 	QWidget::setMinimumWidth(12);
 	QFrame::setBackgroundRole(QPalette::NoRole);
 
 	QFrame::setFrameShape(QFrame::StyledPanel);
 	QFrame::setFrameShadow(QFrame::Sunken);
-}
-
-// Default destructor.
-qsynthMeterValue::~qsynthMeterValue (void)
-{
 }
 
 
@@ -214,8 +208,9 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 {
 	QPainter painter(this);
 
-	int w = QWidget::width();
-	int h = QWidget::height();
+	const int w = QWidget::width();
+	const int h = QWidget::height();
+
 	int y;
 
 	if (isEnabled()) {
@@ -324,7 +319,7 @@ qsynthMeter::qsynthMeter ( QWidget *pParent )
 		}
 		int iStripCount = 2 * m_iPortCount;
 		if (m_iPortCount > 1)
-			iStripCount--;
+			--iStripCount;
 		QWidget::setMinimumSize(12 * iStripCount, 120);
 		QWidget::setMaximumWidth(16 * iStripCount);
 	} else {
@@ -422,8 +417,8 @@ const QPixmap& qsynthMeter::pixmap (void) const
 
 void qsynthMeter::updatePixmap (void)
 {
-	int w = QWidget::width();
-	int h = QWidget::height();
+	const int w = QWidget::width();
+	const int h = QWidget::height();
 
 	QLinearGradient grad(0, 0, 0, h);
 	grad.setColorAt(0.2f, color(ColorOver));
