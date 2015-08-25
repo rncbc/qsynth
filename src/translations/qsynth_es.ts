@@ -154,14 +154,6 @@
         <translation>La opción -r requiere un argumento (frecuencia de muestreo).</translation>
     </message>
     <message>
-        <source>Option -R requires an argument (reverb).</source>
-        <translation type="obsolete">La opción -R requiere un argumento (reverberación).</translation>
-    </message>
-    <message>
-        <source>Option -C requires an argument (chorus).</source>
-        <translation type="obsolete">La opción -C requiere un argumento (coro).</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptions.cpp" line="338"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>La opción -g requiere un argumento (ganancia).</translation>
@@ -170,10 +162,6 @@
         <location filename="../qsynthOptions.cpp" line="347"/>
         <source>Option -o requires an argument.</source>
         <translation>La opción -o requiere un argumento.</translation>
-    </message>
-    <message>
-        <source>Option -o failed to set &apos;%1&apos;.</source>
-        <translation type="obsolete">La opción -o ha fallado al establecer &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="369"/>
@@ -251,10 +239,6 @@
         <translation>&amp;Cerrar</translation>
     </message>
     <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+C</translation>
-    </message>
-    <message>
         <location filename="../qsynthAboutForm.ui" line="71"/>
         <source>About Qt</source>
         <translation>Acerca de Qt</translation>
@@ -298,14 +282,6 @@
         <translation>¿Está seguro?</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation type="obsolete">Aceptar</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Cancelar</translation>
-    </message>
-    <message>
         <location filename="../qsynthChannelsForm.ui" line="36"/>
         <source>Qsynth: Channels</source>
         <translation>Qsynth: Canales</translation>
@@ -336,10 +312,6 @@
         <translation>&amp;Guardar</translation>
     </message>
     <message>
-        <source>Alt+S</source>
-        <translation type="obsolete">Alt+G</translation>
-    </message>
-    <message>
         <location filename="../qsynthChannelsForm.ui" line="108"/>
         <source>Delete current settings preset</source>
         <translation>Borrar el conjunto de ajustes actual</translation>
@@ -348,10 +320,6 @@
         <location filename="../qsynthChannelsForm.ui" line="111"/>
         <source>&amp;Delete</source>
         <translation>&amp;Borrar</translation>
-    </message>
-    <message>
-        <source>Alt+D</source>
-        <translation type="obsolete">Alt+B</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="143"/>
@@ -403,14 +371,6 @@
         <translation>Información</translation>
     </message>
     <message>
-        <source>The program will keep running in the system tray.
-
-To terminate the program, please choose &quot;Quit&quot; in the context menu of the system tray entry.</source>
-        <translation type="obsolete">El programa va a continuar en ejecución en la bandeja del sistema
-
-Para terminar el programa, por favor elija &quot;Salir&quot; en el menú contextual o en el menú del icono de la bandeja del sistema.</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.cpp" line="691"/>
         <location filename="../qsynthMainForm.cpp" line="1264"/>
         <location filename="../qsynthMainForm.cpp" line="2006"/>
@@ -428,14 +388,6 @@ Para terminar el programa, por favor elija &quot;Salir&quot; en el menú context
         <location filename="../qsynthMainForm.cpp" line="1267"/>
         <source>Are you sure?</source>
         <translation>¿Está seguro?</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">Aceptar</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Cancelar</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="653"/>
@@ -773,14 +725,6 @@ trastornos temporales en MIDI y audio.</translation>
         <translation>¿Quiere reiniciar todos los motores ahora?</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="obsolete">Si</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">No</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.cpp" line="2036"/>
         <source>New settings will be effective after
 restarting the fluidsynth engine:</source>
@@ -803,10 +747,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Añadir un nuevo motor</translation>
     </message>
     <message>
-        <source>Ins</source>
-        <translation type="obsolete">Insert</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="1032"/>
         <source>Engine selector (right-click for menu)</source>
         <translation>Selector de motor (clic con el botón derecho del ratón para menú)</translation>
@@ -817,17 +757,9 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Borrar el motor actual</translation>
     </message>
     <message>
-        <source>Del</source>
-        <translation type="obsolete">Supr</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="977"/>
         <source>Show/hide the channels view window</source>
         <translation>Mostrar/ocultar la ventana de vista de canales</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+C</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="130"/>
@@ -835,26 +767,14 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Reinicio completo del motor</translation>
     </message>
     <message>
-        <source>Alt+S</source>
-        <translation type="obsolete">Alt+S</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="948"/>
         <source>Program reset (all channels)</source>
         <translation>Reajustar el programa (todos los canales)</translation>
     </message>
     <message>
-        <source>Alt+R</source>
-        <translation type="obsolete">Alr+R</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="961"/>
         <source>Show instance settings and configuration dialog</source>
         <translation>Mostrar ajustes de la instancia y diálogo de configuración</translation>
-    </message>
-    <message>
-        <source>Alt+U</source>
-        <translation type="obsolete">Alt+U</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="49"/>
@@ -878,10 +798,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Reajuste del sistema</translation>
     </message>
     <message>
-        <source>Alt+P</source>
-        <translation type="obsolete">Alt+P</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="149"/>
         <source>Reverb</source>
         <translation>Reverberación</translation>
@@ -895,10 +811,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthMainForm.ui" line="176"/>
         <source>Ac&amp;tive</source>
         <translation>Ac&amp;tivar</translation>
-    </message>
-    <message>
-        <source>Alt+T</source>
-        <translation type="obsolete">Alt+T</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="189"/>
@@ -980,10 +892,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Act&amp;ivar</translation>
     </message>
     <message>
-        <source>Alt+I</source>
-        <translation type="obsolete">Alt+I</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="553"/>
         <location filename="../qsynthMainForm.ui" line="600"/>
         <source>Number of Chorus Stages</source>
@@ -1043,26 +951,14 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Terminar esta aplcación</translation>
     </message>
     <message>
-        <source>Alt+Q</source>
-        <translation type="obsolete">Alt+Q</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="866"/>
         <source>Show general options dialog</source>
         <translation>Mostrar diálogo de opciones generales</translation>
     </message>
     <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+O</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="882"/>
         <source>Show/hide the messages log window</source>
         <translation>Mostrar/ocultar la ventana de registro de mensajes</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="901"/>
@@ -1073,10 +969,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthMainForm.ui" line="904"/>
         <source>A&amp;bout...</source>
         <translation>A&amp;cerca de...</translation>
-    </message>
-    <message>
-        <source>Alt+B</source>
-        <translation type="obsolete">Alt+B</translation>
     </message>
 </context>
 <context>
@@ -1120,18 +1012,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>¿Quiere aplicar los cambios?</translation>
     </message>
     <message>
-        <source>Apply</source>
-        <translation type="obsolete">Aplicar</translation>
-    </message>
-    <message>
-        <source>Discard</source>
-        <translation type="obsolete">Descartar</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Cancelar</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.cpp" line="299"/>
         <source>Messages Log</source>
         <translation>Registro de mensajes</translation>
@@ -1172,10 +1052,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>&amp;Tipografía...</translation>
     </message>
     <message>
-        <source>Alt+F</source>
-        <translation type="obsolete">Alt+T</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="145"/>
         <source>Whether to keep a maximum number of lines in the messages window</source>
         <translation>Determina si se ha de conservar un máximo número de líneas en la ventana de mensajes</translation>
@@ -1184,10 +1060,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthOptionsForm.ui" line="148"/>
         <source>&amp;Messages limit:</source>
         <translation>Límite de &amp;mensajes:</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+m</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="161"/>
@@ -1250,10 +1122,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Determina si se ha de activar el registro de mensajes en un archivo.</translation>
     </message>
     <message>
-        <source>&amp;Messages log file:</source>
-        <translation type="obsolete">Archivo de registro de &amp;mensajes:</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="440"/>
         <source>Other</source>
         <translation>Otros</translation>
@@ -1269,10 +1137,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>&amp;Confirmar el cierre de la aplicación</translation>
     </message>
     <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+C</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="471"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Determina si se han de mantener todas las ventanas hijas por encima de la ventana principal</translation>
@@ -1281,10 +1145,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthOptionsForm.ui" line="474"/>
         <source>&amp;Keep child windows always on top</source>
         <translation>&amp;Mantener las ventanas hijas siempre encima</translation>
-    </message>
-    <message>
-        <source>Alt+K</source>
-        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="487"/>
@@ -1297,10 +1157,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Capturar la salida &amp;estándard</translation>
     </message>
     <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+e</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="503"/>
         <source>Whether to monitor and show engine output peak level meters</source>
         <translation>Determina si se han de monitorizar y mostrar los medidores de picos de salida del motor</translation>
@@ -1309,10 +1165,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthOptionsForm.ui" line="506"/>
         <source>Output &amp;peak level meters</source>
         <translation>Medidores de &amp;picos de nivel de salida</translation>
-    </message>
-    <message>
-        <source>Alt+P</source>
-        <translation type="obsolete">Alt+p</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="532"/>
@@ -1325,10 +1177,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>&amp;Habilitar el icono en la bandeja del sistema</translation>
     </message>
     <message>
-        <source>Alt+E</source>
-        <translation type="obsolete">Alt+H</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="564"/>
         <source>Whether to start minimized to system tray</source>
         <translation>Determina si se inicia minimizado en la bandeja del sistema</translation>
@@ -1337,14 +1185,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthOptionsForm.ui" line="567"/>
         <source>Start minimi&amp;zed to system tray</source>
         <translation>Iniciar minimi&amp;zado en la bandeja del sistema</translation>
-    </message>
-    <message>
-        <source>Alt+Z</source>
-        <translation type="obsolete">Alt+z</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">Aceptar</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="302"/>
@@ -1386,14 +1226,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthOptionsForm.ui" line="423"/>
         <source>Linear</source>
         <translation>Lineal</translation>
-    </message>
-    <message>
-        <source>Knob graphic style:</source>
-        <translation type="obsolete">Estilo gráfico de botones:</translation>
-    </message>
-    <message>
-        <source>Mouse motion behavior:</source>
-        <translation type="obsolete">Comportamiento del ratón:</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="406"/>
@@ -1461,10 +1293,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Archivo de &amp;registro de mensajes:</translation>
     </message>
     <message>
-        <source>Alt+L</source>
-        <translation type="obsolete">Alt+L</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="317"/>
         <source>Kno&amp;b graphic style:</source>
         <translation>Estilo gráfico de &amp;botones rotatorios:</translation>
@@ -1501,14 +1329,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthPresetForm.ui" line="33"/>
         <source>Qsynth: Channel Preset</source>
         <translation>Qsynth: Preajuste de canal</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">Aceptar</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Cancelar</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="59"/>
@@ -1585,18 +1405,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>¿Quiere aplicar los cambios?</translation>
     </message>
     <message>
-        <source>Apply</source>
-        <translation type="obsolete">Aplicar</translation>
-    </message>
-    <message>
-        <source>Discard</source>
-        <translation type="obsolete">Descartar</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Cancelar</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.cpp" line="770"/>
         <source>Open...</source>
         <translation>Abrir...</translation>
@@ -1636,10 +1444,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthSetupForm.cpp" line="835"/>
         <source>Add anyway?</source>
         <translation>¿Añadir de todas formas?</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">Aceptar</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="862"/>
@@ -1698,10 +1502,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Controlador de entrada MIDI</translation>
     </message>
     <message>
-        <source>&amp;ALSA Sequencer Client ID:</source>
-        <translation type="obsolete">ID de cliente del secuenciador &amp;ALSA:</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="283"/>
         <source>MIDI Client Name ID (ALSA/CoreMidi):</source>
         <translation>ID de cliente MIDI (ALSA/CoreMidi):</translation>
@@ -1733,10 +1533,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>&amp;Volcar eventos de encaminador MIDI</translation>
     </message>
     <message>
-        <source>Alt+D</source>
-        <translation type="obsolete">Alt+V</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="177"/>
         <source>Print out verbose messages about MIDI events</source>
         <translation>Imprimir mensajes detallados sobre eventos MIDI</translation>
@@ -1745,10 +1541,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthSetupForm.ui" line="180"/>
         <source>&amp;Verbose MIDI event messages</source>
         <translation>Mensajes &amp;detallados de eventos MIDI</translation>
-    </message>
-    <message>
-        <source>Alt+V</source>
-        <translation type="obsolete">Alt+d</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="203"/>
@@ -1771,14 +1563,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Habilitar &amp;Entrada MIDI</translation>
     </message>
     <message>
-        <source>Alt+I</source>
-        <translation type="obsolete">Alt+E</translation>
-    </message>
-    <message>
-        <source>MIDI bank select mode</source>
-        <translation type="obsolete">Modo de selección de banco MIDI</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="236"/>
         <source>gm</source>
         <translation type="unfinished">gm</translation>
@@ -1797,10 +1581,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthSetupForm.ui" line="251"/>
         <source>xs</source>
         <translation type="unfinished">xs</translation>
-    </message>
-    <message>
-        <source>MIDI &amp;Bank Select</source>
-        <translation type="obsolete">Selección de &amp;banco MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="219"/>
@@ -2019,10 +1799,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>Conexión automática de salidas de &amp;JACK</translation>
     </message>
     <message>
-        <source>Alt+J</source>
-        <translation type="obsolete">Alt+J</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="814"/>
         <source>Create multiple JACK output ports for channels, groups and effects</source>
         <translation>Creación de múltiples puertos de salida de JACK para canales, grupos y efectos</translation>
@@ -2031,10 +1807,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthSetupForm.ui" line="817"/>
         <source>&amp;Multiple JACK Outputs</source>
         <translation>&amp;Múltiples salidas de JACK</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="841"/>
@@ -2073,10 +1845,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>&amp;Abrir...</translation>
     </message>
     <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+A</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="914"/>
         <source>Edit selected soundfont bank offset</source>
         <translation>Editar desplazamiento del banco de soundfont</translation>
@@ -2085,10 +1853,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthSetupForm.ui" line="917"/>
         <source>&amp;Edit</source>
         <translation>&amp;Edición</translation>
-    </message>
-    <message>
-        <source>Alt+E</source>
-        <translation type="obsolete">Alt+E</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="927"/>
@@ -2101,10 +1865,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <translation>&amp;Borrar</translation>
     </message>
     <message>
-        <source>Alt+R</source>
-        <translation type="obsolete">Alt+B</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="953"/>
         <source>Move up selected soundfont towards the top of stack</source>
         <translation>Mover hacia arriba el soundfont seleccionado hacia la cima de la pila</translation>
@@ -2113,10 +1873,6 @@ de reiniciar el motor de Fluidsynth:</translation>
         <location filename="../qsynthSetupForm.ui" line="956"/>
         <source>&amp;Up</source>
         <translation>A&amp;rriba</translation>
-    </message>
-    <message>
-        <source>Alt+U</source>
-        <translation type="obsolete">Alt+r</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="966"/>

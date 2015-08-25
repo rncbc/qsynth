@@ -149,14 +149,6 @@
         <translation>Ключ -r требует аргумента (sample-rate).</translation>
     </message>
     <message>
-        <source>Option -R requires an argument (reverb).</source>
-        <translation type="obsolete">Ключ -R требует аргумента (reverb).</translation>
-    </message>
-    <message>
-        <source>Option -C requires an argument (chorus).</source>
-        <translation type="obsolete">Ключ -C требует аргумента (chorus).</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptions.cpp" line="338"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Ключ -g требует аргумента (gain).</translation>
@@ -175,10 +167,6 @@
         <location filename="../qsynthOptions.cpp" line="170"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
         <translation>Использование: %1 [ключи] [файлы SF2] [файлы MIDI]</translation>
-    </message>
-    <message>
-        <source>Option -o failed to set &apos;%1&apos;.</source>
-        <translation type="obsolete">Ключу -o не удалось установить &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="369"/>
@@ -204,10 +192,6 @@
         <location filename="../qsynthAboutForm.ui" line="61"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрыть</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+з</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="43"/>
@@ -293,10 +277,6 @@
         <translation>Со&amp;хранить</translation>
     </message>
     <message>
-        <source>Alt+S</source>
-        <translation type="obsolete">Alt+S</translation>
-    </message>
-    <message>
         <location filename="../qsynthChannelsForm.ui" line="92"/>
         <source>Save settings as current preset name</source>
         <translation>Сохранить настройки в текущую предустановку</translation>
@@ -305,10 +285,6 @@
         <location filename="../qsynthChannelsForm.ui" line="111"/>
         <source>&amp;Delete</source>
         <translation>У&amp;далить</translation>
-    </message>
-    <message>
-        <source>Alt+D</source>
-        <translation type="obsolete">Alt+D</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="108"/>
@@ -374,14 +350,6 @@
         <location filename="../qsynthChannelsForm.cpp" line="473"/>
         <source>Are you sure?</source>
         <translation>Вы уверены?</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">ОК</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Отменить</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="36"/>
@@ -469,18 +437,10 @@
         <translation>&amp;Вкл</translation>
     </message>
     <message>
-        <source>Alt+T</source>
-        <translation type="obsolete">Alt+л</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="853"/>
         <location filename="../qsynthMainForm.cpp" line="1103"/>
         <source>&amp;Quit</source>
         <translation>В&amp;ыйти</translation>
-    </message>
-    <message>
-        <source>Alt+Q</source>
-        <translation type="obsolete">Alt+Q</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="850"/>
@@ -495,18 +455,10 @@
         <translation>&amp;Настроить...</translation>
     </message>
     <message>
-        <source>Alt+U</source>
-        <translation type="obsolete">Alt+н</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="885"/>
         <location filename="../qsynthMainForm.cpp" line="1093"/>
         <source>&amp;Messages</source>
         <translation>&amp;Сообщения</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+с</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="882"/>
@@ -517,10 +469,6 @@
         <location filename="../qsynthMainForm.ui" line="904"/>
         <source>A&amp;bout...</source>
         <translation>О &amp;программе...</translation>
-    </message>
-    <message>
-        <source>Alt+B</source>
-        <translation type="obsolete">Alt+п</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="901"/>
@@ -550,17 +498,9 @@
         <translation>С&amp;бросить</translation>
     </message>
     <message>
-        <source>Alt+R</source>
-        <translation type="obsolete">Alt+б</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="948"/>
         <source>Program reset (all channels)</source>
         <translation>Сброс программ (все каналы)</translation>
-    </message>
-    <message>
-        <source>Alt+P</source>
-        <translation type="obsolete">Alt+P</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="130"/>
@@ -582,14 +522,6 @@
         <translation>Вы уверены?</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation type="obsolete">ОК</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Отменить</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.cpp" line="942"/>
         <source>Error</source>
         <translation>Ошибка</translation>
@@ -607,14 +539,6 @@ temporary MIDI and Audio disruption.</source>
         <location filename="../qsynthMainForm.cpp" line="2041"/>
         <source>Do you want to restart the engine now?</source>
         <translation>Вы хотите перезагрузить движок синтезатора?</translation>
-    </message>
-    <message>
-        <source>Yes</source>
-        <translation type="obsolete">Да</translation>
-    </message>
-    <message>
-        <source>No</source>
-        <translation type="obsolete">Нет</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1669"/>
@@ -707,10 +631,6 @@ next time you start this program.</source>
         <translation>Пере&amp;запустить</translation>
     </message>
     <message>
-        <source>Alt+S</source>
-        <translation type="obsolete">Alt+з</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="938"/>
         <location filename="../qsynthMainForm.cpp" line="1062"/>
         <source>&amp;Panic</source>
@@ -760,10 +680,6 @@ next time you start this program.</source>
         <translation>Вк&amp;л</translation>
     </message>
     <message>
-        <source>Alt+I</source>
-        <translation type="obsolete">Alt+л</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="537"/>
         <source>Chorus effect activation</source>
         <translation>Включение эффект хора</translation>
@@ -773,10 +689,6 @@ next time you start this program.</source>
         <location filename="../qsynthMainForm.cpp" line="1066"/>
         <source>&amp;Channels</source>
         <translation>&amp;Каналы</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+к</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="977"/>
@@ -824,10 +736,6 @@ next time you start this program.</source>
         <translation>&amp;Параметры...</translation>
     </message>
     <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+п</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="866"/>
         <source>Show general options dialog</source>
         <translation>Показать главный диалог настройки параметров</translation>
@@ -859,14 +767,6 @@ next time you start this program.</source>
 restarting the fluidsynth engine:</source>
         <translation>Некоторые изменения будут учтены только
 после перезагрузки движка fluidsynth:</translation>
-    </message>
-    <message>
-        <source>The program will keep running in the system tray.
-
-To terminate the program, please choose &quot;Quit&quot; in the context menu of the system tray entry.</source>
-        <translation type="obsolete">Программа продолджит работу в области уведомления.
-
-Для завершения работы с ней выберите пункт «Выйти» в контекстном меню элемента области уведомления.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="653"/>
@@ -1063,17 +963,9 @@ restarting all fluidsynth engines.</source>
         <translation>Добавить новый движок</translation>
     </message>
     <message>
-        <source>Ins</source>
-        <translation type="obsolete">Ins</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>Delete current engine</source>
         <translation>Удалить активный движок</translation>
-    </message>
-    <message>
-        <source>Del</source>
-        <translation type="obsolete">Del</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="832"/>
@@ -1107,14 +999,6 @@ restarting all fluidsynth engines.</source>
 <context>
     <name>qsynthOptionsForm</name>
     <message>
-        <source>OK</source>
-        <translation type="obsolete">ОК</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Отменить</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="43"/>
         <source>Display</source>
         <translation>Интерфейс</translation>
@@ -1130,10 +1014,6 @@ restarting all fluidsynth engines.</source>
         <translation>&amp;Шрифт...</translation>
     </message>
     <message>
-        <source>Alt+F</source>
-        <translation type="obsolete">ALt+F</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="110"/>
         <source>Select font for the messages text display</source>
         <translation>Выберите шрифт для отображения сообщений</translation>
@@ -1142,10 +1022,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthOptionsForm.ui" line="148"/>
         <source>&amp;Messages limit:</source>
         <translation>&amp;Строк сообщений:</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="145"/>
@@ -1200,10 +1076,6 @@ restarting all fluidsynth engines.</source>
         <translation>&amp;Запрашивать подтверждение на выход из программы</translation>
     </message>
     <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+C</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="455"/>
         <source>Whether to ask for confirmation on application exit</source>
         <translation>Запрашивать ли подтверждение 
@@ -1215,10 +1087,6 @@ restarting all fluidsynth engines.</source>
         <translation>&amp;Держать подчинённые окна всегда наверху</translation>
     </message>
     <message>
-        <source>Alt+K</source>
-        <translation type="obsolete">Alt+K</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="471"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Держать ли подчинённые окна над 
@@ -1228,10 +1096,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthOptionsForm.ui" line="490"/>
         <source>Capture standard &amp;output</source>
         <translation>Захватывать стандартный интерфейс &amp;вывода сообщений</translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="487"/>
@@ -1248,14 +1112,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthOptionsForm.cpp" line="242"/>
         <source>Do you want to apply the changes?</source>
         <translation>Вы хотите учесть изменения?</translation>
-    </message>
-    <message>
-        <source>Apply</source>
-        <translation type="obsolete">Учесть</translation>
-    </message>
-    <message>
-        <source>Discard</source>
-        <translation type="obsolete">Отказаться</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="241"/>
@@ -1311,10 +1167,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthOptionsForm.ui" line="286"/>
         <source>Messages &amp;log file:</source>
         <translation>&amp;Файл журнала сообщений:</translation>
-    </message>
-    <message>
-        <source>Alt+L</source>
-        <translation type="obsolete">Alt+ф</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="302"/>
@@ -1403,10 +1255,6 @@ restarting all fluidsynth engines.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Alt+P</source>
-        <translation type="obsolete">Alt+и</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="532"/>
         <source>Whether to enable the system tray icon</source>
         <translation>Включать ли значок в области уведомления</translation>
@@ -1417,10 +1265,6 @@ restarting all fluidsynth engines.</source>
         <translation>&amp;Использовать область уведомления</translation>
     </message>
     <message>
-        <source>Alt+E</source>
-        <translation type="obsolete">Alt+и</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="564"/>
         <source>Whether to start minimized to system tray</source>
         <translation>Убирать ли окно в область уведомления</translation>
@@ -1429,10 +1273,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthOptionsForm.ui" line="567"/>
         <source>Start minimi&amp;zed to system tray</source>
         <translation>&amp;При старте скрывать окно в область уведомления</translation>
-    </message>
-    <message>
-        <source>Alt+Z</source>
-        <translation type="obsolete">Alt+п</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="636"/>
@@ -1487,14 +1327,6 @@ restarting all fluidsynth engines.</source>
 </context>
 <context>
     <name>qsynthPresetForm</name>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">ОК</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Отменить</translation>
-    </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="59"/>
         <source>Preset</source>
@@ -1564,10 +1396,6 @@ restarting all fluidsynth engines.</source>
         <translation>Разрешить чтение &amp;событий MIDI</translation>
     </message>
     <message>
-        <source>Alt+I</source>
-        <translation type="obsolete">Alt+с</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="141"/>
         <source>Enable MIDI input</source>
         <translation>Разрешить чтение событий MIDI</translation>
@@ -1578,10 +1406,6 @@ restarting all fluidsynth engines.</source>
         <translation>&amp;Глушить события маршрутизатора MIDI</translation>
     </message>
     <message>
-        <source>Alt+D</source>
-        <translation type="obsolete">Alt+г</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="115"/>
         <source>Whether to show MIDI router events on messages window</source>
         <translation>Показывать ли события маршрутизатора MIDI в окне сообщений</translation>
@@ -1590,10 +1414,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthSetupForm.ui" line="180"/>
         <source>&amp;Verbose MIDI event messages</source>
         <translation>&amp;Подробный вывод сообщений MIDI</translation>
-    </message>
-    <message>
-        <source>Alt+V</source>
-        <translation type="obsolete">Alt+п</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="177"/>
@@ -1624,10 +1444,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthSetupForm.ui" line="807"/>
         <source>Auto Connect &amp;JACK Outputs</source>
         <translation>Автоматически соединяться с &amp;выходом JACK</translation>
-    </message>
-    <message>
-        <source>Alt+J</source>
-        <translation type="obsolete">ALt+J</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="804"/>
@@ -1847,17 +1663,9 @@ restarting all fluidsynth engines.</source>
         <translation>&amp;Удалить</translation>
     </message>
     <message>
-        <source>Alt+R</source>
-        <translation type="obsolete">Alt+R</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="956"/>
         <source>&amp;Up</source>
         <translation>&amp;Выше</translation>
-    </message>
-    <message>
-        <source>Alt+U</source>
-        <translation type="obsolete">Alt+U</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="969"/>
@@ -1900,14 +1708,6 @@ restarting all fluidsynth engines.</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <source>OK</source>
-        <translation type="obsolete">ОК</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Отменить</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.cpp" line="573"/>
         <location filename="../qsynthSetupForm.cpp" line="832"/>
         <source>Warning</source>
@@ -1922,14 +1722,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthSetupForm.cpp" line="575"/>
         <source>Do you want to apply the changes?</source>
         <translation>Вы хотите учесть изменения?</translation>
-    </message>
-    <message>
-        <source>Apply</source>
-        <translation type="obsolete">Учесть</translation>
-    </message>
-    <message>
-        <source>Discard</source>
-        <translation type="obsolete">Отказаться</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="780"/>
@@ -1993,10 +1785,6 @@ restarting all fluidsynth engines.</source>
         <translation>Отображать имя движка</translation>
     </message>
     <message>
-        <source>&amp;ALSA Sequencer Client ID:</source>
-        <translation type="obsolete">ID клиента секвенсера &amp;ALSA:</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="303"/>
         <source>pid</source>
         <translation>pid</translation>
@@ -2016,10 +1804,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthSetupForm.ui" line="817"/>
         <source>&amp;Multiple JACK Outputs</source>
         <translation>&amp;Несколько выходов JACK</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="814"/>
@@ -2050,10 +1834,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthSetupForm.ui" line="904"/>
         <source>&amp;Open...</source>
         <translation>&amp;Открыть...</translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="927"/>
@@ -2145,10 +1925,6 @@ restarting all fluidsynth engines.</source>
         <location filename="../qsynthSetupForm.ui" line="917"/>
         <source>&amp;Edit</source>
         <translation>&amp;Изменить</translation>
-    </message>
-    <message>
-        <source>Alt+E</source>
-        <translation type="obsolete">Alt+и</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="982"/>

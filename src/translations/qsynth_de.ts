@@ -159,14 +159,6 @@
         <translation>Option -R benötigt ein Argument (sample-rate).</translation>
     </message>
     <message>
-        <source>Option -R requires an argument (reverb).</source>
-        <translation type="obsolete">Option -R benötigt ein Argument (reverb).</translation>
-    </message>
-    <message>
-        <source>Option -C requires an argument (chorus).</source>
-        <translation type="obsolete">Option -C benötigt ein Argument (chorus).</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptions.cpp" line="338"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Option -g benötigt ein Argument (gain).</translation>
@@ -200,10 +192,6 @@
         <location filename="../qsynthAboutForm.ui" line="61"/>
         <source>&amp;Close</source>
         <translation>&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+C</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.ui" line="71"/>
@@ -289,10 +277,6 @@
         <translation>&amp;Speichern</translation>
     </message>
     <message>
-        <source>Alt+S</source>
-        <translation type="obsolete">Alt+S</translation>
-    </message>
-    <message>
         <location filename="../qsynthChannelsForm.ui" line="108"/>
         <source>Delete current settings preset</source>
         <translation>Aktuelle Einstellung löschen</translation>
@@ -301,10 +285,6 @@
         <location filename="../qsynthChannelsForm.ui" line="111"/>
         <source>&amp;Delete</source>
         <translation>&amp;Löschen</translation>
-    </message>
-    <message>
-        <source>Alt+D</source>
-        <translation type="obsolete">Alt+L</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="143"/>
@@ -395,10 +375,6 @@
         <translation>Neues Klangmodul hinzufügen</translation>
     </message>
     <message>
-        <source>Ins</source>
-        <translation type="obsolete">Einf</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="1032"/>
         <source>Engine selector (right-click for menu)</source>
         <translation>Klangmodul auswählen (Rechtsklick für Menü)</translation>
@@ -407,10 +383,6 @@
         <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>Delete current engine</source>
         <translation>Aktuelles Klangmodul löschen</translation>
-    </message>
-    <message>
-        <source>Del</source>
-        <translation type="obsolete">Entf</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="977"/>
@@ -422,10 +394,6 @@
         <location filename="../qsynthMainForm.cpp" line="1066"/>
         <source>&amp;Channels</source>
         <translation>&amp;Kanäle...</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+K</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="130"/>
@@ -440,10 +408,6 @@
         <translation>&amp;Neu starten</translation>
     </message>
     <message>
-        <source>Alt+S</source>
-        <translation type="obsolete">Alt+N</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="948"/>
         <source>Program reset (all channels)</source>
         <translation>Programm zurücksetzen (alle Kanäle)</translation>
@@ -453,10 +417,6 @@
         <location filename="../qsynthMainForm.cpp" line="1059"/>
         <source>&amp;Reset</source>
         <translation>&amp;Zurücksetzen</translation>
-    </message>
-    <message>
-        <source>Alt+R</source>
-        <translation type="obsolete">Alt+Z</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="961"/>
@@ -469,10 +429,6 @@
         <location filename="../qsynthMainForm.cpp" line="1543"/>
         <source>Set&amp;up...</source>
         <translation>Konfi&amp;guration...</translation>
-    </message>
-    <message>
-        <source>Alt+U</source>
-        <translation type="obsolete">Alt+G</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="49"/>
@@ -502,10 +458,6 @@
         <translation>&amp;Panik</translation>
     </message>
     <message>
-        <source>Alt+P</source>
-        <translation type="obsolete">Alt+P</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="149"/>
         <source>Reverb</source>
         <translation>Hall</translation>
@@ -519,10 +471,6 @@
         <location filename="../qsynthMainForm.ui" line="176"/>
         <source>Ac&amp;tive</source>
         <translation>Ak&amp;tiv</translation>
-    </message>
-    <message>
-        <source>Alt+T</source>
-        <translation type="obsolete">Alt+T</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="189"/>
@@ -604,10 +552,6 @@
         <translation>&amp;Aktiv</translation>
     </message>
     <message>
-        <source>Alt+I</source>
-        <translation type="obsolete">Alt+A</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="553"/>
         <location filename="../qsynthMainForm.ui" line="600"/>
         <source>Number of Chorus Stages</source>
@@ -673,10 +617,6 @@
         <translation>&amp;Beenden</translation>
     </message>
     <message>
-        <source>Alt+Q</source>
-        <translation type="obsolete">Alt+B</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="866"/>
         <source>Show general options dialog</source>
         <translation>Dialog für die allgemeinen Optionen anzeigen</translation>
@@ -686,10 +626,6 @@
         <location filename="../qsynthMainForm.cpp" line="1097"/>
         <source>&amp;Options...</source>
         <translation>&amp;Optionen...</translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="882"/>
@@ -703,10 +639,6 @@
         <translation>&amp;Meldungen...</translation>
     </message>
     <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="901"/>
         <source>Show information about this application</source>
         <translation>Informationen über diese Anwendung anzeigen</translation>
@@ -715,10 +647,6 @@
         <location filename="../qsynthMainForm.ui" line="904"/>
         <source>A&amp;bout...</source>
         <translation>&amp;Über...</translation>
-    </message>
-    <message>
-        <source>Alt+B</source>
-        <translation type="obsolete">Alt+B</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="651"/>
@@ -1099,10 +1027,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Schri&amp;ftart...</translation>
     </message>
     <message>
-        <source>Alt+F</source>
-        <translation type="obsolete">Alt+F</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="145"/>
         <source>Whether to keep a maximum number of lines in the messages window</source>
         <translation>Maximale Anzahl der angezeigten Meldungen limitieren</translation>
@@ -1111,10 +1035,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthOptionsForm.ui" line="148"/>
         <source>&amp;Messages limit:</source>
         <translation>&amp;Max. Meldungen:</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="161"/>
@@ -1192,10 +1112,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>&amp;Schließen der Anwendung bestätigen</translation>
     </message>
     <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+S</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="471"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Alle Unterfenster oberhalb des Hauptfensters anordnen</translation>
@@ -1204,10 +1120,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthOptionsForm.ui" line="474"/>
         <source>&amp;Keep child windows always on top</source>
         <translation>Unterfenster immer &amp;oberhalb anordnen</translation>
-    </message>
-    <message>
-        <source>Alt+K</source>
-        <translation type="obsolete">Alt+F</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="487"/>
@@ -1220,10 +1132,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Standardausgabe &amp;umleiten</translation>
     </message>
     <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+U</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="503"/>
         <source>Whether to monitor and show engine output peak level meters</source>
         <translation>Ausgangspegelinstrument anzeigen</translation>
@@ -1232,10 +1140,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthOptionsForm.ui" line="506"/>
         <source>Output &amp;peak level meters</source>
         <translation>Ausgangs&amp;pegelinstrument anzeigen</translation>
-    </message>
-    <message>
-        <source>Alt+P</source>
-        <translation type="obsolete">Alt+P</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="532"/>
@@ -1248,10 +1152,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>S&amp;ymbol im Benachrichtigungsfeld anzeigen</translation>
     </message>
     <message>
-        <source>Alt+E</source>
-        <translation type="obsolete">Alt+S</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="564"/>
         <source>Whether to start minimized to system tray</source>
         <translation>Anwendung minimiert als Symbol im Benachrichtigungsfeld starten</translation>
@@ -1260,10 +1160,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthOptionsForm.ui" line="567"/>
         <source>Start minimi&amp;zed to system tray</source>
         <translation>Minimiert im &amp;Benachrichtigungsfeld starten</translation>
-    </message>
-    <message>
-        <source>Alt+Z</source>
-        <translation type="obsolete">Alt+B</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="240"/>
@@ -1395,10 +1291,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthOptionsForm.ui" line="286"/>
         <source>Messages &amp;log file:</source>
         <translation>Protokoll&amp;datei:</translation>
-    </message>
-    <message>
-        <source>Alt+L</source>
-        <translation type="obsolete">Alt+D</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="317"/>
@@ -1564,10 +1456,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>MIDI-&amp;Router-Ereignisse ausgeben</translation>
     </message>
     <message>
-        <source>Alt+D</source>
-        <translation type="obsolete">Alt+R</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="177"/>
         <source>Print out verbose messages about MIDI events</source>
         <translation>Ausführliche Meldungen über MIDI-Ereignisse ausgeben</translation>
@@ -1576,10 +1464,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthSetupForm.ui" line="180"/>
         <source>&amp;Verbose MIDI event messages</source>
         <translation>Aus&amp;führliche Meldungen über MIDI-Ereignisse</translation>
-    </message>
-    <message>
-        <source>Alt+V</source>
-        <translation type="obsolete">Alt+F</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="203"/>
@@ -1600,10 +1484,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthSetupForm.ui" line="144"/>
         <source>Enable MIDI &amp;Input</source>
         <translation>MI&amp;DI-Eingang aktivieren</translation>
-    </message>
-    <message>
-        <source>Alt+I</source>
-        <translation type="obsolete">Alt+D</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="236"/>
@@ -1842,10 +1722,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>&amp;JACK-Ausgänge automatisch verbinden</translation>
     </message>
     <message>
-        <source>Alt+J</source>
-        <translation type="obsolete">Alt+J</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="814"/>
         <source>Create multiple JACK output ports for channels, groups and effects</source>
         <translation>Erzeuge mehrere JACK-Ausgänge für Kanäle, Gruppen und Effekte</translation>
@@ -1854,10 +1730,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthSetupForm.ui" line="817"/>
         <source>&amp;Multiple JACK Outputs</source>
         <translation>Me&amp;hrere JACK-Ausgänge</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="841"/>
@@ -1896,10 +1768,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>&amp;Öffnen...</translation>
     </message>
     <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+Ö</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="914"/>
         <source>Edit selected soundfont bank offset</source>
         <translation>Positionswert der gewählten Soundfont-Bank bearbeiten</translation>
@@ -1908,10 +1776,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthSetupForm.ui" line="917"/>
         <source>&amp;Edit</source>
         <translation>Bea&amp;rbeiten</translation>
-    </message>
-    <message>
-        <source>Alt+E</source>
-        <translation type="obsolete">Alt+R</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="927"/>
@@ -1924,10 +1788,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>En&amp;tfernen</translation>
     </message>
     <message>
-        <source>Alt+R</source>
-        <translation type="obsolete">Alt+T</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="953"/>
         <source>Move up selected soundfont towards the top of stack</source>
         <translation>Gewählten Soundfont im Stapel nach oben bewegen</translation>
@@ -1936,10 +1796,6 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <location filename="../qsynthSetupForm.ui" line="956"/>
         <source>&amp;Up</source>
         <translation>A&amp;uf</translation>
-    </message>
-    <message>
-        <source>Alt+U</source>
-        <translation type="obsolete">Alt+U</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="966"/>

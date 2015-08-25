@@ -159,14 +159,6 @@
         <translation>Volba -r potřebuje argument (sample-rate).</translation>
     </message>
     <message>
-        <source>Option -R requires an argument (reverb).</source>
-        <translation type="obsolete">Volba -R potřebuje argument (reverb).</translation>
-    </message>
-    <message>
-        <source>Option -C requires an argument (chorus).</source>
-        <translation type="obsolete">Volba -C potřebuje argument (chorus).</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptions.cpp" line="338"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Volba -g potřebuje argument (gain).</translation>
@@ -175,10 +167,6 @@
         <location filename="../qsynthOptions.cpp" line="347"/>
         <source>Option -o requires an argument.</source>
         <translation>Volba -o potřebuje argument.</translation>
-    </message>
-    <message>
-        <source>Option -o failed to set &apos;%1&apos;.</source>
-        <translation type="obsolete">Fehler beim Setzen der Option -o &apos;%1&apos;.</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="369"/>
@@ -204,10 +192,6 @@
         <location filename="../qsynthAboutForm.ui" line="61"/>
         <source>&amp;Close</source>
         <translation>&amp;Zavřít</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+C</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.ui" line="71"/>
@@ -293,10 +277,6 @@
         <translation>&amp;Uložit</translation>
     </message>
     <message>
-        <source>Alt+S</source>
-        <translation type="obsolete">Alt+S</translation>
-    </message>
-    <message>
         <location filename="../qsynthChannelsForm.ui" line="108"/>
         <source>Delete current settings preset</source>
         <translation>Smazat nynější přednastavení nastavení</translation>
@@ -305,10 +285,6 @@
         <location filename="../qsynthChannelsForm.ui" line="111"/>
         <source>&amp;Delete</source>
         <translation>&amp;Smazat</translation>
-    </message>
-    <message>
-        <source>Alt+D</source>
-        <translation type="obsolete">Alt+L</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="143"/>
@@ -399,10 +375,6 @@
         <translation>Přidat nový zvukový modul</translation>
     </message>
     <message>
-        <source>Ins</source>
-        <translation type="obsolete">Vložit</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="1032"/>
         <source>Engine selector (right-click for menu)</source>
         <translation>Vybrat zvukový modul (pravým klepnutím v nabídce)</translation>
@@ -411,10 +383,6 @@
         <location filename="../qsynthMainForm.ui" line="1070"/>
         <source>Delete current engine</source>
         <translation>Smazat nynější zvukový modul</translation>
-    </message>
-    <message>
-        <source>Del</source>
-        <translation type="obsolete">Odstranit</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="977"/>
@@ -426,10 +394,6 @@
         <location filename="../qsynthMainForm.cpp" line="1066"/>
         <source>&amp;Channels</source>
         <translation>&amp;Kanály</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+C</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="130"/>
@@ -444,10 +408,6 @@
         <translation>&amp;Spustit znovu</translation>
     </message>
     <message>
-        <source>Alt+S</source>
-        <translation type="obsolete">ALT+S</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="948"/>
         <source>Program reset (all channels)</source>
         <translation>Nastavit znovu program (všechny kanály)</translation>
@@ -457,10 +417,6 @@
         <location filename="../qsynthMainForm.cpp" line="1059"/>
         <source>&amp;Reset</source>
         <translation>&amp;Nastavit znovu</translation>
-    </message>
-    <message>
-        <source>Alt+R</source>
-        <translation type="obsolete">Alt+R</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="961"/>
@@ -473,10 +429,6 @@
         <location filename="../qsynthMainForm.cpp" line="1543"/>
         <source>Set&amp;up...</source>
         <translation>&amp;Nastavení...</translation>
-    </message>
-    <message>
-        <source>Alt+U</source>
-        <translation type="obsolete">Alt+U</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="49"/>
@@ -506,10 +458,6 @@
         <translation>&amp;Panika</translation>
     </message>
     <message>
-        <source>Alt+P</source>
-        <translation type="obsolete">Alt+P</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="149"/>
         <source>Reverb</source>
         <translation>Dozvuk</translation>
@@ -523,10 +471,6 @@
         <location filename="../qsynthMainForm.ui" line="176"/>
         <source>Ac&amp;tive</source>
         <translation>&amp;Spuštěný</translation>
-    </message>
-    <message>
-        <source>Alt+T</source>
-        <translation type="obsolete">Alt+T</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="189"/>
@@ -608,10 +552,6 @@
         <translation>&amp;Spuštěný</translation>
     </message>
     <message>
-        <source>Alt+I</source>
-        <translation type="obsolete">Alt+I</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="553"/>
         <location filename="../qsynthMainForm.ui" line="600"/>
         <source>Number of Chorus Stages</source>
@@ -677,10 +617,6 @@
         <translation>&amp;Ukončit</translation>
     </message>
     <message>
-        <source>Alt+Q</source>
-        <translation type="obsolete">Alt+B</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="866"/>
         <source>Show general options dialog</source>
         <translation>Ukázat dialog pro všeobecné volby</translation>
@@ -690,10 +626,6 @@
         <location filename="../qsynthMainForm.cpp" line="1097"/>
         <source>&amp;Options...</source>
         <translation>&amp;Volby...</translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+O</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="882"/>
@@ -707,10 +639,6 @@
         <translation>&amp;Hlášení</translation>
     </message>
     <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.ui" line="901"/>
         <source>Show information about this application</source>
         <translation>Ukázat informace o tomto programu</translation>
@@ -721,23 +649,10 @@
         <translation>&amp;O...</translation>
     </message>
     <message>
-        <source>Alt+B</source>
-        <translation type="obsolete">Alt+B</translation>
-    </message>
-    <message>
         <location filename="../qsynthMainForm.cpp" line="651"/>
         <location filename="../qsynthMainForm.cpp" line="1436"/>
         <source>Information</source>
         <translation>Informace</translation>
-    </message>
-    <message>
-        <source>The program will keep running in the system tray.
-
-To terminate the program, please choose &quot;Quit&quot; in the context menu of the system tray entry.</source>
-        <translation type="obsolete">Program běží dále viditelný jako symbol v oznamovacím poli.
-
-Pro ukončení programu zvolte, prosím, &quot;Ukončit&quot;
-v nabídce k symbolu v oznamovacím poli.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="653"/>
@@ -1113,10 +1028,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>&amp;Písmo...</translation>
     </message>
     <message>
-        <source>Alt+F</source>
-        <translation type="obsolete">Alt+F</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="145"/>
         <source>Whether to keep a maximum number of lines in the messages window</source>
         <translation>Omezit nejvyšší počet ukázaných řádků hlášení</translation>
@@ -1125,10 +1036,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthOptionsForm.ui" line="148"/>
         <source>&amp;Messages limit:</source>
         <translation>&amp;Nejvyšší počet hlášení:</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="161"/>
@@ -1206,10 +1113,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>&amp;Potvrdit zavření aplikace</translation>
     </message>
     <message>
-        <source>Alt+C</source>
-        <translation type="obsolete">Alt+S</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="471"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Všechna podokna rozmístit nad hlavním oknem</translation>
@@ -1218,10 +1121,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthOptionsForm.ui" line="474"/>
         <source>&amp;Keep child windows always on top</source>
         <translation>Podokna &amp;rozmístit vždy nad hlavním oknem</translation>
-    </message>
-    <message>
-        <source>Alt+K</source>
-        <translation type="obsolete">Alt+F</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="487"/>
@@ -1234,10 +1133,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Standardní výstup &amp;převést</translation>
     </message>
     <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+U</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="503"/>
         <source>Whether to monitor and show engine output peak level meters</source>
         <translation>Sledovat a ukazovat nástroj výstupní hladiny</translation>
@@ -1246,10 +1141,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthOptionsForm.ui" line="506"/>
         <source>Output &amp;peak level meters</source>
         <translation>Ukazovat &amp;nástroj výstupní hladiny</translation>
-    </message>
-    <message>
-        <source>Alt+P</source>
-        <translation type="obsolete">Alt+P</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="532"/>
@@ -1262,10 +1153,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>S&amp;ymbol aplikace ukazovat v oznamovací oblasti panelu</translation>
     </message>
     <message>
-        <source>Alt+E</source>
-        <translation type="obsolete">Alt+S</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="564"/>
         <source>Whether to start minimized to system tray</source>
         <translation>Aplikaci spustit zmenšenou jako symbol v oznamovací oblasti panelu</translation>
@@ -1274,18 +1161,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthOptionsForm.ui" line="567"/>
         <source>Start minimi&amp;zed to system tray</source>
         <translation>Spustit se &amp;zmenšením do oznamovací oblasti panelu</translation>
-    </message>
-    <message>
-        <source>Alt+Z</source>
-        <translation type="obsolete">Alt+B</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="240"/>
@@ -1419,10 +1294,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Soubor se &amp;zápisem hlášení:</translation>
     </message>
     <message>
-        <source>Alt+L</source>
-        <translation type="obsolete">Alt+D</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptionsForm.ui" line="317"/>
         <source>Kno&amp;b graphic style:</source>
         <translation>Obrazový styl točných &amp;regulátorů:</translation>
@@ -1454,14 +1325,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthPresetForm.ui" line="33"/>
         <source>Qsynth: Channel Preset</source>
         <translation>Qsynth: Přednastavení kanálů</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="59"/>
@@ -1563,10 +1426,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Ovladač pro vstup MIDI</translation>
     </message>
     <message>
-        <source>&amp;ALSA Sequencer Client ID:</source>
-        <translation type="obsolete">&amp;ALSA ID klienta sequenceru:</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="283"/>
         <source>MIDI Client Name ID (ALSA/CoreMidi):</source>
         <translation>ID názvu klienta MIDI (ALSA/CoreMidi):</translation>
@@ -1598,10 +1457,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>&amp;Vytisknout události směrovače MIDI</translation>
     </message>
     <message>
-        <source>Alt+D</source>
-        <translation type="obsolete">Alt+R</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="177"/>
         <source>Print out verbose messages about MIDI events</source>
         <translation>Vytisknout podrobná hlášení o událostech MIDI</translation>
@@ -1610,10 +1465,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthSetupForm.ui" line="180"/>
         <source>&amp;Verbose MIDI event messages</source>
         <translation>&amp;Podrobná hlášení o událostech MIDI</translation>
-    </message>
-    <message>
-        <source>Alt+V</source>
-        <translation type="obsolete">Alt+F</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="203"/>
@@ -1634,10 +1485,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthSetupForm.ui" line="144"/>
         <source>Enable MIDI &amp;Input</source>
         <translation>Spustit &amp;vstup MIDI</translation>
-    </message>
-    <message>
-        <source>Alt+I</source>
-        <translation type="obsolete">Alt+D</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="236"/>
@@ -1876,10 +1723,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Automaticky spojit výstupy &amp;JACK</translation>
     </message>
     <message>
-        <source>Alt+J</source>
-        <translation type="obsolete">Alt+J</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="814"/>
         <source>Create multiple JACK output ports for channels, groups and effects</source>
         <translation>Vytvořit více připojení výstupů JACK pro kanály, skupiny a efekty</translation>
@@ -1888,10 +1731,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthSetupForm.ui" line="817"/>
         <source>&amp;Multiple JACK Outputs</source>
         <translation>&amp;Více výstupů JACK</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation type="obsolete">Alt+M</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="841"/>
@@ -1930,10 +1769,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>&amp;Otevřít...</translation>
     </message>
     <message>
-        <source>Alt+O</source>
-        <translation type="obsolete">Alt+Ö</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="914"/>
         <source>Edit selected soundfont bank offset</source>
         <translation>Upravit hodnotu polohy vybrané banky se zvukovým písmem</translation>
@@ -1942,10 +1777,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthSetupForm.ui" line="917"/>
         <source>&amp;Edit</source>
         <translation>&amp;Úpravy</translation>
-    </message>
-    <message>
-        <source>Alt+E</source>
-        <translation type="obsolete">Alt+R</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="927"/>
@@ -1958,10 +1789,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>&amp;Odstranit</translation>
     </message>
     <message>
-        <source>Alt+R</source>
-        <translation type="obsolete">Alt+T</translation>
-    </message>
-    <message>
         <location filename="../qsynthSetupForm.ui" line="953"/>
         <source>Move up selected soundfont towards the top of stack</source>
         <translation>Vybrané zvukové písmo přesunout v zásobníku nahoru</translation>
@@ -1970,10 +1797,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthSetupForm.ui" line="956"/>
         <source>&amp;Up</source>
         <translation>&amp;Nahoru</translation>
-    </message>
-    <message>
-        <source>Alt+U</source>
-        <translation type="obsolete">Alt+U</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="966"/>
@@ -2024,14 +1847,6 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <location filename="../qsynthSetupForm.ui" line="1060"/>
         <source>Options</source>
         <translation>Volby</translation>
-    </message>
-    <message>
-        <source>OK</source>
-        <translation type="obsolete">OK</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="obsolete">Zrušit</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="362"/>
