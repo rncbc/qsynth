@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.9.12, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.9.13, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
@@ -54,11 +54,16 @@ AC_ARG_ENABLE(gradient,
   [ac_gradient="$enableval"],
   [ac_gradient="yes"])
 
+# Enable X11 unique/single instance.
+AC_ARG_ENABLE(xunique,
+  AC_HELP_STRING([--enable-xunique], [enable X11 unique/single instance (default=yes)]),
+  [ac_xunique="$enableval"],
+  [ac_xunique="yes"])
+
 # Enable debugger stack-trace option (assumes --enable-debug).
 AC_ARG_ENABLE(stacktrace,
   AC_HELP_STRING([--enable-stacktrace], [enable debugger stack-trace (default=no)]),
   [ac_stacktrace="$enableval"])
-
 
 
 # Standard installation base dirs.
@@ -298,6 +303,11 @@ if test "x$ac_gradient" = "xyes"; then
    AC_DEFINE(CONFIG_GRADIENT, 1, [Define if gradient eye-candy is enabled.])
 fi
 
+# Check for X11 unique/single instance.
+if test "x$ac_xunique" = "xyes"; then
+   AC_DEFINE(CONFIG_XUNIQUE, 1, [Define if X11 unique/single instance is enabled.])
+fi
+
 # Check for debugging stack-trace.
 if test "x$ac_stacktrace" = "xyes"; then
    AC_DEFINE(CONFIG_STACKTRACE, 1, [Define if debugger stack-trace is enabled.])
@@ -375,6 +385,7 @@ echo "  FluidSynth channel info support  . . . . . . . . .: $ac_fluid_channel_in
 echo "  FluidSynth unset program support . . . . . . . . .: $ac_fluid_unset_program"
 echo "  System tray icon support . . . . . . . . . . . . .: $ac_system_tray"
 echo
+echo "  X11 Unique/Single instance . . . . . . . . . . . .: $ac_xunique"
 echo "  Gradient eye-candy . . . . . . . . . . . . . . . .: $ac_gradient"
 echo "  Debugger stack-trace (gdb) . . . . . . . . . . . .: $ac_stacktrace"
 echo
