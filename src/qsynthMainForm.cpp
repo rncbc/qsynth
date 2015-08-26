@@ -2535,4 +2535,11 @@ bool qsynthMainForm::isQuitForce (void) const
 }
 
 
-// end of qsynthMainForm.cpp
+#if QT_VERSION >= 0x050000
+void qsynthMainForm::commitData ( QSessionManager& )
+{
+	setQuitForce(true);
+}
+
+
+#endif// end of qsynthMainForm.cpp

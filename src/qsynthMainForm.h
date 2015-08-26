@@ -117,6 +117,10 @@ public slots:
 
 	void quitMainForm();
 
+#if QT_VERSION >= 0x050000
+	void commitData(QSessionManager&);
+#endif
+
 protected:
 
 	bool queryClose();
