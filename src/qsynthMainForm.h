@@ -32,6 +32,7 @@ class qsynthChannelsForm;
 class qsynthSystemTray;
 
 class QSocketNotifier;
+class QSessionManager;
 class QMimeSource;
 
 
@@ -117,9 +118,7 @@ public slots:
 
 	void quitMainForm();
 
-#if QT_VERSION >= 0x050000
-	void commitData(QSessionManager&);
-#endif
+	void commitData(QSessionManager& sm);
 
 protected:
 

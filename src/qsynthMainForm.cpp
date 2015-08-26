@@ -53,6 +53,8 @@
 #include <QDragEnterEvent>
 #include <QDropEvent>
 
+#include <QSessionManager>
+
 #if QT_VERSION >= 0x050000
 #include <QMimeData>
 #endif
@@ -2535,11 +2537,12 @@ bool qsynthMainForm::isQuitForce (void) const
 }
 
 
-#if QT_VERSION >= 0x050000
-void qsynthMainForm::commitData ( QSessionManager& )
+void qsynthMainForm::commitData ( QSessionManager& sm )
 {
+	sm.release();
+
 	setQuitForce(true);
 }
 
 
-#endif// end of qsynthMainForm.cpp
+// end of qsynthMainForm.cpp
