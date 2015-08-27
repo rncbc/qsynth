@@ -382,6 +382,7 @@ qsynthMainForm::qsynthMainForm (
 	m_iSystemTrayState = 0;
 
 	// We're not quitting so early :)
+	m_bQuitClose = false;
 	m_bQuitForce = false;
 
 	// Whether we've Qt::Tool flag (from bKeepOnTop),
@@ -645,7 +646,7 @@ bool qsynthMainForm::queryClose (void)
 	#ifdef CONFIG_SYSTEM_TRAY
 		// If we're not quitting explicitly and there's an
 		// active system tray icon, then just hide ourselves.
-		if (!m_bQuitForce && isVisible()
+		if (!m_bQuitClose && !m_bQuitForce && isVisible()
 			&& m_pOptions->bSystemTray && m_pSystemTray) {
 			m_pOptions->saveWidgetGeometry(this, true);
 			if (m_pOptions->bSystemTrayQueryClose) {
@@ -682,7 +683,7 @@ bool qsynthMainForm::queryClose (void)
 		}
 	#endif
 		// Dow we quit right away?
-		if (bQueryClose && m_pOptions->bQueryClose) {
+		if (bQueryClose && !m_bQuitForce && m_pOptions->bQueryClose) {
 			for (int iTab = 0; iTab < m_ui.TabBar->count(); iTab++) {
 				qsynthEngine *pEngine = m_ui.TabBar->engine(iTab);
 				if (pEngine && pEngine->pSynth) {
@@ -734,10 +735,9 @@ bool qsynthMainForm::queryClose (void)
 		}
 	}
 
-#ifdef CONFIG_SYSTEM_TRAY
 	// Whether we're really quitting.
+	m_bQuitClose = bQueryClose;
 	m_bQuitForce = bQueryClose;
-#endif
 
 	return bQueryClose;
 }
@@ -2474,10 +2474,9 @@ void qsynthMainForm::activateEnginesMenu ( QAction *pAction )
 // Close main form slot.
 void qsynthMainForm::quitMainForm (void)
 {
-#ifdef CONFIG_SYSTEM_TRAY
 	// Flag that we're quitting explicitly.
-	m_bQuitForce = true;
-#endif
+	m_bQuitClose = true;
+
 	// And then, do the closing dance.
 	close();
 }
@@ -2525,23 +2524,12 @@ void qsynthMainForm::updateKnobs()
 }
 
 
-// Session (desktop) shutdown signal handler.
-void qsynthMainForm::setQuitForce ( bool bQuitForce )
-{
-	m_bQuitForce = bQuitForce;
-}
-
-bool qsynthMainForm::isQuitForce (void) const
-{
-	return m_bQuitForce;
-}
-
-
 void qsynthMainForm::commitData ( QSessionManager& sm )
 {
 	sm.release();
 
-	setQuitForce(true);
+	m_bQuitClose = true;
+	m_bQuitForce = true;
 }
 
 

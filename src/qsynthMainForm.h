@@ -73,9 +73,6 @@ public:
 
 	enum KnobStyle { Classic, Vokimon, Peppino, Skulpture, Legacy };
 
-	void setQuitForce(bool bQuitForce);
-	bool isQuitForce() const;
-
 public slots:
 
 	void stdoutNotifySlot(int);
@@ -190,6 +187,7 @@ private:
 	qsynthSystemTray *m_pSystemTray;
 	int m_iSystemTrayState;
 
+	bool m_bQuitClose;
 	bool m_bQuitForce;
 
 	// Kind-of singleton reference.

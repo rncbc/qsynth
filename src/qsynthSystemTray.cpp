@@ -1,7 +1,7 @@
 // qsynthSystemTray.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2015, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -42,6 +42,7 @@ qsynthSystemTray::qsynthSystemTray ( QWidget *pParent )
 	// Set things inherited...
 	if (pParent) {
 		m_icon = pParent->windowIcon();
+		setBackground(Qt::transparent); // also updates pixmap.
 		QSystemTrayIcon::setIcon(m_icon);
 		QSystemTrayIcon::setToolTip(pParent->windowTitle());
 	}
@@ -91,10 +92,13 @@ qsynthSystemTray::~qsynthSystemTray (void)
 // System tray icon/pixmaps update method.
 void qsynthSystemTray::updatePixmap (void)
 {
-	// Renitialize icon as fit...
-	m_pixmap = m_icon.pixmap(22, 22);
+	// Get the default systray icon size...
+	const QRect& dimension = QSystemTrayIcon::geometry();
 
-    // Merge with the overlay pixmap...
+	// Renitialize icon as fit...
+	m_pixmap = m_icon.pixmap(dimension.width(), dimension.height());
+
+	// Merge with the overlay pixmap...
 	if (!m_pixmapOverlay.mask().isNull()) {
 		QBitmap mask = m_pixmap.mask();
 		QPainter(&mask).drawPixmap(0, 0, m_pixmapOverlay.mask());
@@ -108,7 +112,7 @@ void qsynthSystemTray::updatePixmap (void)
 		QPainter(&m_pixmap).drawPixmap(0, 0, pixmap);
 	}
 
-    // Setup system tray icon directly...
+	// Setup system tray icon directly...
 	QSystemTrayIcon::setIcon(QIcon(m_pixmap));
 }
 
