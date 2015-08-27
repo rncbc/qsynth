@@ -365,13 +365,13 @@
 <context>
     <name>qsynthMainForm</name>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="653"/>
+        <location filename="../qsynthMainForm.cpp" line="654"/>
         <location filename="../qsynthMainForm.cpp" line="1438"/>
         <source>Information</source>
         <translation>Información</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="693"/>
+        <location filename="../qsynthMainForm.cpp" line="694"/>
         <location filename="../qsynthMainForm.cpp" line="1266"/>
         <location filename="../qsynthMainForm.cpp" line="2008"/>
         <location filename="../qsynthMainForm.cpp" line="2037"/>
@@ -379,18 +379,18 @@
         <translation>Aviso</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="695"/>
+        <location filename="../qsynthMainForm.cpp" line="696"/>
         <source>is about to terminate.</source>
         <translation>está a punto de terminar.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="696"/>
+        <location filename="../qsynthMainForm.cpp" line="697"/>
         <location filename="../qsynthMainForm.cpp" line="1269"/>
         <source>Are you sure?</source>
         <translation>¿Está seguro?</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="655"/>
+        <location filename="../qsynthMainForm.cpp" line="656"/>
         <source>The program will keep running in the system tray.
 
 To terminate the program, please choose &quot;Quit&quot;
@@ -401,7 +401,7 @@ Para terminar el programa, por favor elija &quot;Terminar&quot;
 en el menú contextual del icono de la bandeja del sistema.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="671"/>
+        <location filename="../qsynthMainForm.cpp" line="672"/>
         <source>Don&apos;t show this message again</source>
         <translation type="unfinished"></translation>
     </message>
@@ -525,7 +525,7 @@ en el menú contextual del icono de la bandeja del sistema.</translation>
         <translation>&amp;Terminar</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="706"/>
+        <location filename="../qsynthMainForm.cpp" line="707"/>
         <source>Don&apos;t ask this again</source>
         <translation type="unfinished"></translation>
     </message>

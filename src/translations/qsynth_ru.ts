@@ -508,7 +508,7 @@
         <translation>Полная перезагрузка синтезатора</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="693"/>
+        <location filename="../qsynthMainForm.cpp" line="694"/>
         <location filename="../qsynthMainForm.cpp" line="1266"/>
         <location filename="../qsynthMainForm.cpp" line="2008"/>
         <location filename="../qsynthMainForm.cpp" line="2037"/>
@@ -516,7 +516,7 @@
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="696"/>
+        <location filename="../qsynthMainForm.cpp" line="697"/>
         <location filename="../qsynthMainForm.cpp" line="1269"/>
         <source>Are you sure?</source>
         <translation>Вы уверены?</translation>
@@ -606,7 +606,7 @@ temporary MIDI and Audio disruption.</source>
         <translation>Движок синтезатора остановлен</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="653"/>
+        <location filename="../qsynthMainForm.cpp" line="654"/>
         <location filename="../qsynthMainForm.cpp" line="1438"/>
         <source>Information</source>
         <translation>Информация</translation>
@@ -741,12 +741,12 @@ next time you start this program.</source>
         <translation>Показать главный диалог настройки параметров</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="695"/>
+        <location filename="../qsynthMainForm.cpp" line="696"/>
         <source>is about to terminate.</source>
         <translation>собирается завершить работу.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="706"/>
+        <location filename="../qsynthMainForm.cpp" line="707"/>
         <source>Don&apos;t ask this again</source>
         <translation type="unfinished"></translation>
     </message>
@@ -769,7 +769,7 @@ restarting the fluidsynth engine:</source>
 после перезагрузки движка fluidsynth:</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="655"/>
+        <location filename="../qsynthMainForm.cpp" line="656"/>
         <source>The program will keep running in the system tray.
 
 To terminate the program, please choose &quot;Quit&quot;
@@ -780,7 +780,7 @@ in the context menu of the system tray icon.</source>
 в контекстном меню элемента области уведомления.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="671"/>
+        <location filename="../qsynthMainForm.cpp" line="672"/>
         <source>Don&apos;t show this message again</source>
         <translation type="unfinished"></translation>
     </message>

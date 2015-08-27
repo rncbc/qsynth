@@ -648,13 +648,13 @@
         <translation>Supprimer le moteur courant</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="653"/>
+        <location filename="../qsynthMainForm.cpp" line="654"/>
         <location filename="../qsynthMainForm.cpp" line="1438"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="655"/>
+        <location filename="../qsynthMainForm.cpp" line="656"/>
         <source>The program will keep running in the system tray.
 
 To terminate the program, please choose &quot;Quit&quot;
@@ -665,12 +665,12 @@ Pour terminer ce programme, veuillez choisir &quot;Quitter&quot;
 dans le menu contextuel de l&apos;icône de la barre d&apos;état du système.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="671"/>
+        <location filename="../qsynthMainForm.cpp" line="672"/>
         <source>Don&apos;t show this message again</source>
         <translation>Ne pas montrer ce message à nouveau</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="693"/>
+        <location filename="../qsynthMainForm.cpp" line="694"/>
         <location filename="../qsynthMainForm.cpp" line="1266"/>
         <location filename="../qsynthMainForm.cpp" line="2008"/>
         <location filename="../qsynthMainForm.cpp" line="2037"/>
@@ -678,18 +678,18 @@ dans le menu contextuel de l&apos;icône de la barre d&apos;état du système.</
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="695"/>
+        <location filename="../qsynthMainForm.cpp" line="696"/>
         <source>is about to terminate.</source>
         <translation>est sur le point de terminer.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="696"/>
+        <location filename="../qsynthMainForm.cpp" line="697"/>
         <location filename="../qsynthMainForm.cpp" line="1269"/>
         <source>Are you sure?</source>
         <translation>Etes-vous sur?</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="706"/>
+        <location filename="../qsynthMainForm.cpp" line="707"/>
         <source>Don&apos;t ask this again</source>
         <translation>Ne pas le redemander</translation>
     </message>
