@@ -51,8 +51,6 @@ qsynthSystemTray::qsynthSystemTray ( QWidget *pParent )
 		SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
 		SLOT(activated(QSystemTrayIcon::ActivationReason)));
 
-	setBackground(Qt::transparent);
-
 	QSystemTrayIcon::show();
 }
 

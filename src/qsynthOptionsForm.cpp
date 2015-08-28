@@ -79,6 +79,7 @@ qsynthOptionsForm::qsynthOptionsForm (
 	QObject::connect(m_ui.OutputMetersCheckBox,
 		SIGNAL(stateChanged(int)),
 		SLOT(optionsChanged()));
+#ifdef CONFIG_SYSTEM_TRAY
 	QObject::connect(m_ui.SystemTrayCheckBox,
 		SIGNAL(stateChanged(int)),
 		SLOT(optionsChanged()));
@@ -88,6 +89,7 @@ qsynthOptionsForm::qsynthOptionsForm (
 	QObject::connect(m_ui.StartMinimizedCheckBox,
 		SIGNAL(stateChanged(int)),
 		SLOT(optionsChanged()));
+#endif
 	QObject::connect(m_ui.BaseFontSizeComboBox,
 		SIGNAL(editTextChanged(const QString&)),
 		SLOT(optionsChanged()));
@@ -159,9 +161,11 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.KeepOnTopCheckBox->setChecked(m_pOptions->bKeepOnTop);
 	m_ui.StdoutCaptureCheckBox->setChecked(m_pOptions->bStdoutCapture);
 	m_ui.OutputMetersCheckBox->setChecked(m_pOptions->bOutputMeters);
+#ifdef CONFIG_SYSTEM_TRAY
 	m_ui.SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
 	m_ui.SystemTrayQueryCloseCheckBox->setChecked(m_pOptions->bSystemTrayQueryClose);
 	m_ui.StartMinimizedCheckBox->setChecked(m_pOptions->bStartMinimized);
+#endif
 	if (m_pOptions->iBaseFontSize > 0) {
 		m_ui.BaseFontSizeComboBox->setEditText(
 			QString::number(m_pOptions->iBaseFontSize));
@@ -207,9 +211,11 @@ void qsynthOptionsForm::accept (void)
 		m_pOptions->bKeepOnTop      = m_ui.KeepOnTopCheckBox->isChecked();
 		m_pOptions->bStdoutCapture  = m_ui.StdoutCaptureCheckBox->isChecked();
 		m_pOptions->bOutputMeters   = m_ui.OutputMetersCheckBox->isChecked();
+	#ifdef CONFIG_SYSTEM_TRAY
 		m_pOptions->bSystemTray     = m_ui.SystemTrayCheckBox->isChecked();
 		m_pOptions->bSystemTrayQueryClose = m_ui.SystemTrayQueryCloseCheckBox->isChecked();
 		m_pOptions->bStartMinimized = m_ui.StartMinimizedCheckBox->isChecked();
+	#endif
 		m_pOptions->iBaseFontSize   = m_ui.BaseFontSizeComboBox->currentText().toInt();
 		// Knobs
 		m_pOptions->iKnobStyle      = m_ui.KnobStyleComboBox->currentIndex();
@@ -283,9 +289,11 @@ void qsynthOptionsForm::stabilizeForm()
 		bValid = !sPath.isEmpty();
 	}
 
+#ifdef CONFIG_SYSTEM_TRAY
 	bEnabled = m_ui.SystemTrayCheckBox->isChecked();
 	m_ui.SystemTrayQueryCloseCheckBox->setEnabled(bEnabled);
 	m_ui.StartMinimizedCheckBox->setEnabled(bEnabled);
+#endif
 
 	m_ui.DialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(bValid);
 }

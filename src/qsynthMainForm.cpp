@@ -21,11 +21,12 @@
 
 #include "qsynthAbout.h"
 #include "qsynthMainForm.h"
-
 #include "qsynthEngine.h"
-
 #include "qsynthTabBar.h"
+
+#ifdef CONFIG_SYSTEM_TRAY
 #include "qsynthSystemTray.h"
+#endif
 
 #include "qsynthAboutForm.h"
 #include "qsynthSetupForm.h"
@@ -377,12 +378,14 @@ qsynthMainForm::qsynthMainForm (
 	m_pMessagesForm  = NULL;
 	m_pChannelsForm  = NULL;
 
+#ifdef CONFIG_SYSTEM_TRAY
 	// The eventual system tray widget.
 	m_pSystemTray = NULL;
 	m_iSystemTrayState = 0;
+	m_bQuitClose = false;
+#endif
 
 	// We're not quitting so early :)
-	m_bQuitClose = false;
 	m_bQuitForce = false;
 
 	// Whether we've Qt::Tool flag (from bKeepOnTop),
@@ -534,9 +537,11 @@ qsynthMainForm::~qsynthMainForm (void)
 	if (m_pChannelsForm)
 		delete m_pChannelsForm;
 
+#ifdef CONFIG_SYSTEM_TRAY
 	// Quit off system tray widget.
 	if (m_pSystemTray)
 		delete m_pSystemTray;
+#endif
 
 	// Pseudo-singleton reference shut-down.
 	g_pMainForm = NULL;
@@ -598,8 +603,9 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 	updateMessagesFont();
 	updateMessagesLimit();
 	updateOutputMeters();
+#ifdef CONFIG_SYSTEM_TRAY
 	updateSystemTray();
-
+#endif
 	// Knobs
 	updateKnobs();
 
@@ -729,14 +735,18 @@ bool qsynthMainForm::queryClose (void)
 				m_pMessagesForm->close();
 			if (m_pChannelsForm)
 				m_pChannelsForm->close();
+		#ifdef CONFIG_SYSTEM_TRAY
 			// And the system tray icon too.
 			if (m_pSystemTray)
 				m_pSystemTray->close();
+		#endif
 		}
 	}
 
 	// Whether we're really quitting.
+#ifdef CONFIG_SYSTEM_TRAY
 	m_bQuitClose = bQueryClose;
+#endif
 	m_bQuitForce = bQueryClose;
 
 	return bQueryClose;
@@ -997,13 +1007,14 @@ void qsynthMainForm::updateOutputMeters (void)
 }
 
 
+#ifdef CONFIG_SYSTEM_TRAY
+
 // System tray master switcher.
 void qsynthMainForm::updateSystemTray (void)
 {
 	if (m_pOptions == NULL)
 		return;
 
-#ifdef CONFIG_SYSTEM_TRAY
 	if (!m_pOptions->bSystemTray && m_pSystemTray) {
 	//  Strange enough, this would close the application too.
 	//  m_pSystemTray->close();
@@ -1018,19 +1029,20 @@ void qsynthMainForm::updateSystemTray (void)
 			SLOT(toggleMainForm()));
 		QObject::connect(m_pSystemTray,
 			SIGNAL(contextMenuRequested(const QPoint &)),
-			SLOT(systemTrayContextMenu(const QPoint &)));
+			SLOT(contextMenu(const QPoint &)));
 	} else {
 		// Make sure the main widget is visible.
 		show();
 		raise();
 		activateWindow();
 	}
-#endif
 }
+
+#endif
 
 
 // System tray context menu request slot.
-void qsynthMainForm::systemTrayContextMenu ( const QPoint& pos )
+void qsynthMainForm::contextMenu ( const QPoint& pos )
 {
 	if (m_pOptions == NULL)
 		return;
@@ -1038,10 +1050,14 @@ void qsynthMainForm::systemTrayContextMenu ( const QPoint& pos )
 	QMenu menu(this);
 	QAction *pAction;
 
-	QString sHideMinimize = (m_pOptions->bSystemTray && m_pSystemTray
-		? tr("&Hide") : tr("Mi&nimize"));
-	QString sShowRestore  = (m_pOptions->bSystemTray && m_pSystemTray
-		? tr("S&how") : tr("Rest&ore"));
+	QString sHideMinimize = tr("Mi&nimize");
+	QString sShowRestore  = tr("Rest&ore");
+#ifdef CONFIG_SYSTEM_TRAY
+	if (m_pOptions->bSystemTray && m_pSystemTray) {
+		sHideMinimize = tr("&Hide");
+		sShowRestore  = tr("S&how");
+	}
+#endif
 	pAction = menu.addAction(isVisible()
 		? sHideMinimize : sShowRestore, this, SLOT(toggleMainForm()));
 	menu.addSeparator();
@@ -1333,6 +1349,7 @@ void qsynthMainForm::toggleMainForm (void)
 	m_pOptions->saveWidgetGeometry(this, true);
 
 	if (isVisible()) {
+	#ifdef CONFIG_SYSTEM_TRAY
 		if (m_pOptions->bSystemTray && m_pSystemTray) {
 			// Hide away from sight, if not active...
 			if (isActiveWindow()) {
@@ -1341,10 +1358,11 @@ void qsynthMainForm::toggleMainForm (void)
 				raise();
 				activateWindow();
 			}
-		} else {
-			// Minimize (iconify) normally.
-			showMinimized();
 		}
+		else
+	#endif
+		// Minimize (iconify) normally.
+		showMinimized();
 	} else {
 		show();
 		raise();
@@ -1412,27 +1430,29 @@ void qsynthMainForm::showOptionsForm (void)
 		if (m_pOptions->sMessagesFont.isEmpty() && m_pMessagesForm)
 			m_pOptions->sMessagesFont = m_pMessagesForm->messagesFont().toString();
 		// To track down deferred or immediate changes.
-		bool    bOldMessagesLog = m_pOptions->bMessagesLog;
-		QString sOldMessagesLogPath = m_pOptions->sMessagesLogPath;
-		QString sMessagesFont  = m_pOptions->sMessagesFont;
-		bool    bSystemTray    = m_pOptions->bSystemTray;
-		bool    bOutputMeters  = m_pOptions->bOutputMeters;
-		bool    bStdoutCapture = m_pOptions->bStdoutCapture;
-		bool    bKeepOnTop     = m_pOptions->bKeepOnTop;
-		int     iOldBaseFontSize = m_pOptions->iBaseFontSize;
-		int     bMessagesLimit = m_pOptions->bMessagesLimit;
-		int     iMessagesLimitLines = m_pOptions->iMessagesLimitLines;
-		int     iKnobStyle     = m_pOptions->iKnobStyle;
-		int     iKnobMotion    = m_pOptions->iKnobMotion;
+		const bool    bOldMessagesLog = m_pOptions->bMessagesLog;
+		const QString sOldMessagesLogPath = m_pOptions->sMessagesLogPath;
+		const QString sOldMessagesFont = m_pOptions->sMessagesFont;
+	#ifdef CONFIG_SYSTEM_TRAY
+		const bool    bOldSystemTray    = m_pOptions->bSystemTray;
+	#endif
+		const bool    bOldOutputMeters  = m_pOptions->bOutputMeters;
+		const bool    bOldStdoutCapture = m_pOptions->bStdoutCapture;
+		const bool    bOldKeepOnTop     = m_pOptions->bKeepOnTop;
+		const int     iOldBaseFontSize  = m_pOptions->iBaseFontSize;
+		const int     bOldMessagesLimit = m_pOptions->bMessagesLimit;
+		const int     iOldMessagesLimitLines = m_pOptions->iMessagesLimitLines;
+		const int     iOldKnobStyle     = m_pOptions->iKnobStyle;
+		const int     iOldKnobMotion    = m_pOptions->iKnobMotion;
 		// Load the current setup settings.
 		pOptionsForm->setup(m_pOptions);
 		// Show the setup dialog...
 		if (pOptionsForm->exec()) {
 			// Warn if something will be only effective on next run.
-			if (( bStdoutCapture && !m_pOptions->bStdoutCapture) ||
-				(!bStdoutCapture &&  m_pOptions->bStdoutCapture) ||
-				( bKeepOnTop     && !m_pOptions->bKeepOnTop)     ||
-				(!bKeepOnTop     &&  m_pOptions->bKeepOnTop)     ||
+			if (( bOldStdoutCapture && !m_pOptions->bStdoutCapture) ||
+				(!bOldStdoutCapture &&  m_pOptions->bStdoutCapture) ||
+				( bOldKeepOnTop     && !m_pOptions->bKeepOnTop)     ||
+				(!bOldKeepOnTop     &&  m_pOptions->bKeepOnTop)     ||
 				(iOldBaseFontSize != m_pOptions->iBaseFontSize)) {
 				const QString& sTitle
 					= QSYNTH_TITLE ": " + tr("Information");
@@ -1455,21 +1475,23 @@ void qsynthMainForm::showOptionsForm (void)
 				(sOldMessagesLogPath != m_pOptions->sMessagesLogPath))
 				m_pMessagesForm->setLogging(
 					m_pOptions->bMessagesLog, m_pOptions->sMessagesLogPath);
-			if (sMessagesFont != m_pOptions->sMessagesFont)
+			if (sOldMessagesFont != m_pOptions->sMessagesFont)
 				updateMessagesFont();
-			if (( bMessagesLimit && !m_pOptions->bMessagesLimit) ||
-				(!bMessagesLimit &&  m_pOptions->bMessagesLimit) ||
-				(iMessagesLimitLines !=  m_pOptions->iMessagesLimitLines))
+			if (( bOldMessagesLimit && !m_pOptions->bMessagesLimit) ||
+				(!bOldMessagesLimit &&  m_pOptions->bMessagesLimit) ||
+				(iOldMessagesLimitLines !=  m_pOptions->iMessagesLimitLines))
 				updateMessagesLimit();
-			if (( bSystemTray && !m_pOptions->bSystemTray) ||
-				(!bSystemTray &&  m_pOptions->bSystemTray))
+		#ifdef CONFIG_SYSTEM_TRAY
+			if (( bOldSystemTray && !m_pOptions->bSystemTray) ||
+				(!bOldSystemTray &&  m_pOptions->bSystemTray))
 				updateSystemTray();
-			if (( iKnobStyle != m_pOptions->iKnobStyle) ||
-				( iKnobMotion != m_pOptions->iKnobMotion))
+		#endif
+			if ((iOldKnobStyle  != m_pOptions->iKnobStyle) ||
+				(iOldKnobMotion != m_pOptions->iKnobMotion))
 				updateKnobs();
 			// There's some option(s) that need a global restart...
-			if (( bOutputMeters  && !m_pOptions->bOutputMeters) ||
-				(!bOutputMeters  &&  m_pOptions->bOutputMeters)) {
+			if (( bOldOutputMeters  && !m_pOptions->bOutputMeters) ||
+				(!bOldOutputMeters  &&  m_pOptions->bOutputMeters)) {
 				updateOutputMeters();
 				restartAllEngines();
 			}
@@ -1571,22 +1593,26 @@ void qsynthMainForm::timerSlot (void)
 				pEngine->iMidiState++;
 				m_ui.TabBar->setOn(iTab, true);
 				iTabUpdate++;
+			#ifdef CONFIG_SYSTEM_TRAY
 				// Change the system tray icon background color!
 				if (m_pSystemTray && m_iSystemTrayState == 0) {
 					m_iSystemTrayState++;
 					m_pSystemTray->setBackground(Qt::green);
 				}
+			#endif
 			}
 		}
 		else if (pEngine->iMidiEvent == 0 && pEngine->iMidiState > 0) {
 			pEngine->iMidiState--;
 			m_ui.TabBar->setOn(iTab, false);
 			iTabUpdate++;
+		#ifdef CONFIG_SYSTEM_TRAY
 			// Reset the system tray icon background!
 			if (m_pSystemTray && m_iSystemTrayState > 0) {
 				m_iSystemTrayState--;
 				m_pSystemTray->setBackground(Qt::transparent);
 			}
+		#endif
 		}
 	}
 	// Have we an update?
@@ -2474,9 +2500,10 @@ void qsynthMainForm::activateEnginesMenu ( QAction *pAction )
 // Close main form slot.
 void qsynthMainForm::quitMainForm (void)
 {
+#ifdef CONFIG_SYSTEM_TRAY
 	// Flag that we're quitting explicitly.
 	m_bQuitClose = true;
-
+#endif
 	// And then, do the closing dance.
 	close();
 }
@@ -2486,7 +2513,7 @@ void qsynthMainForm::quitMainForm (void)
 void qsynthMainForm::contextMenuEvent( QContextMenuEvent *pEvent )
 {
 	// We'll just show up the usual system tray menu.
-	systemTrayContextMenu(pEvent->globalPos());
+	contextMenu(pEvent->globalPos());
 }
 
 
@@ -2528,7 +2555,9 @@ void qsynthMainForm::commitData ( QSessionManager& sm )
 {
 	sm.release();
 
+#ifdef CONFIG_SYSTEM_TRAY
 	m_bQuitClose = true;
+#endif
 	m_bQuitForce = true;
 }
 

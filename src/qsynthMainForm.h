@@ -29,7 +29,10 @@
 class qsynthOptions;
 class qsynthMessagesForm;
 class qsynthChannelsForm;
+
+#ifdef CONFIG_SYSTEM_TRAY
 class qsynthSystemTray;
+#endif
 
 class QSocketNotifier;
 class QSessionManager;
@@ -79,7 +82,7 @@ public slots:
 	void appendStdoutBuffer(const QString&);
 	void flushStdoutBuffer();
 
-	void systemTrayContextMenu(const QPoint&);
+	void contextMenu(const QPoint&);
 
 	void stabilizeForm();
 
@@ -132,7 +135,9 @@ protected:
 	void updateMessagesFont();
 	void updateMessagesLimit();
 	void updateOutputMeters();
+#ifdef CONFIG_SYSTEM_TRAY
 	void updateSystemTray();
+#endif
 
 	qsynthEngine *currentEngine() const;
 
@@ -184,10 +189,12 @@ private:
 
 	QString m_sStdoutBuffer;
 
+#ifdef CONFIG_SYSTEM_TRAY
 	qsynthSystemTray *m_pSystemTray;
 	int m_iSystemTrayState;
-
 	bool m_bQuitClose;
+#endif
+
 	bool m_bQuitForce;
 
 	// Kind-of singleton reference.

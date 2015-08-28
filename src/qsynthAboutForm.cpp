@@ -1,7 +1,7 @@
 // qsynthAboutForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2015, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -47,6 +47,11 @@ qsynthAboutForm::qsynthAboutForm (
 	sText += tr("Debugging option enabled.");
 	sText += "<br />\n";
 	sText += "</font></small>";
+#endif
+#ifndef CONFIG_SYSTEM_TRAY
+	sText += "<small><font color=\"red\">";
+	sText += tr("System tray disabled.");
+	sText += "</font></small><br />\n";
 #endif
 #ifndef CONFIG_FLUID_SERVER
 	sText += "<small><font color=\"red\">";
