@@ -215,7 +215,7 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="53"/>
         <source>System tray disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Barre d&apos;état desactivée.</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="58"/>
