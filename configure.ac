@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.3.9.17, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.3.9.18, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
@@ -393,3 +393,4 @@ echo "  Install prefix . . . . . . . . . . . . . . . . . .: $ac_prefix"
 echo
 echo "Now type 'make', followed by 'make install' as root."
 echo
+
