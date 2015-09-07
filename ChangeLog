@@ -7,19 +7,18 @@ ChangeLog
 0.4.0  2015-09-07  Summer'15 release frenzy.
 
 - Desktop environment session shutdown/logout management has been
-  also adapted to Qt5 framework. (EXPERIMENTAL)
+  also adapted to Qt5 framework.
 
 - Single/unique application instance control adapted to Qt5/X11.
-  (EXPERIMENTAL)
 
 - Output meter scale text color fixed on dark color schemes.
 
 - Prefer Qt5 over Qt4 by default with configure script.
 
-- Complete rewrite of Qt4 vs. Qt5 configure builds. (TESTING)
+- Complete rewrite of Qt4 vs. Qt5 configure builds.
 
 - A new top-level widget window geometry state save and restore
-  sub-routine is now in effect (EXPERIMENTAL).
+  sub-routine is now in effect.
 
 - Fixed for some strict tests for Qt4 vs. Qt5 configure builds.
 
@@ -123,7 +122,7 @@ ChangeLog
   and comply with fluidsynth back-end (libfluidsynth).
 
 - Fluidsynth channel info and unset program interfaces are now in
-  use where available (libfluidsynth >= 1.1.1, EXPERIMENTAL).
+  use where available (libfluidsynth >= 1.1.1).
 
 - Global configuration state is now explicitly saved/committed to
   disk when Options dialog changes are accepted and applied.
@@ -252,7 +251,7 @@ ChangeLog
 
 - Now using QSystemTrayIcon class facility if available (Qt4 >= 4.2)
   making the system-tray option available on most platforms, notably
-  on Windows and Mac OS X (EXPERIMENTAL).
+  on Windows and Mac OS X.
 
 - Combo-box setup history has been corrected on restore, which was
   discarding the very initial default (factory) contents.
@@ -419,11 +418,11 @@ ChangeLog
 
 - Added Mac OS X build instructions (README-OSX, by Ebrahim Mayat).
 
-- Soundfont bank offset option gets its trial time (EXPERIMENTAL);
+- Soundfont bank offset option gets its trial time;
   please note that fluidsynth 1.0.5 is needed to build on this feature,
   which is being properly detected and only enabled at configure time.
 
-- Output level peak meters are now featured as an option (EXPERIMENTAL),
+- Output level peak meters are now featured as an option,
   which must be explicitly enabled on setup for those to show up;
   in addition, overall GUI refresh cycle period has been reduced from
   200 to 100 msec.
