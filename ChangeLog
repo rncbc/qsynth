@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.4.0  2015-09-07  Summer'15 release frenzy.
 
 - Desktop environment session shutdown/logout management has been
   also adapted to Qt5 framework. (EXPERIMENTAL)
