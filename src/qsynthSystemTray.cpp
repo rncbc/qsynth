@@ -90,11 +90,8 @@ qsynthSystemTray::~qsynthSystemTray (void)
 // System tray icon/pixmaps update method.
 void qsynthSystemTray::updatePixmap (void)
 {
-	// Get the default systray icon size...
-	const QRect& dimension = QSystemTrayIcon::geometry();
-
 	// Renitialize icon as fit...
-	m_pixmap = m_icon.pixmap(dimension.width(), dimension.height());
+	m_pixmap = m_icon.pixmap(22, 22);
 
 	// Merge with the overlay pixmap...
 	if (!m_pixmapOverlay.mask().isNull()) {
