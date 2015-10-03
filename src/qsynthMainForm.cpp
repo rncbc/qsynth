@@ -88,6 +88,7 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 #undef HAVE_SIGNAL_H
 #else
 #include <unistd.h>
+#include <fcntl.h>
 // Notification pipe descriptors
 #define QSYNTH_FDNIL     -1
 #define QSYNTH_FDREAD     0
@@ -614,6 +615,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 	if (m_pOptions->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
 		::dup2(g_fdStdout[QSYNTH_FDWRITE], STDOUT_FILENO);
 		::dup2(g_fdStdout[QSYNTH_FDWRITE], STDERR_FILENO);
+		stdoutBlock(g_fdStdout[QSYNTH_FDWRITE], false);
 		m_pStdoutNotifier = new QSocketNotifier(
 			g_fdStdout[QSYNTH_FDREAD], QSocketNotifier::Read, this);
 		QObject::connect(m_pStdoutNotifier,
@@ -884,16 +886,41 @@ void qsynthMainForm::dropEvent ( QDropEvent* pDropEvent )
 }
 
 
+// Set stdout/stderr blocking mode.
+bool qsynthMainForm::stdoutBlock ( int fd, bool bBlock ) const
+{
+#if !defined(WIN32)
+	const int iFlags = ::fcntl(fd, F_GETFL, 0);
+	const bool bNonBlock = bool(iFlags & O_NONBLOCK);
+	if (bBlock && bNonBlock)
+		bBlock = (::fcntl(fd, F_SETFL, iFlags & ~O_NONBLOCK) == 0);
+	else
+	if (!bBlock && !bNonBlock)
+		bBlock = (::fcntl(fd, F_SETFL, iFlags |  O_NONBLOCK) != 0);
+#endif
+	return bBlock;
+}
+
+
 // Own stdout/stderr socket notifier slot.
 void qsynthMainForm::stdoutNotifySlot ( int fd )
 {
-#if !defined(WIN32)
+ #if !defined(WIN32)
+	// Set non-blocking reads, if not already...
+	const bool bBlock = stdoutBlock(fd, false);
+	// Read as much as is available...
+	QString sTemp;
 	char achBuffer[1024];
-	int  cchBuffer = ::read(fd, achBuffer, sizeof(achBuffer) - 1);
-	if (cchBuffer > 0) {
-		achBuffer[cchBuffer] = (char) 0;
-		appendStdoutBuffer(achBuffer);
+	const int cchBuffer = sizeof(achBuffer) - 1;
+	int cchRead = ::read(fd, achBuffer, cchBuffer);
+	while (cchRead > 0) {
+		achBuffer[cchRead] = (char) 0;
+		sTemp.append(achBuffer);
+		cchRead = (bBlock ? 0 : ::read(fd, achBuffer, cchBuffer));
 	}
+	// Needs to be non-empty...
+	if (!sTemp.isEmpty())
+		appendStdoutBuffer(sTemp);
 #endif
 }
 
@@ -903,10 +930,10 @@ void qsynthMainForm::appendStdoutBuffer ( const QString& s )
 {
 	m_sStdoutBuffer.append(s);
 
-	int iLength = m_sStdoutBuffer.lastIndexOf('\n') + 1;
+	const int iLength = m_sStdoutBuffer.lastIndexOf('\n');
 	if (iLength > 0) {
-		QString sTemp = m_sStdoutBuffer.left(iLength);
-		m_sStdoutBuffer.remove(0, iLength);
+		const QString& sTemp = m_sStdoutBuffer.left(iLength);
+		m_sStdoutBuffer.remove(0, iLength + 1);
 		QStringList list = sTemp.split('\n');
 		QStringListIterator iter(list);
 		while (iter.hasNext())

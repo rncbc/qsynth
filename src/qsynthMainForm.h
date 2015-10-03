@@ -78,13 +78,13 @@ public:
 
 public slots:
 
+	void stabilizeForm();
+
+protected slots:
+
 	void stdoutNotifySlot(int);
-	void appendStdoutBuffer(const QString&);
-	void flushStdoutBuffer();
 
 	void contextMenu(const QPoint&);
-
-	void stabilizeForm();
 
 	void programReset();
 	void systemReset();
@@ -125,6 +125,11 @@ protected:
 	bool queryClose();
 
 	void closeEvent(QCloseEvent *pCloseEvent);
+
+	void appendStdoutBuffer(const QString&);
+	void flushStdoutBuffer();
+
+	bool stdoutBlock(int fd, bool bBlock) const;
 
 	void playLoadFiles( qsynthEngine *pEngine, const QStringList& files, bool bSetup);
 
