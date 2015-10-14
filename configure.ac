@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.4.0.5, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.4.0.6, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
@@ -9,7 +9,7 @@ AC_CONFIG_FILES(Makefile qsynth.spec src/src.pri src/qsynth.desktop)
 AC_PREFIX_DEFAULT(/usr/local)
 ac_prefix=$prefix
 if test "x$ac_prefix" = "xNONE"; then
-    ac_prefix=$ac_default_prefix
+   ac_prefix=$ac_default_prefix
 fi
 AC_SUBST(ac_prefix)
 AC_DEFINE_UNQUOTED(CONFIG_PREFIX, ["$ac_prefix"], [Default installation prefix.])
