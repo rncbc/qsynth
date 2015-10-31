@@ -8,7 +8,7 @@
  <summary>A fluidsynth Qt GUI Interface</summary>
  <description>
   <p>Qsynth is a fluidsynth GUI front-end application, written in C++ around the
-  Qt4 toolkit, using Qt Designer. Eventually it may evolve into a softsynth
+  Qt framework, using Qt Designer. Eventually it may evolve into a softsynth
   management application allowing the user to control and manage a variety of
   command line softsynths.</p>
  </description>
