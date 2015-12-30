@@ -47,6 +47,13 @@ qsynthSystemTray::qsynthSystemTray ( QWidget *pParent )
 		QSystemTrayIcon::setToolTip(pParent->windowTitle());
 	}
 
+	// Set proper context menu, even though it's empty...
+	QSystemTrayIcon::setContextMenu(&m_menu);
+
+	QObject::connect(&m_menu,
+		SIGNAL(aboutToShow()),
+		SLOT(contextMenuRequested()));
+
 	QObject::connect(this,
 		SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
 		SLOT(activated(QSystemTrayIcon::ActivationReason)));
@@ -67,7 +74,7 @@ void qsynthSystemTray::activated ( QSystemTrayIcon::ActivationReason reason )
 {
 	switch (reason) {
 	case QSystemTrayIcon::Context:
-		emit contextMenuRequested(QCursor::pos());
+		contextMenuRequested();
 		break;
 	case QSystemTrayIcon::Trigger:
 		emit clicked();
@@ -78,6 +85,12 @@ void qsynthSystemTray::activated ( QSystemTrayIcon::ActivationReason reason )
 	default:
 		break;
 	}
+}
+
+
+void qsynthSystemTray::contextMenuRequested (void)
+{
+	emit contextMenuRequested(QCursor::pos());
 }
 
 

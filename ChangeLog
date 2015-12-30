@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- System-tray icon context menu has been fixed/hacked to show up
+  again on Plasma 5 (aka. KDE5) notifications area. (EXPERIMENTAL)
+
 - Prevent x11extras module from use on non-X11/Unix plaforms.
 
 - Messages standard output capture has been improved in both ways
