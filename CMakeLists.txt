@@ -25,8 +25,8 @@ option (CONFIG_SYSTEM_TRAY "Define if system tray is enabled." 1)
 
 # Check for Qt
 set (QT_MIN_VERSION "5.1.0")
-find_package (Qt5 REQUIRED)
-include (${QT_USE_FILE})
+find_package (Qt5 REQUIRED NO_MODULE COMPONENTS Core Gui Widgets)
+find_package(Qt5LinguistTools)
 
 include (CheckIncludeFile)
 include (CheckIncludeFiles)

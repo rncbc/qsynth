@@ -66,9 +66,9 @@ set ( RESOURCES
     qsynth.qrc
 )
 
-qt4_wrap_ui ( UI_SOURCES ${FORMS} )
-qt4_wrap_cpp ( MOC_SOURCES ${HEADERS} )
-qt4_add_resources ( QRC_SOURCES ${RESOURCES} )
+qt5_wrap_ui ( UI_SOURCES ${FORMS} )
+qt5_wrap_cpp ( MOC_SOURCES ${HEADERS} )
+qt5_add_resources ( QRC_SOURCES ${RESOURCES} )
 
 if (WIN32)
     set ( RC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/win32/qsynth.rc )
@@ -111,6 +111,7 @@ target_link_libraries ( qsynth
     ${MATH_LIBRARY}
     ${FLUIDSYNTH_LIBRARY}
 )
+qt5_use_modules (qsynth Core Gui Widgets)
 
 set ( TRANSLATIONS
    translations/qsynth_cs.ts
@@ -120,7 +121,7 @@ set ( TRANSLATIONS
    translations/qsynth_ru.ts
 )
 
-qt4_add_translation ( QM_FILES ${TRANSLATIONS} )
+qt5_add_translation ( QM_FILES ${TRANSLATIONS} )
 add_custom_target( translations ALL DEPENDS ${QM_FILES} )
 
 if (UNIX AND NOT APPLE)
