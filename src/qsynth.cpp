@@ -1,7 +1,7 @@
 // qsynth.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2015, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2016, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -188,10 +188,12 @@ public:
 		m_pWidget = pWidget;
 	#ifdef CONFIG_X11
 	#ifdef CONFIG_XUNIQUE
-		XGrabServer(m_pDisplay);
 		m_wOwner = m_pWidget->winId();
-		XSetSelectionOwner(m_pDisplay, m_aUnique, m_wOwner, CurrentTime);
-		XUngrabServer(m_pDisplay);
+		if (m_pDisplay && m_wOwner) {
+			XGrabServer(m_pDisplay);
+			XSetSelectionOwner(m_pDisplay, m_aUnique, m_wOwner, CurrentTime);
+			XUngrabServer(m_pDisplay);
+		}
 	#endif	// CONFIG_XUNIQUE
 	#endif	// CONFIG_X11
 	}

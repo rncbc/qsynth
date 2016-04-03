@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- Dropped old "Start minimized to system tray" option from setup.
+
 - CMake script lists update (patch by Orcan Ogetbil, thanks).
 
 - Added application keywords to freedesktop.org's AppData.

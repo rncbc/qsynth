@@ -4,174 +4,174 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../qsynthOptions.cpp" line="170"/>
+        <location filename="../qsynthOptions.cpp" line="168"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
         <translation>Употреба: %1 [опције] [звучни_фонтови] [миди_датотеке]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="173"/>
+        <location filename="../qsynthOptions.cpp" line="171"/>
         <source>Options</source>
         <translation>Параметри</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="175"/>
+        <location filename="../qsynthOptions.cpp" line="173"/>
         <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
         <translation>Не стварај миди посредника за читање улазних миди-догађаја [подразумевано = yes]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="177"/>
+        <location filename="../qsynthOptions.cpp" line="175"/>
         <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
         <translation>Назив миди посредника који ће се користити [oss,alsa,alsa_seq,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="179"/>
+        <location filename="../qsynthOptions.cpp" line="177"/>
         <source>The number of midi channels [default = 16]</source>
         <translation>Број миди-канала [подразумевано = 16]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="181"/>
+        <location filename="../qsynthOptions.cpp" line="179"/>
         <source>The audio driver [alsa,jack,oss,dsound,...]</source>
         <translation>Звучни посредник [alsa,jack,oss,dsound,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="183"/>
+        <location filename="../qsynthOptions.cpp" line="181"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
         <translation>Покушавај да повежеш излазе Џек посредника на физичке портове</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="185"/>
+        <location filename="../qsynthOptions.cpp" line="183"/>
         <source>The number of stereo audio channels [default = 1]</source>
         <translation>Број звучних стерео канала [подразумевано = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="187"/>
+        <location filename="../qsynthOptions.cpp" line="185"/>
         <source>The number of audio groups [default = 1]</source>
         <translation>Број звучних група [подразумевано = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="189"/>
+        <location filename="../qsynthOptions.cpp" line="187"/>
         <source>Size of each audio buffer</source>
         <translation>Величина сваког звучног бафера</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="191"/>
+        <location filename="../qsynthOptions.cpp" line="189"/>
         <source>Number of audio buffers</source>
         <translation>Број звучних бафера</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="193"/>
+        <location filename="../qsynthOptions.cpp" line="191"/>
         <source>Set the sample rate</source>
         <translation>Постави учестаност узорковања</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="195"/>
+        <location filename="../qsynthOptions.cpp" line="193"/>
         <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
         <translation>Укљ./Искљ. јека еф. [1|0|yes|no|on|off, подразумевано = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="197"/>
+        <location filename="../qsynthOptions.cpp" line="195"/>
         <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
         <translation>Укљ./Искљ. хорус еф. [1|0|yes|no|on|off, подразумевано = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="199"/>
+        <location filename="../qsynthOptions.cpp" line="197"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
         <translation>Постави Мастер-појачање [0 &lt; gain &lt; 10, подразумевано = 0.2]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="201"/>
+        <location filename="../qsynthOptions.cpp" line="199"/>
         <source>Define a setting name=value</source>
         <translation>Одреди назив поставке=вредност</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="203"/>
+        <location filename="../qsynthOptions.cpp" line="201"/>
         <source>Create and start server [default = no]</source>
         <translation>Створи и покрени сервер [подразумевано = no]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="205"/>
+        <location filename="../qsynthOptions.cpp" line="203"/>
         <source>Don&apos;t read commands from the shell [ignored]</source>
         <translation>Не читај команде из наредбене линије [занемарено]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="207"/>
+        <location filename="../qsynthOptions.cpp" line="205"/>
         <source>Dump midi router events</source>
         <translation>Избаци догађаје миди-рутера</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="209"/>
+        <location filename="../qsynthOptions.cpp" line="207"/>
         <source>Print out verbose messages about midi events</source>
         <translation>Штампај опширније поруке о миди-догађајима</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="211"/>
+        <location filename="../qsynthOptions.cpp" line="209"/>
         <source>Show help about command line options</source>
         <translation>Прикажи помоћ о опцијама линије наредбе</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="213"/>
+        <location filename="../qsynthOptions.cpp" line="211"/>
         <source>Show version information</source>
         <translation>Прикажи податке о издању програма</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="245"/>
+        <location filename="../qsynthOptions.cpp" line="243"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>Опција „-m“ захтева аргумент (миди посредник).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="254"/>
+        <location filename="../qsynthOptions.cpp" line="252"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>Опција „-K“ захтева аргумент (миди-канали).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="263"/>
+        <location filename="../qsynthOptions.cpp" line="261"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>Опција „-a“ захтева аргумент (звучни посредник).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="275"/>
+        <location filename="../qsynthOptions.cpp" line="273"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>Опција „-L“ захтева аргумент (звучни канали).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="284"/>
+        <location filename="../qsynthOptions.cpp" line="282"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>Опција „-G“ захтева аргумент (звучне групе).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="293"/>
+        <location filename="../qsynthOptions.cpp" line="291"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>Опција „-z“ захтева аргумент (вел. зв. бафера).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="302"/>
+        <location filename="../qsynthOptions.cpp" line="300"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>Опција „-c“ захтева аргумент (број зв. бафера).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="311"/>
+        <location filename="../qsynthOptions.cpp" line="309"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>Опција „-r“ захтева аргумент (учестаност узорковања).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="338"/>
+        <location filename="../qsynthOptions.cpp" line="336"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Опција „-g“ захтева аргумент (појачање).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="347"/>
+        <location filename="../qsynthOptions.cpp" line="345"/>
         <source>Option -o requires an argument.</source>
         <translation>Опција „-o“ захтева аргумент.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="369"/>
+        <location filename="../qsynthOptions.cpp" line="367"/>
         <source>Qt: %1
 </source>
         <translation>КјуТ: %1
 </translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="387"/>
+        <location filename="../qsynthOptions.cpp" line="385"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Непозната опција „%1“.</translation>
     </message>
@@ -1194,7 +1194,7 @@ restarting the fluidsynth engine:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="599"/>
+        <location filename="../qsynthOptionsForm.ui" line="583"/>
         <source>Defaults</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1239,87 +1239,77 @@ restarting the fluidsynth engine:</source>
         <translation>Омогући икону у обав&amp;ештајној зони</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="564"/>
-        <source>Whether to start minimized to system tray</source>
-        <translation>Да ли да сакријем програм при покретању у обавештајну зону</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptionsForm.ui" line="567"/>
-        <source>Start minimi&amp;zed to system tray</source>
-        <translation>По покретању смести у &amp;обавештајну зону</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptionsForm.ui" line="636"/>
+        <location filename="../qsynthOptionsForm.ui" line="620"/>
         <source>&amp;Base font size:</source>
         <translation>Величина &amp;слова:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="655"/>
+        <location filename="../qsynthOptionsForm.ui" line="639"/>
         <source>Base application font size (pt.)</source>
         <translation>Основна величина слова фонта у програму (у тачкама-пт.)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="662"/>
+        <location filename="../qsynthOptionsForm.ui" line="646"/>
         <source>(default)</source>
         <translation>(подразумевано)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="667"/>
+        <location filename="../qsynthOptionsForm.ui" line="651"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="672"/>
+        <location filename="../qsynthOptionsForm.ui" line="656"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="677"/>
+        <location filename="../qsynthOptionsForm.ui" line="661"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="682"/>
+        <location filename="../qsynthOptionsForm.ui" line="666"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="687"/>
+        <location filename="../qsynthOptionsForm.ui" line="671"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="692"/>
+        <location filename="../qsynthOptionsForm.ui" line="676"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="697"/>
+        <location filename="../qsynthOptionsForm.ui" line="681"/>
         <source>12</source>
         <translation>12</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="246"/>
+        <location filename="../qsynthOptionsForm.cpp" line="239"/>
         <source>Warning</source>
         <translation>Упозорење</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="247"/>
+        <location filename="../qsynthOptionsForm.cpp" line="240"/>
         <source>Some options have been changed.</source>
         <translation>Измењена су нека подешавања.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="248"/>
+        <location filename="../qsynthOptionsForm.cpp" line="241"/>
         <source>Do you want to apply the changes?</source>
         <translation>Желите ли да примените ове измене?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="307"/>
+        <location filename="../qsynthOptionsForm.cpp" line="299"/>
         <source>Messages Log</source>
         <translation>Дневник порука</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="309"/>
+        <location filename="../qsynthOptionsForm.cpp" line="301"/>
         <source>Log files</source>
         <translation>Датотеке дневника</translation>
     </message>
