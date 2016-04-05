@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.4.1  2016-04-05  Spring'16 release frenzy.
 
 - Dropped old "Start minimized to system tray" option from setup.
 
@@ -18,7 +18,7 @@ GIT HEAD
 - Prevent x11extras module from use on non-X11/Unix plaforms.
 
 - Messages standard output capture has been improved in both ways
-  a non-blocking pipe may get. (EXPERIMENTAL)
+  a non-blocking pipe may get.
 
 - Regression fix for invalid system-tray icon dimensions reported
   by some desktop environment frameworks.

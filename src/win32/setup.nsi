@@ -3,7 +3,7 @@ Name QSynth
 # Defines
 !define BINARY_FILES "C:\Projects\build\all"
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.3.8
+!define VERSION 0.4.1
 !define COMPANY QSynth
 !define URL http://qsynth.sourceforge.net/
 
