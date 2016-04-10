@@ -4,6 +4,13 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Dropped the --enable-qt5 from configure as found redundant
+  given that's the build default anyway (suggestion by Guido
+  Scholz, while for Qtractor, thanks).
+
+
 0.4.1  2016-04-05  Spring'16 release frenzy.
 
 - Dropped old "Start minimized to system tray" option from setup.
