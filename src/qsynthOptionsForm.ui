@@ -552,6 +552,22 @@
             </property>
            </widget>
           </item>
+          <item row="2" column="2">
+           <widget class="QCheckBox" name="StartMinimizedCheckBox" >
+            <property name="font" >
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="toolTip" >
+             <string>Whether to start minimized to system tray</string>
+            </property>
+            <property name="text" >
+             <string>Start minimi&amp;zed to system tray</string>
+            </property>
+           </widget>
+          </item>
           <item row="4" column="0" colspan="3">
            <spacer>
             <property name="orientation">
@@ -719,6 +735,7 @@
   <tabstop>OutputMetersCheckBox</tabstop>
   <tabstop>SystemTrayCheckBox</tabstop>
   <tabstop>SystemTrayQueryCloseCheckBox</tabstop>
+  <tabstop>StartMinimizedCheckBox</tabstop>
   <tabstop>BaseFontSizeComboBox</tabstop>
   <tabstop>DialogButtonBox</tabstop>
  </tabstops>

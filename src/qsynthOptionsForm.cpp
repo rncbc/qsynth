@@ -86,6 +86,9 @@ qsynthOptionsForm::qsynthOptionsForm (
 	QObject::connect(m_ui.SystemTrayQueryCloseCheckBox,
 		SIGNAL(stateChanged(int)),
 		SLOT(optionsChanged()));
+	QObject::connect(m_ui.StartMinimizedCheckBox,
+		SIGNAL(stateChanged(int)),
+		SLOT(optionsChanged()));
 #endif
 	QObject::connect(m_ui.BaseFontSizeComboBox,
 		SIGNAL(editTextChanged(const QString&)),
@@ -161,6 +164,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 #ifdef CONFIG_SYSTEM_TRAY
 	m_ui.SystemTrayCheckBox->setChecked(m_pOptions->bSystemTray);
 	m_ui.SystemTrayQueryCloseCheckBox->setChecked(m_pOptions->bSystemTrayQueryClose);
+	m_ui.StartMinimizedCheckBox->setChecked(m_pOptions->bStartMinimized);
 #endif
 	if (m_pOptions->iBaseFontSize > 0) {
 		m_ui.BaseFontSizeComboBox->setEditText(
@@ -183,6 +187,8 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.SystemTrayCheckBox->setEnabled(false);
 	m_ui.SystemTrayQueryCloseCheckBox->setChecked(false);
 	m_ui.SystemTrayQueryCloseCheckBox->setEnabled(false);
+	m_ui.StartMinimizedCheckBox->setChecked(false);
+	m_ui.StartMinimizedCheckBox->setEnabled(false);
 #endif
 
 	// Done.
@@ -208,6 +214,7 @@ void qsynthOptionsForm::accept (void)
 	#ifdef CONFIG_SYSTEM_TRAY
 		m_pOptions->bSystemTray     = m_ui.SystemTrayCheckBox->isChecked();
 		m_pOptions->bSystemTrayQueryClose = m_ui.SystemTrayQueryCloseCheckBox->isChecked();
+		m_pOptions->bStartMinimized = m_ui.StartMinimizedCheckBox->isChecked();
 	#endif
 		m_pOptions->iBaseFontSize   = m_ui.BaseFontSizeComboBox->currentText().toInt();
 		// Knobs
@@ -283,8 +290,9 @@ void qsynthOptionsForm::stabilizeForm()
 	}
 
 #ifdef CONFIG_SYSTEM_TRAY
-	m_ui.SystemTrayQueryCloseCheckBox->setEnabled(
-		m_ui.SystemTrayCheckBox->isChecked());
+	bEnabled = m_ui.SystemTrayCheckBox->isChecked();
+	m_ui.SystemTrayQueryCloseCheckBox->setEnabled(bEnabled);
+	m_ui.StartMinimizedCheckBox->setEnabled(bEnabled);
 #endif
 
 	m_ui.DialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(bValid);

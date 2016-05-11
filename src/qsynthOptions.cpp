@@ -72,6 +72,7 @@ void qsynthOptions::loadOptions (void)
 	bOutputMeters   = m_settings.value("/OutputMeters", false).toBool();
 	bSystemTray     = m_settings.value("/SystemTray", false).toBool();
 	bSystemTrayQueryClose = m_settings.value("/SystemTrayQueryClsoe", true).toBool();
+	bStartMinimized = m_settings.value("/StartMinimized", false).toBool();
 	iBaseFontSize   = m_settings.value("/BaseFontSize", 0).toInt();
 	iKnobStyle      = m_settings.value("/KnobStyle", 0).toInt();
 	iKnobMotion     = m_settings.value("/KnobMotion", 1).toInt();
@@ -137,6 +138,7 @@ void qsynthOptions::saveOptions (void)
 	m_settings.setValue("/OutputMeters", bOutputMeters);
 	m_settings.setValue("/SystemTray", bSystemTray);
 	m_settings.setValue("/SystemTrayQueryClose", bSystemTrayQueryClose);
+	m_settings.setValue("/StartMinimized", bStartMinimized);
 	m_settings.setValue("/BaseFontSize", iBaseFontSize);
 	m_settings.setValue("/KnobStyle", iKnobStyle);
 	m_settings.setValue("/KnobMotion", iKnobMotion);
@@ -903,7 +905,7 @@ void qsynthOptions::loadWidgetGeometry ( QWidget *pWidget, bool bVisible )
 		pWidget->adjustSize();
 		if (!bVisible)
 			bVisible = m_settings.value("/visible", false).toBool();
-		if (bVisible)
+		if (bVisible && !bStartMinimized)
 			pWidget->show();
 		else
 			pWidget->hide();
@@ -930,7 +932,7 @@ void qsynthOptions::saveWidgetGeometry ( QWidget *pWidget, bool bVisible )
 		m_settings.setValue("/height", wsize.height());
 	#endif
 		if (!bVisible) bVisible = pWidget->isVisible();
-		m_settings.setValue("/visible", bVisible);
+		m_settings.setValue("/visible", bVisible && !bStartMinimized);
 		m_settings.endGroup();
 	}
 }

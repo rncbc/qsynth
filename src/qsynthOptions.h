@@ -68,6 +68,7 @@ public:
 	bool    bOutputMeters;
 	bool    bSystemTray;
 	bool    bSystemTrayQueryClose;
+	bool    bStartMinimized;
 	int     iBaseFontSize;
 	int     iKnobStyle;
 	int     iKnobMotion;
