@@ -6,7 +6,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="170"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
-        <translation>Utilisation: %1 [options] [soundfonts] [fichiersmidi]</translation>
+        <translation>Utilisation : %1 [options] [banque de sons] [fichiersmidi]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="173"/>
@@ -167,7 +167,7 @@
         <location filename="../qsynthOptions.cpp" line="369"/>
         <source>Qt: %1
 </source>
-        <translation>Qt: %1</translation>
+        <translation>Qt : %1</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="387"/>
@@ -253,17 +253,17 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="36"/>
         <source>Qsynth: Channels</source>
-        <translation>Qsynth: Canaux</translation>
+        <translation>Qsynth : canaux</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="56"/>
         <source>Preset &amp;Name:</source>
-        <translation>&amp;Nom de préréglage:</translation>
+        <translation>&amp;Nom de pré-réglage :</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="77"/>
         <source>Settings preset name</source>
-        <translation>Définir le nom de préréglage</translation>
+        <translation>Définir le nom de pré-réglage</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="84"/>
@@ -273,7 +273,7 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="92"/>
         <source>Save settings as current preset name</source>
-        <translation>Sauvegarder les réglages sous le nom courant de préréglage</translation>
+        <translation>Sauvegarder les réglages sous le nom courant de pré-réglage</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="95"/>
@@ -328,7 +328,7 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="198"/>
         <source>Soundfont</source>
-        <translation>Soundfont</translation>
+        <translation>Banque de son</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="172"/>
@@ -358,12 +358,12 @@
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="471"/>
         <source>Delete preset:</source>
-        <translation>Supprimer le préréglage:</translation>
+        <translation>Supprimer le pré-réglage :</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="473"/>
         <source>Are you sure?</source>
-        <translation>Êtes-vous sûr?</translation>
+        <translation>Êtes-vous sûr ?</translation>
     </message>
 </context>
 <context>
@@ -483,7 +483,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="509"/>
         <source>T&amp;ype:</source>
-        <translation>T&amp;ype:</translation>
+        <translation>T&amp;ype :</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="537"/>
@@ -691,7 +691,7 @@ dans le menu contextuel de l&apos;icône de la barre d&apos;état du système.</
         <location filename="../qsynthMainForm.cpp" line="715"/>
         <location filename="../qsynthMainForm.cpp" line="1329"/>
         <source>Are you sure?</source>
-        <translation>Etes-vous sur?</translation>
+        <translation>Êtes-vous sûr ?</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="725"/>
@@ -701,23 +701,23 @@ dans le menu contextuel de l&apos;icône de la barre d&apos;état du système.</
     <message>
         <location filename="../qsynthMainForm.cpp" line="805"/>
         <source>Loading soundfont: &quot;%1&quot;</source>
-        <translation>Charge la soundfont: &quot;%1&quot;</translation>
+        <translation>Charge la banque de son : &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="816"/>
         <location filename="../qsynthMainForm.cpp" line="1787"/>
         <source>Failed to load the soundfont: &quot;%1&quot;.</source>
-        <translation>Échec du chargement de la soundfont: &quot;%1&quot;.</translation>
+        <translation>Échec du chargement de la banque de son : &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="824"/>
         <source>Playing MIDI file: &quot;%1&quot;</source>
-        <translation>Joue le fichier MIDI: &quot;%1&quot;</translation>
+        <translation>Joue le fichier MIDI : &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="831"/>
         <source>Failed to play MIDI file: &quot;%1&quot;.</source>
-        <translation>N&apos;a pas pu jouer le fichier MIDI: &quot;%1&quot;.</translation>
+        <translation>N&apos;a pas pu jouer le fichier MIDI : &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="994"/>
@@ -770,7 +770,7 @@ dans le menu contextuel de l&apos;icône de la barre d&apos;état du système.</
     <message>
         <location filename="../qsynthMainForm.cpp" line="1327"/>
         <source>Delete fluidsynth engine:</source>
-        <translation>Supprimer le moteur fluidsynth:</translation>
+        <translation>Supprimer le moteur fluidsynth :</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1504"/>
@@ -796,12 +796,12 @@ Ne peut pas continuer sans.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1781"/>
         <source>Loading soundfont: &quot;%1&quot; (bank offset %2)</source>
-        <translation>Chargement de la soundfont: &quot;%1&quot; (décalage de banque %2)</translation>
+        <translation>Chargement de la banque de son : &quot;%1&quot; (décalage de banque %2)</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1794"/>
         <source>Failed to set bank offset (%1) for soundfont: &quot;%2&quot;.</source>
-        <translation>Échec d&apos;affectation du décalage de banque (%1) pour la soundfont: &quot;%2&quot;.</translation>
+        <translation>Échec d&apos;affectation du décalage de banque (%1) pour la banque de son : &quot;%2&quot;.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1804"/>
@@ -925,12 +925,12 @@ Continue sans.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2022"/>
         <source>Unloading soundfont: &quot;%1&quot; (SFID=%2)</source>
-        <translation>Chargement de la soundfont: &quot;%1&quot; (SFID=%2)</translation>
+        <translation>Chargement de la banque de son : &quot;%1&quot; (SFID=%2)</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2026"/>
         <source>Failed to unload the soundfont: &quot;%1&quot;.</source>
-        <translation>Echec de chargement de la soundfont: &quot;%1&quot;.</translation>
+        <translation>Échec du chargement de la banque de son : &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2033"/>
@@ -967,7 +967,7 @@ une interruption temporaire du MIDI et de l&apos;audio.</translation>
         <source>New settings will be effective after
 restarting the fluidsynth engine:</source>
         <translation>Les nouveaux réglages ne seront effectifs qu&apos;après
-le redémarrage du moteur fluidsynth:</translation>
+le redémarrage du moteur fluidsynth :</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2120"/>
@@ -980,7 +980,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="42"/>
         <source>Qsynth: Messages</source>
-        <translation>Qsynth: Messages</translation>
+        <translation>Qsynth : messages</translation>
     </message>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="54"/>
@@ -1003,7 +1003,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="33"/>
         <source>Qsynth: Options</source>
-        <translation>Qsynth: Options</translation>
+        <translation>Qsynth : options</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="43"/>
@@ -1038,7 +1038,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="148"/>
         <source>&amp;Messages limit:</source>
-        <translation>Limite de &amp;messages:</translation>
+        <translation>Limite de &amp;messages :</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="161"/>
@@ -1103,7 +1103,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="286"/>
         <source>Messages &amp;log file:</source>
-        <translation>F&amp;ichier d&apos;enregistrement des messages:</translation>
+        <translation>F&amp;ichier d&apos;enregistrement des messages :</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="302"/>
@@ -1113,7 +1113,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="317"/>
         <source>Kno&amp;b graphic style:</source>
-        <translation>Style graphique des &amp;boutons:</translation>
+        <translation>Style graphique des &amp;boutons :</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="333"/>
@@ -1149,7 +1149,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="387"/>
         <source>Mouse motion be&amp;havior:</source>
-        <translation>Compor&amp;tement du déplacement de la souris:</translation>
+        <translation>Compor&amp;tement du déplacement de la souris :</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="406"/>
@@ -1249,7 +1249,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="636"/>
         <source>&amp;Base font size:</source>
-        <translation>Taille de police de &amp;base:</translation>
+        <translation>Taille de police de &amp;base :</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="655"/>
@@ -1327,12 +1327,12 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthPresetForm.ui" line="33"/>
         <source>Qsynth: Channel Preset</source>
-        <translation>Qsynth: Préréglage du Canal</translation>
+        <translation>Qsynth : pré-réglage du canal</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="59"/>
         <source>Preset</source>
-        <translation>Préréglage</translation>
+        <translation>Pré-réglage</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="87"/>
@@ -1347,7 +1347,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthPresetForm.ui" line="118"/>
         <source>Program selector</source>
-        <translation>Sélection de Programme</translation>
+        <translation>Sélection de programme</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="143"/>
@@ -1367,7 +1367,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthPresetForm.ui" line="158"/>
         <source>Soundfont</source>
-        <translation>Soundfont</translation>
+        <translation>Banque de son</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="167"/>
@@ -1390,12 +1390,12 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="34"/>
         <source>Qsynth: Setup</source>
-        <translation>Qsynth: Réglage</translation>
+        <translation>Qsynth : réglage</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="51"/>
         <source>Engine &amp;Name:</source>
-        <translation>&amp;Nom du Moteur:</translation>
+        <translation>&amp;Nom du moteur :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="64"/>
@@ -1410,7 +1410,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="99"/>
         <source>&amp;MIDI Driver:</source>
-        <translation>Pilote &amp;MIDI:</translation>
+        <translation>Pilote &amp;MIDI :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="115"/>
@@ -1446,7 +1446,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="161"/>
         <source>MIDI &amp;Device:</source>
-        <translation>&amp;Pilote MIDI:</translation>
+        <translation>&amp;Pilote MIDI :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="177"/>
@@ -1461,7 +1461,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="190"/>
         <source>MIDI &amp;Channels:</source>
-        <translation>&amp;Canaux MIDI:</translation>
+        <translation>&amp;Canaux MIDI :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="203"/>
@@ -1471,7 +1471,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="219"/>
         <source>MIDI &amp;Bank Select mode:</source>
-        <translation>Mode MIDI de sélection de &amp;banque:</translation>
+        <translation>Mode MIDI de sélection de &amp;banque :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="229"/>
@@ -1501,7 +1501,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="283"/>
         <source>MIDI Client Name ID (ALSA/CoreMidi):</source>
-        <translation>Nom ID du client MIDI (ALSA/CoreMidi):</translation>
+        <translation>Nom ID du client MIDI (ALSA/CoreMidi) :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="296"/>
@@ -1527,7 +1527,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="382"/>
         <source>Sample &amp;Format:</source>
-        <translation>&amp;Format d&apos;échantillon:</translation>
+        <translation>&amp;Format d&apos;échantillon :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="395"/>
@@ -1542,7 +1542,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="412"/>
         <source>Period size in bytes (audio buffer size)</source>
-        <translation>Taille de période en bytes (taille du buffer audio)</translation>
+        <translation>Taille de période en bytes (taille du tampon audio)</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="419"/>
@@ -1588,7 +1588,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="462"/>
         <source>Buffer Cou&amp;nt:</source>
-        <translation>&amp;Nombre de buffer:</translation>
+        <translation>&amp;Nombre de tampon :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="475"/>
@@ -1623,12 +1623,12 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="519"/>
         <source>Sample &amp;Rate:</source>
-        <translation>F&amp;réquence d&apos;échantillonnage:</translation>
+        <translation>F&amp;réquence d&apos;échantillonnage :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="532"/>
         <source>Period count (number of audio buffers)</source>
-        <translation>Nombre de période (nombre de buffers audio)</translation>
+        <translation>Nombre de période (nombre de tampons audio)</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="539"/>
@@ -1658,22 +1658,22 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="572"/>
         <source>Buffer &amp;Size:</source>
-        <translation>Dimen&amp;sion du buffer:</translation>
+        <translation>Dimen&amp;sion du tampon :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="585"/>
         <source>&amp;Audio Driver:</source>
-        <translation>Pilote &amp;audio:</translation>
+        <translation>Pilote &amp;audio :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="605"/>
         <source>Audio &amp;Device:</source>
-        <translation>&amp;Pilote audio:</translation>
+        <translation>&amp;Pilote audio :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="624"/>
         <source>Audio &amp;Channels:</source>
-        <translation>&amp;Canaux audio:</translation>
+        <translation>&amp;Canaux audio :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="637"/>
@@ -1693,17 +1693,17 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="698"/>
         <source>&amp;Polyphony:</source>
-        <translation>&amp;Polyphonie:</translation>
+        <translation>&amp;Polyphonie :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="727"/>
         <source>Audio &amp;Groups:</source>
-        <translation>&amp;Groupes audio:</translation>
+        <translation>&amp;Groupes audio :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="753"/>
         <source>JACK Client Name &amp;ID:</source>
-        <translation>Nom d&apos;&amp;identifiant du client JACK:</translation>
+        <translation>Nom d&apos;&amp;identifiant du client JACK :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="766"/>
@@ -1738,12 +1738,12 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="841"/>
         <source>&amp;Soundfonts</source>
-        <translation>&amp;Soundfonts</translation>
+        <translation>&amp;Banques de son</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="856"/>
         <source>Soundfont stack</source>
-        <translation>Pile soundfont</translation>
+        <translation>Pile de banques de son</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="878"/>
@@ -1764,7 +1764,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="901"/>
         <source>Open soundfont file for loading</source>
-        <translation>Ouvre un fichier soundfont pour lecture</translation>
+        <translation>Ouvre un fichier de banque de son pour lecture</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="904"/>
@@ -1774,7 +1774,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="914"/>
         <source>Edit selected soundfont bank offset</source>
-        <translation>Édite le décalage de banque de la soundfont sélectionnée</translation>
+        <translation>Édite le décalage de banque de la banque de son sélectionnée</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="917"/>
@@ -1784,7 +1784,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="927"/>
         <source>Remove selected soundfont from stack</source>
-        <translation>Supprime la soundfont sélectionnée de la pile</translation>
+        <translation>Supprime la banque de son sélectionnée de la pile</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="930"/>
@@ -1794,7 +1794,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="953"/>
         <source>Move up selected soundfont towards the top of stack</source>
-        <translation>Déplace la soundfont sélectionnée vers le haut de la pile</translation>
+        <translation>Déplace la banque de son sélectionnée vers le haut de la pile</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="956"/>
@@ -1804,7 +1804,7 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="966"/>
         <source>Move down selected soundfont towards the bottom of stack</source>
-        <translation>Déplace la soundfont sélectionnée vers le bas de la pile</translation>
+        <translation>Déplace la banque de son sélectionnée vers le bas de la pile</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="969"/>
@@ -1901,12 +1901,12 @@ le redémarrage du moteur fluidsynth:</translation>
         <location filename="../qsynthSetupForm.cpp" line="815"/>
         <location filename="../qsynthSetupForm.cpp" line="817"/>
         <source>Soundfont files</source>
-        <translation>Fichiers soundfont</translation>
+        <translation>Fichiers de banque de son</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="833"/>
         <source>Soundfont file already on list</source>
-        <translation>Le fichier soundfont est déjà dans la liste</translation>
+        <translation>Le fichier de banque de son est déjà dans la liste</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="835"/>
@@ -1921,12 +1921,12 @@ le redémarrage du moteur fluidsynth:</translation>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="863"/>
         <source>Failed to add soundfont file</source>
-        <translation>Impossible d&apos;ajouter le fichier soundfont</translation>
+        <translation>Impossible d&apos;ajouter le fichier de banque de son</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="865"/>
         <source>Please, check for a valid soundfont file.</source>
-        <translation>Veuillez vérifier la validité du fichier soundfont.</translation>
+        <translation>Veuillez vérifier la validité du fichier de banque de son.</translation>
     </message>
 </context>
 </TS>
