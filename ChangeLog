@@ -4,6 +4,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Late French (fr) translation update (by Olivier Humbert, thanks).
+
+
 0.4.2  2016-09-14  End of Summer'16 release.
 
 - Old "Start minimized to system tray" option returns to setup.
