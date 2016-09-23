@@ -6,7 +6,13 @@ ChangeLog
 
 GIT HEAD
 
-- Late French (fr) translation update (by Olivier Humbert, thanks).
+- Almost complete overhaul on the configure script command
+  line options, wrt. installation directories specification,
+  eg. --prefix, --bindir, --libdir, --datadir and --mandir.
+  (EXPERIMENTAL)
+
+- Late French (fr) translation update (by Olivier Humbert,
+  thanks).
 
 
 0.4.2  2016-09-14  End of Summer'16 release.

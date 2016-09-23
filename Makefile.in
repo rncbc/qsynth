@@ -71,9 +71,8 @@ translations_targets = \
 	src/translations/qsynth_sr.qm
 
 
-export datarootdir = @datarootdir@
-export datadir = @datadir@
-export mandir = @mandir@
+export datadir = @ac_datadir@
+export mandir = @ac_mandir@
 
 translations_dir = $(datadir)/$(name)/translations
 
