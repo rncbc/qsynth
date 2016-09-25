@@ -301,23 +301,24 @@ AC_HEADER_STDC
 AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS(fcntl.h sys/ioctl.h unistd.h signal.h)
 
-# Check for gradient eye-candy.
-if test "x$ac_gradient" = "xyes"; then
-   AC_DEFINE(CONFIG_GRADIENT, 1, [Define if gradient eye-candy is enabled.])
-fi
-
 # Check for X11 unique/single instance.
 if test "x$ac_xunique" = "xyes"; then
    AC_DEFINE(CONFIG_XUNIQUE, 1, [Define if X11 unique/single instance is enabled.])
    # Some recent distros (eg. fedora, debian) require this.
-   ac_libs="$ac_libs -lX11"
+   if test "x$ac_cv_lib_X11_main" = "xyes"; then
+      ac_libs="$ac_libs -lX11"
+   fi
+fi
+
+# Check for gradient eye-candy.
+if test "x$ac_gradient" = "xyes"; then
+   AC_DEFINE(CONFIG_GRADIENT, 1, [Define if gradient eye-candy is enabled.])
 fi
 
 # Check for debugging stack-trace.
 if test "x$ac_stacktrace" = "xyes"; then
    AC_DEFINE(CONFIG_STACKTRACE, 1, [Define if debugger stack-trace is enabled.])
 fi
-
 
 AC_SUBST(ac_cflags)
 AC_SUBST(ac_incpath)
