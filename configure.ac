@@ -127,6 +127,8 @@ AC_PROG_CXXCPP
 # Checks for languages.
 AC_LANG_CPLUSPLUS
 
+# Check for pkg-config.
+PKG_PROG_PKG_CONFIG
 
 # Check for proper flags.
 ac_arch=`uname -m`
@@ -284,29 +286,20 @@ if test "x$ac_round" = "xyes"; then
 fi
 
 # Check for fluidsynth library.
-AC_CHECK_LIB(fluidsynth, main, [ac_fluidsynth_lib="yes"], [ac_fluidsynth_lib="no"])
-if test "x$ac_fluidsynth_lib" = "xno"; then
-   AC_MSG_ERROR([fluidsynth library not found.])
+PKG_CHECK_MODULES([FLUIDSYNTH], [fluidsynth >= 0.80.0], [ac_fluidsynth_lib="yes"], [ac_fluidsynth_lib="no"])
+if test "x$ac_fluidsynth_lib" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUIDSYNTH, 1, [Define if FLUIDSYNTH library is available.])
+   ac_cflags="$ac_cflags $FLUIDSYNTH_CFLAGS"
+   ac_libs="$ac_libs $FLUIDSYNTH_LIBS"
 else
-   ac_libs="$ac_libs -lfluidsynth"
+   AC_MSG_ERROR([*** FLUIDSYNTH library not found.])
 fi
-
-# Some recent distros (eg. fedora, debian) require this.
-ac_libs="$ac_libs -lX11"
-
-AC_SUBST(ac_libs)
 
 
 # Checks for header files.
 AC_HEADER_STDC
 AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS(fcntl.h sys/ioctl.h unistd.h signal.h)
-
-# Check for fluidsynth headers.
-AC_CHECK_HEADER(fluidsynth.h, [ac_fluidsynth_h="yes"], [ac_fluidsynth_h="no"])
-if test "x$ac_fluidsynth_h" = "xno"; then
-   AC_MSG_ERROR([fluidsynth headers not found.])
-fi
 
 # Check for gradient eye-candy.
 if test "x$ac_gradient" = "xyes"; then
@@ -316,6 +309,8 @@ fi
 # Check for X11 unique/single instance.
 if test "x$ac_xunique" = "xyes"; then
    AC_DEFINE(CONFIG_XUNIQUE, 1, [Define if X11 unique/single instance is enabled.])
+   # Some recent distros (eg. fedora, debian) require this.
+   ac_libs="$ac_libs -lX11"
 fi
 
 # Check for debugging stack-trace.
@@ -323,9 +318,11 @@ if test "x$ac_stacktrace" = "xyes"; then
    AC_DEFINE(CONFIG_STACKTRACE, 1, [Define if debugger stack-trace is enabled.])
 fi
 
-AC_SUBST(ac_incpath)
+
 AC_SUBST(ac_cflags)
+AC_SUBST(ac_incpath)
 AC_SUBST(ac_ldflags)
+AC_SUBST(ac_libs)
 
 
 # Checks for typedefs, structures, and compiler characteristics.
@@ -367,12 +364,6 @@ fi
 AC_CHECK_LIB(fluidsynth, fluid_synth_unset_program, [ac_fluid_unset_program="yes"], [ac_fluid_unset_program="no"])
 if test "x$ac_fluid_unset_program" = "xyes"; then
    AC_DEFINE(CONFIG_FLUID_UNSET_PROGRAM, 1, [Define if fluid_synth_unset_program is available.])
-fi
-
-# Check for round math function.
-AC_CHECK_LIB(m, round, [ac_round="yes"], [ac_round="no"])
-if test "x$ac_round" = "xyes"; then
-   AC_DEFINE(CONFIG_ROUND, 1, [Define if round is available.])
 fi
 
 # Finally produce a configure header file and the makefiles.
