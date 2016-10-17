@@ -366,10 +366,15 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			return false;
 		}
 		else if (sArg == "-V" || sArg == "--version") {
-			out << QObject::tr("Qt: %1\n").arg(qVersion());
-			out << QObject::tr(QSYNTH_TITLE ": %1\n").arg(QSYNTH_VERSION);
+			out << QObject::tr("Qt: %1\n")
+				.arg(qVersion());
+			out << QObject::tr("%1: %2  (%3)\n")
+				.arg(QSYNTH_TITLE)
+				.arg(QSYNTH_VERSION)
+				.arg(CONFIG_BUILD_DATE);
 			return false;
-		} else {
+		}
+		else {
 			const QByteArray tmp = args.at(i).toUtf8();
 			const char *name = tmp.constData();
 			if (::fluid_is_soundfont(name)) {

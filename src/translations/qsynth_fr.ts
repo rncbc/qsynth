@@ -167,10 +167,16 @@
         <location filename="../qsynthOptions.cpp" line="369"/>
         <source>Qt: %1
 </source>
-        <translation>Qt : %1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="387"/>
+        <location filename="../qsynthOptions.cpp" line="371"/>
+        <source>%1: %2  (%3)
+</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="392"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Option &apos;%1&apos; inconnue.</translation>
     </message>
