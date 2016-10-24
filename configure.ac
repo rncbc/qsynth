@@ -1,17 +1,21 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.4.2.8, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.4.2.9, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
 AC_CONFIG_FILES(Makefile qsynth.spec src/src.pri src/qsynth.desktop)
 
-# Sanitize version string.
-ac_version=$(echo $PACKAGE_VERSION | sed -r 's/^([0-9|\.]+).*$/\1/')
-AC_SUBST(ac_version)
-
 # Build date and time.
-AC_CACHE_VAL([ac_cv_build_date], [ac_cv_build_date=$(date +"%b %d %Y %H:%M %z")])
-AC_DEFINE_UNQUOTED(CONFIG_BUILD_DATE, ["$ac_cv_build_date"], [Build date and time.])
+AC_CACHE_VAL([ac_cv_build_date],
+   [ac_cv_build_date=$(date +"%b %d %Y %H:%M %z")])
+ac_build_date="$ac_cv_build_date"
+AC_DEFINE_UNQUOTED(CONFIG_BUILD_DATE, ["$ac_build_date"], [Build date and time.])
+
+# Sanitize version string.
+AC_CACHE_VAL([ac_cv_version], [
+   ac_cv_version=$(echo $PACKAGE_VERSION | sed -r 's/^([[0-9|\.]]+).*$/\1/')])
+ac_version="$ac_cv_version"
+AC_SUBST(ac_version)
 
 # Set default installation prefix.
 AC_PREFIX_DEFAULT(/usr/local)
