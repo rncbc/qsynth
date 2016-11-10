@@ -25,7 +25,6 @@
 #include "config.h"
 
 #define QSYNTH_TITLE        PACKAGE_NAME
-#define QSYNTH_VERSION      PACKAGE_VERSION
 
 #define QSYNTH_SUBTITLE     "A fluidsynth Qt GUI Interface"
 #define QSYNTH_WEBSITE      "http://qsynth.sourceforge.net"

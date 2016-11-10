@@ -40,7 +40,7 @@ qsynthAboutForm::qsynthAboutForm (
 	QString sText = "<p align=\"center\"><br />\n";
 	sText += "<b>" QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + "</b><br />\n";
 	sText += "<br />\n";
-	sText += tr("Version") + ": <b>" QSYNTH_VERSION "</b><br />\n";
+	sText += tr("Version") + ": <b>" CONFIG_BUILD_VERSION "</b><br />\n";
 	sText += "<small>" + tr("Build") + ": " CONFIG_BUILD_DATE "<small><br />\n";
 #ifdef CONFIG_DEBUG
 	sText += "<small><font color=\"red\">";

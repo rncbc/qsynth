@@ -103,7 +103,7 @@ void qsynthOptions::saveOptions (void)
 {
 	// Make program version available in the future.
 	m_settings.beginGroup("/Program");
-	m_settings.setValue("/Version", QSYNTH_VERSION);
+	m_settings.setValue("/Version", CONFIG_BUILD_VERSION);
 	m_settings.endGroup();
 
 	// Save engines list...
@@ -370,7 +370,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 				.arg(qVersion());
 			out << QObject::tr("%1: %2  (%3)\n")
 				.arg(QSYNTH_TITLE)
-				.arg(QSYNTH_VERSION)
+				.arg(CONFIG_BUILD_VERSION)
 				.arg(CONFIG_BUILD_DATE);
 			return false;
 		}
