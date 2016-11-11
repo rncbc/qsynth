@@ -22,6 +22,7 @@ install:
 - sudo apt-get install -qq libqt4-dev libfluidsynth-dev
 
 before_script:
+- git fetch --unshallow --tags -q
 - ./autogen.sh
 
 script:
