@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.4.3  2016-11-14  A Fall'16 release.
 
 - Fixed a potential crash on the singleton/unique application
   instance setup.
@@ -12,7 +12,6 @@ GIT HEAD
 - Almost complete overhaul on the configure script command
   line options, wrt. installation directories specification,
   eg. --prefix, --bindir, --libdir, --datadir and --mandir.
-  (EXPERIMENTAL)
 
 - Late French (fr) translation update (by Olivier Humbert,
   thanks).
