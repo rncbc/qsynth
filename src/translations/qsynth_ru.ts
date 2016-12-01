@@ -169,19 +169,7 @@
         <translation>Использование: %1 [ключи] [файлы SF2] [файлы MIDI]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="369"/>
-        <source>Qt: %1
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="371"/>
-        <source>%1: %2  (%3)
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="392"/>
+        <location filename="../qsynthOptions.cpp" line="391"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>неизвестный ключ &apos;%1&apos;.</translation>
     </message>
@@ -199,52 +187,47 @@
         <translation>&amp;Закрыть</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="43"/>
+        <location filename="../qsynthAboutForm.cpp" line="60"/>
         <source>Version</source>
         <translation>Версия</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="44"/>
-        <source>Build</source>
-        <translation>Сборка</translation>
-    </message>
-    <message>
-        <location filename="../qsynthAboutForm.cpp" line="53"/>
         <source>System tray disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="58"/>
+        <location filename="../qsynthAboutForm.cpp" line="47"/>
         <source>Server option disabled.</source>
         <translation>Параметр сервера отключен.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="69"/>
         <source>Website</source>
         <translation>Веб-сайт</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="80"/>
+        <location filename="../qsynthAboutForm.cpp" line="74"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Эта программа является свободной; вы имеете право распространять и/или</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="75"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>изменять её на условиях лицензии GNU GPL версии 2 или более новой.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="47"/>
+        <location filename="../qsynthAboutForm.cpp" line="41"/>
         <source>Debugging option enabled.</source>
         <translation>Параметр отладки включён.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="64"/>
+        <location filename="../qsynthAboutForm.cpp" line="50"/>
         <source>System reset option disabled.</source>
         <translation>Параметр перезагрузки системы включён.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="70"/>
+        <location filename="../qsynthAboutForm.cpp" line="53"/>
         <source>Bank offset option disabled.</source>
         <translation>Функция смещения банка отключена.</translation>
     </message>

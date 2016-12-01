@@ -164,19 +164,7 @@
         <translation>Опција „-o“ захтева аргумент.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="369"/>
-        <source>Qt: %1
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="371"/>
-        <source>%1: %2  (%3)
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="392"/>
+        <location filename="../qsynthOptions.cpp" line="391"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Непозната опција „%1“.</translation>
     </message>
@@ -204,52 +192,47 @@
         <translation>О КјуТ</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="43"/>
+        <location filename="../qsynthAboutForm.cpp" line="60"/>
         <source>Version</source>
         <translation>Издање</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="44"/>
-        <source>Build</source>
-        <translation>Изграђено</translation>
-    </message>
-    <message>
-        <location filename="../qsynthAboutForm.cpp" line="47"/>
+        <location filename="../qsynthAboutForm.cpp" line="41"/>
         <source>Debugging option enabled.</source>
         <translation>Омогућено праћење грешака.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="53"/>
+        <location filename="../qsynthAboutForm.cpp" line="44"/>
         <source>System tray disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="58"/>
+        <location filename="../qsynthAboutForm.cpp" line="47"/>
         <source>Server option disabled.</source>
         <translation>Онемогућена серверска опција.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="64"/>
+        <location filename="../qsynthAboutForm.cpp" line="50"/>
         <source>System reset option disabled.</source>
         <translation>Онемогућена опција поновног покретања система.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="70"/>
+        <location filename="../qsynthAboutForm.cpp" line="53"/>
         <source>Bank offset option disabled.</source>
         <translation>Онемогућена опција „Bank offset“</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="69"/>
         <source>Website</source>
         <translation>Интернет страница</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="80"/>
+        <location filename="../qsynthAboutForm.cpp" line="74"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Овај програм је слободан софтвер; можете га прослеђивати и/или мењати</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="75"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>под условима ГНУ Опште Јавне Лиценце верзије 2 или (по вашем избору) било које касније верзије.</translation>
     </message>

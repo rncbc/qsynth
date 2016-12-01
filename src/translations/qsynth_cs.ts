@@ -169,19 +169,7 @@
         <translation>Volba -o potřebuje argument.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="369"/>
-        <source>Qt: %1
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="371"/>
-        <source>%1: %2  (%3)
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="392"/>
+        <location filename="../qsynthOptions.cpp" line="391"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Neznámá volba: &apos;%1&apos;.</translation>
     </message>
@@ -204,52 +192,47 @@
         <translation>O Qt</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="43"/>
+        <location filename="../qsynthAboutForm.cpp" line="60"/>
         <source>Version</source>
         <translation>Verze</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="44"/>
-        <source>Build</source>
-        <translation>Sestavení</translation>
-    </message>
-    <message>
-        <location filename="../qsynthAboutForm.cpp" line="47"/>
+        <location filename="../qsynthAboutForm.cpp" line="41"/>
         <source>Debugging option enabled.</source>
         <translation>Povolena možnost ladění.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="53"/>
+        <location filename="../qsynthAboutForm.cpp" line="44"/>
         <source>System tray disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="58"/>
+        <location filename="../qsynthAboutForm.cpp" line="47"/>
         <source>Server option disabled.</source>
         <translation>Zakázána možnost serveru.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="64"/>
+        <location filename="../qsynthAboutForm.cpp" line="50"/>
         <source>System reset option disabled.</source>
         <translation>Zakázána možnost znovunastavení systému.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="70"/>
+        <location filename="../qsynthAboutForm.cpp" line="53"/>
         <source>Bank offset option disabled.</source>
         <translation>Zakázána možnost polohy banky.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="69"/>
         <source>Website</source>
         <translation>Internetová stránka</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="80"/>
+        <location filename="../qsynthAboutForm.cpp" line="74"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Tento program je svobodným software; Můžete jej rozšiřovat a/nebo upravovat</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="75"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>za podmínek GNU General Public License.</translation>
     </message>

@@ -164,19 +164,7 @@
         <translation>L&apos;option -o requiert un argument.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="369"/>
-        <source>Qt: %1
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="371"/>
-        <source>%1: %2  (%3)
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="392"/>
+        <location filename="../qsynthOptions.cpp" line="391"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Option &apos;%1&apos; inconnue.</translation>
     </message>
@@ -204,52 +192,47 @@
         <translation>À propos de Qt</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="43"/>
+        <location filename="../qsynthAboutForm.cpp" line="60"/>
         <source>Version</source>
         <translation>Version</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="44"/>
-        <source>Build</source>
-        <translation>Compilé</translation>
-    </message>
-    <message>
-        <location filename="../qsynthAboutForm.cpp" line="47"/>
+        <location filename="../qsynthAboutForm.cpp" line="41"/>
         <source>Debugging option enabled.</source>
         <translation>Option de débuggage activée.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="53"/>
+        <location filename="../qsynthAboutForm.cpp" line="44"/>
         <source>System tray disabled.</source>
         <translation>Barre d&apos;état desactivée.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="58"/>
+        <location filename="../qsynthAboutForm.cpp" line="47"/>
         <source>Server option disabled.</source>
         <translation>Option du serveur désactivée.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="64"/>
+        <location filename="../qsynthAboutForm.cpp" line="50"/>
         <source>System reset option disabled.</source>
         <translation>Option de remise à zéro du système désactivée.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="70"/>
+        <location filename="../qsynthAboutForm.cpp" line="53"/>
         <source>Bank offset option disabled.</source>
         <translation>Option de décalage de banque désactivée.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="69"/>
         <source>Website</source>
         <translation>Site web</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="80"/>
+        <location filename="../qsynthAboutForm.cpp" line="74"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Ce programme est un programme libre; vous pouvez le redistribuer et/ou le modifier</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="75"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>sous les termes de la license publique générale GNU version 2 ou plus récente.</translation>
     </message>
