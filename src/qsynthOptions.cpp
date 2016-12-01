@@ -366,12 +366,11 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			return false;
 		}
 		else if (sArg == "-V" || sArg == "--version") {
-			out << QObject::tr("Qt: %1\n")
+			out << QString("Qt: %1\n")
 				.arg(qVersion());
-			out << QObject::tr("%1: %2  (%3)\n")
+			out << QString("%1: %2\n")
 				.arg(QSYNTH_TITLE)
-				.arg(CONFIG_BUILD_VERSION)
-				.arg(CONFIG_BUILD_DATE);
+				.arg(CONFIG_BUILD_VERSION);
 			return false;
 		}
 		else {

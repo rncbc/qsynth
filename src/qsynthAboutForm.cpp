@@ -36,41 +36,35 @@ qsynthAboutForm::qsynthAboutForm (
 	// Setup UI struct...
 	m_ui.setupUi(this);
 
+	QStringList list;
+#ifdef CONFIG_DEBUG
+	list << tr("Debugging option enabled.");
+#endif
+#ifndef CONFIG_SYSTEM_TRAY
+	list << tr("System tray disabled.");
+#endif
+#ifndef CONFIG_FLUID_SERVER
+	list << tr("Server option disabled.");
+#endif
+#ifndef CONFIG_FLUID_RESET
+	list << tr("System reset option disabled.");
+#endif
+#ifndef CONFIG_FLUID_BANK_OFFSET
+	list << tr("Bank offset option disabled.");
+#endif
+
 	// Stuff the about box...
 	QString sText = "<p align=\"center\"><br />\n";
 	sText += "<b>" QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE) + "</b><br />\n";
 	sText += "<br />\n";
 	sText += tr("Version") + ": <b>" CONFIG_BUILD_VERSION "</b><br />\n";
-	sText += "<small>" + tr("Build") + ": " CONFIG_BUILD_DATE "<small><br />\n";
-#ifdef CONFIG_DEBUG
-	sText += "<small><font color=\"red\">";
-	sText += tr("Debugging option enabled.");
-	sText += "<br />\n";
-	sText += "</font></small>";
-#endif
-#ifndef CONFIG_SYSTEM_TRAY
-	sText += "<small><font color=\"red\">";
-	sText += tr("System tray disabled.");
-	sText += "</font></small><br />\n";
-#endif
-#ifndef CONFIG_FLUID_SERVER
-	sText += "<small><font color=\"red\">";
-	sText += tr("Server option disabled.");
-	sText += "<br />\n";
-	sText += "</font></small>";
-#endif
-#ifndef CONFIG_FLUID_RESET
-	sText += "<small><font color=\"red\">";
-	sText += tr("System reset option disabled.");
-	sText += "<br />\n";
-	sText += "</font></small>";
-#endif
-#ifndef CONFIG_FLUID_BANK_OFFSET
-	sText += "<small><font color=\"red\">";
-	sText += tr("Bank offset option disabled.");
-	sText += "<br />\n";
-	sText += "</font></small>";
-#endif
+//	sText += "<small>" + tr("Build") + ": " CONFIG_BUILD_DATE "<small><br />\n";
+	if (!list.isEmpty()) {
+		sText += "<br />\n";
+		sText += "<small><font color=\"red\">";
+		sText += list.join("<br />\n");
+		sText += "</font></small><br />\n";
+	}
 	sText += "<br />\n";
 	sText += tr("Website") + ": <a href=\"" QSYNTH_WEBSITE "\">" QSYNTH_WEBSITE "</a><br />\n";
 	sText += "<br />\n";

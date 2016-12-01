@@ -4,6 +4,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Make builds reproducible byte for byte, by getting rid of
+  the configure build date and time stamps.
+
+
 0.4.3  2016-11-14  A Fall'16 release.
 
 - Fixed a potential crash on the singleton/unique application
