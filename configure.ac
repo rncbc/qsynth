@@ -419,6 +419,12 @@ if test "x$ac_fluid_unset_program" = "xyes"; then
    AC_DEFINE(CONFIG_FLUID_UNSET_PROGRAM, 1, [Define if fluid_synth_unset_program is available.])
 fi
 
+# Check for fluid_version_str function.
+AC_CHECK_LIB(fluidsynth, fluid_version_str, [ac_fluid_version_str="yes"], [ac_fluid_version_str="no"])
+if test "x$ac_fluid_version_str" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_VERSION_STR, 1, [Define if fluid_version_str is available.])
+fi
+
 # Finally produce a configure header file and the makefiles.
 AC_OUTPUT
 
@@ -437,6 +443,7 @@ echo "  FluidSynth reset support . . . . . . . . . . . . .: $ac_fluid_reset"
 echo "  FluidSynth bank offset support . . . . . . . . . .: $ac_fluid_bank_offset"
 echo "  FluidSynth channel info support  . . . . . . . . .: $ac_fluid_channel_info"
 echo "  FluidSynth unset program support . . . . . . . . .: $ac_fluid_unset_program"
+echo "  FluidSynth version string support  . . . . . . . .: $ac_fluid_version_str"
 echo "  System tray icon support . . . . . . . . . . . . .: $ac_system_tray"
 echo
 echo "  X11 Unique/Single instance . . . . . . . . . . . .: $ac_xunique"

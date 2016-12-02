@@ -24,6 +24,9 @@
 
 #include <QMessageBox>
 
+#ifdef CONFIG_FLUID_VERSION_STR
+#include <fluidsynth.h>
+#endif
 
 //----------------------------------------------------------------------------
 // qsynthAboutForm -- UI wrapper form.
@@ -60,11 +63,15 @@ qsynthAboutForm::qsynthAboutForm (
 	sText += tr("Version") + ": <b>" CONFIG_BUILD_VERSION "</b><br />\n";
 //	sText += "<small>" + tr("Build") + ": " CONFIG_BUILD_DATE "<small><br />\n";
 	if (!list.isEmpty()) {
-		sText += "<br />\n";
 		sText += "<small><font color=\"red\">";
 		sText += list.join("<br />\n");
-		sText += "</font></small><br />\n";
+		sText += "</font></small>";
 	}
+	sText += "<br />\n";
+#ifdef CONFIG_FLUID_VERSION_STR
+	sText += tr("Using: FluidSynth %1").arg(::fluid_version_str());
+	sText += "<br />\n";
+#endif
 	sText += "<br />\n";
 	sText += tr("Website") + ": <a href=\"" QSYNTH_WEBSITE "\">" QSYNTH_WEBSITE "</a><br />\n";
 	sText += "<br />\n";
