@@ -78,10 +78,10 @@ if (WIN32)
         exec_program( ${WINDRES_EXECUTABLE}
             ARGS "-i ${RC_FILE} -o ${RES_FILE} --include-dir=${CMAKE_CURRENT_SOURCE_DIR}/images")
         list (APPEND SOURCES ${RES_FILE} )
-    else (MINGW)
+    else ()
         list (APPEND SOURCES ${RC_FILE} )
-    endif (MINGW)
-endif (WIN32)
+    endif ()
+endif ()
 
 if (APPLE)
     set ( ICON_FILE ${CMAKE_CURRENT_SOURCE_DIR}/images/qsynth.icns )
@@ -89,7 +89,7 @@ if (APPLE)
     set ( MACOSX_BUNDLE_ICON_FILE qsynth.icns )
     set_source_files_properties ( ${ICON_FILE} PROPERTIES
         MACOSX_PACKAGE_LOCATION Resources )
-endif (APPLE)
+endif ()
 
 add_executable ( qsynth
     ${UI_SOURCES}
@@ -100,18 +100,19 @@ add_executable ( qsynth
 
 if (WIN32)
     set_target_properties ( qsynth PROPERTIES WIN32_EXECUTABLE true )
-endif (WIN32)
+endif ()
 
 if (APPLE)
     set_target_properties ( qsynth PROPERTIES MACOSX_BUNDLE true )
-endif (APPLE)
+endif ()
 
 target_link_libraries ( qsynth
     ${QT_LIBRARIES}
     ${MATH_LIBRARY}
     ${FLUIDSYNTH_LIBRARY}
+    ${X11_LIBRARY}
 )
-qt5_use_modules (qsynth Core Gui Widgets)
+qt5_use_modules (qsynth Core Gui Widgets X11Extras)
 
 set ( TRANSLATIONS
    translations/qsynth_cs.ts
@@ -119,6 +120,7 @@ set ( TRANSLATIONS
    translations/qsynth_es.ts
    translations/qsynth_fr.ts
    translations/qsynth_ru.ts
+   translations/qsynth_sr.ts
 )
 
 qt5_add_translation ( QM_FILES ${TRANSLATIONS} )
@@ -133,11 +135,12 @@ if (UNIX AND NOT APPLE)
               DESTINATION share/applications )
     install ( FILES images/qsynth.png
               DESTINATION share/pixmaps )
-endif (UNIX AND NOT APPLE)
+endif ()
 
 if (WIN32)
     install ( TARGETS qsynth
               RUNTIME DESTINATION . )
     install ( FILES ${QM_FILES}
               DESTINATION share/locale )
-endif (WIN32)
+endif ()
+
