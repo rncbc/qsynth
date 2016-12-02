@@ -192,47 +192,52 @@
         <translation>О КјуТ</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="60"/>
+        <location filename="../qsynthAboutForm.cpp" line="63"/>
         <source>Version</source>
         <translation>Издање</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="41"/>
+        <location filename="../qsynthAboutForm.cpp" line="44"/>
         <source>Debugging option enabled.</source>
         <translation>Омогућено праћење грешака.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="44"/>
+        <location filename="../qsynthAboutForm.cpp" line="47"/>
         <source>System tray disabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="47"/>
+        <location filename="../qsynthAboutForm.cpp" line="50"/>
         <source>Server option disabled.</source>
         <translation>Онемогућена серверска опција.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="50"/>
+        <location filename="../qsynthAboutForm.cpp" line="53"/>
         <source>System reset option disabled.</source>
         <translation>Онемогућена опција поновног покретања система.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="53"/>
+        <location filename="../qsynthAboutForm.cpp" line="56"/>
         <source>Bank offset option disabled.</source>
         <translation>Онемогућена опција „Bank offset“</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="69"/>
+        <location filename="../qsynthAboutForm.cpp" line="72"/>
+        <source>Using: FluidSynth %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthAboutForm.cpp" line="76"/>
         <source>Website</source>
         <translation>Интернет страница</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="74"/>
+        <location filename="../qsynthAboutForm.cpp" line="81"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Овај програм је слободан софтвер; можете га прослеђивати и/или мењати</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="82"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>под условима ГНУ Опште Јавне Лиценце верзије 2 или (по вашем избору) било које касније верзије.</translation>
     </message>
