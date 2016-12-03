@@ -67,8 +67,8 @@ qsynthAboutForm::qsynthAboutForm (
 		sText += list.join("<br />\n");
 		sText += "</font></small>";
 	}
-	sText += "<br />\n";
 #ifdef CONFIG_FLUID_VERSION_STR
+	sText += "<br />\n";
 	sText += tr("Using: FluidSynth %1").arg(::fluid_version_str());
 	sText += "<br />\n";
 #endif
