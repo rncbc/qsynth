@@ -224,7 +224,7 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="72"/>
         <source>Using: FluidSynth %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisation de : FluidSynth %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="76"/>
