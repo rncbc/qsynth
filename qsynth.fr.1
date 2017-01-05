@@ -1,0 +1,111 @@
+.TH QSYNTH 1 "June 17, 2014"
+.SH NOM
+Qsynth \- une interface graphique en Qt pour fluidsynth
+.SH SYNOPSIS
+.B qsynth
+[\fIoptions\fR] [\fIbanque-de-son\fR] [\fIfichiers-midi\fR]
+.SH DESCRIPTION
+Cette page de manuel documente rapidement la commande
+.B qsynth
+.
+.PP
+\fBQsynth\fP est une interface graphique pour fluidsynth écrite en C++ autour
+des outils Qt, en utilisant Qt Designer. Il finira peut être par évoluer en une
+application de gestion de synthétiseur logiciel permettant à l'utilisateur de
+contrôler et de gérer une variété de synthétiseurs logiciels en ligne de
+commande mais, pour le moment, il emballe l'excellent FluidSynth.
+.PP
+\fBFluidSynth\fP est un synthétiseur logiciel en ligne de commande basé sur les
+spécifications Soundfont.
+.SH OPTIONS
+.HP
+\fB\-n\fR, \fB\-\-no\-midi\-in\fR
+.IP
+Ne pas créer de pilote MIDI pour lire les évènements d'entrée MIDI [par défaut = yes]
+.HP
+\fB\-m\fR, \fB\-\-midi\-driver\fR=[\fIétiquette\fR]
+.IP
+Le nom du pilote midi à utiliser [oss, alsa, alsa_seq, ...]
+.HP
+\fB\-K\fR, \fB\-\-midi\-channels\fR=[\fInombre\fR]
+.IP
+Le nombre de canaux MIDI [par défaut = 16]
+.HP
+\fB\-a\fR, \fB\-\-audio\-driver\fR=[\fIétiquette\fR]
+.IP
+Le pilote audio [alsa,jack,oss,dsound,...]
+.HP
+\fB\-j\fR, \fB\-\-connect\-jack\-outputs\fR
+.IP
+Tente de connecter les sorties JACK aux ports physiques
+.HP
+\fB\-L\fR, \fB\-\-audio\-channels\fR=[\fInombre\fR]
+.IP
+Le nombre de canaux audio stéréo [par défaut = 1]
+.HP
+\fB\-G\fR, \fB\-\-audio\-groups\fR=[\fInombre\fR]
+.IP
+Le nombre de groupes audio [par défaut = 1]
+.HP
+\fB\-z\fR, \fB\-\-audio\-bufsize\fR=[\fItaille\fR]
+.IP
+Taille de chaque tampon audio
+.HP
+\fB\-c\fR, \fB\-\-audio\-bufcount\fR=[\fInombre\fR]
+.IP
+Nombre de tampons audio
+.HP
+\fB\-r\fR, \fB\-\-sample\-rate\fR=[\fItaux\fR]
+.IP
+Paramètre le taux d'échantillonnage
+.HP
+\fB\-R\fR, \fB\-\-reverb\fR[=\fIdrapeau\fR]
+.IP
+Active ou désactive la réverbération [1|0|yes|no|on|off, par défaut = on]
+.HP
+\fB\-C\fR, \fB\-\-chorus\fR[=\fIétiquette\fR]
+.IP
+Active ou désactive le chorus [1|0|yes|no|on|off, par défaut = on]
+.HP
+\fB\-g\fR, \fB\-\-gain\fR=[\fIgain\fR]
+.IP
+Paramètre le gain général [0 < gain < 10, par défaut = 0.2]
+.HP
+\fB\-o\fR, \fB\-\-option\fR [\fInom\fR=\fIvaleur\fR]
+.IP
+Définit un paramètre nom=valeur
+.HP
+\fB\-s\fR, \fB\-\-server\fR
+.IP
+Crée et démarre un serveur [par défaut = no]
+.HP
+\fB\-i\fR, \fB\-\-no\-shell\fR
+.IP
+Ne pas lire les commandes depuis le shell [ignoré]
+.HP
+\fB\-d\fR, \fB\-\-dump\fR
+.IP
+Décharger les évènements de routage MIDI
+.HP
+\fB\-v\fR, \fB\-\-verbose\fR
+.IP
+Affiche des messages verbeux à propos des évènements MIDI
+.HP
+\fB\-h\fR, \fB\-\-help\fR
+.IP
+Affiche de l'aide à propos des options de ligne de commande
+.HP
+\fB\-V\fR, \fB\-\-version\fR
+.IP
+Affiche des informations de version
+.SH FICHIERS
+Les paramètres de configuration sont stockés dans ~/.config/rncbc.org/Qsynth.conf
+.SH VOIR ÉGALEMENT
+.BR fluidsynth (1)
+.SH AUTEUR
+Qsynth a été écrit par Rui Nuno Capela, Richard Bown, Chris Cannam, et
+Pedro Lopez-Cabanillas.
+.PP
+La version française de cette page de manuel a été traduite par Olivier Humbert
+<trebmuh@tuxfamily.org>, pour le projet LibraZiK (mais peut être utilisée par
+d'autres).
