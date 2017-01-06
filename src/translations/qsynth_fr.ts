@@ -252,7 +252,7 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="56"/>
         <source>Preset &amp;Name:</source>
-        <translation>&amp;Nom de pré-réglage :</translation>
+        <translation>&amp;Nom du pré-réglage :</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="77"/>
@@ -365,7 +365,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="34"/>
         <source>Qsynth - A fluidsynth Qt GUI Interface</source>
-        <translation>Qsynth - Une interface graphique Qt pour fluidsynth</translation>
+        <translation>Qsynth - une interface graphique Qt pour fluidsynth</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="49"/>
@@ -1027,7 +1027,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="145"/>
         <source>Whether to keep a maximum number of lines in the messages window</source>
-        <translation>Si on doit conserver un nombre minimum de lignes dans la fenêtre de messages</translation>
+        <translation>Si on doit conserver un nombre maximum de lignes dans la fenêtre de messages</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="148"/>
@@ -1092,7 +1092,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="283"/>
         <source>Whether to activate a messages logging to file.</source>
-        <translation>Doit on activer l&apos;enregistrement des messages dans un fichier.</translation>
+        <translation>Doit-on activer l&apos;enregistrement des messages dans un fichier.</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="286"/>
@@ -1168,7 +1168,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="455"/>
         <source>Whether to ask for confirmation on application exit</source>
-        <translation>Doit on demander une confirmation lors de la fermeture de l&apos;application</translation>
+        <translation>Doit-on demander une confirmation lors de la fermeture de l&apos;application</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="458"/>
@@ -1193,7 +1193,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="471"/>
         <source>Whether to keep all child windows on top of the main window</source>
-        <translation>Doit on conserver toutes les sous fenêtres au dessus de la fenêtre principale</translation>
+        <translation>Doit-on conserver toutes les sous-fenêtres au dessus de la fenêtre principale</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="474"/>
@@ -1203,7 +1203,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="487"/>
         <source>Whether to capture standard output (stdout/stderr) into messages window</source>
-        <translation>Doit on capturer la sortie standard (stdout/stderr) dans la fenêtre de messages</translation>
+        <translation>Doit-on capturer la sortie standard (stdout/stderr) dans la fenêtre de messages</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="490"/>
@@ -1213,7 +1213,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="503"/>
         <source>Whether to monitor and show engine output peak level meters</source>
-        <translation>Doit on suivre et afficher le niveau de la sortie crête du moteur audio</translation>
+        <translation>Doit-on suivre et afficher le niveau de crête en sortie du moteur audio</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="506"/>
@@ -1223,7 +1223,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="532"/>
         <source>Whether to enable the system tray icon</source>
-        <translation>Doit on activer l&apos;icône de la barre d&apos;état</translation>
+        <translation>Doit-on activer l&apos;icône de la barre d&apos;état</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="535"/>
@@ -1233,7 +1233,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="564"/>
         <source>Whether to start minimized to system tray</source>
-        <translation>Doit on démarrer minimisé dans la barre d&apos;état</translation>
+        <translation>Doit-on démarrer minimisé dans la barre d&apos;état</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="567"/>
@@ -1414,7 +1414,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="118"/>
         <source>&amp;Dump MIDI router events</source>
-        <translation>Afficher les évènement du routeur MI&amp;DI</translation>
+        <translation>Afficher les évènements du routeur MI&amp;DI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="131"/>
@@ -1582,7 +1582,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="462"/>
         <source>Buffer Cou&amp;nt:</source>
-        <translation>&amp;Nombre de tampon :</translation>
+        <translation>&amp;Nombre de tampons :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="475"/>
@@ -1727,7 +1727,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="817"/>
         <source>&amp;Multiple JACK Outputs</source>
-        <translation>Sorties JACK &amp;Multiples</translation>
+        <translation>Sorties JACK &amp;multiples</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="841"/>
