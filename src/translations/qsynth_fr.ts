@@ -199,7 +199,7 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="44"/>
         <source>Debugging option enabled.</source>
-        <translation>Option de débuggage activée.</translation>
+        <translation>Option de débogage activée.</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="47"/>
