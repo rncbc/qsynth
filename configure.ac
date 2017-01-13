@@ -336,6 +336,9 @@ if test "x$ac_fluidsynth_lib" = "xyes"; then
    AC_DEFINE(CONFIG_FLUIDSYNTH, 1, [Define if FLUIDSYNTH library is available.])
    ac_cflags="$ac_cflags $FLUIDSYNTH_CFLAGS"
    ac_libs="$ac_libs $FLUIDSYNTH_LIBS"
+   CFLAGS="$CFLAGS $FLUIDSYNTH_CFLAGS"
+   CPPFLAGS="$CPPFLAGS $FLUIDSYNTH_CFLAGS"
+   LIBS="$LIBS $FLUIDSYNTH_LIBS"
 else
    AC_MSG_ERROR([*** FLUIDSYNTH library not found.])
 fi
