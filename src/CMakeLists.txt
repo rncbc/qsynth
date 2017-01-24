@@ -130,7 +130,7 @@ if (UNIX AND NOT APPLE)
     install ( TARGETS qsynth
               RUNTIME DESTINATION bin )
     install ( FILES ${QM_FILES}
-              DESTINATION share/locale )
+              DESTINATION share/qsynth/translations )
     install ( FILES ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop
               DESTINATION share/applications )
     install ( FILES images/qsynth.png
@@ -141,6 +141,6 @@ if (WIN32)
     install ( TARGETS qsynth
               RUNTIME DESTINATION . )
     install ( FILES ${QM_FILES}
-              DESTINATION share/locale )
+              DESTINATION share/qsynth/translations )
 endif ()
 

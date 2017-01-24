@@ -118,6 +118,8 @@ win32 {
     }
 
     RC_FILE = win32/qsynth.rc
+
+	DEFINES += _USE_MATH_DEFINES
 }
 
 
@@ -125,3 +127,4 @@ win32 {
 !lessThan(QT_MAJOR_VERSION, 5) {
 	QT += widgets
 }
+
