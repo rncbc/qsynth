@@ -1,7 +1,7 @@
 // qsynthMainForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2016, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2017, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -208,8 +208,7 @@ static void qsynth_midi_event ( qsynthEngine *pEngine,
 					iCC == QSYNTH_MIDI_CC_BANK_SELECT_LSB ||
 					iCC >= QSYNTH_MIDI_CC_ALL_SOUND_OFF)
 					break;
-				// Fall thru...
-			}
+			}	// Fall thru...
 			case QSYNTH_MIDI_PROGRAM_CHANGE:
 				g_pMidiChannels[iChan].iChange++;
 				// Fall thru, again...
