@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.4.4, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.4.5, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
@@ -25,7 +25,7 @@ AC_DEFINE_UNQUOTED(CONFIG_BUILD_VERSION, ["$ac_build_version"], [Build version s
 
 # Sanitized version string.
 AC_CACHE_VAL([ac_cv_version], [
-   ac_cv_version=$(echo $ac_cv_build_version | sed -r 's/^([[0-9|\.]]+).*$/\1/')
+   ac_cv_version=$(echo $PACKAGE_VERSION | sed -r 's/^([[0-9|\.]]+).*$/\1/')
 ])
 ac_version="$ac_cv_version"
 AC_DEFINE_UNQUOTED(CONFIG_VERSION, ["$ac_version"], [Version string.])
