@@ -4,6 +4,15 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Desktop entry specification file is now finally independent
+  from build/configure template chains.
+
+- Updated target path for freedesktop.org's AppStream metainfo
+  file (formerly AppData).
+
+
 0.4.4  2017-04-27  Pre-LAC2017 release frenzy.
 
 - Added French man page (by Olivier Humbert, thanks).

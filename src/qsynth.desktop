@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=@PACKAGE_NAME@
+Name=Qsynth
 Version=1.0
 GenericName=FluidSynth GUI
 GenericName[sr]=Кју-синт
@@ -7,7 +7,7 @@ GenericName[fr]=Interface graphique pour FluidSynth
 Comment=Qsynth is a FluidSynth Qt GUI Interface
 Comment[sr]=Програм за управљање програмом Флуид-синт, у графичком окружењу.
 Comment[fr]=Interface graphique pour Fluidsynth
-Exec=@ac_prefix@/bin/qsynth
+Exec=qsynth
 Icon=qsynth
 Categories=Audio;AudioVideo;Midi;X-Alsa;X-Jack;Qt;
 Keywords=Audio;MIDI;ALSA;JACK;FluidSynth;SoundFont;Synthesizer;Sampler;SF2;Qt;

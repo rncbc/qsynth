@@ -3,7 +3,7 @@ AC_INIT(Qsynth, 0.4.5, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
-AC_CONFIG_FILES(Makefile qsynth.spec src/src.pri src/qsynth.desktop)
+AC_CONFIG_FILES(Makefile qsynth.spec src/src.pri)
 
 # Build version string.
 AC_CACHE_VAL([ac_cv_build_version], [
