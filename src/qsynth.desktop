@@ -13,4 +13,6 @@ Categories=Audio;AudioVideo;Midi;X-Alsa;X-Jack;Qt;
 Keywords=Audio;MIDI;ALSA;JACK;FluidSynth;SoundFont;Synthesizer;Sampler;SF2;Qt;
 Terminal=false
 Type=Application
+StartupWMClass=qsynth
+X-Window-Icon=qsynth
 X-SuSE-translate=true
