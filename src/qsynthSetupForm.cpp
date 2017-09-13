@@ -1,7 +1,7 @@
 // qsynthSetupForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2017, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -523,7 +523,7 @@ void qsynthSetupForm::accept (void)
 		// Save the soundfont view.
 		m_pSetup->soundfonts.clear();
 		m_pSetup->bankoffsets.clear();
-		int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
+		const int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
 		for (int i = 0; i < iItemCount; ++i) {
 			QTreeWidgetItem *pItem = m_ui.SoundFontListView->topLevelItem(i);
 			m_pSetup->soundfonts.append(pItem->text(1));
@@ -695,8 +695,8 @@ void qsynthSetupForm::stabilizeForm (void)
 {
 	bool bEnabled = m_ui.MidiInCheckBox->isChecked();
 
-	bool bAlsaEnabled = (m_ui.MidiDriverComboBox->currentText() == "alsa_seq");
-	bool bCoreMidiEnabled = (m_ui.MidiDriverComboBox->currentText() == "coremidi");
+	const bool bAlsaEnabled = (m_ui.MidiDriverComboBox->currentText() == "alsa_seq");
+	const bool bCoreMidiEnabled = (m_ui.MidiDriverComboBox->currentText() == "coremidi");
 	m_ui.MidiDriverTextLabel->setEnabled(bEnabled);
 	m_ui.MidiDriverComboBox->setEnabled(bEnabled);
 	m_ui.MidiDeviceTextLabel->setEnabled(bEnabled && !bAlsaEnabled);
@@ -710,7 +710,7 @@ void qsynthSetupForm::stabilizeForm (void)
 	m_ui.MidiNameTextLabel->setEnabled(bEnabled && (bAlsaEnabled | bCoreMidiEnabled));
 	m_ui.MidiNameComboBox->setEnabled(bEnabled && (bAlsaEnabled | bCoreMidiEnabled));
 
-	bool bJackEnabled = (m_ui.AudioDriverComboBox->currentText() == "jack");
+	const bool bJackEnabled = (m_ui.AudioDriverComboBox->currentText() == "jack");
 	m_ui.AudioDeviceTextLabel->setEnabled(!bJackEnabled);
 	m_ui.AudioDeviceComboBox->setEnabled(!bJackEnabled);
 	m_ui.JackMultiCheckBox->setEnabled(bJackEnabled);
@@ -721,8 +721,8 @@ void qsynthSetupForm::stabilizeForm (void)
 	m_ui.SoundFontOpenPushButton->setEnabled(true);
 	QTreeWidgetItem *pSelectedItem = m_ui.SoundFontListView->currentItem();
 	if (pSelectedItem) {
-		int iItem = m_ui.SoundFontListView->indexOfTopLevelItem(pSelectedItem);
-		int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
+		const int iItem = m_ui.SoundFontListView->indexOfTopLevelItem(pSelectedItem);
+		const int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
 		m_ui.SoundFontEditPushButton->setEnabled(
 				pSelectedItem->flags() & Qt::ItemIsEditable);
 		m_ui.SoundFontRemovePushButton->setEnabled(true);
@@ -797,7 +797,7 @@ void qsynthSetupForm::contextMenuRequested ( const QPoint& pos )
 void qsynthSetupForm::refreshSoundFonts (void)
 {
 	m_ui.SoundFontListView->setUpdatesEnabled(false);
-	int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
+	const int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
 	for (int i = 0; i < iItemCount; ++i) {
 		QTreeWidgetItem *pItem = m_ui.SoundFontListView->topLevelItem(i);
 		pItem->setText(0, QString::number(i + 1));
@@ -923,8 +923,8 @@ void qsynthSetupForm::moveDownSoundFont (void)
 {
 	QTreeWidgetItem *pItem = m_ui.SoundFontListView->currentItem();
 	if (pItem) {
+		const int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
 		int iItem = m_ui.SoundFontListView->indexOfTopLevelItem(pItem);
-		int iItemCount = m_ui.SoundFontListView->topLevelItemCount();
 		if (iItem < iItemCount - 1) {
 			pItem->setSelected(false);
 			pItem = m_ui.SoundFontListView->takeTopLevelItem(iItem);
@@ -945,8 +945,8 @@ void qsynthSetupForm::itemRenamed (void)
 {
 	QTreeWidgetItem *pItem = m_ui.SoundFontListView->currentItem();
 	if (pItem) {
-		int iBankOffset = pItem->text(2).toInt();
-		if (iBankOffset < 0 || iBankOffset > 128)
+		const int iBankOffset = pItem->text(2).toInt();
+		if (iBankOffset < 0 || iBankOffset > 16384)
 			pItem->setText(2, QString::number(0));
 		m_iDirtyCount++;
 	}

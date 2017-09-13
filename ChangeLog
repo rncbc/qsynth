@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- Increased Soundfont bank-offset limit to 16384 (was 128).
+
 - Desktop entry specification file is now finally independent
   from build/configure template chains.
 
