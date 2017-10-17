@@ -177,7 +177,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.KnobStyleComboBox->setCurrentIndex(m_pOptions->iKnobStyle);
 	m_ui.KnobMouseMotionComboBox->setCurrentIndex(m_pOptions->iKnobMotion);
 
-#if defined(WIN32)
+#if defined(_WIN32)
 	m_ui.StdoutCaptureCheckBox->setChecked(false);
 	m_ui.StdoutCaptureCheckBox->setEnabled(false);
 #endif

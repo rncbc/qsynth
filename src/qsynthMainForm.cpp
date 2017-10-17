@@ -84,7 +84,7 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 #define QSYNTH_CHORUS_SPEED_SCALE   100.0f
 #define QSYNTH_CHORUS_DEPTH_SCALE   10.0f
 
-#if defined(WIN32)
+#if defined(_WIN32)
 #undef HAVE_SIGNAL_H
 #else
 #include <unistd.h>
@@ -618,7 +618,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 	// Knobs
 	updateKnobs();
 
-#if !defined(WIN32)
+#if !defined(_WIN32)
 	// Check if we can redirect our own stdout/stderr...
 	if (m_pOptions->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
 		::dup2(g_fdStdout[QSYNTH_FDWRITE], STDOUT_FILENO);
@@ -898,7 +898,7 @@ void qsynthMainForm::dropEvent ( QDropEvent* pDropEvent )
 // Set stdout/stderr blocking mode.
 bool qsynthMainForm::stdoutBlock ( int fd, bool bBlock ) const
 {
-#if !defined(WIN32)
+#if !defined(_WIN32)
 	const int iFlags = ::fcntl(fd, F_GETFL, 0);
 	const bool bNonBlock = bool(iFlags & O_NONBLOCK);
 	if (bBlock && bNonBlock)
@@ -914,7 +914,7 @@ bool qsynthMainForm::stdoutBlock ( int fd, bool bBlock ) const
 // Own stdout/stderr socket notifier slot.
 void qsynthMainForm::stdoutNotifySlot ( int fd )
 {
- #if !defined(WIN32)
+ #if !defined(_WIN32)
 	// Set non-blocking reads, if not already...
 	const bool bBlock = stdoutBlock(fd, false);
 	// Read as much as is available...

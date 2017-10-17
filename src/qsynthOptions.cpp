@@ -479,7 +479,7 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	m_settings.beginGroup("/Settings");
 	pSetup->sDisplayName     = m_settings.value("/DisplayName", sDisplayName).toString();
 	pSetup->bMidiIn          = m_settings.value("/MidiIn", true).toBool();
-#if defined(WIN32)
+#if defined(_WIN32)
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "winmidi").toString();
 	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "dsound").toString();
 	pSetup->iAudioBufSize    = m_settings.value("/AudioBufSize", 512).toInt();
