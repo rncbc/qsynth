@@ -814,7 +814,7 @@ void qsynthSetupForm::openSoundFont (void)
 		this,										// Parent
 		QSYNTH_TITLE ": " + tr("Soundfont files"),	// Caption.
 		m_pOptions->sSoundFontDir,                  // Start here.
-		tr("Soundfont files") + " (*.sf2 *.SF2)"	// Filter (SF2 files)
+		tr("Soundfont files") + " (*.sf2 *.SF2 *.sf3 *.SF3)" // Filter files.
 	);
 
 	QTreeWidgetItem *pItem = NULL;

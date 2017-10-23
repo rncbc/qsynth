@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Added *.SF3 to soundfont files filter on Setup > Soundfonts
+  > Open... file dialog.
+
 - Increased Soundfont bank-offset limit to 16384 (was 128).
 
 - Desktop entry specification file is now finally independent
