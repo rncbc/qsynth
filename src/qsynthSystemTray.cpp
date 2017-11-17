@@ -1,7 +1,7 @@
 // qsynthSystemTray.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2016, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2017, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -47,13 +47,6 @@ qsynthSystemTray::qsynthSystemTray ( QWidget *pParent )
 		QSystemTrayIcon::setToolTip(pParent->windowTitle());
 	}
 
-	// Set proper context menu, even though it's empty...
-	QSystemTrayIcon::setContextMenu(&m_menu);
-
-	QObject::connect(&m_menu,
-		SIGNAL(aboutToShow()),
-		SLOT(contextMenuRequested()));
-
 	QObject::connect(this,
 		SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
 		SLOT(activated(QSystemTrayIcon::ActivationReason)));
@@ -73,11 +66,9 @@ void qsynthSystemTray::close (void)
 void qsynthSystemTray::activated ( QSystemTrayIcon::ActivationReason reason )
 {
 	switch (reason) {
-#if 0
 	case QSystemTrayIcon::Context:
 		contextMenuRequested();
 		break;
-#endif
 	case QSystemTrayIcon::Trigger:
 		emit clicked();
 		// Fall trhu...

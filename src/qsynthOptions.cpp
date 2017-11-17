@@ -71,7 +71,7 @@ void qsynthOptions::loadOptions (void)
 	bStdoutCapture  = m_settings.value("/StdoutCapture", true).toBool();
 	bOutputMeters   = m_settings.value("/OutputMeters", false).toBool();
 	bSystemTray     = m_settings.value("/SystemTray", false).toBool();
-	bSystemTrayQueryClose = m_settings.value("/SystemTrayQueryClsoe", true).toBool();
+	bSystemTrayQueryClose = m_settings.value("/SystemTrayQueryClose", true).toBool();
 	bStartMinimized = m_settings.value("/StartMinimized", false).toBool();
 	iBaseFontSize   = m_settings.value("/BaseFontSize", 0).toInt();
 	iKnobStyle      = m_settings.value("/KnobStyle", 0).toInt();

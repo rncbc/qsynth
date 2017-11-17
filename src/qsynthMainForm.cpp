@@ -746,7 +746,7 @@ bool qsynthMainForm::queryClose (void)
 				m_pMessagesForm->close();
 			if (m_pChannelsForm)
 				m_pChannelsForm->close();
-		#ifdef CONFIG_SYSTEM_TRAY
+		#if 0//CONFIG_SYSTEM_TRAY_0
 			// And the system tray icon too.
 			if (m_pSystemTray)
 				m_pSystemTray->close();
