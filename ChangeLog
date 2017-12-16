@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.5.0  2017-12-16  End of Autum'17 release.
 
 - Added *.SF3 to soundfont files filter on Setup > Soundfonts
   > Open... file dialog.
