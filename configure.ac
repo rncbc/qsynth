@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.5.0, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.5.1, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
@@ -64,7 +64,7 @@ AC_DEFINE_UNQUOTED(CONFIG_MANDIR, ["$ac_mandir"], [Default man page path.])
 
 # Enable debugging argument option.
 AC_ARG_ENABLE(debug,
-  AC_HELP_STRING([--enable-debug], [enable debugging (default=no)]),
+  AS_HELP_STRING([--enable-debug], [enable debugging (default=no)]),
   [ac_debug="$enableval"])
 
 if test "x$ac_debug" = "xyes"; then
@@ -80,59 +80,68 @@ AC_SUBST(ac_debug)
 
 # Enable Qt4/5 availability.
 AC_ARG_ENABLE(qt4,
-  AC_HELP_STRING([--enable-qt4], [enable Qt4 build (default=no)]),
+  AS_HELP_STRING([--enable-qt4], [enable Qt4 build (default=no)]),
   [ac_qt4="$enableval"],
   [ac_qt4="no"])
 
 # Enable system tray argument option.
 AC_ARG_ENABLE(system_tray,
-  AC_HELP_STRING([--enable-system-tray], [enable system tray (default=yes)]),
+  AS_HELP_STRING([--enable-system-tray], [enable system tray (default=yes)]),
   [ac_system_tray="$enableval"],
   [ac_system_tray="yes"])
 
 # Enable gradient eye-candy.
 AC_ARG_ENABLE(gradient,
-  AC_HELP_STRING([--enable-gradient], [enable gradient eye-candy (default=yes)]),
+  AS_HELP_STRING([--enable-gradient], [enable gradient eye-candy (default=yes)]),
   [ac_gradient="$enableval"],
   [ac_gradient="yes"])
 
 # Enable X11 unique/single instance.
 AC_ARG_ENABLE(xunique,
-  AC_HELP_STRING([--enable-xunique], [enable X11 unique/single instance (default=yes)]),
+  AS_HELP_STRING([--enable-xunique], [enable X11 unique/single instance (default=yes)]),
   [ac_xunique="$enableval"],
   [ac_xunique="yes"])
 
 # Enable debugger stack-trace option (assumes --enable-debug).
 AC_ARG_ENABLE(stacktrace,
-  AC_HELP_STRING([--enable-stacktrace], [enable debugger stack-trace (default=no)]),
+  AS_HELP_STRING([--enable-stacktrace], [enable debugger stack-trace (default=no)]),
   [ac_stacktrace="$enableval"])
 
 
 # Standard installation base dirs.
+ac_path=$PATH
 ac_with_paths=""
 
 # Set for alternate Qt4/5 installation dir.
+AC_ARG_WITH(qt,
+  AS_HELP_STRING([--with-qt=PATH], [use alternate Qt install path]),
+  [ac_qt_path="$withval"], [ac_qt_path="no"])
+
 AC_ARG_WITH(qt4,
-  AC_HELP_STRING([--with-qt4=PATH], [use alternate Qt4 install path]),
+  AS_HELP_STRING([--with-qt4=PATH], [use alternate Qt4 install path]),
   [ac_qt4_path="$withval"], [ac_qt4_path="no"])
 
 AC_ARG_WITH(qt5,
-  AC_HELP_STRING([--with-qt5=PATH], [use alternate Qt5 install path]),
+  AS_HELP_STRING([--with-qt5=PATH], [use alternate Qt5 install path]),
   [ac_qt5_path="$withval"], [ac_qt5_path="no"])
 
+if test "x$ac_qt_path" != "xno"; then
+   ac_path="$ac_qt_path/bin:$ac_path"
+fi
+
 if test "x$ac_qt4_path" != "xno"; then
-   ac_with_paths="$ac_with_paths $ac_qt4_path"
+   ac_path="$ac_qt4_path/bin:$ac_path"
    ac_qt4="yes"
 fi
 
 if test "x$ac_qt5_path" != "xno"; then
-   ac_with_paths="$ac_with_paths $ac_qt5_path"
+   ac_path="$ac_qt5_path/bin:$ac_path"
    ac_qt4="no"
 fi
 
 # Set for alternate fluidsynth installation dir.
 AC_ARG_WITH(fluidsynth,
-  AC_HELP_STRING([--with-fluidsynth=PATH], [use alternate fluidsynth install path]),
+  AS_HELP_STRING([--with-fluidsynth=PATH], [use alternate fluidsynth install path]),
   [ac_with_paths="$ac_with_paths $withval"])
 
 
@@ -145,9 +154,6 @@ ac_ldflags=$LDFLAGS
 AC_PROG_CPP
 AC_PROG_CXX
 AC_PROG_CXXCPP
-
-# Checks for languages.
-AC_LANG_CPLUSPLUS
 
 # Check for pkg-config.
 PKG_PROG_PKG_CONFIG
@@ -175,12 +181,7 @@ if test "x$ac_arch" = "xx86_64"; then
    ac_libdirs="$ac_libdirs lib64"
 fi
 
-CFLAGS="-fPIC $CFLAGS"
-CPPFLAGS="-fPIC $CPPFLAGS"
-
 # Prepend alternate dependencies paths.
-ac_path=$PATH
-
 for X in $ac_with_paths; do
   if test -d $X/bin; then
     ac_path="$X/bin:$ac_path"
@@ -192,8 +193,8 @@ for X in $ac_with_paths; do
   fi
   for Y in $ac_libdirs; do
     if test -d $X/$Y; then
-       LIBS="-L$X/$Y $LIBS"
-       ac_libs="-L$X/$Y $ac_libs"
+      LIBS="-L$X/$Y $LIBS"
+      ac_libs="-L$X/$Y $ac_libs"
     fi
   done
 done
@@ -202,12 +203,12 @@ done
 ac_errmsg="not found in current PATH. Maybe QT development environment isn't available."
 
 if test "x$ac_qt4" = "xyes"; then
-   AC_PATH_PROG(ac_qmake, qmake-qt4, [no], $ac_path)
+   AC_PATH_TOOL(ac_qmake, qmake-qt4, [no], $ac_path)
 else
-   AC_PATH_PROG(ac_qmake, qmake-qt5, [no], $ac_path)
+   AC_PATH_TOOL(ac_qmake, qmake-qt5, [no], $ac_path)
 fi
 if test "x$ac_qmake" = "xno"; then
-   AC_PATH_PROG(ac_cv_qmake, qmake, [no], $ac_path)
+   AC_PATH_TOOL(ac_cv_qmake, qmake, [no], $ac_path)
    ac_qmake=$ac_cv_qmake
 fi
 if test "x$ac_qmake" = "xno"; then
@@ -240,7 +241,7 @@ if test -d $ac_qt_install_path; then
 fi
 
 # Check it again, now with updated PATH, just in case...
-AC_PATH_PROG(ac_cv_qmake, qmake, [no], $ac_path)
+AC_PATH_TOOL(ac_cv_qmake, qmake, [no], $ac_path)
 ac_qmake=$ac_cv_qmake
 if test "x$ac_qmake" = "xno"; then
    AC_MSG_ERROR([qmake $ac_errmsg])
@@ -295,28 +296,28 @@ else
 fi
 
 # Check for Qt moc utility.
-AC_PATH_PROG(ac_moc, moc, [no], $ac_path)
+AC_PATH_TOOL(ac_moc, moc, [no], $ac_path)
 if test "x$ac_moc" = "xno"; then
    AC_MSG_ERROR([moc $ac_errmsg])
 fi
 AC_SUBST(ac_moc)
 
 # Check for Qt uic utility.
-AC_PATH_PROG(ac_uic, uic, [no], $ac_path)
+AC_PATH_TOOL(ac_uic, uic, [no], $ac_path)
 if test "x$ac_uic" = "xno"; then
    AC_MSG_ERROR([uic $ac_errmsg])
 fi
 AC_SUBST(ac_uic)
 
 # Check for Qt lupdate utility.
-AC_PATH_PROG(ac_lupdate, lupdate, [no], $ac_path)
+AC_PATH_TOOL(ac_lupdate, lupdate, [no], $ac_path)
 if test "x$ac_lupdate" = "xno"; then
    AC_MSG_ERROR([lupdate $ac_errmsg])
 fi
 AC_SUBST(ac_lupdate)
 
 # Check for Qt lrelease utility.
-AC_PATH_PROG(ac_lrelease, lrelease, [no], $ac_path)
+AC_PATH_TOOL(ac_lrelease, lrelease, [no], $ac_path)
 if test "x$ac_release" = "xno"; then
    AC_MSG_ERROR([lrelease $ac_errmsg])
 fi
