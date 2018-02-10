@@ -431,11 +431,17 @@ if test "x$ac_fluid_bank_offset" = "xyes"; then
    AC_DEFINE(CONFIG_FLUID_BANK_OFFSET, 1, [Define if fluid_synth_set_bank_offset is available.])
 fi
 
-# Check for fluid_synth_get_channel_info function.
-AC_CHECK_LIB(fluidsynth, fluid_synth_get_channel_info, [ac_fluid_channel_info="yes"], [ac_fluid_channel_info="no"])
-if test "x$ac_fluid_channel_info" = "xyes"; then
-   AC_DEFINE(CONFIG_FLUID_CHANNEL_INFO, 1, [Define if fluid_synth_get_channel_info is available.])
-fi
+# Check for fluid_synth_get_channel_info function (DEPRECATED).
+#AC_CHECK_LIB(fluidsynth, fluid_synth_get_channel_info, [ac_fluid_channel_info="yes"], [ac_fluid_channel_info="no"])
+#if test "x$ac_fluid_channel_info" = "xyes"; then
+#   AC_DEFINE(CONFIG_FLUID_CHANNEL_INFO, 1, [Define if fluid_synth_get_channel_info is available.])
+#fi
+
+# Check for fluid_synth_set_midi_router function (DEPRECATED).
+#AC_CHECK_LIB(fluidsynth, fluid_synth_get_midirouter, [ac_fluid_midirouter="yes"], [ac_fluid_midi_router="no"])
+#if test "x$ac_fluid_midi_router" = "xyes"; then
+#   AC_DEFINE(CONFIG_FLUID_MIDI_ROUTER, 1, [Define if fluid_synth_set_midi_router is available.])
+#fi
 
 # Check for fluid_synth_unset_program function.
 AC_CHECK_LIB(fluidsynth, fluid_synth_unset_program, [ac_fluid_unset_program="yes"], [ac_fluid_unset_program="no"])
@@ -447,6 +453,12 @@ fi
 AC_CHECK_LIB(fluidsynth, fluid_version_str, [ac_fluid_version_str="yes"], [ac_fluid_version_str="no"])
 if test "x$ac_fluid_version_str" = "xyes"; then
    AC_DEFINE(CONFIG_FLUID_VERSION_STR, 1, [Define if fluid_version_str is available.])
+fi
+
+# Check for fluid_settings_dupstr function.
+AC_CHECK_LIB(fluidsynth, fluid_settings_dupstr, [ac_fluid_settings_dupstr="yes"], [ac_fluid_settings_dupstr="no"])
+if test "x$ac_fluid_settings_dupstr" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SETTINGS_DUPSTR, 1, [Define if fluid_settings_dupstr is available.])
 fi
 
 # Finally produce a configure header file and the makefiles.

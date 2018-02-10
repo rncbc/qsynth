@@ -1,7 +1,7 @@
 // qsynthSetupForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2017, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -133,11 +133,18 @@ static void qsynth_settings_foreach ( void *pvData, char *pszName, int iType )
 	{
 		char *pszDefault = ::fluid_settings_getstr_default(pFluidSettings, pszName);
 		char *pszCurrent = NULL;
+	#ifdef CONFIG_FLUID_SETTINGS_DUPSTR
+		::fluid_settings_dupstr(pFluidSettings, pszName, &pszCurrent);
+	#else
 		::fluid_settings_getstr(pFluidSettings, pszName, &pszCurrent);
+	#endif
 		(pData->pListItem)->setText(iCol++, pszCurrent);
 		(pData->pListItem)->setText(iCol++, pszDefault);
 		(pData->pListItem)->setText(iCol++, QString::null);
 		(pData->pListItem)->setText(iCol++, QString::null);
+	#ifdef CONFIG_FLUID_SETTINGS_DUPSTR
+		::free(pszCurrent);
+	#endif
 		break;
 	}}
 

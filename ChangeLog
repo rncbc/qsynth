@@ -6,6 +6,10 @@ ChangeLog
 
 GIT HEAD
 
+- Fixed deprecated calls to fluid_synth_get_channel_info(),
+  fluid_synth_set_midi_router() and fluid_settings_getstr()
+  (as signalled on libfluidsynth >= 1.1.9). (EXPERIMENTAL)
+
 - A little hardening on the configure (autoconf) macro side.
 
 
