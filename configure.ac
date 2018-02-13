@@ -90,17 +90,29 @@ AC_ARG_ENABLE(system_tray,
   [ac_system_tray="$enableval"],
   [ac_system_tray="yes"])
 
-# Enable gradient eye-candy.
-AC_ARG_ENABLE(gradient,
-  AS_HELP_STRING([--enable-gradient], [enable gradient eye-candy (default=yes)]),
-  [ac_gradient="$enableval"],
-  [ac_gradient="yes"])
+# Enable fluid_synth_get_channel_info function (DEPRECATED).
+AC_ARG_ENABLE(fluid_channel_info,
+  AS_HELP_STRING([--enable-fluid-channel-info], [enable FluidSynth channel info support (DEPRECATED) (default=no)]),
+  [ac_fluid_channel_info="$enableval"],
+  [ac_fluid_channel_info="no"])
+  
+# Enable fluid_synth_set_midi_router function (DEPRECATED).
+AC_ARG_ENABLE(fluid_midi_router,
+  AS_HELP_STRING([--enable-fluid-midi-router], [enable FluidSynth MIDI router support (DEPRECATED) (default=no)]),
+  [ac_fluid_midi_router="$enableval"],
+  [ac_fluid_midi_router="no"])
 
 # Enable X11 unique/single instance.
 AC_ARG_ENABLE(xunique,
   AS_HELP_STRING([--enable-xunique], [enable X11 unique/single instance (default=yes)]),
   [ac_xunique="$enableval"],
   [ac_xunique="yes"])
+
+# Enable gradient eye-candy.
+AC_ARG_ENABLE(gradient,
+  AS_HELP_STRING([--enable-gradient], [enable gradient eye-candy (default=yes)]),
+  [ac_gradient="$enableval"],
+  [ac_gradient="yes"])
 
 # Enable debugger stack-trace option (assumes --enable-debug).
 AC_ARG_ENABLE(stacktrace,
@@ -432,16 +444,20 @@ if test "x$ac_fluid_bank_offset" = "xyes"; then
 fi
 
 # Check for fluid_synth_get_channel_info function (DEPRECATED).
-#AC_CHECK_LIB(fluidsynth, fluid_synth_get_channel_info, [ac_fluid_channel_info="yes"], [ac_fluid_channel_info="no"])
-#if test "x$ac_fluid_channel_info" = "xyes"; then
-#   AC_DEFINE(CONFIG_FLUID_CHANNEL_INFO, 1, [Define if fluid_synth_get_channel_info is available.])
-#fi
+if test "x$ac_fluid_channel_info" = "xyes"; then
+   AC_CHECK_LIB(fluidsynth, fluid_synth_get_channel_info, [ac_fluid_channel_info="yes"], [ac_fluid_channel_info="no"])
+   if test "x$ac_fluid_channel_info" = "xyes"; then
+      AC_DEFINE(CONFIG_FLUID_CHANNEL_INFO, 1, [Define if fluid_synth_get_channel_info is available.])
+   fi
+fi
 
 # Check for fluid_synth_set_midi_router function (DEPRECATED).
-#AC_CHECK_LIB(fluidsynth, fluid_synth_get_midirouter, [ac_fluid_midirouter="yes"], [ac_fluid_midi_router="no"])
-#if test "x$ac_fluid_midi_router" = "xyes"; then
-#   AC_DEFINE(CONFIG_FLUID_MIDI_ROUTER, 1, [Define if fluid_synth_set_midi_router is available.])
-#fi
+if test "x$ac_fluid_midi_router" = "xyes"; then
+   AC_CHECK_LIB(fluidsynth, fluid_synth_set_midi_router, [ac_fluid_midi_router="yes"], [ac_fluid_midi_router="no"])
+   if test "x$ac_fluid_midi_router" = "xyes"; then
+      AC_DEFINE(CONFIG_FLUID_MIDI_ROUTER, 1, [Define if fluid_synth_set_midi_router is available.])
+   fi
+fi
 
 # Check for fluid_synth_unset_program function.
 AC_CHECK_LIB(fluidsynth, fluid_synth_unset_program, [ac_fluid_unset_program="yes"], [ac_fluid_unset_program="no"])
@@ -477,7 +493,8 @@ echo "  FluidSynth library support . . . . . . . . . . . .: $ac_fluidsynth_lib"
 echo "  FluidSynth server support  . . . . . . . . . . . .: $ac_fluid_server"
 echo "  FluidSynth reset support . . . . . . . . . . . . .: $ac_fluid_reset"
 echo "  FluidSynth bank offset support . . . . . . . . . .: $ac_fluid_bank_offset"
-echo "  FluidSynth channel info support  . . . . . . . . .: $ac_fluid_channel_info"
+echo "  FluidSynth channel info support (DEPRECATED) . . .: $ac_fluid_channel_info"
+echo "  FluidSynth MIDI router support  (DEPRECATED) . . .: $ac_fluid_midi_router"
 echo "  FluidSynth unset program support . . . . . . . . .: $ac_fluid_unset_program"
 echo "  FluidSynth version string support  . . . . . . . .: $ac_fluid_version_str"
 echo "  System tray icon support . . . . . . . . . . . . .: $ac_system_tray"
