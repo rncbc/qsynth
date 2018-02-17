@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Disable singleton/unique application instance setup logic
+  when the display server platform is not X11. (EXPERIMENTAL)
+
 - Fixed deprecated calls to fluid_synth_get_channel_info(),
   fluid_synth_set_midi_router() and fluid_settings_getstr()
   (as signalled on libfluidsynth >= 1.1.9). (EXPERIMENTAL)
