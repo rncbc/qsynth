@@ -4,14 +4,14 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.5.1  2018-05-21  Pre-LAC2018 release frenzy.
 
 - Disable singleton/unique application instance setup logic
-  when the display server platform is not X11. (EXPERIMENTAL)
+  when the display server platform is not X11.
 
 - Fixed deprecated calls to fluid_synth_get_channel_info(),
   fluid_synth_set_midi_router() and fluid_settings_getstr()
-  (as signalled on libfluidsynth >= 1.1.9). (EXPERIMENTAL)
+  (as signaled on libfluidsynth >= 1.1.9).
 
 - A little hardening on the configure (autoconf) macro side.
 
