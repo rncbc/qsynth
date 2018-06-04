@@ -43,14 +43,14 @@ struct qsynth_settings_data
 	QStringList      options;
 };
 
-static void qsynth_settings_foreach_option ( void *pvData, char *, char *pszOption )
+static void qsynth_settings_foreach_option ( void *pvData, const char *, const char *pszOption )
 {
 	qsynth_settings_data *pData = (qsynth_settings_data *) pvData;
 
 	pData->options.append(pszOption);
 }
 
-static void qsynth_settings_foreach ( void *pvData, char *pszName, int iType )
+static void qsynth_settings_foreach ( void *pvData, const char *pszName, int iType )
 {
 	qsynth_settings_data *pData = (qsynth_settings_data *) pvData;
 	fluid_settings_t *pFluidSettings = (pData->pSetup)->fluid_settings();
@@ -97,10 +97,11 @@ static void qsynth_settings_foreach ( void *pvData, char *pszName, int iType )
 
 	case FLUID_NUM_TYPE:
 	{
-		double fDefault  = ::fluid_settings_getnum_default(pFluidSettings, pszName);
+		double fDefault  = 0.0;
 		double fCurrent  = 0.0;
 		double fRangeMin = 0.0;
 		double fRangeMax = 0.0;
+		::fluid_settings_getnum_default(pFluidSettings, pszName, &fDefault);
 		::fluid_settings_getnum(pFluidSettings, pszName, &fCurrent);
 		::fluid_settings_getnum_range(pFluidSettings, pszName, &fRangeMin, &fRangeMax);
 		(pData->pListItem)->setText(iCol++, QString::number(fCurrent));
@@ -112,10 +113,11 @@ static void qsynth_settings_foreach ( void *pvData, char *pszName, int iType )
 
 	case FLUID_INT_TYPE:
 	{
-		int iDefault  = ::fluid_settings_getint_default(pFluidSettings, pszName);
+		int iDefault  = 0;
 		int iCurrent  = 0;
 		int iRangeMin = 0;
 		int iRangeMax = 0;
+		::fluid_settings_getint_default(pFluidSettings, pszName, &iDefault);
 		::fluid_settings_getint(pFluidSettings, pszName, &iCurrent);
 		::fluid_settings_getint_range(pFluidSettings, pszName, &iRangeMin, &iRangeMax);
 		if (iRangeMin + iRangeMax < 2) {
@@ -131,7 +133,8 @@ static void qsynth_settings_foreach ( void *pvData, char *pszName, int iType )
 
 	case FLUID_STR_TYPE:
 	{
-		char *pszDefault = ::fluid_settings_getstr_default(pFluidSettings, pszName);
+		char *pszDefault = NULL;
+		::fluid_settings_getstr_default(pFluidSettings, pszName, &pszDefault);
 		char *pszCurrent = NULL;
 	#ifdef CONFIG_FLUID_SETTINGS_DUPSTR
 		::fluid_settings_dupstr(pFluidSettings, pszName, &pszCurrent);
@@ -484,13 +487,14 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 		for (int i = cSoundFonts - 1; i >= 0; i--) {
 			fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(pEngine->pSynth, i);
 			if (pSoundFont) {
+				int id = ::fluid_sfont_get_id(pSoundFont);
 				pItem = new QTreeWidgetItem(m_ui.SoundFontListView, pItem);
 				if (pItem) {
 					pItem->setIcon(0, *m_pXpmSoundFont);
-					pItem->setText(0, QString::number(pSoundFont->id));
-					pItem->setText(1, pSoundFont->get_name(pSoundFont));
+					pItem->setText(0, QString::number(id));
+					pItem->setText(1, ::fluid_sfont_get_name(pSoundFont));
 				#ifdef CONFIG_FLUID_BANK_OFFSET
-					pItem->setText(2, QString::number(::fluid_synth_get_bank_offset(pEngine->pSynth, pSoundFont->id)));
+					pItem->setText(2, QString::number(::fluid_synth_get_bank_offset(pEngine->pSynth, id)));
 					pItem->setFlags(pItem->flags() | Qt::ItemIsEditable);
 				#endif
 				}
