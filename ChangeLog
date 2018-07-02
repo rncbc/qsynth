@@ -4,6 +4,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- AppData/AppStream metadata is now settled under an all
+  permisssive license (FSFAP).
+
+
 0.5.1  2018-05-21  Pre-LAC2018 release frenzy.
 
 - Disable singleton/unique application instance setup logic
