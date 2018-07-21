@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.5.2  2018-07-22  A Summer'18 Release.
 
 - AppData/AppStream metadata is now settled under an all
   permisssive license (FSFAP).
