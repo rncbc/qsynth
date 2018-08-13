@@ -123,13 +123,6 @@ static qsynthEngine *g_pCurrentEngine = NULL;
 // Hold last shell/server port in use.
 static int g_iLastShellPort = 0;
 
-
-// Needed for server mode.
-static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
-{
-	return ::new_fluid_cmd_handler((fluid_synth_t*) data);
-}
-
 #endif
 
 
@@ -1884,8 +1877,8 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 			::fluid_settings_getint(
 				pSetup->fluid_settings(), szShellPort, &g_iLastShellPort);
 			if (g_iLastShellPort == 0) {
-				g_iLastShellPort = ::fluid_settings_getint_default(
-					pSetup->fluid_settings(), szShellPort);
+				::fluid_settings_getint_default(
+					pSetup->fluid_settings(), szShellPort, &g_iLastShellPort);
 			}
 		}
 		// Set the (new) server port for this engne...
@@ -1893,7 +1886,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 			pSetup->fluid_settings(), szShellPort, g_iLastShellPort);
 		// Create the server now...
 		pEngine->pServer = ::new_fluid_server(
-			pSetup->fluid_settings(), qsynth_newclient, pEngine->pSynth);
+			pSetup->fluid_settings(), pEngine->pSynth, pEngine->pMidiRouter);
 		if (pEngine->pServer == NULL)
 			appendMessagesError(sPrefix +
 				tr("Failed to create the server.\n\n"
@@ -2017,8 +2010,8 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 		fluid_sfont_t *pSoundFont
 			= ::fluid_synth_get_sfont(pEngine->pSynth, i);
 		if (pSoundFont) {
-			const int iSFID = pSoundFont->id;
-			const QString sName = pSoundFont->get_name(pSoundFont);
+			const int iSFID = ::fluid_sfont_get_id(pSoundFont);
+			const QString sName = ::fluid_sfont_get_name(pSoundFont);
 			appendMessagesColor(sPrefix +
 				tr("Unloading soundfont: \"%1\" (SFID=%2)")
 				.arg(sName).arg(iSFID) + sElipsis, "#999933");
@@ -2538,8 +2531,8 @@ void qsynthMainForm::refreshChorus (void)
 
 	const int    iChorusNr    = ::fluid_synth_get_chorus_nr(pEngine->pSynth);
 	const double fChorusLevel = ::fluid_synth_get_chorus_level(pEngine->pSynth);
-	const double fChorusSpeed = ::fluid_synth_get_chorus_speed_Hz(pEngine->pSynth);
-	const double fChorusDepth = ::fluid_synth_get_chorus_depth_ms(pEngine->pSynth);
+	const double fChorusSpeed = ::fluid_synth_get_chorus_speed(pEngine->pSynth);
+	const double fChorusDepth = ::fluid_synth_get_chorus_depth(pEngine->pSynth);
 	const int    iChorusType  = ::fluid_synth_get_chorus_type(pEngine->pSynth);
 
 	m_ui.ChorusNrDial->setValue(iChorusNr);

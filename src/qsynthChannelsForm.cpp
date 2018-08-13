@@ -248,20 +248,22 @@ void qsynthChannelsForm::updateChannel ( int iChan )
 #else
 	fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, iChan);
 	if (pPreset) {
-		int iBank = pPreset->get_banknum(pPreset);
+		int iBank = ::fluid_preset_get_banknum(pPreset);
+		fluid_sfont_t* sfont = ::fluid_preset_get_sfont(pPreset);
+		int sfid = ::fluid_sfont_get_id(sfont);
 	#ifdef CONFIG_FLUID_BANK_OFFSET
-		iBank += ::fluid_synth_get_bank_offset(m_pSynth, (pPreset->sfont)->id);
+		iBank += ::fluid_synth_get_bank_offset(m_pSynth, sfid);
 	#endif
 		pItem->setText(QSYNTH_CHANNELS_BANK,
 			QString::number(iBank));
 		pItem->setText(QSYNTH_CHANNELS_PROG,
-			QString::number(pPreset->get_num(pPreset)));
+			QString::number(::fluid_preset_get_num(pPreset)));
 		pItem->setText(QSYNTH_CHANNELS_NAME,
-			pPreset->get_name(pPreset));
+			::fluid_preset_get_name(pPreset));
 		pItem->setText(QSYNTH_CHANNELS_SFID,
-			QString::number((pPreset->sfont)->id));
+			QString::number(sfid));
 		pItem->setText(QSYNTH_CHANNELS_SFNAME,
-			QFileInfo((pPreset->sfont)->get_name(pPreset->sfont)).baseName());
+			QFileInfo(::fluid_sfont_get_name(sfont)).baseName());
 		// Make this a dirty-operation.
 		m_iDirtyCount++;
 	}

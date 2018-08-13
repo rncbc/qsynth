@@ -761,15 +761,15 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 	#else
 		fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(pEngine->pSynth, iChan);
 		if (pPreset) {
-			int iBank = pPreset->get_banknum(pPreset);
+			int iBank = ::fluid_preset_get_banknum(pPreset);
 		#ifdef CONFIG_FLUID_BANK_OFFSET
-			iBank += ::fluid_synth_get_bank_offset(pEngine->pSynth, (pPreset->sfont)->id);
+			iBank += ::fluid_synth_get_bank_offset(pEngine->pSynth, ::fluid_sfont_get_id(::fluid_preset_get_sfont(pPreset)));
 		#endif
 			QString sEntry = QString::number(iChan);
 			sEntry += ':';
 			sEntry += QString::number(iBank);
 			sEntry += ':';
-			sEntry += QString::number(pPreset->get_num(pPreset));
+			sEntry += QString::number(::fluid_preset_get_num(pPreset));
 			m_settings.setValue(sPrefix.arg(iChan + 1), sEntry);
 		}
 	#endif

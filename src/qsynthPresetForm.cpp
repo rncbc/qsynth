@@ -150,7 +150,7 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 	m_ui.BankListView->setUpdatesEnabled(false);
 	m_ui.BankListView->setSortingEnabled(false);
 	m_ui.BankListView->clear();
-	fluid_preset_t preset;
+	fluid_preset_t* preset;
 	QTreeWidgetItem *pBankItem = NULL;
 	// For all soundfonts (in reversed stack order) fill the available banks...
 	int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
@@ -158,11 +158,11 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 		fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
 		if (pSoundFont) {
 		#ifdef CONFIG_FLUID_BANK_OFFSET
-			int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, pSoundFont->id);
+			int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, fluid_sfont_get_id(pSoundFont));
 		#endif
-			pSoundFont->iteration_start(pSoundFont);
-			while (pSoundFont->iteration_next(pSoundFont, &preset)) {
-				int iBank = preset.get_banknum(&preset);
+			::fluid_sfont_iteration_start(pSoundFont);
+			while ((preset = ::fluid_sfont_iteration_next(pSoundFont)) != NULL) {
+				int iBank = ::fluid_preset_get_banknum(preset);
 			#ifdef CONFIG_FLUID_BANK_OFFSET
 				iBank += iBankOffset;
 			#endif
@@ -192,9 +192,9 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 #else
 	fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, m_iChan);
 	if (pPreset) {
-		m_iBank = pPreset->get_banknum(pPreset);
+		m_iBank = ::fluid_preset_get_banknum(pPreset);
 	#ifdef CONFIG_FLUID_BANK_OFFSET
-		m_iBank += ::fluid_synth_get_bank_offset(m_pSynth, (pPreset->sfont)->id);
+		m_iBank += ::fluid_synth_get_bank_offset(m_pSynth, fluid_sfont_get_id(::fluid_preset_get_sfont(pPreset)));
 	#endif
 	}
 #endif
@@ -210,7 +210,7 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 		m_iProg = info.program;
 #else
 	if (pPreset)
-		m_iProg = pPreset->get_num(pPreset);
+		m_iProg = ::fluid_preset_get_num(pPreset);
 #endif
 
 	QTreeWidgetItem *pProgItem = findProgItem(m_iProg);
@@ -335,7 +335,7 @@ void qsynthPresetForm::bankChanged (void)
 	m_ui.ProgListView->setUpdatesEnabled(false);
 	m_ui.ProgListView->setSortingEnabled(false);
 	m_ui.ProgListView->clear();
-	fluid_preset_t preset;
+	fluid_preset_t* preset;
 	QTreeWidgetItem *pProgItem = NULL;
 	// For all soundfonts (in reversed stack order) fill the available programs...
 	int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
@@ -343,23 +343,23 @@ void qsynthPresetForm::bankChanged (void)
 		fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
 		if (pSoundFont) {
 #ifdef CONFIG_FLUID_BANK_OFFSET
-			int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, pSoundFont->id);
+			int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, fluid_sfont_get_id(pSoundFont));
 #endif
-			pSoundFont->iteration_start(pSoundFont);
-			while (pSoundFont->iteration_next(pSoundFont, &preset)) {
-				int iBank = preset.get_banknum(&preset);
+			::fluid_sfont_iteration_start(pSoundFont);
+			while ((preset = ::fluid_sfont_iteration_next(pSoundFont)) != NULL) {
+				int iBank = ::fluid_preset_get_banknum(preset);
 #ifdef CONFIG_FLUID_BANK_OFFSET
 				iBank += iBankOffset;
 #endif
-				int iProg = preset.get_num(&preset);
+				int iProg = ::fluid_preset_get_num(preset);
 				if (iBank == iBankSelected && !findProgItem(iProg)) {
 					pProgItem = new qsynthPresetItem(m_ui.ProgListView, pProgItem);
 					if (pProgItem) {
 						pProgItem->setText(0, QString::number(iProg));
-						pProgItem->setText(1, preset.get_name(&preset));
-						pProgItem->setText(2, QString::number(pSoundFont->id));
+						pProgItem->setText(1, ::fluid_preset_get_name(preset));
+						pProgItem->setText(2, QString::number(::fluid_sfont_get_id(pSoundFont)));
 						pProgItem->setText(3, QFileInfo(
-							pSoundFont->get_name(pSoundFont)).baseName());
+							::fluid_sfont_get_name(pSoundFont)).baseName());
 					}
 				}
 			}
