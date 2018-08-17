@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2003-2015 Rui Nuno Capela <rncbc@rncbc.org> -->
+<!-- Copyright 2003-2018 Rui Nuno Capela <rncbc@rncbc.org> -->
 <component type="desktop">
- <id>qsynth.desktop</id>
+ <id>org.rncbc.qsynth</id>
  <metadata_license>FSFAP</metadata_license>
  <project_license>GPL-2.0+</project_license>
  <name>Qsynth</name>
@@ -12,9 +12,13 @@
   management application allowing the user to control and manage a variety of
   command line softsynths.</p>
  </description>
+ <launchable type="desktop-id">qsynth.desktop</launchable>
+ <provides>
+​  <binary>qsynth</binary>
+​ </provides>
  <screenshots>
   <screenshot type="default">
-   <image>http://qsynth.sourceforge.net/qsynth-screenshot1.png</image>
+   <image>http://qsynth.sourceforge.net/qsynthMainForm1.png</image>
    <caption>The main window showing the application in action</caption>
   </screenshot>
  </screenshots>
@@ -31,10 +35,7 @@
   <keyword>Qt</keyword>
  </keywords>
  <url type="homepage">https://qsynth.sourceforge.io</url>
- <updatecontact>rncbc@rncbc.org</updatecontact>
  <project_group>rncbc.org</project_group>
- <kudos>
-  <kudo>HiDpiIcon</kudo>
-  <kudo>ModernToolkit</kudo>
- </kudos>
+ <developer_name>rncbc aka. Rui Nuno Capela</developer_name>
+ <update_contact>rncbc@rncbc.org</update_contact>
 </component>
