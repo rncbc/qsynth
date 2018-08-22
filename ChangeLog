@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Overhaul adaptations to the FluidSynth API V2 (>= 2.0.0).
+  (EXPERIMENTAL)
+
 - AppStream metadata updated to be the most compliant with
   latest freedesktop.org specification and recommendation.
 

@@ -28,6 +28,20 @@
 #include <QComboBox>
 
 
+// Former fluidsynth < 2.0 defaults...
+//
+#define QSYNTH_REVERB_DEFAULT_ROOMSIZE 0.2f
+#define QSYNTH_REVERB_DEFAULT_DAMP     0.0f
+#define QSYNTH_REVERB_DEFAULT_WIDTH    0.5f
+#define QSYNTH_REVERB_DEFAULT_LEVEL    0.9f
+
+#define QSYNTH_CHORUS_DEFAULT_N        3
+#define QSYNTH_CHORUS_DEFAULT_LEVEL    2.0f
+#define QSYNTH_CHORUS_DEFAULT_SPEED    0.3f
+#define QSYNTH_CHORUS_DEFAULT_DEPTH    8.0f
+#define QSYNTH_CHORUS_DEFAULT_TYPE     0
+
+
 //-------------------------------------------------------------------------
 // qsynthOptions - Prototype settings structure.
 //
@@ -504,16 +518,16 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	pSetup->fSampleRate      = m_settings.value("/SampleRate", 44100.0).toDouble();
 	pSetup->iPolyphony       = m_settings.value("/Polyphony", 256).toInt();
 	pSetup->bReverbActive    = m_settings.value("/ReverbActive", true).toBool();
-	pSetup->fReverbRoom      = m_settings.value("/ReverbRoom",  FLUID_REVERB_DEFAULT_ROOMSIZE).toDouble();
-	pSetup->fReverbDamp      = m_settings.value("/ReverbDamp",  FLUID_REVERB_DEFAULT_DAMP).toDouble();
-	pSetup->fReverbWidth     = m_settings.value("/ReverbWidth", FLUID_REVERB_DEFAULT_WIDTH).toDouble();
-	pSetup->fReverbLevel     = m_settings.value("/ReverbLevel", FLUID_REVERB_DEFAULT_LEVEL).toDouble();
+	pSetup->fReverbRoom      = m_settings.value("/ReverbRoom",  QSYNTH_REVERB_DEFAULT_ROOMSIZE).toDouble();
+	pSetup->fReverbDamp      = m_settings.value("/ReverbDamp",  QSYNTH_REVERB_DEFAULT_DAMP).toDouble();
+	pSetup->fReverbWidth     = m_settings.value("/ReverbWidth", QSYNTH_REVERB_DEFAULT_WIDTH).toDouble();
+	pSetup->fReverbLevel     = m_settings.value("/ReverbLevel", QSYNTH_REVERB_DEFAULT_LEVEL).toDouble();
 	pSetup->bChorusActive    = m_settings.value("/ChorusActive", true).toBool();
-	pSetup->iChorusNr        = m_settings.value("/ChorusNr",    FLUID_CHORUS_DEFAULT_N).toInt();
-	pSetup->fChorusLevel     = m_settings.value("/ChorusLevel", FLUID_CHORUS_DEFAULT_LEVEL).toDouble();
-	pSetup->fChorusSpeed     = m_settings.value("/ChorusSpeed", FLUID_CHORUS_DEFAULT_SPEED).toDouble();
-	pSetup->fChorusDepth     = m_settings.value("/ChorusDepth", FLUID_CHORUS_DEFAULT_DEPTH).toDouble();
-	pSetup->iChorusType      = m_settings.value("/ChorusType",  FLUID_CHORUS_DEFAULT_TYPE).toInt();
+	pSetup->iChorusNr        = m_settings.value("/ChorusNr",    QSYNTH_CHORUS_DEFAULT_N).toInt();
+	pSetup->fChorusLevel     = m_settings.value("/ChorusLevel", QSYNTH_CHORUS_DEFAULT_LEVEL).toDouble();
+	pSetup->fChorusSpeed     = m_settings.value("/ChorusSpeed", QSYNTH_CHORUS_DEFAULT_SPEED).toDouble();
+	pSetup->fChorusDepth     = m_settings.value("/ChorusDepth", QSYNTH_CHORUS_DEFAULT_DEPTH).toDouble();
+	pSetup->iChorusType      = m_settings.value("/ChorusType",  QSYNTH_CHORUS_DEFAULT_TYPE).toInt();
 	pSetup->bLadspaActive    = m_settings.value("/LadspaActive", false).toBool();
 	pSetup->fGain            = m_settings.value("/Gain", 1.0).toDouble();
 	pSetup->bServer          = m_settings.value("/Server", false).toBool();
@@ -761,15 +775,37 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 	#else
 		fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(pEngine->pSynth, iChan);
 		if (pPreset) {
+		#ifdef CONFIG_FLUID_PRESET_GET_BANKNUM
+			int iBank = ::fluid_preset_get_banknum(pPreset);
+		#else
 			int iBank = pPreset->get_banknum(pPreset);
+		#endif
 		#ifdef CONFIG_FLUID_BANK_OFFSET
-			iBank += ::fluid_synth_get_bank_offset(pEngine->pSynth, (pPreset->sfont)->id);
+			int iSFID = 0;
+		#ifdef CONFIG_FLUID_PRESET_GET_SFONT
+			fluid_sfont_t *pSoundFont = ::fluid_preset_get_sfont(pPreset);
+		#else
+			fluid_sfont_t *pSoundFont = pPreset->sfont;
+		#endif
+			if (pSoundFont) {
+			#ifdef CONFIG_FLUID_SFONT_GET_ID
+				iSFID = ::fluid_sfont_get_id(pSoundFont);
+			#else
+				iSFID = pSoundFont->id;
+			#endif
+			}
+			iBank += ::fluid_synth_get_bank_offset(pEngine->pSynth, iSFID);
+		#endif
+		#ifdef CONFIG_FLUID_PRESET_GET_NUM
+			const int iProg = ::fluid_preset_get_num(pPreset);
+		#else
+			const int iProg = pPreset->get_num(pPreset);
 		#endif
 			QString sEntry = QString::number(iChan);
 			sEntry += ':';
 			sEntry += QString::number(iBank);
 			sEntry += ':';
-			sEntry += QString::number(pPreset->get_num(pPreset));
+			sEntry += QString::number(iProg);
 			m_settings.setValue(sPrefix.arg(iChan + 1), sEntry);
 		}
 	#endif

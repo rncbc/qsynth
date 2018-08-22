@@ -102,6 +102,12 @@ AC_ARG_ENABLE(fluid_midi_router,
   [ac_fluid_midi_router="$enableval"],
   [ac_fluid_midi_router="no"])
 
+# Enable new_fluid_server function.
+AC_ARG_ENABLE(fluid_server,
+  AS_HELP_STRING([--enable-fluid-server], [enable FluidSynth server (default=yes)]),
+  [ac_fluid_server="$enableval"],
+  [ac_fluid_server="yes"])
+
 # Enable X11 unique/single instance.
 AC_ARG_ENABLE(xunique,
   AS_HELP_STRING([--enable-xunique], [enable X11 unique/single instance (default=yes)]),
@@ -426,9 +432,11 @@ if test "x$ac_system_tray" = "xyes"; then
 fi
 
 # Check for new_fluid_server function.
-AC_CHECK_LIB(fluidsynth, new_fluid_server, [ac_fluid_server="yes"], [ac_fluid_server="no"])
 if test "x$ac_fluid_server" = "xyes"; then
-   AC_DEFINE(CONFIG_FLUID_SERVER, 1, [Define if new_fluid_server is available.])
+   AC_CHECK_LIB(fluidsynth, new_fluid_server, [ac_fluid_server="yes"], [ac_fluid_server="no"])
+   if test "x$ac_fluid_server" = "xyes"; then
+      AC_DEFINE(CONFIG_FLUID_SERVER, 1, [Define if new_fluid_server is available.])
+   fi
 fi
 
 # Check for fluid_synth_system_reset function.
@@ -476,6 +484,148 @@ AC_CHECK_LIB(fluidsynth, fluid_settings_dupstr, [ac_fluid_settings_dupstr="yes"]
 if test "x$ac_fluid_settings_dupstr" = "xyes"; then
    AC_DEFINE(CONFIG_FLUID_SETTINGS_DUPSTR, 1, [Define if fluid_settings_dupstr is available.])
 fi
+
+
+# Check for fluid_preset_get_banknum function.
+AC_CHECK_LIB(fluidsynth, fluid_preset_get_banknum, [ac_fluid_preset_get_banknum="yes"], [ac_fluid_preet_get_banknum="no"])
+if test "x$ac_fluid_preset_get_banknum" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_PRESET_GET_BANKNUM, 1, [Define if fluid_preet_get_banknum is available.])
+fi
+
+# Check for fluid_preset_get_num function.
+AC_CHECK_LIB(fluidsynth, fluid_preset_get_num, [ac_fluid_preset_get_num="yes"], [ac_fluid_preet_get_num="no"])
+if test "x$ac_fluid_preset_get_num" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_PRESET_GET_NUM, 1, [Define if fluid_preet_get_num is available.])
+fi
+
+# Check for fluid_preset_get_name function.
+AC_CHECK_LIB(fluidsynth, fluid_preset_get_name, [ac_fluid_preset_get_name="yes"], [ac_fluid_preet_get_name="no"])
+if test "x$ac_fluid_preset_get_name" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_PRESET_GET_NAME, 1, [Define if fluid_preet_get_name is available.])
+fi
+
+
+# Check for fluid_preset_get_sfont function.
+AC_CHECK_LIB(fluidsynth, fluid_preset_get_sfont, [ac_fluid_preset_get_sfont="yes"], [ac_fluid_preet_get_sfont="no"])
+if test "x$ac_fluid_preset_get_sfont" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_PRESET_GET_SFONT, 1, [Define if fluid_preet_get_sfont is available.])
+fi
+
+# Check for fluid_sfont_get_id function.
+AC_CHECK_LIB(fluidsynth, fluid_sfont_get_id, [ac_fluid_sfont_get_id="yes"], [ac_fluid_sfont_get_id="no"])
+if test "x$ac_fluid_sfont_get_id" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SFONT_GET_ID, 1, [Define if fluid_sfont_get_id is available.])
+fi
+
+# Check for fluid_sfont_get_name function.
+AC_CHECK_LIB(fluidsynth, fluid_sfont_get_name, [ac_fluid_sfont_get_name="yes"], [ac_fluid_sfont_get_name="no"])
+if test "x$ac_fluid_sfont_get_name" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SFONT_GET_NAME, 1, [Define if fluid_sfont_get_name is available.])
+fi
+
+
+# Check for fluid_sfont_iteration_start function.
+AC_CHECK_LIB(fluidsynth, fluid_sfont_iteration_start, [ac_fluid_sfont_iteration_start="yes"], [ac_fluid_sfont_iteration_start="no"])
+if test "x$ac_fluid_sfont_iteration_start" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SFONT_ITERATION_START, 1, [Define if fluid_sfont_iteration_start is available.])
+fi
+
+# Check for fluid_sfont_iteration_next function.
+AC_CHECK_LIB(fluidsynth, fluid_sfont_iteration_next, [ac_fluid_sfont_iteration_next="yes"], [ac_fluid_sfont_iteration_next="no"])
+if test "x$ac_fluid_sfont_iteration_next" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SFONT_ITERATION_NEXT, 1, [Define if fluid_sfont_iteration_next is available.])
+fi
+
+
+# Check for fluid_synth_get_chorus_speed function.
+AC_CHECK_LIB(fluidsynth, fluid_synth_get_chorus_speed, [ac_fluid_synth_get_chorus_speed="yes"], [ac_fluid_synth_get_chorus_speed="no"])
+if test "x$ac_fluid_synth_get_chorus_speed" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SYNTH_GET_CHORUS_SPEED, 1, [Define if fluid_synth_get_chorus_speed is available.])
+fi
+
+# Check for fluid_synth_get_chorus_depth function.
+AC_CHECK_LIB(fluidsynth, fluid_synth_get_chorus_depth, [ac_fluid_synth_get_chorus_depth="yes"], [ac_fluid_synth_get_chorus_speed="no"])
+if test "x$ac_fluid_synth_get_chorus_depth" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SYNTH_GET_CHORUS_DEPTH, 1, [Define if fluid_synth_get_chorus_depth is available.])
+fi
+
+
+# Check for fluid_settings_getnum_default function.
+AC_CACHE_CHECK([for fluid_settings_getnum_default],
+   ac_cv_fluid_settings_getnum_default, [
+   AC_TRY_COMPILE([#include "fluidsynth.h"], [
+      fluid_settings_t *p; const char *s; double v;
+      fluid_settings_getnum_default(p, s, &v);
+   ], ac_cv_fluid_settings_getnum_default="yes", ac_cv_fluid_settings_getnum_default="no")
+])
+if test "x$ac_cv_fluid_settings_getnum_default" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SETTINGS_GETNUM_DEFAULT, 1, [Define if fluid_settings_getnum_default is available.])
+fi
+
+# Check for fluid_settings_getint_default function.
+AC_CACHE_CHECK([for fluid_settings_getint_default],
+   ac_cv_fluid_settings_getint_default, [
+   AC_TRY_COMPILE([#include "fluidsynth.h"], [
+      fluid_settings_t *p; const char *s; int v;
+      fluid_settings_getint_default(p, s, &v);
+   ], ac_cv_fluid_settings_getint_default="yes", ac_cv_fluid_settings_getint_default="no")
+])
+if test "x$ac_cv_fluid_settings_getint_default" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SETTINGS_GETINT_DEFAULT, 1, [Define if fluid_settings_getint_default is available.])
+fi
+
+# Check for fluid_settings_getstr_default function.
+AC_CACHE_CHECK([for fluid_settings_getstr_default],
+   ac_cv_fluid_settings_getstr_default, [
+   AC_TRY_COMPILE([#include "fluidsynth.h"], [
+      fluid_settings_t *p; const char *s; char *v;
+      fluid_settings_getstr_default(p, s, &v);
+   ], ac_cv_fluid_settings_getstr_default="yes", ac_cv_fluid_settings_getstr_default="no")
+])
+if test "x$ac_cv_fluid_settings_getstr_default" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SETTINGS_GETSTR_DEFAULT, 1, [Define if fluid_settings_getstr_default is available.])
+fi
+
+
+# Check for fluid_settings_foreach function.
+AC_CACHE_CHECK([for fluid_settings_foreach],
+   ac_cv_fluid_settings_foreach, [
+   AC_TRY_COMPILE([#include "fluidsynth.h"], [
+      void qsynth_settings_foreach(void *, const char *, int);
+      fluid_settings_foreach_t p = qsynth_settings_foreach;
+   ], ac_cv_fluid_settings_foreach="yes", ac_cv_fluid_settings_foreach="no")
+])
+if test "x$ac_cv_fluid_settings_foreach" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SETTINGS_FOREACH, 1, [Define if fluid_settings_foreach is available.])
+fi
+
+# Check for fluid_settings_foreach_option function.
+AC_CACHE_CHECK([for fluid_settings_foreach_option],
+   ac_cv_fluid_settings_foreach_option, [
+   AC_TRY_COMPILE([#include "fluidsynth.h"], [
+      void qsynth_settings_foreach_option(void *, const char *, const char *);
+      fluid_settings_foreach_option_t p = qsynth_settings_foreach_option;
+   ], ac_cv_fluid_settings_foreach_option="yes", ac_cv_fluid_settings_foreach_option="no")
+])
+if test "x$ac_cv_fluid_settings_foreach_option" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SETTINGS_FOREACH_OPTION, 1, [Define if fluid_settings_foreach_option is available.])
+fi
+
+
+# Check for new_fluid_server function.
+if test "x$ac_fluid_server" = "xyes"; then
+   AC_CACHE_CHECK([for new_fluid_server],
+      ac_cv_new_fluid_server, [
+      AC_TRY_COMPILE([#include "fluidsynth.h"], [
+         fluid_settings_t *p; fluid_synth_t *q; fluid_midi_router_t *r;
+         new_fluid_server(p, q, r);
+      ], ac_cv_new_fluid_server="yes", ac_cv_new_fluid_server="no")
+   ])
+   if test "x$ac_cv_new_fluid_server" = "xyes"; then
+      AC_DEFINE(CONFIG_NEW_FLUID_SERVER, 1, [Define if new_fluid_server is available.])
+   fi
+fi
+
 
 # Finally produce a configure header file and the makefiles.
 AC_OUTPUT

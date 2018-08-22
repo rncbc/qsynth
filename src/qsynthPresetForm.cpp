@@ -1,7 +1,7 @@
 // qsynthPresetForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2012, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -150,7 +150,7 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 	m_ui.BankListView->setUpdatesEnabled(false);
 	m_ui.BankListView->setSortingEnabled(false);
 	m_ui.BankListView->clear();
-	fluid_preset_t preset;
+
 	QTreeWidgetItem *pBankItem = NULL;
 	// For all soundfonts (in reversed stack order) fill the available banks...
 	int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
@@ -158,11 +158,31 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 		fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
 		if (pSoundFont) {
 		#ifdef CONFIG_FLUID_BANK_OFFSET
-			int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, pSoundFont->id);
+		#ifdef CONFIG_FLUID_SFONT_GET_ID
+			const int iSFID = ::fluid_sfont_get_id(pSoundFont);
+		#else
+			const int iSFID = pSoundFont->id;
 		#endif
+			const int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, iSFID);
+		#endif
+		#ifdef CONFIG_FLUID_SFONT_ITERATION_START
+			::fluid_sfont_iteration_start(pSoundFont);
+		#else
 			pSoundFont->iteration_start(pSoundFont);
-			while (pSoundFont->iteration_next(pSoundFont, &preset)) {
-				int iBank = preset.get_banknum(&preset);
+		#endif
+			fluid_preset_t *pPreset;
+		#ifdef CONFIG_FLUID_SFONT_ITERATION_NEXT
+			while ((pPreset = ::fluid_sfont_iteration_next(pSoundFont)) != NULL) {
+		#else
+			fluid_preset_t preset;
+			pPreset = &preset;
+			while (pSoundFont->iteration_next(pSoundFont, pPreset)) {
+		#endif
+			#ifdef CONFIG_FLUID_PRESET_GET_BANKNUM
+				int iBank = ::fluid_preset_get_banknum(pPreset);
+			#else
+				int iBank = pPreset->get_banknum(pPreset);
+			#endif
 			#ifdef CONFIG_FLUID_BANK_OFFSET
 				iBank += iBankOffset;
 			#endif
@@ -192,9 +212,26 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 #else
 	fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, m_iChan);
 	if (pPreset) {
+	#ifdef CONFIG_FLUID_PRESET_GET_BANKNUM
+		m_iBank = ::fluid_preset_get_banknum(pPreset);
+	#else
 		m_iBank = pPreset->get_banknum(pPreset);
+	#endif
 	#ifdef CONFIG_FLUID_BANK_OFFSET
-		m_iBank += ::fluid_synth_get_bank_offset(m_pSynth, (pPreset->sfont)->id);
+		int iSFID = 0;
+	#ifdef CONFIG_FLUID_PRESET_GET_SFONT
+		fluid_sfont_t *pSoundFont = ::fluid_preset_get_sfont(pPreset);
+	#else
+		fluid_sfont_t *pSoundFont = pPreset->sfont;
+	#endif
+		if (pSoundFont) {
+		#ifdef CONFIG_FLUID_SFONT_GET_ID
+			iSFID = ::fluid_sfont_get_id(pSoundFont);
+		#else
+			iSFID = pSoundFont->id;
+		#endif
+		}
+		m_iBank += ::fluid_synth_get_bank_offset(m_pSynth, iSFID);
 	#endif
 	}
 #endif
@@ -210,7 +247,11 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 		m_iProg = info.program;
 #else
 	if (pPreset)
+	#if CONFIG_FLUID_PRESET_GET_NUM
+		m_iProg = ::fluid_preset_get_num(pPreset);
+	#else
 		m_iProg = pPreset->get_num(pPreset);
+	#endif
 #endif
 
 	QTreeWidgetItem *pProgItem = findProgItem(m_iProg);
@@ -335,31 +376,64 @@ void qsynthPresetForm::bankChanged (void)
 	m_ui.ProgListView->setUpdatesEnabled(false);
 	m_ui.ProgListView->setSortingEnabled(false);
 	m_ui.ProgListView->clear();
-	fluid_preset_t preset;
+//	fluid_preset_t preset;
 	QTreeWidgetItem *pProgItem = NULL;
 	// For all soundfonts (in reversed stack order) fill the available programs...
 	int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
 	for (int i = 0; i < cSoundFonts; ++i) {
 		fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(m_pSynth, i);
 		if (pSoundFont) {
-#ifdef CONFIG_FLUID_BANK_OFFSET
-			int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, pSoundFont->id);
-#endif
+		#ifdef CONFIG_FLUID_SFONT_GET_ID
+			const int iSFID = ::fluid_sfont_get_id(pSoundFont);
+		#else
+			const int iSFID = pSoundFont->id;
+		#endif
+		#ifdef CONFIG_FLUID_SFONT_GET_NAME
+			const QString sSFName = ::fluid_sfont_get_name(pSoundFont);
+		#else
+			const QString sSFName = pSoundFont->get_name(pSoundFont);
+		#endif
+		#ifdef CONFIG_FLUID_BANK_OFFSET
+			const int iBankOffset = ::fluid_synth_get_bank_offset(m_pSynth, iSFID);
+		#endif
+		#ifdef CONFIG_FLUID_SFONT_ITERATION_START
+			::fluid_sfont_iteration_start(pSoundFont);
+		#else
 			pSoundFont->iteration_start(pSoundFont);
-			while (pSoundFont->iteration_next(pSoundFont, &preset)) {
-				int iBank = preset.get_banknum(&preset);
-#ifdef CONFIG_FLUID_BANK_OFFSET
+		#endif
+			fluid_preset_t *pPreset;
+		#ifdef CONFIG_FLUID_SFONT_ITERATION_NEXT
+			while ((pPreset = ::fluid_sfont_iteration_next(pSoundFont)) != NULL) {
+		#else
+			fluid_preset_t preset;
+			pPreset = &preset;
+			while (pSoundFont->iteration_next(pSoundFont, pPreset)) {
+		#endif
+			#ifdef CONFIG_FLUID_PRESET_GET_BANKNUM
+				int iBank = ::fluid_preset_get_banknum(pPreset);
+			#else
+				int iBank = pPreset->get_banknum(pPreset);
+			#endif
+			#ifdef CONFIG_FLUID_BANK_OFFSET
 				iBank += iBankOffset;
-#endif
-				int iProg = preset.get_num(&preset);
+			#endif
+			#ifdef CONFIG_FLUID_PRESET_GET_NUM
+				const int iProg = ::fluid_preset_get_num(pPreset);
+			#else
+				const int iProg = pPreset->get_num(pPreset);
+			#endif
 				if (iBank == iBankSelected && !findProgItem(iProg)) {
 					pProgItem = new qsynthPresetItem(m_ui.ProgListView, pProgItem);
 					if (pProgItem) {
+					#ifdef CONFIG_FLUID_PRESET_GET_NAME
+						const QString sName = ::fluid_preset_get_name(pPreset);
+					#else
+						const QString sName = pPreset->get_name(pPreset);
+					#endif
 						pProgItem->setText(0, QString::number(iProg));
-						pProgItem->setText(1, preset.get_name(&preset));
-						pProgItem->setText(2, QString::number(pSoundFont->id));
-						pProgItem->setText(3, QFileInfo(
-							pSoundFont->get_name(pSoundFont)).baseName());
+						pProgItem->setText(1, sName);
+						pProgItem->setText(2, QString::number(iSFID));
+						pProgItem->setText(3, QFileInfo(sSFName).baseName());
 					}
 				}
 			}

@@ -1,7 +1,7 @@
 // qsynthChannelsForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2013, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -248,20 +248,52 @@ void qsynthChannelsForm::updateChannel ( int iChan )
 #else
 	fluid_preset_t *pPreset = ::fluid_synth_get_channel_preset(m_pSynth, iChan);
 	if (pPreset) {
+	#ifdef CONFIG_FLUID_PRESET_GET_BANKNUM
+		int iBank = ::fluid_preset_get_banknum(pPreset);
+	#else
 		int iBank = pPreset->get_banknum(pPreset);
+	#endif
 	#ifdef CONFIG_FLUID_BANK_OFFSET
-		iBank += ::fluid_synth_get_bank_offset(m_pSynth, (pPreset->sfont)->id);
+		int iSFID = 0;
+		QString sSFName;
+	#ifdef CONFIG_FLUID_PRESET_GET_SFONT
+		fluid_sfont_t *pSoundFont = ::fluid_preset_get_sfont(pPreset);
+	#else
+		fluid_sfont_t *pSoundFont = pPreset->sfont;
+	#endif
+		if (pSoundFont) {
+		#ifdef CONFIG_FLUID_SFONT_GET_ID
+			iSFID = ::fluid_sfont_get_id(pSoundFont);
+		#else
+			iSFID = pSoundFont->id;
+		#endif
+		#ifdef CONFIG_FLUID_SFONT_GET_NAME
+			sSFName = ::fluid_sfont_get_name(pSoundFont);
+		#else
+			sSFName = pSoundFont->get_name(pSoundFont);
+		#endif
+		}
+		iBank += ::fluid_synth_get_bank_offset(m_pSynth, iSFID);
+	#endif
+	#ifdef CONFIG_FLUID_PRESET_GET_NUM
+		const int iProg = ::fluid_preset_get_num(pPreset);
+	#else
+		const int iProg = pPreset->get_num(pPreset);
+	#endif
+	#ifdef CONFIG_FLUID_PRESET_GET_NAME
+		const QString sName = ::fluid_preset_get_name(pPreset);
+	#else
+		const QString sName = pPreset->get_name(pPreset);
 	#endif
 		pItem->setText(QSYNTH_CHANNELS_BANK,
 			QString::number(iBank));
 		pItem->setText(QSYNTH_CHANNELS_PROG,
-			QString::number(pPreset->get_num(pPreset)));
-		pItem->setText(QSYNTH_CHANNELS_NAME,
-			pPreset->get_name(pPreset));
+			QString::number(iProg));
+		pItem->setText(QSYNTH_CHANNELS_NAME, sName);
 		pItem->setText(QSYNTH_CHANNELS_SFID,
-			QString::number((pPreset->sfont)->id));
+			QString::number(iSFID));
 		pItem->setText(QSYNTH_CHANNELS_SFNAME,
-			QFileInfo((pPreset->sfont)->get_name(pPreset->sfont)).baseName());
+			QFileInfo(sSFName).baseName());
 		// Make this a dirty-operation.
 		m_iDirtyCount++;
 	}

@@ -118,18 +118,23 @@ static inline long lroundf ( float x )
 static qsynthEngine *g_pCurrentEngine = NULL;
 
 
-#ifdef CONFIG_FLUID_SERVER
+#ifdef  CONFIG_FLUID_SERVER
+#ifndef CONFIG_NEW_FLUID_SERVER
 
 // Hold last shell/server port in use.
 static int g_iLastShellPort = 0;
 
-
 // Needed for server mode.
-static fluid_cmd_handler_t* qsynth_newclient ( void* data, char* )
+static fluid_cmd_handler_t *qsynth_newclient ( void *data, char * )
 {
-	return ::new_fluid_cmd_handler((fluid_synth_t*) data);
+	qsynthEngine *pEngine = (qsynthEngine *) data;
+	if (pEngine)
+		return ::new_fluid_cmd_handler(pEngine->pSynth);
+	else
+		return NULL;
 }
 
+#endif
 #endif
 
 
@@ -1875,6 +1880,11 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 	if (pSetup->bServer) {
 	#ifdef CONFIG_FLUID_SERVER
 		appendMessages(sPrefix + tr("Creating server") + sElipsis);
+	#ifdef CONFIG_NEW_FLUID_SERVER
+		// Create the server now...
+		pEngine->pServer = ::new_fluid_server(
+			pSetup->fluid_settings(), pEngine->pSynth, pEngine->pMidiRouter);
+	#else
 		// Server port must be different for each engine...
 		char szShellPort[] = "shell.port";
 		if (g_iLastShellPort > 0) {
@@ -1884,8 +1894,14 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 			::fluid_settings_getint(
 				pSetup->fluid_settings(), szShellPort, &g_iLastShellPort);
 			if (g_iLastShellPort == 0) {
+			#ifdef CONFIG_FLUID_SETTINGS_GETINT_DEFAULT
+				g_iLastShellPort = 0;
+				::fluid_settings_getint_default(
+					pSetup->fluid_settings(), szShellPort, &g_iLastShellPort);
+			#else
 				g_iLastShellPort = ::fluid_settings_getint_default(
 					pSetup->fluid_settings(), szShellPort);
+			#endif
 			}
 		}
 		// Set the (new) server port for this engne...
@@ -1893,7 +1909,8 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 			pSetup->fluid_settings(), szShellPort, g_iLastShellPort);
 		// Create the server now...
 		pEngine->pServer = ::new_fluid_server(
-			pSetup->fluid_settings(), qsynth_newclient, pEngine->pSynth);
+			pSetup->fluid_settings(), qsynth_newclient, pEngine);
+	#endif
 		if (pEngine->pServer == NULL)
 			appendMessagesError(sPrefix +
 				tr("Failed to create the server.\n\n"
@@ -2017,15 +2034,23 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 		fluid_sfont_t *pSoundFont
 			= ::fluid_synth_get_sfont(pEngine->pSynth, i);
 		if (pSoundFont) {
+		#ifdef CONFIG_FLUID_SFONT_GET_ID
+			const int iSFID = ::fluid_sfont_get_id(pSoundFont);
+		#else
 			const int iSFID = pSoundFont->id;
-			const QString sName = pSoundFont->get_name(pSoundFont);
+		#endif
+		#ifdef CONFIG_FLUID_SFONT_GET_NAME
+			const QString sSFName = ::fluid_sfont_get_name(pSoundFont);
+		#else
+			const QString sSFName = pSoundFont->get_name(pSoundFont);
+		#endif
 			appendMessagesColor(sPrefix +
 				tr("Unloading soundfont: \"%1\" (SFID=%2)")
-				.arg(sName).arg(iSFID) + sElipsis, "#999933");
+				.arg(sSFName).arg(iSFID) + sElipsis, "#999933");
 			if (::fluid_synth_sfunload(pEngine->pSynth, iSFID, 0) < 0)
 				appendMessagesError(sPrefix +
 					tr("Failed to unload the soundfont: \"%1\".")
-					.arg(sName));
+					.arg(sSFName));
 		}
 	}
 
@@ -2538,8 +2563,16 @@ void qsynthMainForm::refreshChorus (void)
 
 	const int    iChorusNr    = ::fluid_synth_get_chorus_nr(pEngine->pSynth);
 	const double fChorusLevel = ::fluid_synth_get_chorus_level(pEngine->pSynth);
+#ifdef CONFIG_FLUID_SYNTH_GET_CHORUS_SPEED
+	const double fChorusSpeed = ::fluid_synth_get_chorus_speed(pEngine->pSynth);
+#else
 	const double fChorusSpeed = ::fluid_synth_get_chorus_speed_Hz(pEngine->pSynth);
+#endif
+#ifdef CONFIG_FLUID_SYNTH_GET_CHORUS_DEPTH
+	const double fChorusDepth = ::fluid_synth_get_chorus_depth(pEngine->pSynth);
+#else
 	const double fChorusDepth = ::fluid_synth_get_chorus_depth_ms(pEngine->pSynth);
+#endif
 	const int    iChorusType  = ::fluid_synth_get_chorus_type(pEngine->pSynth);
 
 	m_ui.ChorusNrDial->setValue(iChorusNr);
