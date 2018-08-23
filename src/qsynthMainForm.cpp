@@ -1247,7 +1247,7 @@ void qsynthMainForm::systemReset (void)
 
 	qsynthEngine *pEngine = currentEngine();
 	if (pEngine && pEngine->pSynth) {
-	#ifdef CONFIG_FLUID_RESET
+	#ifdef CONFIG_FLUID_SYSTEM_RESET
 		appendMessagesColor(pEngine->name()
 			+ ": fluid_synth_system_reset()", "#993366");
 		::fluid_synth_system_reset(pEngine->pSynth);

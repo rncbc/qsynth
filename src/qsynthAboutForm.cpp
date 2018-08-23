@@ -1,7 +1,7 @@
 // qsynthAboutForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2017, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -49,7 +49,7 @@ qsynthAboutForm::qsynthAboutForm (
 #ifndef CONFIG_FLUID_SERVER
 	list << tr("Server option disabled.");
 #endif
-#ifndef CONFIG_FLUID_RESET
+#ifndef CONFIG_FLUID_SYSTEM_RESET
 	list << tr("System reset option disabled.");
 #endif
 #ifndef CONFIG_FLUID_BANK_OFFSET
