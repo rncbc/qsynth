@@ -435,14 +435,14 @@ fi
 if test "x$ac_fluid_server" = "xyes"; then
    AC_CHECK_LIB(fluidsynth, new_fluid_server, [ac_fluid_server="yes"], [ac_fluid_server="no"])
    if test "x$ac_fluid_server" = "xyes"; then
-      AC_DEFINE(CONFIG_FLUID_SERVER, 1, [Define if new_fluid_server is available.])
+      AC_DEFINE(CONFIG_FLUID_SERVER, 1, [Define if FluidSynth server support is enabled])
    fi
 fi
 
 # Check for fluid_synth_system_reset function.
-AC_CHECK_LIB(fluidsynth, fluid_synth_system_reset, [ac_fluid_reset="yes"], [ac_fluid_reset="no"])
-if test "x$ac_fluid_reset" = "xyes"; then
-   AC_DEFINE(CONFIG_FLUID_RESET, 1, [Define if fluid_synth_system_reset is available.])
+AC_CHECK_LIB(fluidsynth, fluid_synth_system_reset, [ac_fluid_system_reset="yes"], [ac_fluid_system_reset="no"])
+if test "x$ac_fluid_system_reset" = "xyes"; then
+   AC_DEFINE(CONFIG_FLUID_SYSTEM_RESET, 1, [Define if fluid_synth_system_reset is available.])
 fi
 
 # Check for fluid_synth_set_bank_offset function.
@@ -455,7 +455,7 @@ fi
 if test "x$ac_fluid_channel_info" = "xyes"; then
    AC_CHECK_LIB(fluidsynth, fluid_synth_get_channel_info, [ac_fluid_channel_info="yes"], [ac_fluid_channel_info="no"])
    if test "x$ac_fluid_channel_info" = "xyes"; then
-      AC_DEFINE(CONFIG_FLUID_CHANNEL_INFO, 1, [Define if fluid_synth_get_channel_info is available.])
+      AC_DEFINE(CONFIG_FLUID_CHANNEL_INFO, 1, [Define if FluidSynth channel info support is enabled.])
    fi
 fi
 
@@ -463,7 +463,7 @@ fi
 if test "x$ac_fluid_midi_router" = "xyes"; then
    AC_CHECK_LIB(fluidsynth, fluid_synth_set_midi_router, [ac_fluid_midi_router="yes"], [ac_fluid_midi_router="no"])
    if test "x$ac_fluid_midi_router" = "xyes"; then
-      AC_DEFINE(CONFIG_FLUID_MIDI_ROUTER, 1, [Define if fluid_synth_set_midi_router is available.])
+      AC_DEFINE(CONFIG_FLUID_MIDI_ROUTER, 1, [Define if FluidSynth MIDI router support is enabled.])
    fi
 fi
 
@@ -641,7 +641,7 @@ echo "  Build target . . . . . . . . . . . . . . . . . . .: $ac_debug"
 echo
 echo "  FluidSynth library support . . . . . . . . . . . .: $ac_fluidsynth_lib"
 echo "  FluidSynth server support  . . . . . . . . . . . .: $ac_fluid_server"
-echo "  FluidSynth reset support . . . . . . . . . . . . .: $ac_fluid_reset"
+echo "  FluidSynth system reset support  . . . . . . . . .: $ac_fluid_system_reset"
 echo "  FluidSynth bank offset support . . . . . . . . . .: $ac_fluid_bank_offset"
 echo "  FluidSynth channel info support (DEPRECATED) . . .: $ac_fluid_channel_info"
 echo "  FluidSynth MIDI router support  (DEPRECATED) . . .: $ac_fluid_midi_router"
