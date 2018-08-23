@@ -550,80 +550,48 @@ if test "x$ac_fluid_synth_get_chorus_depth" = "xyes"; then
 fi
 
 
-# Check for fluid_settings_getnum_default function.
-AC_CACHE_CHECK([for fluid_settings_getnum_default],
-   ac_cv_fluid_settings_getnum_default, [
+# Check for FluidSynth API V2 (>= 2.0.0).
+AC_CACHE_CHECK([for FluidSynth API V2 (>= 2.0.0)],
+   ac_cv_fluidsynth2, [
    AC_TRY_COMPILE([#include "fluidsynth.h"], [
-      fluid_settings_t *p; const char *s; double v;
-      fluid_settings_getnum_default(p, s, &v);
-   ], ac_cv_fluid_settings_getnum_default="yes", ac_cv_fluid_settings_getnum_default="no")
+      #if FLUIDSYNTH_VERSION_MAJOR < 2
+      #error FluidSynth API V2 or greater is not available.
+      #endif
+   ], ac_cv_fluidsynth2="yes", ac_cv_fluidsynth2="no")
 ])
-if test "x$ac_cv_fluid_settings_getnum_default" = "xyes"; then
-   AC_DEFINE(CONFIG_FLUID_SETTINGS_GETNUM_DEFAULT, 1, [Define if fluid_settings_getnum_default is available.])
-fi
-
-# Check for fluid_settings_getint_default function.
-AC_CACHE_CHECK([for fluid_settings_getint_default],
-   ac_cv_fluid_settings_getint_default, [
-   AC_TRY_COMPILE([#include "fluidsynth.h"], [
-      fluid_settings_t *p; const char *s; int v;
-      fluid_settings_getint_default(p, s, &v);
-   ], ac_cv_fluid_settings_getint_default="yes", ac_cv_fluid_settings_getint_default="no")
-])
-if test "x$ac_cv_fluid_settings_getint_default" = "xyes"; then
-   AC_DEFINE(CONFIG_FLUID_SETTINGS_GETINT_DEFAULT, 1, [Define if fluid_settings_getint_default is available.])
-fi
-
-# Check for fluid_settings_getstr_default function.
-AC_CACHE_CHECK([for fluid_settings_getstr_default],
-   ac_cv_fluid_settings_getstr_default, [
-   AC_TRY_COMPILE([#include "fluidsynth.h"], [
-      fluid_settings_t *p; const char *s; char *v;
-      fluid_settings_getstr_default(p, s, &v);
-   ], ac_cv_fluid_settings_getstr_default="yes", ac_cv_fluid_settings_getstr_default="no")
-])
-if test "x$ac_cv_fluid_settings_getstr_default" = "xyes"; then
-   AC_DEFINE(CONFIG_FLUID_SETTINGS_GETSTR_DEFAULT, 1, [Define if fluid_settings_getstr_default is available.])
-fi
-
-
-# Check for fluid_settings_foreach function.
-AC_CACHE_CHECK([for fluid_settings_foreach],
-   ac_cv_fluid_settings_foreach, [
-   AC_TRY_COMPILE([#include "fluidsynth.h"], [
-      void qsynth_settings_foreach(void *, const char *, int);
-      fluid_settings_foreach_t p = qsynth_settings_foreach;
-   ], ac_cv_fluid_settings_foreach="yes", ac_cv_fluid_settings_foreach="no")
-])
-if test "x$ac_cv_fluid_settings_foreach" = "xyes"; then
-   AC_DEFINE(CONFIG_FLUID_SETTINGS_FOREACH, 1, [Define if fluid_settings_foreach is available.])
-fi
-
-# Check for fluid_settings_foreach_option function.
-AC_CACHE_CHECK([for fluid_settings_foreach_option],
-   ac_cv_fluid_settings_foreach_option, [
-   AC_TRY_COMPILE([#include "fluidsynth.h"], [
-      void qsynth_settings_foreach_option(void *, const char *, const char *);
-      fluid_settings_foreach_option_t p = qsynth_settings_foreach_option;
-   ], ac_cv_fluid_settings_foreach_option="yes", ac_cv_fluid_settings_foreach_option="no")
-])
-if test "x$ac_cv_fluid_settings_foreach_option" = "xyes"; then
-   AC_DEFINE(CONFIG_FLUID_SETTINGS_FOREACH_OPTION, 1, [Define if fluid_settings_foreach_option is available.])
-fi
-
-
-# Check for new_fluid_server function.
-if test "x$ac_fluid_server" = "xyes"; then
-   AC_CACHE_CHECK([for new_fluid_server],
-      ac_cv_new_fluid_server, [
-      AC_TRY_COMPILE([#include "fluidsynth.h"], [
-         fluid_settings_t *p; fluid_synth_t *q; fluid_midi_router_t *r;
-         new_fluid_server(p, q, r);
-      ], ac_cv_new_fluid_server="yes", ac_cv_new_fluid_server="no")
-   ])
-   if test "x$ac_cv_new_fluid_server" = "xyes"; then
-      AC_DEFINE(CONFIG_NEW_FLUID_SERVER, 1, [Define if new_fluid_server is available.])
-   fi
+if test "x$ac_cv_fluidsynth2" = "xyes"; then
+  # Check for fluid_settings_getnum_default function.
+  AC_CHECK_LIB(fluidsynth, fluid_settings_getnum_default, [ac_fluid_settings_getnum_default="yes"], [ac_fluid_settings_getnum_default="no"])
+  if test "x$ac_fluid_settings_getnum_default" = "xyes"; then
+     AC_DEFINE(CONFIG_FLUID_SETTINGS_GETNUM_DEFAULT, 1, [Define if fluid_settings_getnum_default is available.])
+  fi
+  # Check for fluid_settings_getint_default function.
+  AC_CHECK_LIB(fluidsynth, fluid_settings_getint_default, [ac_fluid_settings_getint_default="yes"], [ac_fluid_settings_getint_default="no"])
+  if test "x$ac_fluid_settings_getint_default" = "xyes"; then
+     AC_DEFINE(CONFIG_FLUID_SETTINGS_GETINT_DEFAULT, 1, [Define if fluid_settings_getint_default is available.])
+  fi
+  # Check for fluid_settings_getstr_default function.
+  AC_CHECK_LIB(fluidsynth, fluid_settings_getstr_default, [ac_fluid_settings_getint_default="yes"], [ac_fluid_settings_getstr_default="no"])
+  if test "x$ac_fluid_settings_getstr_default" = "xyes"; then
+     AC_DEFINE(CONFIG_FLUID_SETTINGS_GETSTR_DEFAULT, 1, [Define if fluid_settings_getstr_default is available.])
+  fi
+  # Check for fluid_settings_foreach function.
+  AC_CHECK_LIB(fluidsynth, fluid_settings_foreach, [ac_fluid_settings_foreach="yes"], [ac_fluid_settings_foreach="no"])
+  if test "x$ac_fluid_settings_foreach" = "xyes"; then
+     AC_DEFINE(CONFIG_FLUID_SETTINGS_FOREACH, 1, [Define if fluid_settings_foreach is available.])
+  fi
+  # Check for fluid_settings_foreach_option function.
+  AC_CHECK_LIB(fluidsynth, fluid_settings_foreach_option, [ac_fluid_settings_foreach_option="yes"], [ac_fluid_settings_foreach_option="no"])
+  if test "x$ac_fluid_settings_foreach_option" = "xyes"; then
+    AC_DEFINE(CONFIG_FLUID_SETTINGS_FOREACH_OPTION, 1, [Define if fluid_settings_foreach_option is available.])
+  fi
+  # Check for new_fluid_server function.
+  if test "x$ac_fluid_server" = "xyes"; then
+     AC_CHECK_LIB(fluidsynth, new_fluid_server, [ac_new_fluid_server="yes"], [ac_new_fluid_server="no"])
+     if test "x$ac_new_fluid_server" = "xyes"; then
+        AC_DEFINE(CONFIG_NEW_FLUID_SERVER, 1, [Define if new_fluid_server is available.])
+     fi
+  fi
 fi
 
 
