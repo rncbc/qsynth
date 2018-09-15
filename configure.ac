@@ -571,7 +571,7 @@ if test "x$ac_cv_fluidsynth2" = "xyes"; then
      AC_DEFINE(CONFIG_FLUID_SETTINGS_GETINT_DEFAULT, 1, [Define if fluid_settings_getint_default is available.])
   fi
   # Check for fluid_settings_getstr_default function.
-  AC_CHECK_LIB(fluidsynth, fluid_settings_getstr_default, [ac_fluid_settings_getint_default="yes"], [ac_fluid_settings_getstr_default="no"])
+  AC_CHECK_LIB(fluidsynth, fluid_settings_getstr_default, [ac_fluid_settings_getstr_default="yes"], [ac_fluid_settings_getstr_default="no"])
   if test "x$ac_fluid_settings_getstr_default" = "xyes"; then
      AC_DEFINE(CONFIG_FLUID_SETTINGS_GETSTR_DEFAULT, 1, [Define if fluid_settings_getstr_default is available.])
   fi
