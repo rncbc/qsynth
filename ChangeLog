@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Current FluidSynth version information added to command
+  line output (-V, --version).
+
 - Overhaul adaptations to the FluidSynth API V2 (>= 2.0.0).
   (EXPERIMENTAL)
 

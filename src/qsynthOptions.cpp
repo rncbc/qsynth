@@ -382,6 +382,8 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-V" || sArg == "--version") {
 			out << QString("Qt: %1\n")
 				.arg(qVersion());
+			out << QString("FluidSynth: %1\n")
+				.arg(::fluid_version_str());
 			out << QString("%1: %2\n")
 				.arg(QSYNTH_TITLE)
 				.arg(CONFIG_BUILD_VERSION);
