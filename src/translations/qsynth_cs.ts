@@ -169,7 +169,7 @@
         <translation>Volba -o potřebuje argument.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="405"/>
+        <location filename="../qsynthOptions.cpp" line="407"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Neznámá volba: &apos;%1&apos;.</translation>
     </message>

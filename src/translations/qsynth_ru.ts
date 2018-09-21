@@ -169,7 +169,7 @@
         <translation>Использование: %1 [ключи] [файлы SF2] [файлы MIDI]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="405"/>
+        <location filename="../qsynthOptions.cpp" line="407"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>неизвестный ключ &apos;%1&apos;.</translation>
     </message>

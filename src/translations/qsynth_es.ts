@@ -164,7 +164,7 @@
         <translation>La opción -o requiere un argumento.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="405"/>
+        <location filename="../qsynthOptions.cpp" line="407"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Opción desconocida &apos;%1&apos;.</translation>
     </message>
