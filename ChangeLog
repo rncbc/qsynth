@@ -4,13 +4,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.5.3  2018-10-10  An Autumn'18 Release.
 
 - Current FluidSynth version information added to command
   line output (-V, --version).
 
 - Overhaul adaptations to the FluidSynth API V2 (>= 2.0.0).
-  (EXPERIMENTAL)
 
 - AppStream metadata updated to be the most compliant with
   latest freedesktop.org specification and recommendation.
