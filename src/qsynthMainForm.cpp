@@ -1059,12 +1059,16 @@ void qsynthMainForm::updateSystemTray (void)
 	if (m_pOptions == NULL)
 		return;
 
+	if (!QSystemTrayIcon::isSystemTrayAvailable())
+		return;
+
 	if (!m_pOptions->bSystemTray && m_pSystemTray) {
 	//  Strange enough, this would close the application too.
 	//  m_pSystemTray->close();
 		delete m_pSystemTray;
 		m_pSystemTray = NULL;
 	}
+
 	if (m_pOptions->bSystemTray && m_pSystemTray == NULL) {
 		m_pSystemTray = new qsynthSystemTray(this);
 		m_pSystemTray->show();

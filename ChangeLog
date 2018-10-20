@@ -4,6 +4,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- System tray options now subject to current desktop
+  environment availability. (EXPERIMENTAL)
+
+
 0.5.3  2018-10-10  An Autumn'18 Release.
 
 - Current FluidSynth version information added to command

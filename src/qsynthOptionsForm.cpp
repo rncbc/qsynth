@@ -1,7 +1,7 @@
 // qsynthOptionsForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2016, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -28,6 +28,10 @@
 #include <QMessageBox>
 #include <QFontDialog>
 #include <QFileDialog>
+
+#ifdef CONFIG_SYSTEM_TRAY
+#include <QSystemTrayIcon>
+#endif
 
 
 //----------------------------------------------------------------------------
@@ -182,14 +186,19 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.StdoutCaptureCheckBox->setEnabled(false);
 #endif
 
-#ifndef CONFIG_SYSTEM_TRAY
-	m_ui.SystemTrayCheckBox->setChecked(false);
-	m_ui.SystemTrayCheckBox->setEnabled(false);
-	m_ui.SystemTrayQueryCloseCheckBox->setChecked(false);
-	m_ui.SystemTrayQueryCloseCheckBox->setEnabled(false);
-	m_ui.StartMinimizedCheckBox->setChecked(false);
-	m_ui.StartMinimizedCheckBox->setEnabled(false);
+#ifdef CONFIG_SYSTEM_TRAY
+	const bool bSystemTray = QSystemTrayIcon::isSystemTrayAvailable();
+#else
+	const bool bSystemTray = false;
 #endif
+	if (!bSystemTray) {
+		m_ui.SystemTrayCheckBox->setChecked(false);
+		m_ui.SystemTrayCheckBox->setEnabled(false);
+		m_ui.SystemTrayQueryCloseCheckBox->setChecked(false);
+		m_ui.SystemTrayQueryCloseCheckBox->setEnabled(false);
+		m_ui.StartMinimizedCheckBox->setChecked(false);
+		m_ui.StartMinimizedCheckBox->setEnabled(false);
+	}
 
 	// Done.
 	m_iDirtySetup--;
