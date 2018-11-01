@@ -111,6 +111,8 @@ unix {
 	appdata.files += appdata/$${TARGET}.appdata.xml
 }
 
+QT += widgets
+
 win32 {
 
     contains(CONFIG, debug) { 
@@ -120,11 +122,5 @@ win32 {
     RC_FILE = win32/qsynth.rc
 
 	DEFINES += _USE_MATH_DEFINES
-}
-
-
-# QT5 support
-!lessThan(QT_MAJOR_VERSION, 5) {
-	QT += widgets
 }
 
