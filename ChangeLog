@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- Old deprecated Qt4 build support is no more.
+
 - System tray options now subject to current desktop
   environment availability. (EXPERIMENTAL)
 
