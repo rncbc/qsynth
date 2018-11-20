@@ -142,19 +142,22 @@ static fluid_cmd_handler_t *qsynth_newclient ( void *data, char * )
 // Audio driver processing stub.
 
 int qsynth_process ( void *pvData, int len,
-	int nin, float **in, int nout, float **out )
+	int nfx, float **fx, int nout, float **out )
 {
 	qsynthEngine *pEngine = (qsynthEngine *) pvData;
 	// Call the synthesizer process function to fill
 	// the output buffers with its audio output.
-	if (::fluid_synth_process(pEngine->pSynth, len, nin, in, nout, out) != 0)
+#if FLUIDSYNTH_VERSION_MAJOR >= 2
+	nfx = nout; fx = out;
+#endif
+	if (::fluid_synth_process(pEngine->pSynth, len, nfx, fx, nout, out) != 0)
 		return -1;
 	// Now find the peak level for this buffer run...
 	if (pEngine == g_pCurrentEngine) {
 		for (int i = 0; i < nout; ++i) {
-			float *out_i = out[i];
+			const float *out_i = out[i];
 			for (int j = 0; j < len; ++j) {
-				float fValue = out_i[j];
+				const float fValue = out_i[j];
 				if (pEngine->fMeterValue[i & 1] < fValue)
 					pEngine->fMeterValue[i & 1] = fValue;
 			}
@@ -2283,9 +2286,13 @@ void qsynthMainForm::loadPanelSettings ( qsynthEngine *pEngine, bool bUpdate )
 
 	// Make them dirty.
 	if (bUpdate) {
-		m_iGainChanged++;
-		m_iReverbChanged++;
-		m_iChorusChanged++;
+		setEngineReverbOn(pEngine,
+			pSetup->bReverbActive);
+		setEngineChorusOn(pEngine,
+			pSetup->bChorusActive);
+		++m_iGainChanged;
+		++m_iReverbChanged;
+		++m_iChorusChanged;
 	}
 
 	// Let them get updated, possibly on next tick.
@@ -2440,7 +2447,7 @@ void qsynthMainForm::updateGain (void)
 		return;
 	m_iGainUpdated++;
 
-	const float fGain= qsynth_get_range_value(
+	const float fGain = qsynth_get_range_value(
 		m_ui.GainSpinBox, QSYNTH_MASTER_GAIN_SCALE);
 
 	setEngineGain(pEngine, fGain);

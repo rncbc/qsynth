@@ -6,6 +6,10 @@ ChangeLog
 
 GIT HEAD
 
+- Fixed Reverb and Chorus effects processing when audio
+  output peak-meters are enabled on FluidSynth API V2.
+  (EXPERIMENTAL)
+
 - Old deprecated Qt4 build support is no more.
 
 - System tray options now subject to current desktop
