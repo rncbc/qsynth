@@ -32,6 +32,9 @@
   <property name="windowTitle" >
    <string>About Qsynth</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="qsynth.qrc">:/images/about1.png</iconset>
+  </property>
   <property name="sizeGripEnabled" >
    <bool>true</bool>
   </property>

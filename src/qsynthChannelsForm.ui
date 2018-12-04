@@ -35,6 +35,9 @@
   <property name="windowTitle" >
    <string>Qsynth: Channels</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="qsynth.qrc">:/images/channels1.png</iconset>
+  </property>
   <layout class="QVBoxLayout" >
    <property name="margin" >
     <number>4</number>
