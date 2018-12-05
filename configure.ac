@@ -1,5 +1,5 @@
 # Process this file with autoconf to produce a configure script.
-AC_INIT(Qsynth, 0.5.3, rncbc@rncbc.org, qsynth)
+AC_INIT(Qsynth, 0.5.4, rncbc@rncbc.org, qsynth)
 
 AC_CONFIG_SRCDIR(src/qsynth.cpp)
 AC_CONFIG_HEADERS(src/config.h)
@@ -558,6 +558,7 @@ echo "  FluidSynth channel info support (DEPRECATED) . . .: $ac_fluid_channel_in
 echo "  FluidSynth MIDI router support  (DEPRECATED) . . .: $ac_fluid_midi_router"
 echo "  FluidSynth unset program support . . . . . . . . .: $ac_fluid_unset_program"
 echo "  FluidSynth version string support  . . . . . . . .: $ac_fluid_version_str"
+echo
 echo "  System tray icon support . . . . . . . . . . . . .: $ac_system_tray"
 echo
 echo "  X11 Unique/Single instance . . . . . . . . . . . .: $ac_xunique"

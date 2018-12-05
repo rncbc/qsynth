@@ -1,6 +1,6 @@
 %define name    @PACKAGE_TARNAME@
 %define version @PACKAGE_VERSION@
-%define release 14
+%define release 15
 
 %define _prefix	@ac_prefix@
 
@@ -75,6 +75,8 @@ command line softsynths.
 %{_datadir}/man/man1/%{name}*.1.gz
 
 %changelog
+* Wed Dec 05 2018 Rui Nuno Capela <rncbc@rncbc.org> 0.5.4
+- End of Autumn'18 Release.
 * Wed Oct 10 2018 Rui Nuno Capela <rncbc@rncbc.org> 0.5.3
 - Autumn'18 Release.
 * Sun Jul 22 2018 Rui Nuno Capela <rncbc@rncbc.org> 0.5.2
