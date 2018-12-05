@@ -1,7 +1,7 @@
 // qsynthSetup.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2012, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -74,7 +74,9 @@ void qsynthSetup::realize (void)
 
 	// We'll need these to avoid pedandic compiler warnings...
 	char *pszKey;
+#if FLUIDSYNTH_VERSION_MAJOR < 2
 	char *pszVal;
+#endif
 
 	// First we'll force all other conmmand line options...
 	if (!sMidiDriver.isEmpty()) {
@@ -129,8 +131,12 @@ void qsynthSetup::realize (void)
 		int(bJackAutoConnect));
 
 	pszKey = (char *) "audio.jack.multi";
+#if FLUIDSYNTH_VERSION_MAJOR < 2
 	pszVal = (char *) (bJackMulti ? "yes" : "no");
 	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+#else
+	::fluid_settings_setint(m_pFluidSettings, pszKey, int(bJackMulti));
+#endif
 
 	if (!sSampleFormat.isEmpty()) {
 		pszKey = (char *) "audio.sample-format";
@@ -166,10 +172,10 @@ void qsynthSetup::realize (void)
 		::fluid_settings_setint(m_pFluidSettings, pszKey,
 			iAudioGroups);
 	}
-	if (fSampleRate > 0.0) {
+	if (fSampleRate > 0.0f) {
 		pszKey = (char *) "synth.sample-rate";
 		::fluid_settings_setnum(m_pFluidSettings, pszKey,
-			fSampleRate);
+			double(fSampleRate));
 	}
 	if (iPolyphony > 0) {
 		pszKey = (char *) "synth.polyphony";
@@ -177,30 +183,54 @@ void qsynthSetup::realize (void)
 			iPolyphony);
 	}
 //  Gain is set on realtime (don't need to set it here)
-//  if (fGain > 0.0) {
+//  if (fGain > 0.0f) {
 //		pszKey = (char *) "synth.gain";
-//      ::fluid_settings_setnum(m_pFluidSettings, pszKey, fGain);
+//		::fluid_settings_setnum(m_pFluidSettings, pszKey,
+//			double(fGain));
 //	}
 
 	pszKey = (char *) "synth.reverb.active";
+#if FLUIDSYNTH_VERSION_MAJOR < 2
 	pszVal = (char *) (bReverbActive ? "yes" : "no");
 	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+#else
+	::fluid_settings_setint(m_pFluidSettings, pszKey, int(bReverbActive));
+#endif
 
 	pszKey = (char *) "synth.chorus.active";
+#if FLUIDSYNTH_VERSION_MAJOR < 2
 	pszVal = (char *) (bChorusActive ? "yes" : "no");
 	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+#else
+	::fluid_settings_setint(m_pFluidSettings, pszKey, int(bChorusActive));
+#endif
+
 
 	pszKey = (char *) "synth.ladspa.active";
+#if FLUIDSYNTH_VERSION_MAJOR < 2
 	pszVal = (char *) (bLadspaActive ? "yes" : "no");
 	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+#else
+	::fluid_settings_setint(m_pFluidSettings, pszKey, int(bLadspaActive));
+#endif
+
 
 	pszKey = (char *) "synth.dump";
+#if FLUIDSYNTH_VERSION_MAJOR < 2
 	pszVal = (char *) (bMidiDump ? "yes" : "no");
 		::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+#else
+	::fluid_settings_setint(m_pFluidSettings, pszKey, int(bMidiDump));
+#endif
+
 
 	pszKey = (char *) "synth.verbose";
+#if FLUIDSYNTH_VERSION_MAJOR < 2
 	pszVal = (char *) (bVerbose ? "yes" : "no");
 	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
+#else
+	::fluid_settings_setint(m_pFluidSettings, pszKey, int(bVerbose));
+#endif
 
 	// Last we set user supplied options...
 	QStringListIterator iter(options);
