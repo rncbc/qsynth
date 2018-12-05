@@ -28,20 +28,6 @@
 #include <QComboBox>
 
 
-// Former fluidsynth < 2.0 defaults...
-//
-#define QSYNTH_REVERB_DEFAULT_ROOMSIZE 0.2f
-#define QSYNTH_REVERB_DEFAULT_DAMP     0.0f
-#define QSYNTH_REVERB_DEFAULT_WIDTH    0.5f
-#define QSYNTH_REVERB_DEFAULT_LEVEL    0.9f
-
-#define QSYNTH_CHORUS_DEFAULT_N        3
-#define QSYNTH_CHORUS_DEFAULT_LEVEL    2.0f
-#define QSYNTH_CHORUS_DEFAULT_SPEED    0.3f
-#define QSYNTH_CHORUS_DEFAULT_DEPTH    8.0f
-#define QSYNTH_CHORUS_DEFAULT_TYPE     0
-
-
 //-------------------------------------------------------------------------
 // qsynthOptions - Prototype settings structure.
 //
@@ -531,7 +517,7 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	pSetup->fChorusDepth     = m_settings.value("/ChorusDepth", QSYNTH_CHORUS_DEFAULT_DEPTH).toDouble();
 	pSetup->iChorusType      = m_settings.value("/ChorusType",  QSYNTH_CHORUS_DEFAULT_TYPE).toInt();
 	pSetup->bLadspaActive    = m_settings.value("/LadspaActive", false).toBool();
-	pSetup->fGain            = m_settings.value("/Gain", 1.0).toDouble();
+	pSetup->fGain            = m_settings.value("/Gain", QSYNTH_MASTER_DEFAULT_GAIN).toDouble();
 	pSetup->bServer          = m_settings.value("/Server", false).toBool();
 	pSetup->bMidiDump        = m_settings.value("/MidiDump", false).toBool();
 	pSetup->bVerbose         = m_settings.value("/Verbose", false).toBool();

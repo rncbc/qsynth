@@ -28,6 +28,22 @@
 class QComboBox;
 
 
+// Former fluidsynth < 2.0 defaults...
+//
+#define QSYNTH_MASTER_DEFAULT_GAIN     1.0
+
+#define QSYNTH_REVERB_DEFAULT_ROOMSIZE 0.2
+#define QSYNTH_REVERB_DEFAULT_DAMP     0.0
+#define QSYNTH_REVERB_DEFAULT_WIDTH    0.5
+#define QSYNTH_REVERB_DEFAULT_LEVEL    0.9
+
+#define QSYNTH_CHORUS_DEFAULT_N        3
+#define QSYNTH_CHORUS_DEFAULT_LEVEL    2.0
+#define QSYNTH_CHORUS_DEFAULT_SPEED    0.3
+#define QSYNTH_CHORUS_DEFAULT_DEPTH    8.0
+#define QSYNTH_CHORUS_DEFAULT_TYPE     0
+
+
 //-------------------------------------------------------------------------
 // qsynthOptions - Prototype settings class.
 //

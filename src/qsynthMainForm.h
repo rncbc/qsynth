@@ -159,6 +159,10 @@ protected:
 
 	void resetChannelsForm(qsynthEngine *pEngine, bool fPreset);
 
+	void resetGain();
+	void resetReverb();
+	void resetChorus();
+
 	void updateGain();
 	void updateReverb();
 	void updateChorus();

@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Reset button now also resets master Gain, Reverb and
+  Chorus to their "factory default" values. (EXPERIMENTAL)
+
 - Fixed Reverb and Chorus effects processing when audio
   output peak-meters are enabled on FluidSynth API V2.
   (EXPERIMENTAL)

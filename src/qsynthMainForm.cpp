@@ -1240,6 +1240,10 @@ void qsynthMainForm::programReset (void)
 {
 	m_ui.ProgramResetPushButton->setEnabled(false);
 
+	resetGain();
+	resetReverb();
+	resetChorus();
+
 	resetEngine(currentEngine());
 	if (m_pChannelsForm)
 		m_pChannelsForm->resetAllChannels(true);
@@ -2431,6 +2435,86 @@ void qsynthMainForm::chorusChanged (int)
 {
 	if (m_iChorusUpdated == 0)
 		m_iChorusChanged++;
+}
+
+
+// Reset gain state.
+void qsynthMainForm::resetGain (void)
+{
+	if (m_iGainUpdated > 0)
+		return;
+
+	qsynthEngine *pEngine = currentEngine();
+	if (pEngine == NULL)
+		return;
+	if (pEngine->pSynth == NULL)
+		return;
+	m_iGainUpdated++;
+
+	const float fGain = QSYNTH_MASTER_DEFAULT_GAIN;
+
+	setEngineGain(pEngine, fGain);
+	refreshGain();
+
+	m_iGainUpdated--;
+	m_iGainChanged = 0;
+}
+
+
+// Reset reverb state.
+void qsynthMainForm::resetReverb (void)
+{
+	if (m_iReverbUpdated > 0)
+		return;
+
+	qsynthEngine *pEngine = currentEngine();
+	if (pEngine == NULL)
+		return;
+	if (pEngine->pSynth == NULL)
+		return;
+	m_iReverbUpdated++;
+
+	const double fReverbRoom  = QSYNTH_REVERB_DEFAULT_ROOMSIZE;
+	const double fReverbDamp  = QSYNTH_REVERB_DEFAULT_DAMP;
+	const double fReverbWidth = QSYNTH_REVERB_DEFAULT_WIDTH;
+	const double fReverbLevel = QSYNTH_REVERB_DEFAULT_LEVEL;
+
+	setEngineReverb(pEngine,
+		fReverbRoom, fReverbDamp, fReverbWidth, fReverbLevel);
+
+	refreshReverb();
+
+	m_iReverbUpdated--;
+	m_iReverbChanged = 0;
+}
+
+
+// Reset chorus state.
+void qsynthMainForm::resetChorus (void)
+{
+	if (m_iChorusUpdated > 0)
+		return;
+
+	qsynthEngine *pEngine = currentEngine();
+	if (pEngine == NULL)
+		return;
+	if (pEngine->pSynth == NULL)
+		return;
+	m_iChorusUpdated++;
+
+	const int    iChorusNr    = QSYNTH_CHORUS_DEFAULT_N;
+	const double fChorusLevel = QSYNTH_CHORUS_DEFAULT_LEVEL;
+	const double fChorusSpeed = QSYNTH_CHORUS_DEFAULT_SPEED;
+	const double fChorusDepth = QSYNTH_CHORUS_DEFAULT_DEPTH;
+	const int    iChorusType  = QSYNTH_CHORUS_DEFAULT_TYPE;
+
+	setEngineChorus(pEngine,
+		iChorusNr, fChorusLevel, fChorusSpeed, fChorusDepth, iChorusType);
+
+	refreshChorus();
+
+	m_iChorusUpdated--;
+	m_iChorusChanged = 0;
 }
 
 
