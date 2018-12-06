@@ -110,6 +110,9 @@
 #cmakedefine CONFIG_FLUID_SETTINGS_FOREACH_OPTION @CONFIG_FLUID_SETTINGS_FOREACH_OPTION@
 
 /* Define if new_fluid_server function is available. */
-#cmakedefine CONFIG_NEW_FLUID_SERVER CONFIG_NEW_FLUID_SERVER@
+#cmakedefine CONFIG_NEW_FLUID_SERVER @CONFIG_NEW_FLUID_SERVER@
+
+/* Define if system tray is enabled. */
+#cmakedefine CONFIG_SYSTEM_TRAY @CONFIG_SYSTEM_TRAY@
 
 #endif /* CONFIG_H */

@@ -15,6 +15,8 @@ configure_file ( cmakeconfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h )
 
 set ( ac_prefix ${CMAKE_INSTALL_PREFIX} )
 
+configure_file ( qsynth.desktop ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop )
+
 set ( HEADERS
   qsynthKnob.h
   qsynthMeter.h

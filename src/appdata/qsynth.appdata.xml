@@ -14,11 +14,11 @@
  </description>
  <launchable type="desktop-id">qsynth.desktop</launchable>
  <provides>
-​  <binary>qsynth</binary>
-​ </provides>
+  <binary>qsynth</binary>
+ </provides>
  <screenshots>
   <screenshot type="default">
-   <image>http://qsynth.sourceforge.net/qsynthMainForm1.png</image>
+   <image>http://qsynth.sourceforge.io/image/qsynthMainForm1.png</image>
    <caption>The main window showing the application in action</caption>
   </screenshot>
  </screenshots>
