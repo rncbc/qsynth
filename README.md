@@ -5,6 +5,7 @@ around the Qt framework using Qt Designer. Eventually it may evolve
 into a softsynth management application allowing the user to control
 and manage a variety of command line softsynths but for the moment
 it wraps the excellent [FluidSynth](http://www.fluidsynth.org).
+Qsynth is licensed under the ´GNU GPL-2.0-or-later´ license.
 
 
 ## Requirements
