@@ -3,7 +3,7 @@
 <component type="desktop">
  <id>org.rncbc.qsynth</id>
  <metadata_license>FSFAP</metadata_license>
- <project_license>GPL-2.0+</project_license>
+ <project_license>GPL-2.0-or-later</project_license>
  <name>Qsynth</name>
  <summary>A fluidsynth Qt GUI Interface</summary>
  <description>
@@ -18,7 +18,7 @@
  </provides>
  <screenshots>
   <screenshot type="default">
-   <image>http://qsynth.sourceforge.io/image/qsynthMainForm1.png</image>
+   <image>https://qsynth.sourceforge.io/image/qsynthMainForm1.png</image>
    <caption>The main window showing the application in action</caption>
   </screenshot>
  </screenshots>
@@ -31,7 +31,7 @@
   <keyword>SoundFont</keyword>
   <keyword>Synthesizer</keyword>
   <keyword>Sampler</keyword>
-  <keyword>SF2</keyword>  
+  <keyword>SF2</keyword>
   <keyword>Qt</keyword>
  </keywords>
  <url type="homepage">https://qsynth.sourceforge.io</url>

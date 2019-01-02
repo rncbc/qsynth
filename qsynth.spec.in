@@ -12,10 +12,10 @@ Summary:	A fluidsynth Qt GUI Interface
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-License:	GPL-2.0+
+License:	GPL-2.0-or-higher
 Group:		Productivity/Multimedia/Sound/Midi
 Source0:	%{name}-%{version}.tar.gz
-URL:		http://qsynth.sourceforge.net/
+URL:		https://qsynth.sourceforge.io/
 #Packager:	rncbc.org
 
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot

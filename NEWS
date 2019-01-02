@@ -1,8 +1,6 @@
 Qsynth - A fluidsynth Qt GUI Interface
 --------------------------------------
 
-ChangeLog
-
 
 GIT HEAD
 
@@ -647,4 +645,3 @@ GIT HEAD
 
 
 0.0.1   2003-11-15  Primordial release.
-
