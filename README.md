@@ -27,8 +27,8 @@ The software requirements for build and runtime are listed as follows:
 The installation procedure follows the standard for source distributions.
 Unpack the tarball and in the extracted source directory:
 
-If you're checking out from Git, you'll have to firstly prepare the
-configure script:
+If you're checking out from Git, you'll have to prepare the
+configure script first:
 
 ```bash
    ./autogen.sh
