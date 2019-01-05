@@ -72,8 +72,8 @@ Plenty still although this is beta software ;)
 ## Support
 
 Qsynth is open source free software. For bug reports, feature requests,
-discussion forums, or any other matter related to the
-development of this piece of software, please use the [Github page](https://github.com/rncbc/qsynth).
+discussion forums, mailing lists or any other matter related to the
+development of this piece of software, please use the [Sourceforge project page](https://sourceforge.net/projects/qsynth).
 
 
 ## Acknowledgements
