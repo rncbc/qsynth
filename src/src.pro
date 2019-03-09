@@ -10,6 +10,7 @@ include(src.pri)
 #DEFINES += DEBUG
 
 HEADERS += config.h \
+	qsynth.h \
 	qsynthAbout.h \
 	qsynthEngine.h \
 	qsynthChannels.h \

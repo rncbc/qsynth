@@ -6,6 +6,7 @@ target  = src/$(name)
 
 headers = \
 	src/config.h \
+	src/qsynth.h \
 	src/qsynthAbout.h \
 	src/qsynthEngine.h \
 	src/qsynthChannels.h \
