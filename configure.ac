@@ -102,9 +102,9 @@ AC_ARG_ENABLE(fluid_server,
   [ac_fluid_server="$enableval"],
   [ac_fluid_server="yes"])
 
-# Enable X11 unique/single instance.
+# Enable unique/single instance.
 AC_ARG_ENABLE(xunique,
-  AS_HELP_STRING([--enable-xunique], [enable X11 unique/single instance (default=yes)]),
+  AS_HELP_STRING([--enable-xunique], [enable unique/single instance (default=yes)]),
   [ac_xunique="$enableval"],
   [ac_xunique="yes"])
 
@@ -333,21 +333,18 @@ AC_HEADER_STDC
 AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS(fcntl.h sys/ioctl.h unistd.h signal.h)
 
-# Check for X11 unique/single instance.
+# Check for unique/single instance.
 if test "x$ac_xunique" = "xyes"; then
-   PKG_CHECK_MODULES([QT5X11EXTRAS], [Qt5X11Extras], [ac_x11extras="yes"], [ac_x11extras="no"])
+   PKG_CHECK_MODULES([QT5NETWORK], [Qt5Network], [ac_qt5network="yes"], [ac_qt5network="no"])
 fi
-if test "x$ac_x11extras" = "xyes"; then
+if test "x$ac_qt5network" = "xyes"; then
    if test "x$ac_xunique" = "xyes"; then
-      AC_DEFINE(CONFIG_XUNIQUE, 1, [Define if X11 unique/single instance is enabled.])
+      AC_DEFINE(CONFIG_XUNIQUE, 1, [Define if unique/single instance is enabled.])
    fi
-   ac_qx11extras="x11extras"
+   ac_qnetwork="network"
    # Some recent distros (eg. fedora, debian) require this.
-   if test "x$ac_cv_lib_X11_main" = "xyes"; then
-      ac_libs="$ac_libs -lX11"
-   fi
 fi
-AC_SUBST(ac_qx11extras)
+AC_SUBST(ac_qnetwork)
 
 # Check for gradient eye-candy.
 if test "x$ac_gradient" = "xyes"; then

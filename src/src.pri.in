@@ -16,10 +16,8 @@ LIBS += @ac_libs@
 QMAKE_CXXFLAGS += @ac_cflags@
 QMAKE_LFLAGS += @ac_ldflags@
 
-# X11 support
-unix:!macx {
-	QX11EXTRAS = @ac_qx11extras@
-	!isEmpty(QX11EXTRAS) {
-		QT += x11extras
-	}
+# Network support
+QNETWORK = @ac_qnetwork@
+!isEmpty(QNETWORK) {
+	QT += network
 }

@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Refactored all singleton/unique application instance
+  setup logic away from X11/Xcb hackery. (EXPERIMENTAL)
+
 - HiDPI display screen support (Qt >= 5.6). (EXPERIMENTAL)
 
 - Bumped copyright headers into the New Year (2019).
