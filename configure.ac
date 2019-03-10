@@ -560,7 +560,7 @@ echo "  FluidSynth version string support  . . . . . . . .: $ac_fluid_version_st
 echo
 echo "  System tray icon support . . . . . . . . . . . . .: $ac_system_tray"
 echo
-echo "  X11 Unique/Single instance . . . . . . . . . . . .: $ac_xunique"
+echo "  Unique/Single instance support . . . . . . . . . .: $ac_xunique"
 echo "  Gradient eye-candy . . . . . . . . . . . . . . . .: $ac_gradient"
 echo "  Debugger stack-trace (gdb) . . . . . . . . . . . .: $ac_stacktrace"
 echo
