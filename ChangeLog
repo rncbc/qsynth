@@ -4,12 +4,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.5.5  2019-03-11  Pre-LAC2019 Release Frenzy.
 
 - Refactored all singleton/unique application instance
-  setup logic away from X11/Xcb hackery. (EXPERIMENTAL)
+  setup logic away from X11/Xcb hackery.
 
-- HiDPI display screen support (Qt >= 5.6). (EXPERIMENTAL)
+- HiDPI display screen support (Qt >= 5.6).
 
 - Bumped copyright headers into the New Year (2019).
 

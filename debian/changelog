@@ -1,3 +1,9 @@
+qsynth (0.5.5-16) unstable; urgency=low
+
+  * Pre-LAC2019 release frenzy.
+
+ -- Rui Nuno Capela <rncbc@rncbc.org>  Mon, 11 Mar 2019 19:00:00 +0000
+
 qsynth (0.5.4-15) unstable; urgency=low
 
   * End of Autumn'18 release.
