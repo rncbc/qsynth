@@ -18,6 +18,7 @@ set ( ac_prefix ${CMAKE_INSTALL_PREFIX} )
 configure_file ( qsynth.desktop ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop )
 
 set ( HEADERS
+  qsynth.h
   qsynthKnob.h
   qsynthMeter.h
   qsynthSystemTray.h
@@ -108,22 +109,13 @@ if (APPLE)
   set_target_properties ( qsynth PROPERTIES MACOSX_BUNDLE true )
 endif ()
 
-if (UNIX AND NOT APPLE)
-  target_link_libraries ( qsynth
-    ${QT_LIBRARIES}
-    ${MATH_LIBRARY}
-    ${FLUIDSYNTH_LIBRARY}
-    ${X11_LIBRARY}
-  )
-  qt5_use_modules (qsynth Core Gui Widgets X11Extras)
-else ()
-  target_link_libraries ( qsynth
-    ${QT_LIBRARIES}
-    ${MATH_LIBRARY}
-    ${FLUIDSYNTH_LIBRARY}
-  )
-  qt5_use_modules (qsynth Core Gui Widgets)
-endif ()
+target_link_libraries ( qsynth
+  ${QT_LIBRARIES}
+  ${MATH_LIBRARY}
+  ${FLUIDSYNTH_LIBRARY}
+)
+
+qt5_use_modules (qsynth Core Gui Widgets Network)
 
 set ( TRANSLATIONS
    translations/qsynth_cs.ts

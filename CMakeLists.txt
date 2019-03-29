@@ -24,8 +24,8 @@ if (CONFIG_BUILD_TYPE MATCHES "debug")
 endif ()
 set (CONFIG_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
-# X11 unique/single instance.# gradient eye-candy.
-option (CONFIG_XUNIQUE "Define if X11 unique/single instance is enabled." 1)
+# Unique/single instance.# gradient eye-candy.
+option (CONFIG_XUNIQUE "Define if unique/single instance is enabled." 1)
 # gradient eye-candy.
 option (CONFIG_GRADIENT "Define if gradient eye-candy is enabled." 1)
 # debugging stack-trace.
@@ -171,7 +171,7 @@ show_option ( "  FluidSynth unset program support . . . . . . . . ." CONFIG_FLUI
 show_option ( "  FluidSynth version string support  . . . . . . . ." CONFIG_FLUID_VERSION_STR )
 message ( "\n" )
 show_option ( "  System tray icon support . . . . . . . . . . . . ." CONFIG_SYSTEM_TRAY )
-show_option ( "  X11 Unique/Single instance . . . . . . . . . . . ." CONFIG_XUNIQUE )
+show_option ( "  Unique/Single instance support . . . . . . . . . ." CONFIG_XUNIQUE )
 show_option ( "  Gradient eye-candy . . . . . . . . . . . . . . . ." CONFIG_GRADIENT )
 show_option ( "  Debugger stack-trace (gdb) . . . . . . . . . . . ." CONFIG_STACKTRACE )
 message ( "\n  Install prefix . . . . . . . . . . . . . . . . . .: ${CMAKE_INSTALL_PREFIX}" )
