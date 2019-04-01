@@ -1,7 +1,7 @@
 // qsynthMainForm.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -83,6 +83,7 @@ public slots:
 protected slots:
 
 	void stdoutNotifySlot(int);
+	void sigtermNotifySlot(int);
 
 	void contextMenu(const QPoint&);
 
@@ -133,7 +134,7 @@ protected:
 
 	void playLoadFiles( qsynthEngine *pEngine, const QStringList& files, bool bSetup);
 
-	bool decodeDragFiles(const QMimeSource * pEvent, QStringList& files);
+	bool decodeDragFiles(const QMimeSource *pEvent, QStringList& files);
 	void dragEnterEvent(QDragEnterEvent *pDragEnterEvent);
 	void dropEvent(QDropEvent *pDropEvent);
 
@@ -187,6 +188,7 @@ private:
 	int m_iCurrentTab;
 
 	QSocketNotifier *m_pStdoutNotifier;
+	QSocketNotifier *m_pSigtermNotifier;
 
 	qsynthMessagesForm *m_pMessagesForm;
 	qsynthChannelsForm *m_pChannelsForm;

@@ -1,7 +1,7 @@
 // qsynthMainForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -96,9 +96,30 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 static int g_fdStdout[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
 #endif
 
+
+//-------------------------------------------------------------------------
+// UNIX Signal handling support stuff.
+
 #ifdef HAVE_SIGNAL_H
+
+#include <sys/types.h>
+#include <sys/socket.h>
+
 #include <signal.h>
-#endif
+
+// File descriptor for SIGTERM notifier.
+static int g_fdSigterm[2];
+
+// Unix SIGTERM signal handler.
+static void qsynth_sigterm_handler ( int /* signo */ )
+{
+	char c = 1;
+
+	(::write(g_fdSigterm[0], &c, sizeof(c)) > 0);
+}
+
+#endif	// HAVE_SIGNAL_H
+
 
 // Needed for lroundf()
 #ifdef CONFIG_ROUND
@@ -409,9 +430,41 @@ qsynthMainForm::qsynthMainForm (
 	QWidget::setAttribute(Qt::WA_QuitOnClose);
 
 #ifdef HAVE_SIGNAL_H
+
 	// Set to ignore any fatal "Broken pipe" signals.
 	::signal(SIGPIPE, SIG_IGN);
-#endif
+
+	// LADISH termination suport.
+	// Initialize file descriptors for SIGTERM socket notifier.
+	::socketpair(AF_UNIX, SOCK_STREAM, 0, g_fdSigterm);
+	m_pSigtermNotifier
+		= new QSocketNotifier(g_fdSigterm[1], QSocketNotifier::Read, this);
+
+	QObject::connect(m_pSigtermNotifier,
+		SIGNAL(activated(int)),
+		SLOT(sigtermNotifySlot(int)));
+
+	// Install SIGTERM signal handler.
+	struct sigaction sigterm;
+	sigterm.sa_handler = qsynth_sigterm_handler;
+	::sigemptyset(&sigterm.sa_mask);
+	sigterm.sa_flags = 0;
+	sigterm.sa_flags |= SA_RESTART;
+	::sigaction(SIGTERM, &sigterm, NULL);
+	::sigaction(SIGQUIT, &sigterm, NULL);
+
+	// Ignore SIGHUP/SIGINT signals.
+	::signal(SIGHUP, SIG_IGN);
+	::signal(SIGINT, SIG_IGN);
+
+	// Also ignore SIGUSR1 (LADISH Level 1).
+	::signal(SIGUSR1, SIG_IGN);
+
+#else	// HAVE_SIGNAL_H
+
+	m_pSigtermNotifier = NULL;
+
+#endif	// !HAVE_SIGNAL_H
 
 	m_ui.GainSpinBox->setAccelerated(true);
 	m_ui.ReverbRoomSpinBox->setAccelerated(true);
@@ -537,6 +590,11 @@ qsynthMainForm::qsynthMainForm (
 // Destructor.
 qsynthMainForm::~qsynthMainForm (void)
 {
+#ifdef HAVE_SIGNAL_H
+	if (m_pSigtermNotifier)
+		delete m_pSigtermNotifier;
+#endif
+
 	// Stop the press!
 	const int iTabCount = m_ui.TabBar->count();
 	for (int iTab = 0; iTab < iTabCount; ++iTab) {
@@ -900,6 +958,20 @@ void qsynthMainForm::dropEvent ( QDropEvent* pDropEvent )
 		playLoadFiles(currentEngine(), files, false);
 	}
 
+}
+
+
+// SIGTERM signal handler...
+void qsynthMainForm::sigtermNotifySlot ( int /* fd */ )
+{
+#ifdef HAVE_SIGNAL_H
+
+	char c;
+
+	if (::read(g_fdSigterm[1], &c, sizeof(c)) > 0)
+		quitMainForm();
+
+#endif
 }
 
 

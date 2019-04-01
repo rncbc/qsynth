@@ -4,6 +4,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Re-defined all main application UNIX signal handling.
+  (EXPERIMENTAL)
+
+
 0.5.5  2019-03-11  Pre-LAC2019 Release Frenzy.
 
 - Refactored all singleton/unique application instance
