@@ -434,7 +434,6 @@ qsynthMainForm::qsynthMainForm (
 	// Set to ignore any fatal "Broken pipe" signals.
 	::signal(SIGPIPE, SIG_IGN);
 
-	// LADISH termination suport.
 	// Initialize file descriptors for SIGTERM socket notifier.
 	::socketpair(AF_UNIX, SOCK_STREAM, 0, g_fdSigterm);
 	m_pSigtermNotifier
