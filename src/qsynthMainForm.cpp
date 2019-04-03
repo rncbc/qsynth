@@ -108,7 +108,7 @@ static int g_fdStdout[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
 #include <signal.h>
 
 // File descriptor for SIGTERM notifier.
-static int g_fdSigterm[2];
+static int g_fdSigterm[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
 
 // Unix SIGTERM signal handler.
 static void qsynth_sigterm_handler ( int /* signo */ )
