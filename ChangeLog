@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Settled to initial default MIDI and audio drivers on
+  MacOSX to "coremidi" and "coreaudio" resp.
+
 - Updated icon files into 128x128 base resolution.
 
 

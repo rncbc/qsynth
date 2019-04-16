@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -481,14 +481,20 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	m_settings.beginGroup("/Settings");
 	pSetup->sDisplayName     = m_settings.value("/DisplayName", sDisplayName).toString();
 	pSetup->bMidiIn          = m_settings.value("/MidiIn", true).toBool();
-#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#if defined(__APPLE__)
+	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "coremidi").toString();
+	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "coreaudio").toString();
+#elif defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "winmidi").toString();
 	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "dsound").toString();
-	pSetup->iAudioBufSize    = m_settings.value("/AudioBufSize", 512).toInt();
-	pSetup->iAudioBufCount   = m_settings.value("/AudioBufCount", 8).toInt();
 #else
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "alsa_seq").toString();
 	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "jack").toString();
+#endif
+#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+	pSetup->iAudioBufSize    = m_settings.value("/AudioBufSize", 512).toInt();
+	pSetup->iAudioBufCount   = m_settings.value("/AudioBufCount", 8).toInt();
+#else
 	pSetup->iAudioBufSize    = m_settings.value("/AudioBufSize", 64).toInt();
 	pSetup->iAudioBufCount   = m_settings.value("/AudioBufCount", 2).toInt();
 #endif
