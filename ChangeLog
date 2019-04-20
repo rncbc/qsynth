@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- Minor update to Debian packaging control file.
+
 - Settled to initial default MIDI and audio drivers on
   MacOSX to "coremidi" and "coreaudio" resp.
 
