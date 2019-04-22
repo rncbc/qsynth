@@ -73,9 +73,6 @@ find_library ( FLUIDSYNTH_LIBRARY fluidsynth )
 # Checks for header files.
 if (UNIX AND NOT APPLE)
   check_include_files ("fcntl.h;unistd.h;signal.h" HAVE_SIGNAL_H)
-  if (CONFIG_XUNIQUE)
-    find_library ( X11_LIBRARY X11 )
-  endif ()
 endif ()
 
 # Check for fluidsynth headers.
