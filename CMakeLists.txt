@@ -42,11 +42,7 @@ option (CONFIG_FLUID_SERVER "Define if FluidSynth server support is enabled." 1)
 
 
 # Check for Qt
-if (UNIX AND NOT APPLE)
-  find_package (Qt5 REQUIRED NO_MODULE COMPONENTS Core Gui Widgets X11Extras)
-else ()
-  find_package (Qt5 REQUIRED NO_MODULE COMPONENTS Core Gui Widgets)
-endif ()
+find_package (Qt5 REQUIRED NO_MODULE COMPONENTS Core Gui Widgets Network)
 find_package (Qt5LinguistTools)
 
 include (CheckIncludeFile)
