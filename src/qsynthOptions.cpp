@@ -205,11 +205,11 @@ void qsynthOptions::print_usage ( const QString& arg0 )
 		QObject::tr("Don't read commands from the shell [ignored]") + sEol;
 	out << "  -d, --dump" + sEot +
 		QObject::tr("Dump midi router events") + sEol;
-	out << "  -v, --verbose" + sEot +
+	out << "  -V, --verbose" + sEot +
 		QObject::tr("Print out verbose messages about midi events") + sEol;
 	out << "  -h, --help" + sEot +
 		QObject::tr("Show help about command line options") + sEol;
-	out << "  -V, --version" + sEot +
+	out << "  -v, --version" + sEot +
 		QObject::tr("Show version information") + sEol;
 }
 
