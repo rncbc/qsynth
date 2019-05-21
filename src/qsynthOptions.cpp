@@ -358,14 +358,14 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-d" || sArg == "--dump") {
 			m_pDefaultSetup->bMidiDump = true;
 		}
-		else if (sArg == "-v" || sArg == "--verbose") {
+		else if (sArg == "-V" || sArg == "--verbose") {
 			m_pDefaultSetup->bVerbose = true;
 		}
 		else if (sArg == "-h" || sArg == "--help") {
 			print_usage(args.at(0));
 			return false;
 		}
-		else if (sArg == "-V" || sArg == "--version") {
+		else if (sArg == "-v" || sArg == "--version") {
 			out << QString("Qt: %1\n")
 				.arg(qVersion());
 			out << QString("FluidSynth: %1\n")
