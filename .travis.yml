@@ -14,16 +14,13 @@ branches:
   only:
   - master
 
-env:
-- QT_SELECT=5
-
 before_install:
 - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
 - sudo add-apt-repository --yes ppa:beineri/opt-qt-5.12.3-xenial
 - sudo apt-get update -qq
 
 install:
-- sudo apt-get install -qq qt512base qt512tools; source /opt/qt512/bin/qt512-env.sh
+- sudo apt-get install -qq qt512base qt512tools libgl-dev; source /opt/qt512/bin/qt512-env.sh
 - sudo apt-get install -qq libfluidsynth-dev
 
 before_script:
