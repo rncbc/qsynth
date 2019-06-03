@@ -138,6 +138,8 @@ if (UNIX AND NOT APPLE)
      DESTINATION share/applications )
   install ( FILES images/qsynth.png
      DESTINATION share/pixmaps )
+  install ( FILES appdata/qsynth.appdata.xml
+     DESTINATION share/metainfo )
 endif ()
 
 if (WIN32)

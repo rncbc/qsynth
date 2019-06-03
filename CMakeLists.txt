@@ -45,6 +45,7 @@ option (CONFIG_FLUID_SERVER "Define if FluidSynth server support is enabled." 1)
 find_package (Qt5 REQUIRED NO_MODULE COMPONENTS Core Gui Widgets Network)
 find_package (Qt5LinguistTools)
 
+include (GNUInstallDirs)
 include (CheckIncludeFile)
 include (CheckIncludeFiles)
 include (CheckFunctionExists)
@@ -142,6 +143,9 @@ endif ()
 add_subdirectory (src)
 
 configure_file (qsynth.spec.in qsynth.spec IMMEDIATE @ONLY)
+
+install (FILES qsynth.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
+install (FILES qsynth.fr.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/fr/man1 RENAME qsynth.1)
 
 # Configuration status
 macro (SHOW_OPTION text value)
