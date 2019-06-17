@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- Configure updated to check for qtchooser availability.
+
 - Minor update to Debian packaging control file.
 
 - Settled to initial default MIDI and audio drivers on
