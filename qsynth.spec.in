@@ -30,7 +30,7 @@ BuildRequires:	libqt5-qtbase-devel >= 5.1, libqt5-linguist
 BuildRequires:	alsa-devel
 %endif
 BuildRequires:	libfluidsynth-devel
-BuildRequires:	libjack2-devel, libjack2
+BuildRequires:	libjack-devel
 
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
