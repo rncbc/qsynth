@@ -30,6 +30,10 @@
 
 #include <math.h>
 
+#if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
+#define horizontalAdvance  width
+#endif
+
 
 // Meter level limits (in dB).
 #define QSYNTH_METER_MAXDB		(+3.0f)
