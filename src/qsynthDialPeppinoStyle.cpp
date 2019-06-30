@@ -4,8 +4,9 @@
    adapted as a Qt style for QSynth by Pedro Lopez-Cabanillas
 
    This file,
+   Copyright (C) 2019 rncbc aka Rui Nuno Capela <rncbc@rncbc.org>,
    Copyright (C) 2008 Giuseppe Cigala <g_cigala@virgilio.it>,
-   Copyright (C) 2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>
+   Copyright (C) 2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -83,8 +84,8 @@ inline void paintArc(QPainter *p, const QStyleOptionSlider *dial)
     QPalette pal = dial->palette;
     QColor arcColor = (dial->state & QStyle::State_Enabled) ? pal.highlight().color() : pal.mid().color();
     QLinearGradient linGrad(80, 100, 140, 140);
-    linGrad.setColorAt(0, arcColor.dark(140));
-    linGrad.setColorAt(1, arcColor.light().light());
+    linGrad.setColorAt(0, arcColor.darker(140));
+    linGrad.setColorAt(1, arcColor.lighter().lighter());
     linGrad.setSpread(QGradient::PadSpread);
     p->setBrush(linGrad);
 

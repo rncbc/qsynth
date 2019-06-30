@@ -4,7 +4,8 @@
    implemented as a widget by Chris Cannam in Rosegarden,
    adapted for QSynth by Pedro Lopez-Cabanillas,
    improved for Qt4 by David Garcia Garzon,
-   adapted as a QStyle by Pedro Lopez-Cabanillas 
+   adapted as a QStyle by Pedro Lopez-Cabanillas,
+   updated for Qt5 by rncbc aka Rui Nuno Capela.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -30,8 +31,8 @@
 class qsynthDialVokiStyle : public QCommonStyle
 {
 public:
-	qsynthDialVokiStyle() {};
-	virtual ~qsynthDialVokiStyle() {};
+	qsynthDialVokiStyle() {}
+	virtual ~qsynthDialVokiStyle() {}
 	
     virtual void drawComplexControl(ComplexControl cc, const QStyleOptionComplex *opt, QPainter *p,
                             		const QWidget *widget = 0) const;

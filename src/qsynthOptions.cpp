@@ -39,7 +39,7 @@ qsynthOptions::qsynthOptions (void)
 	// Create default setup descriptor.
 	m_pDefaultSetup = new qsynthSetup();
 	// Load previous/default fluidsynth settings...
-	loadSetup(m_pDefaultSetup, QString::null);
+	loadSetup(m_pDefaultSetup, QString());
 
 	loadOptions();
 }
@@ -384,7 +384,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 					m_pDefaultSetup->bankoffsets.clear();
 				}
 				m_pDefaultSetup->soundfonts.append(name);
-				m_pDefaultSetup->bankoffsets.append(QString::null);
+				m_pDefaultSetup->bankoffsets.append(QString());
 			}
 			else if (::fluid_is_midifile(name)) {
 				m_pDefaultSetup->midifiles.append(name);

@@ -2058,7 +2058,7 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 			savePanelSettings(pEngine);
 		// Make those settings persist over...
 		m_pOptions->saveSetup(pSetup, pEngine->isDefault()
-			? QString::null : pEngine->name());
+			? QString() : pEngine->name());
 	}
 
 	// Flush anything that maybe pending...

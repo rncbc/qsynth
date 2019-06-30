@@ -2,6 +2,7 @@
 
    Skulpture - Classical Three-Dimensional Artwork for Qt 4
 
+   Copyright (c) 2019 rncbc aka Rui Nuno Capela <rncbc@rncbc.org>
    Copyright (c) 2007-2009 Christoph Feck <christoph@maxiom.de>
 
    This program is free software; you can redistribute it and/or
@@ -39,7 +40,7 @@ paintIndicatorCached(QPainter *painter, const QStyleOption *option, void (*paint
 {
     QPixmap pixmap;
 
-    if (!useCache || !QPixmapCache::find(pixmapName, pixmap)) {
+    if (!useCache || !QPixmapCache::find(pixmapName, &pixmap)) {
         pixmap =  QPixmap(option->rect.size());
 #if 1
         pixmap.fill(Qt::transparent);

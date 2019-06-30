@@ -1,7 +1,7 @@
 // qsynthSetupForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -165,8 +165,8 @@ static void qsynth_settings_foreach (
 	#endif
 		(pData->pListItem)->setText(iCol++, pszCurrent);
 		(pData->pListItem)->setText(iCol++, pszDefault);
-		(pData->pListItem)->setText(iCol++, QString::null);
-		(pData->pListItem)->setText(iCol++, QString::null);
+		(pData->pListItem)->setText(iCol++, QString());
+		(pData->pListItem)->setText(iCol++, QString());
 	#ifdef CONFIG_FLUID_SETTINGS_DUPSTR
 		::free(pszCurrent);
 	#endif

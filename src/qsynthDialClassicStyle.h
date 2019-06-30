@@ -7,9 +7,11 @@
    and adapted for use in QSynth.
    Ported to Qt4 by Chris Cannam.
    Adapted as a QStyle by Pedro Lopez-Cabanillas.   
-  
-   This file copyright 2003-2006 Chris Cannam, 
-   copyright 2005,2008 Pedro Lopez-Cabanillas, 
+
+   This file,
+   copyright 2019 rncbc aka Rui Nuno Capela,
+   copyright 2003-2006 Chris Cannam,
+   copyright 2005,2008 Pedro Lopez-Cabanillas,
    copyright 2006 Queen Mary, University of London.
 
    This program is free software; you can redistribute it and/or

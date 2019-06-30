@@ -4,8 +4,9 @@
    adapted as a Qt style for QSynth by Pedro Lopez-Cabanillas
 
    This file,
-   Copyright (C) 2008 Giuseppe Cigala <g_cigala@virgilio.it>          
-   Copyright (C) 2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>         
+   Copyright (C) 2019 rncbc aka Rui Nuno Capela <rncbc@rncbc.org>,
+   Copyright (C) 2008 Giuseppe Cigala <g_cigala@virgilio.it>
+   Copyright (C) 2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License

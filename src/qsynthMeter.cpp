@@ -73,7 +73,7 @@ void qsynthMeterScale::drawLineLabel (
 	const int iMidHeight = (fm.height() >> 1);
 
 	if (iCurrY < iMidHeight || iCurrY > m_iLastY + iMidHeight) {
-		if (fm.width(sLabel) < iWidth - 5) {
+		if (fm.horizontalAdvance(sLabel) < iWidth - 5) {
 			p->drawLine(0, iCurrY, 2, iCurrY);
 			if (m_pMeter->portCount() > 1)
 				p->drawLine(iWidth - 3, iCurrY, iWidth - 1, iCurrY);
