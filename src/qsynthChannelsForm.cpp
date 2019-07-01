@@ -74,7 +74,7 @@ qsynthChannelsForm::qsynthChannelsForm (
 	QHeaderView *pHeader = m_ui.ChannelsListView->header();
 	pHeader->setDefaultAlignment(Qt::AlignLeft);
 //	pHeader->setDefaultSectionSize(320);
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 //	pHeader->setSectionResizeMode(QHeaderView::Custom);
 	pHeader->setSectionsMovable(false);
 #else

@@ -30,7 +30,7 @@
 
 #include <QSessionManager>
 
-#if QT_VERSION < 0x040500
+#if QT_VERSION < QT_VERSION_CHECK(4, 5, 0)
 namespace Qt {
 const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 }
@@ -53,7 +53,7 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 
 #define QSYNTH_XUNIQUE "qsynthApplication"
 
-#if QT_VERSION < 0x050000
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #ifdef CONFIG_X11
 
 #include <unistd.h> /* for gethostname() */
@@ -118,7 +118,7 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 		}
 	}
 #ifdef CONFIG_XUNIQUE
-#if QT_VERSION < 0x050000
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #ifdef CONFIG_X11
 	m_pDisplay = NULL;
 	m_aUnique = 0;
@@ -136,7 +136,7 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 qsynthApplication::~qsynthApplication (void)
 {
 #ifdef CONFIG_XUNIQUE
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 	if (m_pServer) {
 		m_pServer->close();
 		delete m_pServer;
@@ -158,7 +158,7 @@ void qsynthApplication::setMainWidget ( QWidget *pWidget )
 {
 	m_pWidget = pWidget;
 #ifdef CONFIG_XUNIQUE
-#if QT_VERSION < 0x050000
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #ifdef CONFIG_X11
 	m_wOwner = m_pWidget->winId();
 	if (m_pDisplay && m_wOwner) {
@@ -177,7 +177,7 @@ void qsynthApplication::setMainWidget ( QWidget *pWidget )
 bool qsynthApplication::setup (void)
 {
 #ifdef CONFIG_XUNIQUE
-#if QT_VERSION < 0x050000
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #ifdef CONFIG_X11
 	m_pDisplay = QX11Info::display();
 	if (m_pDisplay) {
@@ -288,7 +288,7 @@ bool qsynthApplication::setup (void)
 
 
 #ifdef CONFIG_XUNIQUE
-#if QT_VERSION < 0x050000
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #ifdef CONFIG_X11
 
 void qsynthApplication::x11PropertyNotify ( Window w )
@@ -452,7 +452,7 @@ int main ( int argc, char **argv )
 #endif
 #endif
 	qsynthApplication app(argc, argv);
-#if QT_VERSION >= 0x050600
+#if QT_VERSION >= QT_VERSION_CHECK(5, 6, 0)
 	app.setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 	// Construct default settings; override with command line arguments.
@@ -471,7 +471,7 @@ int main ( int argc, char **argv )
 	// Dark themes grayed/disabled color group fix...
 	QPalette pal(app.palette());
 	if (pal.base().color().value() < 0x7f) {
-	#if QT_VERSION >= 0x050000
+	#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 		const QColor& color = pal.window().color();
 		const int iGroups = int(QPalette::Active | QPalette::Inactive) + 1;
 		for (int i = 0; i < iGroups; ++i) {

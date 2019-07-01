@@ -218,7 +218,7 @@ qsynthSetupForm::qsynthSetupForm (
 	QHeaderView *pHeader = m_ui.SoundFontListView->header();
 	pHeader->setDefaultAlignment(Qt::AlignLeft);
 //	pHeader->setDefaultSectionSize(300);
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 //	pHeader->setSectionResizeMode(QHeaderView::Custom);
 	pHeader->setSectionsMovable(false);
 #else
@@ -235,7 +235,7 @@ qsynthSetupForm::qsynthSetupForm (
 	pHeader = m_ui.SettingsListView->header();
 	pHeader->setDefaultAlignment(Qt::AlignLeft);
 //	pHeader->setDefaultSectionSize(160);
-#if QT_VERSION >= 0x050000
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 //	pHeader->setSectionResizeMode(QHeaderView::Custom);
 	pHeader->setSectionsMovable(false);
 #else
