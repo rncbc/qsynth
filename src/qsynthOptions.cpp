@@ -487,6 +487,9 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 #elif defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "winmidi").toString();
 	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "dsound").toString();
+#elif defined(__OpenBSD__)
+	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "sndio").toString();
+	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "sndio").toString();
 #else
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "alsa_seq").toString();
 	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "jack").toString();
@@ -502,7 +505,11 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	pSetup->sJackName        = m_settings.value("/JackName", "qsynth").toString();
 	pSetup->bJackAutoConnect = m_settings.value("/JackAutoConnect", true).toBool();
 	pSetup->bJackMulti       = m_settings.value("/JackMulti", false).toBool();
+#if defined(__OpenBSD__)
+	pSetup->sMidiDevice      = m_settings.value("/MidiDevice", "midithru/0").toString();
+#else
 	pSetup->sMidiDevice      = m_settings.value("/MidiDevice").toString();
+#endif
 	pSetup->iMidiChannels    = m_settings.value("/MidiChannels", 16).toInt();
 	pSetup->sMidiBankSelect  = m_settings.value("/MidiBankSelect", "gm").toString();
 	pSetup->sAudioDevice     = m_settings.value("/AudioDevice").toString();
