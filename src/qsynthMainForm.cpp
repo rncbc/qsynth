@@ -1158,6 +1158,8 @@ void qsynthMainForm::updateSystemTray (void)
 		raise();
 		activateWindow();
 	}
+
+	updateContextMenu();
 }
 
 #endif
