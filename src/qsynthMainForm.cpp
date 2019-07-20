@@ -387,7 +387,7 @@ qsynthMainForm *qsynthMainForm::g_pMainForm = NULL;
 // Constructor.
 qsynthMainForm::qsynthMainForm (
 	QWidget *pParent, Qt::WindowFlags wflags )
-	: QWidget(pParent, wflags)
+	: QWidget(pParent, wflags), m_menu(this)
 {
 	// Setup UI struct...
 	m_ui.setupUi(this);
@@ -760,6 +760,7 @@ bool qsynthMainForm::queryClose (void)
 			#endif
 			}
 			hide();
+			updateContextMenu();
 			bQueryClose = false;
 		}
 	#endif
@@ -772,6 +773,7 @@ bool qsynthMainForm::queryClose (void)
 					show();
 					raise();
 					activateWindow();
+					updateContextMenu();
 					const QString& sTitle
 						= QSYNTH_TITLE ": " + tr("Warning");
 					const QString& sText = QSYNTH_TITLE " "
@@ -1145,13 +1147,11 @@ void qsynthMainForm::updateSystemTray (void)
 
 	if (m_pOptions->bSystemTray && m_pSystemTray == NULL) {
 		m_pSystemTray = new qsynthSystemTray(this);
+		m_pSystemTray->setContextMenu(&m_menu);
 		m_pSystemTray->show();
 		QObject::connect(m_pSystemTray,
 			SIGNAL(clicked()),
 			SLOT(toggleMainForm()));
-		QObject::connect(m_pSystemTray,
-			SIGNAL(contextMenuRequested(const QPoint &)),
-			SLOT(contextMenu(const QPoint &)));
 	} else {
 		// Make sure the main widget is visible.
 		show();
@@ -1163,15 +1163,8 @@ void qsynthMainForm::updateSystemTray (void)
 #endif
 
 
-// Common context menu accessor.
-QMenu *qsynthMainForm::contextMenu (void)
-{
-	return &m_menu;
-}
-
-
-// System tray context menu request slot.
-void qsynthMainForm::contextMenu ( const QPoint& pos )
+// Common context menu request slot.
+void qsynthMainForm::updateContextMenu (void)
 {
 	if (m_pOptions == NULL)
 		return;
@@ -1192,15 +1185,15 @@ void qsynthMainForm::contextMenu ( const QPoint& pos )
 		? sHideMinimize : sShowRestore, this, SLOT(toggleMainForm()));
 	m_menu.addSeparator();
 
-	qsynthEngine *pEngine = currentEngine();
+	qsynthEngine *pCurrentEngine = currentEngine();
 	pAction = m_menu.addAction(QIcon(":/images/add1.png"),
 		tr("&New engine..."), this, SLOT(newEngine()));
 	pAction = m_menu.addAction(QIcon(":/images/remove1.png"),
 		tr("&Delete"), this, SLOT(deleteEngine()));
-	pAction->setEnabled(pEngine && !pEngine->isDefault());
+	pAction->setEnabled(pCurrentEngine && !pCurrentEngine->isDefault());
 	m_menu.addSeparator();
 
-	const bool bEnabled = (pEngine && pEngine->pSynth);
+	const bool bEnabled = (pCurrentEngine && pCurrentEngine->pSynth);
 	pAction = m_menu.addAction(QIcon(":/images/restart1.png"),
 		bEnabled ? tr("Re&start") : tr("&Start"), this, SLOT(promptRestart()));
 	pAction = m_menu.addAction(QIcon(":/images/reset1.png"),
@@ -1225,11 +1218,11 @@ void qsynthMainForm::contextMenu ( const QPoint& pos )
 	QMenu *pEnginesMenu = m_menu.addMenu(tr("Engines"));
 	const int iTabCount = m_ui.TabBar->count();
 	for (int iTab = 0; iTab < iTabCount; ++iTab) {
-		pEngine = m_ui.TabBar->engine(iTab);
+		qsynthEngine *pEngine = m_ui.TabBar->engine(iTab);
 		if (pEngine) {
 			pAction = pEnginesMenu->addAction(pEngine->name());
 			pAction->setCheckable(true);
-			pAction->setChecked(pEngine == currentEngine());
+			pAction->setChecked(pEngine == pCurrentEngine);
 			pAction->setData(iTab);
 		}
 	}
@@ -1244,14 +1237,12 @@ void qsynthMainForm::contextMenu ( const QPoint& pos )
 	pAction->setChecked(m_pMessagesForm && m_pMessagesForm->isVisible());
 	pAction = m_menu.addAction(QIcon(":/images/options1.png"),
 		tr("&Options..."), this, SLOT(showOptionsForm()));
-//  pAction = menu.AddAction(QIcon(":/images/about1.png"),
-//      tr("A&bout..."), this, SLOT(showAboutForm()));
+//	pAction = menu.AddAction(QIcon(":/images/about1.png"),
+//		tr("A&bout..."), this, SLOT(showAboutForm()));
 	m_menu.addSeparator();
 
 	pAction = m_menu.addAction(QIcon(":/images/quit1.png"),
 		tr("&Quit"), this, SLOT(quitMainForm()));
-
-	m_menu.exec(pos);
 }
 
 
@@ -1506,6 +1497,8 @@ void qsynthMainForm::toggleMainForm (void)
 		raise();
 		activateWindow();
 	}
+
+	updateContextMenu();
 }
 
 
@@ -2040,6 +2033,9 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 			pSetup->iChorusType);
 	}
 
+	// Update context menu...
+	updateContextMenu();
+
 	// All is right.
 	appendMessages(sPrefix + tr("Synthesizer engine started."));
 
@@ -2176,6 +2172,9 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 		resetChannelsForm(pEngine, true);
 		stabilizeForm();
 	}
+
+	// Update context menu...
+	updateContextMenu();
 
 	// Wait a litle bit before continue...
 	QTime t;
@@ -2786,8 +2785,7 @@ void qsynthMainForm::quitMainForm (void)
 // Context menu event handler.
 void qsynthMainForm::contextMenuEvent( QContextMenuEvent *pEvent )
 {
-	// We'll just show up the usual system tray menu.
-	contextMenu(pEvent->globalPos());
+	m_menu.exec(pEvent->globalPos());
 }
 
 

@@ -1,7 +1,7 @@
 // qsynthSystemTray.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2017, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -22,8 +22,6 @@
 #include "qsynthAbout.h"
 #include "qsynthSystemTray.h"
 
-#include "qsynthMainForm.h"
-
 #include <QBitmap>
 #include <QPainter>
 
@@ -38,17 +36,16 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 // qsynthSystemTray -- Custom system tray widget.
 
 // Constructor.
-qsynthSystemTray::qsynthSystemTray ( qsynthMainForm *pParent )
+qsynthSystemTray::qsynthSystemTray ( QWidget *pParent )
 	: QSystemTrayIcon(pParent)
 {
 	// Set things inherited...
-	m_icon = pParent->windowIcon();
-	setBackground(Qt::transparent); // also updates pixmap.
-	QSystemTrayIcon::setIcon(m_icon);
-	QSystemTrayIcon::setToolTip(pParent->windowTitle());
-
-	// Set proper context menu, even though it's empty...
-	QSystemTrayIcon::setContextMenu(pParent->contextMenu());
+	if (pParent) {
+		m_icon = pParent->windowIcon();
+		setBackground(Qt::transparent); // also updates pixmap.
+		QSystemTrayIcon::setIcon(m_icon);
+		QSystemTrayIcon::setToolTip(pParent->windowTitle());
+	}
 
 	QObject::connect(this,
 		SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
@@ -69,9 +66,6 @@ void qsynthSystemTray::close (void)
 void qsynthSystemTray::activated ( QSystemTrayIcon::ActivationReason reason )
 {
 	switch (reason) {
-	case QSystemTrayIcon::Context:
-		emit contextMenuRequested(QCursor::pos());
-		break;
 	case QSystemTrayIcon::Trigger:
 		emit clicked();
 		// Fall trhu...

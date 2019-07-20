@@ -1,7 +1,7 @@
 // qsynthSystemTray.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2017, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -40,7 +40,7 @@ class qsynthSystemTray : public QSystemTrayIcon
 public:
 
 	// Constructor.
-	qsynthSystemTray(qsynthMainForm *pParent = 0);
+	qsynthSystemTray(QWidget *pParent = 0);
 	// Default destructor.
 	~qsynthSystemTray();
 
@@ -62,9 +62,6 @@ signals:
 
 	// Clicked signal.
 	void clicked();
-
-	// Context menu signal.
-	void contextMenuRequested(const QPoint& pos);
 
 protected slots:
 

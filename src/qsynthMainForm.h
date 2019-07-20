@@ -78,8 +78,6 @@ public:
 
 	enum KnobStyle { Classic, Vokimon, Peppino, Skulpture, Legacy };
 
-	QMenu *contextMenu();
-
 public slots:
 
 	void stabilizeForm();
@@ -88,8 +86,6 @@ protected slots:
 
 	void stdoutNotifySlot(int);
 	void sigtermNotifySlot(int);
-
-	void contextMenu(const QPoint&);
 
 	void programReset();
 	void systemReset();
@@ -148,6 +144,8 @@ protected:
 #ifdef CONFIG_SYSTEM_TRAY
 	void updateSystemTray();
 #endif
+
+	void updateContextMenu();
 
 	qsynthEngine *currentEngine() const;
 
