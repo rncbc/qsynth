@@ -1163,13 +1163,21 @@ void qsynthMainForm::updateSystemTray (void)
 #endif
 
 
+// Common context menu accessor.
+QMenu *qsynthMainForm::contextMenu (void)
+{
+	return &m_menu;
+}
+
+
 // System tray context menu request slot.
 void qsynthMainForm::contextMenu ( const QPoint& pos )
 {
 	if (m_pOptions == NULL)
 		return;
 
-	QMenu menu(this);
+	m_menu.clear();
+
 	QAction *pAction;
 
 	QString sHideMinimize = tr("Mi&nimize");
@@ -1180,41 +1188,41 @@ void qsynthMainForm::contextMenu ( const QPoint& pos )
 		sShowRestore  = tr("S&how");
 	}
 #endif
-	pAction = menu.addAction(isVisible()
+	pAction = m_menu.addAction(isVisible()
 		? sHideMinimize : sShowRestore, this, SLOT(toggleMainForm()));
-	menu.addSeparator();
+	m_menu.addSeparator();
 
 	qsynthEngine *pEngine = currentEngine();
-	pAction = menu.addAction(QIcon(":/images/add1.png"),
+	pAction = m_menu.addAction(QIcon(":/images/add1.png"),
 		tr("&New engine..."), this, SLOT(newEngine()));
-	pAction = menu.addAction(QIcon(":/images/remove1.png"),
+	pAction = m_menu.addAction(QIcon(":/images/remove1.png"),
 		tr("&Delete"), this, SLOT(deleteEngine()));
 	pAction->setEnabled(pEngine && !pEngine->isDefault());
-	menu.addSeparator();
+	m_menu.addSeparator();
 
-	bool bEnabled = (pEngine && pEngine->pSynth);
-	pAction = menu.addAction(QIcon(":/images/restart1.png"),
+	const bool bEnabled = (pEngine && pEngine->pSynth);
+	pAction = m_menu.addAction(QIcon(":/images/restart1.png"),
 		bEnabled ? tr("Re&start") : tr("&Start"), this, SLOT(promptRestart()));
-	pAction = menu.addAction(QIcon(":/images/reset1.png"),
+	pAction = m_menu.addAction(QIcon(":/images/reset1.png"),
 		tr("&Reset"), this, SLOT(programReset()));
 	pAction->setEnabled(bEnabled);
-	pAction = menu.addAction(QIcon(":/images/panic1.png"),
+	pAction = m_menu.addAction(QIcon(":/images/panic1.png"),
 		tr("&Panic"), this, SLOT(systemReset()));
 	pAction->setEnabled(bEnabled);
-	menu.addSeparator();
-	pAction = menu.addAction(QIcon(":/images/channels1.png"),
+	m_menu.addSeparator();
+	pAction = m_menu.addAction(QIcon(":/images/channels1.png"),
 		tr("&Channels"), this, SLOT(toggleChannelsForm()));
 	pAction->setCheckable(true);
 	pAction->setChecked(m_pChannelsForm && m_pChannelsForm->isVisible());
 	pAction->setEnabled(bEnabled);
-	pAction = menu.addAction(QIcon(":/images/setup1.png"),
+	pAction = m_menu.addAction(QIcon(":/images/setup1.png"),
 		tr("Set&up..."), this, SLOT(showSetupForm()));
-	menu.addSeparator();
+	m_menu.addSeparator();
 
 	// Construct the actual engines menu,
 	// overriding the last one, if any...
 	// Add presets menu to the main context menu...
-	QMenu *pEnginesMenu = menu.addMenu(tr("Engines"));
+	QMenu *pEnginesMenu = m_menu.addMenu(tr("Engines"));
 	const int iTabCount = m_ui.TabBar->count();
 	for (int iTab = 0; iTab < iTabCount; ++iTab) {
 		pEngine = m_ui.TabBar->engine(iTab);
@@ -1228,22 +1236,22 @@ void qsynthMainForm::contextMenu ( const QPoint& pos )
 	QObject::connect(pEnginesMenu,
 		SIGNAL(triggered(QAction*)),
 		SLOT(activateEnginesMenu(QAction*)));
-	menu.addSeparator();
+	m_menu.addSeparator();
 
-	pAction = menu.addAction(QIcon(":/images/messages1.png"),
+	pAction = m_menu.addAction(QIcon(":/images/messages1.png"),
 		tr("&Messages"), this, SLOT(toggleMessagesForm()));
 	pAction->setCheckable(true);
 	pAction->setChecked(m_pMessagesForm && m_pMessagesForm->isVisible());
-	pAction = menu.addAction(QIcon(":/images/options1.png"),
+	pAction = m_menu.addAction(QIcon(":/images/options1.png"),
 		tr("&Options..."), this, SLOT(showOptionsForm()));
 //  pAction = menu.AddAction(QIcon(":/images/about1.png"),
 //      tr("A&bout..."), this, SLOT(showAboutForm()));
-	menu.addSeparator();
+	m_menu.addSeparator();
 
-	pAction = menu.addAction(QIcon(":/images/quit1.png"),
+	pAction = m_menu.addAction(QIcon(":/images/quit1.png"),
 		tr("&Quit"), this, SLOT(quitMainForm()));
 
-	menu.exec(pos);
+	m_menu.exec(pos);
 }
 
 

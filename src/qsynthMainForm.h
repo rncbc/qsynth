@@ -24,6 +24,8 @@
 
 #include "ui_qsynthMainForm.h"
 
+#include <QMenu>
+
 
 // Forward declarations
 class qsynthOptions;
@@ -75,6 +77,8 @@ public:
 	void resetEngine(qsynthEngine *pEngine);
 
 	enum KnobStyle { Classic, Vokimon, Peppino, Skulpture, Legacy };
+
+	QMenu *contextMenu();
 
 public slots:
 
@@ -210,11 +214,14 @@ private:
 
 	bool m_bQuitForce;
 
+	// Common context menu.
+	QMenu m_menu;
+
 	// Kind-of singleton reference.
 	static qsynthMainForm *g_pMainForm;
 
 	// Style for qsynthKnob (QDial) widgets
-	QStyle* m_pKnobStyle;
+	QStyle* m_pKnobStyle;	
 };
 
 

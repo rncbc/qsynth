@@ -22,6 +22,8 @@
 #include "qsynthAbout.h"
 #include "qsynthSystemTray.h"
 
+#include "qsynthMainForm.h"
+
 #include <QBitmap>
 #include <QPainter>
 
@@ -36,23 +38,17 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 // qsynthSystemTray -- Custom system tray widget.
 
 // Constructor.
-qsynthSystemTray::qsynthSystemTray ( QWidget *pParent )
+qsynthSystemTray::qsynthSystemTray ( qsynthMainForm *pParent )
 	: QSystemTrayIcon(pParent)
 {
 	// Set things inherited...
-	if (pParent) {
-		m_icon = pParent->windowIcon();
-		setBackground(Qt::transparent); // also updates pixmap.
-		QSystemTrayIcon::setIcon(m_icon);
-		QSystemTrayIcon::setToolTip(pParent->windowTitle());
-	}
+	m_icon = pParent->windowIcon();
+	setBackground(Qt::transparent); // also updates pixmap.
+	QSystemTrayIcon::setIcon(m_icon);
+	QSystemTrayIcon::setToolTip(pParent->windowTitle());
 
 	// Set proper context menu, even though it's empty...
-	QSystemTrayIcon::setContextMenu(&m_menu);
-
-	QObject::connect(&m_menu,
-		SIGNAL(aboutToShow()),
-		SLOT(contextMenuRequested()));
+	QSystemTrayIcon::setContextMenu(pParent->contextMenu());
 
 	QObject::connect(this,
 		SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
@@ -73,11 +69,9 @@ void qsynthSystemTray::close (void)
 void qsynthSystemTray::activated ( QSystemTrayIcon::ActivationReason reason )
 {
 	switch (reason) {
-#if 0
 	case QSystemTrayIcon::Context:
-		contextMenuRequested();
+		emit contextMenuRequested(QCursor::pos());
 		break;
-#endif
 	case QSystemTrayIcon::Trigger:
 		emit clicked();
 		// Fall trhu...
@@ -87,16 +81,6 @@ void qsynthSystemTray::activated ( QSystemTrayIcon::ActivationReason reason )
 	default:
 		break;
 	}
-}
-
-
-void qsynthSystemTray::contextMenuRequested (void)
-{
-	// Don't show dummy menu box, ever...
-	if (qobject_cast<QMenu *> (sender()) == &m_menu)
-		m_menu.hide();
-
-	emit contextMenuRequested(QCursor::pos());
 }
 
 

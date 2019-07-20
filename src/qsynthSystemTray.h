@@ -23,9 +23,11 @@
 #define __qsynthSystemTray_h
 
 #include <QWidget>
-
 #include <QSystemTrayIcon>
-#include <QMenu>
+
+
+// Forward decls.
+class qsynthMainForm;
 
 
 //----------------------------------------------------------------------------
@@ -38,7 +40,7 @@ class qsynthSystemTray : public QSystemTrayIcon
 public:
 
 	// Constructor.
-	qsynthSystemTray(QWidget *pParent = 0);
+	qsynthSystemTray(qsynthMainForm *pParent = 0);
 	// Default destructor.
 	~qsynthSystemTray();
 
@@ -69,14 +71,10 @@ protected slots:
 	// Handle systeam tray activity.
 	void activated(QSystemTrayIcon::ActivationReason);
 
-	// Context menu slot.
-	void contextMenuRequested();
-
 private:
 
 	// Instance pixmap and background color.
 	QIcon   m_icon;
-	QMenu   m_menu;
 	QPixmap m_pixmap;
 	QPixmap m_pixmapOverlay;
 	QColor  m_background;
