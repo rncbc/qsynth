@@ -1187,15 +1187,14 @@ void qsynthMainForm::updateContextMenu (void)
 		? sHideMinimize : sShowRestore, this, SLOT(toggleMainForm()));
 	m_menu.addSeparator();
 
-	qsynthEngine *pCurrentEngine = currentEngine();
 	pAction = m_menu.addAction(QIcon(":/images/add1.png"),
 		tr("&New engine..."), this, SLOT(newEngine()));
 	pAction = m_menu.addAction(QIcon(":/images/remove1.png"),
 		tr("&Delete"), this, SLOT(deleteEngine()));
-	pAction->setEnabled(pCurrentEngine && !pCurrentEngine->isDefault());
+	pAction->setEnabled(g_pCurrentEngine && !g_pCurrentEngine->isDefault());
 	m_menu.addSeparator();
 
-	const bool bEnabled = (pCurrentEngine && pCurrentEngine->pSynth);
+	const bool bEnabled = (g_pCurrentEngine && g_pCurrentEngine->pSynth);
 	pAction = m_menu.addAction(QIcon(":/images/restart1.png"),
 		bEnabled ? tr("Re&start") : tr("&Start"), this, SLOT(promptRestart()));
 	pAction = m_menu.addAction(QIcon(":/images/reset1.png"),
@@ -1224,7 +1223,7 @@ void qsynthMainForm::updateContextMenu (void)
 		if (pEngine) {
 			pAction = pEnginesMenu->addAction(pEngine->name());
 			pAction->setCheckable(true);
-			pAction->setChecked(pEngine == pCurrentEngine);
+			pAction->setChecked(pEngine == g_pCurrentEngine);
 			pAction->setData(iTab);
 		}
 	}
@@ -1389,6 +1388,9 @@ void qsynthMainForm::newEngine (void)
 		// we better free it up right now...
 		delete pEngine;
 	}
+
+	// Refresh context-menu...
+	updateContextMenu();
 }
 
 
@@ -1520,6 +1522,8 @@ void qsynthMainForm::toggleMessagesForm (void)
 			m_pMessagesForm->activateWindow();
 		}
 	}
+
+	updateContextMenu();
 }
 
 
@@ -1539,6 +1543,8 @@ void qsynthMainForm::toggleChannelsForm (void)
 			m_pChannelsForm->activateWindow();
 		}
 	}
+
+	updateContextMenu();
 }
 
 
@@ -1675,6 +1681,9 @@ void qsynthMainForm::tabSelect ( int iTab )
 			resetChannelsForm(pEngine, false);
 		}
 	}
+
+	// Update context-menu for sure...
+	updateContextMenu();
 
 	// Finally, stabilize main form.
 	stabilizeForm();
@@ -2035,9 +2044,6 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 			pSetup->iChorusType);
 	}
 
-	// Update context menu...
-	updateContextMenu();
-
 	// All is right.
 	appendMessages(sPrefix + tr("Synthesizer engine started."));
 
@@ -2174,9 +2180,6 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 		resetChannelsForm(pEngine, true);
 		stabilizeForm();
 	}
-
-	// Update context menu...
-	updateContextMenu();
 
 	// Wait a litle bit before continue...
 	QTime t;
@@ -2785,13 +2788,13 @@ void qsynthMainForm::quitMainForm (void)
 
 
 // Context menu event handler.
-void qsynthMainForm::contextMenuEvent( QContextMenuEvent *pEvent )
+void qsynthMainForm::contextMenuEvent ( QContextMenuEvent *pEvent )
 {
 	m_menu.exec(pEvent->globalPos());
 }
 
 
-void qsynthMainForm::updateKnobs()
+void qsynthMainForm::updateKnobs (void)
 {
 	if (m_pOptions == NULL)
 		return;
