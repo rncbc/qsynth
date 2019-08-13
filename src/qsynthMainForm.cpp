@@ -136,7 +136,7 @@ static inline long lroundf ( float x )
 
 
 // The current selected engine.
-static qsynthEngine *g_pCurrentEngine = NULL;
+static qsynthEngine *g_pCurrentEngine = nullptr;
 
 
 #ifdef  CONFIG_FLUID_SERVER
@@ -152,7 +152,7 @@ static fluid_cmd_handler_t *qsynth_newclient ( void *data, char * )
 	if (pEngine)
 		return ::new_fluid_cmd_handler(pEngine->pSynth);
 	else
-		return NULL;
+		return nullptr;
 }
 
 #endif
@@ -211,7 +211,7 @@ struct qsynth_midi_channel
 
 
 static int                  g_iMidiChannels  = 0;
-static qsynth_midi_channel *g_pMidiChannels  = NULL;
+static qsynth_midi_channel *g_pMidiChannels  = nullptr;
 
 
 static void qsynth_midi_event ( qsynthEngine *pEngine,
@@ -317,7 +317,7 @@ struct qsynthEngineNode
 	qsynthEngineNode *pPrev;
 	qsynthEngineNode *pNext;
 
-} *g_pEngineList = NULL;
+} *g_pEngineList = nullptr;
 
 
 static int qsynth_sfont_free ( fluid_sfont_t *pSoundFont )
@@ -346,8 +346,8 @@ static fluid_sfont_t *qsynth_sfloader_load (
 	fprintf(stderr, "qsynth_sfloader_load(%p, \"%s\")\n", pLoader, pszFilename);
 #endif
 
-	if (pLoader == NULL)
-		return NULL;
+	if (pLoader == nullptr)
+		return nullptr;
 
 	// Look thru all the synths' sfonts for the requested one...
 	qsynthEngineNode *pNode = g_pEngineList;
@@ -372,7 +372,7 @@ static fluid_sfont_t *qsynth_sfloader_load (
 	}
 
 	// fluidsynth will call next (or default) loader...
-	return NULL;
+	return nullptr;
 }
 
 #endif	// QSYNTH_CUSTOM_LOADER
@@ -382,7 +382,7 @@ static fluid_sfont_t *qsynth_sfloader_load (
 // qsynthMainForm -- UI wrapper form.
 
 // Kind of singleton reference.
-qsynthMainForm *qsynthMainForm::g_pMainForm = NULL;
+qsynthMainForm *qsynthMainForm::g_pMainForm = nullptr;
 
 // Constructor.
 qsynthMainForm::qsynthMainForm (
@@ -395,13 +395,13 @@ qsynthMainForm::qsynthMainForm (
 	// Pseudo-singleton reference setup.
 	g_pMainForm = this;
 
-	m_pOptions = NULL;
+	m_pOptions = nullptr;
 
 	m_iTimerDelay = 0;
 
 	m_iCurrentTab = -1;
 
-	m_pStdoutNotifier = NULL;
+	m_pStdoutNotifier = nullptr;
 
 	m_iGainChanged   = 0;
 	m_iReverbChanged = 0;
@@ -412,12 +412,12 @@ qsynthMainForm::qsynthMainForm (
 	m_iChorusUpdated = 0;
 
 	// All forms are to be created later on setup.
-	m_pMessagesForm  = NULL;
-	m_pChannelsForm  = NULL;
+	m_pMessagesForm  = nullptr;
+	m_pChannelsForm  = nullptr;
 
 #ifdef CONFIG_SYSTEM_TRAY
 	// The eventual system tray widget.
-	m_pSystemTray = NULL;
+	m_pSystemTray = nullptr;
 	m_iSystemTrayState = 0;
 	m_bQuitClose = false;
 #endif
@@ -449,8 +449,8 @@ qsynthMainForm::qsynthMainForm (
 	sigemptyset(&sigterm.sa_mask);
 	sigterm.sa_flags = 0;
 	sigterm.sa_flags |= SA_RESTART;
-	::sigaction(SIGTERM, &sigterm, NULL);
-	::sigaction(SIGQUIT, &sigterm, NULL);
+	::sigaction(SIGTERM, &sigterm, nullptr);
+	::sigaction(SIGQUIT, &sigterm, nullptr);
 
 	// Ignore SIGHUP/SIGINT signals.
 	::signal(SIGHUP, SIG_IGN);
@@ -461,7 +461,7 @@ qsynthMainForm::qsynthMainForm (
 
 #else	// HAVE_SIGNAL_H
 
-	m_pSigtermNotifier = NULL;
+	m_pSigtermNotifier = nullptr;
 
 #endif	// !HAVE_SIGNAL_H
 
@@ -582,7 +582,7 @@ qsynthMainForm::qsynthMainForm (
 		SIGNAL(clicked()),
 		SLOT(deleteEngine()));
 
-	m_pKnobStyle = NULL;
+	m_pKnobStyle = nullptr;
 }
 
 
@@ -603,7 +603,7 @@ qsynthMainForm::~qsynthMainForm (void)
 	}
 
 	// No more options descriptor.
-	m_pOptions = NULL;
+	m_pOptions = nullptr;
 
 	// Finally drop any popup widgets around...
 	if (m_pMessagesForm)
@@ -618,7 +618,7 @@ qsynthMainForm::~qsynthMainForm (void)
 #endif
 
 	// Pseudo-singleton reference shut-down.
-	g_pMainForm = NULL;
+	g_pMainForm = nullptr;
 
 	if (m_pKnobStyle)
 		delete m_pKnobStyle;
@@ -640,7 +640,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 	m_pOptions = pOptions;
 
 	// What style do we create these forms?
-	QWidget *pParent = NULL;
+	QWidget *pParent = nullptr;
 	Qt::WindowFlags wflags = Qt::Window
 		| Qt::CustomizeWindowHint
 		| Qt::WindowTitleHint
@@ -847,13 +847,13 @@ void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine,
 	const QStringList& files, bool bSetup )
 {
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 
 	qsynthSetup *pSetup = pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return;
 
 	// Add each list item to Soundfont stack or MIDI player playlist...
@@ -916,7 +916,7 @@ void qsynthMainForm::dragEnterEvent ( QDragEnterEvent* pDragEnterEvent )
 {
 	bool bAccept = false;
 
-	if (pDragEnterEvent->source() == NULL) {
+	if (pDragEnterEvent->source() == nullptr) {
 		const QMimeData *pMimeData = pDragEnterEvent->mimeData();
 		if (pMimeData && pMimeData->hasUrls()) {
 			QListIterator<QUrl> iter(pMimeData->urls());
@@ -1086,7 +1086,7 @@ void qsynthMainForm::appendMessagesError( const QString& s )
 // Force update of the messages font.
 void qsynthMainForm::updateMessagesFont (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	if (m_pMessagesForm && !m_pOptions->sMessagesFont.isEmpty()) {
@@ -1100,7 +1100,7 @@ void qsynthMainForm::updateMessagesFont (void)
 // Update messages window line limit.
 void qsynthMainForm::updateMessagesLimit (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	if (m_pMessagesForm) {
@@ -1115,7 +1115,7 @@ void qsynthMainForm::updateMessagesLimit (void)
 // Force update of the output meters visibility.
 void qsynthMainForm::updateOutputMeters (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	if (m_pOptions->bOutputMeters)
@@ -1132,7 +1132,7 @@ void qsynthMainForm::updateOutputMeters (void)
 // System tray master switcher.
 void qsynthMainForm::updateSystemTray (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	if (!QSystemTrayIcon::isSystemTrayAvailable())
@@ -1142,10 +1142,10 @@ void qsynthMainForm::updateSystemTray (void)
 	//  Strange enough, this would close the application too.
 	//  m_pSystemTray->close();
 		delete m_pSystemTray;
-		m_pSystemTray = NULL;
+		m_pSystemTray = nullptr;
 	}
 
-	if (m_pOptions->bSystemTray && m_pSystemTray == NULL) {
+	if (m_pOptions->bSystemTray && m_pSystemTray == nullptr) {
 		m_pSystemTray = new qsynthSystemTray(this);
 		m_pSystemTray->setContextMenu(&m_menu);
 		m_pSystemTray->show();
@@ -1168,7 +1168,7 @@ void qsynthMainForm::updateSystemTray (void)
 // Common context menu request slot.
 void qsynthMainForm::updateContextMenu (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	m_menu.clear();
@@ -1407,7 +1407,7 @@ void qsynthMainForm::deleteEngine (void)
 // Delete and engine instance.
 bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, int iTab )
 {
-	if (pEngine == NULL || iTab < 0)
+	if (pEngine == nullptr || iTab < 0)
 		return false;
 
 	// Try to prompt user if he/she really wants this...
@@ -1424,7 +1424,7 @@ bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, int iTab )
 		stopEngine(pEngine);
 		// Better nullify the current reference, if applicable.
 		if (g_pCurrentEngine == pEngine)
-			g_pCurrentEngine = NULL;
+			g_pCurrentEngine = nullptr;
 		if (m_iCurrentTab == iTab)
 			m_iCurrentTab = -1;
 		// Nows time to remove those crappy entries...
@@ -1443,7 +1443,7 @@ bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, int iTab )
 // Edit settings of a given engine instance.
 bool qsynthMainForm::setupEngineTab ( qsynthEngine *pEngine, int iTab )
 {
-	if (pEngine == NULL || pEngine->setup() == NULL)
+	if (pEngine == nullptr || pEngine->setup() == nullptr)
 		return false;
 
 	qsynthSetupForm setupForm(this);
@@ -1476,7 +1476,7 @@ bool qsynthMainForm::setupEngineTab ( qsynthEngine *pEngine, int iTab )
 // Main form visibility requester slot.
 void qsynthMainForm::toggleMainForm (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	m_pOptions->saveWidgetGeometry(this, true);
@@ -1509,7 +1509,7 @@ void qsynthMainForm::toggleMainForm (void)
 // Message log form requester slot.
 void qsynthMainForm::toggleMessagesForm (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	if (m_pMessagesForm) {
@@ -1530,7 +1530,7 @@ void qsynthMainForm::toggleMessagesForm (void)
 // Channels view form requester slot.
 void qsynthMainForm::toggleChannelsForm (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	if (m_pChannelsForm) {
@@ -1560,7 +1560,7 @@ void qsynthMainForm::showSetupForm (void)
 // Setup dialog requester slot.
 void qsynthMainForm::showOptionsForm (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	qsynthOptionsForm *pOptionsForm = new qsynthOptionsForm(this);
@@ -1707,7 +1707,7 @@ void qsynthMainForm::tabContextMenu ( int iTab, const QPoint& pos )
 	menu.addSeparator();
 	pAction = menu.addAction(QIcon(":/images/setup1.png"),
 		tr("Set&up..."), this, SLOT(showSetupForm()));
-	pAction->setEnabled(pEngine != NULL);
+	pAction->setEnabled(pEngine != nullptr);
 
 	menu.exec(pos);
 }
@@ -1825,13 +1825,13 @@ qsynthEngine *qsynthMainForm::currentEngine (void) const
 // Start the fluidsynth clone, based on given settings.
 bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 {
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return false;
 	if (pEngine->pSynth)
 		return true;
 
 	qsynthSetup *pSetup = pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return false;
 
 	// Start realizing settings...
@@ -1843,7 +1843,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 	// Create the synthesizer.
 	appendMessages(sPrefix + tr("Creating synthesizer engine") + sElipsis);
 	pEngine->pSynth = ::new_fluid_synth(pSetup->fluid_settings());
-	if (pEngine->pSynth == NULL) {
+	if (pEngine->pSynth == nullptr) {
 		appendMessagesError(sPrefix
 			+ tr("Failed to create the synthesizer.\n\nCannot continue without it."));
 		return false;
@@ -1861,7 +1861,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 	qsynthEngineNode *pNode = new qsynthEngineNode;
 	pNode->pEngine = pEngine;
 	pNode->pNext   = g_pEngineList;
-	pNode->pPrev   = NULL;
+	pNode->pPrev   = nullptr;
 	if (g_pEngineList)
 		g_pEngineList->pPrev = pNode;
 	g_pEngineList = pNode;
@@ -1901,17 +1901,17 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 	appendMessages(sPrefix +
 		tr("Creating audio driver (%1)")
 		.arg(pSetup->sAudioDriver) + sElipsis);
-	pEngine->pAudioDriver  = NULL;
+	pEngine->pAudioDriver  = nullptr;
 	pEngine->bMeterEnabled = false;
 	if (m_pOptions->bOutputMeters) {
 		pEngine->pAudioDriver  = ::new_fluid_audio_driver2(
 			pSetup->fluid_settings(), qsynth_process, pEngine);
-		pEngine->bMeterEnabled = (pEngine->pAudioDriver != NULL);
+		pEngine->bMeterEnabled = (pEngine->pAudioDriver != nullptr);
 	}
-	if (pEngine->pAudioDriver == NULL)
+	if (pEngine->pAudioDriver == nullptr)
 		pEngine->pAudioDriver = ::new_fluid_audio_driver(
 			pSetup->fluid_settings(), pEngine->pSynth);
-	if (pEngine->pAudioDriver == NULL) {
+	if (pEngine->pAudioDriver == nullptr) {
 		appendMessagesError(sPrefix +
 			tr("Failed to create the audio driver (%1).\n\n"
 			"Cannot continue without it.")
@@ -1933,7 +1933,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 			? qsynth_dump_postrouter
 			: qsynth_handle_midi_event,
 			(void *) pEngine);
-		if (pEngine->pMidiRouter == NULL) {
+		if (pEngine->pMidiRouter == nullptr) {
 			appendMessagesError(sPrefix +
 				tr("Failed to create the MIDI input router (%1).\n\n"
 				"No MIDI input will be available.")
@@ -1950,7 +1950,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 				? ::fluid_midi_dump_prerouter
 				: ::fluid_midi_router_handle_midi_event,
 				static_cast<void *> (pEngine->pMidiRouter));
-			if (pEngine->pMidiDriver == NULL)
+			if (pEngine->pMidiDriver == nullptr)
 				appendMessagesError(sPrefix +
 					tr("Failed to create the MIDI driver (%1).\n\n"
 					"No MIDI input will be available.")
@@ -1961,7 +1961,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 	// Create the MIDI player.
 	appendMessages(sPrefix + tr("Creating MIDI player") + sElipsis);
 	pEngine->pPlayer = ::new_fluid_player(pEngine->pSynth);
-	if (pEngine->pPlayer == NULL) {
+	if (pEngine->pPlayer == nullptr) {
 		appendMessagesError(sPrefix +
 			tr("Failed to create the MIDI player.\n\n"
 			"Continuing without a player."));
@@ -2005,7 +2005,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 		pEngine->pServer = ::new_fluid_server(
 			pSetup->fluid_settings(), qsynth_newclient, pEngine);
 	#endif
-		if (pEngine->pServer == NULL)
+		if (pEngine->pServer == nullptr)
 			appendMessagesError(sPrefix +
 				tr("Failed to create the server.\n\n"
 				"Continuing without it."));
@@ -2054,13 +2054,13 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 // Stop the fluidsynth clone.
 void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 {
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 
 	qsynthSetup *pSetup = pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return;
 
 	// Only if there's a legal audio driver...
@@ -2087,7 +2087,7 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 	//  ::fluid_server_join(pEngine->pServer);
 		appendMessages(sPrefix + tr("Destroying server") + sElipsis);
 		::delete_fluid_server(pEngine->pServer);
-		pEngine->pServer = NULL;
+		pEngine->pServer = nullptr;
 	}
 #endif
 
@@ -2099,7 +2099,7 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 		::fluid_player_join(pEngine->pPlayer);
 		appendMessages(sPrefix + tr("Destroying MIDI player") + sElipsis);
 		::delete_fluid_player(pEngine->pPlayer);
-		pEngine->pPlayer = NULL;
+		pEngine->pPlayer = nullptr;
 	}
 
 	// Destroy MIDI router.
@@ -2107,18 +2107,18 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 		if (pEngine->pMidiDriver) {
 			appendMessages(sPrefix + tr("Destroying MIDI driver") + sElipsis);
 			::delete_fluid_midi_driver(pEngine->pMidiDriver);
-			pEngine->pMidiDriver = NULL;
+			pEngine->pMidiDriver = nullptr;
 		}
 		appendMessages(sPrefix + tr("Destroying MIDI router") + sElipsis);
 		::delete_fluid_midi_router(pEngine->pMidiRouter);
-		pEngine->pMidiRouter = NULL;
+		pEngine->pMidiRouter = nullptr;
 	}
 
 	// Destroy audio driver.
 	if (pEngine->pAudioDriver) {
 		appendMessages(sPrefix + tr("Destroying audio driver") + sElipsis);
 		::delete_fluid_audio_driver(pEngine->pAudioDriver);
-		pEngine->pAudioDriver = NULL;
+		pEngine->pAudioDriver = nullptr;
 		pEngine->bMeterEnabled = false;
 	}
 
@@ -2152,7 +2152,7 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 	if (pEngine->pSynth) {
 		appendMessages(sPrefix + tr("Destroying synthesizer engine") + sElipsis);
 		::delete_fluid_synth(pEngine->pSynth);
-		pEngine->pSynth = NULL;
+		pEngine->pSynth = nullptr;
 		// We're done.
 		appendMessages(sPrefix + tr("Synthesizer engine terminated."));
 	}
@@ -2328,13 +2328,13 @@ void qsynthMainForm::setEngineChorus ( qsynthEngine *pEngine,
 // Front panel state load routine.
 void qsynthMainForm::loadPanelSettings ( qsynthEngine *pEngine, bool bUpdate )
 {
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-//	if (pEngine->pSynth == NULL || pEngine->pAudioDriver == NULL)
+//	if (pEngine->pSynth == nullptr || pEngine->pAudioDriver == nullptr)
 //		return;
 
 	qsynthSetup *pSetup = pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return;
 
 	// Reset change flags.
@@ -2392,13 +2392,13 @@ void qsynthMainForm::loadPanelSettings ( qsynthEngine *pEngine, bool bUpdate )
 // Front panel state save routine.
 void qsynthMainForm::savePanelSettings ( qsynthEngine *pEngine )
 {
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL || pEngine->pAudioDriver == NULL)
+	if (pEngine->pSynth == nullptr || pEngine->pAudioDriver == nullptr)
 		return;
 
 	qsynthSetup *pSetup = pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return;
 
 	pSetup->fGain = qsynth_get_range_value(
@@ -2429,7 +2429,7 @@ void qsynthMainForm::savePanelSettings ( qsynthEngine *pEngine )
 // Complete refresh of the floating channels form.
 void qsynthMainForm::resetChannelsForm ( qsynthEngine *pEngine, bool bPreset )
 {
-	if (m_pChannelsForm == NULL)
+	if (m_pChannelsForm == nullptr)
 		return;
 
 	// Setup the channels view window.
@@ -2438,7 +2438,7 @@ void qsynthMainForm::resetChannelsForm ( qsynthEngine *pEngine, bool bPreset )
 	// Reset the channel event state flaggers.
 	if (g_pMidiChannels)
 		delete [] g_pMidiChannels;
-	g_pMidiChannels = NULL;
+	g_pMidiChannels = nullptr;
 	g_iMidiChannels = 0;
 	// Prepare the new channel event state flaggers.
 	if (pEngine && pEngine->pSynth)
@@ -2462,9 +2462,9 @@ void qsynthMainForm::reverbActivate ( bool bActive )
 		return;
 
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 
 	setEngineReverbOn(pEngine, bActive);
@@ -2483,9 +2483,9 @@ void qsynthMainForm::chorusActivate ( bool bActive )
 		return;
 
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 
 	setEngineChorusOn(pEngine, bActive);
@@ -2528,9 +2528,9 @@ void qsynthMainForm::resetGain (void)
 		return;
 
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 	m_iGainUpdated++;
 
@@ -2551,9 +2551,9 @@ void qsynthMainForm::resetReverb (void)
 		return;
 
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 	m_iReverbUpdated++;
 
@@ -2579,9 +2579,9 @@ void qsynthMainForm::resetChorus (void)
 		return;
 
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 	m_iChorusUpdated++;
 
@@ -2608,9 +2608,9 @@ void qsynthMainForm::updateGain (void)
 		return;
 
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 	m_iGainUpdated++;
 
@@ -2632,9 +2632,9 @@ void qsynthMainForm::updateReverb (void)
 		return;
 
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 	m_iReverbUpdated++;
 
@@ -2664,9 +2664,9 @@ void qsynthMainForm::updateChorus (void)
 		return;
 
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 	m_iChorusUpdated++;
 
@@ -2693,9 +2693,9 @@ void qsynthMainForm::updateChorus (void)
 void qsynthMainForm::refreshGain (void)
 {
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 
 	float fGain = ::fluid_synth_get_gain(pEngine->pSynth);
@@ -2709,9 +2709,9 @@ void qsynthMainForm::refreshGain (void)
 void qsynthMainForm::refreshReverb (void)
 {
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 
 	const double fReverbRoom  = ::fluid_synth_get_reverb_roomsize(pEngine->pSynth);
@@ -2734,9 +2734,9 @@ void qsynthMainForm::refreshReverb (void)
 void qsynthMainForm::refreshChorus (void)
 {
 	qsynthEngine *pEngine = currentEngine();
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
-	if (pEngine->pSynth == NULL)
+	if (pEngine->pSynth == nullptr)
 		return;
 
 	const int    iChorusNr    = ::fluid_synth_get_chorus_nr(pEngine->pSynth);
@@ -2796,7 +2796,7 @@ void qsynthMainForm::contextMenuEvent ( QContextMenuEvent *pEvent )
 
 void qsynthMainForm::updateKnobs (void)
 {
-	if (m_pOptions == NULL)
+	if (m_pOptions == nullptr)
 		return;
 
 	if (m_pKnobStyle)
@@ -2817,7 +2817,7 @@ void qsynthMainForm::updateKnobs (void)
 	    m_pKnobStyle = new qsynthDialSkulptureStyle();
 	    break;
 	default:
-		m_pKnobStyle = NULL;
+		m_pKnobStyle = nullptr;
 		break;
 	}
 

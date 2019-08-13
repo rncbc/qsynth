@@ -378,12 +378,12 @@ qsynthDialSkulptureStyle::drawComplexControl( ComplexControl cc,
     }
 
     const QStyleOptionSlider *option = qstyleoption_cast<const QStyleOptionSlider *>(optc);
-    if (option == NULL)
+    if (option == nullptr)
         return;
 
     int d = qMin(option->rect.width() & ~1, option->rect.height() & ~1);
     QStyleOptionSlider opt = *option;
-    const QAbstractSlider *slider = NULL;
+    const QAbstractSlider *slider = nullptr;
     // always highlight knob if pressed (even if mouse is not over knob)
     if ((option->state & QStyle::State_HasFocus) && (slider = qobject_cast<const QAbstractSlider *>(widget))) {
         if (slider->isSliderDown()) {

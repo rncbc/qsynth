@@ -1,7 +1,7 @@
 // qsynthSetup.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -32,7 +32,7 @@
 // Constructor.
 qsynthSetup::qsynthSetup (void)
 {
-	m_pFluidSettings = NULL;
+	m_pFluidSettings = nullptr;
 
 	sDefPresetName = QObject::tr("(default)");
 }
@@ -44,7 +44,7 @@ qsynthSetup::~qsynthSetup (void)
 	if (m_pFluidSettings)
 		::delete_fluid_settings(m_pFluidSettings);
 
-	m_pFluidSettings = NULL;
+	m_pFluidSettings = nullptr;
 }
 
 

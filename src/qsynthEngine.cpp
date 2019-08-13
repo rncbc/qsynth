@@ -41,12 +41,12 @@ qsynthEngine::qsynthEngine ( qsynthOptions *pOptions, const QString& sName )
 	// From now on, we must have a name.
 	m_sName = m_pSetup->sDisplayName;
 
-	pSynth       = NULL;
-	pAudioDriver = NULL;
-	pMidiRouter  = NULL;
-	pMidiDriver  = NULL;
-	pPlayer      = NULL;
-	pServer      = NULL;
+	pSynth       = nullptr;
+	pAudioDriver = nullptr;
+	pMidiRouter  = nullptr;
+	pMidiDriver  = nullptr;
+	pPlayer      = nullptr;
+	pServer      = nullptr;
 
 	iMidiEvent = 0;
 	iMidiState = 0;
@@ -62,7 +62,7 @@ qsynthEngine::~qsynthEngine (void)
 {
 	if (!m_bDefault && m_pSetup) {
 		delete m_pSetup;
-		m_pSetup = NULL;
+		m_pSetup = nullptr;
 	}
 }
 

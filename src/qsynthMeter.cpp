@@ -1,7 +1,7 @@
 // qsynthMeter.cpp
 //
 /****************************************************************************
-   Copyright (C) 2004-2015, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -279,8 +279,8 @@ qsynthMeter::qsynthMeter ( QWidget *pParent )
 {
 	m_iPortCount   = 2;	// FIXME: Default port count.
 	m_iScaleCount  = m_iPortCount;
-	m_ppValues     = NULL;
-	m_ppScales     = NULL;
+	m_ppValues     = nullptr;
+	m_ppScales     = nullptr;
 
 	m_fScale = 0.0f;
 

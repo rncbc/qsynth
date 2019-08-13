@@ -45,7 +45,7 @@ qsynthDialVokiStyle::drawComplexControl(ComplexControl cc, const QStyleOptionCom
 	}
 	
 	const QStyleOptionSlider *dial = qstyleoption_cast<const QStyleOptionSlider *>(opt); 
-	if (dial == NULL)
+	if (dial == nullptr)
 		return;
 	
 	double angle = DIAL_MIN // offset

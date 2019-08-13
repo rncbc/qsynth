@@ -69,7 +69,7 @@ qsynthDialClassicStyle::drawComplexControl(ComplexControl cc, const QStyleOption
 	}
 	
 	const QStyleOptionSlider *dial = qstyleoption_cast<const QStyleOptionSlider *>(opt); 
-	if (dial == NULL)
+	if (dial == nullptr)
 		return;
 	
     float angle = DIAL_MIN + (DIAL_RANGE * (float(dial->sliderValue - dial->minimum) /

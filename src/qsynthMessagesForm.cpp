@@ -1,7 +1,7 @@
 // qsynthMessagesForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -55,7 +55,7 @@ qsynthMessagesForm::qsynthMessagesForm (
 	m_iMessagesLines = 0;
 	setMessagesLimit(QSYNTH_MESSAGES_MAXLINES);
 
-	m_pMessagesLog = NULL;
+	m_pMessagesLog = nullptr;
 }
 
 
@@ -127,7 +127,7 @@ void qsynthMessagesForm::setMessagesLimit ( int iMessagesLimit )
 // Messages logging stuff.
 bool qsynthMessagesForm::isLogging (void) const
 {
-	return (m_pMessagesLog != NULL);
+	return (m_pMessagesLog != nullptr);
 }
 
 void qsynthMessagesForm::setLogging ( bool bEnabled, const QString& sFilename )
@@ -137,7 +137,7 @@ void qsynthMessagesForm::setLogging ( bool bEnabled, const QString& sFilename )
 			.arg(QDateTime::currentDateTime().toString()));
 		m_pMessagesLog->close();
 		delete m_pMessagesLog;
-		m_pMessagesLog = NULL;
+		m_pMessagesLog = nullptr;
 	}
 
 	if (bEnabled) {
@@ -147,7 +147,7 @@ void qsynthMessagesForm::setLogging ( bool bEnabled, const QString& sFilename )
 				.arg(QDateTime::currentDateTime().toString()));
 		} else {
 			delete m_pMessagesLog;
-			m_pMessagesLog = NULL;
+			m_pMessagesLog = nullptr;
 		}
 	}
 }

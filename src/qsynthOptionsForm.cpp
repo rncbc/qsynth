@@ -1,7 +1,7 @@
 // qsynthOptionsForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -46,7 +46,7 @@ qsynthOptionsForm::qsynthOptionsForm (
 	m_ui.setupUi(this);
 
 	// No options descriptor initially (the caller will set it).
-	m_pOptions = NULL;
+	m_pOptions = nullptr;
 
 	// Initialize dirty control state.
 	m_iDirtySetup = 0;

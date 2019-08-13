@@ -152,12 +152,12 @@ static void qsynth_settings_foreach (
 	case FLUID_STR_TYPE:
 	{
 	#ifdef CONFIG_FLUID_SETTINGS_GETSTR_DEFAULT
-		char *pszDefault = NULL;
+		char *pszDefault = nullptr;
 		::fluid_settings_getstr_default(pFluidSettings, pszName, &pszDefault);
 	#else
 		const char *pszDefault = ::fluid_settings_getstr_default(pFluidSettings, pszName);
 	#endif
-		char *pszCurrent = NULL;
+		char *pszCurrent = nullptr;
 	#ifdef CONFIG_FLUID_SETTINGS_DUPSTR
 		::fluid_settings_dupstr(pFluidSettings, pszName, &pszCurrent);
 	#else
@@ -192,8 +192,8 @@ qsynthSetupForm::qsynthSetupForm (
 	m_ui.setupUi(this);
 
 	// No settings descriptor initially (the caller will set it).
-	m_pSetup = NULL;
-	m_pOptions = NULL;
+	m_pSetup = nullptr;
+	m_pOptions = nullptr;
 
 	// Initialize dirty control state.
 	m_iDirtySetup = 0;
@@ -383,7 +383,7 @@ void qsynthSetupForm::setComboBoxCurrentText (
 void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bool bNew )
 {
 	// Check this first.
-	if (pOptions == NULL || pEngine == NULL)
+	if (pOptions == nullptr || pEngine == nullptr)
 		return;
 
 	// Set reference descriptors.
@@ -410,7 +410,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	// Set data context.
 	data.pSetup    = m_pSetup;
 	data.pListView = m_ui.SettingsListView;
-	data.pListItem = NULL;
+	data.pListItem = nullptr;
 	// And start filling it in...
 	::fluid_settings_foreach(m_pSetup->fluid_settings(), &data, qsynth_settings_foreach);
 
@@ -502,7 +502,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	// Load the soundfonts view.
 	m_ui.SoundFontListView->clear();
 	m_ui.SoundFontListView->setUpdatesEnabled(false);
-	QTreeWidgetItem *pItem = NULL;
+	QTreeWidgetItem *pItem = nullptr;
 	if (pEngine->pSynth) {
 		// Load soundfont view from actual synth stack...
 		int cSoundFonts = ::fluid_synth_sfcount(pEngine->pSynth);
@@ -662,8 +662,8 @@ void qsynthSetupForm::updateMidiDevices ( const QString& sMidiDriver )
 {
 	qsynth_settings_data data;
 	data.pSetup    = m_pSetup;
-	data.pListView = NULL;
-	data.pListItem = NULL;
+	data.pListView = nullptr;
+	data.pListItem = nullptr;
 
 	// MIDI Device combobox options;
 	QString sOldText = m_ui.MidiDeviceComboBox->currentText();
@@ -695,8 +695,8 @@ void qsynthSetupForm::updateAudioDevices ( const QString& sAudioDriver )
 {
 	qsynth_settings_data data;
 	data.pSetup    = m_pSetup;
-	data.pListView = NULL;
-	data.pListItem = NULL;
+	data.pListView = nullptr;
+	data.pListItem = nullptr;
 
 	// Audio Device combobox options;
 	QString sOldText = m_ui.AudioDeviceComboBox->currentText();
@@ -797,7 +797,7 @@ void qsynthSetupForm::contextMenuRequested ( const QPoint& pos )
 	int iItem = 0;
 	int iItemCount = 0;
 	QTreeWidgetItem *pItem = m_ui.SoundFontListView->itemAt(pos);
-	if (pItem == NULL)
+	if (pItem == nullptr)
 		pItem = m_ui.SoundFontListView->currentItem();
 	if (pItem) {
 		iItem = m_ui.SoundFontListView->indexOfTopLevelItem(pItem);
@@ -812,7 +812,7 @@ void qsynthSetupForm::contextMenuRequested ( const QPoint& pos )
 		QIcon(":/images/open1.png"),
 		tr("Open..."), this, SLOT(openSoundFont()));
 	menu.addSeparator();
-	bool bEnabled = (pItem != NULL);
+	bool bEnabled = (pItem != nullptr);
 	pAction = menu.addAction(
 		QIcon(":/images/edit1.png"),
 		tr("Edit"), this, SLOT(editSoundFont()));
@@ -860,7 +860,7 @@ void qsynthSetupForm::openSoundFont (void)
 		tr("Soundfont files") + " (*.sf2 *.SF2 *.sf3 *.SF3)" // Filter files.
 	);
 
-	QTreeWidgetItem *pItem = NULL;
+	QTreeWidgetItem *pItem = nullptr;
 
 	// For avery selected soundfont to load...
 	QStringListIterator iter(soundfonts);
@@ -881,7 +881,7 @@ void qsynthSetupForm::openSoundFont (void)
 				continue;
 			}
 			// Start inserting in the current selected or last item...
-			if (pItem == NULL) {
+			if (pItem == nullptr) {
 				pItem = m_ui.SoundFontListView->currentItem();
 				if (pItem)
 					pItem->setSelected(false);

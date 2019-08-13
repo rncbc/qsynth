@@ -147,7 +147,7 @@ qsynthDialPeppinoStyle::drawComplexControl(ComplexControl cc, const QStyleOption
 	}
 
 	const QStyleOptionSlider *dial = qstyleoption_cast<const QStyleOptionSlider *>(opt);
-	if (dial == NULL)
+	if (dial == nullptr)
 		return;
 
 	p->save();

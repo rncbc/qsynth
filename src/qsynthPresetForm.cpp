@@ -1,7 +1,7 @@
 // qsynthPresetForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -65,7 +65,7 @@ qsynthPresetForm::qsynthPresetForm (
 	// Setup UI struct...
 	m_ui.setupUi(this);
 
-	m_pSynth = NULL;
+	m_pSynth = nullptr;
 	m_iChan  = 0;
 	m_iBank  = 0;
 	m_iProg  = 0;
@@ -151,7 +151,7 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 	m_ui.BankListView->setSortingEnabled(false);
 	m_ui.BankListView->clear();
 
-	QTreeWidgetItem *pBankItem = NULL;
+	QTreeWidgetItem *pBankItem = nullptr;
 	// For all soundfonts (in reversed stack order) fill the available banks...
 	int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
 	for (int i = 0; i < cSoundFonts; ++i) {
@@ -172,7 +172,7 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 		#endif
 			fluid_preset_t *pPreset;
 		#ifdef CONFIG_FLUID_SFONT_ITERATION_NEXT
-			while ((pPreset = ::fluid_sfont_iteration_next(pSoundFont)) != NULL) {
+			while ((pPreset = ::fluid_sfont_iteration_next(pSoundFont)) != nullptr) {
 		#else
 			fluid_preset_t preset;
 			pPreset = &preset;
@@ -279,8 +279,8 @@ bool qsynthPresetForm::validateForm()
 {
 	bool bValid = true;
 
-	bValid = bValid && (m_ui.BankListView->currentItem() != NULL);
-	bValid = bValid && (m_ui.ProgListView->currentItem() != NULL);
+	bValid = bValid && (m_ui.BankListView->currentItem() != nullptr);
+	bValid = bValid && (m_ui.ProgListView->currentItem() != nullptr);
 
 	return bValid;
 }
@@ -289,7 +289,7 @@ bool qsynthPresetForm::validateForm()
 // Realize a bank-program selection preset.
 void qsynthPresetForm::setBankProg ( int iBank, int iProg )
 {
-	if (m_pSynth == NULL)
+	if (m_pSynth == nullptr)
 		return;
 
 	// just select the synth's program preset...
@@ -341,7 +341,7 @@ QTreeWidgetItem *qsynthPresetForm::findBankItem ( int iBank )
 	if (iter.hasNext())
 		return iter.next();
 	else
-		return NULL;
+		return nullptr;
 }
 
 
@@ -356,7 +356,7 @@ QTreeWidgetItem *qsynthPresetForm::findProgItem ( int iProg )
 	if (iter.hasNext())
 		return iter.next();
 	else
-		return NULL;
+		return nullptr;
 }
 
 
@@ -364,11 +364,11 @@ QTreeWidgetItem *qsynthPresetForm::findProgItem ( int iProg )
 // Bank change slot.
 void qsynthPresetForm::bankChanged (void)
 {
-	if (m_pSynth == NULL)
+	if (m_pSynth == nullptr)
 		return;
 
 	QTreeWidgetItem *pBankItem = m_ui.BankListView->currentItem();
-	if (pBankItem == NULL)
+	if (pBankItem == nullptr)
 		return;
 	int iBankSelected = pBankItem->text(0).toInt();
 
@@ -377,7 +377,7 @@ void qsynthPresetForm::bankChanged (void)
 	m_ui.ProgListView->setSortingEnabled(false);
 	m_ui.ProgListView->clear();
 //	fluid_preset_t preset;
-	QTreeWidgetItem *pProgItem = NULL;
+	QTreeWidgetItem *pProgItem = nullptr;
 	// For all soundfonts (in reversed stack order) fill the available programs...
 	int cSoundFonts = ::fluid_synth_sfcount(m_pSynth);
 	for (int i = 0; i < cSoundFonts; ++i) {
@@ -403,7 +403,7 @@ void qsynthPresetForm::bankChanged (void)
 		#endif
 			fluid_preset_t *pPreset;
 		#ifdef CONFIG_FLUID_SFONT_ITERATION_NEXT
-			while ((pPreset = ::fluid_sfont_iteration_next(pSoundFont)) != NULL) {
+			while ((pPreset = ::fluid_sfont_iteration_next(pSoundFont)) != nullptr) {
 		#else
 			fluid_preset_t preset;
 			pPreset = &preset;
@@ -450,7 +450,7 @@ void qsynthPresetForm::bankChanged (void)
 // Program change slot.
 void qsynthPresetForm::progChanged (void)
 {
-	if (m_pSynth == NULL)
+	if (m_pSynth == nullptr)
 		return;
 
 	// Which preview state...

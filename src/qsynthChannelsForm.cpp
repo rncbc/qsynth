@@ -1,7 +1,7 @@
 // qsynthChannelsForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -51,12 +51,12 @@ qsynthChannelsForm::qsynthChannelsForm (
 	m_ui.setupUi(this);
 
 	m_iChannels  = 0;
-	m_ppChannels = NULL;
+	m_ppChannels = nullptr;
 
 	// No setup synth references initially (the caller will set them).
-	m_pOptions = NULL;
-	m_pEngine  = NULL;
-	m_pSynth   = NULL;
+	m_pOptions = nullptr;
+	m_pEngine  = nullptr;
+	m_pSynth   = nullptr;
 
 	// Initialize dirty control state.
 	m_iDirtySetup = 0;
@@ -120,7 +120,7 @@ qsynthChannelsForm::qsynthChannelsForm (
 qsynthChannelsForm::~qsynthChannelsForm (void)
 {
 	// Nullify references.
-	setup(NULL, NULL, false);
+	setup(nullptr, nullptr, false);
 
 	// Delete pixmaps.
 	delete m_pXpmLedOn;
@@ -166,7 +166,7 @@ void qsynthChannelsForm::setup ( qsynthOptions *pOptions,
 	// Set the proper descriptors.
 	m_pOptions = pOptions;
 	m_pEngine  = pEngine;
-	m_pSynth   = pEngine ? pEngine->pSynth : NULL;
+	m_pSynth   = pEngine ? pEngine->pSynth : nullptr;
 
 	// Update caption.
 	QString sTitle = QSYNTH_TITLE ": " + tr("Channels");
@@ -177,13 +177,13 @@ void qsynthChannelsForm::setup ( qsynthOptions *pOptions,
 	// Free up current channel list view.
 	if (m_ppChannels) {
 		delete [] m_ppChannels;
-		m_ppChannels = NULL;
+		m_ppChannels = nullptr;
 		m_iChannels  = 0;
 	}
 
 	// Allocate a new channel list view...
 	m_ui.ChannelsListView->clear();
-	if (m_pSynth && m_ppChannels == NULL) {
+	if (m_pSynth && m_ppChannels == nullptr) {
 		m_iChannels = ::fluid_synth_count_midi_channels(m_pSynth);
 		if (m_iChannels > 0)
 			m_ppChannels = new qsynthChannelsItemPtr [m_iChannels];
@@ -214,7 +214,7 @@ void qsynthChannelsForm::setup ( qsynthOptions *pOptions,
 // Channel item update.
 void qsynthChannelsForm::updateChannel ( int iChan )
 {
-	if (m_pSynth == NULL || m_ppChannels == NULL)
+	if (m_pSynth == nullptr || m_ppChannels == nullptr)
 		return;
 	if (iChan < 0 || iChan >= m_iChannels)
 		return;
@@ -323,11 +323,11 @@ void qsynthChannelsForm::updateAllChannels (void)
 // All channels reset update.
 void qsynthChannelsForm::resetAllChannels ( bool bPreset )
 {
-	if (m_pEngine == NULL)
+	if (m_pEngine == nullptr)
 		return;
 
 	qsynthSetup *pSetup = m_pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return;
 
 	if (bPreset)
@@ -340,7 +340,7 @@ void qsynthChannelsForm::resetAllChannels ( bool bPreset )
 // Update channel activity status LED.
 void qsynthChannelsForm::setChannelOn ( int iChan, bool bOn )
 {
-	if (m_ppChannels == NULL)
+	if (m_ppChannels == nullptr)
 		return;
 	if (iChan < 0 || iChan >= m_iChannels)
 		return;
@@ -389,11 +389,11 @@ void qsynthChannelsForm::editSelectedChannel (void)
 void qsynthChannelsForm::unsetSelectedChannel (void)
 {
 	QTreeWidgetItem *pItem = m_ui.ChannelsListView->currentItem();
-	if (pItem == NULL)
+	if (pItem == nullptr)
 		return;
-	if (m_ppChannels == NULL)
+	if (m_ppChannels == nullptr)
 		return;
-	if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
+	if (m_pOptions == nullptr || m_pEngine == nullptr || m_pSynth == nullptr)
 		return;
 
 	int iChan = (pItem->text(QSYNTH_CHANNELS_CHAN).toInt() - 1);
@@ -415,11 +415,11 @@ void qsynthChannelsForm::unsetSelectedChannel (void)
 // Show detail dialog.
 void qsynthChannelsForm::itemActivated ( QTreeWidgetItem *pItem, int )
 {
-	if (pItem == NULL)
+	if (pItem == nullptr)
 		return;
-	if (m_ppChannels == NULL)
+	if (m_ppChannels == nullptr)
 		return;
-	if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
+	if (m_pOptions == nullptr || m_pEngine == nullptr || m_pSynth == nullptr)
 		return;
 
 	int iChan = (pItem->text(QSYNTH_CHANNELS_CHAN).toInt() - 1);
@@ -443,7 +443,7 @@ void qsynthChannelsForm::itemActivated ( QTreeWidgetItem *pItem, int )
 // Channels preset naming slots.
 void qsynthChannelsForm::changePreset ( const QString& sPreset )
 {
-	if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
+	if (m_pOptions == nullptr || m_pEngine == nullptr || m_pSynth == nullptr)
 		return;
 	if (m_iDirtySetup > 0)
 		return;
@@ -465,7 +465,7 @@ void qsynthChannelsForm::changePreset ( const QString& sPreset )
 
 void qsynthChannelsForm::savePreset (void)
 {
-	if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
+	if (m_pOptions == nullptr || m_pEngine == nullptr || m_pSynth == nullptr)
 		return;
 
 	QString sPreset = m_ui.PresetComboBox->currentText();
@@ -490,7 +490,7 @@ void qsynthChannelsForm::savePreset (void)
 
 void qsynthChannelsForm::deletePreset (void)
 {
-	if (m_pOptions == NULL || m_pEngine == NULL || m_pSynth == NULL)
+	if (m_pOptions == nullptr || m_pEngine == nullptr || m_pSynth == nullptr)
 		return;
 
 	QString sPreset = m_ui.PresetComboBox->currentText();
@@ -522,11 +522,11 @@ void qsynthChannelsForm::deletePreset (void)
 
 void qsynthChannelsForm::resetPresets (void)
 {
-	if (m_pEngine == NULL)
+	if (m_pEngine == nullptr)
 		return;
 
 	qsynthSetup *pSetup = m_pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return;
 
 	m_ui.PresetComboBox->clear();
@@ -538,11 +538,11 @@ void qsynthChannelsForm::resetPresets (void)
 // Stabilize current form state.
 void qsynthChannelsForm::stabilizeForm (void)
 {
-	if (m_pEngine == NULL)
+	if (m_pEngine == nullptr)
 		return;
 
 	qsynthSetup *pSetup = m_pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return;
 
 	QString sPreset = m_ui.PresetComboBox->currentText();

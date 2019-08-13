@@ -75,7 +75,7 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 // Constructor.
 qsynthApplication::qsynthApplication ( int& argc, char **argv )
 	: QApplication(argc, argv),
-		m_pQtTranslator(NULL), m_pMyTranslator(NULL), m_pWidget(NULL)
+		m_pQtTranslator(nullptr), m_pMyTranslator(nullptr), m_pWidget(nullptr)
 {
 	// Load translation support.
 	QLocale loc;
@@ -120,13 +120,13 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 #ifdef CONFIG_XUNIQUE
 #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #ifdef CONFIG_X11
-	m_pDisplay = NULL;
+	m_pDisplay = nullptr;
 	m_aUnique = 0;
 	m_wOwner = 0;
 #endif	// CONFIG_X11
 #else
-	m_pMemory = NULL;
-	m_pServer = NULL;
+	m_pMemory = nullptr;
+	m_pServer = nullptr;
 #endif
 #endif	// CONFIG_XUNIQUE
 }
@@ -140,11 +140,11 @@ qsynthApplication::~qsynthApplication (void)
 	if (m_pServer) {
 		m_pServer->close();
 		delete m_pServer;
-		m_pServer = NULL;
+		m_pServer = nullptr;
 	}
 	if (m_pMemory) {
 		delete m_pMemory;
-		m_pMemory = NULL;
+		m_pMemory = nullptr;
 }
 #endif
 #endif	// CONFIG_XUNIQUE
@@ -414,7 +414,7 @@ void stacktrace ( int signo )
 
 	// Fork child...
 	if (pid == 0) {
-		execl(shell, shell, "-c", cmd, NULL);
+		execl(shell, shell, "-c", cmd, nullptr);
 		_exit(1);
 		return;
 	}

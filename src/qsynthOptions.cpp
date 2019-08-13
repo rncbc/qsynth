@@ -52,7 +52,7 @@ qsynthOptions::~qsynthOptions (void)
 
 	// Delete default setup descriptor.
 	delete m_pDefaultSetup;
-	m_pDefaultSetup = NULL;
+	m_pDefaultSetup = nullptr;
 }
 
 
@@ -407,7 +407,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 
 void qsynthOptions::newEngine ( qsynthEngine *pEngine )
 {
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
 	if (pEngine->isDefault())
 		return;
@@ -420,11 +420,11 @@ void qsynthOptions::newEngine ( qsynthEngine *pEngine )
 
 bool qsynthOptions::renameEngine ( qsynthEngine *pEngine )
 {
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return false;
 
 	qsynthSetup *pSetup = pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return false;
 
 	const QString sOldName = pEngine->name();
@@ -445,7 +445,7 @@ bool qsynthOptions::renameEngine ( qsynthEngine *pEngine )
 
 void qsynthOptions::deleteEngine ( qsynthEngine *pEngine )
 {
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return;
 	if (pEngine->isDefault())
 		return;
@@ -465,7 +465,7 @@ void qsynthOptions::deleteEngine ( qsynthEngine *pEngine )
 // Load instance m_settings.
 void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 {
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return;
 
 	// Begin at key group?
@@ -574,7 +574,7 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 // Save instance m_settings.
 void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
 {
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return;
 
 	// Begin at key group?
@@ -664,11 +664,11 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
 
 bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 {
-	if (pEngine == NULL || pEngine->pSynth == NULL)
+	if (pEngine == nullptr || pEngine->pSynth == nullptr)
 		return false;
 
 	qsynthSetup *pSetup = pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return false;
 
 	QString sSuffix;
@@ -733,11 +733,11 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 
 bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 {
-	if (pEngine == NULL || pEngine->pSynth == NULL)
+	if (pEngine == nullptr || pEngine->pSynth == nullptr)
 		return false;
 
 	qsynthSetup *pSetup = pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return false;
 
 	QString sSuffix;
@@ -826,11 +826,11 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 
 bool qsynthOptions::deletePreset ( qsynthEngine *pEngine, const QString& sPreset )
 {
-	if (pEngine == NULL)
+	if (pEngine == nullptr)
 		return false;
 
 	qsynthSetup *pSetup = pEngine->setup();
-	if (pSetup == NULL)
+	if (pSetup == nullptr)
 		return false;
 
 	QString sPrefix;
