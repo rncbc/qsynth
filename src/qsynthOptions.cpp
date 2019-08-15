@@ -219,8 +219,8 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 {
 	QTextStream out(stderr);
 	const QString sEol = "\n\n";
-	int iSoundFontOverride = 0;
 	const int argc = args.count();
+	int iSoundFontOverride = 0;
 
 	for (int i = 1; i < argc; ++i) {
 
@@ -247,7 +247,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			}
 			m_pDefaultSetup->sMidiDriver = sVal;
 			if (iEqual < 0)
-				i++;
+				++i;
 		}
 		else if (sArg == "-K" || sArg == "--midi-channels") {
 			if (sVal.isEmpty()) {
@@ -256,7 +256,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			}
 			m_pDefaultSetup->iMidiChannels = sVal.toInt();
 			if (iEqual < 0)
-				i++;
+				++i;
 		}
 		else if (sArg == "-a" || sArg == "--audio-driver") {
 			if (sVal.isEmpty()) {
@@ -265,7 +265,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			}
 			m_pDefaultSetup->sAudioDriver = sVal;
 			if (iEqual < 0)
-				i++;
+				++i;
 		}
 		else if (sArg == "-j" || sArg == "--connect-jack-outputs") {
 			m_pDefaultSetup->bJackAutoConnect = true;
@@ -277,7 +277,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			}
 			m_pDefaultSetup->iAudioChannels = sVal.toInt();
 			if (iEqual < 0)
-				i++;
+				++i;
 		}
 		else if (sArg == "-G" || sArg == "--audio-groups") {
 			if (sVal.isEmpty()) {
@@ -295,7 +295,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			}
 			m_pDefaultSetup->iAudioBufSize = sVal.toInt();
 			if (iEqual < 0)
-				i++;
+				++i;
 		}
 		else if (sArg == "-c" || sArg == "--audio-bufcount") {
 			if (sVal.isEmpty()) {
@@ -304,7 +304,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			}
 			m_pDefaultSetup->iAudioBufCount = sVal.toInt();
 			if (iEqual < 0)
-				i++;
+				++i;
 		}
 		else if (sArg == "-r" || sArg == "--sample-rate") {
 			if (sVal.isEmpty()) {
@@ -313,7 +313,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			}
 			m_pDefaultSetup->fSampleRate = sVal.toFloat();
 			if (iEqual < 0)
-				i++;
+				++i;
 		}
 		else if (sArg == "-R" || sArg == "--reverb") {
 			if (sVal.isEmpty()) {
@@ -321,7 +321,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			} else {
 				m_pDefaultSetup->bReverbActive = !(sVal == "0" || sVal == "no" || sVal == "off");
 				if (iEqual < 0)
-					i++;
+					++i;
 			}
 		}
 		else if (sArg == "-C" || sArg == "--chorus") {
@@ -330,7 +330,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			} else {
 				m_pDefaultSetup->bChorusActive = !(sVal == "0" || sVal == "no" || sVal == "off");
 				if (iEqual < 0)
-					i++;
+					++i;
 			}
 		}
 		else if (sArg == "-g" || sArg == "--gain") {
@@ -340,7 +340,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			}
 			m_pDefaultSetup->fGain = sVal.toFloat();
 			if (iEqual < 0)
-				i++;
+				++i;
 		}
 		else if (sArg == "-o" || sArg == "--option") {
 			if (++i >= argc) {
@@ -353,7 +353,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			m_pDefaultSetup->bServer = true;
 		}
 		else if (sArg == "-i" || sArg == "--no-shell") {
-			// Just ignore this...
+			// Just ignore this one...
 		}
 		else if (sArg == "-d" || sArg == "--dump") {
 			m_pDefaultSetup->bMidiDump = true;

@@ -358,7 +358,7 @@ void qsynthApplication::readyReadSlot (void)
 	if (pSocket) {
 		const qint64 nread = pSocket->bytesAvailable();
 		if (nread > 0) {
-			QByteArray data = pSocket->read(nread);
+			const QByteArray data = pSocket->read(nread);
 			// Just make it always shows up fine...
 			m_pWidget->hide();
 			m_pWidget->show();
