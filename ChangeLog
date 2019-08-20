@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- Fix HiDPI display screen effective support (Qt >= 5.6).
+
 - System-tray icon context menu has been refactored to
   be exactly the same as the main-window context menu
   that is re-instantiated on demand. (EXPERIMENTAL)
