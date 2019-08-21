@@ -27,6 +27,9 @@
 #include <QTextStream>
 #include <QComboBox>
 
+#include <QApplication>
+#include <QDesktopWidget>
+
 
 //-------------------------------------------------------------------------
 // qsynthOptions - Prototype settings structure.
@@ -927,8 +930,20 @@ void qsynthOptions::loadWidgetGeometry ( QWidget *pWidget, bool bVisible )
 	#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 		const QByteArray& geometry
 			= m_settings.value("/geometry").toByteArray();
-		if (!geometry.isEmpty())
+		if (geometry.isEmpty()) {
+			QWidget *pParent = pWidget->parentWidget();
+			if (pParent)
+				pParent = pParent->window();
+			if (pParent == nullptr)
+				pParent = QApplication::desktop();
+			if (pParent) {
+				QRect wrect(pWidget->geometry());
+				wrect.moveCenter(pParent->geometry().center());
+				pWidget->move(wrect.topLeft());
+			}
+		} else {
 			pWidget->restoreGeometry(geometry);
+		}
 	#else//--LOAD_OLD_GEOMETRY
 		QPoint wpos;
 		QSize  wsize;

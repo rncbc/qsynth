@@ -4,157 +4,157 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../qsynthOptions.cpp" line="173"/>
+        <location filename="../qsynthOptions.cpp" line="176"/>
         <source>Options</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="175"/>
+        <location filename="../qsynthOptions.cpp" line="178"/>
         <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
         <translation>Не создавать драйвер MIDI для чтения входящих событий MIDI [по умолчанию = yes]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="177"/>
+        <location filename="../qsynthOptions.cpp" line="180"/>
         <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
         <translation>Имя используемого драйвера MIDI [oss,alsa,alsa_seq,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="179"/>
+        <location filename="../qsynthOptions.cpp" line="182"/>
         <source>The number of midi channels [default = 16]</source>
         <translation>Количество каналов MIDI [по умолчанию = 16]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="181"/>
+        <location filename="../qsynthOptions.cpp" line="184"/>
         <source>The audio driver [alsa,jack,oss,dsound,...]</source>
         <translation>Звуковой драйвер [alsa,jack,oss,dsound,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="183"/>
+        <location filename="../qsynthOptions.cpp" line="186"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
         <translation>Попытка связать выход JACK с физическими портами</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="185"/>
+        <location filename="../qsynthOptions.cpp" line="188"/>
         <source>The number of stereo audio channels [default = 1]</source>
         <translation>Количество стереофонических звуковых каналов [по умолчанию = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="187"/>
+        <location filename="../qsynthOptions.cpp" line="190"/>
         <source>The number of audio groups [default = 1]</source>
         <translation>Количиство звуковых групп [по умолчанию = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="189"/>
+        <location filename="../qsynthOptions.cpp" line="192"/>
         <source>Size of each audio buffer</source>
         <translation>Размер каждого звукового буфера</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="191"/>
+        <location filename="../qsynthOptions.cpp" line="194"/>
         <source>Number of audio buffers</source>
         <translation>Количество звуковых буферов</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="193"/>
+        <location filename="../qsynthOptions.cpp" line="196"/>
         <source>Set the sample rate</source>
         <translation>Установить частоту семплирования</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="195"/>
+        <location filename="../qsynthOptions.cpp" line="198"/>
         <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
         <translation>Включить/выключить реверберацию [1|0|yes|no|on|off, по умолчанию = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="197"/>
+        <location filename="../qsynthOptions.cpp" line="200"/>
         <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
         <translation>Включить/выключить хорус [1|0|yes|no|on|off, по умолчанию = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="199"/>
+        <location filename="../qsynthOptions.cpp" line="202"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
         <translation>Установить главное усиление [0 &lt; усиление &lt; 10, по умолчанию = 0.2]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="201"/>
+        <location filename="../qsynthOptions.cpp" line="204"/>
         <source>Define a setting name=value</source>
         <translation>Определите имя=значение настройки</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="203"/>
+        <location filename="../qsynthOptions.cpp" line="206"/>
         <source>Create and start server [default = no]</source>
         <translation>Создать и запустить сервер [по умолчанию = no]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="205"/>
+        <location filename="../qsynthOptions.cpp" line="208"/>
         <source>Don&apos;t read commands from the shell [ignored]</source>
         <translation>Не считывать команды из оболочки [проигнорировано]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="207"/>
+        <location filename="../qsynthOptions.cpp" line="210"/>
         <source>Dump midi router events</source>
         <translation>Глушить события маршрутизатора MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="209"/>
+        <location filename="../qsynthOptions.cpp" line="212"/>
         <source>Print out verbose messages about midi events</source>
         <translation>Показывать подробную информацию о сообщениях MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="211"/>
+        <location filename="../qsynthOptions.cpp" line="214"/>
         <source>Show help about command line options</source>
         <translation>Показать справку о параметрах для командной строки</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="213"/>
+        <location filename="../qsynthOptions.cpp" line="216"/>
         <source>Show version information</source>
         <translation>Показать информацию о версии</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="245"/>
+        <location filename="../qsynthOptions.cpp" line="248"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>Ключ -m требует аргумента (midi-driver).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="254"/>
+        <location filename="../qsynthOptions.cpp" line="257"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>Ключ -K требует аргумента (midi-channels).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="263"/>
+        <location filename="../qsynthOptions.cpp" line="266"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>Ключ -a требует аргумента (audio-driver).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="275"/>
+        <location filename="../qsynthOptions.cpp" line="278"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>Ключ -L требует аргумента (audio-channels).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="284"/>
+        <location filename="../qsynthOptions.cpp" line="287"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>Ключ -G требует аргумента (audio-groups).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="293"/>
+        <location filename="../qsynthOptions.cpp" line="296"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>Ключ -a требует аргумента (audio-bufsize).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="302"/>
+        <location filename="../qsynthOptions.cpp" line="305"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>Ключ -c требует аргумента (audio-bufcount).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="311"/>
+        <location filename="../qsynthOptions.cpp" line="314"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>Ключ -r требует аргумента (sample-rate).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="338"/>
+        <location filename="../qsynthOptions.cpp" line="341"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Ключ -g требует аргумента (gain).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="347"/>
+        <location filename="../qsynthOptions.cpp" line="350"/>
         <source>Option -o requires an argument.</source>
         <translation>Ключ -o требует аргумента.</translation>
     </message>
@@ -164,12 +164,12 @@
         <translation>(по умолчанию)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="170"/>
+        <location filename="../qsynthOptions.cpp" line="173"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
         <translation>Использование: %1 [ключи] [файлы SF2] [файлы MIDI]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="393"/>
+        <location filename="../qsynthOptions.cpp" line="396"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>неизвестный ключ &apos;%1&apos;.</translation>
     </message>
