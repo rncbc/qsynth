@@ -31,7 +31,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Qsynth: Setup</string>
+   <string>Setup</string>
   </property>
   <property name="windowIcon">
    <iconset resource="qsynth.qrc">:/images/setup1.png</iconset>

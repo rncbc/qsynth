@@ -143,8 +143,7 @@ void qsynthPresetForm::setup ( qsynthOptions *pOptions, fluid_synth_t *pSynth, i
 	m_iDirtySetup++;
 
 	// Set the proper caption...
-	setWindowTitle(QSYNTH_TITLE ": "
-		+ tr("Channel %1").arg(m_iChan + 1));
+	setWindowTitle(tr("Channel %1").arg(m_iChan + 1));
 
 	// Load bank list from actual synth stack...
 	m_ui.BankListView->setUpdatesEnabled(false);

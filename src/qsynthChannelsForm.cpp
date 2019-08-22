@@ -169,9 +169,9 @@ void qsynthChannelsForm::setup ( qsynthOptions *pOptions,
 	m_pSynth   = pEngine ? pEngine->pSynth : nullptr;
 
 	// Update caption.
-	QString sTitle = QSYNTH_TITLE ": " + tr("Channels");
+	QString sTitle;
 	if (pEngine)
-		sTitle += " [" + pEngine->name() + "]";
+		sTitle += pEngine->name();
 	setWindowTitle(sTitle);
 
 	// Free up current channel list view.
@@ -499,7 +499,7 @@ void qsynthChannelsForm::deletePreset (void)
 
 	// Try to prompt user if he/she really wants this...
 	if (QMessageBox::warning(this,
-		QSYNTH_TITLE ": " + tr("Warning"),
+		tr("Warning"),
 		tr("Delete preset:") + "\n\n" +
 		sPreset + "\n\n" +
 		tr("Are you sure?"),

@@ -30,7 +30,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Qsynth: Channel Preset</string>
+   <string>Channel Preset</string>
   </property>
   <property name="windowIcon">
    <iconset resource="qsynth.qrc">:/images/preset1.png</iconset>

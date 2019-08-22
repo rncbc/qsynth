@@ -30,7 +30,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Qsynth: Options</string>
+   <string>Options</string>
   </property>
   <property name="windowIcon">
    <iconset resource="qsynth.qrc">:/images/options1.png</iconset>

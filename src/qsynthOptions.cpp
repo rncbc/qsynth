@@ -478,7 +478,7 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	// Shall we have a default display name.
 	QString sDisplayName = sName;
 	if (sDisplayName.isEmpty())
-		sDisplayName = QObject::tr(QSYNTH_TITLE "1");
+		sDisplayName = QSYNTH_TITLE "1";
 
 	// Load previous/default fluidsynth m_settings...
 	m_settings.beginGroup("/Settings");

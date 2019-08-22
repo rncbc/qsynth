@@ -2,7 +2,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2018, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -30,7 +30,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>About Qsynth</string>
+   <string>About</string>
   </property>
   <property name="windowIcon">
    <iconset resource="qsynth.qrc">:/images/about1.png</iconset>

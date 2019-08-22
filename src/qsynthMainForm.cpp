@@ -732,7 +732,7 @@ bool qsynthMainForm::queryClose (void)
 			m_pOptions->saveWidgetGeometry(this, true);
 			if (m_pOptions->bSystemTrayQueryClose) {
 				const QString& sTitle
-					= QSYNTH_TITLE ": " + tr("Information");
+					= tr("Information");
 				const QString& sText
 					= tr("The program will keep running in the system tray.\n\n"
 						"To terminate the program, please choose \"Quit\"\n"
@@ -775,7 +775,7 @@ bool qsynthMainForm::queryClose (void)
 					activateWindow();
 					updateContextMenu();
 					const QString& sTitle
-						= QSYNTH_TITLE ": " + tr("Warning");
+						= tr("Warning");
 					const QString& sText = QSYNTH_TITLE " "
 						+ tr("is about to terminate.") + "\n\n"
 						+ tr("Are you sure?");
@@ -1071,7 +1071,7 @@ void qsynthMainForm::appendMessagesError( const QString& s )
 
 	appendMessagesColor(s.simplified(), "#ff0000");
 
-	const QString& sTitle = QSYNTH_TITLE ": " + tr("Error");
+	const QString& sTitle = tr("Error");
 #ifdef CONFIG_SYSTEM_TRAY
 	if (m_pOptions->bSystemTray && m_pSystemTray
 		&& QSystemTrayIcon::supportsMessages()) {
@@ -1412,7 +1412,7 @@ bool qsynthMainForm::deleteEngineTab ( qsynthEngine *pEngine, int iTab )
 
 	// Try to prompt user if he/she really wants this...
 	const bool bResult = (QMessageBox::warning(this,
-		QSYNTH_TITLE ": " + tr("Warning"),
+		tr("Warning"),
 		tr("Delete fluidsynth engine:") + "\n\n" +
 		pEngine->name() + "\n\n" +
 		tr("Are you sure?"),
@@ -1458,8 +1458,7 @@ bool qsynthMainForm::setupEngineTab ( qsynthEngine *pEngine, int iTab )
 	if (iTab >= 0) {
 		// Update main caption, if we're on current engine tab...
 		if (iTab == m_ui.TabBar->currentIndex()) {
-			setWindowTitle(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE)
-				+ " [" + pEngine->name() + "]");
+			setWindowTitle(pEngine->name());
 		}
 		// Finally update tab text...
 		m_ui.TabBar->setTabText(iTab, pEngine->name());
@@ -1594,7 +1593,7 @@ void qsynthMainForm::showOptionsForm (void)
 				(!bOldKeepOnTop     &&  m_pOptions->bKeepOnTop)     ||
 				(iOldBaseFontSize != m_pOptions->iBaseFontSize)) {
 				const QString& sTitle
-					= QSYNTH_TITLE ": " + tr("Information");
+					= tr("Information");
 				const QString& sText
 					= tr("Some settings will be only effective\n"
 						"next time you start this program.");
@@ -1675,8 +1674,7 @@ void qsynthMainForm::tabSelect ( int iTab )
 			// Set current engine reference hack.
 			g_pCurrentEngine = pEngine;
 			// And do the change.
-			setWindowTitle(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE)
-				+ " [" + pEngine->name() + "]");
+			setWindowTitle(pEngine->name());
 			loadPanelSettings(pEngine, false);
 			resetChannelsForm(pEngine, false);
 		}
@@ -2201,7 +2199,7 @@ void qsynthMainForm::restartAllEngines (void)
 {
 	// Always prompt user...
 	const bool  bRestart = (QMessageBox::warning(this,
-		QSYNTH_TITLE ": " + tr("Warning"),
+		tr("Warning"),
 		tr("New settings will be effective after\n"
 		"restarting all fluidsynth engines.") + "\n\n" +
 		tr("Please note that this operation may cause\n"
@@ -2231,7 +2229,7 @@ void qsynthMainForm::restartEngine ( qsynthEngine *pEngine )
 	// If currently running, prompt user...
 	if (pEngine && pEngine->pSynth) {
 		bRestart = (QMessageBox::warning(this,
-			QSYNTH_TITLE ": " + tr("Warning"),
+			tr("Warning"),
 			tr("New settings will be effective after\n"
 			"restarting the fluidsynth engine:") + "\n\n" +
 			pEngine->name() + "\n\n" +

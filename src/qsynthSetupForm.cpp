@@ -391,7 +391,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	m_pSetup = pEngine->setup();
 
 	// Update caption.
-	setWindowTitle(QSYNTH_TITLE ": " + tr("Setup") + " [" + pEngine->name() + "]");
+	setWindowTitle(pEngine->name() + " - " + tr("Setup"));
 
 	// Start clean?
 	m_iDirtyCount = 0;
@@ -613,7 +613,7 @@ void qsynthSetupForm::reject (void)
 	// Check if there's any pending changes...
 	if (m_iDirtyCount > 0) {
 		switch (QMessageBox::warning(this,
-			QSYNTH_TITLE ": " + tr("Warning"),
+			tr("Warning"),
 			tr("Some settings have been changed.") + "\n\n" +
 			tr("Do you want to apply the changes?"),
 			QMessageBox::Apply | QMessageBox::Discard | QMessageBox::Cancel)) {
@@ -853,12 +853,9 @@ void qsynthSetupForm::refreshSoundFonts (void)
 // Browse for a soundfont file on the filesystem.
 void qsynthSetupForm::openSoundFont (void)
 {
-	QStringList soundfonts = QFileDialog::getOpenFileNames(
-		this,										// Parent
-		QSYNTH_TITLE ": " + tr("Soundfont files"),	// Caption.
-		m_pOptions->sSoundFontDir,                  // Start here.
-		tr("Soundfont files") + " (*.sf2 *.SF2 *.sf3 *.SF3)" // Filter files.
-	);
+	QStringList soundfonts = QFileDialog::getOpenFileNames(this,
+		tr("Soundfont files"), m_pOptions->sSoundFontDir,
+		tr("Soundfont files") + " (*.sf2 *.SF2 *.sf3 *.SF3)");
 
 	QTreeWidgetItem *pItem = nullptr;
 
@@ -872,7 +869,7 @@ void qsynthSetupForm::openSoundFont (void)
 			if (!m_ui.SoundFontListView->findItems(
 					sSoundFont, Qt::MatchExactly, 1).isEmpty() &&
 				QMessageBox::warning(this,
-					QSYNTH_TITLE ": " + tr("Warning"),
+					tr("Warning"),
 					tr("Soundfont file already on list") + ":\n\n" +
 					"\"" + sSoundFont + "\"\n\n" +
 					tr("Add anyway?"),
@@ -902,7 +899,7 @@ void qsynthSetupForm::openSoundFont (void)
 			}
 		} else {
 			QMessageBox::critical(this,
-				QSYNTH_TITLE ": " + tr("Error"),
+				tr("Error"),
 				tr("Failed to add soundfont file") + ":\n\n" +
 				"\"" + sSoundFont + "\"\n\n" +
 				tr("Please, check for a valid soundfont file."),

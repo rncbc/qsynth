@@ -33,7 +33,7 @@
    <font/>
   </property>
   <property name="windowTitle" >
-   <string>Qsynth: Channels</string>
+   <string>Channels</string>
   </property>
   <property name="windowIcon">
    <iconset resource="qsynth.qrc">:/images/channels1.png</iconset>
