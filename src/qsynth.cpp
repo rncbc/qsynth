@@ -79,8 +79,8 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 1, 0)
 	QApplication::setApplicationName(QSYNTH_TITLE);
-	QApplication::setApplicationDisplayName(
-		QSYNTH_TITLE " - " + QObject::tr(QSYNTH_SUBTITLE));
+	QApplication::setApplicationDisplayName(QSYNTH_TITLE);
+	//	QSYNTH_TITLE " - " + QObject::tr(QSYNTH_SUBTITLE));
 #endif
 	// Load translation support.
 	QLocale loc;
