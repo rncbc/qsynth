@@ -4,6 +4,27 @@ cmake_minimum_required(VERSION 2.6)
 
 set (VERSION "0.5.8")
 
+execute_process(
+  COMMAND git describe --tags --dirty --abbrev=6
+  OUTPUT_VARIABLE GIT_DESCRIBE_OUTPUT
+  RESULT_VARIABLE GIT_DESCRIBE_RESULT
+  OUTPUT_STRIP_TRAILING_WHITESPACE)
+if (GIT_DESCRIBE_RESULT EQUAL 0)
+  set (VERSION "${GIT_DESCRIBE_OUTPUT}")
+  string (REGEX REPLACE "^[^_vV]+" "" VERSION "${VERSION}")
+  string (REGEX REPLACE "^[_vV]+"  "" VERSION "${VERSION}")
+  string (REGEX REPLACE "-g"   "git." VERSION "${VERSION}")
+  string (REGEX REPLACE "[_|-]+"  "." VERSION "${VERSION}")
+  execute_process(
+    COMMAND git rev-parse --abbrev-ref HEAD
+    OUTPUT_VARIABLE GIT_REVPARSE_OUTPUT
+    RESULT_VARIABLE GIT_REVPARSE_RESULT
+    OUTPUT_STRIP_TRAILING_WHITESPACE)
+  if (GIT_REVPARSE_RESULT EQUAL 0 AND NOT GIT_REVPARSE_OUTPUT STREQUAL "master")
+    set (VERSION "${VERSION} [${GIT_REVPARSE_OUTPUT}]")
+  endif ()  
+endif ()
+
 set (PACKAGE_NAME "Qsynth")
 set (PACKAGE_VERSION "${VERSION}")
 set (PACKAGE_BUGREPORT "rncbc@rncbc.org")
