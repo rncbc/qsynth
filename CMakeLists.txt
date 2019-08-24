@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 2.6)
 
 set (VERSION "0.5.8")
 
-execute_process(
+execute_process (
   COMMAND git describe --tags --dirty --abbrev=6
   OUTPUT_VARIABLE GIT_DESCRIBE_OUTPUT
   RESULT_VARIABLE GIT_DESCRIBE_RESULT
@@ -15,7 +15,7 @@ if (GIT_DESCRIBE_RESULT EQUAL 0)
   string (REGEX REPLACE "^[_vV]+"  "" VERSION "${VERSION}")
   string (REGEX REPLACE "-g"   "git." VERSION "${VERSION}")
   string (REGEX REPLACE "[_|-]+"  "." VERSION "${VERSION}")
-  execute_process(
+  execute_process (
     COMMAND git rev-parse --abbrev-ref HEAD
     OUTPUT_VARIABLE GIT_REVPARSE_OUTPUT
     RESULT_VARIABLE GIT_REVPARSE_RESULT
@@ -45,22 +45,32 @@ if (CONFIG_BUILD_TYPE MATCHES "debug")
 endif ()
 set (CONFIG_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
-# Unique/single instance.# gradient eye-candy.
-option (CONFIG_XUNIQUE "Define if unique/single instance is enabled." 1)
-# gradient eye-candy.
-option (CONFIG_GRADIENT "Define if gradient eye-candy is enabled." 1)
-# debugging stack-trace.
-option (CONFIG_STACKTRACE "Define if debugger stack-trace is enabled." 0)
-# system-tray icon.
-option (CONFIG_SYSTEM_TRAY "Define if system tray is enabled." 1)
 
-# fluid_synth_get_channel_info (DEPRECATED).
-option (CONFIG_FLUID_CHANNEL_INFO "Define if FluidSynth_channel_info is enabled." 0)
-# fluid_synth_set_midi_router (DEPRECATED).
-option (CONFIG_FLUID_MIDI_ROUTER "Define if FluidSynth MIDI router support is enabled." 0)
-# FluidSynth server support (DEPRECATED).
-option (CONFIG_FLUID_SERVER "Define if FluidSynth server support is enabled." 1)
+# Enable system tray argument option.
+option (CONFIG_SYSTEM_TRAY "Enable system tray (default=yes)" 1)
 
+# Enable fluid_synth_get_channel_info function (DEPRECATED).
+option (CONFIG_FLUID_CHANNEL_INFO "Enable FluidSynth channel info support (DEPRECATED) (default=no)" 0)
+  
+# Enable fluid_synth_set_midi_router function (DEPRECATED).
+option (CONFIG_FLUID_MIDI_ROUTER "Enable FluidSynth MIDI router support (DEPRECATED) (default=no)" 0)
+
+# Enable new_fluid_server function.
+option (CONFIG_FLUID_SERVER "Enable FluidSynth server (default=yes)" 1)
+
+# Enable unique/single instance.
+option (CONFIG_XUNIQUE "Enable unique/single instance (default=yes)" 1)
+
+# Enable gradient eye-candy.
+option (CONFIG_GRADIENT "Enable gradient eye-candy (default=yes)" 1)
+
+# Enable debugger stack-trace option (assumes --enable-debug).
+option (CONFIG_STACKTRACE "Enable debugger stack-trace (default=no)" 0)
+
+# Fix for new CMAKE_REQUIRED_LIBRARIES policy.
+if (POLICY CMP0075)
+  cmake_policy (SET CMP0075 NEW)
+endif ()
 
 # Check for Qt
 find_package (Qt5 REQUIRED NO_MODULE COMPONENTS Core Gui Widgets Network)
@@ -81,84 +91,87 @@ else ()
   if (MATH_LIBRARY)
     check_function_exists ( lroundf CONFIG_ROUND )
   else ()
-    message (FATAL_ERROR "math library not found")
+    message (FATAL_ERROR "*** math library not found.")
   endif ()
 endif ()
 
-# Check for fluidsynth library.
-find_library ( FLUIDSYNTH_LIBRARY fluidsynth )
 
 # Checks for header files.
 if (UNIX AND NOT APPLE)
   check_include_files ("fcntl.h;unistd.h;signal.h" HAVE_SIGNAL_H)
 endif ()
 
-# Check for fluidsynth headers.
-find_path (FLUIDSYNTH_INCLUDEDIR NAMES fluidsynth.h)
-set (CMAKE_REQUIRED_INCLUDES ${FLUIDSYNTH_INCLUDEDIR})
-check_include_file ("fluidsynth.h" HAVE_FLUIDSYNTH_H)
 
-if (FLUIDSYNTH_LIBRARY AND HAVE_FLUIDSYNTH_H)
-  set(CMAKE_REQUIRED_LIBRARIES ${FLUIDSYNTH_LIBRARY})
+# Find package modules
+find_package (PkgConfig REQUIRED)
+
+
+# Check for FLUIDSYNTH library.
+pkg_check_modules (FLUIDSYNTH fluidsynth REQUIRED)
+set (CONFIG_FLUIDSYNTH ${FLUIDSYNTH_FOUND})
+if (CONFIG_FLUIDSYNTH)
+  include_directories (${FLUIDSYNTH_INCLUDE_DIRS})
+  link_directories (${FLUIDSYNTH_LIBRARY_DIRS})
+  set (CMAKE_REQUIRED_LIBRARIES "${FLUIDSYNTH_LIBRARIES};${CMAKE_REQUIRED_LIBRARIES}")
   # Check for new_fluid_server function.
   if (CONFIG_FLUID_SERVER)
-    check_function_exists ( new_fluid_server CONFIG_FLUID_SERVER )
+    check_function_exists (new_fluid_server CONFIG_FLUID_SERVER)
   endif ()
   # Check for fluid_synth_system_reset function.
-  check_function_exists ( fluid_synth_system_reset CONFIG_FLUID_SYSTEM_RESET )
+  check_function_exists (fluid_synth_system_reset CONFIG_FLUID_SYSTEM_RESET)
   # Check for fluid_synth_set_bank_offset function.
-  check_function_exists ( fluid_synth_set_bank_offset CONFIG_FLUID_BANK_OFFSET )
+  check_function_exists (fluid_synth_set_bank_offset CONFIG_FLUID_BANK_OFFSET)
   # Check for fluid_synth_get_channel_info function.
   if (CONFIG_FLUID_CHANNEL_INFO)
-    check_function_exists ( fluid_synth_get_channel_info CONFIG_FLUID_CHANNEL_INFO )
+    check_function_exists (fluid_synth_get_channel_info CONFIG_FLUID_CHANNEL_INFO)
   endif()
   # Check for fluid_synth_set_midi_router function.
   if (CONFIG_FLUID_MIDI_ROUTER)
-    check_function_exists ( fluid_synth_set_midi_router CONFIG_FLUID_MIDI_ROUTER )
+    check_function_exists (fluid_synth_set_midi_router CONFIG_FLUID_MIDI_ROUTER)
   endif()
   # Check for fluid_synth_unset_program function.
-  check_function_exists ( fluid_synth_unset_program CONFIG_FLUID_UNSET_PROGRAM )
+  check_function_exists (fluid_synth_unset_program CONFIG_FLUID_UNSET_PROGRAM)
   # Check for fluid_version_str function.
-  check_function_exists ( fluid_version_str CONFIG_FLUID_VERSION_STR )
+  check_function_exists (fluid_version_str CONFIG_FLUID_VERSION_STR)
   # Check for fluid_settings_dupstr function.
-  check_function_exists ( fluid_settings_dupstr CONFIG_FLUID_SETTINGS_DUPSTR )
+  check_function_exists (fluid_settings_dupstr CONFIG_FLUID_SETTINGS_DUPSTR)
   # Check for fluid_preset_get_banknum function.
-  check_function_exists ( fluid_preset_get_banknum CONFIG_FLUID_PRESET_GET_BANKNUM )
+  check_function_exists (fluid_preset_get_banknum CONFIG_FLUID_PRESET_GET_BANKNUM)
   # Check for fluid_preset_get_num function.
-  check_function_exists ( fluid_preset_get_num CONFIG_FLUID_PRESET_GET_NUM )
+  check_function_exists (fluid_preset_get_num CONFIG_FLUID_PRESET_GET_NUM)
   # Check for fluid_preset_get_name function.
-  check_function_exists ( fluid_preset_get_name CONFIG_FLUID_PRESET_GET_NAME )
+  check_function_exists (fluid_preset_get_name CONFIG_FLUID_PRESET_GET_NAME)
   # Check for fluid_preset_get_sfont function.
-  check_function_exists ( fluid_preset_get_sfont CONFIG_FLUID_PRESET_GET_SFONT )
+  check_function_exists (fluid_preset_get_sfont CONFIG_FLUID_PRESET_GET_SFONT)
   # Check for fluid_sfont_get_id function.
-  check_function_exists ( fluid_sfont_get_id CONFIG_FLUID_SFONT_GET_ID )
+  check_function_exists (fluid_sfont_get_id CONFIG_FLUID_SFONT_GET_ID)
   # Check for fluid_sfont_get_name function.
-  check_function_exists ( fluid_sfont_get_name CONFIG_FLUID_SFONT_GET_NAME )
+  check_function_exists (fluid_sfont_get_name CONFIG_FLUID_SFONT_GET_NAME)
   # Check for fluid_sfont_iteration_start function.
-  check_function_exists ( fluid_sfont_iteration_start CONFIG_FLUID_SFONT_ITERATION_START )
+  check_function_exists (fluid_sfont_iteration_start CONFIG_FLUID_SFONT_ITERATION_START)
   # Check for fluid_sfont_iteration_next function.
-  check_function_exists ( fluid_sfont_iteration_next CONFIG_FLUID_SFONT_ITERATION_NEXT )
+  check_function_exists (fluid_sfont_iteration_next CONFIG_FLUID_SFONT_ITERATION_NEXT)
   # Check for fluid_synth_get_chorus_speed function.
-  check_function_exists ( fluid_synth_get_chorus_speed CONFIG_FLUID_SYNTH_GET_CHORUS_SPEED )
+  check_function_exists (fluid_synth_get_chorus_speed CONFIG_FLUID_SYNTH_GET_CHORUS_SPEED)
   # Check for fluid_synth_get_chorus_depth function.
-  check_function_exists ( fluid_synth_get_chorus_depth CONFIG_FLUID_SYNTH_GET_CHORUS_DEPTH )
+  check_function_exists (fluid_synth_get_chorus_depth CONFIG_FLUID_SYNTH_GET_CHORUS_DEPTH)
   # Check for FluidSynth API V2 (>= 2.0.0) specifics...
   if (CONFIG_FLUID_SFONT_ITERATION_START AND CONFIG_FLUID_SFONT_ITERATION_NEXT)
     # Check for fluid_settings_getnum_default function.
-    check_function_exists ( fluid_settings_getnum_default CONFIG_FLUID_SETTINGS_GETNUM_DEFAULT )
+    check_function_exists (fluid_settings_getnum_default CONFIG_FLUID_SETTINGS_GETNUM_DEFAULT)
     # Check for fluid_settings_getint_default function.
-    check_function_exists ( fluid_settings_getint_default CONFIG_FLUID_SETTINGS_GETINT_DEFAULT )
+    check_function_exists (fluid_settings_getint_default CONFIG_FLUID_SETTINGS_GETINT_DEFAULT)
     # Check for fluid_settings_getstr_default function.
-    check_function_exists ( fluid_settings_getstr_default CONFIG_FLUID_SETTINGS_GETSTR_DEFAULT )
+    check_function_exists (fluid_settings_getstr_default CONFIG_FLUID_SETTINGS_GETSTR_DEFAULT)
     # Check for fluid_settings_foreach function.
-    check_function_exists ( fluid_settings_foreach CONFIG_FLUID_SETTINGS_FOREACH )
+    check_function_exists (fluid_settings_foreach CONFIG_FLUID_SETTINGS_FOREACH)
     # Check for fluid_settings_foreach_option function.
-    check_function_exists ( fluid_settings_foreach_option CONFIG_FLUID_SETTINGS_FOREACH_OPTION )
+    check_function_exists (fluid_settings_foreach_option CONFIG_FLUID_SETTINGS_FOREACH_OPTION)
     # Check for new_fluid_server function.
-    check_function_exists ( new_fluid_server CONFIG_NEW_FLUID_SERVER )
+    check_function_exists (new_fluid_server CONFIG_NEW_FLUID_SERVER)
   endif ()
 else ()
-  message (FATAL_ERROR "fluidsynth library not found")
+  message (FATAL_ERROR "*** FLUIDSYNTH library not found.")
 endif ()
 
 add_subdirectory (src)
@@ -177,20 +190,21 @@ macro (SHOW_OPTION text value)
   endif ()
 endmacro ()
 
-message ( "\n  ${PACKAGE_NAME} ${PACKAGE_VERSION}" )
-message ( "\n  Build target . . . . . . . . . . . . . . . . . . .: ${CONFIG_BUILD_TYPE}\n" )
-show_option ( "  FluidSynth library support . . . . . . . . . . . ." FLUIDSYNTH_LIBRARY )
-show_option ( "  FluidSynth server support  . . . . . . . . . . . ." CONFIG_FLUID_SERVER )
-show_option ( "  FluidSynth system reset support . .  . . . . . . ." CONFIG_FLUID_SYSTEM_RESET )
-show_option ( "  FluidSynth bank offset support . . . . . . . . . ." CONFIG_FLUID_BANK_OFFSET )
-show_option ( "  FluidSynth channel info support (DEPRECATED) . . ." CONFIG_FLUID_CHANNEL_INFO )
-show_option ( "  FluidSynth MIDI router support  (DEPRECATED) . . ." CONFIG_FLUID_MIDI_ROUTER )
-show_option ( "  FluidSynth unset program support . . . . . . . . ." CONFIG_FLUID_UNSET_PROGRAM )
-show_option ( "  FluidSynth version string support  . . . . . . . ." CONFIG_FLUID_VERSION_STR )
-message ( "\n" )
-show_option ( "  System tray icon support . . . . . . . . . . . . ." CONFIG_SYSTEM_TRAY )
-show_option ( "  Unique/Single instance support . . . . . . . . . ." CONFIG_XUNIQUE )
-show_option ( "  Gradient eye-candy . . . . . . . . . . . . . . . ." CONFIG_GRADIENT )
-show_option ( "  Debugger stack-trace (gdb) . . . . . . . . . . . ." CONFIG_STACKTRACE )
-message ( "\n  Install prefix . . . . . . . . . . . . . . . . . .: ${CMAKE_INSTALL_PREFIX}" )
-message ( "\nNow type 'make', followed by 'make install' as root.\n" )
+message (  "\n  ${PACKAGE_NAME} ${PACKAGE_VERSION}")
+message (  "\n  Build target . . . . . . . . . . . . . . . . . . .: ${CONFIG_BUILD_TYPE}\n" )
+show_option ("  FluidSynth library support . . . . . . . . . . . ." CONFIG_FLUIDSYNTH )
+show_option ("  FluidSynth server support  . . . . . . . . . . . ." CONFIG_FLUID_SERVER )
+show_option ("  FluidSynth system reset support . .  . . . . . . ." CONFIG_FLUID_SYSTEM_RESET )
+show_option ("  FluidSynth bank offset support . . . . . . . . . ." CONFIG_FLUID_BANK_OFFSET )
+show_option ("  FluidSynth channel info support (DEPRECATED) . . ." CONFIG_FLUID_CHANNEL_INFO )
+show_option ("  FluidSynth MIDI router support  (DEPRECATED) . . ." CONFIG_FLUID_MIDI_ROUTER )
+show_option ("  FluidSynth unset program support . . . . . . . . ." CONFIG_FLUID_UNSET_PROGRAM )
+show_option ("  FluidSynth version string support  . . . . . . . ." CONFIG_FLUID_VERSION_STR )
+message ("")
+show_option ("  System tray icon support . . . . . . . . . . . . ." CONFIG_SYSTEM_TRAY )
+message ("")
+show_option ("  Unique/Single instance support . . . . . . . . . ." CONFIG_XUNIQUE )
+show_option ("  Gradient eye-candy . . . . . . . . . . . . . . . ." CONFIG_GRADIENT )
+show_option ("  Debugger stack-trace (gdb) . . . . . . . . . . . ." CONFIG_STACKTRACE )
+message (  "\n  Install prefix . . . . . . . . . . . . . . . . . .: ${CMAKE_INSTALL_PREFIX}" )
+message ("\nNow type 'make', followed by 'make install' as root.\n" )

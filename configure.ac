@@ -315,10 +315,10 @@ AC_CHECK_LIB(m, main)
 AC_CHECK_LIB(X11, main)
 AC_CHECK_LIB(Xext, main)
 
-# Check for round math function.
+# Check for lroundf math function.
 AC_CHECK_LIB(m, lroundf, [ac_round="yes"], [ac_round="no"])
 if test "x$ac_round" = "xyes"; then
-   AC_DEFINE(CONFIG_ROUND, 1, [Define if round is available.])
+   AC_DEFINE(CONFIG_ROUND, 1, [Define if lroundf is available.])
 fi
 
 # Check for fluidsynth library.

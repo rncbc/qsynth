@@ -28,7 +28,7 @@
 /* Define to 1 if you have the <signal.h> header file. */
 #cmakedefine HAVE_SIGNAL_H @HAVE_SIGNAL_H@
 
-/* Define if round is available. */
+/* Define if lroundf is available. */
 #cmakedefine CONFIG_ROUND @CONFIG_ROUND@
 
 /* Define if X11 Unique/Single instance is enabled. */

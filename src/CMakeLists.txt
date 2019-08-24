@@ -11,13 +11,13 @@ link_directories (
   ${QT_LIBRARY_DIR}
 )
 
-configure_file ( cmakeconfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h )
+configure_file (cmake_config.h ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-set ( ac_prefix ${CMAKE_INSTALL_PREFIX} )
+set (ac_prefix ${CMAKE_INSTALL_PREFIX})
 
-configure_file ( qsynth.desktop ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop )
+configure_file (qsynth.desktop ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop)
 
-set ( HEADERS
+set (HEADERS
   qsynth.h
   qsynthKnob.h
   qsynthMeter.h
@@ -32,7 +32,7 @@ set ( HEADERS
   qsynthSetupForm.h
 )
 
-set ( SOURCES
+set (SOURCES
   qsynth.cpp
   qsynthEngine.cpp
   qsynthChannels.cpp
@@ -55,7 +55,7 @@ set ( SOURCES
   qsynthDialSkulptureStyle.cpp
 )
 
-set ( FORMS
+set (FORMS
   qsynthAboutForm.ui
   qsynthChannelsForm.ui
   qsynthMainForm.ui
@@ -65,57 +65,9 @@ set ( FORMS
   qsynthSetupForm.ui
 )
 
-set ( RESOURCES
+set (RESOURCES
   qsynth.qrc
 )
-
-qt5_wrap_ui ( UI_SOURCES ${FORMS} )
-qt5_wrap_cpp ( MOC_SOURCES ${HEADERS} )
-qt5_add_resources ( QRC_SOURCES ${RESOURCES} )
-
-if (WIN32)
-  set ( RC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/win32/qsynth.rc )
-  set ( RES_FILE ${CMAKE_CURRENT_BINARY_DIR}/qsynth.res.obj )
-  find_program ( WINDRES_EXECUTABLE NAMES windres mingw32-windres i686-mingw32-windres)
-  if (MINGW)
-    exec_program( ${WINDRES_EXECUTABLE}
-      ARGS "-i ${RC_FILE} -o ${RES_FILE} --include-dir=${CMAKE_CURRENT_SOURCE_DIR}/images" )
-    list (APPEND SOURCES ${RES_FILE} )
-  else ()
-    list (APPEND SOURCES ${RC_FILE} )
-  endif ()
-endif ()
-
-if (APPLE)
-  set ( ICON_FILE ${CMAKE_CURRENT_SOURCE_DIR}/images/qsynth.icns )
-  list ( APPEND SOURCES ${ICON_FILE} )
-  set ( MACOSX_BUNDLE_ICON_FILE qsynth.icns )
-  set_source_files_properties ( ${ICON_FILE} PROPERTIES
-    MACOSX_PACKAGE_LOCATION Resources )
-endif ()
-
-add_executable ( qsynth
-  ${UI_SOURCES}
-  ${MOC_SOURCES}
-  ${QRC_SOURCES}
-  ${SOURCES}
-)
-
-if (WIN32)
-  set_target_properties ( qsynth PROPERTIES WIN32_EXECUTABLE true )
-endif ()
-
-if (APPLE)
-  set_target_properties ( qsynth PROPERTIES MACOSX_BUNDLE true )
-endif ()
-
-target_link_libraries ( qsynth
-  ${QT_LIBRARIES}
-  ${MATH_LIBRARY}
-  ${FLUIDSYNTH_LIBRARY}
-)
-
-qt5_use_modules (qsynth Core Gui Widgets Network)
 
 set ( TRANSLATIONS
    translations/qsynth_cs.ts
@@ -129,23 +81,71 @@ set ( TRANSLATIONS
 qt5_add_translation ( QM_FILES ${TRANSLATIONS} )
 add_custom_target( translations ALL DEPENDS ${QM_FILES} )
 
+qt5_wrap_ui (UI_SOURCES ${FORMS})
+qt5_wrap_cpp (MOC_SOURCES ${HEADERS})
+qt5_add_resources (QRC_SOURCES ${RESOURCES})
+
+if (WIN32)
+  set (RC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/win32/qsynth.rc)
+  set (RES_FILE ${CMAKE_CURRENT_BINARY_DIR}/qsynth.res.obj)
+  find_program (WINDRES_EXECUTABLE NAMES windres mingw32-windres i686-mingw32-windres)
+  if (MINGW)
+    exec_program(${WINDRES_EXECUTABLE}
+      ARGS "-i ${RC_FILE} -o ${RES_FILE} --include-dir=${CMAKE_CURRENT_SOURCE_DIR}/images")
+    list (APPEND SOURCES ${RES_FILE})
+  else ()
+    list (APPEND SOURCES ${RC_FILE})
+  endif ()
+endif ()
+
+if (APPLE)
+  set ( ICON_FILE ${CMAKE_CURRENT_SOURCE_DIR}/images/qsynth.icns)
+  list ( APPEND SOURCES ${ICON_FILE})
+  set ( MACOSX_BUNDLE_ICON_FILE qsynth.icns)
+  set_source_files_properties ( ${ICON_FILE} PROPERTIES
+    MACOSX_PACKAGE_LOCATION Resources)
+endif ()
+
+add_executable (qsynth
+  ${UI_SOURCES}
+  ${MOC_SOURCES}
+  ${QRC_SOURCES}
+  ${SOURCES}
+)
+
+if (WIN32)
+  set_target_properties (qsynth PROPERTIES WIN32_EXECUTABLE true)
+endif ()
+
+if (APPLE)
+  set_target_properties (qsynth PROPERTIES MACOSX_BUNDLE true)
+endif ()
+
+target_link_libraries (qsynth
+  ${QT_LIBRARIES}
+  ${MATH_LIBRARY}
+  ${FLUIDSYNTH_LIBRARIES}
+)
+
+qt5_use_modules (qsynth Core Gui Widgets Network)
+
 if (UNIX AND NOT APPLE)
-  install ( TARGETS qsynth
-     RUNTIME DESTINATION bin )
-  install ( FILES ${QM_FILES}
-     DESTINATION share/qsynth/translations )
-  install ( FILES ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop
-     DESTINATION share/applications )
-  install ( FILES images/qsynth.png
-     DESTINATION share/pixmaps )
-  install ( FILES appdata/qsynth.appdata.xml
-     DESTINATION share/metainfo )
+  install (TARGETS qsynth
+     RUNTIME DESTINATION bin)
+  install (FILES ${QM_FILES}
+     DESTINATION share/qsynth/translations)
+  install (FILES ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop
+     DESTINATION share/applications)
+  install (FILES images/qsynth.png
+     DESTINATION share/pixmaps)
+  install (FILES appdata/qsynth.appdata.xml
+     DESTINATION share/metainfo)
 endif ()
 
 if (WIN32)
-   install ( TARGETS qsynth
-     RUNTIME DESTINATION . )
-   install ( FILES ${QM_FILES}
-     DESTINATION share/qsynth/translations )
+   install (TARGETS qsynth
+     RUNTIME DESTINATION .)
+   install (FILES ${QM_FILES}
+     DESTINATION share/qsynth/translations)
 endif ()
 
