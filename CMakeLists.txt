@@ -84,12 +84,13 @@ include (CheckLibraryExists)
 
 # Checks for libraries.
 if (WIN32)
-  check_function_exists ( lroundf CONFIG_ROUND )
+  check_function_exists (lroundf CONFIG_ROUND)
 else ()
-  find_library ( MATH_LIBRARY m )
+  find_library (MATH_LIBRARY m)
   # Check for round math function.
   if (MATH_LIBRARY)
-    check_function_exists ( lroundf CONFIG_ROUND )
+    set (CMAKE_REQUIRED_LIBRARIES "${MATH_LIBRARY};${CMAKE_REQUIRED_LIBRARIES}")
+    check_function_exists (lroundf CONFIG_ROUND)
   else ()
     message (FATAL_ERROR "*** math library not found.")
   endif ()
@@ -107,7 +108,7 @@ find_package (PkgConfig REQUIRED)
 
 
 # Check for FLUIDSYNTH library.
-pkg_check_modules (FLUIDSYNTH fluidsynth REQUIRED)
+pkg_check_modules (FLUIDSYNTH REQUIRED fluidsynth)
 set (CONFIG_FLUIDSYNTH ${FLUIDSYNTH_FOUND})
 if (CONFIG_FLUIDSYNTH)
   include_directories (${FLUIDSYNTH_INCLUDE_DIRS})
@@ -173,6 +174,7 @@ if (CONFIG_FLUIDSYNTH)
 else ()
   message (FATAL_ERROR "*** FLUIDSYNTH library not found.")
 endif ()
+
 
 add_subdirectory (src)
 
