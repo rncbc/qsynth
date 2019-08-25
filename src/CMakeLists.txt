@@ -126,25 +126,29 @@ target_link_libraries (qsynth
   ${FLUIDSYNTH_LIBRARIES}
 )
 
-qt5_use_modules (qsynth Core Gui Widgets Network)
+qt5_use_modules (qsynth Core Gui Widgets)
+
+if (CONFIG_XUNIQUE)
+  qt5_use_modules (qsynth Network)
+endif ()
 
 if (UNIX AND NOT APPLE)
-  install (TARGETS qsynth
-     RUNTIME DESTINATION bin)
+  install (TARGETS qsynth RUNTIME
+     DESTINATION ${CMAKE_INSTALL_BINDIR})
   install (FILES ${QM_FILES}
-     DESTINATION share/qsynth/translations)
+     DESTINATION ${CMAKE_INSTALL_DATADIR}/qsynth/translations)
   install (FILES ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop
-     DESTINATION share/applications)
+     DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
   install (FILES images/qsynth.png
-     DESTINATION share/icons/hicolor/32x32/apps)
+     DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/32x32/apps)
   install (FILES appdata/qsynth.appdata.xml
-     DESTINATION share/metainfo)
+     DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
 endif ()
 
 if (WIN32)
-   install (TARGETS qsynth
-     RUNTIME DESTINATION .)
+   install (TARGETS qsynth RUNTIME
+     DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
    install (FILES ${QM_FILES}
-     DESTINATION share/qsynth/translations)
+     DESTINATION ${CMAKE_INSTALL_DATADIR}/qsynth/translations)
 endif ()
 
