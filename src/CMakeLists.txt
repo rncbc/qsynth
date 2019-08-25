@@ -3,13 +3,17 @@ include_directories (
   ${CMAKE_CURRENT_BINARY_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR}
   ${QT_INCLUDES}
-  ${FLUIDSYNTH_INCLUDEDIR}
 )
 
 link_directories (
   ${CMAKE_CURRENT_BINARY_DIR}
   ${QT_LIBRARY_DIR}
 )
+
+if (CONFIG_FLUIDSYNTH)
+  include_directories (${FLUIDSYNTH_INCLUDE_DIRS})
+  link_directories (${FLUIDSYNTH_LIBRARY_DIRS})
+endif ()
 
 configure_file (cmake_config.h ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
