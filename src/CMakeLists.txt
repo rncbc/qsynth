@@ -12,8 +12,6 @@ link_directories (
 
 configure_file (cmake_config.h ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
-set (ac_prefix ${CMAKE_INSTALL_PREFIX})
-
 configure_file (qsynth.desktop ${CMAKE_CURRENT_BINARY_DIR}/qsynth.desktop)
 
 set (HEADERS
@@ -120,17 +118,20 @@ if (APPLE)
   set_target_properties (qsynth PROPERTIES MACOSX_BUNDLE true)
 endif ()
 
-target_link_libraries (qsynth
-  ${QT_LIBRARIES}
-  ${MATH_LIBRARY}
-  ${FLUIDSYNTH_LIBRARIES}
-)
-
-qt5_use_modules (qsynth Core Gui Widgets)
+target_link_libraries (qsynth PRIVATE Qt5::Widgets)
 
 if (CONFIG_XUNIQUE)
-  qt5_use_modules (qsynth Network)
+  target_link_libraries (qsynth PRIVATE Qt5::Network)
 endif ()
+
+if (CONFIG_FLUIDSYNTH)
+  target_link_libraries (qsynth PRIVATE ${FLUIDSYNTH_LIBRARIES})
+endif ()
+
+if (CONFIG_ROUND)
+  target_link_libraries (qsynth PRIVATE ${MATH_LIBRARY})
+endif ()
+
 
 if (UNIX AND NOT APPLE)
   install (TARGETS qsynth RUNTIME

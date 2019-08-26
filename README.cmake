@@ -22,7 +22,7 @@ Linux and other systems at:
 How to use it?
 ==============
 
-1. You need CMake 2.6 or newer to build Qsynth
+1. You need CMake 3.1 or newer to build Qsynth
 
 2. Unpack the Qsynth sources somewhere, or checkout the repository, 
    and create a build directory. For instance, using a command line shell:
@@ -39,19 +39,7 @@ $ mkdir build
 $ pwd
 qsynth-x.y.z
 $ cd build
-$ cmake .. -DCONFIG_STACKTRACE=1 -DCMAKE_BUILD_TYPE=debug
-
-Available boolean options:
-  * CONFIG_GRADIENT, enabled by default
-  * CONFIG_SYSTEM_TRAY, enabled by default
-  * CONFIG_STACKTRACE, disabled by default
-Valid values for boolean options are: 1, 0, yes, no, on, off.
-
-* There are also several alternative CMake front-ends, if you don't want to use
-  the command line interface:
-  * ncurses based program, for Linux and Unix: ccmake
-  * GUI, Qt4 based program, multiplatform: cmake-gui
-  * GUI, Windows native program: CMakeSetup.exe (deprecated)
+$ cmake -DCMAKE_BUILD_TYPE=debug ..
 
 3. Execute the build command. If you used the Makefiles generator (the default
    in Linux and other Unix systems) then execute make, gmake, or mingw32-make.
