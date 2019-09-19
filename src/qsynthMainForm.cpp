@@ -1016,9 +1016,9 @@ void qsynthMainForm::stdoutNotifySlot ( int fd )
 
 
 // Stdout buffer handler -- now splitted by complete new-lines...
-void qsynthMainForm::appendStdoutBuffer ( const QString& s )
+void qsynthMainForm::appendStdoutBuffer ( const QString& sText )
 {
-	m_sStdoutBuffer.append(s);
+	m_sStdoutBuffer.append(sText);
 
 	const int iLength = m_sStdoutBuffer.lastIndexOf('\n');
 	if (iLength > 0) {
@@ -1043,43 +1043,44 @@ void qsynthMainForm::flushStdoutBuffer (void)
 
 
 // Messages output methods.
-void qsynthMainForm::appendMessages( const QString& s )
+void qsynthMainForm::appendMessages( const QString& sText )
 {
 	if (m_pMessagesForm)
-		m_pMessagesForm->appendMessages(s);
+		m_pMessagesForm->appendMessages(sText);
 }
 
 
-void qsynthMainForm::appendMessagesColor( const QString& s, const QString& c )
+void qsynthMainForm::appendMessagesColor(
+	const QString& sText, const QString& sColor )
 {
 	if (m_pMessagesForm)
-		m_pMessagesForm->appendMessagesColor(s, c);
+		m_pMessagesForm->appendMessagesColor(sText, sColor);
 }
 
 
-void qsynthMainForm::appendMessagesText( const QString& s )
+void qsynthMainForm::appendMessagesText( const QString& sText )
 {
 	if (m_pMessagesForm)
-		m_pMessagesForm->appendMessagesText(s);
+		m_pMessagesForm->appendMessagesText(sText);
 }
 
 
-void qsynthMainForm::appendMessagesError( const QString& s )
+void qsynthMainForm::appendMessagesError( const QString& sText )
 {
 	if (m_pMessagesForm)
 		m_pMessagesForm->show();
 
-	appendMessagesColor(s.simplified(), "#ff0000");
+	appendMessagesColor(sText.simplified(), "#ff0000");
 
 	const QString& sTitle = tr("Error");
 #ifdef CONFIG_SYSTEM_TRAY
 	if (m_pOptions->bSystemTray && m_pSystemTray
 		&& QSystemTrayIcon::supportsMessages()) {
-		m_pSystemTray->showMessage(sTitle, s, QSystemTrayIcon::Critical);
+		m_pSystemTray->showMessage(sTitle, sText, QSystemTrayIcon::Critical);
 	}
 	else
 #endif
-	QMessageBox::critical(this, sTitle, s, QMessageBox::Cancel);
+	QMessageBox::critical(this, sTitle, sText, QMessageBox::Cancel);
 }
 
 

@@ -59,10 +59,10 @@ public:
 
 	void setup(qsynthOptions *pOptions);
 
-	void appendMessages(const QString& s);
-	void appendMessagesColor(const QString& s, const QString& c);
-	void appendMessagesText(const QString& s);
-	void appendMessagesError(const QString& s);
+	void appendMessages(const QString& sText);
+	void appendMessagesColor(const QString& sText, const QString& sColor);
+	void appendMessagesText(const QString& sText);
+	void appendMessagesError(const QString& sText);
 
 	bool deleteEngineTab(qsynthEngine *pEngine, int iTab);
 	bool setupEngineTab(qsynthEngine *pEngine, int iTab);
@@ -127,12 +127,12 @@ protected:
 
 	void closeEvent(QCloseEvent *pCloseEvent);
 
-	void appendStdoutBuffer(const QString&);
+	void appendStdoutBuffer(const QString& sText);
 	void flushStdoutBuffer();
 
 	bool stdoutBlock(int fd, bool bBlock) const;
 
-	void playLoadFiles( qsynthEngine *pEngine, const QStringList& files, bool bSetup);
+	void playLoadFiles(qsynthEngine *pEngine, const QStringList& files, bool bSetup);
 
 	bool decodeDragFiles(const QMimeSource *pEvent, QStringList& files);
 	void dragEnterEvent(QDragEnterEvent *pDragEnterEvent);
