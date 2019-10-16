@@ -4,16 +4,15 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.6.0  2019-10-17  An Autumn'19 Release.
 
 - Updated the old yet non-oficial CMake build option.
-  (EXPERIMENTAL)
 
 - Fix HiDPI display screen effective support (Qt >= 5.6).
 
 - System-tray icon context menu has been refactored to
   be exactly the same as the main-window context menu
-  that is re-instantiated on demand. (EXPERIMENTAL)
+  that is re-instantiated on demand.
 
 - Make sure compiler flags comply to c++11 as standard.
 
