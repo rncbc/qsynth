@@ -179,7 +179,7 @@
     <message>
         <location filename="../qsynthAboutForm.ui" line="33"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>À propos</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.ui" line="64"/>
@@ -964,7 +964,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="33"/>
         <source>Messages</source>
-        <translation type="unfinished">Messages</translation>
+        <translation>Messages</translation>
     </message>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="48"/>
@@ -1183,7 +1183,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="33"/>
         <source>Options</source>
-        <translation type="unfinished">Options</translation>
+        <translation>Options</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="477"/>
@@ -1311,7 +1311,7 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthPresetForm.ui" line="33"/>
         <source>Channel Preset</source>
-        <translation type="unfinished"></translation>
+        <translation>Présélection de canal</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="65"/>
