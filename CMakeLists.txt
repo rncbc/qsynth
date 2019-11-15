@@ -122,8 +122,8 @@ find_package (PkgConfig REQUIRED)
 
 # Check for FLUIDSYNTH library.
 pkg_check_modules (FLUIDSYNTH REQUIRED fluidsynth)
-set (CONFIG_FLUIDSYNTH ${FLUIDSYNTH_FOUND})
-if (CONFIG_FLUIDSYNTH)
+if (FLUIDSYNTH_FOUND)
+  set (CONFIG_FLUIDSYNTH 1)
   include_directories (${FLUIDSYNTH_INCLUDE_DIRS})
   link_directories (${FLUIDSYNTH_LIBRARY_DIRS})
 # link_libraries (${FLUIDSYNTH_LIBRARIES})
@@ -187,6 +187,7 @@ if (CONFIG_FLUIDSYNTH)
   endif ()
 else ()
   message (FATAL_ERROR "*** FLUIDSYNTH library not found.")
+  set (CONFIG_FLUIDSYNTH 0)
 endif ()
 
 
