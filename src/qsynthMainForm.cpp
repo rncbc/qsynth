@@ -1307,6 +1307,14 @@ void qsynthMainForm::stabilizeForm (void)
 }
 
 
+void qsynthMainForm::stabilizeFormEx (void)
+{
+	updateContextMenu();
+
+	stabilizeForm();
+}
+
+
 // Program reset command slot (all channels).
 void qsynthMainForm::programReset (void)
 {

@@ -62,7 +62,6 @@ protected:
 
 	void showEvent(QShowEvent *);
 	void hideEvent(QHideEvent *);
-	void closeEvent(QCloseEvent *);
 
 private:
 

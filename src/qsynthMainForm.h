@@ -78,9 +78,8 @@ public:
 
 	enum KnobStyle { Classic, Vokimon, Peppino, Skulpture, Legacy };
 
-public slots:
-
 	void stabilizeForm();
+	void stabilizeFormEx();
 
 protected slots:
 

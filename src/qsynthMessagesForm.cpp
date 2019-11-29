@@ -71,10 +71,11 @@ void qsynthMessagesForm::showEvent ( QShowEvent *pShowEvent )
 {
 	qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
 	if (pMainForm)
-		pMainForm->stabilizeForm();
+		pMainForm->stabilizeFormEx();
 
 	QWidget::showEvent(pShowEvent);
 }
+
 
 // Notify our parent that we're closing.
 void qsynthMessagesForm::hideEvent ( QHideEvent *pHideEvent )
@@ -83,17 +84,7 @@ void qsynthMessagesForm::hideEvent ( QHideEvent *pHideEvent )
 
 	qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
 	if (pMainForm)
-		pMainForm->stabilizeForm();
-}
-
-// Just about to notify main-window that we're closing.
-void qsynthMessagesForm::closeEvent ( QCloseEvent * /*pCloseEvent*/ )
-{
-	QWidget::hide();
-
-	qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
-	if (pMainForm)
-		pMainForm->stabilizeForm();
+		pMainForm->stabilizeFormEx();
 }
 
 
