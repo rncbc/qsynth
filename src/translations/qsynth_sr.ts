@@ -4,167 +4,167 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../qsynthOptions.cpp" line="173"/>
+        <location filename="../qsynthOptions.cpp" line="197"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
         <translation>Употреба: %1 [опције] [звучни_фонтови] [миди_датотеке]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="176"/>
+        <location filename="../qsynthOptions.cpp" line="200"/>
         <source>Options</source>
         <translation>Параметри</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="178"/>
+        <location filename="../qsynthOptions.cpp" line="202"/>
         <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
         <translation>Не стварај миди посредника за читање улазних миди-догађаја [подразумевано = yes]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="180"/>
+        <location filename="../qsynthOptions.cpp" line="204"/>
         <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
         <translation>Назив миди посредника који ће се користити [oss,alsa,alsa_seq,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="182"/>
+        <location filename="../qsynthOptions.cpp" line="206"/>
         <source>The number of midi channels [default = 16]</source>
         <translation>Број миди-канала [подразумевано = 16]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="184"/>
+        <location filename="../qsynthOptions.cpp" line="208"/>
         <source>The audio driver [alsa,jack,oss,dsound,...]</source>
         <translation>Звучни посредник [alsa,jack,oss,dsound,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="186"/>
+        <location filename="../qsynthOptions.cpp" line="210"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
         <translation>Покушавај да повежеш излазе Џек посредника на физичке портове</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="188"/>
+        <location filename="../qsynthOptions.cpp" line="212"/>
         <source>The number of stereo audio channels [default = 1]</source>
         <translation>Број звучних стерео канала [подразумевано = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="190"/>
+        <location filename="../qsynthOptions.cpp" line="214"/>
         <source>The number of audio groups [default = 1]</source>
         <translation>Број звучних група [подразумевано = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="192"/>
+        <location filename="../qsynthOptions.cpp" line="216"/>
         <source>Size of each audio buffer</source>
         <translation>Величина сваког звучног бафера</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="194"/>
+        <location filename="../qsynthOptions.cpp" line="218"/>
         <source>Number of audio buffers</source>
         <translation>Број звучних бафера</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="196"/>
+        <location filename="../qsynthOptions.cpp" line="220"/>
         <source>Set the sample rate</source>
         <translation>Постави учестаност узорковања</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="198"/>
+        <location filename="../qsynthOptions.cpp" line="222"/>
         <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
         <translation>Укљ./Искљ. јека еф. [1|0|yes|no|on|off, подразумевано = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="200"/>
+        <location filename="../qsynthOptions.cpp" line="224"/>
         <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
         <translation>Укљ./Искљ. хорус еф. [1|0|yes|no|on|off, подразумевано = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="202"/>
+        <location filename="../qsynthOptions.cpp" line="226"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
         <translation>Постави Мастер-појачање [0 &lt; gain &lt; 10, подразумевано = 0.2]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="204"/>
+        <location filename="../qsynthOptions.cpp" line="228"/>
         <source>Define a setting name=value</source>
         <translation>Одреди назив поставке=вредност</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="206"/>
+        <location filename="../qsynthOptions.cpp" line="230"/>
         <source>Create and start server [default = no]</source>
         <translation>Створи и покрени сервер [подразумевано = no]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="208"/>
+        <location filename="../qsynthOptions.cpp" line="232"/>
         <source>Don&apos;t read commands from the shell [ignored]</source>
         <translation>Не читај команде из наредбене линије [занемарено]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="210"/>
+        <location filename="../qsynthOptions.cpp" line="234"/>
         <source>Dump midi router events</source>
         <translation>Избаци догађаје миди-рутера</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="212"/>
+        <location filename="../qsynthOptions.cpp" line="236"/>
         <source>Print out verbose messages about midi events</source>
         <translation>Штампај опширније поруке о миди-догађајима</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="214"/>
+        <location filename="../qsynthOptions.cpp" line="238"/>
         <source>Show help about command line options</source>
         <translation>Прикажи помоћ о опцијама линије наредбе</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="216"/>
+        <location filename="../qsynthOptions.cpp" line="240"/>
         <source>Show version information</source>
         <translation>Прикажи податке о издању програма</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="248"/>
+        <location filename="../qsynthOptions.cpp" line="272"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>Опција „-m“ захтева аргумент (миди посредник).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="257"/>
+        <location filename="../qsynthOptions.cpp" line="281"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>Опција „-K“ захтева аргумент (миди-канали).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="266"/>
+        <location filename="../qsynthOptions.cpp" line="290"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>Опција „-a“ захтева аргумент (звучни посредник).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="278"/>
+        <location filename="../qsynthOptions.cpp" line="302"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>Опција „-L“ захтева аргумент (звучни канали).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="287"/>
+        <location filename="../qsynthOptions.cpp" line="311"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>Опција „-G“ захтева аргумент (звучне групе).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="296"/>
+        <location filename="../qsynthOptions.cpp" line="320"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>Опција „-z“ захтева аргумент (вел. зв. бафера).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="305"/>
+        <location filename="../qsynthOptions.cpp" line="329"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>Опција „-c“ захтева аргумент (број зв. бафера).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="314"/>
+        <location filename="../qsynthOptions.cpp" line="338"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>Опција „-r“ захтева аргумент (учестаност узорковања).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="341"/>
+        <location filename="../qsynthOptions.cpp" line="365"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>Опција „-g“ захтева аргумент (појачање).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="350"/>
+        <location filename="../qsynthOptions.cpp" line="374"/>
         <source>Option -o requires an argument.</source>
         <translation>Опција „-o“ захтева аргумент.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="396"/>
+        <location filename="../qsynthOptions.cpp" line="420"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Непозната опција „%1“.</translation>
     </message>
@@ -1072,6 +1072,7 @@ restarting the fluidsynth engine:</source>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="273"/>
+        <location filename="../qsynthOptionsForm.ui" line="526"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -1148,36 +1149,76 @@ restarting the fluidsynth engine:</source>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="443"/>
+        <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="458"/>
+        <source>&amp;Color palette theme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="477"/>
+        <source>Custom color palette theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="489"/>
+        <source>Wonton Soup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="494"/>
+        <source>KXStudio</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="523"/>
+        <source>Manage custom color palette themes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="552"/>
+        <source>&amp;Widget style theme:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="568"/>
+        <source>Custom widget style theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="592"/>
         <source>Other</source>
         <translation>Остало</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="458"/>
+        <location filename="../qsynthOptionsForm.ui" line="607"/>
         <source>Whether to ask for confirmation on application exit</source>
         <translation>Да ли да затражим потврду по напуштању програма</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="461"/>
+        <location filename="../qsynthOptionsForm.ui" line="610"/>
         <source>&amp;Confirm application close</source>
         <translation>Потврда &amp;за напуштање програма</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="551"/>
+        <location filename="../qsynthOptionsForm.ui" line="700"/>
         <source>Whether to show system tray message on main window close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="554"/>
+        <location filename="../qsynthOptionsForm.ui" line="703"/>
         <source>Sho&amp;w system tray message on close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="602"/>
+        <location filename="../qsynthOptionsForm.ui" line="751"/>
         <source>Defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="474"/>
+        <location filename="../qsynthOptionsForm.ui" line="623"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Да ли да издигнем потчињене прозоре у први план</translation>
     </message>
@@ -1187,124 +1228,307 @@ restarting the fluidsynth engine:</source>
         <translation type="unfinished">Параметри</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="477"/>
+        <location filename="../qsynthOptionsForm.ui" line="626"/>
         <source>&amp;Keep child windows always on top</source>
         <translation>Потчињени прозори су у првом п&amp;лану</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="490"/>
+        <location filename="../qsynthOptionsForm.ui" line="639"/>
         <source>Whether to capture standard output (stdout/stderr) into messages window</source>
         <translation>Да ли да пратим стандардни излаз („stdout/stderr“) кроз прозорче са порукама</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="493"/>
+        <location filename="../qsynthOptionsForm.ui" line="642"/>
         <source>Capture standard &amp;output</source>
         <translation>Прати стандардни &amp;излаз</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="506"/>
+        <location filename="../qsynthOptionsForm.ui" line="655"/>
         <source>Whether to monitor and show engine output peak level meters</source>
         <translation>Да ли да пратим и приказујем ниво излазних вршних вредности сигнала</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="509"/>
+        <location filename="../qsynthOptionsForm.ui" line="658"/>
         <source>Output &amp;peak level meters</source>
         <translation>&amp;Прати ниво вршних вредности покретача</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="535"/>
+        <location filename="../qsynthOptionsForm.ui" line="684"/>
         <source>Whether to enable the system tray icon</source>
         <translation>Да ли да омогућим употребу иконе у обавештајној зони</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="538"/>
+        <location filename="../qsynthOptionsForm.ui" line="687"/>
         <source>&amp;Enable system tray icon</source>
         <translation>Омогући икону у обав&amp;ештајној зони</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="567"/>
+        <location filename="../qsynthOptionsForm.ui" line="716"/>
         <source>Whether to start minimized to system tray</source>
         <translation>Да ли да сакријем програм при покретању у обавештајну зону</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="570"/>
+        <location filename="../qsynthOptionsForm.ui" line="719"/>
         <source>Start minimi&amp;zed to system tray</source>
         <translation>По покретању смести у &amp;обавештајну зону</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="639"/>
+        <location filename="../qsynthOptionsForm.ui" line="788"/>
         <source>&amp;Base font size:</source>
         <translation>Величина &amp;слова:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="658"/>
+        <location filename="../qsynthOptionsForm.ui" line="807"/>
         <source>Base application font size (pt.)</source>
         <translation>Основна величина слова фонта у програму (у тачкама-пт.)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="665"/>
+        <location filename="../qsynthOptionsForm.ui" line="484"/>
+        <location filename="../qsynthOptionsForm.ui" line="575"/>
+        <location filename="../qsynthOptionsForm.ui" line="814"/>
         <source>(default)</source>
         <translation>(подразумевано)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="670"/>
+        <location filename="../qsynthOptionsForm.ui" line="819"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="675"/>
+        <location filename="../qsynthOptionsForm.ui" line="824"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="680"/>
+        <location filename="../qsynthOptionsForm.ui" line="829"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="685"/>
+        <location filename="../qsynthOptionsForm.ui" line="834"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="690"/>
+        <location filename="../qsynthOptionsForm.ui" line="839"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="695"/>
+        <location filename="../qsynthOptionsForm.ui" line="844"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="700"/>
+        <location filename="../qsynthOptionsForm.ui" line="849"/>
         <source>12</source>
         <translation>12</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="255"/>
+        <location filename="../qsynthOptionsForm.cpp" line="287"/>
+        <source>Information</source>
+        <translation type="unfinished">Подаци</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.cpp" line="288"/>
+        <source>Some settings may be only effective
+next time you start this application.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.cpp" line="314"/>
         <source>Warning</source>
         <translation>Упозорење</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="256"/>
+        <location filename="../qsynthOptionsForm.cpp" line="315"/>
         <source>Some options have been changed.</source>
         <translation>Измењена су нека подешавања.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="257"/>
+        <location filename="../qsynthOptionsForm.cpp" line="316"/>
         <source>Do you want to apply the changes?</source>
         <translation>Желите ли да примените ове измене?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="316"/>
+        <location filename="../qsynthOptionsForm.cpp" line="439"/>
         <source>Messages Log</source>
         <translation>Дневник порука</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="318"/>
+        <location filename="../qsynthOptionsForm.cpp" line="441"/>
         <source>Log files</source>
         <translation>Датотеке дневника</translation>
+    </message>
+</context>
+<context>
+    <name>qsynthPaletteForm</name>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="40"/>
+        <source>Color Themes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="46"/>
+        <source>Name</source>
+        <translation type="unfinished">Назив</translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="64"/>
+        <source>Current color palette name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="77"/>
+        <source>Save current color palette name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="80"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="90"/>
+        <source>Delete current color palette name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="93"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="106"/>
+        <source>Palette</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="118"/>
+        <source>Current color palette</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="128"/>
+        <source>Generate:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="144"/>
+        <source>Base color to generate palette</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="151"/>
+        <source>Reset all current palette colors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="154"/>
+        <source> Reset</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="177"/>
+        <source>Import a custom color theme (palette) from file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="180"/>
+        <source>Import...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="190"/>
+        <source>Export a custom color theme (palette) to file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="193"/>
+        <source>Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.ui" line="216"/>
+        <source>Show Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="320"/>
+        <source>Import File - %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="323"/>
+        <location filename="../qsynthPaletteForm.cpp" line="389"/>
+        <source>Palette files (*.%1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="324"/>
+        <location filename="../qsynthPaletteForm.cpp" line="390"/>
+        <source>All files (*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="376"/>
+        <location filename="../qsynthPaletteForm.cpp" line="799"/>
+        <location filename="../qsynthPaletteForm.cpp" line="807"/>
+        <source>Warning - %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="377"/>
+        <source>Could not import from file:
+
+%1
+
+Sorry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="386"/>
+        <source>Export File - %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="800"/>
+        <source>Some settings have been changed.
+
+Do you want to discard the changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="808"/>
+        <source>Some settings have been changed:
+
+&quot;%1&quot;.
+
+Do you want to save the changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>qsynthPaletteForm::PaletteModel</name>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="1039"/>
+        <source>Color Role</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="1042"/>
+        <source>Active</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="1045"/>
+        <source>Inactive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="1048"/>
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
