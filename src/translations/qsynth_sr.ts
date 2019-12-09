@@ -986,341 +986,346 @@ restarting the fluidsynth engine:</source>
 <context>
     <name>qsynthOptionsForm</name>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="46"/>
+        <location filename="../qsynthOptionsForm.ui" line="461"/>
         <source>Display</source>
         <translation>Приказ</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="58"/>
+        <location filename="../qsynthOptionsForm.ui" line="62"/>
         <source>Messages</source>
         <translation>Поруке</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="85"/>
+        <location filename="../qsynthOptionsForm.ui" line="50"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptionsForm.ui" line="89"/>
         <source>Sample messages text font display</source>
         <translation>Пример приказа фонта текстуалних порука</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="113"/>
+        <location filename="../qsynthOptionsForm.ui" line="117"/>
         <source>Select font for the messages text display</source>
         <translation>Одабир фонта за приказ текстуалних порука</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="116"/>
+        <location filename="../qsynthOptionsForm.ui" line="120"/>
         <source>&amp;Font...</source>
         <translation>&amp;Фонт...</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="148"/>
+        <location filename="../qsynthOptionsForm.ui" line="152"/>
         <source>Whether to keep a maximum number of lines in the messages window</source>
         <translation>Омогућава ограничавање броја линија у прозорчету са порукама које треба задржати</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="151"/>
+        <location filename="../qsynthOptionsForm.ui" line="155"/>
         <source>&amp;Messages limit:</source>
         <translation>Ограничавање у порук&amp;ма:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="164"/>
+        <location filename="../qsynthOptionsForm.ui" line="168"/>
         <source>The maximum number of message lines to keep in view</source>
         <translation>Највећи број линија у прозорчету са порукама које треба задржати</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="174"/>
+        <location filename="../qsynthOptionsForm.ui" line="178"/>
         <source>100</source>
         <translation>100</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="179"/>
+        <location filename="../qsynthOptionsForm.ui" line="183"/>
         <source>250</source>
         <translation>250</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="184"/>
+        <location filename="../qsynthOptionsForm.ui" line="188"/>
         <source>500</source>
         <translation>500</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="189"/>
+        <location filename="../qsynthOptionsForm.ui" line="193"/>
         <source>1000</source>
         <translation>1000</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="194"/>
+        <location filename="../qsynthOptionsForm.ui" line="198"/>
         <source>2500</source>
         <translation>2500</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="199"/>
+        <location filename="../qsynthOptionsForm.ui" line="203"/>
         <source>5000</source>
         <translation>5000</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="216"/>
+        <location filename="../qsynthOptionsForm.ui" line="220"/>
         <source>Logging</source>
         <translation>Дневник рада</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="239"/>
+        <location filename="../qsynthOptionsForm.ui" line="241"/>
         <source>Messages log file</source>
         <translation>Датотека дневника порука</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="270"/>
+        <location filename="../qsynthOptionsForm.ui" line="272"/>
         <source>Browse for the messages log file location</source>
         <translation>Разгледај за путањом до датотеке дневника порука</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="273"/>
-        <location filename="../qsynthOptionsForm.ui" line="526"/>
+        <location filename="../qsynthOptionsForm.ui" line="275"/>
+        <location filename="../qsynthOptionsForm.ui" line="694"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="286"/>
+        <location filename="../qsynthOptionsForm.ui" line="288"/>
         <source>Whether to activate a messages logging to file.</source>
         <translation>Омогућава вођење дневника са порукама у датотеци.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="289"/>
+        <location filename="../qsynthOptionsForm.ui" line="291"/>
         <source>Messages &amp;log file:</source>
         <translation>Датотека &amp;дневника порука:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="305"/>
+        <location filename="../qsynthOptionsForm.ui" line="473"/>
         <source>Knobs</source>
         <translation>Дугмад</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="320"/>
+        <location filename="../qsynthOptionsForm.ui" line="488"/>
         <source>Kno&amp;b graphic style:</source>
         <translation>Изглед ду&amp;гмади:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="336"/>
+        <location filename="../qsynthOptionsForm.ui" line="504"/>
         <source>Graphic style for knobs</source>
         <translation>Подешавање графичког приказа (изгледа) дугмади</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="340"/>
+        <location filename="../qsynthOptionsForm.ui" line="508"/>
         <source>Classic</source>
         <translation>подразумевано</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="345"/>
+        <location filename="../qsynthOptionsForm.ui" line="513"/>
         <source>Vokimon</source>
         <translation>воукимон</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="350"/>
+        <location filename="../qsynthOptionsForm.ui" line="518"/>
         <source>Peppino</source>
         <translation>пепино</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="355"/>
+        <location filename="../qsynthOptionsForm.ui" line="523"/>
         <source>Skulpture</source>
         <translation>скулптура</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="360"/>
-        <location filename="../qsynthOptionsForm.ui" line="416"/>
+        <location filename="../qsynthOptionsForm.ui" line="528"/>
+        <location filename="../qsynthOptionsForm.ui" line="584"/>
         <source>Legacy</source>
         <translation>старински</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="390"/>
+        <location filename="../qsynthOptionsForm.ui" line="558"/>
         <source>Mouse motion be&amp;havior:</source>
         <translation>Управља&amp;ње мишом:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="409"/>
+        <location filename="../qsynthOptionsForm.ui" line="577"/>
         <source>Mouse motion behavior for knobs</source>
         <translation>Подешавање управљања дугмадима помоћу миша</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="421"/>
+        <location filename="../qsynthOptionsForm.ui" line="589"/>
         <source>Radial</source>
         <translation>кружно</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="426"/>
+        <location filename="../qsynthOptionsForm.ui" line="594"/>
         <source>Linear</source>
         <translation>линијски</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="443"/>
+        <location filename="../qsynthOptionsForm.ui" line="611"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="458"/>
+        <location filename="../qsynthOptionsForm.ui" line="626"/>
         <source>&amp;Color palette theme:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="477"/>
+        <location filename="../qsynthOptionsForm.ui" line="645"/>
         <source>Custom color palette theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="489"/>
+        <location filename="../qsynthOptionsForm.ui" line="657"/>
         <source>Wonton Soup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="494"/>
+        <location filename="../qsynthOptionsForm.ui" line="662"/>
         <source>KXStudio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="523"/>
+        <location filename="../qsynthOptionsForm.ui" line="691"/>
         <source>Manage custom color palette themes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="552"/>
+        <location filename="../qsynthOptionsForm.ui" line="720"/>
         <source>&amp;Widget style theme:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="568"/>
+        <location filename="../qsynthOptionsForm.ui" line="736"/>
         <source>Custom widget style theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="592"/>
+        <location filename="../qsynthOptionsForm.ui" line="307"/>
         <source>Other</source>
         <translation>Остало</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="607"/>
+        <location filename="../qsynthOptionsForm.ui" line="322"/>
         <source>Whether to ask for confirmation on application exit</source>
         <translation>Да ли да затражим потврду по напуштању програма</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="610"/>
+        <location filename="../qsynthOptionsForm.ui" line="325"/>
         <source>&amp;Confirm application close</source>
         <translation>Потврда &amp;за напуштање програма</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="700"/>
+        <location filename="../qsynthOptionsForm.ui" line="415"/>
         <source>Whether to show system tray message on main window close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="703"/>
+        <location filename="../qsynthOptionsForm.ui" line="418"/>
         <source>Sho&amp;w system tray message on close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="751"/>
+        <location filename="../qsynthOptionsForm.ui" line="760"/>
         <source>Defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="623"/>
+        <location filename="../qsynthOptionsForm.ui" line="338"/>
         <source>Whether to keep all child windows on top of the main window</source>
         <translation>Да ли да издигнем потчињене прозоре у први план</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="33"/>
+        <location filename="../qsynthOptionsForm.ui" line="34"/>
         <source>Options</source>
         <translation type="unfinished">Параметри</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="626"/>
+        <location filename="../qsynthOptionsForm.ui" line="341"/>
         <source>&amp;Keep child windows always on top</source>
         <translation>Потчињени прозори су у првом п&amp;лану</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="639"/>
+        <location filename="../qsynthOptionsForm.ui" line="354"/>
         <source>Whether to capture standard output (stdout/stderr) into messages window</source>
         <translation>Да ли да пратим стандардни излаз („stdout/stderr“) кроз прозорче са порукама</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="642"/>
+        <location filename="../qsynthOptionsForm.ui" line="357"/>
         <source>Capture standard &amp;output</source>
         <translation>Прати стандардни &amp;излаз</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="655"/>
+        <location filename="../qsynthOptionsForm.ui" line="370"/>
         <source>Whether to monitor and show engine output peak level meters</source>
         <translation>Да ли да пратим и приказујем ниво излазних вршних вредности сигнала</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="658"/>
+        <location filename="../qsynthOptionsForm.ui" line="373"/>
         <source>Output &amp;peak level meters</source>
         <translation>&amp;Прати ниво вршних вредности покретача</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="684"/>
+        <location filename="../qsynthOptionsForm.ui" line="399"/>
         <source>Whether to enable the system tray icon</source>
         <translation>Да ли да омогућим употребу иконе у обавештајној зони</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="687"/>
+        <location filename="../qsynthOptionsForm.ui" line="402"/>
         <source>&amp;Enable system tray icon</source>
         <translation>Омогући икону у обав&amp;ештајној зони</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="716"/>
+        <location filename="../qsynthOptionsForm.ui" line="431"/>
         <source>Whether to start minimized to system tray</source>
         <translation>Да ли да сакријем програм при покретању у обавештајну зону</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="719"/>
+        <location filename="../qsynthOptionsForm.ui" line="434"/>
         <source>Start minimi&amp;zed to system tray</source>
         <translation>По покретању смести у &amp;обавештајну зону</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="788"/>
+        <location filename="../qsynthOptionsForm.ui" line="791"/>
         <source>&amp;Base font size:</source>
         <translation>Величина &amp;слова:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="807"/>
+        <location filename="../qsynthOptionsForm.ui" line="810"/>
         <source>Base application font size (pt.)</source>
         <translation>Основна величина слова фонта у програму (у тачкама-пт.)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="484"/>
-        <location filename="../qsynthOptionsForm.ui" line="575"/>
-        <location filename="../qsynthOptionsForm.ui" line="814"/>
+        <location filename="../qsynthOptionsForm.ui" line="652"/>
+        <location filename="../qsynthOptionsForm.ui" line="743"/>
+        <location filename="../qsynthOptionsForm.ui" line="817"/>
         <source>(default)</source>
         <translation>(подразумевано)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="819"/>
+        <location filename="../qsynthOptionsForm.ui" line="822"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="824"/>
+        <location filename="../qsynthOptionsForm.ui" line="827"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="829"/>
+        <location filename="../qsynthOptionsForm.ui" line="832"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="834"/>
+        <location filename="../qsynthOptionsForm.ui" line="837"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="839"/>
+        <location filename="../qsynthOptionsForm.ui" line="842"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="844"/>
+        <location filename="../qsynthOptionsForm.ui" line="847"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="849"/>
+        <location filename="../qsynthOptionsForm.ui" line="852"/>
         <source>12</source>
         <translation>12</translation>
     </message>

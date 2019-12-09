@@ -1,4 +1,5 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
@@ -20,182 +21,185 @@
 
  </comment>
  <class>qsynthOptionsForm</class>
- <widget class="QDialog" name="qsynthOptionsForm" >
-  <property name="geometry" >
+ <widget class="QDialog" name="qsynthOptionsForm">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>520</width>
-    <height>480</height>
+    <width>555</width>
+    <height>389</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Options</string>
   </property>
   <property name="windowIcon">
    <iconset resource="qsynth.qrc">:/images/options1.png</iconset>
   </property>
-  <property name="sizeGripEnabled" >
+  <property name="sizeGripEnabled">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QVBoxLayout">
    <item>
-    <widget class="QTabWidget" name="OptionsTabWidget" >
-     <widget class="QWidget" name="DisplayTabPage" >
-      <attribute name="title" >
-       <string>Display</string>
+    <widget class="QTabWidget" name="OptionsTabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="GeneralTabPage">
+      <attribute name="title">
+       <string>General</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout" >
+      <layout class="QVBoxLayout">
        <item>
-        <widget class="QGroupBox" name="MessagesGroupBox" >
-         <property name="font" >
+        <widget class="QGroupBox" name="MessagesGroupBox">
+         <property name="font">
           <font>
            <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Messages</string>
          </property>
-         <property name="flat" >
+         <property name="flat">
           <bool>true</bool>
          </property>
-         <layout class="QHBoxLayout" >
+         <layout class="QHBoxLayout">
           <item>
-           <widget class="QLabel" name="MessagesFontTextLabel" >
-            <property name="minimumSize" >
+           <widget class="QLabel" name="MessagesFontTextLabel">
+            <property name="minimumSize">
              <size>
               <width>180</width>
               <height>0</height>
              </size>
             </property>
-            <property name="maximumSize" >
+            <property name="maximumSize">
              <size>
               <width>180</width>
               <height>32767</height>
              </size>
             </property>
-            <property name="font" >
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="toolTip" >
+            <property name="toolTip">
              <string>Sample messages text font display</string>
             </property>
-            <property name="autoFillBackground" >
+            <property name="autoFillBackground">
              <bool>true</bool>
             </property>
-            <property name="frameShape" >
+            <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
             </property>
-            <property name="frameShadow" >
+            <property name="frameShadow">
              <enum>QFrame::Sunken</enum>
             </property>
-            <property name="alignment" >
+            <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
-            <property name="wordWrap" >
+            <property name="wordWrap">
              <bool>false</bool>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="MessagesFontPushButton" >
-            <property name="font" >
+           <widget class="QPushButton" name="MessagesFontPushButton">
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="toolTip" >
+            <property name="toolTip">
              <string>Select font for the messages text display</string>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>&amp;Font...</string>
             </property>
-            <property name="autoDefault" >
+            <property name="autoDefault">
              <bool>false</bool>
             </property>
            </widget>
           </item>
           <item>
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeType" >
+            <property name="sizeType">
              <enum>QSizePolicy::Expanding</enum>
             </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint">
              <size>
-              <width>8</width>
+              <width>20</width>
               <height>8</height>
              </size>
             </property>
            </spacer>
           </item>
           <item>
-           <widget class="QCheckBox" name="MessagesLimitCheckBox" >
-            <property name="font" >
+           <widget class="QCheckBox" name="MessagesLimitCheckBox">
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="toolTip" >
+            <property name="toolTip">
              <string>Whether to keep a maximum number of lines in the messages window</string>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>&amp;Messages limit:</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="MessagesLimitLinesComboBox" >
-            <property name="font" >
+           <widget class="QComboBox" name="MessagesLimitLinesComboBox">
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="toolTip" >
+            <property name="toolTip">
              <string>The maximum number of message lines to keep in view</string>
             </property>
-            <property name="editable" >
+            <property name="editable">
              <bool>true</bool>
             </property>
-            <property name="currentIndex" >
+            <property name="currentIndex">
              <number>3</number>
             </property>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>100</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>250</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>500</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>1000</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>2500</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>5000</string>
              </property>
             </item>
@@ -205,87 +209,85 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="LoggingGroupBox" >
-         <property name="font" >
+        <widget class="QGroupBox" name="LoggingGroupBox">
+         <property name="font">
           <font>
            <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Logging</string>
          </property>
-         <property name="flat" >
+         <property name="flat">
           <bool>true</bool>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="1" colspan="3" >
-           <widget class="QComboBox" name="MessagesLogPathComboBox" >
-            <property name="sizePolicy" >
-             <sizepolicy>
-              <hsizetype>7</hsizetype>
-              <vsizetype>0</vsizetype>
+         <layout class="QGridLayout">
+          <item row="0" column="1" colspan="3">
+           <widget class="QComboBox" name="MessagesLogPathComboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="font" >
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="toolTip" >
+            <property name="toolTip">
              <string>Messages log file</string>
             </property>
-            <property name="editable" >
+            <property name="editable">
              <bool>true</bool>
             </property>
            </widget>
           </item>
-          <item row="0" column="4" >
-           <widget class="QToolButton" name="MessagesLogPathToolButton" >
-            <property name="minimumSize" >
+          <item row="0" column="4">
+           <widget class="QToolButton" name="MessagesLogPathToolButton">
+            <property name="minimumSize">
              <size>
               <width>22</width>
               <height>22</height>
              </size>
             </property>
-            <property name="maximumSize" >
+            <property name="maximumSize">
              <size>
               <width>24</width>
               <height>24</height>
              </size>
             </property>
-            <property name="font" >
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="focusPolicy" >
+            <property name="focusPolicy">
              <enum>Qt::TabFocus</enum>
             </property>
-            <property name="toolTip" >
+            <property name="toolTip">
              <string>Browse for the messages log file location</string>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>...</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="MessagesLogCheckBox" >
-            <property name="font" >
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="MessagesLogCheckBox">
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="toolTip" >
+            <property name="toolTip">
              <string>Whether to activate a messages logging to file.</string>
             </property>
-            <property name="text" >
+            <property name="text">
              <string>Messages &amp;log file:</string>
             </property>
            </widget>
@@ -294,135 +296,301 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="KnobsGroupBox" >
-         <property name="font" >
+        <widget class="QGroupBox" name="OtherGroupBox">
+         <property name="font">
           <font>
            <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
-         <property name="title" >
-          <string>Knobs</string>
+         <property name="title">
+          <string>Other</string>
          </property>
-         <property name="flat" >
+         <property name="flat">
           <bool>true</bool>
          </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="KnobStyleTextLabel" >
-            <property name="font" >
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="QueryCloseCheckBox">
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="text" >
-             <string>Kno&amp;b graphic style:</string>
+            <property name="toolTip">
+             <string>Whether to ask for confirmation on application exit</string>
             </property>
-            <property name="buddy" >
-             <cstring>KnobStyleComboBox</cstring>
+            <property name="text">
+             <string>&amp;Confirm application close</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1" >
-           <widget class="QComboBox" name="KnobStyleComboBox" >
-            <property name="font" >
+          <item row="1" column="0">
+           <widget class="QCheckBox" name="KeepOnTopCheckBox">
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="toolTip" >
-             <string>Graphic style for knobs</string>
+            <property name="toolTip">
+             <string>Whether to keep all child windows on top of the main window</string>
             </property>
-            <item>
-             <property name="text" >
-              <string>Classic</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Vokimon</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Peppino</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Skulpture</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Legacy</string>
-             </property>
-            </item>
+            <property name="text">
+             <string>&amp;Keep child windows always on top</string>
+            </property>
            </widget>
           </item>
-          <item row="0" column="2" >
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="StdoutCaptureCheckBox">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string>Whether to capture standard output (stdout/stderr) into messages window</string>
+            </property>
+            <property name="text">
+             <string>Capture standard &amp;output</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QCheckBox" name="OutputMetersCheckBox">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string>Whether to monitor and show engine output peak level meters</string>
+            </property>
+            <property name="text">
+             <string>Output &amp;peak level meters</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="4">
            <spacer>
-            <property name="orientation" >
+            <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Expanding</enum>
-            </property>
-            <property name="sizeHint" stdset="0" >
+            <property name="sizeHint">
              <size>
-              <width>8</width>
+              <width>20</width>
               <height>8</height>
              </size>
             </property>
            </spacer>
           </item>
-          <item row="0" column="3" >
-           <widget class="QLabel" name="KnobMouseMotionTextLabel" >
-            <property name="font" >
+          <item row="0" column="2">
+           <widget class="QCheckBox" name="SystemTrayCheckBox">
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="text" >
+            <property name="toolTip">
+             <string>Whether to enable the system tray icon</string>
+            </property>
+            <property name="text">
+             <string>&amp;Enable system tray icon</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QCheckBox" name="SystemTrayQueryCloseCheckBox">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string>Whether to show system tray message on main window close</string>
+            </property>
+            <property name="text">
+             <string>Sho&amp;w system tray message on close</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QCheckBox" name="StartMinimizedCheckBox">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string>Whether to start minimized to system tray</string>
+            </property>
+            <property name="text">
+             <string>Start minimi&amp;zed to system tray</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint">
+             <size>
+              <width>8</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="DisplayTabPage">
+      <attribute name="title">
+       <string>Display</string>
+      </attribute>
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QGroupBox" name="KnobsGroupBox">
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Knobs</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="KnobStyleTextLabel">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Kno&amp;b graphic style:</string>
+            </property>
+            <property name="buddy">
+             <cstring>KnobStyleComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="KnobStyleComboBox">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="toolTip">
+             <string>Graphic style for knobs</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Classic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Vokimon</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Peppino</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Skulpture</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Legacy</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint">
+             <size>
+              <width>20</width>
+              <height>8</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="KnobMouseMotionTextLabel">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
              <string>Mouse motion be&amp;havior:</string>
             </property>
-            <property name="alignment" >
+            <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
-            <property name="buddy" >
+            <property name="buddy">
              <cstring>KnobMouseMotionComboBox</cstring>
             </property>
            </widget>
           </item>
-          <item row="0" column="4" >
-           <widget class="QComboBox" name="KnobMouseMotionComboBox" >
-            <property name="font" >
+          <item row="0" column="4">
+           <widget class="QComboBox" name="KnobMouseMotionComboBox">
+            <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
-            <property name="toolTip" >
+            <property name="toolTip">
              <string>Mouse motion behavior for knobs</string>
             </property>
-            <property name="currentIndex" >
+            <property name="currentIndex">
              <number>1</number>
             </property>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Legacy</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Radial</string>
              </property>
             </item>
             <item>
-             <property name="text" >
+             <property name="text">
               <string>Linear</string>
              </property>
             </item>
@@ -433,16 +601,16 @@
        </item>
        <item>
         <widget class="QGroupBox" name="CustomGroupBox">
-         <property name="font" >
+         <property name="font">
           <font>
            <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
-         <property name="title" >
+         <property name="title">
           <string>Custom</string>
          </property>
-         <property name="flat" >
+         <property name="flat">
           <bool>true</bool>
          </property>
          <layout class="QGridLayout">
@@ -535,7 +703,7 @@
             <property name="sizeHint">
              <size>
               <width>20</width>
-              <height>20</height>
+              <height>8</height>
              </size>
             </property>
            </spacer>
@@ -581,165 +749,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="OtherGroupBox" >
-         <property name="font" >
-          <font>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="title" >
-          <string>Other</string>
-         </property>
-         <property name="flat" >
-          <bool>true</bool>
-         </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QCheckBox" name="QueryCloseCheckBox" >
-            <property name="font" >
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip" >
-             <string>Whether to ask for confirmation on application exit</string>
-            </property>
-            <property name="text" >
-             <string>&amp;Confirm application close</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" >
-           <widget class="QCheckBox" name="KeepOnTopCheckBox" >
-            <property name="font" >
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip" >
-             <string>Whether to keep all child windows on top of the main window</string>
-            </property>
-            <property name="text" >
-             <string>&amp;Keep child windows always on top</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" >
-           <widget class="QCheckBox" name="StdoutCaptureCheckBox" >
-            <property name="font" >
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip" >
-             <string>Whether to capture standard output (stdout/stderr) into messages window</string>
-            </property>
-            <property name="text" >
-             <string>Capture standard &amp;output</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0" >
-           <widget class="QCheckBox" name="OutputMetersCheckBox" >
-            <property name="font" >
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip" >
-             <string>Whether to monitor and show engine output peak level meters</string>
-            </property>
-            <property name="text" >
-             <string>Output &amp;peak level meters</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" rowspan="4">
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0" >
-             <size>
-              <width>8</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="2">
-           <widget class="QCheckBox" name="SystemTrayCheckBox" >
-            <property name="font" >
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip" >
-             <string>Whether to enable the system tray icon</string>
-            </property>
-            <property name="text" >
-             <string>&amp;Enable system tray icon</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="2">
-           <widget class="QCheckBox" name="SystemTrayQueryCloseCheckBox">
-            <property name="font">
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip">
-             <string>Whether to show system tray message on main window close</string>
-            </property>
-            <property name="text">
-             <string>Sho&amp;w system tray message on close</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QCheckBox" name="StartMinimizedCheckBox" >
-            <property name="font" >
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip" >
-             <string>Whether to start minimized to system tray</string>
-            </property>
-            <property name="text" >
-             <string>Start minimi&amp;zed to system tray</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0" colspan="3">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Expanding</enum>
-            </property>
-            <property name="sizeHint">
-             <size>
-              <width>20</width>
-              <height>8</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <widget class="QGroupBox" name="DefaultsGroupBox">
          <property name="font">
           <font>
@@ -754,12 +763,6 @@
           <bool>true</bool>
          </property>
          <layout class="QGridLayout">
-          <property name="spacing">
-           <number>4</number>
-          </property>
-          <property name="margin">
-           <number>4</number>
-          </property>
           <item row="0" column="0">
            <spacer>
             <property name="orientation">
@@ -851,6 +854,22 @@
             </item>
            </widget>
           </item>
+          <item row="1" column="0" colspan="3">
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint">
+             <size>
+              <width>8</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </widget>
        </item>
@@ -870,32 +889,19 @@
    </item>
   </layout>
  </widget>
- <layoutdefault spacing="4" margin="8" />
+ <layoutdefault spacing="4" margin="8"/>
  <tabstops>
   <tabstop>OptionsTabWidget</tabstop>
-  <tabstop>MessagesFontPushButton</tabstop>
-  <tabstop>MessagesLimitCheckBox</tabstop>
-  <tabstop>MessagesLimitLinesComboBox</tabstop>
-  <tabstop>MessagesLogCheckBox</tabstop>
-  <tabstop>MessagesLogPathComboBox</tabstop>
-  <tabstop>MessagesLogPathToolButton</tabstop>
   <tabstop>KnobStyleComboBox</tabstop>
   <tabstop>KnobMouseMotionComboBox</tabstop>
   <tabstop>CustomColorThemeComboBox</tabstop>
   <tabstop>CustomColorThemeToolButton</tabstop>
   <tabstop>CustomStyleThemeComboBox</tabstop>
-  <tabstop>QueryCloseCheckBox</tabstop>
-  <tabstop>KeepOnTopCheckBox</tabstop>
-  <tabstop>StdoutCaptureCheckBox</tabstop>
-  <tabstop>OutputMetersCheckBox</tabstop>
-  <tabstop>SystemTrayCheckBox</tabstop>
-  <tabstop>SystemTrayQueryCloseCheckBox</tabstop>
-  <tabstop>StartMinimizedCheckBox</tabstop>
   <tabstop>BaseFontSizeComboBox</tabstop>
   <tabstop>DialogButtonBox</tabstop>
  </tabstops>
  <resources>
-  <include location="qsynth.qrc" />
+  <include location="qsynth.qrc"/>
  </resources>
  <connections/>
 </ui>
