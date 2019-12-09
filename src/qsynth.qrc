@@ -22,6 +22,10 @@
   <file>images/setup1.png</file>
   <file>images/sfont1.png</file>
   <file>images/up1.png</file>
+  <file>images/formOpen.png</file>
+  <file>images/formRemove.png</file>
+  <file>images/formSave.png</file>
+  <file>images/itemReset.png</file>
   <file>images/qtlogo1.png</file>
  </qresource>
 </RCC>

@@ -21,6 +21,7 @@ headers = \
 	src/qsynthMainForm.h \
 	src/qsynthMessagesForm.h \
 	src/qsynthOptionsForm.h \
+	src/qsynthPaletteForm.h \
 	src/qsynthPresetForm.h \
 	src/qsynthSetupForm.h \
 	src/qsynthDialClassicStyle.h \
@@ -42,6 +43,7 @@ sources = \
 	src/qsynthMainForm.cpp \
 	src/qsynthMessagesForm.cpp \
 	src/qsynthOptionsForm.cpp \
+	src/qsynthPaletteForm.cpp \
 	src/qsynthPresetForm.cpp \
 	src/qsynthSetupForm.cpp \
 	src/qsynthDialClassicStyle.cpp \
@@ -54,6 +56,7 @@ forms = \
 	src/qsynthMainForm.ui \
 	src/qsynthMessagesForm.ui \
 	src/qsynthOptionsForm.ui \
+	src/qsynthPaletteForm.ui \
 	src/qsynthPresetForm.ui \
 	src/qsynthSetupForm.ui
 

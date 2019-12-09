@@ -59,9 +59,17 @@ qsynthOptions::~qsynthOptions (void)
 }
 
 
+
+
 // Explicit load method.
 void qsynthOptions::loadOptions (void)
 {
+	// Load defaults...
+	m_settings.beginGroup("/Defaults");
+	sSoundFontDir  = m_settings.value("/SoundFontDir").toString();
+	bPresetPreview = m_settings.value("/PresetPreview", false).toBool();
+	m_settings.endGroup();
+
 	// Load display options...
 	m_settings.beginGroup("/Options");
 	sMessagesFont   = m_settings.value("/MessagesFont").toString();
@@ -81,10 +89,10 @@ void qsynthOptions::loadOptions (void)
 	iKnobMotion     = m_settings.value("/KnobMotion", 1).toInt();
 	m_settings.endGroup();
 
-	// Load defaults...
-	m_settings.beginGroup("/Defaults");
-	sSoundFontDir  = m_settings.value("/SoundFontDir").toString();
-	bPresetPreview = m_settings.value("/PresetPreview", false).toBool();
+	// Load custom options...
+	m_settings.beginGroup("/Custom");
+	sCustomColorTheme = m_settings.value("/ColorTheme").toString();
+	sCustomStyleTheme = m_settings.value("/StyleTheme").toString();
 	m_settings.endGroup();
 
 	// Load custom additional engines.
@@ -109,26 +117,13 @@ void qsynthOptions::saveOptions (void)
 	m_settings.setValue("/Version", CONFIG_BUILD_VERSION);
 	m_settings.endGroup();
 
-	// Save engines list...
-	m_settings.beginGroup("/Engines");
-	// Save last preset list.
-	const QString sEnginePrefix = "/Engine%1";
-	int iEngine = 0;
-	QStringListIterator iter(engines);
-	while (iter.hasNext())
-		m_settings.setValue(sEnginePrefix.arg(++iEngine), iter.next());
-	// Cleanup old entries, if any...
-	while (!m_settings.value(sEnginePrefix.arg(++iEngine)).toString().isEmpty())
-		m_settings.remove(sEnginePrefix.arg(iEngine));
-	m_settings.endGroup();
-
 	// Save defaults...
 	m_settings.beginGroup("/Defaults");
 	m_settings.setValue("/SoundFontDir", sSoundFontDir);
 	m_settings.setValue("/PresetPreview", bPresetPreview);
 	m_settings.endGroup();
 
-	// Save last display options.
+	// Save display options...
 	m_settings.beginGroup("/Options");
 	m_settings.setValue("/MessagesFont", sMessagesFont);
 	m_settings.setValue("/MessagesLimit", bMessagesLimit);
@@ -147,6 +142,25 @@ void qsynthOptions::saveOptions (void)
 	m_settings.setValue("/KnobMotion", iKnobMotion);
 	m_settings.endGroup();
 
+	// Save custom options...
+	m_settings.beginGroup("/Custom");
+	m_settings.setValue("/ColorTheme", sCustomColorTheme);
+	m_settings.setValue("/StyleTheme", sCustomStyleTheme);
+	m_settings.endGroup();
+
+	// Save engines list...
+	m_settings.beginGroup("/Engines");
+	// Save last preset list.
+	const QString sEnginePrefix = "/Engine%1";
+	int iEngine = 0;
+	QStringListIterator iter(engines);
+	while (iter.hasNext())
+		m_settings.setValue(sEnginePrefix.arg(++iEngine), iter.next());
+	// Cleanup old entries, if any...
+	while (!m_settings.value(sEnginePrefix.arg(++iEngine)).toString().isEmpty())
+		m_settings.remove(sEnginePrefix.arg(iEngine));
+	m_settings.endGroup();
+
 	// Save/commit to disk.
 	m_settings.sync();
 }
@@ -156,6 +170,16 @@ void qsynthOptions::saveOptions (void)
 qsynthSetup *qsynthOptions::defaultSetup (void)
 {
 	return m_pDefaultSetup;
+}
+
+
+//-------------------------------------------------------------------------
+// Settings accessor.
+//
+
+QSettings& qsynthOptions::settings (void)
+{
+	return m_settings;
 }
 
 

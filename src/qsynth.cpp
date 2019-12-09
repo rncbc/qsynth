@@ -24,6 +24,12 @@
 #include "qsynthOptions.h"
 #include "qsynthMainForm.h"
 
+#include "qsynthPaletteForm.h"
+
+#include <QDir>
+
+#include <QStyleFactory>
+
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QLocale>
@@ -42,6 +48,20 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 
 #ifndef CONFIG_DATADIR
 #define CONFIG_DATADIR	CONFIG_PREFIX "/share"
+#endif
+
+#ifndef CONFIG_LIBDIR
+#if defined(__x86_64__)
+#define CONFIG_LIBDIR  CONFIG_PREFIX "/lib64"
+#else
+#define CONFIG_LIBDIR  CONFIG_PREFIX "/lib"
+#endif
+#endif
+
+#if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
+#define CONFIG_PLUGINSDIR CONFIG_LIBDIR "/qt4/plugins"
+#else
+#define CONFIG_PLUGINSDIR CONFIG_LIBDIR "/qt5/plugins"
 #endif
 
 
@@ -93,7 +113,7 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 			QApplication::installTranslator(m_pQtTranslator);
 		} else {
 			delete m_pQtTranslator;
-			m_pQtTranslator = 0;
+			m_pQtTranslator = nullptr;
 		#ifdef CONFIG_DEBUG
 			qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
 				loc.name().toLocal8Bit().data(),
@@ -112,7 +132,7 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 				QApplication::installTranslator(m_pMyTranslator);
 			} else {
 				delete m_pMyTranslator;
-				m_pMyTranslator = 0;
+				m_pMyTranslator = nullptr;
 			#ifdef CONFIG_DEBUG
 				qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
 					loc.name().toLocal8Bit().data(),
@@ -463,8 +483,8 @@ int main ( int argc, char **argv )
 	qsynthApplication app(argc, argv);
 
 	// Construct default settings; override with command line arguments.
-	qsynthOptions settings;
-	if (!settings.parse_args(app.arguments())) {
+	qsynthOptions options;
+	if (!options.parse_args(app.arguments())) {
 		app.quit();
 		return 1;
 	}
@@ -475,38 +495,21 @@ int main ( int argc, char **argv )
 		return 2;
 	}
 
-	// Dark themes grayed/disabled color group fix...
+	// Special custom styles...
+	if (QDir(CONFIG_PLUGINSDIR).exists())
+		app.addLibraryPath(CONFIG_PLUGINSDIR);
+	if (!options.sCustomStyleTheme.isEmpty())
+		app.setStyle(QStyleFactory::create(options.sCustomStyleTheme));
+
+	// Custom color theme (eg. "KXStudio")...
 	QPalette pal(app.palette());
-	if (pal.base().color().value() < 0x7f) {
-	#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-		const QColor& color = pal.window().color();
-		const int iGroups = int(QPalette::Active | QPalette::Inactive) + 1;
-		for (int i = 0; i < iGroups; ++i) {
-			const QPalette::ColorGroup group = QPalette::ColorGroup(i);
-			pal.setBrush(group, QPalette::Light,    color.lighter(150));
-			pal.setBrush(group, QPalette::Midlight, color.lighter(120));
-			pal.setBrush(group, QPalette::Dark,     color.darker(150));
-			pal.setBrush(group, QPalette::Mid,      color.darker(120));
-			pal.setBrush(group, QPalette::Shadow,   color.darker(200));
-		}
-	//	pal.setColor(QPalette::Disabled, QPalette::ButtonText, pal.mid().color());
-	#endif
-		pal.setColorGroup(QPalette::Disabled,
-			pal.windowText().color().darker(),
-			pal.button(),
-			pal.light(),
-			pal.dark(),
-			pal.mid(),
-			pal.text().color().darker(),
-			pal.text().color().lighter(),
-			pal.base(),
-			pal.window());
+	if (qsynthPaletteForm::namedPalette(
+			&options.settings(), options.sCustomColorTheme, pal))
 		app.setPalette(pal);
-	}
 
 	// Set default base font...
-	if (settings.iBaseFontSize > 0)
-		app.setFont(QFont(app.font().family(), settings.iBaseFontSize));
+	if (options.iBaseFontSize > 0)
+		app.setFont(QFont(app.font().family(), options.iBaseFontSize));
 
 	// What style do we create these forms?
 	Qt::WindowFlags wflags = Qt::Window
@@ -515,13 +518,13 @@ int main ( int argc, char **argv )
 		| Qt::WindowSystemMenuHint
 		| Qt::WindowMinMaxButtonsHint
 		| Qt::WindowCloseButtonHint;
-	if (settings.bKeepOnTop)
+	if (options.bKeepOnTop)
 		wflags |= Qt::Tool;
 	// Construct the main form, and show it to the world.
-	qsynthMainForm w(0, wflags);
-	w.setup(&settings);
+	qsynthMainForm w(nullptr, wflags);
+	w.setup(&options);
 	// If we have a systray icon, we'll skip this.
-	if (!settings.bSystemTray) {
+	if (!options.bSystemTray) {
 		w.show();
 	//	w.adjustSize();
 	}
@@ -540,6 +543,7 @@ int main ( int argc, char **argv )
 
 	return app.exec();
 }
+
 
 // end of qsynth.cpp
 

@@ -44,18 +44,25 @@ public:
 
 	void setup(qsynthOptions *pOptions);
 
-public slots:
+protected slots:
 
 	void optionsChanged();
 
 	void chooseMessagesFont();
 	void browseMessagesLogPath();
-	void stabilizeForm();
 
-protected slots:
+	void editCustomColorThemes();
 
 	void accept();
 	void reject();
+
+protected:
+
+	// Custom color/style themes settlers.
+	void resetCustomColorThemes(const QString& sCustomColorTheme);
+	void resetCustomStyleThemes(const QString& sCustomStyleTheme);
+
+	void stabilizeForm();
 
 private:
 

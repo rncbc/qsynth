@@ -60,6 +60,9 @@ public:
 	// Default destructor.
 	~qsynthOptions();
 
+	// The settings object accessor.
+	QSettings& settings();
+
 	// Explicit I/O methods.
 	void loadOptions();
 	void saveOptions();
@@ -88,6 +91,9 @@ public:
 	int     iBaseFontSize;
 	int     iKnobStyle;
 	int     iKnobMotion;
+
+	QString sCustomColorTheme;
+	QString sCustomStyleTheme;
 
 	// Default options...
 	QString sSoundFontDir;
