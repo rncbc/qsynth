@@ -1356,12 +1356,12 @@ next time you start this application.</source>
         <translation>Желите ли да примените ове измене?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="439"/>
+        <location filename="../qsynthOptionsForm.cpp" line="445"/>
         <source>Messages Log</source>
         <translation>Дневник порука</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="441"/>
+        <location filename="../qsynthOptionsForm.cpp" line="447"/>
         <source>Log files</source>
         <translation>Датотеке дневника</translation>
     </message>
