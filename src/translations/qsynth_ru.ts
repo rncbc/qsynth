@@ -1092,38 +1092,38 @@ restarting all fluidsynth engines.</source>
 сообщений (stdout/stderr) для  окна сообщений</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="314"/>
+        <location filename="../qsynthOptionsForm.cpp" line="320"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="316"/>
+        <location filename="../qsynthOptionsForm.cpp" line="322"/>
         <source>Do you want to apply the changes?</source>
         <translation>Вы хотите учесть изменения?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="315"/>
+        <location filename="../qsynthOptionsForm.cpp" line="321"/>
         <source>Some options have been changed.</source>
         <translation>Некоторые параметры были изменены.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="287"/>
+        <location filename="../qsynthOptionsForm.cpp" line="293"/>
         <source>Information</source>
         <translation type="unfinished">Информация</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="288"/>
+        <location filename="../qsynthOptionsForm.cpp" line="294"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="445"/>
+        <location filename="../qsynthOptionsForm.cpp" line="451"/>
         <source>Messages Log</source>
         <translation>Журнал сообщений</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="447"/>
+        <location filename="../qsynthOptionsForm.cpp" line="453"/>
         <source>Log files</source>
         <translation>Файлы журналов</translation>
     </message>
