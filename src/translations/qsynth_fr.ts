@@ -1290,6 +1290,7 @@ le redémarrage du moteur fluidsynth :</translation>
         <location filename="../qsynthOptionsForm.ui" line="652"/>
         <location filename="../qsynthOptionsForm.ui" line="743"/>
         <location filename="../qsynthOptionsForm.ui" line="817"/>
+        <location filename="../qsynthOptionsForm.cpp" line="42"/>
         <source>(default)</source>
         <translation>(défaut)</translation>
     </message>
@@ -1329,38 +1330,38 @@ le redémarrage du moteur fluidsynth :</translation>
         <translation>12</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="293"/>
+        <location filename="../qsynthOptionsForm.cpp" line="288"/>
         <source>Information</source>
         <translation type="unfinished">Information</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="294"/>
+        <location filename="../qsynthOptionsForm.cpp" line="289"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="320"/>
+        <location filename="../qsynthOptionsForm.cpp" line="315"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="321"/>
+        <location filename="../qsynthOptionsForm.cpp" line="316"/>
         <source>Some options have been changed.</source>
         <translation>Des options ont été modifiées.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="322"/>
+        <location filename="../qsynthOptionsForm.cpp" line="317"/>
         <source>Do you want to apply the changes?</source>
         <translation>Voulez-vous appliquer les changements?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="451"/>
+        <location filename="../qsynthOptionsForm.cpp" line="446"/>
         <source>Messages Log</source>
         <translation>Journal des messages</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="453"/>
+        <location filename="../qsynthOptionsForm.cpp" line="448"/>
         <source>Log files</source>
         <translation>Fichiers d&apos;enregistrement</translation>
     </message>

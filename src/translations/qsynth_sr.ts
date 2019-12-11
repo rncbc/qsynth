@@ -1291,6 +1291,7 @@ restarting the fluidsynth engine:</source>
         <location filename="../qsynthOptionsForm.ui" line="652"/>
         <location filename="../qsynthOptionsForm.ui" line="743"/>
         <location filename="../qsynthOptionsForm.ui" line="817"/>
+        <location filename="../qsynthOptionsForm.cpp" line="42"/>
         <source>(default)</source>
         <translation>(подразумевано)</translation>
     </message>
@@ -1330,38 +1331,38 @@ restarting the fluidsynth engine:</source>
         <translation>12</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="293"/>
+        <location filename="../qsynthOptionsForm.cpp" line="288"/>
         <source>Information</source>
         <translation type="unfinished">Подаци</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="294"/>
+        <location filename="../qsynthOptionsForm.cpp" line="289"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="320"/>
+        <location filename="../qsynthOptionsForm.cpp" line="315"/>
         <source>Warning</source>
         <translation>Упозорење</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="321"/>
+        <location filename="../qsynthOptionsForm.cpp" line="316"/>
         <source>Some options have been changed.</source>
         <translation>Измењена су нека подешавања.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="322"/>
+        <location filename="../qsynthOptionsForm.cpp" line="317"/>
         <source>Do you want to apply the changes?</source>
         <translation>Желите ли да примените ове измене?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="451"/>
+        <location filename="../qsynthOptionsForm.cpp" line="446"/>
         <source>Messages Log</source>
         <translation>Дневник порука</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="453"/>
+        <location filename="../qsynthOptionsForm.cpp" line="448"/>
         <source>Log files</source>
         <translation>Датотеке дневника</translation>
     </message>

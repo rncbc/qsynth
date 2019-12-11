@@ -985,38 +985,38 @@ de reiniciar el motor de Fluidsynth:</translation>
 <context>
     <name>qsynthOptionsForm</name>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="293"/>
+        <location filename="../qsynthOptionsForm.cpp" line="288"/>
         <source>Information</source>
         <translation type="unfinished">Información</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="294"/>
+        <location filename="../qsynthOptionsForm.cpp" line="289"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="320"/>
+        <location filename="../qsynthOptionsForm.cpp" line="315"/>
         <source>Warning</source>
         <translation>Aviso</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="321"/>
+        <location filename="../qsynthOptionsForm.cpp" line="316"/>
         <source>Some options have been changed.</source>
         <translation>Algunas opciones han cambiado.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="322"/>
+        <location filename="../qsynthOptionsForm.cpp" line="317"/>
         <source>Do you want to apply the changes?</source>
         <translation>¿Quiere aplicar los cambios?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="451"/>
+        <location filename="../qsynthOptionsForm.cpp" line="446"/>
         <source>Messages Log</source>
         <translation>Registro de mensajes</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="453"/>
+        <location filename="../qsynthOptionsForm.cpp" line="448"/>
         <source>Log files</source>
         <translation>Archivos de registro</translation>
     </message>
@@ -1306,6 +1306,7 @@ next time you start this application.</source>
         <location filename="../qsynthOptionsForm.ui" line="652"/>
         <location filename="../qsynthOptionsForm.ui" line="743"/>
         <location filename="../qsynthOptionsForm.ui" line="817"/>
+        <location filename="../qsynthOptionsForm.cpp" line="42"/>
         <source>(default)</source>
         <translation>(por omisión)</translation>
     </message>

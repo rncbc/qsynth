@@ -1092,38 +1092,38 @@ restarting all fluidsynth engines.</source>
 сообщений (stdout/stderr) для  окна сообщений</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="320"/>
+        <location filename="../qsynthOptionsForm.cpp" line="315"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="322"/>
+        <location filename="../qsynthOptionsForm.cpp" line="317"/>
         <source>Do you want to apply the changes?</source>
         <translation>Вы хотите учесть изменения?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="321"/>
+        <location filename="../qsynthOptionsForm.cpp" line="316"/>
         <source>Some options have been changed.</source>
         <translation>Некоторые параметры были изменены.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="293"/>
+        <location filename="../qsynthOptionsForm.cpp" line="288"/>
         <source>Information</source>
         <translation type="unfinished">Информация</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="294"/>
+        <location filename="../qsynthOptionsForm.cpp" line="289"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="451"/>
+        <location filename="../qsynthOptionsForm.cpp" line="446"/>
         <source>Messages Log</source>
         <translation>Журнал сообщений</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="453"/>
+        <location filename="../qsynthOptionsForm.cpp" line="448"/>
         <source>Log files</source>
         <translation>Файлы журналов</translation>
     </message>
@@ -1328,6 +1328,7 @@ next time you start this application.</source>
         <location filename="../qsynthOptionsForm.ui" line="652"/>
         <location filename="../qsynthOptionsForm.ui" line="743"/>
         <location filename="../qsynthOptionsForm.ui" line="817"/>
+        <location filename="../qsynthOptionsForm.cpp" line="42"/>
         <source>(default)</source>
         <translation>(по умолчанию)</translation>
     </message>
