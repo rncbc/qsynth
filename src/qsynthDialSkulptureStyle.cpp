@@ -212,7 +212,11 @@ paintCachedDialBase(QPainter *painter, const QStyleOptionSlider *option)
             state &= ~(QStyle::State_MouseOver | QStyle::State_HasFocus | QStyle::State_KeyboardFocusChange);
         }
     //  state &= ~(QStyle::State_HasFocus);
+	#if QT_VERSION < QT_VERSION_CHECK(5, 5, 0)
         pixmapName.sprintf("scp-qdb-%x-%x-%llx-%x", state, option->direction, option->palette.cacheKey(), d);
+	#else
+        pixmapName = QString::asprintf("scp-qdb-%x-%x-%llx-%x", state, option->direction, option->palette.cacheKey(), d);
+	#endif
     }
     paintIndicatorCached(painter, option, paintDialBase, useCache, pixmapName);
 }
@@ -360,7 +364,11 @@ paintCachedGrip(QPainter *painter, const QStyleOption *option, QPalette::ColorRo
         }
         state &= ~(QStyle::State_HasFocus);
                 QByteArray colorName = option->palette.color(QPalette::Button).name().toLatin1();
-                pixmapName.sprintf("scp-isg-%x-%x-%s-%x-%x", state, option->direction, colorName.constData(), option->rect.width(), option->rect.height());
+	#if QT_VERSION < QT_VERSION_CHECK(5, 5, 0)
+        pixmapName.sprintf("scp-isg-%x-%x-%s-%x-%x", state, option->direction, colorName.constData(), option->rect.width(), option->rect.height());
+	#else
+        pixmapName = QString::asprintf("scp-isg-%x-%x-%s-%x-%x", state, option->direction, colorName.constData(), option->rect.width(), option->rect.height());
+	#endif
     }
     paintIndicatorCached(painter, option, paintGrip, useCache, pixmapName);
 }
