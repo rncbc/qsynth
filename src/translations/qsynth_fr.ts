@@ -1490,7 +1490,7 @@ qu&apos;après le prochain démarrage de cette application.</translation>
 %1
 
 Sorry.</source>
-        <translation>Impossible d'importer depuis le fichier :
+        <translation>Impossible d&apos;importer depuis le fichier :
 
 %1
 
