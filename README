@@ -10,7 +10,8 @@ it wraps the excellent FluidSynth (http://www.fluidsynth.org).
 FluidSynth is a command line software synthesiser based on the
 Soundfont specification.
 
-Homepage: http://qsynth.sourceforge.net
+Homepage: https://qsynth.sourceforge.io
+          http://qsynth.sourceforge.net
 
 License: GNU General Public License (GPL)
 
@@ -24,11 +25,11 @@ The software requirements for build and runtime are listed as follows:
 
   - Qt framework, C++ class library and tools for
         cross-platform application and UI development
-        http://qt.io/
+        https://qt.io/
 
   - fluidsynth, real-time software synthesizer
         based on the SoundFont 2 specifications
-        http://www.fluidsynth.org/
+        https://www.fluidsynth.org/
 
 
 Installation
@@ -82,7 +83,7 @@ Support
 Qsynth is open source free software. For bug reports, feature requests,
 discussion forums, mailling lists, or any other matter related to the
 development of this piece of software, please use the Sourceforge
-project page (http://sourceforge.net/projects/qsynth).
+project page (https://sourceforge.net/projects/qsynth).
 
 
 Acknowledgements
@@ -92,10 +93,10 @@ Qsynth has been created by Rui Nuno Capela, Richard Bown and Chris Cannam
 to bring a simple but effective software synthesier front end to the Linux
 desktop.  From an original idea by Richard Bown and Chris Cannam to create
 an open software synthesiser front end to use in conjunction with Rosegarden
-(http://www.sourceforge.net/projects/rosegarden) and other ALSA based
+(https://www.sourceforge.net/projects/rosegarden) and other ALSA based
 software sequencers.
 
-Inspired by Rui's work on QjackCtl (http://qjackctl.sourceforge.net).
+Inspired by Rui's work on QjackCtl (https://qjackctl.sourceforge.io).
 
 Ebrahim Mayat <ebmayat at mac dot com> also contributed with instructions
 to build Qsynth on Mac OSX (see README-OSX). This might be outdated now that
