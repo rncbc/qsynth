@@ -1512,16 +1512,16 @@ Souhaitez-vous abandonner les modifications ?</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="808"/>
+        <source>Some settings have been changed:
+
+&quot;%1&quot;.
+
+Do you want to save the changes?</source>
         <translation>Certains paramètres ont été modifié.
 
 &quot;%1&quot;.
 
 Souhaitez-vous sauvegarder les modifications ?</translation>
-        <translation>Some settings have been changed:
-
-&quot;%1&quot;.
-
-Do you want to save the changes?</translation>
     </message>
 </context>
 <context>
