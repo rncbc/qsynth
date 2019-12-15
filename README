@@ -29,7 +29,7 @@ The software requirements for build and runtime are listed as follows:
 
   - fluidsynth, real-time software synthesizer
         based on the SoundFont 2 specifications
-        https://www.fluidsynth.org/
+        http://www.fluidsynth.org/
 
 
 Installation
