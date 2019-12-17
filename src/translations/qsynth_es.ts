@@ -1140,12 +1140,14 @@ después de la próxima vez que inicie esta aplicación.</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="657"/>
         <source>Wonton Soup</source>
-        <translation>Wonton Soup</translation>
+        <translatorcomment>DO NOT TRANSLATE</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="662"/>
         <source>KXStudio</source>
-        <translation>KXStudio</translation>
+        <translatorcomment>DO NOT TRANSLATE</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="691"/>

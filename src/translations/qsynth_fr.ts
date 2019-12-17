@@ -1169,12 +1169,14 @@ le redémarrage du moteur fluidsynth :</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="657"/>
         <source>Wonton Soup</source>
-        <translation>Soupe Wonton</translation>
+        <translatorcomment>DO NOT TRANSLATE</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="662"/>
         <source>KXStudio</source>
-        <translation>KXstudio</translation>
+        <translatorcomment>DO NOT TRANSLATE</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="691"/>
