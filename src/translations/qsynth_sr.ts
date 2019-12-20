@@ -6,7 +6,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="197"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
-        <translation>Употреба: %1 [опције] [звучни_фонтови] [миди_датотеке]</translation>
+        <translation>Употреба: %1 [опције] [звукотеке] [миди_датотеке]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="200"/>
@@ -179,7 +179,7 @@
     <message>
         <location filename="../qsynthAboutForm.ui" line="33"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>О програму</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.ui" line="64"/>
@@ -189,7 +189,7 @@
     <message>
         <location filename="../qsynthAboutForm.ui" line="74"/>
         <source>About Qt</source>
-        <translation>О КјуТ</translation>
+        <translation>О КуТ</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="63"/>
@@ -204,7 +204,7 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="47"/>
         <source>System tray disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Онемогућена икона у обавештајној зони.</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="50"/>
@@ -219,12 +219,12 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="56"/>
         <source>Bank offset option disabled.</source>
-        <translation>Онемогућена опција „Bank offset“</translation>
+        <translation>Онемогућена опција офсет банке.</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="72"/>
         <source>Using: FluidSynth %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Употребљавам: Флуид-синт %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="76"/>
@@ -247,12 +247,12 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="59"/>
         <source>Preset &amp;Name:</source>
-        <translation>&amp;Назив предподешавања:</translation>
+        <translation>&amp;Назив поставке:</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="80"/>
         <source>Settings preset name</source>
-        <translation>Поставке назива предподешавања</translation>
+        <translation>Подешавања назива поставке</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="87"/>
@@ -262,7 +262,7 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="95"/>
         <source>Save settings as current preset name</source>
-        <translation>Сачувај поставке као текући назив предподешавања</translation>
+        <translation>Сачувај подешавања као текући назив поставке</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="98"/>
@@ -272,7 +272,7 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="111"/>
         <source>Delete current settings preset</source>
-        <translation>Уклони текуће поставке предподешавања</translation>
+        <translation>Уклони текуће подешавање поставке</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="114"/>
@@ -312,12 +312,12 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="196"/>
         <source>SFID</source>
-        <translation>ЗФ-ИД</translation>
+        <translation>З-ИБ</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="201"/>
         <source>Soundfont</source>
-        <translation>Звучни фонт</translation>
+        <translation>Звукотека</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="36"/>
@@ -347,7 +347,7 @@
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="494"/>
         <source>Delete preset:</source>
-        <translation>Уклањање предподешавања:</translation>
+        <translation>Уклањање поставке:</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.cpp" line="496"/>
@@ -467,7 +467,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="506"/>
         <source>T&amp;ype:</source>
-        <translation>Врс&amp;та</translation>
+        <translation>Врс&amp;та:</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="534"/>
@@ -553,7 +553,7 @@
         <location filename="../qsynthMainForm.ui" line="866"/>
         <location filename="../qsynthMainForm.cpp" line="1241"/>
         <source>&amp;Options...</source>
-        <translation>&amp;Опције</translation>
+        <translation>&amp;Опције…</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="879"/>
@@ -574,7 +574,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="901"/>
         <source>A&amp;bout...</source>
-        <translation>О про&amp;граму</translation>
+        <translation>О про&amp;граму…</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="932"/>
@@ -608,7 +608,7 @@
         <location filename="../qsynthMainForm.cpp" line="1214"/>
         <location filename="../qsynthMainForm.cpp" line="1716"/>
         <source>Set&amp;up...</source>
-        <translation>&amp;Поставке</translation>
+        <translation>&amp;Поставке…</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="974"/>
@@ -656,7 +656,7 @@ in the context menu of the system tray icon.</source>
     <message>
         <location filename="../qsynthMainForm.cpp" line="753"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Не приказуј ово поново</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="778"/>
@@ -680,18 +680,18 @@ in the context menu of the system tray icon.</source>
     <message>
         <location filename="../qsynthMainForm.cpp" line="791"/>
         <source>Don&apos;t ask this again</source>
-        <translation type="unfinished"></translation>
+        <translation>Не питај ме ово поново</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="871"/>
         <source>Loading soundfont: &quot;%1&quot;</source>
-        <translation>Учитавање звучног фонта: „%1“</translation>
+        <translation>Учитавање звукотеке: „%1“</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="882"/>
         <location filename="../qsynthMainForm.cpp" line="1892"/>
         <source>Failed to load the soundfont: &quot;%1&quot;.</source>
-        <translation>Није успело учитавање звучног фонта: „%1“.</translation>
+        <translation>Није успело учитавање звукотеке: „%1“.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="890"/>
@@ -732,7 +732,7 @@ in the context menu of the system tray icon.</source>
         <location filename="../qsynthMainForm.cpp" line="1192"/>
         <location filename="../qsynthMainForm.cpp" line="1710"/>
         <source>&amp;New engine...</source>
-        <translation>&amp;Нови покретач...</translation>
+        <translation>&amp;Нови покретач…</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1194"/>
@@ -781,12 +781,12 @@ Cannot continue without it.</source>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1886"/>
         <source>Loading soundfont: &quot;%1&quot; (bank offset %2)</source>
-        <translation>Учитавање звучног фонта: „%1“ (офсет банке %2)</translation>
+        <translation>Учитавање звукотеке: „%1“ (офсет банке %2)</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1899"/>
         <source>Failed to set bank offset (%1) for soundfont: &quot;%2&quot;.</source>
-        <translation>Нисам успео да поставим офсет банке (%1) за зв. фонт: „%2“.</translation>
+        <translation>Нисам успео да поставим офсет банке (%1) за звукотеку: „%2“.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1909"/>
@@ -910,12 +910,12 @@ Continuing without it.</source>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2149"/>
         <source>Unloading soundfont: &quot;%1&quot; (SFID=%2)</source>
-        <translation>Избацивање звучног фонта: „%1“ (ЗФ-ИД=%2)</translation>
+        <translation>Избацивање звукотеке: „%1“ (З-ИБ=%2)</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2153"/>
         <source>Failed to unload the soundfont: &quot;%1&quot;.</source>
-        <translation>Није успело избацивање звучног фонта: „%1“.</translation>
+        <translation>Није успело избацивање звукотеке: „%1“.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2160"/>
@@ -965,7 +965,7 @@ restarting the fluidsynth engine:</source>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="33"/>
         <source>Messages</source>
-        <translation type="unfinished">Поруке</translation>
+        <translation>Поруке</translation>
     </message>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="48"/>
@@ -998,22 +998,22 @@ restarting the fluidsynth engine:</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="50"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Опште</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="89"/>
         <source>Sample messages text font display</source>
-        <translation>Пример приказа фонта текстуалних порука</translation>
+        <translation>Пример приказа слова текстуалних порука</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="117"/>
         <source>Select font for the messages text display</source>
-        <translation>Одабир фонта за приказ текстуалних порука</translation>
+        <translation>Одабир словолика за приказ текстуалних порука</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="120"/>
         <source>&amp;Font...</source>
-        <translation>&amp;Фонт...</translation>
+        <translation>&amp;Словолик…</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="152"/>
@@ -1079,7 +1079,7 @@ restarting the fluidsynth engine:</source>
         <location filename="../qsynthOptionsForm.ui" line="275"/>
         <location filename="../qsynthOptionsForm.ui" line="694"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation>…</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="288"/>
@@ -1155,17 +1155,17 @@ restarting the fluidsynth engine:</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="611"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Прилагођено</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="626"/>
         <source>&amp;Color palette theme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема са палетом &amp;боја:</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="645"/>
         <source>Custom color palette theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Прилагођена тема са палетом боја</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="657"/>
@@ -1182,17 +1182,17 @@ restarting the fluidsynth engine:</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="691"/>
         <source>Manage custom color palette themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Управљање прилагођеном темом са палетом боја</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="720"/>
         <source>&amp;Widget style theme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема за &amp;додатке:</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="736"/>
         <source>Custom widget style theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Прилагођена тема за додатке</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="307"/>
@@ -1212,17 +1212,17 @@ restarting the fluidsynth engine:</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="415"/>
         <source>Whether to show system tray message on main window close</source>
-        <translation type="unfinished"></translation>
+        <translation>Да ли да прикажем поруку у об. зони по затварању гл. прозора</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="418"/>
         <source>Sho&amp;w system tray message on close</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи поруку у обавештајној зони по оконча&amp;њу</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="760"/>
         <source>Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Подразумевано</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="338"/>
@@ -1232,7 +1232,7 @@ restarting the fluidsynth engine:</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="34"/>
         <source>Options</source>
-        <translation type="unfinished">Параметри</translation>
+        <translation>Параметри</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="341"/>
@@ -1287,7 +1287,7 @@ restarting the fluidsynth engine:</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="810"/>
         <source>Base application font size (pt.)</source>
-        <translation>Основна величина слова фонта у програму (у тачкама-пт.)</translation>
+        <translation>Основна величина слова у програму (у тачкама-пт.)</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="652"/>
@@ -1335,13 +1335,14 @@ restarting the fluidsynth engine:</source>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="288"/>
         <source>Information</source>
-        <translation type="unfinished">Подаци</translation>
+        <translation>Подаци</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="289"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Нека од подешавања ће се применити
+само по поновном покретању програма.</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="315"/>
@@ -1374,116 +1375,116 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="40"/>
         <source>Color Themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема боја</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="46"/>
         <source>Name</source>
-        <translation type="unfinished">Назив</translation>
+        <translation>Назив</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="64"/>
         <source>Current color palette name</source>
-        <translation type="unfinished"></translation>
+        <translation>Назив текуће палете боја</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="77"/>
         <source>Save current color palette name</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај назив текуће палете боја</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="80"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сачувај</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="90"/>
         <source>Delete current color palette name</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони назив текуће палете боја</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="93"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Уклони</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="106"/>
         <source>Palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Палета</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="118"/>
         <source>Current color palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Текућа палета боја</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="128"/>
         <source>Generate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Стварај:</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="144"/>
         <source>Base color to generate palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Из основне боје створи палету</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="151"/>
         <source>Reset all current palette colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Поништи све текуће палете боја</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="154"/>
         <source> Reset</source>
-        <translation type="unfinished"></translation>
+        <translation> Поништи</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="177"/>
         <source>Import a custom color theme (palette) from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Увези прилагођену тему боја (палету) из датотеке</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="180"/>
         <source>Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>Увези…</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="190"/>
         <source>Export a custom color theme (palette) to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Извези прилагођену тему боја (палету) у датотеку</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="193"/>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Извези…</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="216"/>
         <source>Show Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Прикажи детаље</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="320"/>
         <source>Import File - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Увези датотеку — %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="323"/>
         <location filename="../qsynthPaletteForm.cpp" line="389"/>
         <source>Palette files (*.%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Датотеке палета (*.%1)</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="324"/>
         <location filename="../qsynthPaletteForm.cpp" line="390"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Све датотеке (*.*)</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="376"/>
         <location filename="../qsynthPaletteForm.cpp" line="799"/>
         <location filename="../qsynthPaletteForm.cpp" line="807"/>
         <source>Warning - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Упозорење — %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="377"/>
@@ -1492,19 +1493,25 @@ next time you start this application.</source>
 %1
 
 Sorry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу да увезем из датотеке:
+
+%1
+
+Праштајте.</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="386"/>
         <source>Export File - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Извези датотеку — %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="800"/>
         <source>Some settings have been changed.
 
 Do you want to discard the changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Измењена су нека подешавања.
+
+Желите ли да одбаците ове измене?</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="808"/>
@@ -1513,7 +1520,11 @@ Do you want to discard the changes?</source>
 &quot;%1&quot;.
 
 Do you want to save the changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Измењена су нека подешавања:
+
+&quot;%1&quot;.
+
+Желите ли да сачувате ове измене?</translation>
     </message>
 </context>
 <context>
@@ -1521,22 +1532,22 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="1039"/>
         <source>Color Role</source>
-        <translation type="unfinished"></translation>
+        <translation>Улога боје</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="1042"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Укључено</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="1045"/>
         <source>Inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>Искључено</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="1048"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Онемогућено</translation>
     </message>
 </context>
 <context>
@@ -1544,12 +1555,12 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthPresetForm.ui" line="33"/>
         <source>Channel Preset</source>
-        <translation type="unfinished"></translation>
+        <translation>Поставка канала</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="65"/>
         <source>Preset</source>
-        <translation>Предподешавање</translation>
+        <translation>Поставка</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="93"/>
@@ -1579,12 +1590,12 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthPresetForm.ui" line="159"/>
         <source>SFID</source>
-        <translation>ЗФ-ИД</translation>
+        <translation>З-ИБ</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="164"/>
         <source>Soundfont</source>
-        <translation>Звучни фонт</translation>
+        <translation>Звукотека</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="173"/>
@@ -1713,7 +1724,7 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.ui" line="286"/>
         <source>MIDI Client Name ID (ALSA/CoreMidi):</source>
-        <translation>ИД назива миди-клијента (АЛСА/КореМиди):</translation>
+        <translation>ИБ назива миди-клијента (АЛСА/КореМиди):</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="299"/>
@@ -1723,13 +1734,13 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.ui" line="306"/>
         <source>pid</source>
-        <translation>ПИД</translation>
+        <translation>ПИБ</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="311"/>
         <location filename="../qsynthSetupForm.ui" line="784"/>
         <source>qsynth</source>
-        <translation>Кју-синт</translation>
+        <translation>Ку-синт</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="361"/>
@@ -1915,12 +1926,12 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.ui" line="756"/>
         <source>JACK Client Name &amp;ID:</source>
-        <translation>&amp;ИД назива Џек клијента:</translation>
+        <translation>&amp;ИБ назива Џек-клијента:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="769"/>
         <source>JACK client name identification</source>
-        <translation>Идентификација назива Џек клијента</translation>
+        <translation>Идентификација назива Џек-клијента</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="779"/>
@@ -1950,17 +1961,17 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.ui" line="844"/>
         <source>&amp;Soundfonts</source>
-        <translation>Звучни &amp;фонтови</translation>
+        <translation>&amp;Звукотеке</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="859"/>
         <source>Soundfont stack</source>
-        <translation>Библиотека звучних фонтова</translation>
+        <translation>Библиотека звукотека</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="881"/>
         <source>SFID</source>
-        <translation>ЗФ-ИД</translation>
+        <translation>З-ИБ</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="886"/>
@@ -1976,17 +1987,17 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.ui" line="904"/>
         <source>Open soundfont file for loading</source>
-        <translation>Отвори датотеку звучог фонта за учитавање</translation>
+        <translation>Отвори звукотеку за учитавање</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="907"/>
         <source>&amp;Open...</source>
-        <translation>&amp;Отвори...</translation>
+        <translation>&amp;Отвори…</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="917"/>
         <source>Edit selected soundfont bank offset</source>
-        <translation>Уреди офсет за изабрану банку звучног фонта</translation>
+        <translation>Уреди офсет за изабрану банку звукотеке</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="920"/>
@@ -1996,7 +2007,7 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.ui" line="930"/>
         <source>Remove selected soundfont from stack</source>
-        <translation>Уклони изабрани звучни фонт из бибиотеке</translation>
+        <translation>Уклони изабрану звукотеку из бибиотеке</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="933"/>
@@ -2006,7 +2017,7 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.ui" line="956"/>
         <source>Move up selected soundfont towards the top of stack</source>
-        <translation>Премести звучни фонт ка врху</translation>
+        <translation>Премести звукотеку ка врху</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="959"/>
@@ -2016,7 +2027,7 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.ui" line="969"/>
         <source>Move down selected soundfont towards the bottom of stack</source>
-        <translation>Премести звучни фонт ка дну</translation>
+        <translation>Премести звукотеку ка дну</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="972"/>
@@ -2088,7 +2099,7 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="813"/>
         <source>Open...</source>
-        <translation>Отвори...</translation>
+        <translation>Отвори…</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="818"/>
@@ -2114,12 +2125,12 @@ Do you want to save the changes?</source>
         <location filename="../qsynthSetupForm.cpp" line="857"/>
         <location filename="../qsynthSetupForm.cpp" line="858"/>
         <source>Soundfont files</source>
-        <translation>Датотеке звучних фонтова</translation>
+        <translation>Звукотеке</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="873"/>
         <source>Soundfont file already on list</source>
-        <translation>Датотека звучног фонта је већ на списку</translation>
+        <translation>Звукотека је већ на списку</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="875"/>
@@ -2134,12 +2145,12 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="903"/>
         <source>Failed to add soundfont file</source>
-        <translation>Нисам успео да додам датотеке звучног фонта</translation>
+        <translation>Нисам успео да додам звукотеку</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="905"/>
         <source>Please, check for a valid soundfont file.</source>
-        <translation>Потражите ваљану датотеку звучног фонта.</translation>
+        <translation>Потражите ваљану звукотеку.</translation>
     </message>
 </context>
 </TS>
