@@ -56,6 +56,8 @@
 
 #include <QSessionManager>
 
+#include <QElapsedTimer>
+
 #if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QMimeData>
 #endif
@@ -2189,9 +2191,9 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 	}
 
 	// Wait a litle bit before continue...
-	QTime t;
-	t.start();
-	while (t.elapsed() < QSYNTH_DELAY_MSECS)
+	QElapsedTimer timer;
+	timer.start();
+	while (timer.elapsed() < QSYNTH_DELAY_MSECS)
 		QApplication::processEvents(QEventLoop::ExcludeUserInputEvents);
 }
 

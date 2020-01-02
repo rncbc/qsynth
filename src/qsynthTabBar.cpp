@@ -1,7 +1,7 @@
 // qsynthTabBar.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2020, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -82,7 +82,7 @@ int qsynthTabBar::addEngine ( qsynthEngine *pEngine )
 	int iTab = QTabBar::addTab(*g_pIconLedOff, pEngine->name());
 	if (iTab >= 0) {
 		QTabBar::setTabData(iTab,
-			qVariantFromValue(static_cast<void *> (pEngine)));
+			QVariant::fromValue(static_cast<void *> (pEngine)));
 	}
 	return iTab;
 }
