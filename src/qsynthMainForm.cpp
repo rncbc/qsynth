@@ -833,6 +833,20 @@ bool qsynthMainForm::queryClose (void)
 }
 
 
+void qsynthMainForm::showEvent ( QShowEvent *pShowEvent )
+{
+	QWidget::showEvent(pShowEvent);
+	updateContextMenu();
+}
+
+
+void qsynthMainForm::hideEvent ( QHideEvent *pHideEvent )
+{
+	QWidget::hideEvent(pHideEvent);
+	updateContextMenu();
+}
+
+
 void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 {
 	// Let's be sure about that...
@@ -1186,7 +1200,7 @@ void qsynthMainForm::updateContextMenu (void)
 		sShowRestore  = tr("S&how");
 	}
 #endif
-	pAction = m_menu.addAction(isVisible()
+	pAction = m_menu.addAction(isVisible() && !isMinimized()
 		? sHideMinimize : sShowRestore, this, SLOT(toggleMainForm()));
 	m_menu.addSeparator();
 
@@ -1491,13 +1505,14 @@ void qsynthMainForm::toggleMainForm (void)
 
 	m_pOptions->saveWidgetGeometry(this, true);
 
-	if (isVisible()) {
+	if (isVisible() && !isMinimized()) {
 	#ifdef CONFIG_SYSTEM_TRAY
 		if (m_pOptions->bSystemTray && m_pSystemTray) {
 			// Hide away from sight, if not active...
 			if (isActiveWindow()) {
 				hide();
 			} else {
+				showNormal();
 				raise();
 				activateWindow();
 			}
@@ -1507,12 +1522,12 @@ void qsynthMainForm::toggleMainForm (void)
 		// Minimize (iconify) normally.
 		showMinimized();
 	} else {
-		show();
+		showNormal();
 		raise();
 		activateWindow();
 	}
 
-	updateContextMenu();
+//	updateContextMenu();
 }
 
 

@@ -124,6 +124,8 @@ protected:
 
 	bool queryClose();
 
+	void showEvent(QShowEvent *pShowEvent);
+	void hideEvent(QHideEvent *pHideEvent);
 	void closeEvent(QCloseEvent *pCloseEvent);
 
 	void appendStdoutBuffer(const QString& sText);
