@@ -112,7 +112,7 @@ unix {
 	icon.files += images/$${TARGET}.png 
 
 	icon_scalable.path = $${DATADIR}/icons/hicolor/scalable/apps
-	icon_scalable.files += images/$${NAME}.svg
+	icon_scalable.files += images/$${TARGET}.svg
 
 	appdata.path = $${DATADIR}/metainfo
 	appdata.files += appdata/$${TARGET}.appdata.xml
