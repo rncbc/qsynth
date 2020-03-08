@@ -101,7 +101,7 @@ unix {
 	#DEFINES += DATADIR=\"$${DATADIR}\"
 
 	# make install
-	INSTALLS += target desktop icon appdata
+	INSTALLS += target desktop icon icon_scalable appdata
 
 	target.path = $${BINDIR}
 
