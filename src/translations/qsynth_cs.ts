@@ -192,52 +192,52 @@
         <translation>O Qt</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="63"/>
+        <location filename="../qsynthAboutForm.cpp" line="62"/>
         <source>Version</source>
         <translation>Verze</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="44"/>
+        <location filename="../qsynthAboutForm.cpp" line="43"/>
         <source>Debugging option enabled.</source>
         <translation>Povolena možnost ladění.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="47"/>
+        <location filename="../qsynthAboutForm.cpp" line="46"/>
         <source>System tray disabled.</source>
         <translation>Oznamovací oblast panelu zakázána.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="50"/>
+        <location filename="../qsynthAboutForm.cpp" line="49"/>
         <source>Server option disabled.</source>
         <translation>Zakázána možnost serveru.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="53"/>
+        <location filename="../qsynthAboutForm.cpp" line="52"/>
         <source>System reset option disabled.</source>
         <translation>Zakázána možnost znovunastavení systému.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="56"/>
+        <location filename="../qsynthAboutForm.cpp" line="55"/>
         <source>Bank offset option disabled.</source>
         <translation>Zakázána možnost polohy banky.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="72"/>
+        <location filename="../qsynthAboutForm.cpp" line="71"/>
         <source>Using: FluidSynth %1</source>
         <translation>Pomocí: FluidSynth %1</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="76"/>
+        <location filename="../qsynthAboutForm.cpp" line="75"/>
         <source>Website</source>
         <translation>Internetová stránka</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="80"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Tento program je svobodným software; Můžete jej rozšiřovat a/nebo upravovat</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="82"/>
+        <location filename="../qsynthAboutForm.cpp" line="81"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>za podmínek GNU General Public License.</translation>
     </message>
@@ -325,32 +325,32 @@
         <translation>Kanály</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="356"/>
+        <location filename="../qsynthChannelsForm.cpp" line="355"/>
         <source>Edit</source>
         <translation>Upravit</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="361"/>
+        <location filename="../qsynthChannelsForm.cpp" line="360"/>
         <source>Unset</source>
         <translation>Odložit</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="365"/>
+        <location filename="../qsynthChannelsForm.cpp" line="364"/>
         <source>Refresh</source>
         <translation>Obnovit</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="493"/>
+        <location filename="../qsynthChannelsForm.cpp" line="492"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="494"/>
+        <location filename="../qsynthChannelsForm.cpp" line="493"/>
         <source>Delete preset:</source>
         <translation>Smazat přednastavení:</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="496"/>
+        <location filename="../qsynthChannelsForm.cpp" line="495"/>
         <source>Are you sure?</source>
         <translation>Jste si jistý?</translation>
     </message>
@@ -1157,39 +1157,39 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Spustit se &amp;zmenšením do oznamovací oblasti panelu</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="288"/>
+        <location filename="../qsynthOptionsForm.cpp" line="287"/>
         <source>Information</source>
         <translation>Informace</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="289"/>
+        <location filename="../qsynthOptionsForm.cpp" line="288"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation>Některá nastavení se projeví až tehdy,
 když příště spustíte tento program.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="315"/>
+        <location filename="../qsynthOptionsForm.cpp" line="314"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="316"/>
+        <location filename="../qsynthOptionsForm.cpp" line="315"/>
         <source>Some options have been changed.</source>
         <translation>Některá nastavení byla změněna.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="317"/>
+        <location filename="../qsynthOptionsForm.cpp" line="316"/>
         <source>Do you want to apply the changes?</source>
         <translation>Chtěl byste použít změny?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="446"/>
+        <location filename="../qsynthOptionsForm.cpp" line="445"/>
         <source>Messages Log</source>
         <translation>Zápis hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="448"/>
+        <location filename="../qsynthOptionsForm.cpp" line="447"/>
         <source>Log files</source>
         <translation>Soubory se zápisy</translation>
     </message>
@@ -1608,7 +1608,7 @@ Chcete uložit změny?</translation>
         <translation>Náhled</translation>
     </message>
     <message>
-        <location filename="../qsynthPresetForm.cpp" line="146"/>
+        <location filename="../qsynthPresetForm.cpp" line="145"/>
         <source>Channel %1</source>
         <translation>Kanál %1</translation>
     </message>
@@ -2076,79 +2076,79 @@ Chcete uložit změny?</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="34"/>
-        <location filename="../qsynthSetupForm.cpp" line="394"/>
+        <location filename="../qsynthSetupForm.cpp" line="393"/>
         <source>Setup</source>
         <translation>Nachystat</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="616"/>
-        <location filename="../qsynthSetupForm.cpp" line="872"/>
+        <location filename="../qsynthSetupForm.cpp" line="615"/>
+        <location filename="../qsynthSetupForm.cpp" line="871"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="617"/>
+        <location filename="../qsynthSetupForm.cpp" line="616"/>
         <source>Some settings have been changed.</source>
         <translation>Některá nastavení byla změněna.</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="618"/>
+        <location filename="../qsynthSetupForm.cpp" line="617"/>
         <source>Do you want to apply the changes?</source>
         <translation>Chtěl byste použít změny?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="813"/>
+        <location filename="../qsynthSetupForm.cpp" line="812"/>
         <source>Open...</source>
         <translation>Otevřít...</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="818"/>
+        <location filename="../qsynthSetupForm.cpp" line="817"/>
         <source>Edit</source>
         <translation>Upravit</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="823"/>
+        <location filename="../qsynthSetupForm.cpp" line="822"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="828"/>
+        <location filename="../qsynthSetupForm.cpp" line="827"/>
         <source>Move Up</source>
         <translation>Přesunout nahoru</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="832"/>
+        <location filename="../qsynthSetupForm.cpp" line="831"/>
         <source>Move Down</source>
         <translation>Přesunout dolů</translation>
     </message>
     <message>
+        <location filename="../qsynthSetupForm.cpp" line="856"/>
         <location filename="../qsynthSetupForm.cpp" line="857"/>
-        <location filename="../qsynthSetupForm.cpp" line="858"/>
         <source>Soundfont files</source>
         <translation>Soubory se zvukovými písmy</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="873"/>
+        <location filename="../qsynthSetupForm.cpp" line="872"/>
         <source>Soundfont file already on list</source>
         <translation>Soubor se zvukovým písmem je již součástí seznamu</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="875"/>
+        <location filename="../qsynthSetupForm.cpp" line="874"/>
         <source>Add anyway?</source>
         <translation>Přesto přidat?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="902"/>
+        <location filename="../qsynthSetupForm.cpp" line="901"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="903"/>
+        <location filename="../qsynthSetupForm.cpp" line="902"/>
         <source>Failed to add soundfont file</source>
         <translation>Nepodařilo se přidat soubor se zvukovým písmem</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="905"/>
+        <location filename="../qsynthSetupForm.cpp" line="904"/>
         <source>Please, check for a valid soundfont file.</source>
         <translation>Zvolte, prosím, platný soubor se zvukovým písmem.</translation>
     </message>

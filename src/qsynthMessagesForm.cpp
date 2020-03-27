@@ -1,7 +1,7 @@
 // qsynthMessagesForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2020, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -148,7 +148,7 @@ void qsynthMessagesForm::setLogging ( bool bEnabled, const QString& sFilename )
 void qsynthMessagesForm::appendMessagesLog ( const QString& s )
 {
 	if (m_pMessagesLog) {
-		QTextStream(m_pMessagesLog) << s << endl;
+		QTextStream(m_pMessagesLog) << s << Qt::endl;
 		m_pMessagesLog->flush();
 	}
 }

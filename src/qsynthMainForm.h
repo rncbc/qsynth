@@ -51,7 +51,8 @@ class qsynthMainForm : public QWidget
 public:
 
 	// Constructor.
-	qsynthMainForm(QWidget *pParent = 0, Qt::WindowFlags wflags = 0);
+	qsynthMainForm(QWidget *pParent = nullptr,
+		Qt::WindowFlags wflags = Qt::WindowFlags());
 	// Destructor.
 	~qsynthMainForm();
 

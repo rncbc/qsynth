@@ -1,7 +1,7 @@
 // qsynthChannelsForm.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2020, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -46,7 +46,8 @@ class qsynthChannelsForm : public QWidget
 public:
 
 	// Constructor.
-	qsynthChannelsForm(QWidget *pParent = 0, Qt::WindowFlags wflags = 0);
+	qsynthChannelsForm(QWidget *pParent = nullptr,
+		Qt::WindowFlags wflags = Qt::WindowFlags());
 	// Destructor.
 	~qsynthChannelsForm();
 

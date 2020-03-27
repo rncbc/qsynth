@@ -177,52 +177,52 @@
 <context>
     <name>qsynthAboutForm</name>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="63"/>
+        <location filename="../qsynthAboutForm.cpp" line="62"/>
         <source>Version</source>
         <translation>Versión</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="44"/>
+        <location filename="../qsynthAboutForm.cpp" line="43"/>
         <source>Debugging option enabled.</source>
         <translation>Opción de depuración habilitada.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="47"/>
+        <location filename="../qsynthAboutForm.cpp" line="46"/>
         <source>System tray disabled.</source>
         <translation>Bandeja del sistema deshabilitada.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="50"/>
+        <location filename="../qsynthAboutForm.cpp" line="49"/>
         <source>Server option disabled.</source>
         <translation>Opción de servidor deshabilitada.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="53"/>
+        <location filename="../qsynthAboutForm.cpp" line="52"/>
         <source>System reset option disabled.</source>
         <translation>Opción de reajuste del sistema deshabilitada.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="56"/>
+        <location filename="../qsynthAboutForm.cpp" line="55"/>
         <source>Bank offset option disabled.</source>
         <translation>Opción de desplazamiento de bancos deshabilitada.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="72"/>
+        <location filename="../qsynthAboutForm.cpp" line="71"/>
         <source>Using: FluidSynth %1</source>
         <translation>Usando: FluidSynth %1</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="76"/>
+        <location filename="../qsynthAboutForm.cpp" line="75"/>
         <source>Website</source>
         <translation>Sitio web</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="80"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Este programa es software libre; puede redistribuirlo y/o modificarlo</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="82"/>
+        <location filename="../qsynthAboutForm.cpp" line="81"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>bajo los términos de la Licencia Pública General GNU  versión 2 o posterior.</translation>
     </message>
@@ -250,32 +250,32 @@
         <translation>Canales</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="356"/>
+        <location filename="../qsynthChannelsForm.cpp" line="355"/>
         <source>Edit</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="361"/>
+        <location filename="../qsynthChannelsForm.cpp" line="360"/>
         <source>Unset</source>
         <translation>Deponer</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="365"/>
+        <location filename="../qsynthChannelsForm.cpp" line="364"/>
         <source>Refresh</source>
         <translation>Refrescar</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="493"/>
+        <location filename="../qsynthChannelsForm.cpp" line="492"/>
         <source>Warning</source>
         <translation>Aviso</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="494"/>
+        <location filename="../qsynthChannelsForm.cpp" line="493"/>
         <source>Delete preset:</source>
         <translation>Borrar preajustes:</translation>
     </message>
     <message>
-        <location filename="../qsynthChannelsForm.cpp" line="496"/>
+        <location filename="../qsynthChannelsForm.cpp" line="495"/>
         <source>Are you sure?</source>
         <translation>¿Está seguro?</translation>
     </message>
@@ -985,39 +985,39 @@ de reiniciar el motor de Fluidsynth:</translation>
 <context>
     <name>qsynthOptionsForm</name>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="288"/>
+        <location filename="../qsynthOptionsForm.cpp" line="287"/>
         <source>Information</source>
         <translation>Información</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="289"/>
+        <location filename="../qsynthOptionsForm.cpp" line="288"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation>Algunas opciones pueden tener efecto solamente
 después de la próxima vez que inicie esta aplicación.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="315"/>
+        <location filename="../qsynthOptionsForm.cpp" line="314"/>
         <source>Warning</source>
         <translation>Aviso</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="316"/>
+        <location filename="../qsynthOptionsForm.cpp" line="315"/>
         <source>Some options have been changed.</source>
         <translation>Algunas opciones han cambiado.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="317"/>
+        <location filename="../qsynthOptionsForm.cpp" line="316"/>
         <source>Do you want to apply the changes?</source>
         <translation>¿Quiere aplicar los cambios?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="446"/>
+        <location filename="../qsynthOptionsForm.cpp" line="445"/>
         <source>Messages Log</source>
         <translation>Registro de mensajes</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="448"/>
+        <location filename="../qsynthOptionsForm.cpp" line="447"/>
         <source>Log files</source>
         <translation>Archivos de registro</translation>
     </message>
@@ -1542,7 +1542,7 @@ Do you want to save the changes?</source>
 <context>
     <name>qsynthPresetForm</name>
     <message>
-        <location filename="../qsynthPresetForm.cpp" line="146"/>
+        <location filename="../qsynthPresetForm.cpp" line="145"/>
         <source>Channel %1</source>
         <translation>Canal %1</translation>
     </message>
@@ -1606,79 +1606,79 @@ Do you want to save the changes?</source>
     <name>qsynthSetupForm</name>
     <message>
         <location filename="../qsynthSetupForm.ui" line="34"/>
-        <location filename="../qsynthSetupForm.cpp" line="394"/>
+        <location filename="../qsynthSetupForm.cpp" line="393"/>
         <source>Setup</source>
         <translation>Configuración</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="616"/>
-        <location filename="../qsynthSetupForm.cpp" line="872"/>
+        <location filename="../qsynthSetupForm.cpp" line="615"/>
+        <location filename="../qsynthSetupForm.cpp" line="871"/>
         <source>Warning</source>
         <translation>Aviso</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="617"/>
+        <location filename="../qsynthSetupForm.cpp" line="616"/>
         <source>Some settings have been changed.</source>
         <translation>Algunos ajustes han cambiado.</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="618"/>
+        <location filename="../qsynthSetupForm.cpp" line="617"/>
         <source>Do you want to apply the changes?</source>
         <translation>¿Quiere aplicar los cambios?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="813"/>
+        <location filename="../qsynthSetupForm.cpp" line="812"/>
         <source>Open...</source>
         <translation>Abrir...</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="818"/>
+        <location filename="../qsynthSetupForm.cpp" line="817"/>
         <source>Edit</source>
         <translation>Editar</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="823"/>
+        <location filename="../qsynthSetupForm.cpp" line="822"/>
         <source>Remove</source>
         <translation>Borrar</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="828"/>
+        <location filename="../qsynthSetupForm.cpp" line="827"/>
         <source>Move Up</source>
         <translation>Mover hacia arriba</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="832"/>
+        <location filename="../qsynthSetupForm.cpp" line="831"/>
         <source>Move Down</source>
         <translation>Moves hacia abajo</translation>
     </message>
     <message>
+        <location filename="../qsynthSetupForm.cpp" line="856"/>
         <location filename="../qsynthSetupForm.cpp" line="857"/>
-        <location filename="../qsynthSetupForm.cpp" line="858"/>
         <source>Soundfont files</source>
         <translation>Archivos de soundfonts</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="873"/>
+        <location filename="../qsynthSetupForm.cpp" line="872"/>
         <source>Soundfont file already on list</source>
         <translation>Archivo de soundfont ya está en la lista</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="875"/>
+        <location filename="../qsynthSetupForm.cpp" line="874"/>
         <source>Add anyway?</source>
         <translation>¿Añadir de todas formas?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="902"/>
+        <location filename="../qsynthSetupForm.cpp" line="901"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="903"/>
+        <location filename="../qsynthSetupForm.cpp" line="902"/>
         <source>Failed to add soundfont file</source>
         <translation>Ha fallado la adición del arhivo de soundfont</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="905"/>
+        <location filename="../qsynthSetupForm.cpp" line="904"/>
         <source>Please, check for a valid soundfont file.</source>
         <translation>Por favor, verifique se trata de un soundfont válido.</translation>
     </message>
