@@ -972,12 +972,12 @@ le redémarrage du moteur fluidsynth :</translation>
         <translation>Sortie des messages de log</translation>
     </message>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="127"/>
+        <location filename="../qsynthMessagesForm.cpp" line="133"/>
         <source>Logging stopped --- %1 ---</source>
         <translation>Enregistrement arrêté --- %1 ---</translation>
     </message>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="137"/>
+        <location filename="../qsynthMessagesForm.cpp" line="143"/>
         <source>Logging started --- %1 ---</source>
         <translation>Enregistrement démarré --- %1 ---</translation>
     </message>

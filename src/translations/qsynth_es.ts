@@ -962,12 +962,12 @@ de reiniciar el motor de Fluidsynth:</translation>
 <context>
     <name>qsynthMessagesForm</name>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="127"/>
+        <location filename="../qsynthMessagesForm.cpp" line="133"/>
         <source>Logging stopped --- %1 ---</source>
         <translation>Registro parado --- %1 ---</translation>
     </message>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="137"/>
+        <location filename="../qsynthMessagesForm.cpp" line="143"/>
         <source>Logging started --- %1 ---</source>
         <translation>Registro iniciado --- %1 ---</translation>
     </message>

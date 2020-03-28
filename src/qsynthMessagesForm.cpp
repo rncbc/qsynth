@@ -38,6 +38,12 @@
 #define QSYNTH_MESSAGES_MAXLINES  1000
 
 
+// Deprecated QTextStreamFunctions/Qt namespaces workaround.
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+#define endl	Qt::endl;
+#endif
+
+
 //----------------------------------------------------------------------------
 // qsynthMessagesForm -- UI wrapper form.
 
@@ -148,7 +154,7 @@ void qsynthMessagesForm::setLogging ( bool bEnabled, const QString& sFilename )
 void qsynthMessagesForm::appendMessagesLog ( const QString& s )
 {
 	if (m_pMessagesLog) {
-		QTextStream(m_pMessagesLog) << s << Qt::endl;
+		QTextStream(m_pMessagesLog) << s << endl;
 		m_pMessagesLog->flush();
 	}
 }

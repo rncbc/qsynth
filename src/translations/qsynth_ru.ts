@@ -974,12 +974,12 @@ restarting all fluidsynth engines.</source>
         <translation>Журнал сообщений Qsynth</translation>
     </message>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="127"/>
+        <location filename="../qsynthMessagesForm.cpp" line="133"/>
         <source>Logging stopped --- %1 ---</source>
         <translation>Журналирование остановлено --- %1 ---</translation>
     </message>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="137"/>
+        <location filename="../qsynthMessagesForm.cpp" line="143"/>
         <source>Logging started --- %1 ---</source>
         <translation>Журналирование начато --- %1 ---</translation>
     </message>

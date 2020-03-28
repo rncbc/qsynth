@@ -973,12 +973,12 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Historie zaznamenaných hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="127"/>
+        <location filename="../qsynthMessagesForm.cpp" line="133"/>
         <source>Logging stopped --- %1 ---</source>
         <translation>Zaznamenávání zastaveno --- %1 ---</translation>
     </message>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="137"/>
+        <location filename="../qsynthMessagesForm.cpp" line="143"/>
         <source>Logging started --- %1 ---</source>
         <translation>Zaznamenávání spuštěno --- %1 ---</translation>
     </message>

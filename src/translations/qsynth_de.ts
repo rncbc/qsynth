@@ -972,12 +972,12 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Historie der aufgezeichneten Meldungen</translation>
     </message>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="127"/>
+        <location filename="../qsynthMessagesForm.cpp" line="133"/>
         <source>Logging stopped --- %1 ---</source>
         <translation>Aufzeichung angehalten --- %1 ---</translation>
     </message>
     <message>
-        <location filename="../qsynthMessagesForm.cpp" line="137"/>
+        <location filename="../qsynthMessagesForm.cpp" line="143"/>
         <source>Logging started --- %1 ---</source>
         <translation>Aufzeichnung gestartet --- %1 ---</translation>
     </message>
