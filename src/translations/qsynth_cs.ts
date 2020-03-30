@@ -414,7 +414,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="961"/>
         <location filename="../qsynthMainForm.cpp" line="1230"/>
-        <location filename="../qsynthMainForm.cpp" line="1733"/>
+        <location filename="../qsynthMainForm.cpp" line="1709"/>
         <source>Set&amp;up...</source>
         <translation>&amp;Nastavení...</translation>
     </message>
@@ -638,7 +638,6 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="737"/>
-        <location filename="../qsynthMainForm.cpp" line="1622"/>
         <source>Information</source>
         <translation>Informace</translation>
     </message>
@@ -662,8 +661,8 @@ oblasti panelu.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="780"/>
         <location filename="../qsynthMainForm.cpp" line="1440"/>
-        <location filename="../qsynthMainForm.cpp" line="2228"/>
-        <location filename="../qsynthMainForm.cpp" line="2258"/>
+        <location filename="../qsynthMainForm.cpp" line="2204"/>
+        <location filename="../qsynthMainForm.cpp" line="2234"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
@@ -690,7 +689,7 @@ oblasti panelu.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="898"/>
-        <location filename="../qsynthMainForm.cpp" line="1909"/>
+        <location filename="../qsynthMainForm.cpp" line="1885"/>
         <source>Failed to load the soundfont: &quot;%1&quot;.</source>
         <translation>Nahrávání zvukového písma se nezdařilo: &quot;%1&quot;.</translation>
     </message>
@@ -731,13 +730,13 @@ oblasti panelu.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1208"/>
-        <location filename="../qsynthMainForm.cpp" line="1727"/>
+        <location filename="../qsynthMainForm.cpp" line="1703"/>
         <source>&amp;New engine...</source>
         <translation>&amp;Nový zvukový modul...</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1210"/>
-        <location filename="../qsynthMainForm.cpp" line="1729"/>
+        <location filename="../qsynthMainForm.cpp" line="1705"/>
         <source>&amp;Delete</source>
         <translation>&amp;Smazat</translation>
     </message>
@@ -758,19 +757,12 @@ oblasti panelu.</translation>
         <translation>Smazat fluidsynthový zvukový modul:</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1624"/>
-        <source>Some settings will be only effective
-next time you start this program.</source>
-        <translation>Některá nastavení začnou působit
-až po novém spuštění programu.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthMainForm.cpp" line="1868"/>
+        <location filename="../qsynthMainForm.cpp" line="1844"/>
         <source>Creating synthesizer engine</source>
         <translation>Vytváří se syntetizátorový zvukový modul</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1872"/>
+        <location filename="../qsynthMainForm.cpp" line="1848"/>
         <source>Failed to create the synthesizer.
 
 Cannot continue without it.</source>
@@ -779,22 +771,22 @@ Cannot continue without it.</source>
 Bez něj nelze pokračovat.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1903"/>
+        <location filename="../qsynthMainForm.cpp" line="1879"/>
         <source>Loading soundfont: &quot;%1&quot; (bank offset %2)</source>
         <translation>Nahrává se zvukové písmo: &quot;%1&quot; (poloha banky %2)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1916"/>
+        <location filename="../qsynthMainForm.cpp" line="1892"/>
         <source>Failed to set bank offset (%1) for soundfont: &quot;%2&quot;.</source>
         <translation>Nastavení hodnoty polohy banky (%1) pro zvukové písmo: &quot;%2&quot; se nepodařilo.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1926"/>
+        <location filename="../qsynthMainForm.cpp" line="1902"/>
         <source>Creating audio driver (%1)</source>
         <translation>Vytváří se zvukový ovladač (%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1940"/>
+        <location filename="../qsynthMainForm.cpp" line="1916"/>
         <source>Failed to create the audio driver (%1).
 
 Cannot continue without it.</source>
@@ -803,12 +795,12 @@ Cannot continue without it.</source>
 Bez něj nelze pokračovat.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1953"/>
+        <location filename="../qsynthMainForm.cpp" line="1929"/>
         <source>Creating MIDI router (%1)</source>
         <translation>Vytváří se směrovač MIDI (%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1962"/>
+        <location filename="../qsynthMainForm.cpp" line="1938"/>
         <source>Failed to create the MIDI input router (%1).
 
 No MIDI input will be available.</source>
@@ -817,12 +809,12 @@ No MIDI input will be available.</source>
 Nebude dostupný žádný MIDI vstup.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1970"/>
+        <location filename="../qsynthMainForm.cpp" line="1946"/>
         <source>Creating MIDI driver (%1)</source>
         <translation>Vytváří se ovladač MIDI (%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1979"/>
+        <location filename="../qsynthMainForm.cpp" line="1955"/>
         <source>Failed to create the MIDI driver (%1).
 
 No MIDI input will be available.</source>
@@ -831,12 +823,12 @@ No MIDI input will be available.</source>
 Nebude dostupný žádný MIDI vstup.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1986"/>
+        <location filename="../qsynthMainForm.cpp" line="1962"/>
         <source>Creating MIDI player</source>
         <translation>Vytváří se přehrávač MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1990"/>
+        <location filename="../qsynthMainForm.cpp" line="1966"/>
         <source>Failed to create the MIDI player.
 
 Continuing without a player.</source>
@@ -845,12 +837,12 @@ Continuing without a player.</source>
 Pokračuje se bez přehrávače.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2000"/>
+        <location filename="../qsynthMainForm.cpp" line="1976"/>
         <source>Creating server</source>
         <translation>Vytváří se server</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2034"/>
+        <location filename="../qsynthMainForm.cpp" line="2010"/>
         <source>Failed to create the server.
 
 Continuing without it.</source>
@@ -859,7 +851,7 @@ Continuing without it.</source>
 Pokračuje se bez něj.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2038"/>
+        <location filename="../qsynthMainForm.cpp" line="2014"/>
         <source>Server mode disabled.
 
 Continuing without it.</source>
@@ -868,94 +860,94 @@ Continuing without it.</source>
 Pokračuje se bez něj.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2072"/>
+        <location filename="../qsynthMainForm.cpp" line="2048"/>
         <source>Synthesizer engine started.</source>
         <translation>Syntetizátorový zvukový modul spuštěn.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2112"/>
+        <location filename="../qsynthMainForm.cpp" line="2088"/>
         <source>Destroying server</source>
         <translation>Vypíná se server</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2120"/>
+        <location filename="../qsynthMainForm.cpp" line="2096"/>
         <source>Stopping MIDI player</source>
         <translation>Zastavuje se přehrávač MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2122"/>
+        <location filename="../qsynthMainForm.cpp" line="2098"/>
         <source>Waiting for MIDI player to terminate</source>
         <translation>Čeká se na ukončení přehrávače MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2124"/>
+        <location filename="../qsynthMainForm.cpp" line="2100"/>
         <source>Destroying MIDI player</source>
         <translation>Vypíná se přehrávač MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2132"/>
+        <location filename="../qsynthMainForm.cpp" line="2108"/>
         <source>Destroying MIDI driver</source>
         <translation>Vypíná se ovladač MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2136"/>
+        <location filename="../qsynthMainForm.cpp" line="2112"/>
         <source>Destroying MIDI router</source>
         <translation>Vypíná se směrovač MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2143"/>
+        <location filename="../qsynthMainForm.cpp" line="2119"/>
         <source>Destroying audio driver</source>
         <translation>Vypíná se zvukový ovladač</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2166"/>
+        <location filename="../qsynthMainForm.cpp" line="2142"/>
         <source>Unloading soundfont: &quot;%1&quot; (SFID=%2)</source>
         <translation>Vyjímá se zvukové písmo: &quot;%1&quot; (SFID=%2)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2170"/>
+        <location filename="../qsynthMainForm.cpp" line="2146"/>
         <source>Failed to unload the soundfont: &quot;%1&quot;.</source>
         <translation>Vyjmutí zvukového písma: &quot;%1&quot; se nezdařilo.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2177"/>
+        <location filename="../qsynthMainForm.cpp" line="2153"/>
         <source>Destroying synthesizer engine</source>
         <translation>Vypíná se syntetizátorový zvukový modul</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2181"/>
+        <location filename="../qsynthMainForm.cpp" line="2157"/>
         <source>Synthesizer engine terminated.</source>
         <translation>Syntetizátorový zvukový modul ukončen.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2229"/>
+        <location filename="../qsynthMainForm.cpp" line="2205"/>
         <source>New settings will be effective after
 restarting all fluidsynth engines.</source>
         <translation>Nová nastavení začnou působit až po novém spuštění
 všech fluidsynthových zvukových modulů.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2231"/>
-        <location filename="../qsynthMainForm.cpp" line="2262"/>
+        <location filename="../qsynthMainForm.cpp" line="2207"/>
+        <location filename="../qsynthMainForm.cpp" line="2238"/>
         <source>Please note that this operation may cause
 temporary MIDI and Audio disruption.</source>
         <translation>Všimněte si, prosím, že toto nové spuštění bude mít
 za následek dočasné přerušení MIDI a Audia.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2233"/>
+        <location filename="../qsynthMainForm.cpp" line="2209"/>
         <source>Do you want to restart all engines now?</source>
         <translation>Chtěl byste nyní spustit všechny zvukové moduly znovu?</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2259"/>
+        <location filename="../qsynthMainForm.cpp" line="2235"/>
         <source>New settings will be effective after
 restarting the fluidsynth engine:</source>
         <translation>Nová nastavení začnou působit až po novém spuštění
 fluidsynthovéhoh zvukového modulu:</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2264"/>
+        <location filename="../qsynthMainForm.cpp" line="2240"/>
         <source>Do you want to restart the engine now?</source>
         <translation>Chtěl byste nyní spustit zvukový modul znovu?</translation>
     </message>
@@ -1157,39 +1149,39 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Spustit se &amp;zmenšením do oznamovací oblasti panelu</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="287"/>
+        <location filename="../qsynthOptionsForm.cpp" line="306"/>
         <source>Information</source>
         <translation>Informace</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="288"/>
+        <location filename="../qsynthOptionsForm.cpp" line="307"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation>Některá nastavení se projeví až tehdy,
 když příště spustíte tento program.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="314"/>
+        <location filename="../qsynthOptionsForm.cpp" line="333"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="315"/>
+        <location filename="../qsynthOptionsForm.cpp" line="334"/>
         <source>Some options have been changed.</source>
         <translation>Některá nastavení byla změněna.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="316"/>
+        <location filename="../qsynthOptionsForm.cpp" line="335"/>
         <source>Do you want to apply the changes?</source>
         <translation>Chtěl byste použít změny?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="445"/>
+        <location filename="../qsynthOptionsForm.cpp" line="464"/>
         <source>Messages Log</source>
         <translation>Zápis hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="447"/>
+        <location filename="../qsynthOptionsForm.cpp" line="466"/>
         <source>Log files</source>
         <translation>Soubory se zápisy</translation>
     </message>
@@ -1463,31 +1455,31 @@ když příště spustíte tento program.</translation>
         <translation>Ukázat podrobnosti</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="320"/>
+        <location filename="../qsynthPaletteForm.cpp" line="323"/>
         <source>Import File - %1</source>
         <translation>Zavést soubor - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="323"/>
-        <location filename="../qsynthPaletteForm.cpp" line="389"/>
+        <location filename="../qsynthPaletteForm.cpp" line="326"/>
+        <location filename="../qsynthPaletteForm.cpp" line="392"/>
         <source>Palette files (*.%1)</source>
         <translation>Soubory s paletami (*.%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="324"/>
-        <location filename="../qsynthPaletteForm.cpp" line="390"/>
+        <location filename="../qsynthPaletteForm.cpp" line="327"/>
+        <location filename="../qsynthPaletteForm.cpp" line="393"/>
         <source>All files (*.*)</source>
         <translation>Všechny soubory (*.*)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="376"/>
-        <location filename="../qsynthPaletteForm.cpp" line="799"/>
-        <location filename="../qsynthPaletteForm.cpp" line="807"/>
+        <location filename="../qsynthPaletteForm.cpp" line="379"/>
+        <location filename="../qsynthPaletteForm.cpp" line="812"/>
+        <location filename="../qsynthPaletteForm.cpp" line="820"/>
         <source>Warning - %1</source>
         <translation>Varování - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="377"/>
+        <location filename="../qsynthPaletteForm.cpp" line="380"/>
         <source>Could not import from file:
 
 %1
@@ -1500,12 +1492,12 @@ Sorry.</source>
 Promiňte.</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="386"/>
+        <location filename="../qsynthPaletteForm.cpp" line="389"/>
         <source>Export File - %1</source>
         <translation>Vyvést soubor - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="800"/>
+        <location filename="../qsynthPaletteForm.cpp" line="813"/>
         <source>Some settings have been changed.
 
 Do you want to discard the changes?</source>
@@ -1514,7 +1506,7 @@ Do you want to discard the changes?</source>
 Chcete zahodit změny?</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="808"/>
+        <location filename="../qsynthPaletteForm.cpp" line="821"/>
         <source>Some settings have been changed:
 
 &quot;%1&quot;.
@@ -1530,22 +1522,22 @@ Chcete uložit změny?</translation>
 <context>
     <name>qsynthPaletteForm::PaletteModel</name>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1039"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1052"/>
         <source>Color Role</source>
         <translation>Barevná role</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1042"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1055"/>
         <source>Active</source>
         <translation>Činný</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1045"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1058"/>
         <source>Inactive</source>
         <translation>Nečinný</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1048"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1061"/>
         <source>Disabled</source>
         <translation>Zakázáno</translation>
     </message>

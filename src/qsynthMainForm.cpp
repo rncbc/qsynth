@@ -1598,41 +1598,17 @@ void qsynthMainForm::showOptionsForm (void)
 		const QString sOldMessagesLogPath = m_pOptions->sMessagesLogPath;
 		const QString sOldMessagesFont = m_pOptions->sMessagesFont;
 	#ifdef CONFIG_SYSTEM_TRAY
-		const bool    bOldSystemTray    = m_pOptions->bSystemTray;
+		const bool    bOldSystemTray = m_pOptions->bSystemTray;
 	#endif
-		const bool    bOldOutputMeters  = m_pOptions->bOutputMeters;
-		const bool    bOldStdoutCapture = m_pOptions->bStdoutCapture;
-		const bool    bOldKeepOnTop     = m_pOptions->bKeepOnTop;
-		const int     iOldBaseFontSize  = m_pOptions->iBaseFontSize;
+		const bool    bOldOutputMeters = m_pOptions->bOutputMeters;
 		const int     bOldMessagesLimit = m_pOptions->bMessagesLimit;
 		const int     iOldMessagesLimitLines = m_pOptions->iMessagesLimitLines;
-		const int     iOldKnobStyle     = m_pOptions->iKnobStyle;
-		const int     iOldKnobMotion    = m_pOptions->iKnobMotion;
+		const int     iOldKnobStyle  = m_pOptions->iKnobStyle;
+		const int     iOldKnobMotion = m_pOptions->iKnobMotion;
 		// Load the current setup settings.
 		pOptionsForm->setup(m_pOptions);
 		// Show the setup dialog...
 		if (pOptionsForm->exec()) {
-			// Warn if something will be only effective on next run.
-			if (( bOldStdoutCapture && !m_pOptions->bStdoutCapture) ||
-				(!bOldStdoutCapture &&  m_pOptions->bStdoutCapture) ||
-				( bOldKeepOnTop     && !m_pOptions->bKeepOnTop)     ||
-				(!bOldKeepOnTop     &&  m_pOptions->bKeepOnTop)     ||
-				(iOldBaseFontSize != m_pOptions->iBaseFontSize)) {
-				const QString& sTitle
-					= tr("Information");
-				const QString& sText
-					= tr("Some settings will be only effective\n"
-						"next time you start this program.");
-			#ifdef CONFIG_SYSTEM_TRAY
-				if (m_pOptions->bSystemTray && m_pSystemTray
-					&& QSystemTrayIcon::supportsMessages()) {
-					m_pSystemTray->showMessage(
-						sTitle, sText, QSystemTrayIcon::Information);
-				}
-				else
-			#endif
-				QMessageBox::information(this, sTitle, sText);
-			}
 			// Check wheather something immediate has changed.
 			if (( bOldMessagesLog && !m_pOptions->bMessagesLog) ||
 				(!bOldMessagesLog &&  m_pOptions->bMessagesLog) ||
