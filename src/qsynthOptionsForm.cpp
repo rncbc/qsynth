@@ -269,7 +269,7 @@ void qsynthOptionsForm::accept (void)
 		if (m_pOptions->sCustomStyleTheme != sOldCustomStyleTheme) {
 		#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 			++iNeedRestart;
-		#else		
+		#else
 			if (m_pOptions->sCustomStyleTheme.isEmpty()) {
 				++iNeedRestart;
 			} else {
