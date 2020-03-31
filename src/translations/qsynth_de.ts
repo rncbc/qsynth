@@ -1185,38 +1185,38 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Minimiert im &amp;Benachrichtigungsfeld starten</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="306"/>
+        <location filename="../qsynthOptionsForm.cpp" line="298"/>
         <source>Information</source>
         <translation type="unfinished">Information</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="307"/>
+        <location filename="../qsynthOptionsForm.cpp" line="299"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="333"/>
+        <location filename="../qsynthOptionsForm.cpp" line="325"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="334"/>
+        <location filename="../qsynthOptionsForm.cpp" line="326"/>
         <source>Some options have been changed.</source>
         <translation>Einige Einstellungen wurden verändert.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="335"/>
+        <location filename="../qsynthOptionsForm.cpp" line="327"/>
         <source>Do you want to apply the changes?</source>
         <translation>Möchten Sie die Änderungen anwenden?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="464"/>
+        <location filename="../qsynthOptionsForm.cpp" line="456"/>
         <source>Messages Log</source>
         <translation>Meldungsprotokoll</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="466"/>
+        <location filename="../qsynthOptionsForm.cpp" line="458"/>
         <source>Log files</source>
         <translation>Protokolldateien</translation>
     </message>
@@ -1453,31 +1453,31 @@ next time you start this application.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="323"/>
+        <location filename="../qsynthPaletteForm.cpp" line="316"/>
         <source>Import File - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="326"/>
-        <location filename="../qsynthPaletteForm.cpp" line="392"/>
+        <location filename="../qsynthPaletteForm.cpp" line="319"/>
+        <location filename="../qsynthPaletteForm.cpp" line="385"/>
         <source>Palette files (*.%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="327"/>
-        <location filename="../qsynthPaletteForm.cpp" line="393"/>
+        <location filename="../qsynthPaletteForm.cpp" line="320"/>
+        <location filename="../qsynthPaletteForm.cpp" line="386"/>
         <source>All files (*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="379"/>
-        <location filename="../qsynthPaletteForm.cpp" line="812"/>
-        <location filename="../qsynthPaletteForm.cpp" line="820"/>
+        <location filename="../qsynthPaletteForm.cpp" line="372"/>
+        <location filename="../qsynthPaletteForm.cpp" line="805"/>
+        <location filename="../qsynthPaletteForm.cpp" line="813"/>
         <source>Warning - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="380"/>
+        <location filename="../qsynthPaletteForm.cpp" line="373"/>
         <source>Could not import from file:
 
 %1
@@ -1486,19 +1486,19 @@ Sorry.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="389"/>
+        <location filename="../qsynthPaletteForm.cpp" line="382"/>
         <source>Export File - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="813"/>
+        <location filename="../qsynthPaletteForm.cpp" line="806"/>
         <source>Some settings have been changed.
 
 Do you want to discard the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="821"/>
+        <location filename="../qsynthPaletteForm.cpp" line="814"/>
         <source>Some settings have been changed:
 
 &quot;%1&quot;.
@@ -1510,22 +1510,22 @@ Do you want to save the changes?</source>
 <context>
     <name>qsynthPaletteForm::PaletteModel</name>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1052"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1045"/>
         <source>Color Role</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1055"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1048"/>
         <source>Active</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1058"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1051"/>
         <source>Inactive</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1061"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1054"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>

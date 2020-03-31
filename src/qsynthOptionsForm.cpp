@@ -267,21 +267,14 @@ void qsynthOptionsForm::accept (void)
 		// custom options maybe set up immediately...
 		int iNeedRestart = 0;
 		if (m_pOptions->sCustomStyleTheme != sOldCustomStyleTheme) {
-		#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-			++iNeedRestart;
-		#else
 			if (m_pOptions->sCustomStyleTheme.isEmpty()) {
 				++iNeedRestart;
 			} else {
 				QApplication::setStyle(
 					QStyleFactory::create(m_pOptions->sCustomStyleTheme));
 			}
-		#endif
 		}
 		if (m_pOptions->sCustomColorTheme != sOldCustomColorTheme) {
-		#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-			++iNeedRestart;
-		#else
 			if (m_pOptions->sCustomColorTheme.isEmpty()) {
 				++iNeedRestart;
 			} else {
@@ -290,7 +283,6 @@ void qsynthOptionsForm::accept (void)
 						&m_pOptions->settings(), m_pOptions->sCustomColorTheme, pal))
 					QApplication::setPalette(pal);
 			}
-		#endif
 		}
 		// Warn if something will be only effective on next run...
 		if (( bOldStdoutCapture && !m_pOptions->bStdoutCapture) ||

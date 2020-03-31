@@ -1324,39 +1324,39 @@ le redémarrage du moteur fluidsynth :</translation>
         <translation>12</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="306"/>
+        <location filename="../qsynthOptionsForm.cpp" line="298"/>
         <source>Information</source>
         <translation>Informations</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="307"/>
+        <location filename="../qsynthOptionsForm.cpp" line="299"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation>Certains paramètres peuvent n&apos;être effectifs
 qu&apos;après le prochain démarrage de cette application.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="333"/>
+        <location filename="../qsynthOptionsForm.cpp" line="325"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="334"/>
+        <location filename="../qsynthOptionsForm.cpp" line="326"/>
         <source>Some options have been changed.</source>
         <translation>Des options ont été modifiées.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="335"/>
+        <location filename="../qsynthOptionsForm.cpp" line="327"/>
         <source>Do you want to apply the changes?</source>
         <translation>Voulez-vous appliquer les changements?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="464"/>
+        <location filename="../qsynthOptionsForm.cpp" line="456"/>
         <source>Messages Log</source>
         <translation>Journal des messages</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="466"/>
+        <location filename="../qsynthOptionsForm.cpp" line="458"/>
         <source>Log files</source>
         <translation>Fichiers d&apos;enregistrement</translation>
     </message>
@@ -1454,31 +1454,31 @@ qu&apos;après le prochain démarrage de cette application.</translation>
         <translation>Afficher les détails</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="323"/>
+        <location filename="../qsynthPaletteForm.cpp" line="316"/>
         <source>Import File - %1</source>
         <translation>Importer le fichier - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="326"/>
-        <location filename="../qsynthPaletteForm.cpp" line="392"/>
+        <location filename="../qsynthPaletteForm.cpp" line="319"/>
+        <location filename="../qsynthPaletteForm.cpp" line="385"/>
         <source>Palette files (*.%1)</source>
         <translation>Fichiers de palette (*.%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="327"/>
-        <location filename="../qsynthPaletteForm.cpp" line="393"/>
+        <location filename="../qsynthPaletteForm.cpp" line="320"/>
+        <location filename="../qsynthPaletteForm.cpp" line="386"/>
         <source>All files (*.*)</source>
         <translation>Tous les fichiers (*.*)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="379"/>
-        <location filename="../qsynthPaletteForm.cpp" line="812"/>
-        <location filename="../qsynthPaletteForm.cpp" line="820"/>
+        <location filename="../qsynthPaletteForm.cpp" line="372"/>
+        <location filename="../qsynthPaletteForm.cpp" line="805"/>
+        <location filename="../qsynthPaletteForm.cpp" line="813"/>
         <source>Warning - %1</source>
         <translation>Attention - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="380"/>
+        <location filename="../qsynthPaletteForm.cpp" line="373"/>
         <source>Could not import from file:
 
 %1
@@ -1491,12 +1491,12 @@ Sorry.</source>
 Navré.</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="389"/>
+        <location filename="../qsynthPaletteForm.cpp" line="382"/>
         <source>Export File - %1</source>
         <translation>Exporter le fichier - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="813"/>
+        <location filename="../qsynthPaletteForm.cpp" line="806"/>
         <source>Some settings have been changed.
 
 Do you want to discard the changes?</source>
@@ -1505,7 +1505,7 @@ Do you want to discard the changes?</source>
 Souhaitez-vous abandonner les modifications ?</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="821"/>
+        <location filename="../qsynthPaletteForm.cpp" line="814"/>
         <source>Some settings have been changed:
 
 &quot;%1&quot;.
@@ -1521,22 +1521,22 @@ Souhaitez-vous sauvegarder les modifications ?</translation>
 <context>
     <name>qsynthPaletteForm::PaletteModel</name>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1052"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1045"/>
         <source>Color Role</source>
         <translation>Role de couleur</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1055"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1048"/>
         <source>Active</source>
         <translation>Actif</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1058"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1051"/>
         <source>Inactive</source>
         <translation>Inactif</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1061"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1054"/>
         <source>Disabled</source>
         <translation>Désactivé</translation>
     </message>
