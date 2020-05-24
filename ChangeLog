@@ -6,6 +6,10 @@ ChangeLog
 
 GIT HEAD
 
+- Left-clicking on the system-tray icon now simply
+  toggles the main widget visibility, disregarding
+  if already hidden undercover to other windows.
+
 - Early fixing to build for Qt >= 5.15.0.
 
 
