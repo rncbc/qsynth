@@ -100,7 +100,7 @@ QFont qsynthMessagesForm::messagesFont (void) const
 	return m_ui.MessagesTextView->font();
 }
 
-void qsynthMessagesForm::setMessagesFont ( const QFont & font )
+void qsynthMessagesForm::setMessagesFont ( const QFont& font )
 {
 	m_ui.MessagesTextView->setFont(font);
 }
@@ -154,7 +154,9 @@ void qsynthMessagesForm::setLogging ( bool bEnabled, const QString& sFilename )
 void qsynthMessagesForm::appendMessagesLog ( const QString& s )
 {
 	if (m_pMessagesLog) {
-		QTextStream(m_pMessagesLog) << s << endl;
+		QTextStream(m_pMessagesLog)
+			<< QTime::currentTime().toString("hh:mm:ss.zzz")
+			<< ' ' + s << endl;
 		m_pMessagesLog->flush();
 	}
 }
@@ -184,20 +186,18 @@ void qsynthMessagesForm::appendMessagesLine ( const QString& s )
 
 
 // Messages widget output method.
-void qsynthMessagesForm::appendMessages( const QString& s )
+void qsynthMessagesForm::appendMessages ( const QString& s )
 {
-	appendMessagesColor(s, "#999999");
+	appendMessagesColor(s, Qt::gray);
 }
 
-void qsynthMessagesForm::appendMessagesColor( const QString& s, const QString& c )
+void qsynthMessagesForm::appendMessagesColor ( const QString& s, const QColor& rgb )
 {
-	QString sText = QTime::currentTime().toString("hh:mm:ss.zzz") + ' ' + s;
-	
-	appendMessagesLine("<font color=\"" + c + "\">" + sText + "</font>");
-	appendMessagesLog(sText);
+	appendMessagesLine("<font color=\"" + rgb.name() + "\">" + s + "</font>");
+	appendMessagesLog(s);
 }
 
-void qsynthMessagesForm::appendMessagesText( const QString& s )
+void qsynthMessagesForm::appendMessagesText ( const QString& s )
 {
 	appendMessagesLine(s);
 	appendMessagesLog(s);

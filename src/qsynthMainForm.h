@@ -61,7 +61,7 @@ public:
 	void setup(qsynthOptions *pOptions);
 
 	void appendMessages(const QString& sText);
-	void appendMessagesColor(const QString& sText, const QString& sColor);
+	void appendMessagesColor(const QString& sText, const QColor& rgb);
 	void appendMessagesText(const QString& sText);
 	void appendMessagesError(const QString& sText);
 
@@ -129,7 +129,8 @@ protected:
 	void hideEvent(QHideEvent *pHideEvent);
 	void closeEvent(QCloseEvent *pCloseEvent);
 
-	void appendStdoutBuffer(const QString& sText);
+	void appendStdoutBuffer(const QString& s);
+	void processStdoutBuffer();
 	void flushStdoutBuffer();
 
 	bool stdoutBlock(int fd, bool bBlock) const;

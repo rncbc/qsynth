@@ -885,7 +885,7 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine,
 			if (bSetup || !pSetup->soundfonts.contains(sFilename)) {
 				appendMessagesColor(sPrefix +
 					tr("Loading soundfont: \"%1\"")
-					.arg(sFilename) + sElipsis, "#999933");
+					.arg(sFilename) + sElipsis, Qt::darkYellow);
 				if (::fluid_synth_sfload(
 						pEngine->pSynth, sFilename.toLocal8Bit().data(), 1) >= 0) {
 					iSoundFonts++;
@@ -904,7 +904,7 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine,
 		if (::fluid_is_midifile(sFilename.toLocal8Bit().data()) && pEngine->pPlayer) {
 			appendMessagesColor(sPrefix +
 				tr("Playing MIDI file: \"%1\"")
-				.arg(sFilename) + sElipsis, "#99cc66");
+				.arg(sFilename) + sElipsis, Qt::darkGreen);
 			if (::fluid_player_add(
 					pEngine->pPlayer, sFilename.toLocal8Bit().data()) >= 0) {
 				iMidiFiles++;
@@ -1032,10 +1032,15 @@ void qsynthMainForm::stdoutNotifySlot ( int fd )
 
 
 // Stdout buffer handler -- now splitted by complete new-lines...
-void qsynthMainForm::appendStdoutBuffer ( const QString& sText )
+void qsynthMainForm::appendStdoutBuffer ( const QString& s )
 {
-	m_sStdoutBuffer.append(sText);
+	m_sStdoutBuffer.append(s);
 
+	processStdoutBuffer();
+}
+
+void qsynthMainForm::processStdoutBuffer (void)
+{
 	const int iLength = m_sStdoutBuffer.lastIndexOf('\n');
 	if (iLength > 0) {
 		const QString& sTemp = m_sStdoutBuffer.left(iLength);
@@ -1052,51 +1057,50 @@ void qsynthMainForm::appendStdoutBuffer ( const QString& sText )
 void qsynthMainForm::flushStdoutBuffer (void)
 {
 	if (!m_sStdoutBuffer.isEmpty()) {
-		appendMessagesText(m_sStdoutBuffer);
-		m_sStdoutBuffer.truncate(0);
+		processStdoutBuffer();
+		m_sStdoutBuffer.clear();
 	}
 }
 
 
 // Messages output methods.
-void qsynthMainForm::appendMessages( const QString& sText )
+void qsynthMainForm::appendMessages ( const QString& s )
 {
 	if (m_pMessagesForm)
-		m_pMessagesForm->appendMessages(sText);
+		m_pMessagesForm->appendMessages(s);
 }
 
 
-void qsynthMainForm::appendMessagesColor(
-	const QString& sText, const QString& sColor )
+void qsynthMainForm::appendMessagesColor ( const QString& s, const QColor& rgb )
 {
 	if (m_pMessagesForm)
-		m_pMessagesForm->appendMessagesColor(sText, sColor);
+		m_pMessagesForm->appendMessagesColor(s, rgb);
 }
 
 
-void qsynthMainForm::appendMessagesText( const QString& sText )
+void qsynthMainForm::appendMessagesText ( const QString& s )
 {
 	if (m_pMessagesForm)
-		m_pMessagesForm->appendMessagesText(sText);
+		m_pMessagesForm->appendMessagesText(s);
 }
 
 
-void qsynthMainForm::appendMessagesError( const QString& sText )
+void qsynthMainForm::appendMessagesError ( const QString& s )
 {
 	if (m_pMessagesForm)
 		m_pMessagesForm->show();
 
-	appendMessagesColor(sText.simplified(), "#ff0000");
+	appendMessagesColor(s.simplified(), Qt::red);
 
 	const QString& sTitle = tr("Error");
 #ifdef CONFIG_SYSTEM_TRAY
 	if (m_pOptions->bSystemTray && m_pSystemTray
 		&& QSystemTrayIcon::supportsMessages()) {
-		m_pSystemTray->showMessage(sTitle, sText, QSystemTrayIcon::Critical);
+		m_pSystemTray->showMessage(sTitle, s, QSystemTrayIcon::Critical);
 	}
 	else
 #endif
-	QMessageBox::critical(this, sTitle, sText, QMessageBox::Cancel);
+	QMessageBox::critical(this, sTitle, s, QMessageBox::Cancel);
 }
 
 
@@ -1356,7 +1360,7 @@ void qsynthMainForm::systemReset (void)
 	if (pEngine && pEngine->pSynth) {
 	#ifdef CONFIG_FLUID_SYSTEM_RESET
 		appendMessagesColor(pEngine->name()
-			+ ": fluid_synth_system_reset()", "#993366");
+			+ ": fluid_synth_system_reset()", Qt::darkMagenta);
 		::fluid_synth_system_reset(pEngine->pSynth);
 	#else
 		appendMessagesColor(pEngine->name()
@@ -1870,7 +1874,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 			const int iBankOffset = pSetup->bankoffsets[i].toInt();
 			appendMessagesColor(sPrefix +
 				tr("Loading soundfont: \"%1\" (bank offset %2)")
-				.arg(sFilename).arg(iBankOffset) + sElipsis, "#999933");
+				.arg(sFilename).arg(iBankOffset) + sElipsis, Qt::darkYellow);
 			const int iSFID = ::fluid_synth_sfload(
 				pEngine->pSynth, sFilename.toLocal8Bit().data(), 1);
 			if (iSFID < 0)
@@ -2133,7 +2137,7 @@ void qsynthMainForm::stopEngine ( qsynthEngine *pEngine )
 		#endif
 			appendMessagesColor(sPrefix +
 				tr("Unloading soundfont: \"%1\" (SFID=%2)")
-				.arg(sSFName).arg(iSFID) + sElipsis, "#999933");
+				.arg(sSFName).arg(iSFID) + sElipsis, Qt::darkYellow);
 			if (::fluid_synth_sfunload(pEngine->pSynth, iSFID, 0) < 0)
 				appendMessagesError(sPrefix +
 					tr("Failed to unload the soundfont: \"%1\".")
@@ -2252,7 +2256,7 @@ void qsynthMainForm::resetEngine ( qsynthEngine *pEngine )
 {
 	if (pEngine && pEngine->pSynth) {
 		appendMessagesColor(pEngine->name()
-			+ ": fluid_synth_program_reset()", "#996666");
+			+ ": fluid_synth_program_reset()", Qt::darkYellow);
 		::fluid_synth_program_reset(pEngine->pSynth);
 	}
 }
@@ -2263,7 +2267,7 @@ void qsynthMainForm::setEngineGain ( qsynthEngine *pEngine, float fGain )
 {
 	appendMessagesColor(pEngine->name()
 		+ ": fluid_synth_set_gain("
-		+ QString::number(fGain) + ")", "#6699cc");
+		+ QString::number(fGain) + ")", Qt::darkYellow);
 
 	::fluid_synth_set_gain(pEngine->pSynth, fGain);
 }
@@ -2274,7 +2278,7 @@ void qsynthMainForm::setEngineReverbOn ( qsynthEngine *pEngine, bool bActive )
 {
 	appendMessagesColor(pEngine->name()
 		+ ": fluid_synth_set_reverb_on("
-		+ QString::number((int) bActive) + ")", "#99cc33");
+		+ QString::number((int) bActive) + ")", Qt::darkCyan);
 
 	::fluid_synth_set_reverb_on(pEngine->pSynth, (int) bActive);
 }
@@ -2287,7 +2291,7 @@ void qsynthMainForm::setEngineReverb ( qsynthEngine *pEngine,
 		+ QString::number(fRoom)  + ","
 		+ QString::number(fDamp)  + ","
 		+ QString::number(fWidth) + ","
-		+ QString::number(fLevel) + ")", "#99cc66");
+		+ QString::number(fLevel) + ")", Qt::darkYellow);
 
 	::fluid_synth_set_reverb(pEngine->pSynth, fRoom, fDamp, fWidth, fLevel);
 }
@@ -2298,7 +2302,7 @@ void qsynthMainForm::setEngineChorusOn ( qsynthEngine *pEngine, bool bActive )
 {
 	appendMessagesColor(pEngine->name()
 		+ ": fluid_synth_set_chorus_on("
-		+ QString::number((int) bActive) + ")", "#cc9933");
+		+ QString::number((int) bActive) + ")", Qt::darkCyan);
 
 	::fluid_synth_set_chorus_on(pEngine->pSynth, (int) bActive);
 }
@@ -2312,7 +2316,7 @@ void qsynthMainForm::setEngineChorus ( qsynthEngine *pEngine,
 		+ QString::number(fLevel) + ","
 		+ QString::number(fSpeed) + ","
 		+ QString::number(fDepth) + ","
-		+ QString::number(iType)  + ")", "#cc9966");
+		+ QString::number(iType)  + ")", Qt::darkYellow);
 
 	::fluid_synth_set_chorus(pEngine->pSynth, iNr, fLevel, fSpeed, fDepth, iType);
 }
