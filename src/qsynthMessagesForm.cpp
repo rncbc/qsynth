@@ -154,9 +154,7 @@ void qsynthMessagesForm::setLogging ( bool bEnabled, const QString& sFilename )
 void qsynthMessagesForm::appendMessagesLog ( const QString& s )
 {
 	if (m_pMessagesLog) {
-		QTextStream(m_pMessagesLog)
-			<< QTime::currentTime().toString("hh:mm:ss.zzz")
-			<< ' ' + s << endl;
+		QTextStream(m_pMessagesLog) << s << endl;
 		m_pMessagesLog->flush();
 	}
 }
@@ -193,8 +191,10 @@ void qsynthMessagesForm::appendMessages ( const QString& s )
 
 void qsynthMessagesForm::appendMessagesColor ( const QString& s, const QColor& rgb )
 {
-	appendMessagesLine("<font color=\"" + rgb.name() + "\">" + s + "</font>");
-	appendMessagesLog(s);
+	const QString& sText
+		= QTime::currentTime().toString("hh:mm:ss.zzz") + ' ' + s;
+	appendMessagesLine("<font color=\"" + rgb.name() + "\">" + sText + "</font>");
+	appendMessagesLog(sText);
 }
 
 void qsynthMessagesForm::appendMessagesText ( const QString& s )
