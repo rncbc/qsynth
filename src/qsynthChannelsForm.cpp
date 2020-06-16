@@ -67,7 +67,7 @@ qsynthChannelsForm::qsynthChannelsForm ( QWidget *pParent, Qt::WindowFlags wflag
 
 	// Set validators...
 	m_ui.PresetComboBox->setValidator(
-		new QRegExpValidator(QRegExp("[\\w-]+"), m_ui.PresetComboBox));
+		new QRegularExpressionValidator(QRegularExpression("[\\w-]+"), m_ui.PresetComboBox));
 
 	// Soundfonts list view...
 	QHeaderView *pHeader = m_ui.ChannelsListView->header();

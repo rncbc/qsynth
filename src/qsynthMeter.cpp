@@ -1,7 +1,7 @@
 // qsynthMeter.cpp
 //
 /****************************************************************************
-   Copyright (C) 2004-2019, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2020, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -302,7 +302,7 @@ qsynthMeter::qsynthMeter ( QWidget *pParent )
 	m_colors[ColorFore] = QColor( 80, 80, 80);
 
 	m_pHBoxLayout = new QHBoxLayout();
-	m_pHBoxLayout->setMargin(0);
+	m_pHBoxLayout->setContentsMargins(0, 0, 0, 0);
 	m_pHBoxLayout->setSpacing(0);
 	QWidget::setLayout(m_pHBoxLayout);
 

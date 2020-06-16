@@ -202,13 +202,13 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 	m_pXpmSoundFont = new QPixmap(":/images/sfont1.png");
 
 	// Set dialog validators...
-	QRegExp rx("[\\w-]+");
-	m_ui.DisplayNameLineEdit->setValidator(new QRegExpValidator(rx, m_ui.DisplayNameLineEdit));
+	QRegularExpression rx("[\\w-]+");
+	m_ui.DisplayNameLineEdit->setValidator(new QRegularExpressionValidator(rx, m_ui.DisplayNameLineEdit));
 	m_ui.SampleRateComboBox->setValidator(new QIntValidator(m_ui.SampleRateComboBox));
 	m_ui.AudioBufSizeComboBox->setValidator(new QIntValidator(m_ui.AudioBufSizeComboBox));
 	m_ui.AudioBufCountComboBox->setValidator(new QIntValidator(m_ui.AudioBufCountComboBox));
-	m_ui.JackNameComboBox->setValidator(new QRegExpValidator(rx, m_ui.JackNameComboBox));
-	m_ui.MidiNameComboBox->setValidator(new QRegExpValidator(rx, m_ui.MidiNameComboBox));
+	m_ui.JackNameComboBox->setValidator(new QRegularExpressionValidator(rx, m_ui.JackNameComboBox));
+	m_ui.MidiNameComboBox->setValidator(new QRegularExpressionValidator(rx, m_ui.MidiNameComboBox));
 
 	// No sorting on soundfont stack list.
 	//m_ui.SoundFontListView->setSorting(-1);

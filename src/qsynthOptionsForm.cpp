@@ -161,7 +161,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 		|| !font.fromString(m_pOptions->sMessagesFont))
 		font = QFont("Monospace", 8);
 	QPalette pal(m_ui.MessagesFontTextLabel->palette());
-	pal.setColor(QPalette::Background, pal.base().color());
+	pal.setColor(QPalette::Window, pal.base().color());
 	m_ui.MessagesFontTextLabel->setPalette(pal);
 	m_ui.MessagesFontTextLabel->setFont(font);
 	m_ui.MessagesFontTextLabel->setText(
