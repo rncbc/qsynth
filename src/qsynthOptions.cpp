@@ -28,7 +28,10 @@
 #include <QComboBox>
 
 #include <QApplication>
+
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 #include <QDesktopWidget>
+#endif
 
 
 //-------------------------------------------------------------------------
@@ -958,8 +961,10 @@ void qsynthOptions::loadWidgetGeometry ( QWidget *pWidget, bool bVisible )
 			QWidget *pParent = pWidget->parentWidget();
 			if (pParent)
 				pParent = pParent->window();
+		#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
 			if (pParent == nullptr)
 				pParent = QApplication::desktop();
+		#endif
 			if (pParent) {
 				QRect wrect(pWidget->geometry());
 				wrect.moveCenter(pParent->geometry().center());
