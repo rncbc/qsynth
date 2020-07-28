@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.6.3  2020-07-31  A Summer'20 Release.
 
 - Left-clicking on the system-tray icon now simply
   toggles the main widget visibility, disregarding
