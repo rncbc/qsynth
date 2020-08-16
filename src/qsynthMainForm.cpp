@@ -1509,7 +1509,7 @@ void qsynthMainForm::toggleMainForm (void)
 
 	m_pOptions->saveWidgetGeometry(this, true);
 
-	if (isVisible() && !isMinimized() && isActiveWindow()) {
+	if (isVisible() && !isMinimized()) {
 	#ifdef CONFIG_SYSTEM_TRAY
 		// Hide away from sight, totally...
 		if (m_pOptions->bSystemTray && m_pSystemTray)
@@ -1519,6 +1519,7 @@ void qsynthMainForm::toggleMainForm (void)
 		// Minimize (iconify) normally.
 		showMinimized();
 	} else {
+		// Show normally.
 		showNormal();
 		raise();
 		activateWindow();
