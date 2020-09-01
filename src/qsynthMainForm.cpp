@@ -44,7 +44,6 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QDateTime>
-#include <QRegExp>
 #include <QTimer>
 #include <QMenu>
 #include <QUrl>
