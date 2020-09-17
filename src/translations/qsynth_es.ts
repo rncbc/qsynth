@@ -1454,31 +1454,31 @@ después de la próxima vez que inicie esta aplicación.</translation>
         <translation>Mostrar detalles</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="316"/>
+        <location filename="../qsynthPaletteForm.cpp" line="323"/>
         <source>Import File - %1</source>
         <translation>Importar archivo - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="319"/>
-        <location filename="../qsynthPaletteForm.cpp" line="385"/>
+        <location filename="../qsynthPaletteForm.cpp" line="326"/>
+        <location filename="../qsynthPaletteForm.cpp" line="400"/>
         <source>Palette files (*.%1)</source>
         <translation>Archivos de paletas (*.%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="320"/>
-        <location filename="../qsynthPaletteForm.cpp" line="386"/>
+        <location filename="../qsynthPaletteForm.cpp" line="327"/>
+        <location filename="../qsynthPaletteForm.cpp" line="401"/>
         <source>All files (*.*)</source>
         <translation>Todos los archivos (*.*)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="372"/>
-        <location filename="../qsynthPaletteForm.cpp" line="805"/>
-        <location filename="../qsynthPaletteForm.cpp" line="813"/>
+        <location filename="../qsynthPaletteForm.cpp" line="387"/>
+        <location filename="../qsynthPaletteForm.cpp" line="818"/>
+        <location filename="../qsynthPaletteForm.cpp" line="826"/>
         <source>Warning - %1</source>
         <translation>Aviso - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="373"/>
+        <location filename="../qsynthPaletteForm.cpp" line="388"/>
         <source>Could not import from file:
 
 %1
@@ -1487,19 +1487,19 @@ Sorry.</source>
         <translation>No se ha podido importar desde archivo: %1. Lo siento.</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="382"/>
+        <location filename="../qsynthPaletteForm.cpp" line="397"/>
         <source>Export File - %1</source>
         <translation>Exportar archivo - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="806"/>
+        <location filename="../qsynthPaletteForm.cpp" line="819"/>
         <source>Some settings have been changed.
 
 Do you want to discard the changes?</source>
         <translation>Algunas opciones han cambiado. ¿Desea descartar los cambios?</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="814"/>
+        <location filename="../qsynthPaletteForm.cpp" line="827"/>
         <source>Some settings have been changed:
 
 &quot;%1&quot;.
@@ -1511,22 +1511,22 @@ Do you want to save the changes?</source>
 <context>
     <name>qsynthPaletteForm::PaletteModel</name>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1045"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1070"/>
         <source>Color Role</source>
         <translation>Rol de color</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1048"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1073"/>
         <source>Active</source>
         <translation>Activo</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1051"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1076"/>
         <source>Inactive</source>
         <translation>Inactivo</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1054"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1079"/>
         <source>Disabled</source>
         <translation>Deshabilitado</translation>
     </message>

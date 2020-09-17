@@ -1455,31 +1455,31 @@ když příště spustíte tento program.</translation>
         <translation>Ukázat podrobnosti</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="316"/>
+        <location filename="../qsynthPaletteForm.cpp" line="323"/>
         <source>Import File - %1</source>
         <translation>Zavést soubor - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="319"/>
-        <location filename="../qsynthPaletteForm.cpp" line="385"/>
+        <location filename="../qsynthPaletteForm.cpp" line="326"/>
+        <location filename="../qsynthPaletteForm.cpp" line="400"/>
         <source>Palette files (*.%1)</source>
         <translation>Soubory s paletami (*.%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="320"/>
-        <location filename="../qsynthPaletteForm.cpp" line="386"/>
+        <location filename="../qsynthPaletteForm.cpp" line="327"/>
+        <location filename="../qsynthPaletteForm.cpp" line="401"/>
         <source>All files (*.*)</source>
         <translation>Všechny soubory (*.*)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="372"/>
-        <location filename="../qsynthPaletteForm.cpp" line="805"/>
-        <location filename="../qsynthPaletteForm.cpp" line="813"/>
+        <location filename="../qsynthPaletteForm.cpp" line="387"/>
+        <location filename="../qsynthPaletteForm.cpp" line="818"/>
+        <location filename="../qsynthPaletteForm.cpp" line="826"/>
         <source>Warning - %1</source>
         <translation>Varování - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="373"/>
+        <location filename="../qsynthPaletteForm.cpp" line="388"/>
         <source>Could not import from file:
 
 %1
@@ -1492,12 +1492,12 @@ Sorry.</source>
 Promiňte.</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="382"/>
+        <location filename="../qsynthPaletteForm.cpp" line="397"/>
         <source>Export File - %1</source>
         <translation>Vyvést soubor - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="806"/>
+        <location filename="../qsynthPaletteForm.cpp" line="819"/>
         <source>Some settings have been changed.
 
 Do you want to discard the changes?</source>
@@ -1506,7 +1506,7 @@ Do you want to discard the changes?</source>
 Chcete zahodit změny?</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="814"/>
+        <location filename="../qsynthPaletteForm.cpp" line="827"/>
         <source>Some settings have been changed:
 
 &quot;%1&quot;.
@@ -1522,22 +1522,22 @@ Chcete uložit změny?</translation>
 <context>
     <name>qsynthPaletteForm::PaletteModel</name>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1045"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1070"/>
         <source>Color Role</source>
         <translation>Barevná role</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1048"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1073"/>
         <source>Active</source>
         <translation>Činný</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1051"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1076"/>
         <source>Inactive</source>
         <translation>Nečinný</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1054"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1079"/>
         <source>Disabled</source>
         <translation>Zakázáno</translation>
     </message>
