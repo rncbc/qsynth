@@ -1472,8 +1472,8 @@ next time you start this application.</source>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="387"/>
-        <location filename="../qsynthPaletteForm.cpp" line="818"/>
-        <location filename="../qsynthPaletteForm.cpp" line="826"/>
+        <location filename="../qsynthPaletteForm.cpp" line="820"/>
+        <location filename="../qsynthPaletteForm.cpp" line="828"/>
         <source>Warning - %1</source>
         <translation>Упозорење — %1</translation>
     </message>
@@ -1496,7 +1496,7 @@ Sorry.</source>
         <translation>Извези датотеку — %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="819"/>
+        <location filename="../qsynthPaletteForm.cpp" line="821"/>
         <source>Some settings have been changed.
 
 Do you want to discard the changes?</source>
@@ -1505,7 +1505,7 @@ Do you want to discard the changes?</source>
 Желите ли да одбаците ове измене?</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="827"/>
+        <location filename="../qsynthPaletteForm.cpp" line="829"/>
         <source>Some settings have been changed:
 
 &quot;%1&quot;.
@@ -1521,22 +1521,22 @@ Do you want to save the changes?</source>
 <context>
     <name>qsynthPaletteForm::PaletteModel</name>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1070"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1072"/>
         <source>Color Role</source>
         <translation>Улога боје</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1073"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1075"/>
         <source>Active</source>
         <translation>Укључено</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1076"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1078"/>
         <source>Inactive</source>
         <translation>Искључено</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1079"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1081"/>
         <source>Disabled</source>
         <translation>Онемогућено</translation>
     </message>
