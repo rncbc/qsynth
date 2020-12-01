@@ -164,7 +164,7 @@
         <translation>Опција „-o“ захтева аргумент.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="423"/>
+        <location filename="../qsynthOptions.cpp" line="426"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Непозната опција „%1“.</translation>
     </message>
@@ -222,22 +222,27 @@
         <translation>Онемогућена опција офсет банке.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="71"/>
-        <source>Using: FluidSynth %1</source>
-        <translation>Употребљавам: Флуид-синт %1</translation>
+        <location filename="../qsynthAboutForm.cpp" line="70"/>
+        <source>Using: Qt %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="76"/>
+        <source>FluidSynth %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthAboutForm.cpp" line="80"/>
         <source>Website</source>
         <translation>Интернет страница</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="80"/>
+        <location filename="../qsynthAboutForm.cpp" line="85"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Овај програм је слободан софтвер; можете га прослеђивати и/или мењати</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="86"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>под условима ГНУ Опште Јавне Лиценце верзије 2 или (по вашем избору) било које касније верзије.</translation>
     </message>

@@ -169,7 +169,7 @@
         <translation>Использование: %1 [ключи] [файлы SF2] [файлы MIDI]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="423"/>
+        <location filename="../qsynthOptions.cpp" line="426"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>неизвестный ключ &apos;%1&apos;.</translation>
     </message>
@@ -207,22 +207,27 @@
         <translation>Параметр сервера отключен.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="71"/>
-        <source>Using: FluidSynth %1</source>
+        <location filename="../qsynthAboutForm.cpp" line="70"/>
+        <source>Using: Qt %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="76"/>
+        <source>FluidSynth %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthAboutForm.cpp" line="80"/>
         <source>Website</source>
         <translation>Веб-сайт</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="80"/>
+        <location filename="../qsynthAboutForm.cpp" line="85"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Эта программа является свободной; вы имеете право распространять и/или</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="86"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>изменять её на условиях лицензии GNU GPL версии 2 или более новой.</translation>
     </message>

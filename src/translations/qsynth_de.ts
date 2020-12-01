@@ -169,7 +169,7 @@
         <translation>Option -o benötigt ein Argument.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="423"/>
+        <location filename="../qsynthOptions.cpp" line="426"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Unbekannte Option: &apos;%1&apos;.</translation>
     </message>
@@ -222,22 +222,27 @@
         <translation>Bank-Position-Option deaktiviert.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="71"/>
-        <source>Using: FluidSynth %1</source>
+        <location filename="../qsynthAboutForm.cpp" line="70"/>
+        <source>Using: Qt %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="76"/>
+        <source>FluidSynth %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthAboutForm.cpp" line="80"/>
         <source>Website</source>
         <translation>Webseite</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="80"/>
+        <location filename="../qsynthAboutForm.cpp" line="85"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Dieses Programm ist freie Software; Sie können es gemäß der</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="86"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>GNU General Public License weiterverteilen und/oder modifizieren.</translation>
     </message>

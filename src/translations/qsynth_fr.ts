@@ -164,7 +164,7 @@
         <translation>L&apos;option -o requiert un argument.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="423"/>
+        <location filename="../qsynthOptions.cpp" line="426"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Option &apos;%1&apos; inconnue.</translation>
     </message>
@@ -222,22 +222,27 @@
         <translation>Option de décalage de banque désactivée.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="71"/>
-        <source>Using: FluidSynth %1</source>
-        <translation>Utilisation de : FluidSynth %1</translation>
+        <location filename="../qsynthAboutForm.cpp" line="70"/>
+        <source>Using: Qt %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="76"/>
+        <source>FluidSynth %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthAboutForm.cpp" line="80"/>
         <source>Website</source>
         <translation>Site web</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="80"/>
+        <location filename="../qsynthAboutForm.cpp" line="85"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Ce programme est un programme libre; vous pouvez le redistribuer et/ou le modifier</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="86"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>sous les termes de la license publique générale GNU version 2 ou plus récente.</translation>
     </message>

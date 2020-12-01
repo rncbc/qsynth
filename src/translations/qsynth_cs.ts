@@ -169,7 +169,7 @@
         <translation>Volba -o potřebuje argument.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="423"/>
+        <location filename="../qsynthOptions.cpp" line="426"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Neznámá volba: &apos;%1&apos;.</translation>
     </message>
@@ -222,22 +222,27 @@
         <translation>Zakázána možnost polohy banky.</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="71"/>
-        <source>Using: FluidSynth %1</source>
-        <translation>Pomocí: FluidSynth %1</translation>
+        <location filename="../qsynthAboutForm.cpp" line="70"/>
+        <source>Using: Qt %1</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="75"/>
+        <location filename="../qsynthAboutForm.cpp" line="76"/>
+        <source>FluidSynth %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthAboutForm.cpp" line="80"/>
         <source>Website</source>
         <translation>Internetová stránka</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="80"/>
+        <location filename="../qsynthAboutForm.cpp" line="85"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Tento program je svobodným software; Můžete jej rozšiřovat a/nebo upravovat</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="81"/>
+        <location filename="../qsynthAboutForm.cpp" line="86"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>za podmínek GNU General Public License.</translation>
     </message>
