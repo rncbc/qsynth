@@ -1,8 +1,8 @@
-project(QSYNTH)
+project(qsynth)
 
 cmake_minimum_required(VERSION 3.1)
 
-set (VERSION "0.6.3")
+set (VERSION "0.9.0")
 
 set (CONFIG_VERSION ${VERSION})
 execute_process (
@@ -12,8 +12,7 @@ execute_process (
   OUTPUT_STRIP_TRAILING_WHITESPACE)
 if (GIT_DESCRIBE_RESULT EQUAL 0)
   set (VERSION "${GIT_DESCRIBE_OUTPUT}")
-  string (REGEX REPLACE "^[^_]+"   "" VERSION "${VERSION}")
-  string (REGEX REPLACE "^[_vV]+"  "" VERSION "${VERSION}")
+  string (REGEX REPLACE "^[^0-9]+" "" VERSION "${VERSION}")
   string (REGEX REPLACE "-g"   "git." VERSION "${VERSION}")
   string (REGEX REPLACE "[_|-]+"  "." VERSION "${VERSION}")
   execute_process (
@@ -82,13 +81,14 @@ if (POLICY CMP0075)
 endif ()
 
 # Check for Qt
-find_package (Qt5 REQUIRED COMPONENTS Core Gui Widgets)
+find_package (QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
+find_package (Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets)
 
 if (CONFIG_XUNIQUE)
-  find_package (Qt5 REQUIRED COMPONENTS Network)
+  find_package (Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Network)
 endif ()
 
-find_package (Qt5LinguistTools)
+find_package (Qt${QT_VERSION_MAJOR}LinguistTools)
 
 include (CheckIncludeFile)
 include (CheckIncludeFiles)

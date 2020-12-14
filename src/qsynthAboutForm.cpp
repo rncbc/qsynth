@@ -66,11 +66,16 @@ qsynthAboutForm::qsynthAboutForm ( QWidget *pParent )
 		sText += list.join("<br />\n");
 		sText += "</font></small>";
 	}
-#ifdef CONFIG_FLUID_VERSION_STR
 	sText += "<br />\n";
-	sText += tr("Using: FluidSynth %1").arg(::fluid_version_str());
-	sText += "<br />\n";
+	sText += tr("Using: Qt %1").arg(qVersion());
+#if defined(QT_STATIC)
+	sText += "-static";
 #endif
+#ifdef CONFIG_FLUID_VERSION_STR
+	sText += ", ";
+	sText += tr("FluidSynth %1").arg(::fluid_version_str());
+#endif
+	sText += "<br />\n";
 	sText += "<br />\n";
 	sText += tr("Website") + ": <a href=\"" QSYNTH_WEBSITE "\">" QSYNTH_WEBSITE "</a><br />\n";
 	sText += "<br />\n";

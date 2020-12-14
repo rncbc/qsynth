@@ -6,6 +6,12 @@ ChangeLog
 
 GIT HEAD
 
+- Early fixing to build for Qt >= 6.0.0 and comply
+  with c++17 standard.
+
+
+0.6.3  2020-07-31  A Summer'20 Release.
+
 - Left-clicking on the system-tray icon now simply
   toggles the main widget visibility, disregarding
   if already hidden undercover to other windows.

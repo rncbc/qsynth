@@ -44,7 +44,6 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QDateTime>
-#include <QRegExp>
 #include <QTimer>
 #include <QMenu>
 #include <QUrl>
@@ -77,8 +76,8 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 #define QSYNTH_MASTER_GAIN_SCALE    100.0f
 
 #define QSYNTH_REVERB_ROOM_SCALE    100.0f
-#define QSYNTH_REVERB_DAMP_SCALE	100.0f
-#define QSYNTH_REVERB_WIDTH_SCALE   1.0f
+#define QSYNTH_REVERB_DAMP_SCALE    100.0f
+#define QSYNTH_REVERB_WIDTH_SCALE   100.0f
 #define QSYNTH_REVERB_LEVEL_SCALE   100.0f
 
 #define QSYNTH_CHORUS_NR_SCALE      1.0f
@@ -852,7 +851,11 @@ void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 	// Let's be sure about that...
 	if (queryClose()) {
 		pCloseEvent->accept();
+	#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		QApplication::exit(0);
+	#else
 		QApplication::quit();
+	#endif
 	} else {
 		pCloseEvent->ignore();
 	}
@@ -1509,7 +1512,7 @@ void qsynthMainForm::toggleMainForm (void)
 
 	m_pOptions->saveWidgetGeometry(this, true);
 
-	if (isVisible() && !isMinimized() && isActiveWindow()) {
+	if (isVisible() && !isMinimized()) {
 	#ifdef CONFIG_SYSTEM_TRAY
 		// Hide away from sight, totally...
 		if (m_pOptions->bSystemTray && m_pSystemTray)
@@ -1519,6 +1522,7 @@ void qsynthMainForm::toggleMainForm (void)
 		// Minimize (iconify) normally.
 		showMinimized();
 	} else {
+		// Show normally.
 		showNormal();
 		raise();
 		activateWindow();

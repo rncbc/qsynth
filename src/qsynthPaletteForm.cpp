@@ -167,8 +167,11 @@ qsynthPaletteForm::~qsynthPaletteForm (void)
 void qsynthPaletteForm::setPalette ( const QPalette& pal )
 {
 	m_palette = pal;
-
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	const uint mask = pal.resolveMask();
+#else
 	const uint mask = pal.resolve();
+#endif
 	for (int i = 0; g_colorRoles[i].key; ++i) {
 		if ((mask & (1 << i)) == 0) {
 			const QPalette::ColorRole cr = QPalette::ColorRole(i);
@@ -180,7 +183,11 @@ void qsynthPaletteForm::setPalette ( const QPalette& pal )
 				m_parentPalette.brush(QPalette::Disabled, cr));
 		}
 	}
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+	m_palette.setResolveMask(mask);
+#else
 	m_palette.resolve(mask);
+#endif
 
 	updateGenerateButton();
 
@@ -335,7 +342,11 @@ void qsynthPaletteForm::importButtonClicked (void)
 		if (!name.isEmpty()) {
 			QPalette pal;
 			int result = 0;
+		#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+			uint mask = pal.resolveMask();
+		#else
 			uint mask = pal.resolve();
+		#endif
 			settings.beginGroup(name + '/');
 			QStringListIterator iter(settings.childKeys());
 			while (iter.hasNext()) {
@@ -352,7 +363,11 @@ void qsynthPaletteForm::importButtonClicked (void)
 					++result;
 				}
 			}
+		#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+			pal.setResolveMask(mask);
+		#else
 			pal.resolve(mask);
+		#endif
 			settings.endGroup();
 			if (result > 0) {
 				saveNamedPalette(name, pal);
@@ -939,7 +954,11 @@ QVariant qsynthPaletteForm::PaletteModel::data ( const QModelIndex& index, int r
 		if (role == Qt::DisplayRole)
 			return m_roleNames.value(QPalette::ColorRole(index.row()));
 		if (role == Qt::EditRole) {
+		#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+			const uint mask = m_palette.resolveMask();
+		#else
 			const uint mask = m_palette.resolve();
+		#endif
 			return bool(mask & (1 << index.row()));
 		}
 	}
@@ -1002,7 +1021,11 @@ bool qsynthPaletteForm::PaletteModel::setData (
 	}
 
 	if (index.column() == 0 && role == Qt::EditRole) {
+	#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		uint mask = m_palette.resolveMask();
+	#else
 		uint mask = m_palette.resolve();
+	#endif
 		const bool masked = value.value<bool>();
 		const int i = index.row();
 		if (masked) {
@@ -1017,7 +1040,11 @@ bool qsynthPaletteForm::PaletteModel::setData (
 				m_parentPalette.brush(QPalette::Disabled, cr));
 			mask &= ~(1 << i);
 		}
+	#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		m_palette.setResolveMask(mask);
+	#else
 		m_palette.resolve(mask);
+	#endif
 		emit paletteChanged(m_palette);
 		const QModelIndex& index_end = PaletteModel::index(i, 3);
 		emit dataChanged(index, index_end);
@@ -1235,7 +1262,7 @@ void qsynthPaletteForm::ColorButton::paintEvent ( QPaintEvent *event )
 	QPushButton::paintEvent(event);
 
 	QStyleOptionButton opt;
-	opt.init(this);
+	opt.initFrom(this);
 
 	const QRect& rect
 		= style()->subElementRect(QStyle::SE_PushButtonContents, &opt, this);
