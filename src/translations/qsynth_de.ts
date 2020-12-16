@@ -179,7 +179,7 @@
     <message>
         <location filename="../qsynthAboutForm.ui" line="33"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Über</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.ui" line="64"/>
@@ -204,7 +204,7 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="46"/>
         <source>System tray disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Benachrichtigungsfeld deaktiviert.</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="49"/>
@@ -224,12 +224,12 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="70"/>
         <source>Using: Qt %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Verwendet: Qt %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="76"/>
         <source>FluidSynth %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FluidSynth %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="80"/>
@@ -386,7 +386,7 @@
         <location filename="../qsynthMainForm.ui" line="977"/>
         <location filename="../qsynthMainForm.cpp" line="1232"/>
         <source>&amp;Channels</source>
-        <translation>&amp;Kanäle...</translation>
+        <translation>&amp;Kanäle</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="127"/>
@@ -485,7 +485,7 @@
     <message>
         <location filename="../qsynthMainForm.ui" line="271"/>
         <source>&amp;Width</source>
-        <translation>&amp;Entf.</translation>
+        <translation>W&amp;eite</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="318"/>
@@ -629,7 +629,7 @@
         <location filename="../qsynthMainForm.ui" line="882"/>
         <location filename="../qsynthMainForm.cpp" line="1260"/>
         <source>&amp;Messages</source>
-        <translation>&amp;Meldungen...</translation>
+        <translation>&amp;Meldungen</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="898"/>
@@ -961,7 +961,7 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="33"/>
         <source>Messages</source>
-        <translation type="unfinished">Meldungen</translation>
+        <translation>Meldungen</translation>
     </message>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="48"/>
@@ -994,7 +994,7 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="50"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemein</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="89"/>
@@ -1085,17 +1085,17 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="611"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Anpassung</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="626"/>
         <source>&amp;Color palette theme:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Farbpalettenthema:</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="645"/>
         <source>Custom color palette theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Angepasstes Farbpalettenthema</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="657"/>
@@ -1112,17 +1112,17 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="691"/>
         <source>Manage custom color palette themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbpalettenthema anpassen</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="720"/>
         <source>&amp;Widget style theme:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Thema der grafischen Komponenten:</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="736"/>
         <source>Custom widget style theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Angepasstes Thema der grafischen Komponenten</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="307"/>
@@ -1192,13 +1192,14 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="298"/>
         <source>Information</source>
-        <translation type="unfinished">Information</translation>
+        <translation>Information</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="299"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Einige Einstellunge werden erst aktiviert,
+wenn die Anwendung neu getartet wird.</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="325"/>
@@ -1337,7 +1338,7 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="34"/>
         <source>Options</source>
-        <translation type="unfinished">Optionen</translation>
+        <translation>Optionen</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="488"/>
@@ -1370,116 +1371,116 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="40"/>
         <source>Color Themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbthemen</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="46"/>
         <source>Name</source>
-        <translation type="unfinished">Name</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="64"/>
         <source>Current color palette name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der aktuellen Farbpalette</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="77"/>
         <source>Save current color palette name</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuellen Palettenamen speichern</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="80"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="90"/>
         <source>Delete current color palette name</source>
-        <translation type="unfinished"></translation>
+        <translation>Name der aktuellen Farbpalette löschen</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="93"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Löschen</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="106"/>
         <source>Palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Palette</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="118"/>
         <source>Current color palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuelle Farbpalette</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="128"/>
         <source>Generate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Erzeugen:</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="144"/>
         <source>Base color to generate palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Basisfarbe zur Erzeugung der Palette</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="151"/>
         <source>Reset all current palette colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle aktuellen Farben der Palette löschen</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="154"/>
         <source> Reset</source>
-        <translation type="unfinished"></translation>
+        <translation> Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="177"/>
         <source>Import a custom color theme (palette) from file</source>
-        <translation type="unfinished"></translation>
+        <translation>Ein angepasstes Farbschema (Palette) aus Datei importieren</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="180"/>
         <source>Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>Importieren...</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="190"/>
         <source>Export a custom color theme (palette) to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Eine angepasstes Farbschema (Palette) in Datei exportieren</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="193"/>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportieren...</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="216"/>
         <source>Show Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Details anzeigen</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="323"/>
         <source>Import File - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Importiere Datei - %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="326"/>
         <location filename="../qsynthPaletteForm.cpp" line="400"/>
         <source>Palette files (*.%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Palettendateien (*.%1)</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="327"/>
         <location filename="../qsynthPaletteForm.cpp" line="401"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Dateien (*.*)</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="387"/>
         <location filename="../qsynthPaletteForm.cpp" line="820"/>
         <location filename="../qsynthPaletteForm.cpp" line="828"/>
         <source>Warning - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung - %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="388"/>
@@ -1488,19 +1489,25 @@ next time you start this application.</source>
 %1
 
 Sorry.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Import aus Datei:
+
+%1
+
+konnte nicht abgeschlossen weden.</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="397"/>
         <source>Export File - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportiere Datei - %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="821"/>
         <source>Some settings have been changed.
 
 Do you want to discard the changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Einige Einstellungen wurden verändert.
+
+Änderungen verwerfen?</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="829"/>
@@ -1509,7 +1516,11 @@ Do you want to discard the changes?</source>
 &quot;%1&quot;.
 
 Do you want to save the changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Einige Einstellungen wurden verändert:
+
+&quot;%1&quot;.
+
+Änderungen speichern?</translation>
     </message>
 </context>
 <context>
@@ -1517,22 +1528,22 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="1072"/>
         <source>Color Role</source>
-        <translation type="unfinished"></translation>
+        <translation>Farbfunktion</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="1075"/>
         <source>Active</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktiv</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="1078"/>
         <source>Inactive</source>
-        <translation type="unfinished"></translation>
+        <translation>icht aktiv</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="1081"/>
         <source>Disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>Deaktiviert</translation>
     </message>
 </context>
 <context>
@@ -1540,7 +1551,7 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthPresetForm.ui" line="33"/>
         <source>Channel Preset</source>
-        <translation type="unfinished"></translation>
+        <translation>Kanalvoreinstellung</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="65"/>
@@ -1660,7 +1671,7 @@ Do you want to save the changes?</source>
     <message>
         <location filename="../qsynthSetupForm.ui" line="118"/>
         <source>Whether to show MIDI router events on messages window</source>
-        <translation>MIDI-Router-Ereignisse im Meldungsfenster anzeigen </translation>
+        <translation>MIDI-Router-Ereignisse im Meldungsfenster anzeigen</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="121"/>
