@@ -753,12 +753,24 @@ void qsynthSetupForm::stabilizeForm (void)
 	m_ui.MidiNameComboBox->setEnabled(bEnabled && (bAlsaEnabled | bCoreMidiEnabled));
 
 	const bool bJackEnabled = (m_ui.AudioDriverComboBox->currentText() == "jack");
+	const bool bJackMultiEnabled = m_ui.JackMultiCheckBox->isChecked();
 	m_ui.AudioDeviceTextLabel->setEnabled(!bJackEnabled);
 	m_ui.AudioDeviceComboBox->setEnabled(!bJackEnabled);
 	m_ui.JackMultiCheckBox->setEnabled(bJackEnabled);
 	m_ui.JackAutoConnectCheckBox->setEnabled(bJackEnabled);
 	m_ui.JackNameTextLabel->setEnabled(bJackEnabled);
 	m_ui.JackNameComboBox->setEnabled(bJackEnabled);
+	if (bJackEnabled) {
+		m_ui.AudioChannelsTextLabel->setEnabled(bJackMultiEnabled);
+		m_ui.AudioChannelsSpinBox->setEnabled(bJackMultiEnabled);
+		m_ui.AudioChannelsSpinBox->setSingleStep(2);
+		m_ui.AudioChannelsSpinBox->setMinimum(2);
+
+		m_ui.AudioGroupsTextLabel->setEnabled(bJackMultiEnabled);
+		m_ui.AudioGroupsSpinBox->setEnabled(bJackMultiEnabled);
+		m_ui.AudioGroupsSpinBox->setSingleStep(2);
+		m_ui.AudioGroupsSpinBox->setMinimum(2);
+	}
 
 	m_ui.SoundFontOpenPushButton->setEnabled(true);
 	QTreeWidgetItem *pSelectedItem = m_ui.SoundFontListView->currentItem();

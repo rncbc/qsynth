@@ -166,6 +166,9 @@ void qsynthSetup::realize (void)
 		pszKey = (char *) "synth.audio-channels";
 		::fluid_settings_setint(m_pFluidSettings, pszKey,
 			iAudioChannels);
+		pszKey = (char *) "synth.effects-groups";
+		::fluid_settings_setint(m_pFluidSettings, pszKey,
+			iAudioChannels / 2);
 	}
 	if (iAudioGroups > 0) {
 		pszKey = (char *) "synth.audio-groups";
