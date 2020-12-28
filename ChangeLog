@@ -4,6 +4,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Early preparations for the New Year develop(ment) cycle.
+
+
 0.9.0  2020-12-17  A Winter'20 Release.
 
 - Early fixing to build for Qt >= 6.0.0 and comply
