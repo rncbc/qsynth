@@ -224,17 +224,17 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="70"/>
         <source>Using: Qt %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Používající: Qt %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="76"/>
         <source>FluidSynth %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FluidSynth %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="80"/>
         <source>Website</source>
-        <translation>Internetová stránka</translation>
+        <translation>Stránky</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="85"/>
