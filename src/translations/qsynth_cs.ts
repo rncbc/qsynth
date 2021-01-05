@@ -2079,7 +2079,7 @@ Chcete uložit změny?</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="615"/>
-        <location filename="../qsynthSetupForm.cpp" line="871"/>
+        <location filename="../qsynthSetupForm.cpp" line="883"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
@@ -2094,58 +2094,58 @@ Chcete uložit změny?</translation>
         <translation>Chtěl byste použít změny?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="812"/>
+        <location filename="../qsynthSetupForm.cpp" line="824"/>
         <source>Open...</source>
         <translation>Otevřít...</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="817"/>
+        <location filename="../qsynthSetupForm.cpp" line="829"/>
         <source>Edit</source>
         <translation>Upravit</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="822"/>
+        <location filename="../qsynthSetupForm.cpp" line="834"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="827"/>
+        <location filename="../qsynthSetupForm.cpp" line="839"/>
         <source>Move Up</source>
         <translation>Přesunout nahoru</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="831"/>
+        <location filename="../qsynthSetupForm.cpp" line="843"/>
         <source>Move Down</source>
         <translation>Přesunout dolů</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="856"/>
-        <location filename="../qsynthSetupForm.cpp" line="857"/>
+        <location filename="../qsynthSetupForm.cpp" line="868"/>
+        <location filename="../qsynthSetupForm.cpp" line="869"/>
         <source>Soundfont files</source>
         <translation>Soubory se zvukovými písmy</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="872"/>
+        <location filename="../qsynthSetupForm.cpp" line="884"/>
         <source>Soundfont file already on list</source>
         <translation>Soubor se zvukovým písmem je již součástí seznamu</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="874"/>
+        <location filename="../qsynthSetupForm.cpp" line="886"/>
         <source>Add anyway?</source>
         <translation>Přesto přidat?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="901"/>
+        <location filename="../qsynthSetupForm.cpp" line="913"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="902"/>
+        <location filename="../qsynthSetupForm.cpp" line="914"/>
         <source>Failed to add soundfont file</source>
         <translation>Nepodařilo se přidat soubor se zvukovým písmem</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="904"/>
+        <location filename="../qsynthSetupForm.cpp" line="916"/>
         <source>Please, check for a valid soundfont file.</source>
         <translation>Zvolte, prosím, platný soubor se zvukovým písmem.</translation>
     </message>
