@@ -17,3 +17,4 @@ qrc_*.cpp
 .obj
 .ui
 qsynth
+build/
