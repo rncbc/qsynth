@@ -1,6 +1,6 @@
-project(qsynth)
+cmake_minimum_required(VERSION 3.10)
 
-cmake_minimum_required(VERSION 3.1)
+project(qsynth)
 
 set (VERSION "0.9.1")
 
@@ -121,16 +121,14 @@ endif ()
 find_package (PkgConfig REQUIRED)
 
 # Check for FLUIDSYNTH library.
-pkg_check_modules (FLUIDSYNTH REQUIRED fluidsynth)
+pkg_check_modules (FLUIDSYNTH REQUIRED IMPORTED_TARGET fluidsynth)
 if (FLUIDSYNTH_FOUND)
   set (CONFIG_FLUIDSYNTH 1)
-  include_directories (${FLUIDSYNTH_INCLUDE_DIRS})
-  link_directories (${FLUIDSYNTH_LIBRARY_DIRS})
-# link_libraries (${FLUIDSYNTH_LIBRARIES})
-  set (CMAKE_REQUIRED_LIBRARIES "${FLUIDSYNTH_LIBRARIES};${CMAKE_REQUIRED_LIBRARIES}")
+  find_library(FLUIDSYNTH_LIBRARY ${FLUIDSYNTH_LIBRARIES})
+  set (CMAKE_REQUIRED_LIBRARIES "${FLUIDSYNTH_LIBRARY};${CMAKE_REQUIRED_LIBRARIES}")
   # Check for new_fluid_server function.
   if (CONFIG_FLUID_SERVER)
-    check_function_exists (new_fluid_server CONFIG_FLUID_SERVER)
+    check_function_exists (new_fluid_server CONFIG_NEW_FLUID_SERVER)
   endif ()
   # Check for fluid_synth_system_reset function.
   check_function_exists (fluid_synth_system_reset CONFIG_FLUID_SYSTEM_RESET)
@@ -182,8 +180,6 @@ if (FLUIDSYNTH_FOUND)
     check_function_exists (fluid_settings_foreach CONFIG_FLUID_SETTINGS_FOREACH)
     # Check for fluid_settings_foreach_option function.
     check_function_exists (fluid_settings_foreach_option CONFIG_FLUID_SETTINGS_FOREACH_OPTION)
-    # Check for new_fluid_server function.
-    check_function_exists (new_fluid_server CONFIG_NEW_FLUID_SERVER)
   endif ()
 else ()
   message (FATAL_ERROR "*** FLUIDSYNTH library not found.")

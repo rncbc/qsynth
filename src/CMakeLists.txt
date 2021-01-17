@@ -1,9 +1,6 @@
 # project(qsynth)
 
-include_directories (
-  ${CMAKE_CURRENT_SOURCE_DIR}
-  ${CMAKE_CURRENT_BINARY_DIR}
-)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 configure_file (cmake_config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
@@ -71,10 +68,17 @@ set ( TRANSLATIONS
    translations/qsynth_sr.ts
 )
 
-qt_wrap_ui (UI_SOURCES ${FORMS})
-qt_wrap_cpp (MOC_SOURCES ${HEADERS})
-qt_add_resources (QRC_SOURCES ${RESOURCES})
-qt_add_translation (QM_FILES ${TRANSLATIONS})
+if (QT_VERSION VERSION_LESS 5.15.0)
+    qt5_wrap_ui (UI_SOURCES ${FORMS})
+    qt5_wrap_cpp (MOC_SOURCES ${HEADERS})
+    qt5_add_resources (QRC_SOURCES ${RESOURCES})
+    qt5_add_translation (QM_FILES ${TRANSLATIONS})
+else()
+    qt_wrap_ui (UI_SOURCES ${FORMS})
+    qt_wrap_cpp (MOC_SOURCES ${HEADERS})
+    qt_add_resources (QRC_SOURCES ${RESOURCES})
+    qt_add_translation (QM_FILES ${TRANSLATIONS})
+endif()
 
 add_custom_target (translations ALL DEPENDS ${QM_FILES})
 
@@ -123,7 +127,7 @@ if (CONFIG_XUNIQUE)
 endif ()
 
 if (CONFIG_FLUIDSYNTH)
-  target_link_libraries (${PROJECT_NAME} PRIVATE ${FLUIDSYNTH_LIBRARIES})
+  target_link_libraries (${PROJECT_NAME} PRIVATE PkgConfig::FLUIDSYNTH)
 endif ()
 
 if (CONFIG_ROUND)
