@@ -1,6 +1,7 @@
 # project(qsynth)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -106,9 +107,9 @@ endif ()
 
 add_executable (${PROJECT_NAME}
   ${HEADERS}
+  ${SOURCES}
   ${FORMS}
   ${RESOURCES}
-  ${SOURCES}
 )
 
 set_target_properties (${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
