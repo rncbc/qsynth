@@ -124,7 +124,7 @@ static void qsynth_sigterm_handler ( int /* signo */ )
 
 // Needed for lroundf()
 #ifdef CONFIG_ROUND
-#include <cmath>
+#include <QtMath>
 #else
 static inline long lroundf ( float x )
 {

@@ -1,6 +1,9 @@
 # project(qsynth)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -98,10 +101,17 @@ endif ()
 
 if (APPLE)
   set (ICON_FILE ${CMAKE_CURRENT_SOURCE_DIR}/images/${PROJECT_NAME}.icns)
-  list (APPEND SOURCES ${ICON_FILE})
+  list (APPEND SOURCES ${ICON_FILE} ${QM_FILES})
   set (MACOSX_BUNDLE_ICON_FILE ${PROJECT_NAME}.icns)
   set_source_files_properties (${ICON_FILE} PROPERTIES
     MACOSX_PACKAGE_LOCATION Resources)
+  set_source_files_properties (${QM_FILES} PROPERTIES
+    MACOSX_PACKAGE_LOCATION translations)
+  include(TranslationUtils)
+  add_qt_translations(QT_TRANSLATIONS cs de es fr ru sr)
+  set_source_files_properties (${QT_TRANSLATIONS} PROPERTIES
+    MACOSX_PACKAGE_LOCATION translations)
+  list (APPEND SOURCES ${QT_TRANSLATIONS})
 endif ()
 
 
@@ -119,7 +129,16 @@ if (WIN32)
 endif ()
 
 if (APPLE)
-  set_target_properties (${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE true)
+  set_target_properties (${PROJECT_NAME} PROPERTIES
+    MACOSX_BUNDLE true
+    MACOSX_BUNDLE_GUI_IDENTIFIER "org.rncbc.qsynth"
+    MACOSX_BUNDLE_BUNDLE_NAME "${PACKAGE_NAME}"
+    MACOSX_BUNDLE_DISPLAY_NAME "${PACKAGE_NAME}"
+    MACOSX_BUNDLE_INFO_STRING "A fluidsynth Qt GUI Interface"
+    MACOSX_BUNDLE_LONG_VERSION_STRING "${VERSION}"
+    MACOSX_BUNDLE_SHORT_VERSION_STRING "${CONFIG_VERSION}"
+    MACOSX_BUNDLE_BUNDLE_VERSION "${CONFIG_VERSION}"
+    MACOSX_BUNDLE_COPYRIGHT "Copyright © 2003-2021, Rui Nuno Capela. All rights reserved.")
 endif ()
 
 target_link_libraries (${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
@@ -158,3 +177,5 @@ if (WIN32)
    install (FILES ${QM_FILES}
      DESTINATION ${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/translations)
 endif ()
+
+include(DeploymentUtils)

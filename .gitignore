@@ -9,7 +9,7 @@ configure
 *.qm
 *.o
 *.so
-*.pro.user
+*.user
 *.qmake.stash
 qrc_*.cpp
 .moc

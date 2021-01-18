@@ -30,7 +30,7 @@
 #include <QPainter>
 
 #include <iostream>
-#include <cmath>
+#include <QtMath>
 
 inline void paintBorder(QPainter *p)
 {

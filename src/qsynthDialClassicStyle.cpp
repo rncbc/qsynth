@@ -36,7 +36,7 @@
 #include <QPainter>
 
 #include <iostream>
-#include <cmath>
+#include <QtMath>
 
 #define DIAL_MIN (0.25 * M_PI)
 #define DIAL_MAX (1.75 * M_PI)

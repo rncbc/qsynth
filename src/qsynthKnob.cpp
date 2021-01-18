@@ -29,7 +29,7 @@
 #include <QMouseEvent>
 #include <QWheelEvent>
 
-#include <cmath>
+#include <QtMath>
 
 
 //-------------------------------------------------------------------------

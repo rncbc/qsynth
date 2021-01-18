@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.10)
 
 project(qsynth)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+
 set (VERSION "0.9.1")
 
 set (CONFIG_VERSION ${VERSION})
@@ -124,7 +126,7 @@ find_package (PkgConfig REQUIRED)
 pkg_check_modules (FLUIDSYNTH REQUIRED IMPORTED_TARGET fluidsynth)
 if (FLUIDSYNTH_FOUND)
   set (CONFIG_FLUIDSYNTH 1)
-  find_library(FLUIDSYNTH_LIBRARY ${FLUIDSYNTH_LIBRARIES})
+  find_library(FLUIDSYNTH_LIBRARY NAMES ${FLUIDSYNTH_LIBRARIES} HINTS ${FLUIDSYNTH_LIBDIR})
   set (CMAKE_REQUIRED_LIBRARIES "${FLUIDSYNTH_LIBRARY};${CMAKE_REQUIRED_LIBRARIES}")
   # Check for fluid_synth_system_reset function.
   check_function_exists (fluid_synth_system_reset CONFIG_FLUID_SYSTEM_RESET)

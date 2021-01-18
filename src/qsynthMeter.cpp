@@ -28,7 +28,7 @@
 
 #include <QHBoxLayout>
 
-#include <cmath>
+#include <QtMath>
 
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
