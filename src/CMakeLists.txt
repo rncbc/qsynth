@@ -103,6 +103,7 @@ if (APPLE)
     MACOSX_PACKAGE_LOCATION Resources)
 endif ()
 
+
 add_executable (${PROJECT_NAME}
   ${UI_SOURCES}
   ${MOC_SOURCES}
