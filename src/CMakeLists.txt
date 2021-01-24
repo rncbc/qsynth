@@ -87,7 +87,11 @@ endif()
 add_custom_target (translations ALL DEPENDS ${QM_FILES})
 
 if (WIN32)
-  set (RC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/win32/${PROJECT_NAME}.rc)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/win32/setup.nsi.in
+                 ${CMAKE_CURRENT_BINARY_DIR}/setup.nsi IMMEDIATE @ONLY)
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/win32/${PROJECT_NAME}.rc.in
+                 ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.rc IMMEDIATE @ONLY)
+  set (RC_FILE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.rc)
   set (RES_FILE ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.res.obj)
   find_program (WINDRES_EXECUTABLE NAMES windres mingw32-windres i686-mingw32-windres)
   if (MINGW)

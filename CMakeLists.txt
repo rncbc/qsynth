@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(qsynth)
+project(qsynth
+        VERSION 0.9.1
+        DESCRIPTION "A fluidsynth Qt GUI Interface"
+        LANGUAGES CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
-set (VERSION "0.9.1")
+set (VERSION ${PROJECT_VERSION})
 
 set (CONFIG_VERSION ${VERSION})
 execute_process (

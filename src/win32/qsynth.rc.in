@@ -1,0 +1,28 @@
+IDI_ICON1               ICON    DISCARDABLE     "../images/qsynth.ico"
+
+1 VERSIONINFO
+ FILEVERSION    @PROJECT_VERSION_MAJOR@, @PROJECT_VERSION_MINOR@, @PROJECT_VERSION_PATCH@
+ PRODUCTVERSION @PROJECT_VERSION_MAJOR@, @PROJECT_VERSION_MINOR@, @PROJECT_VERSION_PATCH@, 0
+ FILEOS         4 // VOS__WINDOWS32
+ FILETYPE       1 // VFT_APP         
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904E4"
+    BEGIN
+      VALUE "CompanyName", "rncbc.org"
+      VALUE "FileDescription", "@PROJECT_DESCRIPTION@"
+      VALUE "FileVersion", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@"
+      VALUE "Full Version", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@.0"
+      VALUE "InternalName", "@PACKAGE_NAME@"
+      VALUE "LegalCopyright", "Copyright \251 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved."
+      VALUE "OriginalFilename", "qsynth.exe"
+      VALUE "ProductName", "@PACKAGE_NAME@"
+      VALUE "ProductVersion", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x0409, 1200  // U.S. English
+  END
+END

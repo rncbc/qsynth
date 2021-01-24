@@ -44,7 +44,28 @@ $ cmake -DCMAKE_BUILD_TYPE=debug ..
 3. Execute the build command. If you used the Makefiles generator (the default
    in Linux and other Unix systems) then execute make, gmake, or mingw32-make.
    If you generated a project file, use your IDE to build it.
+   
+Configuration options   
+=====================
 
+CMAKE_BUILD_TYPE=Release
+
+    Specifies the build type: size optimized or including debug symbols.
+
+CMAKE_INSTALL_PREFIX=/usr/local
+
+    Install directory prefix that will be used when you call 'make install'.
+
+CMAKE_PREFIX_PATH="$HOME/Qt/5.12.10/gcc_64;$HOME/fluidsynth-2"
+
+    List of directories specifying installation prefixes to be searched for 
+    dependencies. This is relevant when you want to use compiled libraries 
+    installed on non-standard prefixes, for instance several versions of 
+    the Qt libraries or Fluidsynth.
+
+For more information, please see:
+    https://cmake.org/cmake/help/v3.10/manual/cmake.1.html
+    
 Compiling with make
 ===================
 
@@ -59,6 +80,35 @@ $ make VERBOSE=1
 There is a "clean" target, but not a "distclean" one. You should use a build
 directory different to the source tree. In this case, the "distclean" target 
 would be equivalent to simply removing the build directory. 
+
+Compiling on Windows and macOS
+==============================
+
+You can use CMake to build Qsynth on operating systems different from Linux.
+You just need to provide the locations of the dependencies using 
+CMAKE_PREFIX_PATH.
+
+You can download precompiled Qt libraries for Windows and macOS from: 
+    https://www.qt.io/download 
+
+There are precompiled Fluidsynth packages for Windows here:
+    https://github.com/FluidSynth/fluidsynth/releases
+
+The precompiled Fluidsynth library have been created using MinGW, so it is
+recommended to use the same compiler to build Qsynth.
+
+You can compile Fluidsynth for macOS yourself, or get it from Homebrew:
+    https://formulae.brew.sh/formula/fluid-synth
+    
+After a successful build, you have a qsynth.exe program in Windows, and a
+qsynth.app bundle on macOS. If you want to create a deployment package...
+
+On macOS, run the bash script 'creadmg.sh', to build a disk image (dmg) 
+from the build directory where 'qsynth.app' is located.
+
+On windows, compile the NSIS script 'setup.nsi' that is produced in the 
+build directory. You need the NSIS program from:
+    https://nsis.sourceforge.io/Download
 
 If something fails
 ==================
