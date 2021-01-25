@@ -1,7 +1,7 @@
 // qsynthSetup.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2019, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -160,12 +160,15 @@ void qsynthSetup::realize (void)
 	}
 
 	pszKey = (char *) "synth.midi-bank-select";
-	::fluid_settings_setstr(m_pFluidSettings, pszKey, sMidiBankSelect.toLocal8Bit().data());
+	::fluid_settings_setstr(m_pFluidSettings, pszKey,
+		sMidiBankSelect.toLocal8Bit().data());
 
 	if (iAudioChannels > 0) {
 		pszKey = (char *) "synth.audio-channels";
 		::fluid_settings_setint(m_pFluidSettings, pszKey,
 			iAudioChannels);
+	}
+	if (iAudioChannels > 1) {
 		pszKey = (char *) "synth.effects-groups";
 		::fluid_settings_setint(m_pFluidSettings, pszKey,
 			iAudioChannels / 2);
@@ -185,12 +188,13 @@ void qsynthSetup::realize (void)
 		::fluid_settings_setint(m_pFluidSettings, pszKey,
 			iPolyphony);
 	}
-//  Gain is set on realtime (don't need to set it here)
-//  if (fGain > 0.0f) {
-//		pszKey = (char *) "synth.gain";
-//		::fluid_settings_setnum(m_pFluidSettings, pszKey,
-//			double(fGain));
-//	}
+#if 0//Gain is set on realtime (don't need to set it here)
+	if (fGain > 0.0f) {
+		pszKey = (char *) "synth.gain";
+		::fluid_settings_setnum(m_pFluidSettings, pszKey,
+			double(fGain));
+	}
+#endif
 
 	pszKey = (char *) "synth.reverb.active";
 #if FLUIDSYNTH_VERSION_MAJOR < 2
@@ -218,14 +222,11 @@ void qsynthSetup::realize (void)
 #endif
 
 
-	pszKey = (char *) "synth.dump";
 #if FLUIDSYNTH_VERSION_MAJOR < 2
+	pszKey = (char *) "synth.dump";
 	pszVal = (char *) (bMidiDump ? "yes" : "no");
-		::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
-#else
-	::fluid_settings_setint(m_pFluidSettings, pszKey, int(bMidiDump));
+	::fluid_settings_setstr(m_pFluidSettings, pszKey, pszVal);
 #endif
-
 
 	pszKey = (char *) "synth.verbose";
 #if FLUIDSYNTH_VERSION_MAJOR < 2
