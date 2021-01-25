@@ -370,8 +370,8 @@
     <message>
         <location filename="../qsynthMainForm.cpp" line="779"/>
         <location filename="../qsynthMainForm.cpp" line="1456"/>
-        <location filename="../qsynthMainForm.cpp" line="2214"/>
-        <location filename="../qsynthMainForm.cpp" line="2244"/>
+        <location filename="../qsynthMainForm.cpp" line="2215"/>
+        <location filename="../qsynthMainForm.cpp" line="2245"/>
         <source>Warning</source>
         <translation>Aviso</translation>
     </message>
@@ -612,12 +612,12 @@ Continuing without a player.</source>
 Continuando sin un reproductor.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1986"/>
+        <location filename="../qsynthMainForm.cpp" line="1983"/>
         <source>Creating server</source>
         <translation>Creación del servidor</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2020"/>
+        <location filename="../qsynthMainForm.cpp" line="2017"/>
         <source>Failed to create the server.
 
 Continuing without it.</source>
@@ -626,7 +626,7 @@ Continuing without it.</source>
 Continuando sin él.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2024"/>
+        <location filename="../qsynthMainForm.cpp" line="2021"/>
         <source>Server mode disabled.
 
 Continuing without it.</source>
@@ -635,94 +635,94 @@ Continuing without it.</source>
 Continuando sin él.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2058"/>
+        <location filename="../qsynthMainForm.cpp" line="2055"/>
         <source>Synthesizer engine started.</source>
         <translation>Motor de sintetizador iniciado.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2098"/>
+        <location filename="../qsynthMainForm.cpp" line="2099"/>
         <source>Destroying server</source>
         <translation>Destrucción del servidor</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2106"/>
+        <location filename="../qsynthMainForm.cpp" line="2107"/>
         <source>Stopping MIDI player</source>
         <translation>Deteniendo reproductor MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2108"/>
+        <location filename="../qsynthMainForm.cpp" line="2109"/>
         <source>Waiting for MIDI player to terminate</source>
         <translation>Esperando que el reproductor MIDI termine</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2110"/>
+        <location filename="../qsynthMainForm.cpp" line="2111"/>
         <source>Destroying MIDI player</source>
         <translation>Destrucción del reproducción MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2118"/>
+        <location filename="../qsynthMainForm.cpp" line="2119"/>
         <source>Destroying MIDI driver</source>
         <translation>Destrucción del controlador MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2122"/>
+        <location filename="../qsynthMainForm.cpp" line="2123"/>
         <source>Destroying MIDI router</source>
         <translation>Destrucción del encaminador MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2129"/>
+        <location filename="../qsynthMainForm.cpp" line="2130"/>
         <source>Destroying audio driver</source>
         <translation>Destrucción del controlador de audio</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2152"/>
+        <location filename="../qsynthMainForm.cpp" line="2153"/>
         <source>Unloading soundfont: &quot;%1&quot; (SFID=%2)</source>
         <translation>Descargando el soundfont &quot;%1&quot; (SFID=%2)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2156"/>
+        <location filename="../qsynthMainForm.cpp" line="2157"/>
         <source>Failed to unload the soundfont: &quot;%1&quot;.</source>
         <translation>Ha fallado la descarga del soundfont: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2163"/>
+        <location filename="../qsynthMainForm.cpp" line="2164"/>
         <source>Destroying synthesizer engine</source>
         <translation>Destruyendo el motor del sintetizador</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2167"/>
+        <location filename="../qsynthMainForm.cpp" line="2168"/>
         <source>Synthesizer engine terminated.</source>
         <translation>Motor del sintetizador terminado.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2215"/>
+        <location filename="../qsynthMainForm.cpp" line="2216"/>
         <source>New settings will be effective after
 restarting all fluidsynth engines.</source>
         <translation>Los nuevos ajustes serán efectivas después
 de reiniciar todos los motores de Fluidsynth.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2217"/>
-        <location filename="../qsynthMainForm.cpp" line="2248"/>
+        <location filename="../qsynthMainForm.cpp" line="2218"/>
+        <location filename="../qsynthMainForm.cpp" line="2249"/>
         <source>Please note that this operation may cause
 temporary MIDI and Audio disruption.</source>
         <translation>Por favor, tenga en cuenta que esta operacón puede causar
 trastornos temporales en MIDI y audio.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2219"/>
+        <location filename="../qsynthMainForm.cpp" line="2220"/>
         <source>Do you want to restart all engines now?</source>
         <translation>¿Quiere reiniciar todos los motores ahora?</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2245"/>
+        <location filename="../qsynthMainForm.cpp" line="2246"/>
         <source>New settings will be effective after
 restarting the fluidsynth engine:</source>
         <translation>Los nuevos ajustes serán efectivos después
 de reiniciar el motor de Fluidsynth:</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2250"/>
+        <location filename="../qsynthMainForm.cpp" line="2251"/>
         <source>Do you want to restart the engine now?</source>
         <translation>¿Quiere reiniciar el motor ahora?</translation>
     </message>
@@ -1695,114 +1695,114 @@ Do you want to save the changes?</source>
         <translation>&amp;MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="134"/>
-        <location filename="../qsynthSetupForm.ui" line="688"/>
+        <location filename="../qsynthSetupForm.ui" line="170"/>
+        <location filename="../qsynthSetupForm.ui" line="691"/>
         <source>MIDI device name</source>
         <translation>nombre de dispositivo MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="164"/>
+        <location filename="../qsynthSetupForm.ui" line="148"/>
         <source>MIDI &amp;Device:</source>
         <translation>&amp;Dispositivo MIDI:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="102"/>
+        <location filename="../qsynthSetupForm.ui" line="112"/>
         <source>&amp;MIDI Driver:</source>
         <translation>Controlador &amp;MIDI:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="154"/>
+        <location filename="../qsynthSetupForm.ui" line="125"/>
         <source>Input MIDI driver</source>
         <translation>Controlador de entrada MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="286"/>
+        <location filename="../qsynthSetupForm.ui" line="292"/>
         <source>MIDI Client Name ID (ALSA/CoreMidi):</source>
         <translation>ID de cliente MIDI (ALSA/CoreMidi):</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="299"/>
+        <location filename="../qsynthSetupForm.ui" line="305"/>
         <source>ALSA Sequencer client name identification</source>
         <translation>Identificador de cliente del secuenciador de ALSA</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="306"/>
+        <location filename="../qsynthSetupForm.ui" line="312"/>
         <source>pid</source>
         <translation>pid</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="311"/>
-        <location filename="../qsynthSetupForm.ui" line="784"/>
+        <location filename="../qsynthSetupForm.ui" line="317"/>
+        <location filename="../qsynthSetupForm.ui" line="790"/>
         <source>qsynth</source>
         <translation>qsynth</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="118"/>
+        <location filename="../qsynthSetupForm.ui" line="350"/>
         <source>Whether to show MIDI router events on messages window</source>
         <translation>Determina si se mostrarán eventos del encaminador MIDI en la ventana de mensajes</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="121"/>
+        <location filename="../qsynthSetupForm.ui" line="353"/>
         <source>&amp;Dump MIDI router events</source>
         <translation>&amp;Volcar eventos de encaminador MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="180"/>
+        <location filename="../qsynthSetupForm.ui" line="340"/>
         <source>Print out verbose messages about MIDI events</source>
         <translation>Imprimir mensajes detallados sobre eventos MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="183"/>
+        <location filename="../qsynthSetupForm.ui" line="343"/>
         <source>&amp;Verbose MIDI event messages</source>
         <translation>Mensajes &amp;detallados de eventos MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="206"/>
+        <location filename="../qsynthSetupForm.ui" line="196"/>
         <source>Number of MIDI channels</source>
         <translation>Número de canales MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="193"/>
+        <location filename="../qsynthSetupForm.ui" line="183"/>
         <source>MIDI &amp;Channels:</source>
         <translation>&amp;Canales MIDI:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="144"/>
+        <location filename="../qsynthSetupForm.ui" line="102"/>
         <source>Enable MIDI input</source>
         <translation>Habilitar entrada MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="147"/>
+        <location filename="../qsynthSetupForm.ui" line="105"/>
         <source>Enable MIDI &amp;Input</source>
         <translation>Habilitar &amp;Entrada MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="239"/>
+        <location filename="../qsynthSetupForm.ui" line="245"/>
         <source>gm</source>
         <translation>gm</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="244"/>
+        <location filename="../qsynthSetupForm.ui" line="250"/>
         <source>gs</source>
         <translation>gs</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="249"/>
+        <location filename="../qsynthSetupForm.ui" line="255"/>
         <source>mma</source>
         <translation>mma</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="254"/>
+        <location filename="../qsynthSetupForm.ui" line="260"/>
         <source>xs</source>
         <translation>xs</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="222"/>
+        <location filename="../qsynthSetupForm.ui" line="225"/>
         <source>MIDI &amp;Bank Select mode:</source>
         <translation>Modo de selección de &amp;Banco MIDI:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="232"/>
+        <location filename="../qsynthSetupForm.ui" line="238"/>
         <source>MIDI Bank Select mode</source>
         <translation>Modo de selección de Banco MIDI</translation>
     </message>
@@ -1812,7 +1812,7 @@ Do you want to save the changes?</source>
         <translation>&amp;Audio</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="385"/>
+        <location filename="../qsynthSetupForm.ui" line="408"/>
         <source>Sample &amp;Format:</source>
         <translation>&amp;Formato de muestra:</translation>
     </message>
@@ -1822,133 +1822,133 @@ Do you want to save the changes?</source>
         <translation>Controlador de salida de audio</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="408"/>
+        <location filename="../qsynthSetupForm.ui" line="421"/>
         <source>Sample format</source>
         <translation>Formato de muestra</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="415"/>
+        <location filename="../qsynthSetupForm.ui" line="498"/>
         <source>Period size in bytes (audio buffer size)</source>
         <translation>Tamaño del periodo en bytes (tamaño de la memoria intermedia de audio)</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="422"/>
-        <location filename="../qsynthSetupForm.ui" line="567"/>
+        <location filename="../qsynthSetupForm.ui" line="505"/>
+        <location filename="../qsynthSetupForm.ui" line="593"/>
         <source>64</source>
         <translation>64</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="427"/>
+        <location filename="../qsynthSetupForm.ui" line="510"/>
         <source>128</source>
         <translation>128</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="432"/>
+        <location filename="../qsynthSetupForm.ui" line="515"/>
         <source>256</source>
         <translation>256</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="437"/>
+        <location filename="../qsynthSetupForm.ui" line="520"/>
         <source>512</source>
         <translation>512</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="442"/>
+        <location filename="../qsynthSetupForm.ui" line="525"/>
         <source>1024</source>
         <translation>1024</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="447"/>
+        <location filename="../qsynthSetupForm.ui" line="530"/>
         <source>2048</source>
         <translation>2048</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="452"/>
+        <location filename="../qsynthSetupForm.ui" line="535"/>
         <source>4096</source>
         <translation>4096</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="457"/>
+        <location filename="../qsynthSetupForm.ui" line="540"/>
         <source>8192</source>
         <translation>8192</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="465"/>
+        <location filename="../qsynthSetupForm.ui" line="548"/>
         <source>Buffer Cou&amp;nt:</source>
         <translation>&amp;Número de memorias intermedias:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="478"/>
+        <location filename="../qsynthSetupForm.ui" line="447"/>
         <source>Sample rate in samples per second (Hz)</source>
         <translation>Frecuencia de muestreo en muestras por segundo (Hz)</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="488"/>
+        <location filename="../qsynthSetupForm.ui" line="457"/>
         <source>22050</source>
         <translation>22050</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="493"/>
+        <location filename="../qsynthSetupForm.ui" line="462"/>
         <source>44100</source>
         <translation>44100</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="498"/>
+        <location filename="../qsynthSetupForm.ui" line="467"/>
         <source>48000</source>
         <translation>48000</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="503"/>
+        <location filename="../qsynthSetupForm.ui" line="472"/>
         <source>88200</source>
         <translation>88200</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="508"/>
+        <location filename="../qsynthSetupForm.ui" line="477"/>
         <source>96000</source>
         <translation>96000</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="522"/>
+        <location filename="../qsynthSetupForm.ui" line="434"/>
         <source>Sample &amp;Rate:</source>
         <translation>F&amp;recuencia de muestreo:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="535"/>
+        <location filename="../qsynthSetupForm.ui" line="561"/>
         <source>Period count (number of audio buffers)</source>
         <translation>Número de periodos (número de memorias intermedias de audio)</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="542"/>
+        <location filename="../qsynthSetupForm.ui" line="568"/>
         <source>2</source>
         <translation>2</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="547"/>
+        <location filename="../qsynthSetupForm.ui" line="573"/>
         <source>4</source>
         <translation>4</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="552"/>
+        <location filename="../qsynthSetupForm.ui" line="578"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="557"/>
+        <location filename="../qsynthSetupForm.ui" line="583"/>
         <source>16</source>
         <translation>16</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="562"/>
+        <location filename="../qsynthSetupForm.ui" line="588"/>
         <source>32</source>
         <translation>32</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="575"/>
+        <location filename="../qsynthSetupForm.ui" line="485"/>
         <source>Buffer &amp;Size:</source>
         <translation>&amp;Tamaño de la memoria intermedia:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="588"/>
+        <location filename="../qsynthSetupForm.ui" line="385"/>
         <source>&amp;Audio Driver:</source>
         <translation>Controlador de &amp;Audio:</translation>
     </message>
@@ -1963,178 +1963,178 @@ Do you want to save the changes?</source>
         <translation>&amp;Canales de Audio:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="640"/>
+        <location filename="../qsynthSetupForm.ui" line="643"/>
         <source>Number of audio groups</source>
         <translation>Número de grupos de audio</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="653"/>
+        <location filename="../qsynthSetupForm.ui" line="656"/>
         <source>Number of enabled polyphonic voices</source>
         <translation>Número de voces polifónicas habilitadas</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="669"/>
+        <location filename="../qsynthSetupForm.ui" line="672"/>
         <source>Number of stereo audio channels</source>
         <translation>Número de canales estereofónicos de audio</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="701"/>
+        <location filename="../qsynthSetupForm.ui" line="704"/>
         <source>&amp;Polyphony:</source>
         <translation>&amp;Polifonía:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="730"/>
+        <location filename="../qsynthSetupForm.ui" line="736"/>
         <source>Audio &amp;Groups:</source>
         <translation>&amp;Grupos de Audio:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="756"/>
+        <location filename="../qsynthSetupForm.ui" line="762"/>
         <source>JACK Client Name &amp;ID:</source>
         <translation>&amp;Identificador de Cliente de JACK:</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="769"/>
+        <location filename="../qsynthSetupForm.ui" line="775"/>
         <source>JACK client name identification</source>
         <translation>Identificación del nombre de cliente de JACK</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="779"/>
+        <location filename="../qsynthSetupForm.ui" line="785"/>
         <source>fluidsynth</source>
         <translation>fluidsynth</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="807"/>
+        <location filename="../qsynthSetupForm.ui" line="813"/>
         <source>Attempt to connect the JACK outputs to the physical ports</source>
         <translation>Intentar la conexión de las salidas de JACK a los puertos físicos</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="810"/>
+        <location filename="../qsynthSetupForm.ui" line="816"/>
         <source>Auto Connect &amp;JACK Outputs</source>
         <translation>Conexión automática de salidas de &amp;JACK</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="817"/>
+        <location filename="../qsynthSetupForm.ui" line="823"/>
         <source>Create multiple JACK output ports for channels, groups and effects</source>
         <translation>Creación de múltiples puertos de salida de JACK para canales, grupos y efectos</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="820"/>
+        <location filename="../qsynthSetupForm.ui" line="826"/>
         <source>&amp;Multiple JACK Outputs</source>
         <translation>&amp;Múltiples salidas de JACK</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="844"/>
+        <location filename="../qsynthSetupForm.ui" line="850"/>
         <source>&amp;Soundfonts</source>
         <translation>&amp;Soundfonts</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="859"/>
+        <location filename="../qsynthSetupForm.ui" line="865"/>
         <source>Soundfont stack</source>
         <translation>Pila de soundfont</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="881"/>
+        <location filename="../qsynthSetupForm.ui" line="887"/>
         <source>SFID</source>
         <translation>SFID</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="886"/>
-        <location filename="../qsynthSetupForm.ui" line="1028"/>
+        <location filename="../qsynthSetupForm.ui" line="892"/>
+        <location filename="../qsynthSetupForm.ui" line="1034"/>
         <source>Name</source>
         <translation>Nombre</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="891"/>
+        <location filename="../qsynthSetupForm.ui" line="897"/>
         <source>Offset</source>
         <translation>Desplazamiento</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="904"/>
+        <location filename="../qsynthSetupForm.ui" line="910"/>
         <source>Open soundfont file for loading</source>
         <translation>Abrir archivo de soundfont para carga</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="907"/>
+        <location filename="../qsynthSetupForm.ui" line="913"/>
         <source>&amp;Open...</source>
         <translation>&amp;Abrir...</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="917"/>
+        <location filename="../qsynthSetupForm.ui" line="923"/>
         <source>Edit selected soundfont bank offset</source>
         <translation>Editar desplazamiento del banco de soundfont</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="920"/>
+        <location filename="../qsynthSetupForm.ui" line="926"/>
         <source>&amp;Edit</source>
         <translation>&amp;Edición</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="930"/>
+        <location filename="../qsynthSetupForm.ui" line="936"/>
         <source>Remove selected soundfont from stack</source>
         <translation>Borrar el soundfont seleccionado de la pila</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="933"/>
+        <location filename="../qsynthSetupForm.ui" line="939"/>
         <source>&amp;Remove</source>
         <translation>&amp;Borrar</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="956"/>
+        <location filename="../qsynthSetupForm.ui" line="962"/>
         <source>Move up selected soundfont towards the top of stack</source>
         <translation>Mover hacia arriba el soundfont seleccionado hacia la cima de la pila</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="959"/>
+        <location filename="../qsynthSetupForm.ui" line="965"/>
         <source>&amp;Up</source>
         <translation>A&amp;rriba</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="969"/>
+        <location filename="../qsynthSetupForm.ui" line="975"/>
         <source>Move down selected soundfont towards the bottom of stack</source>
         <translation>Mover hacia abajo el soundfont seleccionado hacia la base de la pila</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="972"/>
+        <location filename="../qsynthSetupForm.ui" line="978"/>
         <source>&amp;Down</source>
         <translation>A&amp;bajo</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="985"/>
+        <location filename="../qsynthSetupForm.ui" line="991"/>
         <source>S&amp;ettings</source>
         <translation>A&amp;justes</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1033"/>
+        <location filename="../qsynthSetupForm.ui" line="1039"/>
         <source>Type</source>
         <translation>Tipo</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1038"/>
+        <location filename="../qsynthSetupForm.ui" line="1044"/>
         <source>Realtime</source>
         <translation>Tiempo real</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1043"/>
+        <location filename="../qsynthSetupForm.ui" line="1049"/>
         <source>Current</source>
         <translation>Actual</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1048"/>
+        <location filename="../qsynthSetupForm.ui" line="1054"/>
         <source>Default</source>
         <translation>Por omisión</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1053"/>
+        <location filename="../qsynthSetupForm.ui" line="1059"/>
         <source>Min</source>
         <translation>Min</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1058"/>
+        <location filename="../qsynthSetupForm.ui" line="1064"/>
         <source>Max</source>
         <translation>Max</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.ui" line="1063"/>
+        <location filename="../qsynthSetupForm.ui" line="1069"/>
         <source>Options</source>
         <translation>Opciones</translation>
     </message>
