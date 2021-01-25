@@ -995,6 +995,11 @@ void qsynthMainForm::sigtermNotifySlot ( int /* fd */ )
 }
 
 
+#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif
+
 // Set stdout/stderr blocking mode.
 bool qsynthMainForm::stdoutBlock ( int fd, bool bBlock ) const
 {
@@ -1032,6 +1037,10 @@ void qsynthMainForm::stdoutNotifySlot ( int fd )
 		appendStdoutBuffer(sTemp);
 #endif
 }
+
+#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#pragma GCC diagnostic pop
+#endif
 
 
 // Stdout buffer handler -- now splitted by complete new-lines...
