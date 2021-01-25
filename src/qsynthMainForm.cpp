@@ -1975,9 +1975,6 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 		appendMessagesError(sPrefix +
 			tr("Failed to create the MIDI player.\n\n"
 			"Continuing without a player."));
-	} else {
-		// Play the midi files, if any.
-		playLoadFiles(pEngine, pSetup->midifiles, false);
 	}
 
 	// Run the server, if requested.
@@ -2056,6 +2053,10 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 
 	// All is right.
 	appendMessages(sPrefix + tr("Synthesizer engine started."));
+
+	// Play the midi files, if any...
+	if (pEngine->pPlayer)
+		playLoadFiles(pEngine, pSetup->midifiles, false);
 
 	return true;
 }
