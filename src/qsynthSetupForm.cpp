@@ -1,7 +1,7 @@
 // qsynthSetupForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2020, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -747,7 +747,7 @@ void qsynthSetupForm::stabilizeForm (void)
 	m_ui.MidiChannelsSpinBox->setEnabled(bEnabled);
 	m_ui.MidiDumpCheckBox->setEnabled(bEnabled);
 	m_ui.VerboseCheckBox->setEnabled(bEnabled);
-	m_ui.MidiBankSelectLabel->setEnabled(bEnabled);
+	m_ui.MidiBankSelectTextLabel->setEnabled(bEnabled);
 	m_ui.MidiBankSelectComboBox->setEnabled(bEnabled);
 	m_ui.MidiNameTextLabel->setEnabled(bEnabled && (bAlsaEnabled | bCoreMidiEnabled));
 	m_ui.MidiNameComboBox->setEnabled(bEnabled && (bAlsaEnabled | bCoreMidiEnabled));
