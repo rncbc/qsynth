@@ -926,8 +926,10 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine,
 	}
 
 	// Start playing, if any...
-	if (pEngine->pPlayer && iMidiFiles > 0)
+	if (pEngine->pPlayer && iMidiFiles > 0) {
+		::fluid_player_set_loop(pEngine->pPlayer, 1);
 		::fluid_player_play(pEngine->pPlayer);
+	}
 }
 
 
