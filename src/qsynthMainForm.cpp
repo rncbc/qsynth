@@ -863,8 +863,8 @@ void qsynthMainForm::closeEvent ( QCloseEvent *pCloseEvent )
 
 
 // Add dropped files to playlist or soundfont stack.
-void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine,
-	const QStringList& files, bool bSetup )
+void qsynthMainForm::playLoadFiles (
+	qsynthEngine *pEngine, const QStringList& files, bool bSetup )
 {
 	if (pEngine == nullptr)
 		return;
@@ -904,17 +904,37 @@ void qsynthMainForm::playLoadFiles ( qsynthEngine *pEngine,
 			}
 		}
 		else  // Or is it a bare midifile?
-		if (::fluid_is_midifile(sFilename.toLocal8Bit().data()) && pEngine->pPlayer) {
-			appendMessagesColor(sPrefix +
-				tr("Playing MIDI file: \"%1\"")
-				.arg(sFilename) + sElipsis, "#99cc66");
-			if (::fluid_player_add(
-					pEngine->pPlayer, sFilename.toLocal8Bit().data()) >= 0) {
-				iMidiFiles++;
-			} else {
-				appendMessagesError(sPrefix +
-					tr("Failed to play MIDI file: \"%1\".")
-					.arg(sFilename));
+		if (::fluid_is_midifile(sFilename.toLocal8Bit().data())) {
+			// Destroy the MIDI player, if done already...
+			if (pEngine->pPlayer &&
+				::fluid_player_get_status(pEngine->pPlayer) == FLUID_PLAYER_DONE) {
+				appendMessages(sPrefix + tr("Destroying MIDI player") + sElipsis);
+				::delete_fluid_player(pEngine->pPlayer);
+				pEngine->pPlayer = nullptr;
+			}
+			// Create the MIDI player, if not already...
+			if (pEngine->pPlayer == nullptr) {
+				appendMessages(sPrefix + tr("Creating MIDI player") + sElipsis);
+				pEngine->pPlayer = ::new_fluid_player(pEngine->pSynth);
+				if (pEngine->pPlayer == nullptr) {
+					appendMessagesError(sPrefix +
+						tr("Failed to create the MIDI player.\n\n"
+						"Continuing without a player."));
+				}
+			}
+			// Add file to the MIDI player play-list...
+			if (pEngine->pPlayer) {
+				appendMessagesColor(sPrefix +
+					tr("Playing MIDI file: \"%1\"")
+					.arg(sFilename) + sElipsis, "#99cc66");
+				if (::fluid_player_add(
+						pEngine->pPlayer, sFilename.toLocal8Bit().data()) >= 0) {
+					iMidiFiles++;
+				} else {
+					appendMessagesError(sPrefix +
+						tr("Failed to play MIDI file: \"%1\".")
+						.arg(sFilename));
+				}
 			}
 		}
 	}
@@ -1970,15 +1990,6 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 		}
 	}
 
-	// Create the MIDI player.
-	appendMessages(sPrefix + tr("Creating MIDI player") + sElipsis);
-	pEngine->pPlayer = ::new_fluid_player(pEngine->pSynth);
-	if (pEngine->pPlayer == nullptr) {
-		appendMessagesError(sPrefix +
-			tr("Failed to create the MIDI player.\n\n"
-			"Continuing without a player."));
-	}
-
 	// Run the server, if requested.
 	if (pSetup->bServer) {
 	#ifdef CONFIG_FLUID_SERVER
@@ -2057,8 +2068,7 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 	appendMessages(sPrefix + tr("Synthesizer engine started."));
 
 	// Play the midi files, if any...
-	if (pEngine->pPlayer)
-		playLoadFiles(pEngine, pSetup->midifiles, false);
+	playLoadFiles(pEngine, pSetup->midifiles, false);
 
 	return true;
 }

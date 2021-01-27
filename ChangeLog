@@ -7,7 +7,7 @@ ChangeLog
 GIT HEAD
 
 - Fixed MIDI player to files that are drag and dropped
-  after a first time following engine initialization.
+  after a first time following engine re-initialization.
 
 - Fix multi-channel support with JACK (after a patch by
   Mauro Carvalho Chehab, thanks).
