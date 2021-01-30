@@ -224,12 +224,12 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="70"/>
         <source>Using: Qt %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisant : Qt %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="76"/>
         <source>FluidSynth %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FluidSynth %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="80"/>
