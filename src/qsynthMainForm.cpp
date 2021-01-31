@@ -1017,7 +1017,7 @@ void qsynthMainForm::sigtermNotifySlot ( int /* fd */ )
 }
 
 
-#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#if defined(Q_CC_GNU) || defined(Q_CC_MINGW)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #endif
@@ -1060,7 +1060,7 @@ void qsynthMainForm::stdoutNotifySlot ( int fd )
 #endif
 }
 
-#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#if defined(Q_CC_GNU) || defined(Q_CC_MINGW)
 #pragma GCC diagnostic pop
 #endif
 

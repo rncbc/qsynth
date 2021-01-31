@@ -1,4 +1,4 @@
-IDI_ICON1               ICON    DISCARDABLE     "../images/qsynth.ico"
+IDI_ICON1               ICON    DISCARDABLE     "@CMAKE_SOURCE_DIR@/src/images/qsynth.ico"
 
 1 VERSIONINFO
  FILEVERSION    @PROJECT_VERSION_MAJOR@, @PROJECT_VERSION_MINOR@, @PROJECT_VERSION_PATCH@
