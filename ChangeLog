@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.9.1  2021-02-07  A Winter'21 Release.
 
 - Fixed MIDI player to files that are drag and dropped
   after a first time following engine re-initialization.
