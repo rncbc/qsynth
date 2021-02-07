@@ -1,4 +1,4 @@
-Qsynth - A fluidsynth Qt GUI Interface
+Qsynth - A fluidsynth Qt GUI Interface 
 --------------------------------------
 
 ChangeLog
@@ -6,8 +6,8 @@ ChangeLog
 
 0.9.1  2021-02-07  A Winter'21 Release.
 
-- Fixed MIDI player to files that are drag and dropped
-  after a first time following engine re-initialization.
+- Fixed MIDI player to files that are drag and dropped after a first 
+  time following engine re-initialization.
 
 - Fix multi-channel support with JACK.
 
@@ -16,15 +16,15 @@ ChangeLog
 
 0.9.0  2020-12-17  A Winter'20 Release.
 
-- Early fixing to build for Qt >= 6.0.0 and comply
-  with C++17 standard.
+- Early fixing to build for Qt >= 6.0.0 and comply with C++17 
+  standard.
 
 
 0.6.3  2020-07-31  A Summer'20 Release.
 
-- Left-clicking on the system-tray icon now simply
-  toggles the main widget visibility, disregarding
-  if already hidden undercover to other windows.
+- Left-clicking on the system-tray icon now simply toggles the main 
+  widget visibility, disregarding if already hidden undercover to 
+  other windows.
 
 - Early fixing to build for Qt >= 5.15.0.
 
@@ -33,29 +33,27 @@ ChangeLog
 
 - A scalable (.svg) icon version has been added.
 
-- Make man page compression reproducible (after request
-  by Jelle van der Waa, while on the Vee-Ones, thanks).
+- Make man page compression reproducible (after request by Jelle
+  van der Waa, while on the Vee-Ones, thanks).
 
-- Ditching deprecated QTime methods for QElapsedTimer's
-  (in compliance to Qt >= 5.14.0).
+- Ditching deprecated QTime methods for QElapsedTimer's (in 
+  compliance to Qt >= 5.14.0).
 
 - Bumped copyright headers into the New Year (2020).
 
 
 0.6.1  2019-12-22  The Winter'19 Release.
 
-- Custom color (palette) theme editor introduced; color
-  (palette) theme changes are now effective immediately,
-  except on default.
+- Custom color (palette) theme editor introduced; color (palette) 
+  theme changes are now effective immediately, except on default.
 
-- Second attempt to fix the yet non-official though
-  CMake build configuration.
+- Second attempt to fix the yet non-official though CMake build 
+  configuration.
 
-- When using autotools and ./configure --with-qt=...,
-  it is also necessary to adjust the PKG_CONFIG_PATH
-  environment variable (after a merge request by plcl
-  aka. Pedro López-Cabanillas, while on qmidinet,
-  thanks).
+- When using autotools and ./configure --with-qt=..., it is also 
+  necessary to adjust the PKG_CONFIG_PATH environment variable
+  (after a merge request by plcl aka. Pedro López-Cabanillas,
+  while on qmidinet, thanks).
 
 
 0.6.0  2019-10-17  An Autumn'19 Release.
@@ -64,9 +62,9 @@ ChangeLog
 
 - Fix HiDPI display screen effective support (Qt >= 5.6).
 
-- System-tray icon context menu has been refactored to
-  be exactly the same as the main-window context menu
-  that is re-instantiated on demand.
+- System-tray icon context menu has been refactored to be exactly 
+  the same as the main-window context menu that is re-instantiated
+  on demand.
 
 - Make sure compiler flags comply to c++11 as standard.
 
@@ -79,8 +77,8 @@ ChangeLog
 
 - Minor update to Debian packaging control file.
 
-- Settled to initial default MIDI and audio drivers on
-  MacOSX to "coremidi" and "coreaudio" resp.
+- Settled to initial default MIDI and audio drivers on MacOSX to 
+  "coremidi" and "coreaudio" resp.
 
 - Updated icon files into 128x128 base resolution.
 
@@ -92,8 +90,8 @@ ChangeLog
 
 0.5.5  2019-03-11  Pre-LAC2019 Release Frenzy.
 
-- Refactored all singleton/unique application instance
-  setup logic away from X11/Xcb hackery.
+- Refactored all singleton/unique application instance setup logic 
+  away from X11/Xcb hackery.
 
 - HiDPI display screen support (Qt >= 5.6).
 
@@ -102,41 +100,41 @@ ChangeLog
 
 0.5.4  2018-12-05  End of Autumn'18 Release.
 
-- Reset button now also resets master Gain, Reverb and
-  Chorus to their "factory default" values.
+- Reset button now also resets master Gain, Reverb and Chorus to 
+  their "factory default" values.
 
-- Fixed Reverb and Chorus effects processing when audio
-  output peak-meters are enabled on FluidSynth API V2.
+- Fixed Reverb and Chorus effects processing when audio output 
+  peak-meters are enabled on FluidSynth API V2.
 
 - Old deprecated Qt4 build support is no more.
 
-- System tray options now subject to current desktop
-  environment availability.
+- System tray options now subject to current desktop environment 
+  availability.
 
 
 0.5.3  2018-10-10  An Autumn'18 Release.
 
-- Current FluidSynth version information added to command
-  line output (-V, --version).
+- Current FluidSynth version information added to command line 
+  output (-V, --version).
 
 - Overhaul adaptations to the FluidSynth API V2 (>= 2.0.0).
 
-- AppStream metadata updated to be the most compliant with
-  latest freedesktop.org specification and recommendation.
+- AppStream metadata updated to be the most compliant with latest 
+  freedesktop.org specification and recommendation.
 
 
 0.5.2  2018-07-22  A Summer'18 Release.
 
-- AppData/AppStream metadata is now settled under an all
-  permisssive license (FSFAP).
+- AppData/AppStream metadata is now settled under an all permisssive 
+  license (FSFAP).
 
 
 0.5.1  2018-05-21  Pre-LAC2018 release frenzy.
 
-- Disable singleton/unique application instance setup logic
-  when the display server platform is not X11.
+- Disable singleton/unique application instance setup logic when
+  the display server platform is not X11.
 
-- Fixed deprecated calls to fluid_synth_get_channel_info(),
+- Fixed deprecated calls to fluid_synth_get_channel_info(), 
   fluid_synth_set_midi_router() and fluid_settings_getstr()
   (as signaled on libfluidsynth >= 1.1.9).
 
@@ -145,46 +143,45 @@ ChangeLog
 
 0.5.0  2017-12-16  End of Autum'17 release.
 
-- Added *.SF3 to soundfont files filter on Setup > Soundfonts
-  > Open... file dialog.
+- Added *.SF3 to soundfont files filter on Setup > Soundfonts > 
+  Open... file dialog.
 
 - Increased Soundfont bank-offset limit to 16384 (was 128).
 
-- Desktop entry specification file is now finally independent
-  from build/configure template chains.
+- Desktop entry specification file is now finally independent from 
+  build/configure template chains.
 
-- Updated target path for freedesktop.org's AppStream metainfo
-  file (formerly AppData).
+- Updated target path for freedesktop.org's AppStream metainfo file 
+  (formerly AppData).
 
 
 0.4.4  2017-04-27  Pre-LAC2017 release frenzy.
 
 - Added French man page (by Olivier Humbert, thanks).
 
-- Make builds reproducible byte for byte, by getting rid of
-  the configure build date and time stamps.
+- Make builds reproducible byte for byte, by getting rid of the 
+  configure build date and time stamps.
 
 
 0.4.3  2016-11-14  A Fall'16 release.
 
-- Fixed a potential crash on the singleton/unique application
+- Fixed a potential crash on the singleton/unique application 
   instance setup.
 
 - Almost complete overhaul on the configure script command
   line options, wrt. installation directories specification,
   eg. --prefix, --bindir, --libdir, --datadir and --mandir.
 
-- Late French (fr) translation update (by Olivier Humbert,
-  thanks).
+- Late French (fr) translation update (by Olivier Humbert, thanks).
 
 
 0.4.2  2016-09-14  End of Summer'16 release.
 
 - Old "Start minimized to system tray" option returns to setup.
 
-- Dropped the --enable-qt5 from configure as found redundant
-  given that's the build default anyway (suggestion by Guido
-  Scholz, while for Qtractor, thanks).
+- Dropped the --enable-qt5 from configure as found redundant given 
+  that's the build default anyway (suggestion by Guido Scholz, while 
+  for Qtractor, thanks).
 
 
 0.4.1  2016-04-05  Spring'16 release frenzy.
@@ -195,7 +192,7 @@ ChangeLog
 
 - Added application keywords to freedesktop.org's AppData.
 
-- System-tray icon context menu has been fixed/hacked to show up
+- System-tray icon context menu has been fixed/hacked to show up 
   again on Plasma 5 (aka. KDE5) notifications status area.
 
 - Prevent x11extras module from use on non-X11/Unix plaforms.
@@ -209,7 +206,7 @@ ChangeLog
 
 0.4.0  2015-09-07  Summer'15 release frenzy.
 
-- Desktop environment session shutdown/logout management has been
+- Desktop environment session shutdown/logout management has been 
   also adapted to Qt5 framework.
 
 - Single/unique application instance control adapted to Qt5/X11.
@@ -220,7 +217,7 @@ ChangeLog
 
 - Complete rewrite of Qt4 vs. Qt5 configure builds.
 
-- A new top-level widget window geometry state save and restore
+- A new top-level widget window geometry state save and restore 
   sub-routine is now in effect.
 
 - Fixed for some strict tests for Qt4 vs. Qt5 configure builds.
@@ -232,13 +229,12 @@ ChangeLog
 
 - Added application description as freedesktop.org's AppData.
 
-- New user preference option on whether to show the nagging
-  'program will keep running in the system tray' message, on
-  main window close.
+- New user preference option on whether to show the nagging 'program 
+  will keep running in the system tray' message, on main window close.
 
-- Application close confirm warning is now raising the main
-  window as visible and active for due top level display,
-  especially applicable when minimized to the system tray.
+- Application close confirm warning is now raising the main window 
+  as visible and active for due top level display, especially 
+  applicable when minimized to the system tray.
 
 - A man page has been added.
 
@@ -253,8 +249,7 @@ ChangeLog
 
 - More preparations for Qt5 configure build.
 
-- Serbian (sr) translation added (by Jay Alexander Fleming,
-  thanks).
+- Serbian (sr) translation added (by Jay Alexander Fleming, thanks).
 
 
 0.3.7  2013-04-16  Spring cleaning sale.
@@ -270,13 +265,13 @@ ChangeLog
 
 - Added include <unistd.h> to shut up gcc 4.7 build failures.
 
-- Make(ing) -jN parallel builds now available to the masses
-  (an awesome patch by kensington, thanks).
+- Make(ing) -jN parallel builds now available to the masses (an 
+  awesome patch by kensington, thanks).
 
-- Fixed Makefile.in handling of installation directories to
-  the configure script eg. --datadir, --localedir.
+- Fixed Makefile.in handling of installation directories to the 
+  configure script eg. --datadir, --localedir.
 
-- Main window is now brought to front and (re)activated when
+- Main window is now brought to front and (re)activated when 
   clicking on the system tray icon instead of just hiding it.
 
 - Debugging stacktrace now applies to all working threads.
@@ -284,67 +279,67 @@ ChangeLog
 
 0.3.6  2011-04-07  Slip release.
 
-- Main window layout fixing with regard to its user preferred
-  size and recall when system-tray icon is not enabled.
+- Main window layout fixing with regard to its user preferred size 
+  and recall when system-tray icon is not enabled.
 
 - Channels list preset items now activated on double-click.
 
-- Desktop environment session shutdown (eg. logout) is now
-  tapped for graceful application exit, even though the main
-  window is active (visible) and minimizing to system tray
-  is enabled. Both were causing first shutdown/logout attempt
-  to abort. Not anymore, hopefully ;).
+- Desktop environment session shutdown (eg. logout) is now tapped 
+  for graceful application exit, even though the main window is active 
+  (visible) and minimizing to system tray is enabled. Both were 
+  causing first shutdown/logout attempt to abort. Not anymore, 
+  hopefully ;).
 
-- libX11 is now being added explicitly to the build link phase,
-  as seen necessary on some bleeding-edge distros eg. Fedora 13,
-  Debian 6.
+- libX11 is now being added explicitly to the build link phase, as 
+  seen necessary on some bleeding-edge distros eg. Fedora 13, Debian 
+  6.
 
 - General standard dialog buttons layout is now in place.
 
-- CMake build system. It was silently available in 0.3.5, but
-  now it is officially unveiled.
+- CMake build system. It was silently available in 0.3.5, but now
+  it is officially unveiled.
 
 - Fixed a couple of dangling pointers.
 
-- Mac OSX: Enabled the MIDI name Id option for CoreMIDI driver
+- Mac OSX: Enabled the MIDI name Id option for CoreMIDI driver 
   ports, added the icon to the app bundle.
 
 
 0.3.5  2010-04-27  Overdue release.
 
-- Initial widget geometry and visibility persistence logic has
-  been slightly revised as much to avoid crash failures due to
-  wrong main widget hidden state.
+- Initial widget geometry and visibility persistence logic has been 
+  slightly revised as much to avoid crash failures due to wrong main 
+  widget hidden state.
 
 - General source tree layout and build configuration change.
 
-- Most modal message dialog boxes (eg. critical errors) are now
+- Most modal message dialog boxes (eg. critical errors) are now 
   replaced by system tray icon bubble messages where available.
 
-- Reverb and Chorus parameter ranges have been revised to match
-  and comply with fluidsynth back-end (libfluidsynth).
+- Reverb and Chorus parameter ranges have been revised to match and 
+  comply with fluidsynth back-end (libfluidsynth).
 
-- Fluidsynth channel info and unset program interfaces are now in
+- Fluidsynth channel info and unset program interfaces are now in 
   use where available (libfluidsynth >= 1.1.1).
 
-- Global configuration state is now explicitly saved/committed to
+- Global configuration state is now explicitly saved/committed to 
   disk when Options dialog changes are accepted and applied.
 
 - Output peak level meters get their long deserved gradient look.
 
-- Automatic crash-dump reports, debugger stack-traces (gdb), back-
-  traces, whatever, are being introduced as a brand new configure
-  option (--enable-stacktrace) and default enabled on debug build
+- Automatic crash-dump reports, debugger stack-traces (gdb), back- 
+  traces, whatever, are being introduced as a brand new configure 
+  option (--enable-stacktrace) and default enabled on debug build 
   targets (--enable-debug).
 
 - Added Czech (cs) translation, contributed by Pavel Fric.
 
-- The channel preset selector (Channels/Edit...) has been seriously
-  crippled for ages, only showing the presets of the last loaded
+- The channel preset selector (Channels/Edit...) has been seriously 
+  crippled for ages, only showing the presets of the last loaded 
   soundfont, now fixed.
 
-- Minimum number of MIDI channels allowed on engine setup has been
-  dropped from the old value 16 to as low as 1 (one), not that it
+- Minimum number of MIDI channels allowed on engine setup has been 
+  dropped from the old value 16 to as low as 1 (one), not that it 
   makes a difference, as (lib)fluidsynth internals just rounds it
   to the nearest multiple of 16 anyway.
 
@@ -353,16 +348,18 @@ ChangeLog
 
 0.3.4  2009-05-10  New release.
 
-- Command line option parsing has been slightly refactored to allow
-  custom override through extraordinary fluidsynth option settings
+- Command line option parsing has been slightly refactored to allow 
+  custom override through extraordinary fluidsynth option settings 
   (eg. -o name=value; fixes bug #2781579).
 
-- Main form layout has been given a little bit more slack space, just
-  to accommodate some longer text label translations (eg. German).
+- Main form layout has been given a little bit more slack space, 
+  just to accommodate some longer text label translations (eg. 
+  German).
 
 - Converted obsolete QMessageBox forms to standard buttons.
 
-- Saved channel presets are now effectively loaded on engine startup.
+- Saved channel presets are now effectively loaded on engine 
+  startup.
 
 - Russian translation added (thanks to Alexandre Prokoudine).
 
@@ -374,49 +371,49 @@ ChangeLog
 
 - Slight optimizations to the output peak meters refresh rate.
 
-- MIDI and audio device names are now user selectable options through
-  respective drop-down lists on each engine setup dialog.
+- MIDI and audio device names are now user selectable options 
+  through respective drop-down lists on each engine setup dialog.
 
 - New knob style: Skulpture.
 
 
 0.3.3  2008-07-10  Knobs galore.
 
-- Due to some trouble with newer Qt >= 4.4 applications regarding font
-  size configuration, a new global user option is now available to the
-  rescue: Options.../Other/Base font size (default is no-op).
+- Due to some trouble with newer Qt >= 4.4 applications regarding 
+  font size configuration, a new global user option is now available 
+  to the rescue: Options.../Other/Base font size (default is no-op).
 
-- Knobs: graphic styles are now QStyle derived classes, which are
-  assigned to the knobs using QWidget::setStyle(). Three styles
-  are implemented in this way, supporting also the legacy QDial:
-  * Our former look, tweaked and ported from Sonic Visualiser.
-  * A port of the new look implemented by David Garcia.
-  * Another ported widget style, designed by Giuseppe Cigala.
+- Knobs: graphic styles are now QStyle derived classes, which are 
+  assigned to the knobs using QWidget::setStyle(). Three styles are 
+  implemented in this way, supporting also the legacy QDial: * Our 
+  former look, tweaked and ported from Sonic Visualiser. * A port of 
+  the new look implemented by David Garcia. * Another ported widget 
+  style, designed by Giuseppe Cigala.
 
 - Spanish translation added.
 
-- Attempt to load Qt's own translation support and get rid of
-  the ever warning startup message, unless built in debug moderr;
-  also introducing the very first and complete German translation
-  (patching transaction by Guido Scholz, thanks).
+- Attempt to load Qt's own translation support and get rid of the 
+  ever warning startup message, unless built in debug moderr; also 
+  introducing the very first and complete German translation (patching 
+  transaction by Guido Scholz, thanks).
 
-- Messages file logging makes its first long overdue appearance,
+- Messages file logging makes its first long overdue appearance, 
   with user configurable settings in Options/Logging.
 
-- Only one application instance is now allowed to be up and running,
-  with immediate but graceful termination upon startup iif an already
-  running instance is detected, which will see its main widget shown
+- Only one application instance is now allowed to be up and running, 
+  with immediate but graceful termination upon startup iif an already 
+  running instance is detected, which will see its main widget shown 
   up and all engines started automatically (Qt/X11 platform only).
 
 
 0.3.2  2007-12-19  Minor stealth fixes and season greetings.
 
-- A new option to start the program minimized when the system tray
+- A new option to start the program minimized when the system tray 
   icon is enabled, is now available from Setup/Misc/Start minimized
   to system tray.
 
-- Regression from QSystemTrayIcon (Qt4 >= 4.2) implementation, at
-  least on X11 environments: while the main application widget was
+- Regression from QSystemTrayIcon (Qt4 >= 4.2) implementation, at 
+  least on X11 environments: while the main application widget was 
   minimized to the system-tray, closing any other top-level widget
   was causing the immediate and unexpected application shutdown.
 
@@ -424,189 +421,204 @@ ChangeLog
 
 - Tool/child windows position and size preservation fixed.
 
-- Orphaned MIDI device name no longer mistaken when switching
+- Orphaned MIDI device name no longer mistaken when switching 
   between MIDI drivers on engine setup.
 
 - A bit more of precision is achieved over the output peak meters.
 
 - Messages line limit was not being checked, now honored.
 
-- Simple as it could ever be, the build executive summary report
-  is now given on configure.
+- Simple as it could ever be, the build executive summary report is 
+  now given on configure.
 
-- Get configure to try and detect the correct qmake location and
-  insert it the search order, so let the qt4 tools take precedence
-  when --with-qt option is given and older qt3 ones coexist and
-  are found located ahead in the PATH.
+- Get configure to try and detect the correct qmake location and 
+  insert it the search order, so let the qt4 tools take precedence 
+  when --with-qt option is given and older qt3 ones coexist and are 
+  found located ahead in the PATH.
 
-- The infamous "Keep child windows always on top" global option is
-  now supposed to behave a little better when disabled, layering
+- The infamous "Keep child windows always on top" global option
+  is now supposed to behave a little better when disabled, layering
   child windows as naturally as far the window manager dictates.
 
-- Inspired on Andreas Persson patch, while on qjackctl-devel, which
-  made it possible to compile and run with older Qt 4.1, similar
+- Inspired on Andreas Persson patch, while on qjackctl-devel, which 
+  made it possible to compile and run with older Qt 4.1, similar 
   arrangements were carried out on qsynth too, without hesitation.
 
 - Main panel spin-boxes gets accelerated when stressed (Qt >= 4.2).
 
 
-0.3.1   2007-07-16  Shallowed bug-fix release.
+0.3.1  2007-07-16  Shallowed bug-fix release.
 
-- Now using QSystemTrayIcon class facility if available (Qt4 >= 4.2)
-  making the system-tray option available on most platforms, notably
+- Now using QSystemTrayIcon class facility if available (Qt4 >= 4.2) 
+  making the system-tray option available on most platforms, notably 
   on Windows and Mac OS X.
 
-- Combo-box setup history has been corrected on restore, which was
+- Combo-box setup history has been corrected on restore, which was 
   discarding the very initial default (factory) contents.
 
-- One programming error has been corrected, which was affecting
-  the editable preset combo-boxes usability.
+- One programming error has been corrected, which was affecting the 
+  editable preset combo-boxes usability.
 
-- Soundfont context menu is now available again even when the
-  setup dialog soundfont list is empty.
+- Soundfont context menu is now available again even when the setup 
+  dialog soundfont list is empty.
 
 - About form link is now browseable externally.
 
 - Updated README-OSX (thanks to Ebrahim Mayat again).
 
 
-0.3.0   2007-07-03  Qt4 migration was complete.
+0.3.0  2007-07-03  Qt4 migration was complete.
 
-- Qt4 migration has comenced and is now complete. Care must be
-  taken with this new configuration file and location: this
-  release starts a new one from scratch and won't reuse any of
-  the previous existing ones, although cut and paste might help
-  if you know what you'll be doing :)
+- Qt4 migration has comenced and is now complete. Care must be taken 
+  with this new configuration file and location: this release starts
+  a new one from scratch and won't reuse any of the previous existing 
+  ones, although cut and paste might help if you know what you'll be 
+  doing :)
 
-- Application icon is now installed to ${prefix}/share/pixmaps;
+- Application icon is now installed to ${prefix}/share/pixmaps; 
   application desktop entry file is now included in installation;
-  spec file (RPM) is now a bit more openSUSE compliant; initial
+  spec file (RPM) is now a bit more openSUSE compliant; initial 
   debianization.
 
-- Default font option names were adjusted to "Sans Serif" and
+- Default font option names were adjusted to "Sans Serif" and 
   "Monospace", wherever available.
 
-- The "keep child windows always on top" option is not set as
-  default anymore, because window focus behavior gets tricky
-  on some desktop environments (eg. Mac OS X, Gnome).
+- The "keep child windows always on top" option is not set as 
+  default anymore, because window focus behavior gets tricky on
+  some desktop environments (eg. Mac OS X, Gnome).
 
 - Autoconf (configure) scripting gets an update.
 
 
-0.2.6   2007-04-14  Nitpicking season closed :)
+0.2.6  2007-04-14  Nitpicking season closed :)
 
-- Main panel window now keeps its previous iconic state on system tray,
-  on application restart (thanks to Chris Cannam for hinting this one).
+- Main panel window now keeps its previous iconic state on system 
+  tray, on application restart (thanks to Chris Cannam for hinting 
+  this one).
 
-- Minor optimization in peak level meters update rate. Alternate but
+- Minor optimization in peak level meters update rate. Alternate but 
   faster inline lroundf() function implementation is now used.
 
-- Most top-level widgets were missing the normal-widget flag, which
+- Most top-level widgets were missing the normal-widget flag, which 
   were causing some sticky size behavior on some window managers.
 
-- Messages and channels window captions can now be set smaller as
+- Messages and channels window captions can now be set smaller as 
   tool-widgets, in effect when child windows are kept always on top.
 
-- While on the engine setup dialog, the ALSA sequencer client identifier
-  is now also disabled depending on the MIDI input option setting.
+- While on the engine setup dialog, the ALSA sequencer client 
+  identifier is now also disabled depending on the MIDI input option 
+  setting.
 
-- Experimental soundfont loader which prevents RAM image duplication
-  if more than one engine loads the same soundfont file. Server-mode is
-  now supported on multi-engine configurations by auto-increnmenting the
-  shell socket listening port (both patches handed by Dave Searls, thanks).
+- Experimental soundfont loader which prevents RAM image duplication 
+  if more than one engine loads the same soundfont file. Server-mode 
+  is now supported on multi-engine configurations by 
+  auto-increnmenting the shell socket listening port (both patches 
+  handed by Dave Searls, thanks).
 
-- Engine name gets through the respective tab title when created. Fixed
-  engine delete button enabling on the main window.
+- Engine name gets through the respective tab title when created. 
+  Fixed engine delete button enabling on the main window.
 
-- Changed deprecated copyright attribute to license, on qsynth.spec (RPM).
+- Changed deprecated copyright attribute to license, on qsynth.spec 
+  (RPM).
 
-- Added configure support for x86_64 libraries (Pedro Lopez-Cabanillas).
+- Added configure support for x86_64 libraries (Pedro 
+  Lopez-Cabanillas).
 
 - GPL address update.
 
 
-0.2.5   2006-03-05  Fancy dial knobs and effective bank-offsets.
+0.2.5  2006-03-05  Fancy dial knobs and effective bank-offsets.
 
-- New dial-knob behavior now follows mouse pointer angular position,
-  almost similar to old QDial, but this time avoiding that nasty and
+- New dial-knob behavior now follows mouse pointer angular position, 
+  almost similar to old QDial, but this time avoiding that nasty and 
   rather abrupt change on first mouse click.
 
-- By simple use of widget subclassing, the value/position of any dial
-  knob can now be reset to its default or original position at any time,
-  by simply pressing the mouse mid-button. These default value positions
-  are just committed to current dial values when switching engines and/or
-  closing the application.
+- By simple use of widget subclassing, the value/position of any 
+  dial knob can now be reset to its default or original position at 
+  any time, by simply pressing the mouse mid-button. These default 
+  value positions are just committed to current dial values when 
+  switching engines and/or closing the application.
 
-- Optional specification of alternate fluidsynth installation path
+- Optional specification of alternate fluidsynth installation path 
   has been added to configure command arguments (--with-fluidsynth).
 
-- After some source code tweaks, a win32 build is now possible.
+- After some source code tweaks, a win32 build is now possible. 
   (instructions will be provided on demand :)
 
-- Bank offset finally gets its due effect, while on the channels and
-  channel preset selection dialogs. Regretfully, the soundfont bank
-  offset feature has been lurking ever since its inception, but now
+- Bank offset finally gets its due effect, while on the channels and 
+  channel preset selection dialogs. Regretfully, the soundfont bank 
+  offset feature has been lurking ever since its inception, but now 
   its live and hopefully effective.
 
-- A new fancy widget has arrived, qsynthKnob, with some modifications to
-  replace the actual *ugly* QDial widgets in the main window. This widget
-  is based on a design by Thorsten Wilms, formerly implemented by Chris
-  Cannam in Rosegarden, and finally adapted and brought to Qsynth by
-  Pedro Lopez-Cabanillas. Thankyou all.
+- A new fancy widget has arrived, qsynthKnob, with some 
+  modifications to replace the actual *ugly* QDial widgets in the main 
+  window. This widget is based on a design by Thorsten Wilms, formerly 
+  implemented by Chris Cannam in Rosegarden, and finally adapted and 
+  brought to Qsynth by Pedro Lopez-Cabanillas. Thankyou all.
 
 
-0.2.4   2005-10-02  Bug and some other usability fixes.
+0.2.4  2005-10-02  Bug and some other usability fixes.
 
-- All widget captions changed to include proper application title prefix.
+- All widget captions changed to include proper application title 
+  prefix.
 
-- Attempt to bring those aging autoconf templates to date; sample SPEC file
-  for RPM build is now being included and generated at configure time.
+- Attempt to bring those aging autoconf templates to date; sample 
+  SPEC file for RPM build is now being included and generated at 
+  configure time.
 
-- Missing icons on channel and soundfont setup context menus are now up;
-  bank/program splitter widget added to channel preset dialog.
+- Missing icons on channel and soundfont setup context menus are now 
+  up; bank/program splitter widget added to channel preset dialog.
 
-- An abrupt segfault on engine restart have been finally fixed; this issue
-  has been quite an annoyance which has been around for ages and was a
-  highly probable showstopper just when restarting an engine due to changes
-  on the setup settings. Not anymore, hopefully.
+- An abrupt segfault on engine restart have been finally fixed; this 
+  issue has been quite an annoyance which has been around for ages and 
+  was a highly probable showstopper just when restarting an engine due 
+  to changes on the setup settings. Not anymore, hopefully.
 
-- New tool buttons were added to the main widget, for adding a new engine
-  and removing the current one, while trying to increase the visibility of
-  multiple fluidsynth engine capability (for new users, at least :)
+- New tool buttons were added to the main widget, for adding a new 
+  engine and removing the current one, while trying to increase the 
+  visibility of multiple fluidsynth engine capability (for new users, 
+  at least :)
 
-- Set to use QApplication::setMainWidget() instead of registering the
-  traditional lastWindowClosed() signal to quit() /slot, just to let
-  the -geometry command line argument have some optional effect on X11.
+- Set to use QApplication::setMainWidget() instead of registering 
+  the traditional lastWindowClosed() signal to quit() /slot, just to 
+  let the -geometry command line argument have some optional effect on 
+  X11.
 
-- Minor configure and Makefile install fixes, as Debian and Mac OS X
-  specialties. Also, install does the right thing with target file modes
-  (thanks to Matt Flax and Ebrahim Mayat, for pointing these out).
+- Minor configure and Makefile install fixes, as Debian and Mac OS X 
+  specialties. Also, install does the right thing with target file 
+  modes (thanks to Matt Flax and Ebrahim Mayat, for pointing these 
+  out).
 
-- Fixed output disability when messages limit option is turned off (thanks
-  to Wolfgang Woehl for spotting this one, while on qjackctl).
+- Fixed output disability when messages limit option is turned off 
+  (thanks to Wolfgang Woehl for spotting this one, while on qjackctl).
 
 
-0.2.3   2005-05-24  System tray icon and menu option.
+0.2.3  2005-05-24  System tray icon and menu option.
 
-- New option for system tray icon and menu, which is known to be effective
-  on KDE enabled desktops; support for freedesktop.org's system tray protocol
-  specification has been included so this maybe also effective on Gnome2.
+- New option for system tray icon and menu, which is known to be 
+  effective on KDE enabled desktops; support for freedesktop.org's 
+  system tray protocol specification has been included so this
+  maybe also effective on Gnome2.
 
-- Setup options for alternate MIDI and Audio devices were introduced.
+- Setup options for alternate MIDI and Audio devices were 
+  introduced.
 
 - Output level meters get smoother and slightly layout optimized.
 
-- Set to ignore the SIGPIPE ("Broken pipe") signal, where available, as the
-  default handler is usually fatal when a JACK client is zombified abruptly.
+- Set to ignore the SIGPIPE ("Broken pipe") signal, where available, 
+  as the default handler is usually fatal when a JACK client is 
+  zombified abruptly.
 
-- Messages window limit is now enforced only when the line count exceeds
-  in one third the user configured line count maximum; if Qt 3.2.0+ is in use,
-  the QTextView widget is otherwise set to the optimized Qt::LogText format.
+- Messages window limit is now enforced only when the line count 
+  exceeds in one third the user configured line count maximum;
+  if Qt 3.2.0+ is in use, the QTextView widget is otherwise set
+  to the optimized Qt::LogText format.
 
-- Updated Mac OS X build instructions (README-OSX, by Ebrahim Mayat).
+- Updated Mac OS X build instructions (README-OSX, by Ebrahim 
+  Mayat).
 
 
-0.2.2   2004-10-08  Output level peak meters and other fixes.
+0.2.2  2004-10-08  Output level peak meters and other fixes.
 
 - Minor configure fixes.
 
@@ -616,35 +628,35 @@ ChangeLog
 
 - Icons were added to the engine tab selector context menu.
 
-- Master gain front panel control gets rescaled and now ranges
-  from 0..200, with midpoint at 100 (unit gain).
+- Master gain front panel control gets rescaled and now ranges from 
+0..200, with midpoint at 100 (unit gain).
 
 - Added Mac OS X build instructions (README-OSX, by Ebrahim Mayat).
 
-- Soundfont bank offset option gets its trial time;
-  please note that fluidsynth 1.0.5 is needed to build on this feature,
-  which is being properly detected and only enabled at configure time.
+- Soundfont bank offset option gets its trial time; please note that 
+  fluidsynth 1.0.5 is needed to build on this feature, which is being 
+  properly detected and only enabled at configure time.
 
-- Output level peak meters are now featured as an option,
-  which must be explicitly enabled on setup for those to show up;
-  in addition, overall GUI refresh cycle period has been reduced from
-  200 to 100 msec.
+- Output level peak meters are now featured as an option, which must 
+  be explicitly enabled on setup for those to show up; in addition, 
+  overall GUI refresh cycle period has been reduced from 200 to 100 
+  msec.
 
-- Top level sub-windows are now always raised and set with active focus
-  when shown to visibility.
+- Top level sub-windows are now always raised and set with active 
+  focus when shown to visibility.
 
 
-0.2.1   2004-04-30  Important internal fixes.
+0.2.1  2004-04-30  Important internal fixes.
 
-- Channels window reset when switching engines isn't destructive
-  anymore; also reverb and chorus activation were not being correctly
+- Channels window reset when switching engines isn't destructive 
+  anymore; also reverb and chorus activation were not being correctly 
   updated; these were quite annoying bugs, now fixed.
 
-- Corrected MIDI/Audio driver settings that were being obliterated from
-  the setup dialog option lists; this was causing the impossibility to
-  choose an appropriate driver on certain systems where "alsa_seq" or
-  "jack" may not be available by default (e.g. MacOSX, thanks to Ebrahim
-  Mayat).
+- Corrected MIDI/Audio driver settings that were being obliterated 
+  from the setup dialog option lists; this was causing the 
+  impossibility to choose an appropriate driver on certain systems 
+  where "alsa_seq" or "jack" may not be available by default (e.g. 
+  MacOSX, thanks to Ebrahim Mayat).
 
 - The dash (-) is now a legal character for preset names.
 
@@ -652,67 +664,73 @@ ChangeLog
 
 - Delete preset confirmation warning message.
 
-- Messages window pops up whenever a critical error message is issued.
+- Messages window pops up whenever a critical error message is 
+  issued.
 
 
-0.2.0   2004-03-21  Multi-instance comes to town.
+0.2.0  2004-03-21  Multi-instance comes to town.
 
-- Multiple fluidsynth engines can now be maintained, with different
-  settings, MIDI and Audio drivers, and more interestingly distinct
-  soundfont stacks. The main user interface has been minimally
-  improved to accomodate this new paradigm, but whole application
+- Multiple fluidsynth engines can now be maintained, with different 
+  settings, MIDI and Audio drivers, and more interestingly distinct 
+  soundfont stacks. The main user interface has been minimally 
+  improved to accomodate this new paradigm, but whole application 
   internals have been massively rewritten.
 
 
-0.1.3   2004-02-29  More work in progress.
+0.1.3  2004-02-29  More work in progress.
 
 - Message window line limit is now a configurable option on setup.
 
-- ALSA sequencer client name may now be internally set; not of great use
-  for now, but it opens the ground for future workings.
+- ALSA sequencer client name may now be internally set; not of great 
+  use for now, but it opens the ground for future workings.
 
 - JACK multiple output port mode may now be configured on setup.
 
 - Makefile.cvs makes its late entrance on the build toolset.
 
 
-0.1.2   2004-02-16  Work in progress.
+0.1.2  2004-02-16  Work in progress.
 
-- Messages and Channels pop-up windows are not hinted as dialogs anymore
-  and thus are not centered relative to parent main window which has become
-  a strict Qt dialog widget behaviour (as of Qt 3.3+).
+- Messages and Channels pop-up windows are not hinted as dialogs 
+  anymore and thus are not centered relative to parent main window 
+  which has become a strict Qt dialog widget behaviour (as of Qt 
+  3.3+).
 
-- Soundfont setup dialog changed to open and load multiple files at once.
+- Soundfont setup dialog changed to open and load multiple files at 
+  once.
 
-- New setup option on wether all child windows are kept on top of the main
-  window, or otherwise floating with probable taskbar entries of their own.
+- New setup option on wether all child windows are kept on top
+  of the main window, or otherwise floating with probable taskbar
+  entries of their own.
 
-- Setup changes that are only effective next time the program is run gets
-  an informational message box shown to the user.
+- Setup changes that are only effective next time the program is
+  run gets an informational message box shown to the user.
 
 
-0.1.1   2004-01-22  Yet more minor bugfixes.
+0.1.1  2004-01-22  Yet more minor bugfixes.
 
 - Messages color retouching.
 
 - Popup menus memory leak fixed.
 
 
-0.1.0   2003-12-29  Channel preset breakout.
+0.1.0  2003-12-29  Channel preset breakout.
 
-- Added channels breakout and program preset view and edit windows,
-  including a simple preset/profile management feature where the complete
-  channel program assignments may be referenced and saved by name.
+- Added channels breakout and program preset view and edit windows, 
+  including a simple preset/profile management feature where the 
+  complete channel program assignments may be referenced and saved
+  by name.
 
-- Drag and dropped soundfont files are now accepted for immediate load.
+- Drag and dropped soundfont files are now accepted for immediate 
+  load.
 
 - Messages window fallback fix.
 
-- Standard output/error stream capture setup option; handler retouched
-  to be line buffer oriented.
+- Standard output/error stream capture setup option; handler 
+  retouched to be line buffer oriented.
 
 
-0.0.3   2003-12-12  Few tiny changes so far.
+0.0.3  2003-12-12  Few tiny changes so far.
 
 - Single shot timer and restart code path had a graceful rewrite.
 
@@ -720,15 +738,15 @@ ChangeLog
 
 - Configure time detection of 'round' library function availability.
 
-- Player drag and drop feature has been prepared, but somehow the
+- Player drag and drop feature has been prepared, but somehow the 
   internal MIDI player function is still broken.
 
 
-0.0.2   2003-11-26  Minor bugfixes.
+0.0.2  2003-11-26  Minor bugfixes.
 
-- Gain, Reverb and Chorus front-panel settings are now loosely scaled
-  and properly clipped; this is a first attempt to avoid unstable sound
-  feedback behaviour namely on Reverb.
+- Gain, Reverb and Chorus front-panel settings are now loosely 
+  scaled and properly clipped; this is a first attempt to avoid 
+  unstable sound feedback behaviour namely on Reverb.
 
 - MIDI input status led stickyness have been fixed.
 
@@ -737,5 +755,5 @@ ChangeLog
 - New configure time argument debugging support (--enable-debug).
 
 
-0.0.1   2003-11-15  Primordial release.
+0.0.1  2003-11-15  Primordial release.
 
