@@ -385,8 +385,8 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="130"/>
-        <location filename="../qsynthMainForm.cpp" line="1254"/>
-        <location filename="../qsynthMainForm.cpp" line="1349"/>
+        <location filename="../qsynthMainForm.cpp" line="1265"/>
+        <location filename="../qsynthMainForm.cpp" line="1360"/>
         <source>Re&amp;start</source>
         <translation>Ре&amp;старт</translation>
     </message>
@@ -545,7 +545,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="850"/>
-        <location filename="../qsynthMainForm.cpp" line="1301"/>
+        <location filename="../qsynthMainForm.cpp" line="1312"/>
         <source>&amp;Quit</source>
         <translation>И&amp;злаз</translation>
     </message>
@@ -556,7 +556,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="866"/>
-        <location filename="../qsynthMainForm.cpp" line="1295"/>
+        <location filename="../qsynthMainForm.cpp" line="1306"/>
         <source>&amp;Options...</source>
         <translation>&amp;Опције…</translation>
     </message>
@@ -567,7 +567,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="882"/>
-        <location filename="../qsynthMainForm.cpp" line="1291"/>
+        <location filename="../qsynthMainForm.cpp" line="1302"/>
         <source>&amp;Messages</source>
         <translation>Порук&amp;е</translation>
     </message>
@@ -588,7 +588,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="935"/>
-        <location filename="../qsynthMainForm.cpp" line="1259"/>
+        <location filename="../qsynthMainForm.cpp" line="1270"/>
         <source>&amp;Panic</source>
         <translation>&amp;Узбуна</translation>
     </message>
@@ -599,7 +599,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="948"/>
-        <location filename="../qsynthMainForm.cpp" line="1256"/>
+        <location filename="../qsynthMainForm.cpp" line="1267"/>
         <source>&amp;Reset</source>
         <translation>&amp;Ресет</translation>
     </message>
@@ -610,8 +610,8 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="961"/>
-        <location filename="../qsynthMainForm.cpp" line="1268"/>
-        <location filename="../qsynthMainForm.cpp" line="1741"/>
+        <location filename="../qsynthMainForm.cpp" line="1279"/>
+        <location filename="../qsynthMainForm.cpp" line="1752"/>
         <source>Set&amp;up...</source>
         <translation>&amp;Поставке…</translation>
     </message>
@@ -622,7 +622,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="977"/>
-        <location filename="../qsynthMainForm.cpp" line="1263"/>
+        <location filename="../qsynthMainForm.cpp" line="1274"/>
         <source>&amp;Channels</source>
         <translation>&amp;Канали</translation>
     </message>
@@ -664,9 +664,9 @@ in the context menu of the system tray icon.</source>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="779"/>
-        <location filename="../qsynthMainForm.cpp" line="1478"/>
-        <location filename="../qsynthMainForm.cpp" line="2227"/>
-        <location filename="../qsynthMainForm.cpp" line="2257"/>
+        <location filename="../qsynthMainForm.cpp" line="1489"/>
+        <location filename="../qsynthMainForm.cpp" line="2238"/>
+        <location filename="../qsynthMainForm.cpp" line="2268"/>
         <source>Warning</source>
         <translation>Упозорење</translation>
     </message>
@@ -677,7 +677,7 @@ in the context menu of the system tray icon.</source>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="782"/>
-        <location filename="../qsynthMainForm.cpp" line="1481"/>
+        <location filename="../qsynthMainForm.cpp" line="1492"/>
         <source>Are you sure?</source>
         <translation>Да ли сте сигурни?</translation>
     </message>
@@ -693,7 +693,7 @@ in the context menu of the system tray icon.</source>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="901"/>
-        <location filename="../qsynthMainForm.cpp" line="1917"/>
+        <location filename="../qsynthMainForm.cpp" line="1928"/>
         <source>Failed to load the soundfont: &quot;%1&quot;.</source>
         <translation>Није успело учитавање звукотеке: „%1“.</translation>
     </message>
@@ -708,65 +708,65 @@ in the context menu of the system tray icon.</source>
         <translation>Нисам успео да одсвирам миди датотеку: „%1“.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1129"/>
+        <location filename="../qsynthMainForm.cpp" line="1140"/>
         <source>Error</source>
         <translation>Грешка</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1237"/>
+        <location filename="../qsynthMainForm.cpp" line="1248"/>
         <source>&amp;Hide</source>
         <translation>&amp;Сакриј</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1233"/>
+        <location filename="../qsynthMainForm.cpp" line="1244"/>
         <source>Mi&amp;nimize</source>
         <translation>У&amp;мањи</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1238"/>
+        <location filename="../qsynthMainForm.cpp" line="1249"/>
         <source>S&amp;how</source>
         <translation>При&amp;кажи</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1234"/>
+        <location filename="../qsynthMainForm.cpp" line="1245"/>
         <source>Rest&amp;ore</source>
         <translation>Вра&amp;ти</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1246"/>
-        <location filename="../qsynthMainForm.cpp" line="1735"/>
+        <location filename="../qsynthMainForm.cpp" line="1257"/>
+        <location filename="../qsynthMainForm.cpp" line="1746"/>
         <source>&amp;New engine...</source>
         <translation>&amp;Нови покретач…</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1248"/>
-        <location filename="../qsynthMainForm.cpp" line="1737"/>
+        <location filename="../qsynthMainForm.cpp" line="1259"/>
+        <location filename="../qsynthMainForm.cpp" line="1748"/>
         <source>&amp;Delete</source>
         <translation>&amp;Уклони</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1254"/>
-        <location filename="../qsynthMainForm.cpp" line="1351"/>
+        <location filename="../qsynthMainForm.cpp" line="1265"/>
+        <location filename="../qsynthMainForm.cpp" line="1362"/>
         <source>&amp;Start</source>
         <translation>&amp;Старт</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1274"/>
+        <location filename="../qsynthMainForm.cpp" line="1285"/>
         <source>Engines</source>
         <translation>Покретачи</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1479"/>
+        <location filename="../qsynthMainForm.cpp" line="1490"/>
         <source>Delete fluidsynth engine:</source>
         <translation>Уклони флуид-синт покретач:</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1876"/>
+        <location filename="../qsynthMainForm.cpp" line="1887"/>
         <source>Creating synthesizer engine</source>
         <translation>Створи покретач синтисајзера</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1880"/>
+        <location filename="../qsynthMainForm.cpp" line="1891"/>
         <source>Failed to create the synthesizer.
 
 Cannot continue without it.</source>
@@ -775,22 +775,22 @@ Cannot continue without it.</source>
 Не могу да радим без њега.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1911"/>
+        <location filename="../qsynthMainForm.cpp" line="1922"/>
         <source>Loading soundfont: &quot;%1&quot; (bank offset %2)</source>
         <translation>Учитавање звукотеке: „%1“ (офсет банке %2)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1924"/>
+        <location filename="../qsynthMainForm.cpp" line="1935"/>
         <source>Failed to set bank offset (%1) for soundfont: &quot;%2&quot;.</source>
         <translation>Нисам успео да поставим офсет банке (%1) за звукотеку: „%2“.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1934"/>
+        <location filename="../qsynthMainForm.cpp" line="1945"/>
         <source>Creating audio driver (%1)</source>
         <translation>Стварање звучног посредника (%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1948"/>
+        <location filename="../qsynthMainForm.cpp" line="1959"/>
         <source>Failed to create the audio driver (%1).
 
 Cannot continue without it.</source>
@@ -799,12 +799,12 @@ Cannot continue without it.</source>
 Не могу да радим без њега.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1961"/>
+        <location filename="../qsynthMainForm.cpp" line="1972"/>
         <source>Creating MIDI router (%1)</source>
         <translation>Стварање миди-рутера (%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1970"/>
+        <location filename="../qsynthMainForm.cpp" line="1981"/>
         <source>Failed to create the MIDI input router (%1).
 
 No MIDI input will be available.</source>
@@ -813,12 +813,12 @@ No MIDI input will be available.</source>
 Миди-улази неће бити доступни.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1978"/>
+        <location filename="../qsynthMainForm.cpp" line="1989"/>
         <source>Creating MIDI driver (%1)</source>
         <translation>Стварање миди посредника (%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1987"/>
+        <location filename="../qsynthMainForm.cpp" line="1998"/>
         <source>Failed to create the MIDI driver (%1).
 
 No MIDI input will be available.</source>
@@ -841,12 +841,12 @@ Continuing without a player.</source>
 Настављам без њега.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1996"/>
+        <location filename="../qsynthMainForm.cpp" line="2007"/>
         <source>Creating server</source>
         <translation>Стварање сервера</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2030"/>
+        <location filename="../qsynthMainForm.cpp" line="2041"/>
         <source>Failed to create the server.
 
 Continuing without it.</source>
@@ -855,7 +855,7 @@ Continuing without it.</source>
 Не могу да радим без њега.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2034"/>
+        <location filename="../qsynthMainForm.cpp" line="2045"/>
         <source>Server mode disabled.
 
 Continuing without it.</source>
@@ -864,95 +864,95 @@ Continuing without it.</source>
 Настављам без њега.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2068"/>
+        <location filename="../qsynthMainForm.cpp" line="2079"/>
         <source>Synthesizer engine started.</source>
         <translation>Покретач синтисајзера је у употреби.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2111"/>
+        <location filename="../qsynthMainForm.cpp" line="2122"/>
         <source>Destroying server</source>
         <translation>Уништавање сервера</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2119"/>
+        <location filename="../qsynthMainForm.cpp" line="2130"/>
         <source>Stopping MIDI player</source>
         <translation>Заустављање миди-свирача</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2121"/>
+        <location filename="../qsynthMainForm.cpp" line="2132"/>
         <source>Waiting for MIDI player to terminate</source>
         <translation>Чекам да се заустави миди-свирач</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="911"/>
-        <location filename="../qsynthMainForm.cpp" line="2123"/>
+        <location filename="../qsynthMainForm.cpp" line="2134"/>
         <source>Destroying MIDI player</source>
         <translation>Уништавање миди-свирача</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2131"/>
+        <location filename="../qsynthMainForm.cpp" line="2142"/>
         <source>Destroying MIDI driver</source>
         <translation>Уништавање миди-посредника</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2135"/>
+        <location filename="../qsynthMainForm.cpp" line="2146"/>
         <source>Destroying MIDI router</source>
         <translation>Уништавање миди-рутера</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2142"/>
+        <location filename="../qsynthMainForm.cpp" line="2153"/>
         <source>Destroying audio driver</source>
         <translation>Уништавање звучног посредника</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2165"/>
+        <location filename="../qsynthMainForm.cpp" line="2176"/>
         <source>Unloading soundfont: &quot;%1&quot; (SFID=%2)</source>
         <translation>Избацивање звукотеке: „%1“ (З-ИБ=%2)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2169"/>
+        <location filename="../qsynthMainForm.cpp" line="2180"/>
         <source>Failed to unload the soundfont: &quot;%1&quot;.</source>
         <translation>Није успело избацивање звукотеке: „%1“.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2176"/>
+        <location filename="../qsynthMainForm.cpp" line="2187"/>
         <source>Destroying synthesizer engine</source>
         <translation>Уништавање покретача синтисајзера</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2180"/>
+        <location filename="../qsynthMainForm.cpp" line="2191"/>
         <source>Synthesizer engine terminated.</source>
         <translation>Покретач синтисајзера је заустављен.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2228"/>
+        <location filename="../qsynthMainForm.cpp" line="2239"/>
         <source>New settings will be effective after
 restarting all fluidsynth engines.</source>
         <translation>Нова подешавања ће се применити само по 
 поновном покретању флуид-синт покретача.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2230"/>
-        <location filename="../qsynthMainForm.cpp" line="2261"/>
+        <location filename="../qsynthMainForm.cpp" line="2241"/>
+        <location filename="../qsynthMainForm.cpp" line="2272"/>
         <source>Please note that this operation may cause
 temporary MIDI and Audio disruption.</source>
         <translation>Ова радња може довести до привремених 
 миди и звучних поремећаја у раду.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2232"/>
+        <location filename="../qsynthMainForm.cpp" line="2243"/>
         <source>Do you want to restart all engines now?</source>
         <translation>Желите ли да поново покренете све покретаче?</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2258"/>
+        <location filename="../qsynthMainForm.cpp" line="2269"/>
         <source>New settings will be effective after
 restarting the fluidsynth engine:</source>
         <translation>Нова подешавања ће се применити само по 
 поновном покретању флуид-синт покретача:</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2263"/>
+        <location filename="../qsynthMainForm.cpp" line="2274"/>
         <source>Do you want to restart the engine now?</source>
         <translation>Желите ли да поново покренете овај покретач?</translation>
     </message>
