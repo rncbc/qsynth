@@ -1077,12 +1077,17 @@ void qsynthMainForm::processStdoutBuffer (void)
 {
 	const int iLength = m_sStdoutBuffer.lastIndexOf('\n');
 	if (iLength > 0) {
-		const QString& sTemp = m_sStdoutBuffer.left(iLength);
+		QStringListIterator iter(m_sStdoutBuffer.left(iLength).split('\n'));
+		while (iter.hasNext()) {
+			const QString& sTemp = iter.next();
+			if (!sTemp.isEmpty())
+			#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+				appendMessagesText(sTemp.trimmed());
+			#else
+				appendMessagesText(sTemp);
+			#endif
+		}
 		m_sStdoutBuffer.remove(0, iLength + 1);
-		QStringList list = sTemp.split('\n');
-		QStringListIterator iter(list);
-		while (iter.hasNext())
-			appendMessagesText(iter.next());
 	}
 }
 
@@ -1090,8 +1095,14 @@ void qsynthMainForm::processStdoutBuffer (void)
 // Stdout flusher -- show up any unfinished line...
 void qsynthMainForm::flushStdoutBuffer (void)
 {
+	processStdoutBuffer();
+
 	if (!m_sStdoutBuffer.isEmpty()) {
-		processStdoutBuffer();
+	#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+		appendMessagesText(m_sStdoutBuffer.trimmed());
+	#else
+		appendMessagesText(m_sStdoutBuffer);
+	#endif
 		m_sStdoutBuffer.clear();
 	}
 }
