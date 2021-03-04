@@ -765,11 +765,10 @@ void qsynthSetupForm::stabilizeForm (void)
 		m_ui.AudioChannelsSpinBox->setEnabled(bJackMultiEnabled);
 		m_ui.AudioChannelsSpinBox->setSingleStep(2);
 		m_ui.AudioChannelsSpinBox->setMinimum(2);
-
 		m_ui.AudioGroupsTextLabel->setEnabled(bJackMultiEnabled);
 		m_ui.AudioGroupsSpinBox->setEnabled(bJackMultiEnabled);
-		m_ui.AudioGroupsSpinBox->setSingleStep(2);
-		m_ui.AudioGroupsSpinBox->setMinimum(2);
+	//	m_ui.AudioGroupsSpinBox->setSingleStep(2);
+	//	m_ui.AudioGroupsSpinBox->setMinimum(2);
 	}
 
 	m_ui.SoundFontOpenPushButton->setEnabled(true);
