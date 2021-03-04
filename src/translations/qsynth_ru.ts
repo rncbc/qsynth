@@ -1927,7 +1927,7 @@ Do you want to save the changes?</source>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="615"/>
-        <location filename="../qsynthSetupForm.cpp" line="883"/>
+        <location filename="../qsynthSetupForm.cpp" line="882"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
@@ -1942,53 +1942,53 @@ Do you want to save the changes?</source>
         <translation>Вы хотите учесть изменения?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="834"/>
+        <location filename="../qsynthSetupForm.cpp" line="833"/>
         <source>Remove</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="839"/>
+        <location filename="../qsynthSetupForm.cpp" line="838"/>
         <source>Move Up</source>
         <translation>Переместить выше</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="843"/>
+        <location filename="../qsynthSetupForm.cpp" line="842"/>
         <source>Move Down</source>
         <translation>Переместить ниже</translation>
     </message>
     <message>
+        <location filename="../qsynthSetupForm.cpp" line="867"/>
         <location filename="../qsynthSetupForm.cpp" line="868"/>
-        <location filename="../qsynthSetupForm.cpp" line="869"/>
         <source>Soundfont files</source>
         <translation>Файлы SF2</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="913"/>
+        <location filename="../qsynthSetupForm.cpp" line="912"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="914"/>
+        <location filename="../qsynthSetupForm.cpp" line="913"/>
         <source>Failed to add soundfont file</source>
         <translation>Не удалось добавить файл SF2</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="916"/>
+        <location filename="../qsynthSetupForm.cpp" line="915"/>
         <source>Please, check for a valid soundfont file.</source>
         <translation>Проверьте целостность файла SF2</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="824"/>
+        <location filename="../qsynthSetupForm.cpp" line="823"/>
         <source>Open...</source>
         <translation>Открыть...</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="884"/>
+        <location filename="../qsynthSetupForm.cpp" line="883"/>
         <source>Soundfont file already on list</source>
         <translation>Этот файл SF2 уже есть в списке</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="886"/>
+        <location filename="../qsynthSetupForm.cpp" line="885"/>
         <source>Add anyway?</source>
         <translation>Всё равно добавить?</translation>
     </message>
@@ -2075,7 +2075,7 @@ Do you want to save the changes?</source>
         <translation>Параметры движка</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="829"/>
+        <location filename="../qsynthSetupForm.cpp" line="828"/>
         <source>Edit</source>
         <translation>Изменить</translation>
     </message>

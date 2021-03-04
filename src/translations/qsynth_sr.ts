@@ -2079,7 +2079,7 @@ Do you want to save the changes?</source>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="615"/>
-        <location filename="../qsynthSetupForm.cpp" line="883"/>
+        <location filename="../qsynthSetupForm.cpp" line="882"/>
         <source>Warning</source>
         <translation>Упозорење</translation>
     </message>
@@ -2094,58 +2094,58 @@ Do you want to save the changes?</source>
         <translation>Желите ли да примените ове измене?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="824"/>
+        <location filename="../qsynthSetupForm.cpp" line="823"/>
         <source>Open...</source>
         <translation>Отвори…</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="829"/>
+        <location filename="../qsynthSetupForm.cpp" line="828"/>
         <source>Edit</source>
         <translation>Уреди</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="834"/>
+        <location filename="../qsynthSetupForm.cpp" line="833"/>
         <source>Remove</source>
         <translation>Уклони</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="839"/>
+        <location filename="../qsynthSetupForm.cpp" line="838"/>
         <source>Move Up</source>
         <translation>Подигни</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="843"/>
+        <location filename="../qsynthSetupForm.cpp" line="842"/>
         <source>Move Down</source>
         <translation>Спусти</translation>
     </message>
     <message>
+        <location filename="../qsynthSetupForm.cpp" line="867"/>
         <location filename="../qsynthSetupForm.cpp" line="868"/>
-        <location filename="../qsynthSetupForm.cpp" line="869"/>
         <source>Soundfont files</source>
         <translation>Звукотеке</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="884"/>
+        <location filename="../qsynthSetupForm.cpp" line="883"/>
         <source>Soundfont file already on list</source>
         <translation>Звукотека је већ на списку</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="886"/>
+        <location filename="../qsynthSetupForm.cpp" line="885"/>
         <source>Add anyway?</source>
         <translation>Да ли да је додам упркос томе?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="913"/>
+        <location filename="../qsynthSetupForm.cpp" line="912"/>
         <source>Error</source>
         <translation>Грешка</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="914"/>
+        <location filename="../qsynthSetupForm.cpp" line="913"/>
         <source>Failed to add soundfont file</source>
         <translation>Нисам успео да додам звукотеку</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="916"/>
+        <location filename="../qsynthSetupForm.cpp" line="915"/>
         <source>Please, check for a valid soundfont file.</source>
         <translation>Потражите ваљану звукотеку.</translation>
     </message>
