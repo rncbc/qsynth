@@ -6,7 +6,8 @@ ChangeLog
 
 GIT HEAD
 
-- Bumped version micro/dot number into the next develop cycle.
+- Possible fix to the even number of audio channels not playing back
+  through JACK when audio group number is set to 2 (GH #37).
 
 
 0.9.1  2021-02-07  A Winter'21 Release.
