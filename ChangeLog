@@ -4,6 +4,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Incremented micro-version to the next develop season.
+
+
 0.9.2  2021-03-14  An End-of-Winter'21 Release.
 
 - Possible fix to the even number of audio channels not playing back

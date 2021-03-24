@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(qsynth
-  VERSION 0.9.2
+  VERSION 0.9.3
   DESCRIPTION "A fluidsynth Qt GUI Interface"
   LANGUAGES C CXX)
 
