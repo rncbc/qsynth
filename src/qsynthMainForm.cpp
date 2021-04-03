@@ -99,6 +99,112 @@ static int g_fdStdout[2] = { QSYNTH_FDNIL, QSYNTH_FDNIL };
 
 
 //-------------------------------------------------------------------------
+// Fix deprecated Reverb/Chorus API (FluidSynth >= 2.2.0).
+//
+#if (FLUIDSYNTH_VERSION_MAJOR >= 2 && FLUIDSYNTH_VERSION_MINOR >= 2) || (FLUIDSYNTH_VERSION_MAJOR > 2)
+
+static void qsynth_set_reverb_on(fluid_synth_t *synth, int on)
+	{ ::fluid_synth_reverb_on(synth, 0, on); }
+
+static void qsynth_set_reverb (
+	fluid_synth_t *synth, double roomsize, double damp, double width, double level )
+{
+	::fluid_synth_set_reverb_group_roomsize(synth, 0, roomsize);
+	::fluid_synth_set_reverb_group_damp(synth, 0, damp);
+	::fluid_synth_set_reverb_group_width(synth, 0, width);
+	::fluid_synth_set_reverb_group_level(synth, 0, level);
+}
+
+static void qsynth_get_reverb (
+	fluid_synth_t *synth, double *roomsize, double *damp, double *width, double *level )
+{
+	::fluid_synth_get_reverb_group_roomsize(synth, 0, roomsize);
+	::fluid_synth_get_reverb_group_damp(synth, 0, damp);
+	::fluid_synth_get_reverb_group_width(synth, 0, width);
+	::fluid_synth_get_reverb_group_level(synth, 0, level);
+}
+
+static void qsynth_set_chorus_on(fluid_synth_t *synth, int on)
+	{ ::fluid_synth_chorus_on(synth, 0, on); }
+
+static void qsynth_set_chorus (
+	fluid_synth_t *synth, int nr, double level, double speed, double depth, int type )
+{
+	::fluid_synth_set_chorus_group_nr(synth, 0, nr);
+	::fluid_synth_set_chorus_group_level(synth, 0, level);
+	::fluid_synth_set_chorus_group_speed(synth, 0, speed);
+	::fluid_synth_set_chorus_group_depth(synth, 0, depth);
+	::fluid_synth_set_chorus_group_type(synth, 0, type);
+}
+
+static void qsynth_get_chorus (
+	fluid_synth_t *synth, int *nr, double *level, double *speed, double *depth, int *type )
+{
+	::fluid_synth_get_chorus_group_nr(synth, 0, nr);
+	::fluid_synth_get_chorus_group_level(synth, 0, level);
+	::fluid_synth_get_chorus_group_speed(synth, 0, speed);
+	::fluid_synth_get_chorus_group_depth(synth, 0, depth);
+	::fluid_synth_get_chorus_group_type(synth, 0, type);
+}
+
+#else
+
+static void qsynth_set_reverb_on(fluid_synth_t *synth, int on)
+	{ ::fluid_synth_reverb_on(synth, 0, on); }
+
+static void qsynth_set_reverb (
+	fluid_synth_t *synth, double roomsize, double damp, double width, double level )
+{
+	::fluid_synth_set_reverb_group_roomsize(synth, 0, roomsize);
+	::fluid_synth_set_reverb_group_damp(synth, 0, damp);
+	::fluid_synth_set_reverb_group_width(synth, 0, width);
+	::fluid_synth_set_reverb_group_level(synth, 0, level);
+}
+
+static void qsynth_get_reverb (
+	fluid_synth_t *synth, double *roomsize, double *damp, double *width, double *level )
+{
+	::fluid_synth_get_reverb_group_roomsize(synth, 0, roomsize);
+	::fluid_synth_get_reverb_group_damp(synth, 0, damp);
+	::fluid_synth_get_reverb_group_width(synth, 0, width);
+	::fluid_synth_get_reverb_group_level(synth, 0, level);
+}
+
+static void qsynth_set_chorus_on(fluid_synth_t *synth, int on)
+	{ ::fluid_synth_chorus_on(synth, 0, on); }
+
+static void qsynth_set_chorus (
+	fluid_synth_t *synth, int nr, double level, double speed, double depth, int type )
+{
+	::fluid_synth_set_chorus_group_nr(synth, 0, nr);
+	::fluid_synth_set_chorus_group_level(synth, 0, level);
+	::fluid_synth_set_chorus_group_speed(synth, 0, speed);
+	::fluid_synth_set_chorus_group_depth(synth, 0, depth);
+	::fluid_synth_set_chorus_group_type(synth, 0, type);
+}
+
+static void qsynth_get_chorus (
+	fluid_synth_t *synth, int *nr, double *level, double *speed, double *depth, int *type )
+{
+	*nr = ::fluid_synth_get_chorus_nr(synth);
+	*level = ::fluid_synth_get_chorus_level(synth);
+#ifdef CONFIG_FLUID_SYNTH_GET_CHORUS_SPEED
+	*speed = ::fluid_synth_get_chorus_speed(synth);
+#else
+	*speed = ::fluid_synth_get_chorus_speed_Hz(synth);
+#endif
+#ifdef CONFIG_FLUID_SYNTH_GET_CHORUS_DEPTH
+	*depth = ::fluid_synth_get_chorus_depth(synth);
+#else
+	*depth = ::fluid_synth_get_chorus_depth_ms(synth);
+#endif
+	*type = ::fluid_synth_get_chorus_type(synth);
+}
+
+#endif
+
+
+//-------------------------------------------------------------------------
 // UNIX Signal handling support stuff.
 
 #ifdef HAVE_SIGNAL_H
@@ -2317,7 +2423,7 @@ void qsynthMainForm::setEngineReverbOn ( qsynthEngine *pEngine, bool bActive )
 		+ ": fluid_synth_set_reverb_on("
 		+ QString::number((int) bActive) + ")", "#99cc33");
 
-	::fluid_synth_set_reverb_on(pEngine->pSynth, (int) bActive);
+	qsynth_set_reverb_on(pEngine->pSynth, (int) bActive);
 }
 
 void qsynthMainForm::setEngineReverb ( qsynthEngine *pEngine,
@@ -2330,7 +2436,7 @@ void qsynthMainForm::setEngineReverb ( qsynthEngine *pEngine,
 		+ QString::number(fWidth) + ","
 		+ QString::number(fLevel) + ")", "#99cc66");
 
-	::fluid_synth_set_reverb(pEngine->pSynth, fRoom, fDamp, fWidth, fLevel);
+	qsynth_set_reverb(pEngine->pSynth, fRoom, fDamp, fWidth, fLevel);
 }
 
 
@@ -2341,7 +2447,7 @@ void qsynthMainForm::setEngineChorusOn ( qsynthEngine *pEngine, bool bActive )
 		+ ": fluid_synth_set_chorus_on("
 		+ QString::number((int) bActive) + ")", "#cc9933");
 
-	::fluid_synth_set_chorus_on(pEngine->pSynth, (int) bActive);
+	qsynth_set_chorus_on(pEngine->pSynth, (int) bActive);
 }
 
 void qsynthMainForm::setEngineChorus ( qsynthEngine *pEngine,
@@ -2355,7 +2461,7 @@ void qsynthMainForm::setEngineChorus ( qsynthEngine *pEngine,
 		+ QString::number(fDepth) + ","
 		+ QString::number(iType)  + ")", "#cc9966");
 
-	::fluid_synth_set_chorus(pEngine->pSynth, iNr, fLevel, fSpeed, fDepth, iType);
+	qsynth_set_chorus(pEngine->pSynth, iNr, fLevel, fSpeed, fDepth, iType);
 }
 
 
@@ -2748,10 +2854,13 @@ void qsynthMainForm::refreshReverb (void)
 	if (pEngine->pSynth == nullptr)
 		return;
 
-	const double fReverbRoom  = ::fluid_synth_get_reverb_roomsize(pEngine->pSynth);
-	const double fReverbDamp  = ::fluid_synth_get_reverb_damp(pEngine->pSynth);
-	const double fReverbWidth = ::fluid_synth_get_reverb_width(pEngine->pSynth);
-	const double fReverbLevel = ::fluid_synth_get_reverb_level(pEngine->pSynth);
+	double fReverbRoom  = 0.0;
+	double fReverbDamp  = 0.0;
+	double fReverbWidth = 0.0;
+	double fReverbLevel = 0.0;
+
+	qsynth_get_reverb(pEngine->pSynth,
+		&fReverbRoom, &fReverbDamp, &fReverbWidth, &fReverbLevel);
 
 	qsynth_set_range_value(
 		m_ui.ReverbRoomDial, QSYNTH_REVERB_ROOM_SCALE, fReverbRoom);
@@ -2773,19 +2882,14 @@ void qsynthMainForm::refreshChorus (void)
 	if (pEngine->pSynth == nullptr)
 		return;
 
-	const int    iChorusNr    = ::fluid_synth_get_chorus_nr(pEngine->pSynth);
-	const double fChorusLevel = ::fluid_synth_get_chorus_level(pEngine->pSynth);
-#ifdef CONFIG_FLUID_SYNTH_GET_CHORUS_SPEED
-	const double fChorusSpeed = ::fluid_synth_get_chorus_speed(pEngine->pSynth);
-#else
-	const double fChorusSpeed = ::fluid_synth_get_chorus_speed_Hz(pEngine->pSynth);
-#endif
-#ifdef CONFIG_FLUID_SYNTH_GET_CHORUS_DEPTH
-	const double fChorusDepth = ::fluid_synth_get_chorus_depth(pEngine->pSynth);
-#else
-	const double fChorusDepth = ::fluid_synth_get_chorus_depth_ms(pEngine->pSynth);
-#endif
-	const int    iChorusType  = ::fluid_synth_get_chorus_type(pEngine->pSynth);
+	int    iChorusNr    = 0;
+	double fChorusLevel = 0.0;
+	double fChorusSpeed = 0.0;
+	double fChorusDepth = 0.0;
+	int    iChorusType  = 0;
+
+	qsynth_get_chorus(pEngine->pSynth,
+		&iChorusNr, &fChorusLevel, &fChorusSpeed, &fChorusDepth, &iChorusType);
 
 	m_ui.ChorusNrDial->setValue(iChorusNr);
 	qsynth_set_range_value(

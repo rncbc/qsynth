@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- Fix deprecated Reverb/Chorus API (FluidSynth >= 2.2.0).
+
 - All packaging builds switching to CMake. (EXPERIMENTAL)
 
 
