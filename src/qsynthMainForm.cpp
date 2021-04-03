@@ -150,37 +150,37 @@ static void qsynth_get_chorus (
 #else
 
 static void qsynth_set_reverb_on(fluid_synth_t *synth, int on)
-	{ ::fluid_synth_reverb_on(synth, 0, on); }
+	{ ::fluid_synth_set_reverb_on(synth, on); }
 
 static void qsynth_set_reverb (
 	fluid_synth_t *synth, double roomsize, double damp, double width, double level )
 {
-	::fluid_synth_set_reverb_group_roomsize(synth, 0, roomsize);
-	::fluid_synth_set_reverb_group_damp(synth, 0, damp);
-	::fluid_synth_set_reverb_group_width(synth, 0, width);
-	::fluid_synth_set_reverb_group_level(synth, 0, level);
+	::fluid_synth_set_reverb_roomsize(synth, roomsize);
+	::fluid_synth_set_reverb_damp(synth, damp);
+	::fluid_synth_set_reverb_width(synth, width);
+	::fluid_synth_set_reverb_level(synth, level);
 }
 
 static void qsynth_get_reverb (
 	fluid_synth_t *synth, double *roomsize, double *damp, double *width, double *level )
 {
-	::fluid_synth_get_reverb_group_roomsize(synth, 0, roomsize);
-	::fluid_synth_get_reverb_group_damp(synth, 0, damp);
-	::fluid_synth_get_reverb_group_width(synth, 0, width);
-	::fluid_synth_get_reverb_group_level(synth, 0, level);
+	*roomsize = ::fluid_synth_get_reverb_roomsize(synth);
+	*damp = ::fluid_synth_get_reverb_damp(synth);
+	*width = ::fluid_synth_get_reverb_width(synth);
+	*level = ::fluid_synth_get_reverb_level(synth);
 }
 
 static void qsynth_set_chorus_on(fluid_synth_t *synth, int on)
-	{ ::fluid_synth_chorus_on(synth, 0, on); }
+	{ ::fluid_synth_set_chorus_on(synth, on); }
 
 static void qsynth_set_chorus (
 	fluid_synth_t *synth, int nr, double level, double speed, double depth, int type )
 {
-	::fluid_synth_set_chorus_group_nr(synth, 0, nr);
-	::fluid_synth_set_chorus_group_level(synth, 0, level);
-	::fluid_synth_set_chorus_group_speed(synth, 0, speed);
-	::fluid_synth_set_chorus_group_depth(synth, 0, depth);
-	::fluid_synth_set_chorus_group_type(synth, 0, type);
+	::fluid_synth_set_chorus_nr(synth, nr);
+	::fluid_synth_set_chorus_level(synth, level);
+	::fluid_synth_set_chorus_speed(synth, speed);
+	::fluid_synth_set_chorus_depth(synth, depth);
+	::fluid_synth_set_chorus_type(synth, type);
 }
 
 static void qsynth_get_chorus (
