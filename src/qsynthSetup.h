@@ -57,6 +57,7 @@ public:
 	QString sMidiBankSelect;
 	int     iMidiChannels;
 	QString sMidiName;
+	bool    bMidiAutoConnect;
 	QString sAudioDriver;
 	QString sAudioDevice;
 	QString sJackName;

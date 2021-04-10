@@ -104,6 +104,11 @@ void qsynthSetup::realize (void)
 			sMidiKey.toLocal8Bit().data(),
 			sMidiDevice.toLocal8Bit().data());
 	}
+#if FLUIDSYNTH_VERSION_MAJOR >= 2
+	pszKey = (char *) "midi.autoconnect";
+	::fluid_settings_setint(m_pFluidSettings, pszKey,
+		int(bMidiAutoConnect));
+#endif
 
 	if (!sAudioDriver.isEmpty()) {
 		pszKey = (char *) "audio.driver";

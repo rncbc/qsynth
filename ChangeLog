@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- New Setup/MIDI/Auto Connect MIDI inputs option added. (EXPERIMENTAL)
+
 - Fix deprecated Reverb/Chorus API (FluidSynth >= 2.2.0).
 
 - All packaging builds switching to CMake. (EXPERIMENTAL)

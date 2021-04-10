@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2020, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -535,6 +535,7 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	pSetup->iAudioBufCount   = m_settings.value("/AudioBufCount", 2).toInt();
 #endif
 	pSetup->sMidiName        = m_settings.value("/AlsaName", "pid").toString();
+	pSetup->bMidiAutoConnect = m_settings.value("/MidiAutoConnect", true).toBool();
 	pSetup->sJackName        = m_settings.value("/JackName", "qsynth").toString();
 	pSetup->bJackAutoConnect = m_settings.value("/JackAutoConnect", true).toBool();
 	pSetup->bJackMulti       = m_settings.value("/JackMulti", false).toBool();
@@ -655,6 +656,7 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
 	m_settings.setValue("/MidiDevice",       pSetup->sMidiDevice);
 	m_settings.setValue("/MidiChannels",     pSetup->iMidiChannels);
 	m_settings.setValue("/AlsaName",         pSetup->sMidiName);
+	m_settings.setValue("/MidiAutoConnect",  pSetup->bMidiAutoConnect);
 	m_settings.setValue("/MidiBankSelect",   pSetup->sMidiBankSelect);
 	m_settings.setValue("/AudioDriver",      pSetup->sAudioDriver);
 	m_settings.setValue("/AudioDevice",      pSetup->sAudioDevice);

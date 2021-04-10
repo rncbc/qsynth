@@ -268,6 +268,9 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 	QObject::connect(m_ui.MidiDeviceComboBox,
 		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
+	QObject::connect(m_ui.MidiAutoConnectCheckBox,
+		SIGNAL(stateChanged(int)),
+		SLOT(settingsChanged()));
 	QObject::connect(m_ui.MidiChannelsSpinBox,
 		SIGNAL(valueChanged(int)),
 		SLOT(settingsChanged()));
@@ -462,6 +465,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	setComboBoxCurrentText(m_ui.MidiBankSelectComboBox,
 		m_pSetup->sMidiBankSelect);
 	m_ui.MidiChannelsSpinBox->setValue(m_pSetup->iMidiChannels);
+	m_ui.MidiAutoConnectCheckBox->setChecked(m_pSetup->bMidiAutoConnect);
 	m_ui.MidiDumpCheckBox->setChecked(m_pSetup->bMidiDump);
 	m_ui.VerboseCheckBox->setChecked(m_pSetup->bVerbose);
 	// ALSA client identifier.
@@ -582,6 +586,7 @@ void qsynthSetupForm::accept (void)
 		m_pSetup->bMidiDump        = m_ui.MidiDumpCheckBox->isChecked();
 		m_pSetup->bVerbose         = m_ui.VerboseCheckBox->isChecked();
 		m_pSetup->sMidiName        = m_ui.MidiNameComboBox->currentText();
+		m_pSetup->bMidiAutoConnect = m_ui.MidiAutoConnectCheckBox->isChecked();
 		// Audio settings...
 		m_pSetup->sAudioDriver     = m_ui.AudioDriverComboBox->currentText();
 		m_pSetup->sAudioDevice     = m_ui.AudioDeviceComboBox->currentText();
@@ -593,8 +598,8 @@ void qsynthSetupForm::accept (void)
 		m_pSetup->iAudioGroups     = m_ui.AudioGroupsSpinBox->value();
 		m_pSetup->iPolyphony       = m_ui.PolyphonySpinBox->value();
 		m_pSetup->bJackMulti       = m_ui.JackMultiCheckBox->isChecked();
-		m_pSetup->bJackAutoConnect = m_ui.JackAutoConnectCheckBox->isChecked();
 		m_pSetup->sJackName        = m_ui.JackNameComboBox->currentText();
+		m_pSetup->bJackAutoConnect = m_ui.JackAutoConnectCheckBox->isChecked();
 		// Reset dirty flag.
 		m_iDirtyCount = 0;
 	}
@@ -751,7 +756,11 @@ void qsynthSetupForm::stabilizeForm (void)
 	m_ui.MidiBankSelectComboBox->setEnabled(bEnabled);
 	m_ui.MidiNameTextLabel->setEnabled(bEnabled && (bAlsaEnabled | bCoreMidiEnabled));
 	m_ui.MidiNameComboBox->setEnabled(bEnabled && (bAlsaEnabled | bCoreMidiEnabled));
-
+#if FLUIDSYNTH_VERSION_MAJOR >= 2
+	m_ui.MidiAutoConnectCheckBox->setEnabled(bEnabled);
+#else
+	m_ui.MidiAutoConnectCheckBox->setEnabled(false);
+#endif
 	const bool bJackEnabled = (m_ui.AudioDriverComboBox->currentText() == "jack");
 	const bool bJackMultiEnabled = m_ui.JackMultiCheckBox->isChecked();
 	m_ui.AudioDeviceTextLabel->setEnabled(!bJackEnabled);
