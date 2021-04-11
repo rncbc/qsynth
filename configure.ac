@@ -600,6 +600,11 @@ if test "x$ac_cv_fluidsynth2" = "xyes"; then
         AC_DEFINE(CONFIG_NEW_FLUID_SERVER, 1, [Define if new_fluid_server is available.])
      fi
   fi
+  # Check for fluid_free function.
+  AC_CHECK_LIB(fluidsynth, fluid_free, [ac_fluid_free="yes"], [ac_fluid_free="no"])
+  if test "x$ac_fluid_free" = "xyes"; then
+    AC_DEFINE(CONFIG_FLUID_FREE, 1, [Define if fluid_free is available.])
+  fi
 fi
 
 
