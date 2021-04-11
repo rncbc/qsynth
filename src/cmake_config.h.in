@@ -124,4 +124,7 @@
 /* Define if system tray is enabled. */
 #cmakedefine CONFIG_SYSTEM_TRAY @CONFIG_SYSTEM_TRAY@
 
+/* Define if fluid_free function is available. */
+#cmakedefine CONFIG_FLUID_FREE @CONFIG_FLUID_FREE@
+
 #endif /* CONFIG_H */

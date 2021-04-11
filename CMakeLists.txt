@@ -204,6 +204,8 @@ if (FLUIDSYNTH_FOUND)
     if (CONFIG_FLUID_SERVER)
       check_function_exists (new_fluid_server CONFIG_NEW_FLUID_SERVER)
     endif ()
+    # Check for fluid_free function
+    check_function_exists (fluid_free CONFIG_FLUID_FREE)
   endif ()
 else ()
   message (FATAL_ERROR "*** FLUIDSYNTH library not found.")

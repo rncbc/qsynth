@@ -168,7 +168,11 @@ static void qsynth_settings_foreach (
 		(pData->pListItem)->setText(iCol++, QString());
 		(pData->pListItem)->setText(iCol++, QString());
 	#ifdef CONFIG_FLUID_SETTINGS_DUPSTR
+    #ifdef CONFIG_FLUID_FREE
+        ::fluid_free(pszCurrent);
+    #else
 		::free(pszCurrent);
+    #endif
 	#endif
 		break;
 	}}
