@@ -334,7 +334,7 @@
          </item>
         </layout>
        </item>
-       <item row="5" column="0">
+       <item row="5" column="0" colspan="7">
         <widget class="QCheckBox" name="MidiAutoConnectCheckBox">
          <property name="toolTip">
           <string>Attempt to connect the MIDI inputs to the physical ports</string>
