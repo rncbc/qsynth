@@ -143,6 +143,10 @@ void qsynthSetup::realize (void)
 	::fluid_settings_setint(m_pFluidSettings, pszKey, int(bJackMulti));
 #endif
 
+    pszKey = (char *) "audio.wasapi.exclusive-mode";
+    ::fluid_settings_setint(m_pFluidSettings, pszKey,
+        int(bWasapiExclusive));
+
 	if (!sSampleFormat.isEmpty()) {
 		pszKey = (char *) "audio.sample-format";
 		::fluid_settings_setstr(m_pFluidSettings, pszKey,

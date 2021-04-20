@@ -326,6 +326,9 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 	QObject::connect(m_ui.JackNameComboBox,
 		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
+    QObject::connect(m_ui.WasapiExclusiveCheckBox,
+        SIGNAL(stateChanged(int)),
+        SLOT(settingsChanged()));
 	QObject::connect(m_ui.SoundFontListView,
 		SIGNAL(customContextMenuRequested(const QPoint&)),
 		SLOT(contextMenuRequested(const QPoint&)));
@@ -497,6 +500,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	m_ui.PolyphonySpinBox->setValue(m_pSetup->iPolyphony);
 	m_ui.JackMultiCheckBox->setChecked(m_pSetup->bJackMulti);
 	m_ui.JackAutoConnectCheckBox->setChecked(m_pSetup->bJackAutoConnect);
+    m_ui.WasapiExclusiveCheckBox->setChecked(m_pSetup->bWasapiExclusive);
 	// JACK client name...
 	QString sJackName;
 	if (!m_pSetup->sDisplayName.contains(QSYNTH_TITLE))
@@ -604,6 +608,7 @@ void qsynthSetupForm::accept (void)
 		m_pSetup->bJackMulti       = m_ui.JackMultiCheckBox->isChecked();
 		m_pSetup->sJackName        = m_ui.JackNameComboBox->currentText();
 		m_pSetup->bJackAutoConnect = m_ui.JackAutoConnectCheckBox->isChecked();
+        m_pSetup->bWasapiExclusive = m_ui.WasapiExclusiveCheckBox->isChecked();
 		// Reset dirty flag.
 		m_iDirtyCount = 0;
 	}
@@ -767,12 +772,14 @@ void qsynthSetupForm::stabilizeForm (void)
 #endif
 	const bool bJackEnabled = (m_ui.AudioDriverComboBox->currentText() == "jack");
 	const bool bJackMultiEnabled = m_ui.JackMultiCheckBox->isChecked();
-	m_ui.AudioDeviceTextLabel->setEnabled(!bJackEnabled);
+    const bool bWasapiEnabled = (m_ui.AudioDriverComboBox->currentText() == "wasapi");
+    m_ui.AudioDeviceTextLabel->setEnabled(!bJackEnabled);
 	m_ui.AudioDeviceComboBox->setEnabled(!bJackEnabled);
 	m_ui.JackMultiCheckBox->setEnabled(bJackEnabled);
 	m_ui.JackAutoConnectCheckBox->setEnabled(bJackEnabled);
 	m_ui.JackNameTextLabel->setEnabled(bJackEnabled);
 	m_ui.JackNameComboBox->setEnabled(bJackEnabled);
+    m_ui.WasapiExclusiveCheckBox->setEnabled(bWasapiEnabled);
 	if (bJackEnabled) {
 		m_ui.AudioChannelsTextLabel->setEnabled(bJackMultiEnabled);
 		m_ui.AudioChannelsSpinBox->setEnabled(bJackMultiEnabled);

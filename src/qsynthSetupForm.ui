@@ -853,6 +853,13 @@
          </property>
         </spacer>
        </item>
+       <item row="6" column="0">
+        <widget class="QCheckBox" name="WasapiExclusiveCheckBox">
+         <property name="text">
+          <string>WASAPI Exclusive Mode</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="SoundFontTabPage">
@@ -1122,6 +1129,7 @@
   <tabstop>JackNameComboBox</tabstop>
   <tabstop>JackAutoConnectCheckBox</tabstop>
   <tabstop>JackMultiCheckBox</tabstop>
+  <tabstop>WasapiExclusiveCheckBox</tabstop>
   <tabstop>SoundFontListView</tabstop>
   <tabstop>SoundFontOpenPushButton</tabstop>
   <tabstop>SoundFontEditPushButton</tabstop>
