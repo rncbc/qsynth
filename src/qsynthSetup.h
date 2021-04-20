@@ -69,6 +69,7 @@ public:
 	int     iAudioBufCount;
 	QString sSampleFormat;
 	float   fSampleRate;
+    bool    bWasapiExclusive;
 	int     iPolyphony;
 	bool    bReverbActive;
 	double  fReverbRoom;

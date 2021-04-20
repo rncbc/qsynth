@@ -326,6 +326,11 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 	QObject::connect(m_ui.JackNameComboBox,
 		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
+#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+	QObject::connect(m_ui.WasapiExclusiveCheckBox,
+		SIGNAL(stateChanged(int)),
+		SLOT(settingsChanged()));
+#endif
 	QObject::connect(m_ui.SoundFontListView,
 		SIGNAL(customContextMenuRequested(const QPoint&)),
 		SLOT(contextMenuRequested(const QPoint&)));
@@ -369,7 +374,7 @@ qsynthSetupForm::~qsynthSetupForm (void)
 
 // A combo-box text item setter helper.
 void qsynthSetupForm::setComboBoxCurrentText (
-        QComboBox *pComboBox, const QString& sText ) const
+	QComboBox *pComboBox, const QString& sText ) const
 {
 	if (pComboBox->isEditable()) {
 		pComboBox->setEditText(sText);
@@ -497,6 +502,11 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	m_ui.PolyphonySpinBox->setValue(m_pSetup->iPolyphony);
 	m_ui.JackMultiCheckBox->setChecked(m_pSetup->bJackMulti);
 	m_ui.JackAutoConnectCheckBox->setChecked(m_pSetup->bJackAutoConnect);
+#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+	m_ui.WasapiExclusiveCheckBox->setChecked(m_pSetup->bWasapiExclusive);
+#else
+	m_ui.WasapiExclusiveCheckBox->hide();
+#endif
 	// JACK client name...
 	QString sJackName;
 	if (!m_pSetup->sDisplayName.contains(QSYNTH_TITLE))
@@ -604,6 +614,9 @@ void qsynthSetupForm::accept (void)
 		m_pSetup->bJackMulti       = m_ui.JackMultiCheckBox->isChecked();
 		m_pSetup->sJackName        = m_ui.JackNameComboBox->currentText();
 		m_pSetup->bJackAutoConnect = m_ui.JackAutoConnectCheckBox->isChecked();
+	#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+		m_pSetup->bWasapiExclusive = m_ui.WasapiExclusiveCheckBox->isChecked();
+	#endif
 		// Reset dirty flag.
 		m_iDirtyCount = 0;
 	}
@@ -767,12 +780,18 @@ void qsynthSetupForm::stabilizeForm (void)
 #endif
 	const bool bJackEnabled = (m_ui.AudioDriverComboBox->currentText() == "jack");
 	const bool bJackMultiEnabled = m_ui.JackMultiCheckBox->isChecked();
+#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+	const bool bWasapiEnabled = (m_ui.AudioDriverComboBox->currentText() == "wasapi");
+#endif
 	m_ui.AudioDeviceTextLabel->setEnabled(!bJackEnabled);
 	m_ui.AudioDeviceComboBox->setEnabled(!bJackEnabled);
 	m_ui.JackMultiCheckBox->setEnabled(bJackEnabled);
 	m_ui.JackAutoConnectCheckBox->setEnabled(bJackEnabled);
 	m_ui.JackNameTextLabel->setEnabled(bJackEnabled);
 	m_ui.JackNameComboBox->setEnabled(bJackEnabled);
+#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+	m_ui.WasapiExclusiveCheckBox->setEnabled(bWasapiEnabled);
+#endif
 	if (bJackEnabled) {
 		m_ui.AudioChannelsTextLabel->setEnabled(bJackMultiEnabled);
 		m_ui.AudioChannelsSpinBox->setEnabled(bJackMultiEnabled);

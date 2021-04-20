@@ -539,6 +539,7 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	pSetup->sJackName        = m_settings.value("/JackName", "qsynth").toString();
 	pSetup->bJackAutoConnect = m_settings.value("/JackAutoConnect", true).toBool();
 	pSetup->bJackMulti       = m_settings.value("/JackMulti", false).toBool();
+	pSetup->bWasapiExclusive = m_settings.value("/WasapiExclusive", false).toBool();
 #if defined(__OpenBSD__)
 	pSetup->sMidiDevice      = m_settings.value("/MidiDevice", "midithru/0").toString();
 #else
@@ -663,6 +664,7 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
 	m_settings.setValue("/JackName",         pSetup->sJackName);
 	m_settings.setValue("/JackAutoConnect",  pSetup->bJackAutoConnect);
 	m_settings.setValue("/JackMulti",        pSetup->bJackMulti);
+	m_settings.setValue("/WasapiExclusive",  pSetup->bWasapiExclusive);
 	m_settings.setValue("/AudioChannels",    pSetup->iAudioChannels);
 	m_settings.setValue("/AudioGroups",      pSetup->iAudioGroups);
 	m_settings.setValue("/AudioBufSize",     pSetup->iAudioBufSize);

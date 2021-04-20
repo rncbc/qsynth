@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- New Setup/Audio/WASAPI Exclusive Mode option added.
+
 - Fix for Windows runtime error (assertion failed) when compiled
   with MSVC (by Pedro Lopez-Cabanillas GH #39, #40). (EXPERIMENTAL)
 
