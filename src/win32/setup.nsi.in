@@ -63,7 +63,7 @@ Var LibInstall
 !insertmacro MUI_LANGUAGE "Spanish"
 
 # Installer attributes
-OutFile qsynth-${VERSION}-setup.exe
+OutFile qsynth-${VERSION}-47.win-x64-setup.exe
 #InstallDir $PROGRAMFILES\QSynth
 CRCCheck on
 XPStyle on
@@ -106,13 +106,22 @@ Section -Main SEC0000
 	File ${BINARY_FILES}\translations\qt_fr.qm
 	File ${BINARY_FILES}\translations\qt_ru.qm
 
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libfluidsynth-2.dll $INSTDIR\libfluidsynth-2.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libglib-2.0-0.dll $INSTDIR\libglib-2.0-0.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libgobject-2.0-0.dll $INSTDIR\libgobject-2.0-0.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libgthread-2.0-0.dll $INSTDIR\libgthread-2.0-0.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libinstpatch-2.dll $INSTDIR\libinstpatch-2.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libintl-8.dll $INSTDIR\libintl-8.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libsndfile-1.dll $INSTDIR\libsndfile-1.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libfluidsynth-3.dll $INSTDIR\libfluidsynth-3.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libFLAC-8.dll       $INSTDIR\libFLAC-8.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libglib-2.0-0.dll   $INSTDIR\libglib-2.0-0.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libgomp-1.dll       $INSTDIR\libgomp-1.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libiconv-2.dll      $INSTDIR\libiconv-2.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libintl-8.dll		  $INSTDIR\libintl-8.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libogg-0.dll        $INSTDIR\libogg-0.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libopus-0.dll       $INSTDIR\libopus-0.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libpcre-1.dll       $INSTDIR\libpcre-1.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libreadline8.dll    $INSTDIR\libreadline8.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libsndfile-1.dll    $INSTDIR\libsndfile-1.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libssp-0.dll        $INSTDIR\libssp-0.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libtermcap-0.dll    $INSTDIR\libtermcap-0.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libvorbis-0.dll     $INSTDIR\libvorbis-0.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libvorbisenc-2.dll  $INSTDIR\libvorbisenc-2.dll $INSTDIR
+	
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\Qt5Core.dll $INSTDIR\Qt5Core.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\Qt5Gui.dll $INSTDIR\Qt5Gui.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\Qt5Network.dll $INSTDIR\Qt5Network.dll $INSTDIR
@@ -191,13 +200,21 @@ Section /o -un.Main UNSEC0000
     Delete /REBOOTOK $INSTDIR\fluidsynth.exe
     Delete /REBOOTOK $INSTDIR\qsynth.exe
 
-    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libfluidsynth-2.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libfluidsynth-3.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libFLAC-8.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libglib-2.0-0.dll
-    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libgobject-2.0-0.dll
-    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libgthread-2.0-0.dll
-    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libinstpatch-2.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libgomp-1.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libiconv-2.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libintl-8.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libogg-0.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libopus-0.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libpcre-1.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libreadline8.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libsndfile-1.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libssp-0.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libtermcap-0.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libvorbis-0.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libvorbisenc-2.dll
 
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\Qt5Core.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\Qt5Gui.dll
@@ -225,6 +242,7 @@ Section /o -un.Main UNSEC0000
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\imageformats\qwebp.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\platforms\qwindows.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\styles\qwindowsvistastyle.dll
+
 	RMDir /REBOOTOK $INSTDIR\translations
 	RMDir /REBOOTOK $INSTDIR\styles
 	RMDir /REBOOTOK $INSTDIR\platforms
