@@ -41,7 +41,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="213"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
-        <translation>Pokusit se spojit výstupy JACK s fyzickými přípojkami</translation>
+        <translation>Pokusit o spojení výstupů JACK s fyzickými přípojkami</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="215"/>
@@ -101,7 +101,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="237"/>
         <source>Dump midi router events</source>
-        <translation>Vytisknout události směrovače MIDI</translation>
+        <translation>Zobrazit události směrovače MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="239"/>
@@ -1738,37 +1738,37 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="112"/>
         <source>MIDI &amp;Driver:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ovladač MIDI:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="148"/>
         <source>MIDI D&amp;evice:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zařízení MIDI:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="292"/>
         <source>MIDI Client &amp;Name ID (ALSA/CoreMidi):</source>
-        <translation type="unfinished"></translation>
+        <translation>ID &amp;názvu klienta MIDI (ALSA/CoreMidi):</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="340"/>
         <source>Attempt to connect the MIDI inputs to the physical ports</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokusit o spojení výstupů MIDI s fyzickými přípojkami</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="343"/>
         <source>&amp;Auto Connect MIDI Inputs</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Automaticky spojit vstupy MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="363"/>
         <source>D&amp;ump MIDI router events</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Zobrazit události směrovače MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="395"/>
         <source>Audio &amp;Driver:</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;vladač zvuku:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="431"/>
@@ -1939,22 +1939,22 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="823"/>
         <source>Attempt to connect the JACK outputs to the physical ports</source>
-        <translation>Pokusit se spojit výstupy JACK s fyzickými přípojkami</translation>
+        <translation>Pokusit o spojení výstupů JACK s fyzickými přípojkami</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="618"/>
         <source>Audio D&amp;evice:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zvukové z&amp;ařízení:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="772"/>
         <source>JACK Client &amp;Name ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>ID &amp;názvu klienta JACK:</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="826"/>
         <source>&amp;Auto Connect JACK Outputs</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Automaticky spojit výstupy JACK</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="833"/>
@@ -1969,7 +1969,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="859"/>
         <source>&amp;WASAPI Exclusive Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzavřený režim &amp;WASAPI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="867"/>
