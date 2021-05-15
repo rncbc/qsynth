@@ -151,11 +151,11 @@ find_package (PkgConfig REQUIRED)
 # Check for FLUIDSYNTH library.
 pkg_check_modules (FLUIDSYNTH REQUIRED IMPORTED_TARGET fluidsynth)
 if (FLUIDSYNTH_FOUND)
+  find_library(FLUIDSYNTH_LIBRARY NAMES ${FLUIDSYNTH_LIBRARIES} HINTS ${FLUIDSYNTH_LIBDIR})
+endif ()
+if (FLUIDSYNTH_LIBRARY)
   set (CONFIG_FLUIDSYNTH 1)
-  include_directories (${FLUIDSYNTH_INCLUDE_DIRS})
-  link_directories (${FLUIDSYNTH_LIBRARY_DIRS})
-# link_libraries (${FLUIDSYNTH_LIBRARIES})
-  set (CMAKE_REQUIRED_LIBRARIES "${FLUIDSYNTH_LIBRARIES};${CMAKE_REQUIRED_LIBRARIES}")
+  set (CMAKE_REQUIRED_LIBRARIES "${FLUIDSYNTH_LIBRARY};${CMAKE_REQUIRED_LIBRARIES}")
   # Check for fluid_synth_system_reset function.
   check_function_exists (fluid_synth_system_reset CONFIG_FLUID_SYSTEM_RESET)
   # Check for fluid_synth_set_bank_offset function.

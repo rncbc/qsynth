@@ -149,6 +149,12 @@ if (CONFIG_XUNIQUE)
 endif ()
 
 if (CONFIG_FLUIDSYNTH)
+  if (FLUIDSYNTH_INCLUDE_DIRS)
+    target_include_directories(${PROJECT_NAME} ${FLUIDSYNTH_INCLUDE_DIRS})
+  endif ()
+  if (FLUIDSYNTH_LIBRARY_DIRS)
+    target_link_directories(${PROJECT_NAME} ${FLUIDSYNTH_LIBRARY_DIRS})
+  endif ()
   target_link_libraries (${PROJECT_NAME} PRIVATE PkgConfig::FLUIDSYNTH)
 endif ()
 
