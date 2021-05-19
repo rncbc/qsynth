@@ -145,6 +145,11 @@ if (UNIX AND NOT APPLE)
   check_include_files ("fcntl.h;unistd.h;signal.h" HAVE_SIGNAL_H)
 endif ()
 
+# Add some debug flags.
+if (CONFIG_DEBUG)
+  add_compile_options (-g -fsanitize=address -fno-omit-frame-pointer)
+  link_libraries (asan)
+endif ()
 
 # Find package modules
 find_package (PkgConfig REQUIRED)

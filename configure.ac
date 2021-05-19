@@ -79,12 +79,12 @@ AC_ARG_ENABLE(qt6,
 if test "x$ac_debug" = "xyes"; then
    AC_DEFINE(CONFIG_DEBUG, 1, [Define if debugging is enabled.])
    ac_stacktrace="yes"
-   ac_debug="debug"
+   ac_build_type="debug"
 else
    ac_stacktrace="no"
-   ac_debug="release"
+   ac_build_type="release"
 fi
-AC_SUBST(ac_debug)
+AC_SUBST(ac_build_type)
 
 
 # Enable system tray argument option.
@@ -377,6 +377,10 @@ if test "x$ac_lrelease" = "xno"; then
 fi
 AC_SUBST(ac_lrelease)
 
+if test "x$ac_debug" = "xyes"; then
+  ac_cflags="-g -fsanitize=address -fno-omit-frame-pointer $ac_cflags"
+  ac_libs="$ac_libs -lasan"
+fi
 
 # Checks for libraries.
 AC_CHECK_LIB(m, main)
@@ -629,7 +633,7 @@ AC_OUTPUT
 echo
 echo "  $PACKAGE_NAME $ac_build_version (Qt $ac_qt_version)"
 echo
-echo "  Build target . . . . . . . . . . . . . . . . . . .: $ac_debug"
+echo "  Build target . . . . . . . . . . . . . . . . . . .: $ac_build_type"
 echo
 echo "  FluidSynth library support . . . . . . . . . . . .: $ac_fluidsynth_lib"
 echo "  FluidSynth server support  . . . . . . . . . . . .: $ac_fluid_server"
