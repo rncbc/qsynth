@@ -1,14 +1,14 @@
-# project(qsynth)
+# project (qsynth)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set (CMAKE_INCLUDE_CURRENT_DIR ON)
 
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
+set (CMAKE_AUTOUIC ON)
+set (CMAKE_AUTOMOC ON)
+set (CMAKE_AUTORCC ON)
 
 if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/config.h)
-    file(REMOVE ${CMAKE_CURRENT_SOURCE_DIR}/config.h)
-endif()
+    file (REMOVE ${CMAKE_CURRENT_SOURCE_DIR}/config.h)
+endif ()
 configure_file (cmake_config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 set (HEADERS
@@ -122,6 +122,12 @@ add_executable (${PROJECT_NAME}
   ${FORMS}
   ${RESOURCES}
 )
+
+# Add some debugger flags.
+if (CONFIG_DEBUG)
+  target_compile_options (${PROJECT_NAME} PRIVATE -g -fsanitize=address -fno-omit-frame-pointer)
+  target_link_libraries (${PROJECT_NAME} PRIVATE asan)
+endif ()
 
 set_target_properties (${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
 
