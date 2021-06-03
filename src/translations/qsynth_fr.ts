@@ -1737,37 +1737,37 @@ Souhaitez-vous sauvegarder les modifications ?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="112"/>
         <source>MIDI &amp;Driver:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pilote MIDI :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="148"/>
         <source>MIDI D&amp;evice:</source>
-        <translation type="unfinished"></translation>
+        <translation>Périphériqu&amp;e MIDI :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="292"/>
         <source>MIDI Client &amp;Name ID (ALSA/CoreMidi):</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom du client MIDI ID (ALSA/CoreMidi) :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="340"/>
         <source>Attempt to connect the MIDI inputs to the physical ports</source>
-        <translation type="unfinished"></translation>
+        <translation>Essaie de connecter les entrées MIDI aux ports physiques</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="343"/>
         <source>&amp;Auto Connect MIDI Inputs</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto-connecte les entrées MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="363"/>
         <source>D&amp;ump MIDI router events</source>
-        <translation type="unfinished"></translation>
+        <translation>D&amp;umper les événements du routeur MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="395"/>
         <source>Audio &amp;Driver:</source>
-        <translation type="unfinished"></translation>
+        <translation>Pilote au&amp;dio :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="431"/>
@@ -1943,17 +1943,17 @@ Souhaitez-vous sauvegarder les modifications ?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="618"/>
         <source>Audio D&amp;evice:</source>
-        <translation type="unfinished"></translation>
+        <translation>Périphériqu&amp;e audio</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="772"/>
         <source>JACK Client &amp;Name ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom du client JACK ID</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="826"/>
         <source>&amp;Auto Connect JACK Outputs</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Auto-connecte les sorties JACK</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="833"/>
@@ -1968,7 +1968,7 @@ Souhaitez-vous sauvegarder les modifications ?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="859"/>
         <source>&amp;WASAPI Exclusive Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode exclusif &amp;WASAPI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="867"/>
