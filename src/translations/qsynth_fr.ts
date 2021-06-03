@@ -1737,7 +1737,7 @@ Souhaitez-vous sauvegarder les modifications ?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="112"/>
         <source>MIDI &amp;Driver:</source>
-        <translation>Pilote MIDI :</translation>
+        <translation>&amp;Pilote MIDI :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="148"/>
@@ -1747,7 +1747,7 @@ Souhaitez-vous sauvegarder les modifications ?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="292"/>
         <source>MIDI Client &amp;Name ID (ALSA/CoreMidi):</source>
-        <translation>Nom du client MIDI ID (ALSA/CoreMidi) :</translation>
+        <translation>&amp;Nom du client MIDI ID (ALSA/CoreMidi) :</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="340"/>
@@ -1757,7 +1757,7 @@ Souhaitez-vous sauvegarder les modifications ?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="343"/>
         <source>&amp;Auto Connect MIDI Inputs</source>
-        <translation>Auto-connecte les entrées MIDI</translation>
+        <translation>&amp;Auto-connecte les entrées MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="363"/>
@@ -1948,7 +1948,7 @@ Souhaitez-vous sauvegarder les modifications ?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="772"/>
         <source>JACK Client &amp;Name ID:</source>
-        <translation>Nom du client JACK ID</translation>
+        <translation>&amp;Nom du client JACK ID</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="826"/>
