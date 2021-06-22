@@ -147,7 +147,7 @@ endif ()
 
 
 # Find package modules
-find_package (PkgConfig REQUIRED)
+include (FindPkgConfig)
 
 # Check for FLUIDSYNTH library.
 pkg_check_modules (FLUIDSYNTH REQUIRED IMPORTED_TARGET fluidsynth)
