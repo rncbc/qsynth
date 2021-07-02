@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.9.4  2021-07-03  An Early-Summer'21 Release.
 
 - All builds default to Qt6 (Qt >= 6.1) where available.
 
