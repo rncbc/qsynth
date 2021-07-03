@@ -2,7 +2,7 @@
 # create-dmg is available from Homebrew and https://github.com/create-dmg/create-dmg
 
 NAME="qsynth"
-FULLNAME="${NAME}-0.9.3-47.mac-x64"
+FULLNAME="${NAME}-0.9.4-48.mac-x64"
 CURDIR=$(pushd `dirname $0`>/dev/null; pwd; popd>/dev/null)
 BINDIR=`pwd`
 
