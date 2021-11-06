@@ -39,7 +39,7 @@ $ mkdir build
 $ pwd
 qsynth-x.y.z
 $ cd build
-$ cmake -DCMAKE_BUILD_TYPE=debug ..
+$ cmake -DCMAKE_BUILD_TYPE=Debug ..
 
 3. Execute the build command. If you used the Makefiles generator (the default
    in Linux and other Unix systems) then execute make, gmake, or mingw32-make.
