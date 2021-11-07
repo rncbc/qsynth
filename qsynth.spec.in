@@ -93,7 +93,7 @@ command line softsynths.
 %setup -q
 
 %build
-cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -Wno-dev -B build -S .
+cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -Wno-dev -B build
 %__make %{?_smp_mflags} -C build
 
 %install
