@@ -6,7 +6,8 @@ Build-Depends: debhelper (>= 11), cmake, pkg-config,
   qtchooser, qtbase5-dev (>= 5.1), qtbase5-dev-tools (>= 5.1),
   qttools5-dev (>= 5.1), qttools5-dev-tools (>= 5.1),
   libqt5svg5-dev, libqt5waylandclient5-dev | qtwayland5-dev-tools,
-  libfluidsynth-dev
+  libfluidsynth-dev,libglib2.0-dev, libsndfile-dev, libjack-dev,
+  libasound2-dev, libpulse-dev
 Standards-Version: 3.9.7
 
 Package: qsynth
