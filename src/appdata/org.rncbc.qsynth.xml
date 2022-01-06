@@ -12,7 +12,7 @@
   management application allowing the user to control and manage a variety of
   command line softsynths.</p>
  </description>
- <launchable type="desktop-id">qsynth.desktop</launchable>
+ <launchable type="desktop-id">org.rncbc.qsynth.desktop</launchable>
  <provides>
   <binary>qsynth</binary>
  </provides>
@@ -38,4 +38,8 @@
  <project_group>rncbc.org</project_group>
  <developer_name>rncbc aka. Rui Nuno Capela</developer_name>
  <update_contact>rncbc@rncbc.org</update_contact>
+ <releases>
+   <release version="0.9.5" date="2022-01-09" urgency="low" />
+ </releases>
+ <content_rating type="oars-1.0"/>
 </component>
