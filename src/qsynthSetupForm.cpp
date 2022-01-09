@@ -267,8 +267,8 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 		SIGNAL(stateChanged(int)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.MidiDriverComboBox,
-		SIGNAL(activated(const QString&)),
-		SLOT(midiDriverChanged(const QString&)));
+		SIGNAL(activated(int)),
+		SLOT(midiDriverChanged(int)));
 	QObject::connect(m_ui.MidiDeviceComboBox,
 		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
@@ -288,11 +288,11 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.MidiBankSelectComboBox,
-		SIGNAL(activated(const QString&)),
+		SIGNAL(activated(int)),
 		SLOT(settingsChanged()));
 	QObject::connect(m_ui.AudioDriverComboBox,
-		SIGNAL(activated(const QString&)),
-		SLOT(audioDriverChanged(const QString&)));
+		SIGNAL(activated(int)),
+		SLOT(audioDriverChanged(int)));
 	QObject::connect(m_ui.AudioDeviceComboBox,
 		SIGNAL(editTextChanged(const QString&)),
 		SLOT(settingsChanged()));
@@ -698,11 +698,12 @@ void qsynthSetupForm::updateMidiDevices ( const QString& sMidiDriver )
 }
 
 
-void qsynthSetupForm::midiDriverChanged ( const QString& sMidiDriver )
+void qsynthSetupForm::midiDriverChanged ( int )
 {
 	if (m_iDirtySetup > 0)
 		return;
 
+	QString sMidiDriver = m_ui.MidiDriverComboBox->currentText();
 	QString sMidiDevice = m_ui.MidiDeviceComboBox->currentText();
 	updateMidiDevices(sMidiDriver);
 	setComboBoxCurrentText(m_ui.MidiDeviceComboBox, sMidiDevice);
@@ -730,11 +731,12 @@ void qsynthSetupForm::updateAudioDevices ( const QString& sAudioDriver )
 	m_ui.AudioDeviceComboBox->addItems(data.options);
 }
 
-void qsynthSetupForm::audioDriverChanged ( const QString& sAudioDriver )
+void qsynthSetupForm::audioDriverChanged ( int )
 {
 	if (m_iDirtySetup > 0)
 		return;
 
+	const QString& sAudioDriver = m_ui.AudioDriverComboBox->currentText();
 	const QString& sAudioDevice = m_ui.AudioDeviceComboBox->currentText();
 	updateAudioDevices(sAudioDriver);
 	setComboBoxCurrentText(m_ui.AudioDeviceComboBox, sAudioDevice);

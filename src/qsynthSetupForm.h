@@ -51,8 +51,8 @@ public:
 public slots:
 
 	void nameChanged(const QString&);
-	void midiDriverChanged(const QString&);
-	void audioDriverChanged(const QString&);
+	void midiDriverChanged(int index);
+	void audioDriverChanged(int index);
 	void settingsChanged();
 
 	void contextMenuRequested(const QPoint&);
