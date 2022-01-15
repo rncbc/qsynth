@@ -899,7 +899,12 @@ void qsynthSetupForm::openSoundFont (void)
 {
 	QStringList soundfonts = QFileDialog::getOpenFileNames(this,
 		tr("Soundfont files"), m_pOptions->sSoundFontDir,
-		tr("Soundfont files") + " (*.sf2 *.SF2 *.sf3 *.SF3)");
+		tr("Soundfont files") + " (*.sf2 *.SF2 *.sf3 *.SF3 *.dls *.DLS);;" +
+		tr("All files") + " (*)");
+
+/* Note: Qt's own File Dialog file filters are case insensitive, but when
+   using platform native dialogs this may not be true, like for instance:
+   QGtk3FileDialogHelper; see: https://bugreports.qt.io/browse/QTBUG-51712 */
 
 	QTreeWidgetItem *pItem = nullptr;
 
