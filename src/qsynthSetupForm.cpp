@@ -1,7 +1,7 @@
 // qsynthSetupForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -523,7 +523,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	if (pEngine->pSynth) {
 		// Load soundfont view from actual synth stack...
 		int cSoundFonts = ::fluid_synth_sfcount(pEngine->pSynth);
-		for (int i = cSoundFonts - 1; i >= 0; i--) {
+		for (int i = cSoundFonts - 1; i >= 0; --i) {
 			fluid_sfont_t *pSoundFont = ::fluid_synth_get_sfont(pEngine->pSynth, i);
 			if (pSoundFont) {
 				pItem = new QTreeWidgetItem(m_ui.SoundFontListView, pItem);
@@ -900,7 +900,7 @@ void qsynthSetupForm::openSoundFont (void)
 	QStringList soundfonts = QFileDialog::getOpenFileNames(this,
 		tr("Soundfont files"), m_pOptions->sSoundFontDir,
 		tr("Soundfont files") + " (*.sf2 *.SF2 *.sf3 *.SF3 *.dls *.DLS);;" +
-		tr("All files") + " (*)");
+		tr("All files") + " (*.*)");
 
 /* Note: Qt's own File Dialog file filters are case insensitive, but when
    using platform native dialogs this may not be true, like for instance:
