@@ -138,8 +138,12 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 			QApplication::installTranslator(m_pMyTranslator);
 		} else {
 			sLocPath = QApplication::applicationDirPath();
+		#ifndef _WIN32
 			sLocPath.remove(CONFIG_BINDIR);
 			sLocPath.append(CONFIG_DATADIR "/qsynth/translations");
+		#else
+			sLocPath.append("/translations");
+		#endif
 			if (m_pMyTranslator->load(sLocName, sLocPath)) {
 				QApplication::installTranslator(m_pMyTranslator);
 			} else {
