@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -516,20 +516,20 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	m_settings.beginGroup("/Settings");
 	pSetup->sDisplayName     = m_settings.value("/DisplayName", sDisplayName).toString();
 	pSetup->bMidiIn          = m_settings.value("/MidiIn", true).toBool();
-#if defined(__APPLE__)
+#if defined(Q_OS_MACOS)
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "coremidi").toString();
 	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "coreaudio").toString();
-#elif defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#elif defined(Q_OS_WINDOWS)
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "winmidi").toString();
 	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "dsound").toString();
-#elif defined(__OpenBSD__)
+#elif defined(Q_OS_OPENBSD)
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "sndio").toString();
 	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "sndio").toString();
 #else
 	pSetup->sMidiDriver      = m_settings.value("/MidiDriver", "alsa_seq").toString();
 	pSetup->sAudioDriver     = m_settings.value("/AudioDriver", "jack").toString();
 #endif
-#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#if defined(Q_OS_WINDOWS)
 	pSetup->iAudioBufSize    = m_settings.value("/AudioBufSize", 512).toInt();
 	pSetup->iAudioBufCount   = m_settings.value("/AudioBufCount", 8).toInt();
 #else
@@ -542,7 +542,7 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	pSetup->bJackAutoConnect = m_settings.value("/JackAutoConnect", true).toBool();
 	pSetup->bJackMulti       = m_settings.value("/JackMulti", false).toBool();
 	pSetup->bWasapiExclusive = m_settings.value("/WasapiExclusive", false).toBool();
-#if defined(__OpenBSD__)
+#if defined(Q_OS_OPENBSD)
 	pSetup->sMidiDevice      = m_settings.value("/MidiDevice", "midithru/0").toString();
 #else
 	pSetup->sMidiDevice      = m_settings.value("/MidiDevice").toString();

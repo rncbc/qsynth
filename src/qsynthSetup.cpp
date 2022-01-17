@@ -1,7 +1,7 @@
 // qsynthSetup.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -144,7 +144,7 @@ void qsynthSetup::realize (void)
 #endif
 
 #if (FLUIDSYNTH_VERSION_MAJOR >= 2 && FLUIDSYNTH_VERSION_MINOR >= 2) || (FLUIDSYNTH_VERSION_MAJOR > 2)
-#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#if defined(Q_OS_WINDOWS)
 	pszKey = (char *) "audio.wasapi.exclusive-mode";
 	::fluid_settings_setint(m_pFluidSettings, pszKey,
 		int(bWasapiExclusive));
