@@ -61,6 +61,7 @@ protected:
 	// Custom color/style themes settlers.
 	void resetCustomColorThemes(const QString& sCustomColorTheme);
 	void resetCustomStyleThemes(const QString& sCustomStyleTheme);
+	void resetCustomLanguage(const QString& sLanguage);
 
 	void stabilizeForm();
 

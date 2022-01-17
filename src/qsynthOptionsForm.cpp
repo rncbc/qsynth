@@ -26,11 +26,13 @@
 
 #include "qsynthOptions.h"
 
+#include "qsynth.h"
+
 #include <QValidator>
 #include <QMessageBox>
 #include <QFontDialog>
 #include <QFileDialog>
-
+#include <QDirIterator>
 #include <QStyleFactory>
 
 #ifdef CONFIG_SYSTEM_TRAY
@@ -40,7 +42,8 @@
 
 // Default (empty/blank) name.
 static const char *g_pszDefName = QT_TRANSLATE_NOOP("qsynthOptionsForm", "(default)");
-
+// Native (not translatable) English language name
+static const char *g_pszEnglish = "English";
 
 //----------------------------------------------------------------------------
 // qsynthOptionsForm -- UI wrapper form.
@@ -123,6 +126,9 @@ qsynthOptionsForm::qsynthOptionsForm ( QWidget *pParent )
 		SIGNAL(activated(int)),
 		SLOT(optionsChanged()));
 	QObject::connect(m_ui.KnobMouseMotionComboBox,
+		SIGNAL(activated(int)),
+		SLOT(optionsChanged()));
+	QObject::connect(m_ui.CustomLanguageComboBox,
 		SIGNAL(activated(int)),
 		SLOT(optionsChanged()));
 	QObject::connect(m_ui.DialogButtonBox,
@@ -217,6 +223,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	}
 
 	// Custom display options...
+	resetCustomLanguage(m_pOptions->sLanguage);
 	resetCustomColorThemes(m_pOptions->sCustomColorTheme);
 	resetCustomStyleThemes(m_pOptions->sCustomStyleTheme);
 
@@ -263,6 +270,11 @@ void qsynthOptionsForm::accept (void)
 			m_pOptions->sCustomColorTheme = m_ui.CustomColorThemeComboBox->currentText();
 		else
 			m_pOptions->sCustomColorTheme.clear();
+		const QString sOldLanguage = m_pOptions->sLanguage;
+		if (m_ui.CustomLanguageComboBox->currentIndex() > 0)
+			m_pOptions->sLanguage = m_ui.CustomLanguageComboBox->currentData().toString();
+		else
+			m_pOptions->sLanguage.clear();
 		// Check whether restart is needed or whether
 		// custom options maybe set up immediately...
 		int iNeedRestart = 0;
@@ -283,6 +295,9 @@ void qsynthOptionsForm::accept (void)
 						&m_pOptions->settings(), m_pOptions->sCustomColorTheme, pal))
 					QApplication::setPalette(pal);
 			}
+		}
+		if (m_pOptions->sLanguage != sOldLanguage) {
+			++iNeedRestart;
 		}
 		// Warn if something will be only effective on next run...
 		if (( bOldStdoutCapture && !m_pOptions->bStdoutCapture) ||
@@ -419,6 +434,35 @@ void qsynthOptionsForm::resetCustomStyleThemes (
 			iCustomStyleTheme = 0;
 	}
 	m_ui.CustomStyleThemeComboBox->setCurrentIndex(iCustomStyleTheme);
+}
+
+void qsynthOptionsForm::resetCustomLanguage (
+	const QString &sLanguage )
+{
+	m_ui.CustomLanguageComboBox->clear();
+	m_ui.CustomLanguageComboBox->addItem(
+		tr(g_pszDefName));
+	m_ui.CustomLanguageComboBox->addItem(
+		QString(g_pszEnglish), QString("C"));
+
+	QDirIterator it(qsynthApplication::translationsPath, {"*.qm"},
+		QDir::NoFilter, QDirIterator::NoIteratorFlags);
+	while (it.hasNext()) {
+		QFileInfo f(it.next());
+		QString name = f.fileName();
+		if (name.startsWith("qsynth_")) {
+			name.remove(0, name.indexOf('_') + 1);
+			name.truncate(name.lastIndexOf('.'));
+			QLocale locale(name);
+			m_ui.CustomLanguageComboBox->addItem(
+				locale.nativeLanguageName().section(" ", 0, 0), name );
+		}
+	}
+	int iCustomLang = 0;
+	if (!sLanguage.isEmpty()) {
+		iCustomLang = m_ui.CustomLanguageComboBox->findData(sLanguage);
+	}
+	m_ui.CustomLanguageComboBox->setCurrentIndex(iCustomLang);
 }
 
 

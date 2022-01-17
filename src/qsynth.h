@@ -78,6 +78,14 @@ public:
 	// and raise its proper main widget...
 	bool setup();
 
+	void loadTranslations(const QString& sLanguage);
+
+	// Install Prefix Location
+	static QString prefixPath;
+
+	// Translations Location
+	static QString translationsPath;
+
 #if QT_VERSION < QT_VERSION_CHECK(5, 0, 0)
 #ifdef CONFIG_XUNIQUE
 #ifdef CONFIG_X11
@@ -87,6 +95,7 @@ public:
 #endif	// CONFIG_XUNIQUE
 #else
 #ifdef CONFIG_XUNIQUE
+
 protected slots:
 	// Local server slots.
 	void newConnectionSlot();
