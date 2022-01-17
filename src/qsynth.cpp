@@ -55,7 +55,7 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 #endif
 
 #ifndef CONFIG_LIBDIR
-#if defined(__x86_64__)
+#if defined(Q_PROCESSOR_X86_64)
 #define CONFIG_LIBDIR  CONFIG_PREFIX "/lib64"
 #else
 #define CONFIG_LIBDIR  CONFIG_PREFIX "/lib"
@@ -165,10 +165,8 @@ void qsynthApplication::loadTranslations(const QString& sLanguage)
 	}
 
 	QString sLocPath = qsynthApplication::prefixPath;
-#if defined(Q_OS_WINDOWS)
+#if defined(Q_OS_WINDOWS) || defined(Q_OS_MACOS)
 	sLocPath.append("/translations");
-#elif defined(Q_OS_MACOS)
-	sLocPath.append("/Resources");
 #else
 	sLocPath.append(CONFIG_DATADIR "/qsynth/translations");
 #endif
@@ -449,7 +447,7 @@ void qsynthApplication::readyReadSlot (void)
 //
 
 #ifdef CONFIG_STACKTRACE
-#if defined(__GNUC__) && defined(Q_OS_LINUX)
+#if defined(Q_CC_GNU) && defined(Q_OS_LINUX)
 
 #include <stdio.h>
 #include <errno.h>
@@ -510,7 +508,7 @@ int main ( int argc, char **argv )
 {
 	Q_INIT_RESOURCE(qsynth);
 #ifdef CONFIG_STACKTRACE
-#if defined(__GNUC__) && defined(Q_OS_LINUX)
+#if defined(Q_CC_GNU) && defined(Q_OS_LINUX)
 	::signal(SIGILL,  stacktrace);
 	::signal(SIGFPE,  stacktrace);
 	::signal(SIGSEGV, stacktrace);

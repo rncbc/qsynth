@@ -1,7 +1,7 @@
 // qsynthOptionsForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2020, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -203,7 +203,7 @@ void qsynthOptionsForm::setup ( qsynthOptions *pOptions )
 	m_ui.KnobStyleComboBox->setCurrentIndex(m_pOptions->iKnobStyle);
 	m_ui.KnobMouseMotionComboBox->setCurrentIndex(m_pOptions->iKnobMotion);
 
-#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#if defined(Q_OS_WINDOWS)
 	m_ui.StdoutCaptureCheckBox->setChecked(false);
 	m_ui.StdoutCaptureCheckBox->setEnabled(false);
 #endif

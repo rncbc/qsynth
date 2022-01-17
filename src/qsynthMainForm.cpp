@@ -1,7 +1,7 @@
 // qsynthMainForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -85,7 +85,7 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 #define QSYNTH_CHORUS_SPEED_SCALE   100.0f
 #define QSYNTH_CHORUS_DEPTH_SCALE   10.0f
 
-#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+#if defined(Q_OS_WINDOWS)
 #undef HAVE_SIGNAL_H
 #else
 #include <unistd.h>
@@ -790,7 +790,7 @@ void qsynthMainForm::setup ( qsynthOptions *pOptions )
 	// Knobs
 	updateKnobs();
 
-#if !defined(__WIN32__) && !defined(_WIN32) && !defined(WIN32)
+#if !defined(Q_OS_WINDOWS)
 	// Check if we can redirect our own stdout/stderr...
 	if (m_pOptions->bStdoutCapture && ::pipe(g_fdStdout) == 0) {
 		::dup2(g_fdStdout[QSYNTH_FDWRITE], STDOUT_FILENO);
@@ -1131,7 +1131,7 @@ void qsynthMainForm::sigtermNotifySlot ( int /* fd */ )
 // Set stdout/stderr blocking mode.
 bool qsynthMainForm::stdoutBlock ( int fd, bool bBlock ) const
 {
-#if !defined(__WIN32__) && !defined(_WIN32) && !defined(WIN32)
+#if !defined(Q_OS_WINDOWS)
 	const int iFlags = ::fcntl(fd, F_GETFL, 0);
 	const bool bNonBlock = bool(iFlags & O_NONBLOCK);
 	if (bBlock && bNonBlock)
@@ -1147,7 +1147,7 @@ bool qsynthMainForm::stdoutBlock ( int fd, bool bBlock ) const
 // Own stdout/stderr socket notifier slot.
 void qsynthMainForm::stdoutNotifySlot ( int fd )
 {
- #if !defined(__WIN32__) && !defined(_WIN32) && !defined(WIN32)
+ #if !defined(Q_OS_WINDOWS)
 	// Set non-blocking reads, if not already...
 	const bool bBlock = stdoutBlock(fd, false);
 	// Read as much as is available...
@@ -1187,7 +1187,7 @@ void qsynthMainForm::processStdoutBuffer (void)
 		while (iter.hasNext()) {
 			const QString& sTemp = iter.next();
 			if (!sTemp.isEmpty())
-			#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+			#if defined(Q_OS_WINDOWS)
 				appendMessagesText(sTemp.trimmed());
 			#else
 				appendMessagesText(sTemp);
@@ -1204,7 +1204,7 @@ void qsynthMainForm::flushStdoutBuffer (void)
 	processStdoutBuffer();
 
 	if (!m_sStdoutBuffer.isEmpty()) {
-	#if defined(__WIN32__) || defined(_WIN32) || defined(WIN32)
+	#if defined(Q_OS_WINDOWS)
 		appendMessagesText(m_sStdoutBuffer.trimmed());
 	#else
 		appendMessagesText(m_sStdoutBuffer);
