@@ -165,10 +165,8 @@ void qsynthApplication::loadTranslations(const QString& sLanguage)
 	}
 
 	QString sLocPath = qsynthApplication::prefixPath;
-#if defined(Q_OS_WINDOWS)
+#if defined(Q_OS_WINDOWS) || defined(Q_OS_MACOS)
 	sLocPath.append("/translations");
-#elif defined(Q_OS_MACOS)
-	sLocPath.append("/Resources");
 #else
 	sLocPath.append(CONFIG_DATADIR "/qsynth/translations");
 #endif
