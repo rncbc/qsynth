@@ -1080,7 +1080,7 @@ fluidsynthovéhoh zvukového modulu:</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="275"/>
-        <location filename="../qsynthOptionsForm.ui" line="744"/>
+        <location filename="../qsynthOptionsForm.ui" line="694"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -1155,39 +1155,39 @@ fluidsynthovéhoh zvukového modulu:</translation>
         <translation>Spustit se &amp;zmenšením do oznamovací oblasti panelu</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="313"/>
+        <location filename="../qsynthOptionsForm.cpp" line="315"/>
         <source>Information</source>
         <translation>Informace</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="314"/>
+        <location filename="../qsynthOptionsForm.cpp" line="316"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation>Některá nastavení se projeví až tehdy,
 když příště spustíte tento program.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="340"/>
+        <location filename="../qsynthOptionsForm.cpp" line="342"/>
         <source>Warning</source>
         <translation>Varování</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="341"/>
+        <location filename="../qsynthOptionsForm.cpp" line="343"/>
         <source>Some options have been changed.</source>
         <translation>Některá nastavení byla změněna.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="342"/>
+        <location filename="../qsynthOptionsForm.cpp" line="344"/>
         <source>Do you want to apply the changes?</source>
         <translation>Chtěl byste použít změny?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="500"/>
+        <location filename="../qsynthOptionsForm.cpp" line="501"/>
         <source>Messages Log</source>
         <translation>Zápis hlášení</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="502"/>
+        <location filename="../qsynthOptionsForm.cpp" line="503"/>
         <source>Log files</source>
         <translation>Soubory se zápisy</translation>
     </message>
@@ -1248,25 +1248,25 @@ když příště spustíte tento program.</translation>
         <translation>&amp;Ukázat zprávu v oznamovací oblasti panelu při zavření</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="791"/>
+        <location filename="../qsynthOptionsForm.ui" line="760"/>
         <source>Defaults</source>
         <translation>Výchozí</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="838"/>
+        <location filename="../qsynthOptionsForm.ui" line="819"/>
         <source>&amp;Base font size:</source>
         <translation>Základní velikost &amp;písma:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="857"/>
+        <location filename="../qsynthOptionsForm.ui" line="838"/>
         <source>Base application font size (pt.)</source>
         <translation>Základní velikost písma v aplikaci (v bodech)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="633"/>
-        <location filename="../qsynthOptionsForm.ui" line="664"/>
-        <location filename="../qsynthOptionsForm.ui" line="774"/>
-        <location filename="../qsynthOptionsForm.ui" line="864"/>
+        <location filename="../qsynthOptionsForm.ui" line="652"/>
+        <location filename="../qsynthOptionsForm.ui" line="743"/>
+        <location filename="../qsynthOptionsForm.ui" line="792"/>
+        <location filename="../qsynthOptionsForm.ui" line="845"/>
         <location filename="../qsynthOptionsForm.cpp" line="44"/>
         <source>(default)</source>
         <translation>(výchozí)</translation>
@@ -1277,69 +1277,69 @@ když příště spustíte tento program.</translation>
         <translation>Vlastní</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="678"/>
+        <location filename="../qsynthOptionsForm.ui" line="626"/>
         <source>&amp;Color palette theme:</source>
         <translation>&amp;Motiv palety barev:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="626"/>
+        <location filename="../qsynthOptionsForm.ui" line="645"/>
         <source>Custom color palette theme</source>
         <translation>Vlastní motiv palety barev</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="638"/>
+        <location filename="../qsynthOptionsForm.ui" line="657"/>
         <source>Wonton Soup</source>
         <translatorcomment>DO NOT TRANSLATE</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="643"/>
+        <location filename="../qsynthOptionsForm.ui" line="662"/>
         <source>KXStudio</source>
         <translatorcomment>DO NOT TRANSLATE</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="741"/>
+        <location filename="../qsynthOptionsForm.ui" line="691"/>
         <source>Manage custom color palette themes</source>
         <translation>Spravovat vlastní motivy palety barev</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="697"/>
+        <location filename="../qsynthOptionsForm.ui" line="720"/>
         <source>&amp;Widget style theme:</source>
         <translation>Motiv stylu &amp;prvku:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="657"/>
+        <location filename="../qsynthOptionsForm.ui" line="736"/>
         <source>Custom widget style theme</source>
         <translation>Vlastní motiv stylu prvku</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="757"/>
+        <location filename="../qsynthOptionsForm.ui" line="775"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="879"/>
+        <location filename="../qsynthOptionsForm.ui" line="860"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="884"/>
+        <location filename="../qsynthOptionsForm.ui" line="865"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="889"/>
+        <location filename="../qsynthOptionsForm.ui" line="870"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="894"/>
+        <location filename="../qsynthOptionsForm.ui" line="875"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="899"/>
+        <location filename="../qsynthOptionsForm.ui" line="880"/>
         <source>12</source>
         <translation>12</translation>
     </message>
@@ -1359,12 +1359,12 @@ když příště spustíte tento program.</translation>
         <translation>Odezva otočného regulátoru na po&amp;hyb myši:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="869"/>
+        <location filename="../qsynthOptionsForm.ui" line="850"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="874"/>
+        <location filename="../qsynthOptionsForm.ui" line="855"/>
         <source>7</source>
         <translation>7</translation>
     </message>

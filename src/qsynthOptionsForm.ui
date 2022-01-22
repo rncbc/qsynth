@@ -3,7 +3,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2020, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -135,7 +135,7 @@
             <property name="sizeHint">
              <size>
               <width>20</width>
-              <height>8</height>
+              <height>20</height>
              </size>
             </property>
            </spacer>
@@ -382,7 +382,7 @@
             <property name="sizeHint">
              <size>
               <width>20</width>
-              <height>8</height>
+              <height>20</height>
              </size>
             </property>
            </spacer>
@@ -445,7 +445,7 @@
             </property>
             <property name="sizeHint">
              <size>
-              <width>8</width>
+              <width>20</width>
               <height>20</height>
              </size>
             </property>
@@ -541,7 +541,7 @@
             <property name="sizeHint">
              <size>
               <width>20</width>
-              <height>8</height>
+              <height>20</height>
              </size>
             </property>
            </spacer>
@@ -614,6 +614,25 @@
           <bool>true</bool>
          </property>
          <layout class="QGridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="CustomColorThemeTextLabel">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>&amp;Color palette theme:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
+            <property name="buddy">
+             <cstring>CustomColorThemeComboBox</cstring>
+            </property>
+           </widget>
+          </item>
           <item row="0" column="1">
            <widget class="QComboBox" name="CustomColorThemeComboBox">
             <property name="font">
@@ -644,75 +663,6 @@
              </property>
             </item>
            </widget>
-          </item>
-          <item row="0" column="6">
-           <widget class="QComboBox" name="CustomStyleThemeComboBox">
-            <property name="font">
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="toolTip">
-             <string>Custom widget style theme</string>
-            </property>
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>(default)</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="CustomColorThemeTextLabel">
-            <property name="font">
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>&amp;Color palette theme:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-            <property name="buddy">
-             <cstring>CustomColorThemeComboBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="5">
-           <widget class="QLabel" name="CustomStyleThemeTextLabel">
-            <property name="font">
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="text">
-             <string>&amp;Widget style theme:</string>
-            </property>
-            <property name="buddy">
-             <cstring>CustomStyleThemeComboBox</cstring>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="4">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>8</height>
-             </size>
-            </property>
-           </spacer>
           </item>
           <item row="0" column="3">
            <widget class="QToolButton" name="CustomColorThemeToolButton">
@@ -745,8 +695,21 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="CustomLanguageTextLabel">
+          <item row="0" column="4">
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="5">
+           <widget class="QLabel" name="CustomStyleThemeTextLabel">
             <property name="font">
              <font>
               <weight>50</weight>
@@ -754,20 +717,26 @@
              </font>
             </property>
             <property name="text">
-             <string>Language</string>
+             <string>&amp;Widget style theme:</string>
             </property>
             <property name="buddy">
-             <cstring>CustomLanguageComboBox</cstring>
+             <cstring>CustomStyleThemeComboBox</cstring>
             </property>
            </widget>
           </item>
-          <item row="1" column="1">
-           <widget class="QComboBox" name="CustomLanguageComboBox">
+          <item row="0" column="6">
+           <widget class="QComboBox" name="CustomStyleThemeComboBox">
             <property name="font">
              <font>
               <weight>50</weight>
               <bold>false</bold>
              </font>
+            </property>
+            <property name="toolTip">
+             <string>Custom widget style theme</string>
+            </property>
+            <property name="editable">
+             <bool>false</bool>
             </property>
             <item>
              <property name="text">
@@ -795,38 +764,50 @@
          </property>
          <layout class="QGridLayout">
           <item row="0" column="0">
+           <widget class="QLabel" name="DefaultLanguageTextLabel">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Language</string>
+            </property>
+            <property name="buddy">
+             <cstring>CustomLanguageComboBox</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="DefaultLanguageComboBox">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <item>
+             <property name="text">
+              <string>(default)</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="0" column="2">
            <spacer>
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Expanding</enum>
-            </property>
-            <property name="sizeHint">
-             <size>
-              <width>20</width>
-              <height>8</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="0" colspan="3">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Expanding</enum>
-            </property>
             <property name="sizeHint" stdset="0">
              <size>
-              <width>8</width>
+              <width>20</width>
               <height>20</height>
              </size>
             </property>
            </spacer>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="3">
            <widget class="QLabel" name="BaseFontSizeTextLabel">
             <property name="font">
              <font>
@@ -845,7 +826,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
+          <item row="0" column="4">
            <widget class="QComboBox" name="BaseFontSizeComboBox">
             <property name="font">
              <font>
@@ -900,6 +881,22 @@
              </property>
             </item>
            </widget>
+          </item>
+          <item row="1" column="0" colspan="5">
+           <spacer>
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Expanding</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </widget>
