@@ -775,7 +775,7 @@
              <string>Language</string>
             </property>
             <property name="buddy">
-             <cstring>CustomLanguageComboBox</cstring>
+             <cstring>DefaultLanguageComboBox</cstring>
             </property>
            </widget>
           </item>
