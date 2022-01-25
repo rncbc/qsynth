@@ -74,9 +74,13 @@
         <translation>Met le chorus sur on ou off [1|0|yes|no|on|yes, défaut = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="231"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
-        <translation>Rêgle le gain principal [0 &lt; gain &lt; 10, défaut = 0.2]</translation>
+        <translation type="vanished">Rêgle le gain principal [0 &lt; gain &lt; 10, défaut = 0.2]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="231"/>
+        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
+        <translation type="unfinished">Rêgle le gain principal [0 &lt; gain &lt; 10, défaut = 0.2] {0 ?} {2,?} {1]?}</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="233"/>

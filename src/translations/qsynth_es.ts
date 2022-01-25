@@ -74,9 +74,13 @@
         <translation>Habilitar o deshabilitar el efecto &quot;coro&quot; [1|0|yes|no|on|off, por omisión = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="231"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
-        <translation>Establecer la ganancia de la salida principal [0 &lt; ganancia &lt; 10, por omisión = 0.2]</translation>
+        <translation type="vanished">Establecer la ganancia de la salida principal [0 &lt; ganancia &lt; 10, por omisión = 0.2]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="231"/>
+        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
+        <translation>Establecer la ganancia de la salida principal [0 &lt; ganancia &lt; 2, por omisión = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="233"/>

@@ -79,9 +79,13 @@
         <translation>Zapnout nebo vypnout sbor [[1|0|yes|no|on|off, Voreinstellung = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="231"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
-        <translation>Nastavit výstupní zesílení [0 &lt; zesílení &lt; 10, výchozí = 0.2]</translation>
+        <translation type="vanished">Nastavit výstupní zesílení [0 &lt; zesílení &lt; 10, výchozí = 0.2]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="231"/>
+        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
+        <translation type="unfinished">Nastavit výstupní zesílení [0 &lt; zesílení &lt; 10, výchozí = 0.2] {0 ?} {2,?} {1]?}</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="233"/>
