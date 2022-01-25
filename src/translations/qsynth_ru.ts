@@ -169,11 +169,6 @@
         <translation>Использование: %1 [ключи] [файлы SF2] [файлы MIDI]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="231"/>
-        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
-        <translation type="unfinished">Установить главное усиление [0 &lt; усиление &lt; 10, по умолчанию = 0.2] {0 ?} {2,?} {1]?}</translation>
-    </message>
-    <message>
         <location filename="../qsynthOptions.cpp" line="428"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>неизвестный ключ &apos;%1&apos;.</translation>
