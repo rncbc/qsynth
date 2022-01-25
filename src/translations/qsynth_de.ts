@@ -79,9 +79,13 @@
         <translation>Chor ein- oder ausschalten [[1|0|yes|no|on|off, Voreinstellung = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="231"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
-        <translation>Ausgangsverstärkung festlegen [0 &lt; gain &lt; 10, Voreinstellung = 0.2]</translation>
+        <translation type="vanished">Ausgangsverstärkung festlegen [0 &lt; gain &lt; 10, Voreinstellung = 0.2]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="231"/>
+        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
+        <translation type="unfinished">Ausgangsverstärkung festlegen [0 &lt; gain &lt; 10, Voreinstellung = 0.2] {0 ?} {2,?} {1]?}</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="233"/>
