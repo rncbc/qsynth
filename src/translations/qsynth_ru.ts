@@ -69,8 +69,9 @@
         <translation>Включить/выключить хорус [1|0|yes|no|on|off, по умолчанию = on]</translation>
     </message>
     <message>
-        <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
-        <translation type="vanished">Установить главное усиление [0 &lt; усиление &lt; 10, по умолчанию = 0.2]</translation>
+        <location filename="../qsynthOptions.cpp" line="231"/>
+        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
+        <translation>Установить главное усиление [0 &lt; усиление &lt; 2, по умолчанию = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="233"/>
