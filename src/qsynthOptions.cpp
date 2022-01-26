@@ -33,6 +33,9 @@
 #include <QDesktopWidget>
 #endif
 
+#if defined(Q_OS_WINDOWS)
+#include <QMessageBox>
+#endif
 
 //-------------------------------------------------------------------------
 // qsynthOptions - Prototype settings structure.
@@ -195,9 +198,15 @@ QSettings& qsynthOptions::settings (void)
 // Help about command line options.
 void qsynthOptions::print_usage ( const QString& arg0 )
 {
+#if defined(Q_OS_WINDOWS)
+	QString outputText;
+	QTextStream out(&outputText);
+	const QString sEol = "\n";
+#else
 	QTextStream out(stderr);
-	const QString sEot = "\n\t";
 	const QString sEol = "\n\n";
+#endif
+	const QString sEot = "\n\t";
 
 	out << QObject::tr("Usage: %1"
 		" [options] [soundfonts] [midifiles]").arg(arg0) + sEol;
@@ -243,14 +252,23 @@ void qsynthOptions::print_usage ( const QString& arg0 )
 		QObject::tr("Show help about command line options") + sEol;
 	out << "  -v, --version" + sEot +
 		QObject::tr("Show version information") + sEol;
+#if defined(Q_OS_WINDOWS)
+	QMessageBox::information(nullptr, QCoreApplication::applicationName(), outputText);
+#endif
 }
 
 
 // Parse command line arguments into fluidsynth settings.
 bool qsynthOptions::parse_args ( const QStringList& args )
 {
+#if defined(Q_OS_WINDOWS)
+	QString outputText;
+	QTextStream out(&outputText);
+	const QString sEol = "\n";
+#else
 	QTextStream out(stderr);
 	const QString sEol = "\n\n";
+#endif
 	const int argc = args.count();
 	int iSoundFontOverride = 0;
 
@@ -275,7 +293,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-m" || sArg == "--midi-driver") {
 			if (sVal.isEmpty()) {
 				out << QObject::tr("Option -m requires an argument (midi-driver).") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->sMidiDriver = sVal;
 			if (iEqual < 0)
@@ -284,7 +302,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-K" || sArg == "--midi-channels") {
 			if (sVal.isEmpty()) {
 				out << QObject::tr("Option -K requires an argument (midi-channels).") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->iMidiChannels = sVal.toInt();
 			if (iEqual < 0)
@@ -293,7 +311,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-a" || sArg == "--audio-driver") {
 			if (sVal.isEmpty()) {
 				out << QObject::tr("Option -a requires an argument (audio-driver).") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->sAudioDriver = sVal;
 			if (iEqual < 0)
@@ -305,7 +323,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-L" || sArg == "--audio-channels") {
 			if (sVal.isEmpty()) {
 				out << QObject::tr("Option -L requires an argument (audio-channels).") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->iAudioChannels = sVal.toInt();
 			if (iEqual < 0)
@@ -314,7 +332,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-G" || sArg == "--audio-groups") {
 			if (sVal.isEmpty()) {
 				out << QObject::tr("Option -G requires an argument (audio-groups).") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->iAudioGroups = sVal.toInt();
 			if (iEqual < 0)
@@ -323,7 +341,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-z" || sArg == "--audio-bufsize") {
 			if (sVal.isEmpty()) {
 				out << QObject::tr("Option -z requires an argument (audio-bufsize).") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->iAudioBufSize = sVal.toInt();
 			if (iEqual < 0)
@@ -332,7 +350,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-c" || sArg == "--audio-bufcount") {
 			if (sVal.isEmpty()) {
 				out << QObject::tr("Option -c requires an argument (audio-bufcount).") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->iAudioBufCount = sVal.toInt();
 			if (iEqual < 0)
@@ -341,7 +359,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-r" || sArg == "--sample-rate") {
 			if (sVal.isEmpty()) {
 				out << QObject::tr("Option -r requires an argument (sample-rate).") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->fSampleRate = sVal.toFloat();
 			if (iEqual < 0)
@@ -368,7 +386,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-g" || sArg == "--gain") {
 			if (sVal.isEmpty()) {
 				out << QObject::tr("Option -g requires an argument (gain).") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->fGain = sVal.toFloat();
 			if (iEqual < 0)
@@ -377,7 +395,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-o" || sArg == "--option") {
 			if (++i >= argc) {
 				out << QObject::tr("Option -o requires an argument.") + sEol;
-				return false;
+				goto exit_with_error;
 			}
 			m_pDefaultSetup->options.append(args.at(i));
 		}
@@ -395,7 +413,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		}
 		else if (sArg == "-h" || sArg == "--help") {
 			print_usage(args.at(0));
-			return false;
+			goto exit_with_error;
 		}
 		else if (sArg == "-v" || sArg == "--version") {
 			out << QString("Qt: %1").arg(qVersion());
@@ -408,7 +426,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			out << QString("%1: %2\n")
 				.arg(QSYNTH_TITLE)
 				.arg(CONFIG_BUILD_VERSION);
-			return false;
+			goto exit_with_error;
 		}
 		else {
 			const QByteArray tmp = args.at(i).toUtf8();
@@ -427,13 +445,20 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			else {
 				out << QObject::tr("Unknown option '%1'.").arg(name) + sEol;
 				print_usage(args.at(0));
-				return false;
+				goto exit_with_error;
 			}
 		}
 	}
 
 	// Alright with argument parsing.
 	return true;
+
+exit_with_error:
+#if defined(Q_OS_WINDOWS)
+	if (!outputText.isEmpty())
+		QMessageBox::information(nullptr, QCoreApplication::applicationName(), outputText);
+#endif
+	return false;
 }
 
 
