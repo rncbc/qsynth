@@ -69,8 +69,6 @@ public:
 
 	// Command line arguments parser.
 	bool parse_args(const QStringList& args);
-	// Command line usage helper.
-	void print_usage(const QString& arg0);
 
 	// Default instance setup accessor.
 	qsynthSetup *defaultSetup();
