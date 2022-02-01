@@ -4,169 +4,136 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../qsynthOptions.cpp" line="211"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
-        <translation>Utilisation : %1 [options] [banque de sons] [fichiersmidi]</translation>
+        <translation type="vanished">Utilisation : %1 [options] [banque de sons] [fichiersmidi]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="214"/>
         <source>Options</source>
-        <translation>Options</translation>
+        <translation type="vanished">Options</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="216"/>
         <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
-        <translation>Ne pas créer un pilote midi pour lire les évènements MIDI d&apos;entrée [défaut = oui]</translation>
+        <translation type="vanished">Ne pas créer un pilote midi pour lire les évènements MIDI d&apos;entrée [défaut = oui]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="218"/>
         <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
-        <translation>Le nom du pilote midi à utiliser [oss,alsa,alsa_esq,...]</translation>
+        <translation type="vanished">Le nom du pilote midi à utiliser [oss,alsa,alsa_esq,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="220"/>
         <source>The number of midi channels [default = 16]</source>
-        <translation>Le nombre de canaux midi [défaut = 16]</translation>
+        <translation type="vanished">Le nombre de canaux midi [défaut = 16]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="222"/>
         <source>The audio driver [alsa,jack,oss,dsound,...]</source>
-        <translation>Le pilote audio [alsa,jack,oss,dsound,...]</translation>
+        <translation type="vanished">Le pilote audio [alsa,jack,oss,dsound,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="224"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
-        <translation>Tentative de connecter les sorties jack aux ports physiques</translation>
+        <translation type="vanished">Tentative de connecter les sorties jack aux ports physiques</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="226"/>
         <source>The number of stereo audio channels [default = 1]</source>
-        <translation>Le nombre de canaux audio stéréo [défaut = 1]</translation>
+        <translation type="vanished">Le nombre de canaux audio stéréo [défaut = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="228"/>
         <source>The number of audio groups [default = 1]</source>
-        <translation>Le nombre de groupes audio [défaut = 1]</translation>
+        <translation type="vanished">Le nombre de groupes audio [défaut = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="230"/>
         <source>Size of each audio buffer</source>
-        <translation>Taille de chaque tampon audio</translation>
+        <translation type="vanished">Taille de chaque tampon audio</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="232"/>
         <source>Number of audio buffers</source>
-        <translation>Nombre de tampons audio</translation>
+        <translation type="vanished">Nombre de tampons audio</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="234"/>
         <source>Set the sample rate</source>
-        <translation>Rêgle la fréquence d&apos;échantillonnage</translation>
+        <translation type="vanished">Rêgle la fréquence d&apos;échantillonnage</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="236"/>
         <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
-        <translation>Met la réverbération sur on ou off [1|0|yes|no|on|off, défaut = on]</translation>
+        <translation type="vanished">Met la réverbération sur on ou off [1|0|yes|no|on|off, défaut = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="238"/>
         <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
-        <translation>Met le chorus sur on ou off [1|0|yes|no|on|yes, défaut = on]</translation>
+        <translation type="vanished">Met le chorus sur on ou off [1|0|yes|no|on|yes, défaut = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="240"/>
         <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
-        <translation>Rêgle le gain principal [0 &lt; gain &lt; 2, défaut = 1]</translation>
+        <translation type="vanished">Rêgle le gain principal [0 &lt; gain &lt; 2, défaut = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="242"/>
         <source>Define a setting name=value</source>
-        <translation>Définit un paramètre nom=valeur</translation>
+        <translation type="vanished">Définit un paramètre nom=valeur</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="244"/>
         <source>Create and start server [default = no]</source>
-        <translation>Crée et démarre le serveur [défaut = no]</translation>
+        <translation type="vanished">Crée et démarre le serveur [défaut = no]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="246"/>
         <source>Don&apos;t read commands from the shell [ignored]</source>
-        <translation>Ne pas lire les commandes à partir de la console [ignoré]</translation>
+        <translation type="vanished">Ne pas lire les commandes à partir de la console [ignoré]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="248"/>
         <source>Dump midi router events</source>
-        <translation>Affiche les évènements du routeur MIDI</translation>
+        <translation type="vanished">Affiche les évènements du routeur MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="250"/>
         <source>Print out verbose messages about midi events</source>
-        <translation>Affiche les messages détaillés concernant les évènements MIDI</translation>
+        <translation type="vanished">Affiche les messages détaillés concernant les évènements MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="252"/>
         <source>Show help about command line options</source>
-        <translation>Affiche l&apos;aide concernant les options de ligne de commande</translation>
+        <translation type="vanished">Affiche l&apos;aide concernant les options de ligne de commande</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="254"/>
         <source>Show version information</source>
-        <translation>Affiche les informations concernant la version</translation>
+        <translation type="vanished">Affiche les informations concernant la version</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="295"/>
         <source>Option -m requires an argument (midi-driver).</source>
-        <translation>L&apos;option -m requiert un argument (pilote-midi).</translation>
+        <translation type="vanished">L&apos;option -m requiert un argument (pilote-midi).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="304"/>
         <source>Option -K requires an argument (midi-channels).</source>
-        <translation>L&apos;option -K requiert un argument (canaux-midi).</translation>
+        <translation type="vanished">L&apos;option -K requiert un argument (canaux-midi).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="313"/>
         <source>Option -a requires an argument (audio-driver).</source>
-        <translation>L&apos;option -a requiert un argument (pilote-audio).</translation>
+        <translation type="vanished">L&apos;option -a requiert un argument (pilote-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="325"/>
         <source>Option -L requires an argument (audio-channels).</source>
-        <translation>L&apos;option -L requiert un argument (canaux-audio).</translation>
+        <translation type="vanished">L&apos;option -L requiert un argument (canaux-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="334"/>
         <source>Option -G requires an argument (audio-groups).</source>
-        <translation>L&apos;option -G requiert un argument (groupes-audio).</translation>
+        <translation type="vanished">L&apos;option -G requiert un argument (groupes-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="343"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
-        <translation>L&apos;option -z requiert un argument (taille-tampon-audio).</translation>
+        <translation type="vanished">L&apos;option -z requiert un argument (taille-tampon-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="352"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
-        <translation>L&apos;option -c requiert un argument (compte-tampon-audio).</translation>
+        <translation type="vanished">L&apos;option -c requiert un argument (compte-tampon-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="361"/>
         <source>Option -r requires an argument (sample-rate).</source>
-        <translation>L&apos;option -r requiert un argument (taux-échantillonage).</translation>
+        <translation type="vanished">L&apos;option -r requiert un argument (taux-échantillonage).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="388"/>
         <source>Option -g requires an argument (gain).</source>
-        <translation>L&apos;option -g requiert un argument (volume).</translation>
+        <translation type="vanished">L&apos;option -g requiert un argument (volume).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="397"/>
         <source>Option -o requires an argument.</source>
-        <translation>L&apos;option -o requiert un argument.</translation>
+        <translation type="vanished">L&apos;option -o requiert un argument.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="446"/>
         <source>Unknown option &apos;%1&apos;.</source>
-        <translation>Option &apos;%1&apos; inconnue.</translation>
+        <translation type="vanished">Option &apos;%1&apos; inconnue.</translation>
     </message>
     <message>
         <location filename="../qsynthSetup.cpp" line="37"/>
@@ -978,6 +945,174 @@ le redémarrage du moteur fluidsynth :</translation>
         <location filename="../qsynthMessagesForm.cpp" line="143"/>
         <source>Logging started --- %1 ---</source>
         <translation>Enregistrement démarré --- %1 ---</translation>
+    </message>
+</context>
+<context>
+    <name>qsynthOptions</name>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="219"/>
+        <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
+        <translation type="unfinished">Ne pas créer un pilote midi pour lire les évènements MIDI d&apos;entrée [défaut = oui]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="220"/>
+        <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
+        <translation type="unfinished">Le nom du pilote midi à utiliser [oss,alsa,alsa_esq,...]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="221"/>
+        <source>The number of midi channels [default = 16]</source>
+        <translation type="unfinished">Le nombre de canaux midi [défaut = 16]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="222"/>
+        <source>The audio driver [alsa,jack,oss,dsound,...]</source>
+        <translation type="unfinished">Le pilote audio [alsa,jack,oss,dsound,...]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="223"/>
+        <source>Attempt to connect the jack outputs to the physical ports</source>
+        <translation type="unfinished">Tentative de connecter les sorties jack aux ports physiques</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="224"/>
+        <source>The number of stereo audio channels [default = 1]</source>
+        <translation type="unfinished">Le nombre de canaux audio stéréo [défaut = 1]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="225"/>
+        <source>The number of audio groups [default = 1]</source>
+        <translation type="unfinished">Le nombre de groupes audio [défaut = 1]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="226"/>
+        <source>Size of each audio buffer</source>
+        <translation type="unfinished">Taille de chaque tampon audio</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="227"/>
+        <source>Number of audio buffers</source>
+        <translation type="unfinished">Nombre de tampons audio</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="228"/>
+        <source>Set the sample rate</source>
+        <translation type="unfinished">Rêgle la fréquence d&apos;échantillonnage</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="229"/>
+        <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
+        <translation type="unfinished">Met la réverbération sur on ou off [1|0|yes|no|on|off, défaut = on]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="230"/>
+        <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
+        <translation type="unfinished">Met le chorus sur on ou off [1|0|yes|no|on|yes, défaut = on]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="231"/>
+        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
+        <translation type="unfinished">Rêgle le gain principal [0 &lt; gain &lt; 2, défaut = 1]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="232"/>
+        <source>Define a setting name=value</source>
+        <translation type="unfinished">Définit un paramètre nom=valeur</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="233"/>
+        <source>Create and start server [default = no]</source>
+        <translation type="unfinished">Crée et démarre le serveur [défaut = no]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="234"/>
+        <source>Don&apos;t read commands from the shell [ignored]</source>
+        <translation type="unfinished">Ne pas lire les commandes à partir de la console [ignoré]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="235"/>
+        <source>Dump midi router events</source>
+        <translation type="unfinished">Affiche les évènements du routeur MIDI</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="236"/>
+        <source>Print out verbose messages about midi events</source>
+        <translation type="unfinished">Affiche les messages détaillés concernant les évènements MIDI</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="239"/>
+        <source>SoundFont Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="239"/>
+        <source>[soundfonts]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="240"/>
+        <source>MIDI Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="240"/>
+        <source>[midifiles]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="251"/>
+        <source>Option -m requires an argument (midi-driver).</source>
+        <translation type="unfinished">L&apos;option -m requiert un argument (pilote-midi).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="262"/>
+        <source>Option -K requires an argument (midi-channels).</source>
+        <translation type="unfinished">L&apos;option -K requiert un argument (canaux-midi).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="269"/>
+        <source>Option -a requires an argument (audio-driver).</source>
+        <translation type="unfinished">L&apos;option -a requiert un argument (pilote-audio).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="283"/>
+        <source>Option -L requires an argument (audio-channels).</source>
+        <translation type="unfinished">L&apos;option -L requiert un argument (canaux-audio).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="292"/>
+        <source>Option -G requires an argument (audio-groups).</source>
+        <translation type="unfinished">L&apos;option -G requiert un argument (groupes-audio).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="301"/>
+        <source>Option -z requires an argument (audio-bufsize).</source>
+        <translation type="unfinished">L&apos;option -z requiert un argument (taille-tampon-audio).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="310"/>
+        <source>Option -c requires an argument (audio-bufcount).</source>
+        <translation type="unfinished">L&apos;option -c requiert un argument (compte-tampon-audio).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="319"/>
+        <source>Option -r requires an argument (sample-rate).</source>
+        <translation type="unfinished">L&apos;option -r requiert un argument (taux-échantillonage).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="344"/>
+        <source>Option -g requires an argument (gain).</source>
+        <translation type="unfinished">L&apos;option -g requiert un argument (volume).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="351"/>
+        <source>Option -o requires an argument.</source>
+        <translation type="unfinished">L&apos;option -o requiert un argument.</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="383"/>
+        <source>Unknown option &apos;%1&apos;.</source>
+        <translation type="unfinished">Option &apos;%1&apos; inconnue.</translation>
     </message>
 </context>
 <context>

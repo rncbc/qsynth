@@ -113,6 +113,18 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 	QApplication::setApplicationDisplayName(QSYNTH_TITLE);
 	//	QSYNTH_TITLE " - " + QObject::tr(QSYNTH_SUBTITLE));
 #endif
+	QString formattedVersion;
+	QTextStream out(&formattedVersion);
+	out << QString("%1\n")
+		.arg(CONFIG_BUILD_VERSION);
+	out << QString("Qt: %1").arg(qVersion());
+#if defined(QT_STATIC)
+	out << "-static";
+#endif
+	out << '\n';
+	out << QString("FluidSynth: %1\n")
+		.arg(::fluid_version_str());
+	QApplication::setApplicationVersion(formattedVersion);
 
 	QDir appDir(QApplication::applicationDirPath());
 #ifndef Q_OS_WINDOWS
