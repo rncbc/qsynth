@@ -539,6 +539,7 @@ int main ( int argc, char **argv )
 
 	// Construct default settings; override with command line arguments.
 	qsynthOptions options;
+	app.loadTranslations(options.sLanguage);
 	if (!options.parse_args(app.arguments())) {
 		app.quit();
 		return 1;
@@ -549,8 +550,6 @@ int main ( int argc, char **argv )
 		app.quit();
 		return 2;
 	}
-
-	app.loadTranslations(options.sLanguage);
 
 	// Special custom styles...
 	if (QDir(CONFIG_PLUGINSDIR).exists())
