@@ -197,73 +197,130 @@ QSettings& qsynthOptions::settings (void)
 // Command-line argument stuff. Mostly to mimic fluidsynth CLI.
 //
 
+void qsynthOptions::show_error( const QString& msg )
+{
+#if defined(Q_OS_WINDOWS)
+	QMessageBox::information(nullptr, QCoreApplication::applicationName(), msg);
+#else
+	::fputs(msg, stderr);
+#endif
+}
+
+
 // Parse command line arguments into fluidsynth settings.
 bool qsynthOptions::parse_args ( const QStringList& args )
 {
 	int iSoundFontOverride = 0;
 
 	QCommandLineParser parser;
-	parser.setApplicationDescription(QSYNTH_TITLE " - " + QObject::tr(QSYNTH_SUBTITLE));
+	parser.setApplicationDescription(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE));
 
-	parser.addOption({{"n", "no-midi-in"}, QObject::tr("Don't create a midi driver to read MIDI input events [default = yes]")});
-	parser.addOption({{"m", "midi-driver"}, QObject::tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]"), "driver"});
-	parser.addOption({{"K", "midi-channels"}, QObject::tr("The number of midi channels [default = 16]"), "num"});
-	parser.addOption({{"a", "audio-driver"}, QObject::tr("The audio driver [alsa,jack,oss,dsound,...]"), "driver"});
-	parser.addOption({{"j", "connect-jack-outputs"}, QObject::tr("Attempt to connect the jack outputs to the physical ports")});
-	parser.addOption({{"L", "audio-channels"}, QObject::tr("The number of stereo audio channels [default = 1]"), "num"});
-	parser.addOption({{"G", "audio-groups"}, QObject::tr("The number of audio groups [default = 1]"), "num"});
-	parser.addOption({{"z", "audio-bufsize"}, QObject::tr("Size of each audio buffer"), "num"});
-	parser.addOption({{"c", "audio-bufcount"}, QObject::tr("Number of audio buffers"), "num"});
-	parser.addOption({{"r", "sample-rate"}, QObject::tr("Set the sample rate"), "num"});
-	parser.addOption({{"R", "reverb"}, QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]"), "b"});
-	parser.addOption({{"C", "chorus"}, QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]"), "b"});
-	parser.addOption({{"g", "gain"}, QObject::tr("Set the master gain [0 < gain < 2, default = 1]"), "num"});
-	parser.addOption({{"o", "option"}, QObject::tr("Define a setting name=value"), "option"});
-	parser.addOption({{"s", "server"}, QObject::tr("Create and start server [default = no]")});
-	parser.addOption({{"i", "no-shell"}, QObject::tr("Don't read commands from the shell [ignored]")});
-	parser.addOption({{"d", "dump"}, QObject::tr("Dump midi router events")});
-	parser.addOption({{"V", "verbose"}, QObject::tr("Print out verbose messages about midi events")});
-	const QCommandLineOption helpOption = parser.addHelpOption();
-	const QCommandLineOption versionOption =parser.addVersionOption();
-	parser.addPositionalArgument("soundfonts", QObject::tr("SoundFont Files"));
-	parser.addPositionalArgument("midifiles", QObject::tr("MIDI Files"));
+	parser.addOption({{"n", "no-midi-in"}, tr("Don't create a midi driver to read MIDI input events [default = yes]")});
+	parser.addOption({{"m", "midi-driver"}, tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]"), "label"});
+	parser.addOption({{"K", "midi-channels"}, tr("The number of midi channels [default = 16]"), "num"});
+	parser.addOption({{"a", "audio-driver"}, tr("The audio driver [alsa,jack,oss,dsound,...]"), "label"});
+	parser.addOption({{"j", "connect-jack-outputs"}, tr("Attempt to connect the jack outputs to the physical ports")});
+	parser.addOption({{"L", "audio-channels"}, tr("The number of stereo audio channels [default = 1]"), "num"});
+	parser.addOption({{"G", "audio-groups"}, tr("The number of audio groups [default = 1]"), "num"});
+	parser.addOption({{"z", "audio-bufsize"}, tr("Size of each audio buffer"), "size"});
+	parser.addOption({{"c", "audio-bufcount"}, tr("Number of audio buffers"), "count"});
+	parser.addOption({{"r", "sample-rate"}, tr("Set the sample rate"), "rate"});
+	parser.addOption({{"R", "reverb"}, tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]"), "flag"});
+	parser.addOption({{"C", "chorus"}, tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]"), "flag"});
+	parser.addOption({{"g", "gain"}, tr("Set the master gain [0 < gain < 2, default = 1]"), "gain"});
+	parser.addOption({{"o", "option"}, tr("Define a setting name=value"), "name=value"});
+	parser.addOption({{"s", "server"}, tr("Create and start server [default = no]")});
+	parser.addOption({{"i", "no-shell"}, tr("Don't read commands from the shell [ignored]")});
+	parser.addOption({{"d", "dump"}, tr("Dump midi router events")});
+	parser.addOption({{"V", "verbose"}, tr("Print out verbose messages about midi events")});
+	parser.addHelpOption();
+	parser.addVersionOption();
+	parser.addPositionalArgument("soundfonts", tr("SoundFont Files"), tr("[soundfonts]"));
+	parser.addPositionalArgument("midifiles", tr("MIDI Files"), tr("[midifiles]"));
 	parser.process(args);
 
-	if (parser.isSet(helpOption) || parser.isSet(versionOption)) {
-		return false;
-	}
-
+	bool bOK;
+	QString sVal;
 	if (parser.isSet("no-midi-in")) {
 		m_pDefaultSetup->bMidiIn = false;
-	} else if (parser.isSet("midi-driver")) {
-		m_pDefaultSetup->sMidiDriver = parser.value("midi-driver");
+	}
+	if (parser.isSet("midi-driver")) {
+		sVal = parser.value("midi-driver");
+		if (sVal.isEmpty()) {
+			show_error(tr("Option -m requires an argument (midi-driver)."));
+			return false;
+		} else {
+			m_pDefaultSetup->sMidiDriver = sVal;
+		}
 	}
 	if (parser.isSet("midi-channels")) {
-		m_pDefaultSetup->iMidiChannels = parser.value("midi-channels").toInt();
+		int iVal = parser.value("midi-channels").toInt(&bOK);
+		if (bOK) {
+			m_pDefaultSetup->iMidiChannels = iVal;
+		} else {
+			show_error(tr("Option -K requires an argument (midi-channels)."));
+			return false;
+		}
 	}
 	if (parser.isSet("audio-driver")) {
-		m_pDefaultSetup->sAudioDriver = parser.value("audio-driver");
+		sVal = parser.value("audio-driver");
+		if (sVal.isEmpty()) {
+			show_error(tr("Option -a requires an argument (audio-driver)."));
+			return false;
+		} else {
+			m_pDefaultSetup->sAudioDriver = sVal;
+		}
 	}
 	if (parser.isSet("connect-jack-outputs")) {
 		m_pDefaultSetup->bJackAutoConnect = true;
 	}
 	if (parser.isSet("audio-channels")) {
-		m_pDefaultSetup->iAudioChannels = parser.value("audio-channels").toInt();
+		int iVal = parser.value("audio-channels").toInt(&bOK);
+		if (bOK) {
+			m_pDefaultSetup->iAudioChannels = iVal;
+		} else {
+			show_error(tr("Option -L requires an argument (audio-channels)."));
+			return false;
+		}
 	}
 	if (parser.isSet("audio-groups")) {
-		m_pDefaultSetup->iAudioGroups = parser.value("audio-groups").toInt();
+		int iVal = parser.value("audio-groups").toInt(&bOK);
+		if (bOK) {
+			m_pDefaultSetup->iAudioGroups = iVal;
+		} else {
+			show_error(tr("Option -G requires an argument (audio-groups)."));
+			return false;
+		}
 	}
 	if (parser.isSet("audio-bufsize")) {
-		m_pDefaultSetup->iAudioBufSize = parser.value("audio-bufsize").toInt();
+		int iVal = parser.value("audio-bufsize").toInt(&bOK);
+		if (bOK) {
+			m_pDefaultSetup->iAudioBufSize =iVal;
+		} else {
+			show_error(tr("Option -z requires an argument (audio-bufsize)."));
+			return false;
+		}
 	}
 	if (parser.isSet("audio-bufcount")) {
-		m_pDefaultSetup->iAudioBufCount = parser.value("audio-bufcount").toInt();
+		int iVal = parser.value("audio-bufcount").toInt(&bOK);
+		if (bOK) {
+			m_pDefaultSetup->iAudioBufCount = iVal;
+		} else {
+			show_error(tr("Option -c requires an argument (audio-bufcount)."));
+			return false;
+		}
 	}
 	if (parser.isSet("sample-rate")) {
-		m_pDefaultSetup->fSampleRate = parser.value("sample-rate").toFloat();
+		float fVal = parser.value("sample-rate").toFloat(&bOK);
+		if (bOK) {
+			m_pDefaultSetup->fSampleRate = fVal;
+		} else {
+			show_error(tr("Option -r requires an argument (sample-rate)."));
+			return false;
+		}
 	}
 	if (parser.isSet("reverb")) {
-		QString sVal = parser.value("reverb");
+		sVal = parser.value("reverb");
 		if (sVal.isEmpty()) {
 			m_pDefaultSetup->bReverbActive = true;
 		} else {
@@ -279,10 +336,22 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		}
 	}
 	if (parser.isSet("gain")) {
-		m_pDefaultSetup->fGain = parser.value("gain").toFloat();
+		float fVal = parser.value("gain").toFloat(&bOK);
+		if (bOK) {
+			m_pDefaultSetup->fGain = fVal;
+		} else {
+			show_error(tr("Option -g requires an argument (gain)."));
+			return false;
+		}
 	}
 	if (parser.isSet("option")) {
-		m_pDefaultSetup->options.append(parser.values("option"));
+		QStringList sValues = parser.values("option");
+		if (sValues.isEmpty()) {
+			show_error(tr("Option -o requires an argument."));
+			return false;
+		} else {
+			m_pDefaultSetup->options.append(sValues);
+		}
 	}
 	if (parser.isSet("server")) {
 		m_pDefaultSetup->bServer = true;
@@ -307,9 +376,11 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			}
 			m_pDefaultSetup->soundfonts.append(name);
 			m_pDefaultSetup->bankoffsets.append(QString());
-		}
-		else if (::fluid_is_midifile(name)) {
+		} else if (::fluid_is_midifile(name)) {
 			m_pDefaultSetup->midifiles.append(name);
+		} else {
+			show_error(tr("Unknown option '%1'.").arg(name));
+			return false;
 		}
 	}
 
