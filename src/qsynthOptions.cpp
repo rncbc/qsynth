@@ -202,7 +202,8 @@ void qsynthOptions::show_error( const QString& msg )
 #if defined(Q_OS_WINDOWS)
 	QMessageBox::information(nullptr, QCoreApplication::applicationName(), msg);
 #else
-	::fputs(msg, stderr);
+	QByteArray tmp = msg.toUtf8() + "\n";
+	::fputs(tmp.constData(), stderr);
 #endif
 }
 
