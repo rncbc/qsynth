@@ -250,7 +250,7 @@ void qsynthOptions::print_usage ( const QString& arg0 )
 	out << "  -C, --chorus=[flag]" + sEot +
 		QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]") + sEol;
 	out << "  -g, --gain=[gain]" + sEot +
-		QObject::tr("Set the master gain [0 < gain < 10, default = 0.2]") + sEol;
+		QObject::tr("Set the master gain [0 < gain < 2, default = 1]") + sEol;
 	out << "  -o, --option [name=value]" + sEot +
 		QObject::tr("Define a setting name=value") + sEol;
 	out << "  -s, --server" + sEot +

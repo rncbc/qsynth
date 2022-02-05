@@ -88,8 +88,9 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="253"/>
-        <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
-        <translation type="unfinished">Nastavit výstupní zesílení [0 &lt; zesílení &lt; 2, výchozí = 1] {0 ?} {10,?} {0.2]?}</translation>
+        <location filename="../qsynthOptions.cpp" line="309"/>
+        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
+        <translation type="unfinished">Nastavit výstupní zesílení [0 &lt; zesílení &lt; 2, výchozí = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="255"/>
@@ -147,11 +148,6 @@
         <location filename="../qsynthOptions.cpp" line="303"/>
         <source>Set the sample rate.</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="309"/>
-        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
-        <translation type="unfinished">Nastavit výstupní zesílení [0 &lt; zesílení &lt; 2, výchozí = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="311"/>

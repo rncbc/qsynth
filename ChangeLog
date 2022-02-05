@@ -9,6 +9,10 @@ GIT HEAD
 - Migrated command line parsing to QCommandLineParser/Option
   (Qt >= 5.2; by Pedro Lopez-Cabanillas) (EXPERIMENTAL)
 
+- New option to change the UI language translation.
+
+- Added DLS file type to the soundfonts selection dialog.
+
 - Fixed translations path to be relative to application runtime.
 
 
