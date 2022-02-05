@@ -26,8 +26,14 @@
 
 #include <QTextStream>
 #include <QComboBox>
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
 #include <QCommandLineParser>
 #include <QCommandLineOption>
+#if defined(Q_OS_WINDOWS)
+#include <QMessageBox>
+#endif
+#endif
 
 #include <QApplication>
 
@@ -35,9 +41,6 @@
 #include <QDesktopWidget>
 #endif
 
-#if defined(Q_OS_WINDOWS)
-#include <QMessageBox>
-#endif
 
 //-------------------------------------------------------------------------
 // qsynthOptions - Prototype settings structure.
@@ -197,15 +200,74 @@ QSettings& qsynthOptions::settings (void)
 // Command-line argument stuff. Mostly to mimic fluidsynth CLI.
 //
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
+
 void qsynthOptions::show_error( const QString& msg )
 {
 #if defined(Q_OS_WINDOWS)
-	QMessageBox::information(nullptr, QCoreApplication::applicationName(), msg);
+	QMessageBox::information(nullptr, QApplication::applicationName(), msg);
 #else
-	QByteArray tmp = msg.toUtf8() + "\n";
+	const QByteArray tmp = msg.toUtf8() + '\n';
 	::fputs(tmp.constData(), stderr);
 #endif
 }
+
+#else
+
+// Help about command line options.
+void qsynthOptions::print_usage ( const QString& arg0 )
+{
+	QTextStream out(stderr);
+	const QString sEot = "\n\t";
+	const QString sEol = "\n\n";
+
+	out << QObject::tr("Usage: %1"
+		" [options] [soundfonts] [midifiles]").arg(arg0) + sEol;
+	out << QSYNTH_TITLE " - " + QObject::tr(QSYNTH_SUBTITLE) + sEol;
+	out << QObject::tr("Options") + ":" + sEol;
+	out << "  -n, --no-midi-in" + sEot +
+		QObject::tr("Don't create a midi driver to read MIDI input events [default = yes]") + sEol;
+	out << "  -m, --midi-driver=[label]" + sEot +
+		QObject::tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]") + sEol;
+	out << "  -K, --midi-channels=[num]" + sEot +
+		QObject::tr("The number of midi channels [default = 16]") + sEol;
+	out << "  -a, --audio-driver=[label]" + sEot +
+		QObject::tr("The audio driver [alsa,jack,oss,dsound,...]") + sEol;
+	out << "  -j, --connect-jack-outputs" + sEot +
+		QObject::tr("Attempt to connect the jack outputs to the physical ports") + sEol;
+	out << "  -L, --audio-channels=[num]" + sEot +
+		QObject::tr("The number of stereo audio channels [default = 1]") + sEol;
+	out << "  -G, --audio-groups=[num]" + sEot +
+		QObject::tr("The number of audio groups [default = 1]") + sEol;
+	out << "  -z, --audio-bufsize=[size]" + sEot +
+		QObject::tr("Size of each audio buffer") + sEol;
+	out << "  -c, --audio-bufcount=[count]" + sEot +
+		QObject::tr("Number of audio buffers") + sEol;
+	out << "  -r, --sample-rate=[rate]" + sEot +
+		QObject::tr("Set the sample rate") + sEol;
+	out << "  -R, --reverb=[flag]" + sEot +
+		QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]") + sEol;
+	out << "  -C, --chorus=[flag]" + sEot +
+		QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]") + sEol;
+	out << "  -g, --gain=[gain]" + sEot +
+		QObject::tr("Set the master gain [0 < gain < 10, default = 0.2]") + sEol;
+	out << "  -o, --option [name=value]" + sEot +
+		QObject::tr("Define a setting name=value") + sEol;
+	out << "  -s, --server" + sEot +
+		QObject::tr("Create and start server [default = no]") + sEol;
+	out << "  -i, --no-shell" + sEot +
+		QObject::tr("Don't read commands from the shell [ignored]") + sEol;
+	out << "  -d, --dump" + sEot +
+		QObject::tr("Dump midi router events") + sEol;
+	out << "  -V, --verbose" + sEot +
+		QObject::tr("Print out verbose messages about midi events") + sEol;
+	out << "  -h, --help" + sEot +
+		QObject::tr("Show help about command line options") + sEol;
+	out << "  -v, --version" + sEot +
+		QObject::tr("Show version information") + sEol;
+}
+
+#endif
 
 
 // Parse command line arguments into fluidsynth settings.
@@ -213,162 +275,199 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 {
 	int iSoundFontOverride = 0;
 
-	QCommandLineParser parser;
-	parser.setApplicationDescription(QSYNTH_TITLE " - " + tr(QSYNTH_SUBTITLE));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
 
-	parser.addOption({{"n", "no-midi-in"}, tr("Don't create a midi driver to read MIDI input events [default = yes]")});
-	parser.addOption({{"m", "midi-driver"}, tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]"), "label"});
-	parser.addOption({{"K", "midi-channels"}, tr("The number of midi channels [default = 16]"), "num"});
-	parser.addOption({{"a", "audio-driver"}, tr("The audio driver [alsa,jack,oss,dsound,...]"), "label"});
-	parser.addOption({{"j", "connect-jack-outputs"}, tr("Attempt to connect the jack outputs to the physical ports")});
-	parser.addOption({{"L", "audio-channels"}, tr("The number of stereo audio channels [default = 1]"), "num"});
-	parser.addOption({{"G", "audio-groups"}, tr("The number of audio groups [default = 1]"), "num"});
-	parser.addOption({{"z", "audio-bufsize"}, tr("Size of each audio buffer"), "size"});
-	parser.addOption({{"c", "audio-bufcount"}, tr("Number of audio buffers"), "count"});
-	parser.addOption({{"r", "sample-rate"}, tr("Set the sample rate"), "rate"});
-	parser.addOption({{"R", "reverb"}, tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]"), "flag"});
-	parser.addOption({{"C", "chorus"}, tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]"), "flag"});
-	parser.addOption({{"g", "gain"}, tr("Set the master gain [0 < gain < 2, default = 1]"), "gain"});
-	parser.addOption({{"o", "option"}, tr("Define a setting name=value"), "name=value"});
-	parser.addOption({{"s", "server"}, tr("Create and start server [default = no]")});
-	parser.addOption({{"i", "no-shell"}, tr("Don't read commands from the shell [ignored]")});
-	parser.addOption({{"d", "dump"}, tr("Dump midi router events")});
-	parser.addOption({{"V", "verbose"}, tr("Print out verbose messages about midi events")});
+	QCommandLineParser parser;
+	parser.setApplicationDescription(
+		QSYNTH_TITLE " - " + QObject::tr(QSYNTH_SUBTITLE));
+
+	parser.addOption({{"n", "no-midi-in"},
+		QObject::tr("Don't create a midi driver to read MIDI input events [default = yes]")});
+	parser.addOption({{"m", "midi-driver"},
+		QObject::tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]"), "label"});
+	parser.addOption({{"K", "midi-channels"},
+		QObject::tr("The number of midi channels [default = 16]"), "num"});
+	parser.addOption({{"a", "audio-driver"},
+		QObject::tr("The audio driver [alsa,jack,oss,dsound,...]"), "label"});
+	parser.addOption({{"j", "connect-jack-outputs"},
+		QObject::tr("Attempt to connect the jack outputs to the physical ports.")});
+	parser.addOption({{"L", "audio-channels"},
+		QObject::tr("The number of stereo audio channels [default = 1]"), "num"});
+	parser.addOption({{"G", "audio-groups"},
+		QObject::tr("The number of audio groups [default = 1]"), "num"});
+	parser.addOption({{"z", "audio-bufsize"},
+		QObject::tr("Size of each audio buffer."), "size"});
+	parser.addOption({{"c", "audio-bufcount"},
+		QObject::tr("Number of audio buffers."), "count"});
+	parser.addOption({{"r", "sample-rate"},
+		QObject::tr("Set the sample rate."), "rate"});
+	parser.addOption({{"R", "reverb"},
+		QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]"), "flag"});
+	parser.addOption({{"C", "chorus"},
+		QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]"), "flag"});
+	parser.addOption({{"g", "gain"},
+		QObject::tr("Set the master gain [0 < gain < 2, default = 1]"), "gain"});
+	parser.addOption({{"o", "option"},
+		QObject::tr("Define a setting name=value."), "name=value"});
+	parser.addOption({{"s", "server"},
+		QObject::tr("Create and start server [default = no]")});
+	parser.addOption({{"i", "no-shell"},
+		QObject::tr("Don't read commands from the shell [ignored]")});
+	parser.addOption({{"d", "dump"},
+		QObject::tr("Dump midi router events.")});
+	parser.addOption({{"V", "verbose"},
+		QObject::tr("Print out verbose messages about midi events.")});
 	parser.addHelpOption();
 	parser.addVersionOption();
-	parser.addPositionalArgument("soundfonts", tr("SoundFont Files"), tr("[soundfonts]"));
-	parser.addPositionalArgument("midifiles", tr("MIDI Files"), tr("[midifiles]"));
+	parser.addPositionalArgument("soundfonts",
+		QObject::tr("SoundFont Files"),
+		QObject::tr("[soundfonts]"));
+	parser.addPositionalArgument("midifiles",
+		QObject::tr("MIDI Files"),
+		QObject::tr("[midifiles]"));
 	parser.process(args);
 
-	bool bOK;
-	QString sVal;
 	if (parser.isSet("no-midi-in")) {
 		m_pDefaultSetup->bMidiIn = false;
 	}
+
 	if (parser.isSet("midi-driver")) {
-		sVal = parser.value("midi-driver");
+		const QString& sVal = parser.value("midi-driver");
 		if (sVal.isEmpty()) {
-			show_error(tr("Option -m requires an argument (midi-driver)."));
+			show_error(QObject::tr("Option -m requires an argument (midi-driver)."));
 			return false;
-		} else {
-			m_pDefaultSetup->sMidiDriver = sVal;
 		}
+		m_pDefaultSetup->sMidiDriver = sVal;
 	}
+
 	if (parser.isSet("midi-channels")) {
-		int iVal = parser.value("midi-channels").toInt(&bOK);
-		if (bOK) {
-			m_pDefaultSetup->iMidiChannels = iVal;
-		} else {
-			show_error(tr("Option -K requires an argument (midi-channels)."));
+		bool bOK = false;
+		const int iVal = parser.value("midi-channels").toInt(&bOK);
+		if (!bOK) {
+			show_error(QObject::tr("Option -K requires an argument (midi-channels)."));
 			return false;
 		}
+		m_pDefaultSetup->iMidiChannels = iVal;
 	}
+
 	if (parser.isSet("audio-driver")) {
-		sVal = parser.value("audio-driver");
+		const QString& sVal = parser.value("audio-driver");
 		if (sVal.isEmpty()) {
-			show_error(tr("Option -a requires an argument (audio-driver)."));
+			show_error(QObject::tr("Option -a requires an argument (audio-driver)."));
 			return false;
-		} else {
-			m_pDefaultSetup->sAudioDriver = sVal;
 		}
+		m_pDefaultSetup->sAudioDriver = sVal;
 	}
+
 	if (parser.isSet("connect-jack-outputs")) {
 		m_pDefaultSetup->bJackAutoConnect = true;
 	}
+
 	if (parser.isSet("audio-channels")) {
-		int iVal = parser.value("audio-channels").toInt(&bOK);
-		if (bOK) {
-			m_pDefaultSetup->iAudioChannels = iVal;
-		} else {
-			show_error(tr("Option -L requires an argument (audio-channels)."));
+		bool bOK = false;
+		const int iVal = parser.value("audio-channels").toInt(&bOK);
+		if (!bOK) {
+			show_error(QObject::tr("Option -L requires an argument (audio-channels)."));
 			return false;
 		}
+		m_pDefaultSetup->iAudioChannels = iVal;
 	}
+
 	if (parser.isSet("audio-groups")) {
-		int iVal = parser.value("audio-groups").toInt(&bOK);
-		if (bOK) {
-			m_pDefaultSetup->iAudioGroups = iVal;
-		} else {
-			show_error(tr("Option -G requires an argument (audio-groups)."));
+		bool bOK = false;
+		const int iVal = parser.value("audio-groups").toInt(&bOK);
+		if (!bOK) {
+			show_error(QObject::tr("Option -G requires an argument (audio-groups)."));
 			return false;
 		}
+		m_pDefaultSetup->iAudioGroups = iVal;
 	}
+
 	if (parser.isSet("audio-bufsize")) {
-		int iVal = parser.value("audio-bufsize").toInt(&bOK);
-		if (bOK) {
-			m_pDefaultSetup->iAudioBufSize =iVal;
-		} else {
-			show_error(tr("Option -z requires an argument (audio-bufsize)."));
+		bool bOK = false;
+		const int iVal = parser.value("audio-bufsize").toInt(&bOK);
+		if (!bOK) {
+			show_error(QObject::tr("Option -z requires an argument (audio-bufsize)."));
 			return false;
 		}
+		m_pDefaultSetup->iAudioBufSize =iVal;
 	}
+
 	if (parser.isSet("audio-bufcount")) {
-		int iVal = parser.value("audio-bufcount").toInt(&bOK);
-		if (bOK) {
-			m_pDefaultSetup->iAudioBufCount = iVal;
-		} else {
-			show_error(tr("Option -c requires an argument (audio-bufcount)."));
+		bool bOK = false;
+		const int iVal = parser.value("audio-bufcount").toInt(&bOK);
+		if (!bOK) {
+			show_error(QObject::tr("Option -c requires an argument (audio-bufcount)."));
 			return false;
 		}
+		m_pDefaultSetup->iAudioBufCount = iVal;
 	}
+
 	if (parser.isSet("sample-rate")) {
-		float fVal = parser.value("sample-rate").toFloat(&bOK);
-		if (bOK) {
-			m_pDefaultSetup->fSampleRate = fVal;
-		} else {
-			show_error(tr("Option -r requires an argument (sample-rate)."));
+		bool bOK = false;
+		const float fVal = parser.value("sample-rate").toFloat(&bOK);
+		if (!bOK) {
+			show_error(QObject::tr("Option -r requires an argument (sample-rate)."));
 			return false;
 		}
+		m_pDefaultSetup->fSampleRate = fVal;
 	}
+
 	if (parser.isSet("reverb")) {
-		sVal = parser.value("reverb");
+		const QString& sVal = parser.value("reverb");
 		if (sVal.isEmpty()) {
 			m_pDefaultSetup->bReverbActive = true;
 		} else {
 			m_pDefaultSetup->bReverbActive = !(sVal == "0" || sVal == "no" || sVal == "off");
 		}
 	}
+
 	if (parser.isSet("chorus")) {
-		QString sVal = parser.value("chorus");
+		const QString& sVal = parser.value("chorus");
 		if (sVal.isEmpty()) {
 			m_pDefaultSetup->bChorusActive = true;
 		} else {
 			m_pDefaultSetup->bChorusActive = !(sVal == "0" || sVal == "no" || sVal == "off");
 		}
 	}
+
 	if (parser.isSet("gain")) {
-		float fVal = parser.value("gain").toFloat(&bOK);
-		if (bOK) {
-			m_pDefaultSetup->fGain = fVal;
-		} else {
-			show_error(tr("Option -g requires an argument (gain)."));
+		bool bOK = false;
+		const float fVal = parser.value("gain").toFloat(&bOK);
+		if (!bOK) {
+			show_error(QObject::tr("Option -g requires an argument (gain)."));
 			return false;
 		}
+		m_pDefaultSetup->fGain = fVal;
 	}
+
 	if (parser.isSet("option")) {
-		QStringList sValues = parser.values("option");
+		const QStringList& sValues = parser.values("option");
 		if (sValues.isEmpty()) {
-			show_error(tr("Option -o requires an argument."));
+			show_error(QObject::tr("Option -o requires an argument."));
 			return false;
-		} else {
-			m_pDefaultSetup->options.append(sValues);
 		}
+		m_pDefaultSetup->options.append(sValues);
 	}
+
 	if (parser.isSet("server")) {
 		m_pDefaultSetup->bServer = true;
 	}
+
 	if (parser.isSet("no-shell")) {
 		// Just ignore this one...
 	}
+
 	if (parser.isSet("dump")) {
 		m_pDefaultSetup->bMidiDump = true;
 	}
+
 	if (parser.isSet("verbose")) {
 		m_pDefaultSetup->bVerbose = true;
 	}
 
-	foreach(const QString& p, parser.positionalArguments()) {
-		QByteArray tmp = p.toUtf8();
+	foreach(const QString& sArg, parser.positionalArguments()) {
+		const QByteArray tmp = sArg.toUtf8();
 		const char *name = tmp.constData();
 		if (::fluid_is_soundfont(name)) {
 			if (++iSoundFontOverride == 1) {
@@ -380,10 +479,196 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		} else if (::fluid_is_midifile(name)) {
 			m_pDefaultSetup->midifiles.append(name);
 		} else {
-			show_error(tr("Unknown option '%1'.").arg(name));
+			show_error(QObject::tr("Unknown option '%1'.").arg(name));
 			return false;
 		}
 	}
+
+#else
+
+	QTextStream out(stderr);
+	const QString sEol = "\n\n";
+	const int argc = args.count();
+
+	for (int i = 1; i < argc; ++i) {
+
+		QString sVal;
+		QString sArg = args.at(i);
+		const int iEqual = sArg.indexOf('=');
+		if (iEqual >= 0) {
+			sVal = sArg.right(sArg.length() - iEqual - 1);
+			sArg = sArg.left(iEqual);
+		}
+		else if (i < argc - 1) {
+			sVal = args.at(i + 1);
+			if (sVal[0] == '-')
+				sVal.clear();
+		}
+
+		if (sArg == "-n" || sArg == "--no-midi-in") {
+			m_pDefaultSetup->bMidiIn = false;
+		}
+		else if (sArg == "-m" || sArg == "--midi-driver") {
+			if (sVal.isEmpty()) {
+				out << QObject::tr("Option -m requires an argument (midi-driver).") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->sMidiDriver = sVal;
+			if (iEqual < 0)
+				++i;
+		}
+		else if (sArg == "-K" || sArg == "--midi-channels") {
+			if (sVal.isEmpty()) {
+				out << QObject::tr("Option -K requires an argument (midi-channels).") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->iMidiChannels = sVal.toInt();
+			if (iEqual < 0)
+				++i;
+		}
+		else if (sArg == "-a" || sArg == "--audio-driver") {
+			if (sVal.isEmpty()) {
+				out << QObject::tr("Option -a requires an argument (audio-driver).") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->sAudioDriver = sVal;
+			if (iEqual < 0)
+				++i;
+		}
+		else if (sArg == "-j" || sArg == "--connect-jack-outputs") {
+			m_pDefaultSetup->bJackAutoConnect = true;
+		}
+		else if (sArg == "-L" || sArg == "--audio-channels") {
+			if (sVal.isEmpty()) {
+				out << QObject::tr("Option -L requires an argument (audio-channels).") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->iAudioChannels = sVal.toInt();
+			if (iEqual < 0)
+				++i;
+		}
+		else if (sArg == "-G" || sArg == "--audio-groups") {
+			if (sVal.isEmpty()) {
+				out << QObject::tr("Option -G requires an argument (audio-groups).") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->iAudioGroups = sVal.toInt();
+			if (iEqual < 0)
+				i++;
+		}
+		else if (sArg == "-z" || sArg == "--audio-bufsize") {
+			if (sVal.isEmpty()) {
+				out << QObject::tr("Option -z requires an argument (audio-bufsize).") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->iAudioBufSize = sVal.toInt();
+			if (iEqual < 0)
+				++i;
+		}
+		else if (sArg == "-c" || sArg == "--audio-bufcount") {
+			if (sVal.isEmpty()) {
+				out << QObject::tr("Option -c requires an argument (audio-bufcount).") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->iAudioBufCount = sVal.toInt();
+			if (iEqual < 0)
+				++i;
+		}
+		else if (sArg == "-r" || sArg == "--sample-rate") {
+			if (sVal.isEmpty()) {
+				out << QObject::tr("Option -r requires an argument (sample-rate).") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->fSampleRate = sVal.toFloat();
+			if (iEqual < 0)
+				++i;
+		}
+		else if (sArg == "-R" || sArg == "--reverb") {
+			if (sVal.isEmpty()) {
+				m_pDefaultSetup->bReverbActive = true;
+			} else {
+				m_pDefaultSetup->bReverbActive = !(sVal == "0" || sVal == "no" || sVal == "off");
+				if (iEqual < 0)
+					++i;
+			}
+		}
+		else if (sArg == "-C" || sArg == "--chorus") {
+			if (sVal.isEmpty()) {
+				m_pDefaultSetup->bChorusActive = true;
+			} else {
+				m_pDefaultSetup->bChorusActive = !(sVal == "0" || sVal == "no" || sVal == "off");
+				if (iEqual < 0)
+					++i;
+			}
+		}
+		else if (sArg == "-g" || sArg == "--gain") {
+			if (sVal.isEmpty()) {
+				out << QObject::tr("Option -g requires an argument (gain).") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->fGain = sVal.toFloat();
+			if (iEqual < 0)
+				++i;
+		}
+		else if (sArg == "-o" || sArg == "--option") {
+			if (++i >= argc) {
+				out << QObject::tr("Option -o requires an argument.") + sEol;
+				return false;
+			}
+			m_pDefaultSetup->options.append(args.at(i));
+		}
+		else if (sArg == "-s" || sArg == "--server") {
+			m_pDefaultSetup->bServer = true;
+		}
+		else if (sArg == "-i" || sArg == "--no-shell") {
+			// Just ignore this one...
+		}
+		else if (sArg == "-d" || sArg == "--dump") {
+			m_pDefaultSetup->bMidiDump = true;
+		}
+		else if (sArg == "-V" || sArg == "--verbose") {
+			m_pDefaultSetup->bVerbose = true;
+		}
+		else if (sArg == "-h" || sArg == "--help") {
+			print_usage(args.at(0));
+			return false;
+		}
+		else if (sArg == "-v" || sArg == "--version") {
+			out << QString("Qt: %1").arg(qVersion());
+		#if defined(QT_STATIC)
+			out << "-static";
+		#endif
+			out << '\n';
+			out << QString("FluidSynth: %1\n")
+				.arg(::fluid_version_str());
+			out << QString("%1: %2\n")
+				.arg(QSYNTH_TITLE)
+				.arg(CONFIG_BUILD_VERSION);
+			return false;
+		}
+		else {
+			const QByteArray tmp = args.at(i).toUtf8();
+			const char *name = tmp.constData();
+			if (::fluid_is_soundfont(name)) {
+				if (++iSoundFontOverride == 1) {
+					m_pDefaultSetup->soundfonts.clear();
+					m_pDefaultSetup->bankoffsets.clear();
+				}
+				m_pDefaultSetup->soundfonts.append(name);
+				m_pDefaultSetup->bankoffsets.append(QString());
+			}
+			else if (::fluid_is_midifile(name)) {
+				m_pDefaultSetup->midifiles.append(name);
+			}
+			else {
+				out << QObject::tr("Unknown option '%1'.").arg(name) + sEol;
+				print_usage(args.at(0));
+				return false;
+			}
+		}
+	}
+
+#endif
 
 	// Alright with argument parsing.
 	return true;

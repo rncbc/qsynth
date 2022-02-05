@@ -22,7 +22,6 @@
 #ifndef __qsynthOptions_h
 #define __qsynthOptions_h
 
-#include <QCoreApplication>
 #include "qsynthSetup.h"
 
 // Forward declarations.
@@ -54,9 +53,8 @@ class qsynthEngine;
 
 class qsynthOptions
 {
-	Q_DECLARE_TR_FUNCTIONS(qsynthOptions)
-
 public:
+
 	// Constructor.
 	qsynthOptions();
 	// Default destructor.
@@ -71,7 +69,12 @@ public:
 
 	// Command line arguments parser.
 	bool parse_args(const QStringList& args);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 2, 0)
 	void show_error(const QString& msg);
+#else
+	// Command line usage helper.
+ 	void print_usage(const QString& arg0);
+#endif
 
 	// Default instance setup accessor.
 	qsynthSetup *defaultSetup();

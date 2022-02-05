@@ -8,6 +8,252 @@
         <source>(default)</source>
         <translation>(подразумевано)</translation>
     </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="224"/>
+        <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="227"/>
+        <source>Options</source>
+        <translation type="unfinished">Параметри</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="229"/>
+        <location filename="../qsynthOptions.cpp" line="285"/>
+        <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
+        <translation type="unfinished">Не стварај миди посредника за читање улазних миди-догађаја [подразумевано = yes]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="231"/>
+        <location filename="../qsynthOptions.cpp" line="287"/>
+        <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
+        <translation type="unfinished">Назив миди посредника који ће се користити [oss,alsa,alsa_seq,...]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="233"/>
+        <location filename="../qsynthOptions.cpp" line="289"/>
+        <source>The number of midi channels [default = 16]</source>
+        <translation type="unfinished">Број миди-канала [подразумевано = 16]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="235"/>
+        <location filename="../qsynthOptions.cpp" line="291"/>
+        <source>The audio driver [alsa,jack,oss,dsound,...]</source>
+        <translation type="unfinished">Звучни посредник [alsa,jack,oss,dsound,...]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="237"/>
+        <source>Attempt to connect the jack outputs to the physical ports</source>
+        <translation type="unfinished">Покушавај да повежеш излазе Џек посредника на физичке портове</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="239"/>
+        <location filename="../qsynthOptions.cpp" line="295"/>
+        <source>The number of stereo audio channels [default = 1]</source>
+        <translation type="unfinished">Број звучних стерео канала [подразумевано = 1]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="241"/>
+        <location filename="../qsynthOptions.cpp" line="297"/>
+        <source>The number of audio groups [default = 1]</source>
+        <translation type="unfinished">Број звучних група [подразумевано = 1]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="243"/>
+        <source>Size of each audio buffer</source>
+        <translation type="unfinished">Величина сваког звучног бафера</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="245"/>
+        <source>Number of audio buffers</source>
+        <translation type="unfinished">Број звучних бафера</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="247"/>
+        <source>Set the sample rate</source>
+        <translation type="unfinished">Постави учестаност узорковања</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="249"/>
+        <location filename="../qsynthOptions.cpp" line="305"/>
+        <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
+        <translation type="unfinished">Укљ./Искљ. јека еф. [1|0|yes|no|on|off, подразумевано = on]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="251"/>
+        <location filename="../qsynthOptions.cpp" line="307"/>
+        <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
+        <translation type="unfinished">Укљ./Искљ. хорус еф. [1|0|yes|no|on|off, подразумевано = on]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="253"/>
+        <source>Set the master gain [0 &lt; gain &lt; 10, default = 0.2]</source>
+        <translation type="unfinished">Постави Мастер-појачање [0 &lt; gain &lt; 2, подразумевано = 1] {0 ?} {10,?} {0.2]?}</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="255"/>
+        <source>Define a setting name=value</source>
+        <translation type="unfinished">Одреди назив поставке=вредност</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="257"/>
+        <location filename="../qsynthOptions.cpp" line="313"/>
+        <source>Create and start server [default = no]</source>
+        <translation type="unfinished">Створи и покрени сервер [подразумевано = no]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="259"/>
+        <location filename="../qsynthOptions.cpp" line="315"/>
+        <source>Don&apos;t read commands from the shell [ignored]</source>
+        <translation type="unfinished">Не читај команде из наредбене линије [занемарено]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="261"/>
+        <source>Dump midi router events</source>
+        <translation type="unfinished">Избаци догађаје миди-рутера</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="263"/>
+        <source>Print out verbose messages about midi events</source>
+        <translation type="unfinished">Штампај опширније поруке о миди-догађајима</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="265"/>
+        <source>Show help about command line options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="267"/>
+        <source>Show version information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="293"/>
+        <source>Attempt to connect the jack outputs to the physical ports.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="299"/>
+        <source>Size of each audio buffer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="301"/>
+        <source>Number of audio buffers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="303"/>
+        <source>Set the sample rate.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="309"/>
+        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
+        <translation type="unfinished">Постави Мастер-појачање [0 &lt; gain &lt; 2, подразумевано = 1]</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="311"/>
+        <source>Define a setting name=value.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="317"/>
+        <source>Dump midi router events.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="319"/>
+        <source>Print out verbose messages about midi events.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="323"/>
+        <source>SoundFont Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="324"/>
+        <source>[soundfonts]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="326"/>
+        <source>MIDI Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="327"/>
+        <source>[midifiles]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="337"/>
+        <location filename="../qsynthOptions.cpp" line="513"/>
+        <source>Option -m requires an argument (midi-driver).</source>
+        <translation type="unfinished">Опција „-m“ захтева аргумент (миди посредник).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="347"/>
+        <location filename="../qsynthOptions.cpp" line="522"/>
+        <source>Option -K requires an argument (midi-channels).</source>
+        <translation type="unfinished">Опција „-K“ захтева аргумент (миди-канали).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="356"/>
+        <location filename="../qsynthOptions.cpp" line="531"/>
+        <source>Option -a requires an argument (audio-driver).</source>
+        <translation type="unfinished">Опција „-a“ захтева аргумент (звучни посредник).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="370"/>
+        <location filename="../qsynthOptions.cpp" line="543"/>
+        <source>Option -L requires an argument (audio-channels).</source>
+        <translation type="unfinished">Опција „-L“ захтева аргумент (звучни канали).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="380"/>
+        <location filename="../qsynthOptions.cpp" line="552"/>
+        <source>Option -G requires an argument (audio-groups).</source>
+        <translation type="unfinished">Опција „-G“ захтева аргумент (звучне групе).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="390"/>
+        <location filename="../qsynthOptions.cpp" line="561"/>
+        <source>Option -z requires an argument (audio-bufsize).</source>
+        <translation type="unfinished">Опција „-z“ захтева аргумент (вел. зв. бафера).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="400"/>
+        <location filename="../qsynthOptions.cpp" line="570"/>
+        <source>Option -c requires an argument (audio-bufcount).</source>
+        <translation type="unfinished">Опција „-c“ захтева аргумент (број зв. бафера).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="410"/>
+        <location filename="../qsynthOptions.cpp" line="579"/>
+        <source>Option -r requires an argument (sample-rate).</source>
+        <translation type="unfinished">Опција „-r“ захтева аргумент (учестаност узорковања).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="438"/>
+        <location filename="../qsynthOptions.cpp" line="606"/>
+        <source>Option -g requires an argument (gain).</source>
+        <translation type="unfinished">Опција „-g“ захтева аргумент (појачање).</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="447"/>
+        <location filename="../qsynthOptions.cpp" line="615"/>
+        <source>Option -o requires an argument.</source>
+        <translation type="unfinished">Опција „-o“ захтева аргумент.</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="482"/>
+        <location filename="../qsynthOptions.cpp" line="664"/>
+        <source>Unknown option &apos;%1&apos;.</source>
+        <translation type="unfinished">Непозната опција „%1“.</translation>
+    </message>
 </context>
 <context>
     <name>qsynthAboutForm</name>
@@ -813,174 +1059,6 @@ restarting the fluidsynth engine:</source>
         <location filename="../qsynthMessagesForm.cpp" line="143"/>
         <source>Logging started --- %1 ---</source>
         <translation>Праћење порука започето --- %1 ---</translation>
-    </message>
-</context>
-<context>
-    <name>qsynthOptions</name>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="219"/>
-        <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
-        <translation type="unfinished">Не стварај миди посредника за читање улазних миди-догађаја [подразумевано = yes]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="220"/>
-        <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
-        <translation type="unfinished">Назив миди посредника који ће се користити [oss,alsa,alsa_seq,...]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="221"/>
-        <source>The number of midi channels [default = 16]</source>
-        <translation type="unfinished">Број миди-канала [подразумевано = 16]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="222"/>
-        <source>The audio driver [alsa,jack,oss,dsound,...]</source>
-        <translation type="unfinished">Звучни посредник [alsa,jack,oss,dsound,...]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="223"/>
-        <source>Attempt to connect the jack outputs to the physical ports</source>
-        <translation type="unfinished">Покушавај да повежеш излазе Џек посредника на физичке портове</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="224"/>
-        <source>The number of stereo audio channels [default = 1]</source>
-        <translation type="unfinished">Број звучних стерео канала [подразумевано = 1]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="225"/>
-        <source>The number of audio groups [default = 1]</source>
-        <translation type="unfinished">Број звучних група [подразумевано = 1]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="226"/>
-        <source>Size of each audio buffer</source>
-        <translation type="unfinished">Величина сваког звучног бафера</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="227"/>
-        <source>Number of audio buffers</source>
-        <translation type="unfinished">Број звучних бафера</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="228"/>
-        <source>Set the sample rate</source>
-        <translation type="unfinished">Постави учестаност узорковања</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="229"/>
-        <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
-        <translation type="unfinished">Укљ./Искљ. јека еф. [1|0|yes|no|on|off, подразумевано = on]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="230"/>
-        <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
-        <translation type="unfinished">Укљ./Искљ. хорус еф. [1|0|yes|no|on|off, подразумевано = on]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="231"/>
-        <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
-        <translation type="unfinished">Постави Мастер-појачање [0 &lt; gain &lt; 2, подразумевано = 1]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="232"/>
-        <source>Define a setting name=value</source>
-        <translation type="unfinished">Одреди назив поставке=вредност</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="233"/>
-        <source>Create and start server [default = no]</source>
-        <translation type="unfinished">Створи и покрени сервер [подразумевано = no]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="234"/>
-        <source>Don&apos;t read commands from the shell [ignored]</source>
-        <translation type="unfinished">Не читај команде из наредбене линије [занемарено]</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="235"/>
-        <source>Dump midi router events</source>
-        <translation type="unfinished">Избаци догађаје миди-рутера</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="236"/>
-        <source>Print out verbose messages about midi events</source>
-        <translation type="unfinished">Штампај опширније поруке о миди-догађајима</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="239"/>
-        <source>SoundFont Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="239"/>
-        <source>[soundfonts]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="240"/>
-        <source>MIDI Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="240"/>
-        <source>[midifiles]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="251"/>
-        <source>Option -m requires an argument (midi-driver).</source>
-        <translation type="unfinished">Опција „-m“ захтева аргумент (миди посредник).</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="262"/>
-        <source>Option -K requires an argument (midi-channels).</source>
-        <translation type="unfinished">Опција „-K“ захтева аргумент (миди-канали).</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="269"/>
-        <source>Option -a requires an argument (audio-driver).</source>
-        <translation type="unfinished">Опција „-a“ захтева аргумент (звучни посредник).</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="283"/>
-        <source>Option -L requires an argument (audio-channels).</source>
-        <translation type="unfinished">Опција „-L“ захтева аргумент (звучни канали).</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="292"/>
-        <source>Option -G requires an argument (audio-groups).</source>
-        <translation type="unfinished">Опција „-G“ захтева аргумент (звучне групе).</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="301"/>
-        <source>Option -z requires an argument (audio-bufsize).</source>
-        <translation type="unfinished">Опција „-z“ захтева аргумент (вел. зв. бафера).</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="310"/>
-        <source>Option -c requires an argument (audio-bufcount).</source>
-        <translation type="unfinished">Опција „-c“ захтева аргумент (број зв. бафера).</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="319"/>
-        <source>Option -r requires an argument (sample-rate).</source>
-        <translation type="unfinished">Опција „-r“ захтева аргумент (учестаност узорковања).</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="344"/>
-        <source>Option -g requires an argument (gain).</source>
-        <translation type="unfinished">Опција „-g“ захтева аргумент (појачање).</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="351"/>
-        <source>Option -o requires an argument.</source>
-        <translation type="unfinished">Опција „-o“ захтева аргумент.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="383"/>
-        <source>Unknown option &apos;%1&apos;.</source>
-        <translation type="unfinished">Непозната опција „%1“.</translation>
     </message>
 </context>
 <context>
