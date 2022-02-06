@@ -290,17 +290,17 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 	parser.addOption({{"a", "audio-driver"},
 		QObject::tr("The audio driver [alsa,jack,oss,dsound,...]"), "label"});
 	parser.addOption({{"j", "connect-jack-outputs"},
-		QObject::tr("Attempt to connect the jack outputs to the physical ports.")});
+		QObject::tr("Attempt to connect the jack outputs to the physical ports")});
 	parser.addOption({{"L", "audio-channels"},
 		QObject::tr("The number of stereo audio channels [default = 1]"), "num"});
 	parser.addOption({{"G", "audio-groups"},
 		QObject::tr("The number of audio groups [default = 1]"), "num"});
 	parser.addOption({{"z", "audio-bufsize"},
-		QObject::tr("Size of each audio buffer."), "size"});
+		QObject::tr("Size of each audio buffer"), "size"});
 	parser.addOption({{"c", "audio-bufcount"},
-		QObject::tr("Number of audio buffers."), "count"});
+		QObject::tr("Number of audio buffers"), "count"});
 	parser.addOption({{"r", "sample-rate"},
-		QObject::tr("Set the sample rate."), "rate"});
+		QObject::tr("Set the sample rate"), "rate"});
 	parser.addOption({{"R", "reverb"},
 		QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]"), "flag"});
 	parser.addOption({{"C", "chorus"},
@@ -308,15 +308,15 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 	parser.addOption({{"g", "gain"},
 		QObject::tr("Set the master gain [0 < gain < 2, default = 1]"), "gain"});
 	parser.addOption({{"o", "option"},
-		QObject::tr("Define a setting name=value."), "name=value"});
+		QObject::tr("Define a setting name=value"), "name=value"});
 	parser.addOption({{"s", "server"},
 		QObject::tr("Create and start server [default = no]")});
 	parser.addOption({{"i", "no-shell"},
 		QObject::tr("Don't read commands from the shell [ignored]")});
 	parser.addOption({{"d", "dump"},
-		QObject::tr("Dump midi router events.")});
+		QObject::tr("Dump midi router events")});
 	parser.addOption({{"V", "verbose"},
-		QObject::tr("Print out verbose messages about midi events.")});
+		QObject::tr("Print out verbose messages about midi events")});
 	parser.addHelpOption();
 	parser.addVersionOption();
 	parser.addPositionalArgument("soundfonts",

@@ -44,6 +44,7 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="237"/>
+        <location filename="../qsynthOptions.cpp" line="293"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
         <translation>Tentative de connecter les sorties JACK aux ports physiques</translation>
     </message>
@@ -61,16 +62,19 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="243"/>
+        <location filename="../qsynthOptions.cpp" line="299"/>
         <source>Size of each audio buffer</source>
         <translation>Taille de chaque tampon audio</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="245"/>
+        <location filename="../qsynthOptions.cpp" line="301"/>
         <source>Number of audio buffers</source>
         <translation>Nombre de tampons audio</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="247"/>
+        <location filename="../qsynthOptions.cpp" line="303"/>
         <source>Set the sample rate</source>
         <translation>Défini la fréquence d&apos;échantillonnage</translation>
     </message>
@@ -94,6 +98,7 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="255"/>
+        <location filename="../qsynthOptions.cpp" line="311"/>
         <source>Define a setting name=value</source>
         <translation>Défini un paramètre nom=valeur</translation>
     </message>
@@ -111,11 +116,13 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="261"/>
+        <location filename="../qsynthOptions.cpp" line="317"/>
         <source>Dump midi router events</source>
         <translation>Affiche les évènements du routeur MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="263"/>
+        <location filename="../qsynthOptions.cpp" line="319"/>
         <source>Print out verbose messages about midi events</source>
         <translation>Affiche les messages détaillés concernant les évènements MIDI</translation>
     </message>
@@ -128,41 +135,6 @@
         <location filename="../qsynthOptions.cpp" line="267"/>
         <source>Show version information</source>
         <translation>Affiche les informations de version</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="293"/>
-        <source>Attempt to connect the jack outputs to the physical ports.</source>
-        <translation>Essaie de connecter les sorties JACK aux ports physiques.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="299"/>
-        <source>Size of each audio buffer.</source>
-        <translation>Taille de chaque tampon audio.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="301"/>
-        <source>Number of audio buffers.</source>
-        <translation>Nombre de tampons audio.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="303"/>
-        <source>Set the sample rate.</source>
-        <translation>Défini le taux d&apos;&apos;échantillonnage.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="311"/>
-        <source>Define a setting name=value.</source>
-        <translation>Défini un paramètre nom=valeur</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="317"/>
-        <source>Dump midi router events.</source>
-        <translation>Affiche les événements du routeur MIDI</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="319"/>
-        <source>Print out verbose messages about midi events.</source>
-        <translation>Affiche des messages verbeux à propos des événements MIDI.</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="323"/>

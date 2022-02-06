@@ -44,6 +44,7 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="237"/>
+        <location filename="../qsynthOptions.cpp" line="293"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
         <translation type="unfinished">Покушавај да повежеш излазе Џек посредника на физичке портове</translation>
     </message>
@@ -61,16 +62,19 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="243"/>
+        <location filename="../qsynthOptions.cpp" line="299"/>
         <source>Size of each audio buffer</source>
         <translation type="unfinished">Величина сваког звучног бафера</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="245"/>
+        <location filename="../qsynthOptions.cpp" line="301"/>
         <source>Number of audio buffers</source>
         <translation type="unfinished">Број звучних бафера</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="247"/>
+        <location filename="../qsynthOptions.cpp" line="303"/>
         <source>Set the sample rate</source>
         <translation type="unfinished">Постави учестаност узорковања</translation>
     </message>
@@ -94,6 +98,7 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="255"/>
+        <location filename="../qsynthOptions.cpp" line="311"/>
         <source>Define a setting name=value</source>
         <translation type="unfinished">Одреди назив поставке=вредност</translation>
     </message>
@@ -111,11 +116,13 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="261"/>
+        <location filename="../qsynthOptions.cpp" line="317"/>
         <source>Dump midi router events</source>
         <translation type="unfinished">Избаци догађаје миди-рутера</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="263"/>
+        <location filename="../qsynthOptions.cpp" line="319"/>
         <source>Print out verbose messages about midi events</source>
         <translation type="unfinished">Штампај опширније поруке о миди-догађајима</translation>
     </message>
@@ -127,41 +134,6 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="267"/>
         <source>Show version information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="293"/>
-        <source>Attempt to connect the jack outputs to the physical ports.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="299"/>
-        <source>Size of each audio buffer.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="301"/>
-        <source>Number of audio buffers.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="303"/>
-        <source>Set the sample rate.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="311"/>
-        <source>Define a setting name=value.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="317"/>
-        <source>Dump midi router events.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="319"/>
-        <source>Print out verbose messages about midi events.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

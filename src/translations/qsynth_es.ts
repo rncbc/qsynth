@@ -44,6 +44,7 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="237"/>
+        <location filename="../qsynthOptions.cpp" line="293"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
         <translation>Intentar la conexión de las salidas de jack a puertos físicos</translation>
     </message>
@@ -61,16 +62,19 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="243"/>
+        <location filename="../qsynthOptions.cpp" line="299"/>
         <source>Size of each audio buffer</source>
         <translation>Tamaño de cada memoria intermedia de audio</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="245"/>
+        <location filename="../qsynthOptions.cpp" line="301"/>
         <source>Number of audio buffers</source>
         <translation>Número de memorias intermedias de audio</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="247"/>
+        <location filename="../qsynthOptions.cpp" line="303"/>
         <source>Set the sample rate</source>
         <translation>Establecer la frecuencia de muestreo</translation>
     </message>
@@ -94,6 +98,7 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="255"/>
+        <location filename="../qsynthOptions.cpp" line="311"/>
         <source>Define a setting name=value</source>
         <translation>Definir un ajuste nombre=valor</translation>
     </message>
@@ -111,11 +116,13 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="261"/>
+        <location filename="../qsynthOptions.cpp" line="317"/>
         <source>Dump midi router events</source>
         <translation>Volcar eventos MIDI de encaminamiento</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="263"/>
+        <location filename="../qsynthOptions.cpp" line="319"/>
         <source>Print out verbose messages about midi events</source>
         <translation>Imprimir mensajes detallados sobre eventos MIDI</translation>
     </message>
@@ -128,41 +135,6 @@
         <location filename="../qsynthOptions.cpp" line="267"/>
         <source>Show version information</source>
         <translation>Mostrar información de versión</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="293"/>
-        <source>Attempt to connect the jack outputs to the physical ports.</source>
-        <translation>Intentar la conexión de las salidas de jack a puertos físicos.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="299"/>
-        <source>Size of each audio buffer.</source>
-        <translation>Tamaño de cada memoria intermedia de audio.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="301"/>
-        <source>Number of audio buffers.</source>
-        <translation>Número de memorias intermedias de audio.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="303"/>
-        <source>Set the sample rate.</source>
-        <translation>Establecer la frecuencia de muestreo.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="311"/>
-        <source>Define a setting name=value.</source>
-        <translation>Definir un ajuste nombre=valor.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="317"/>
-        <source>Dump midi router events.</source>
-        <translation>Volcar eventos MIDI de encaminamiento.</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptions.cpp" line="319"/>
-        <source>Print out verbose messages about midi events.</source>
-        <translation>Imprimir mensajes detallados sobre eventos MIDI.</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="323"/>
