@@ -11,216 +11,216 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="224"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
-        <translation type="unfinished"></translation>
+        <translation>Použití: %1 [volby] [zvukové banky] [soubory MIDI]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="227"/>
         <source>Options</source>
-        <translation type="unfinished">Volby</translation>
+        <translation>Volby</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="229"/>
         <location filename="../qsynthOptions.cpp" line="285"/>
         <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
-        <translation type="unfinished">Nevytvářet žádný ovladač MIDI kvůli čtení vstupních událostí MIDI [výchozí = yes]</translation>
+        <translation>Nevytvářet žádný ovladač MIDI kvůli čtení vstupních událostí MIDI [výchozí = yes]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="231"/>
         <location filename="../qsynthOptions.cpp" line="287"/>
         <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
-        <translation type="unfinished">Název používaného ovladače MIDI [oss, alsa, alsa_seq,...]</translation>
+        <translation>Název používaného ovladače MIDI [oss, alsa, alsa_seq,...]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="233"/>
         <location filename="../qsynthOptions.cpp" line="289"/>
         <source>The number of midi channels [default = 16]</source>
-        <translation type="unfinished">Počet kanálů MIDIe [výchozí = 16]</translation>
+        <translation>Počet kanálů MIDIe [výchozí = 16]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="235"/>
         <location filename="../qsynthOptions.cpp" line="291"/>
         <source>The audio driver [alsa,jack,oss,dsound,...]</source>
-        <translation type="unfinished">Zvukový ovladač [alsa, jack, oss, dsound,...]</translation>
+        <translation>Zvukový ovladač [alsa, jack, oss, dsound,...]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="237"/>
         <location filename="../qsynthOptions.cpp" line="293"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
-        <translation type="unfinished">Pokusit o spojení výstupů JACK s fyzickými přípojkami</translation>
+        <translation>Pokusit se o spojení výstupů JACK s fyzickými přípojkami</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="239"/>
         <location filename="../qsynthOptions.cpp" line="295"/>
         <source>The number of stereo audio channels [default = 1]</source>
-        <translation type="unfinished">Počet stereo zvukových kanálů [výchozí = 1]</translation>
+        <translation>Počet stereo zvukových kanálů [výchozí = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="241"/>
         <location filename="../qsynthOptions.cpp" line="297"/>
         <source>The number of audio groups [default = 1]</source>
-        <translation type="unfinished">Počet zvukových skupin [výchozí = 1]</translation>
+        <translation>Počet zvukových skupin [výchozí = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="243"/>
         <location filename="../qsynthOptions.cpp" line="299"/>
         <source>Size of each audio buffer</source>
-        <translation type="unfinished">Velikost zvukové vyrovnávací paměti</translation>
+        <translation>Velikost zvukové vyrovnávací paměti</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="245"/>
         <location filename="../qsynthOptions.cpp" line="301"/>
         <source>Number of audio buffers</source>
-        <translation type="unfinished">Počet zvukových vyrovnávacích pamětí</translation>
+        <translation>Počet zvukových vyrovnávacích pamětí</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="247"/>
         <location filename="../qsynthOptions.cpp" line="303"/>
         <source>Set the sample rate</source>
-        <translation type="unfinished">Nastavit vzorkovací kmitočet</translation>
+        <translation>Nastavit vzorkovací kmitočet</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="249"/>
         <location filename="../qsynthOptions.cpp" line="305"/>
         <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
-        <translation type="unfinished">Zapnout nebo vypnout dozvuk [[1|0|yes|no|on|off, výchozí = on]</translation>
+        <translation>Zapnout nebo vypnout dozvuk [[1|0|yes|no|on|off, výchozí = on]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="251"/>
         <location filename="../qsynthOptions.cpp" line="307"/>
         <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
-        <translation type="unfinished">Zapnout nebo vypnout sbor [[1|0|yes|no|on|off, Voreinstellung = on]</translation>
+        <translation>Zapnout nebo vypnout sbor [[1|0|yes|no|on|off, výchozí = on]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="253"/>
         <location filename="../qsynthOptions.cpp" line="309"/>
         <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
-        <translation type="unfinished">Nastavit výstupní zesílení [0 &lt; zesílení &lt; 2, výchozí = 1]</translation>
+        <translation>Nastavit výstupní zesílení [0 &lt; zesílení &lt; 2, výchozí = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="255"/>
         <location filename="../qsynthOptions.cpp" line="311"/>
         <source>Define a setting name=value</source>
-        <translation type="unfinished">Stanovit nastavení název=hodnota</translation>
+        <translation>Stanovit nastavení název=hodnota</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="257"/>
         <location filename="../qsynthOptions.cpp" line="313"/>
         <source>Create and start server [default = no]</source>
-        <translation type="unfinished">Vytvořit a spustit server [výchozí = ne]</translation>
+        <translation>Vytvořit a spustit server [výchozí = ne]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="259"/>
         <location filename="../qsynthOptions.cpp" line="315"/>
         <source>Don&apos;t read commands from the shell [ignored]</source>
-        <translation type="unfinished">Nečíst příkazyze shellu [nebráno na vědomí]</translation>
+        <translation>Nečíst příkazy ze shellu [nebráno na vědomí]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="261"/>
         <location filename="../qsynthOptions.cpp" line="317"/>
         <source>Dump midi router events</source>
-        <translation type="unfinished">Zobrazit události směrovače MIDI</translation>
+        <translation>Zobrazit události směrovače MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="263"/>
         <location filename="../qsynthOptions.cpp" line="319"/>
         <source>Print out verbose messages about midi events</source>
-        <translation type="unfinished">Vytisknout podrobná hlášení o událostech MIDI</translation>
+        <translation>Zobrazit podrobná hlášení o událostech MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="265"/>
         <source>Show help about command line options</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat nápovědu k volbám příkazového řádku</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="267"/>
         <source>Show version information</source>
-        <translation type="unfinished"></translation>
+        <translation>Ukázat informace o verzi</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="323"/>
         <source>SoundFont Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory SoundFont</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="324"/>
         <source>[soundfonts]</source>
-        <translation type="unfinished"></translation>
+        <translation>[zvukové banky]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="326"/>
         <source>MIDI Files</source>
-        <translation type="unfinished"></translation>
+        <translation>Soubory MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="327"/>
         <source>[midifiles]</source>
-        <translation type="unfinished"></translation>
+        <translation>[soubory MIDI]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="337"/>
         <location filename="../qsynthOptions.cpp" line="513"/>
         <source>Option -m requires an argument (midi-driver).</source>
-        <translation type="unfinished">Volba -m potřebuje argument (midi-driver).</translation>
+        <translation>Volba -m potřebuje argument (midi-driver).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="347"/>
         <location filename="../qsynthOptions.cpp" line="522"/>
         <source>Option -K requires an argument (midi-channels).</source>
-        <translation type="unfinished">Volba -K potřebuje argument (midi-channels).</translation>
+        <translation>Volba -K potřebuje argument (midi-channels).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="356"/>
         <location filename="../qsynthOptions.cpp" line="531"/>
         <source>Option -a requires an argument (audio-driver).</source>
-        <translation type="unfinished">Volba -a potřebuje argument (audio-driver).</translation>
+        <translation>Volba -a potřebuje argument (audio-driver).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="370"/>
         <location filename="../qsynthOptions.cpp" line="543"/>
         <source>Option -L requires an argument (audio-channels).</source>
-        <translation type="unfinished">Volba -L potřebuje argument (audio-channels).</translation>
+        <translation>Volba -L potřebuje argument (audio-channels).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="380"/>
         <location filename="../qsynthOptions.cpp" line="552"/>
         <source>Option -G requires an argument (audio-groups).</source>
-        <translation type="unfinished">Volba -G potřebuje argument (audio-groups).</translation>
+        <translation>Volba -G potřebuje argument (audio-groups).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="390"/>
         <location filename="../qsynthOptions.cpp" line="561"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
-        <translation type="unfinished">Volba -z potřebuje aArgument (audio-bufsize).</translation>
+        <translation>Volba -z potřebuje aArgument (audio-bufsize).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="400"/>
         <location filename="../qsynthOptions.cpp" line="570"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
-        <translation type="unfinished">Volba -c potřebuje argument (audio-bufcount).</translation>
+        <translation>Volba -c potřebuje argument (audio-bufcount).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="410"/>
         <location filename="../qsynthOptions.cpp" line="579"/>
         <source>Option -r requires an argument (sample-rate).</source>
-        <translation type="unfinished">Volba -r potřebuje argument (sample-rate).</translation>
+        <translation>Volba -r potřebuje argument (sample-rate).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="438"/>
         <location filename="../qsynthOptions.cpp" line="606"/>
         <source>Option -g requires an argument (gain).</source>
-        <translation type="unfinished">Volba -g potřebuje argument (gain).</translation>
+        <translation>Volba -g potřebuje argument (gain).</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="447"/>
         <location filename="../qsynthOptions.cpp" line="615"/>
         <source>Option -o requires an argument.</source>
-        <translation type="unfinished">Volba -o potřebuje argument.</translation>
+        <translation>Volba -o potřebuje argument.</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="482"/>
         <location filename="../qsynthOptions.cpp" line="664"/>
         <source>Unknown option &apos;%1&apos;.</source>
-        <translation type="unfinished">Neznámá volba: &apos;%1&apos;.</translation>
+        <translation>Neznámá volba: &apos;%1&apos;.</translation>
     </message>
 </context>
 <context>
@@ -371,7 +371,7 @@
     <message>
         <location filename="../qsynthChannelsForm.ui" line="201"/>
         <source>Soundfont</source>
-        <translation>Zvukové písmo</translation>
+        <translation>Zvuková banka</translation>
     </message>
     <message>
         <location filename="../qsynthChannelsForm.ui" line="36"/>
@@ -739,13 +739,13 @@ oblasti panelu.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="996"/>
         <source>Loading soundfont: &quot;%1&quot;</source>
-        <translation>Nahrává se zvukové písmo: &quot;%1&quot;</translation>
+        <translation>Nahrává se zvuková banka: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1007"/>
         <location filename="../qsynthMainForm.cpp" line="2034"/>
         <source>Failed to load the soundfont: &quot;%1&quot;.</source>
-        <translation>Nahrávání zvukového písma se nezdařilo: &quot;%1&quot;.</translation>
+        <translation>Nahrávání zvukové banky se nezdařilo: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1034"/>
@@ -827,12 +827,12 @@ Bez něj nelze pokračovat.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2028"/>
         <source>Loading soundfont: &quot;%1&quot; (bank offset %2)</source>
-        <translation>Nahrává se zvukové písmo: &quot;%1&quot; (poloha banky %2)</translation>
+        <translation>Nahrává se zvuková banka: &quot;%1&quot; (poloha banky %2)</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2041"/>
         <source>Failed to set bank offset (%1) for soundfont: &quot;%2&quot;.</source>
-        <translation>Nastavení hodnoty polohy banky (%1) pro zvukové písmo: &quot;%2&quot; se nepodařilo.</translation>
+        <translation>Nastavení hodnoty polohy banky (%1) pro zvukovou banku: &quot;%2&quot; se nepodařilo.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2051"/>
@@ -957,12 +957,12 @@ Pokračuje se bez něj.</translation>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2282"/>
         <source>Unloading soundfont: &quot;%1&quot; (SFID=%2)</source>
-        <translation>Vyjímá se zvukové písmo: &quot;%1&quot; (SFID=%2)</translation>
+        <translation>Ruší se nahrání zvukové banky: &quot;%1&quot; (SFID=%2)</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2286"/>
         <source>Failed to unload the soundfont: &quot;%1&quot;.</source>
-        <translation>Vyjmutí zvukového písma: &quot;%1&quot; se nezdařilo.</translation>
+        <translation>Vyjmutí zvukové banky: &quot;%1&quot; se nezdařilo.</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="2293"/>
@@ -1365,7 +1365,7 @@ když příště spustíte tento program.</translation>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="775"/>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Jazyk</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="860"/>
@@ -1648,7 +1648,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthPresetForm.ui" line="164"/>
         <source>Soundfont</source>
-        <translation>Zvukové písmo</translation>
+        <translation>Zvuková banka</translation>
     </message>
     <message>
         <location filename="../qsynthPresetForm.ui" line="173"/>
@@ -1718,7 +1718,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="350"/>
         <source>Print out verbose messages about MIDI events</source>
-        <translation>Vytisknout podrobná hlášení o událostech MIDI</translation>
+        <translation>Zobrazit podrobná hlášení o událostech MIDI</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="353"/>
@@ -2029,7 +2029,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="867"/>
         <source>&amp;Soundfonts</source>
-        <translation>&amp;Zvuková písma</translation>
+        <translation>&amp;Zvukové banky</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="882"/>
@@ -2050,12 +2050,12 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="914"/>
         <source>Offset</source>
-        <translation>Poloha</translation>
+        <translation>Posun</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="927"/>
         <source>Open soundfont file for loading</source>
-        <translation>Otevřít soubor se zvukovým písmem pro nahrání</translation>
+        <translation>Otevřít soubor se zvukovou bankou pro nahrání</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="930"/>
@@ -2065,7 +2065,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="940"/>
         <source>Edit selected soundfont bank offset</source>
-        <translation>Upravit hodnotu polohy vybrané banky se zvukovým písmem</translation>
+        <translation>Upravit hodnotu polohy vybrané banky se zvukovou bankou</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="943"/>
@@ -2075,7 +2075,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="953"/>
         <source>Remove selected soundfont from stack</source>
-        <translation>Odstranit vybrané zvukové písmo ze zásobníku</translation>
+        <translation>Odstranit vybranou zvukovou banku ze zásobníku</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="956"/>
@@ -2085,7 +2085,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="979"/>
         <source>Move up selected soundfont towards the top of stack</source>
-        <translation>Vybrané zvukové písmo přesunout v zásobníku nahoru</translation>
+        <translation>Vybranou zvukovou banku přesunout v zásobníku nahoru</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="982"/>
@@ -2095,7 +2095,7 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.ui" line="992"/>
         <source>Move down selected soundfont towards the bottom of stack</source>
-        <translation>Vybrané zvukové písmo přesunout v zásobníku dolů</translation>
+        <translation>Vybranou zvukovou banku přesunout v zásobníku dolů</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="995"/>
@@ -2193,17 +2193,17 @@ Chcete uložit změny?</translation>
         <location filename="../qsynthSetupForm.cpp" line="901"/>
         <location filename="../qsynthSetupForm.cpp" line="902"/>
         <source>Soundfont files</source>
-        <translation>Soubory se zvukovými písmy</translation>
+        <translation>Soubory se zvukovými bankami</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="903"/>
         <source>All files</source>
-        <translation type="unfinished"></translation>
+        <translation>Všechny soubory</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="922"/>
         <source>Soundfont file already on list</source>
-        <translation>Soubor se zvukovým písmem je již součástí seznamu</translation>
+        <translation>Soubor se zvukovou bankou je již součástí seznamu</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="924"/>
@@ -2218,12 +2218,12 @@ Chcete uložit změny?</translation>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="952"/>
         <source>Failed to add soundfont file</source>
-        <translation>Nepodařilo se přidat soubor se zvukovým písmem</translation>
+        <translation>Nepodařilo se přidat soubor se zvukovou bankou</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.cpp" line="954"/>
         <source>Please, check for a valid soundfont file.</source>
-        <translation>Zvolte, prosím, platný soubor se zvukovým písmem.</translation>
+        <translation>Zvolte, prosím, platný soubor se zvukovou bankou.</translation>
     </message>
 </context>
 </TS>
