@@ -94,7 +94,7 @@
         <location filename="../qsynthOptions.cpp" line="253"/>
         <location filename="../qsynthOptions.cpp" line="309"/>
         <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
-        <translation type="unfinished">Establecer la ganancia de la salida principal [0 &lt; ganancia &lt; 2, por omisión = 1]</translation>
+        <translation>Establecer la ganancia de la salida principal [0 &lt; ganancia &lt; 2, por omisión = 1]</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="255"/>
