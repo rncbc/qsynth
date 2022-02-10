@@ -4,10 +4,10 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.9.6  2022-02-12  A Mid-Winter'22 Release.
 
 - Migrated command line parsing to QCommandLineParser/Option
-  (Qt >= 5.2; by Pedro Lopez-Cabanillas) (EXPERIMENTAL)
+  (Qt >= 5.2; by Pedro Lopez-Cabanillas).
 
 - New option to change the UI language translation.
 
