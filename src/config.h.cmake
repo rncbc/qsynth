@@ -127,4 +127,7 @@
 /* Define if fluid_free function is available. */
 #cmakedefine CONFIG_FLUID_FREE @CONFIG_FLUID_FREE@
 
+/* Define if Wayland is supported */
+#cmakedefine CONFIG_WAYLAND @CONFIG_WAYLAND@
+
 #endif /* CONFIG_H */
