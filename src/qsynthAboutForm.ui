@@ -2,7 +2,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2020, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -112,8 +112,17 @@
    </item>
    <item row="0" column="0" >
     <widget class="QLabel" name="IconPixmapLabel" >
+     <property name="maximumSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
      <property name="pixmap" >
-      <pixmap resource="qsynth.qrc" >:/images/qsynth.png</pixmap>
+      <pixmap resource="qsynth.qrc" >:/images/qsynth.svg</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
      </property>
      <property name="alignment" >
       <set>Qt::AlignCenter</set>

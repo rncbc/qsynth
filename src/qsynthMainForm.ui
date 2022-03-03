@@ -3,7 +3,7 @@
  <author>rncbc aka Rui Nuno Capela</author>
  <comment>qsynth - A fluidsynth Qt GUI Interface.
 
-   Copyright (C) 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -31,7 +31,7 @@
    </rect>
   </property>
   <property name="windowIcon">
-   <iconset resource="qsynth.qrc">:/images/qsynth.png</iconset>
+   <iconset resource="qsynth.qrc">:/images/qsynth.svg</iconset>
   </property>
   <layout class="QGridLayout">
    <item row="0" column="0" rowspan="3">

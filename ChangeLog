@@ -4,6 +4,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Main application icon is now presented in scalable format (SVG).
+
+
 0.9.6  2022-02-12  A Mid-Winter'22 Release.
 
 - Migrated command line parsing to QCommandLineParser/Option
