@@ -224,10 +224,11 @@ endif ()
 
 add_subdirectory (src)
 
-configure_file (qsynth.spec.in qsynth.spec IMMEDIATE @ONLY)
 
-install (FILES qsynth.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
-install (FILES qsynth.fr.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/fr/man1 RENAME qsynth.1)
+if (UNIX AND NOT APPLE)
+  configure_file (${PROJECT_NAME}.spec.in ${PROJECT_NAME}.spec IMMEDIATE @ONLY)
+endif ()
+
 
 # Configuration status
 macro (SHOW_OPTION text value)
