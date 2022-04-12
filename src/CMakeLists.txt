@@ -149,7 +149,7 @@ if (APPLE)
     MACOSX_BUNDLE_COPYRIGHT "Copyright © 2003-2021, Rui Nuno Capela. All rights reserved.")
 endif ()
 
-target_link_libraries (${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries (${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Svg)
 
 if (CONFIG_XUNIQUE)
   target_link_libraries (${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Network)
