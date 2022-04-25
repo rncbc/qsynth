@@ -10,7 +10,6 @@ Build-Depends: debhelper (>= 11), cmake, pkg-config,
   libqt6svg6-dev | libqt5svg5-dev,
   libqt6waylandclient6 | qt6-wayland-dev (>= 6.1) |
   libqt5waylandclient5-dev | qtwayland5-dev  (>= 5.1),
-  libqt6opengl6-dev | libqt5opengl5-dev,  
   libfluidsynth-dev,libglib2.0-dev, libsndfile-dev, libjack-dev,
   libasound2-dev, libpulse-dev
 Standards-Version: 3.9.7
