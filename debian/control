@@ -17,7 +17,9 @@ Standards-Version: 3.9.7
 
 Package: qsynth
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends},
+  qt6-qpa-plugins | libqt5opengl5,
+  libjack0 | libjack-jackd2-0
 Description: A fluidsynth Qt GUI Interface
   Qsynth is a fluidsynth GUI front-end application written in C++
   around the Qt framework using Qt Designer. Eventually it may evolve
