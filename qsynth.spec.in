@@ -83,6 +83,8 @@ BuildRequires:	alsa-devel
 %endif
 BuildRequires:	libfluidsynth-devel
 
+BuildRequires:  patchelf
+
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
 Qt framework, using Qt Designer. Eventually it may evolve into a softsynth
@@ -95,6 +97,7 @@ command line softsynths.
 %build
 cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -Wno-dev -B build
 cmake --build build %{?_smp_mflags}
+patchelf --set-rpath %{_libdir}/pulseaudio %{buildroot}%{_bindir}/%{name}
 
 %install
 DESTDIR="%{buildroot}" \
