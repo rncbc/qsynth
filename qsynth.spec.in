@@ -64,6 +64,7 @@ BuildRequires:	qt5-linguist
 %endif
 BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	alsa-lib-devel
+BuildRequires:  pulseaudio-libs-devel
 %else
 %if 0%{qt_major_version} == 6
 BuildRequires:	qt6-base-devel >= 6.1
@@ -80,9 +81,9 @@ BuildRequires:	libqt5-linguist-devel
 %endif
 BuildRequires:	libjack-devel
 BuildRequires:	alsa-devel
+BuildRequires:  libpulse-devel
 %endif
 BuildRequires:	libfluidsynth-devel
-BuildRequires:  libpulse0
 
 BuildRequires:  patchelf
 
