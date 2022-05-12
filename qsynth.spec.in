@@ -82,6 +82,7 @@ BuildRequires:	libjack-devel
 BuildRequires:	alsa-devel
 %endif
 BuildRequires:	libfluidsynth-devel
+BuildRequires:  libpulse0
 
 BuildRequires:  patchelf
 
