@@ -99,11 +99,11 @@ command line softsynths.
 %build
 cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -Wno-dev -B build
 cmake --build build %{?_smp_mflags}
-patchelf --set-rpath %{_libdir}/pulseaudio %{buildroot}%{_bindir}/%{name}
 
 %install
 DESTDIR="%{buildroot}" \
 cmake --install build
+patchelf --set-rpath %{_libdir}/pulseaudio %{buildroot}%{_bindir}/%{name}
 
 %clean
 [ -d "%{buildroot}" -a "%{buildroot}" != "/" ] && %__rm -rf "%{buildroot}"
