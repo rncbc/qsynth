@@ -64,7 +64,6 @@ BuildRequires:	qt5-linguist
 %endif
 BuildRequires:	jack-audio-connection-kit-devel
 BuildRequires:	alsa-lib-devel
-Requires:  		pulseaudio-libs
 %else
 %if 0%{qt_major_version} == 6
 BuildRequires:	qt6-base-devel >= 6.1
@@ -81,11 +80,13 @@ BuildRequires:	libqt5-linguist-devel
 %endif
 BuildRequires:	libjack-devel
 BuildRequires:	alsa-devel
-Requires:		libpulse0
 %endif
 BuildRequires:	libfluidsynth-devel
 
+%if 0%{?sle_version} == 150200 && 0%{?is_opensuse}
 BuildRequires:  patchelf
+Requires:		libpulse0
+%endif
 
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
@@ -103,7 +104,9 @@ cmake --build build %{?_smp_mflags}
 %install
 DESTDIR="%{buildroot}" \
 cmake --install build
+%if 0%{?sle_version} == 150200 && 0%{?is_opensuse}
 patchelf --set-rpath %{_libdir}/pulseaudio %{buildroot}%{_bindir}/%{name}
+%endif
 
 %clean
 [ -d "%{buildroot}" -a "%{buildroot}" != "/" ] && %__rm -rf "%{buildroot}"
