@@ -83,11 +83,6 @@ BuildRequires:	alsa-devel
 %endif
 BuildRequires:	libfluidsynth-devel
 
-%if 0%{?sle_version} == 150200 && 0%{?is_opensuse}
-BuildRequires:  patchelf
-Requires:		libpulse0
-%endif
-
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
 Qt framework, using Qt Designer. Eventually it may evolve into a softsynth
@@ -104,9 +99,6 @@ cmake --build build %{?_smp_mflags}
 %install
 DESTDIR="%{buildroot}" \
 cmake --install build
-%if 0%{?sle_version} == 150200 && 0%{?is_opensuse}
-patchelf --set-rpath %{_libdir}/pulseaudio %{buildroot}%{_bindir}/%{name}
-%endif
 
 %clean
 [ -d "%{buildroot}" -a "%{buildroot}" != "/" ] && %__rm -rf "%{buildroot}"
