@@ -16,8 +16,8 @@
 #
 
 %define name    qsynth
-%define version 0.9.7
-%define release 51.4
+%define version 0.9.8
+%define release 52.1
 
 %define _prefix	@ac_prefix@
 
@@ -144,6 +144,8 @@ cmake --install build
 %{_datadir}/man/fr/man1/%{name}.1.gz
 
 %changelog
+* Mon Oct  3 2022 Rui Nuno Capela <rncbc@rncbc.org> 0.9.8
+- An Early-Autumn'22 Release.
 * Sat Apr  2 2022 Rui Nuno Capela <rncbc@rncbc.org> 0.9.7
 - A Spring'22 Release.
 * Sat Feb 12 2022 Rui Nuno Capela <rncbc@rncbc.org> 0.9.6

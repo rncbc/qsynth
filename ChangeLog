@@ -4,10 +4,10 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.9.8  2022-10-03  An Early-Autumn'22 release.
 
 - Add current system user-name to the singleton/unique application
-  instance identifier. (EXPERIMENTAL)
+  instance identifier.
 
 
 0.9.7  2022-04-02  A Spring'22 Release.
