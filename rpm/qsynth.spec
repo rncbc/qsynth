@@ -15,8 +15,8 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
-%define name    @PACKAGE_TARNAME@
-%define version @PACKAGE_VERSION@
+%define name    qsynth
+%define version 0.9.7
 %define release 51.4
 
 %define _prefix	@ac_prefix@
