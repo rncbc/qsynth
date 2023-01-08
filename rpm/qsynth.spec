@@ -71,7 +71,6 @@ BuildRequires:	pkgconfig(Qt6Core)
 BuildRequires:	pkgconfig(Qt6Gui)
 BuildRequires:	pkgconfig(Qt6Widgets)
 BuildRequires:	pkgconfig(Qt6Svg)
-BuildRequires:	pkgconfig(Qt6Wayland)
 BuildRequires:	pkgconfig(Qt6Network)
 %endif
 %else
@@ -80,7 +79,6 @@ BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Gui)
 BuildRequires:	pkgconfig(Qt5Widgets)
 BuildRequires:	pkgconfig(Qt5Svg)
-BuildRequires:	pkgconfig(Qt5Wayland)
 BuildRequires:	pkgconfig(Qt5Network)
 %endif
 %if %{defined fedora}
