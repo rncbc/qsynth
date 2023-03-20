@@ -63,7 +63,7 @@ Var LibInstall
 !insertmacro MUI_LANGUAGE "Spanish"
 
 # Installer attributes
-OutFile qsynth-${VERSION}-53.1.win-x64-setup.exe
+OutFile qsynth-${VERSION}-54.1.win-x64-setup.exe
 #InstallDir $PROGRAMFILES\QSynth
 CRCCheck on
 XPStyle on
@@ -75,7 +75,7 @@ VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
 VIAddVersionKey FileVersion ${VERSION}
 VIAddVersionKey FileDescription "@PROJECT_DESCRIPTION@"
-VIAddVersionKey LegalCopyright "Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved."
+VIAddVersionKey LegalCopyright "Copyright (C) 2003-2023, rncbc aka Rui Nuno Capela. All rights reserved."
 InstallDirRegKey HKLM "${REGKEY}" Path
 ShowUninstDetails show
 Icon ${SOURCE_FILES}\images\qsynth.ico
