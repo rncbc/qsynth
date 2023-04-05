@@ -4,6 +4,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Prepping into the next development cycle (with Qt >= 6.5).
+
+
 0.9.10  2023-03-23  An Early-Spring'23 Release.
 
 - Bumping copyright headers to the brand new year.
