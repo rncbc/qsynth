@@ -1,7 +1,7 @@
 // qsynthMeter.h
 //
 /****************************************************************************
-   Copyright (C) 2004-2021, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2023, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -128,6 +128,10 @@ public:
 	// IEC scale accessors.
 	int iec_scale(float dB) const;
 	int iec_level(int iIndex) const;
+
+	// For faster scaling when drawing...
+	int scale(float fValue) const
+		{ return int(m_fScale * fValue); }
 
 #ifdef CONFIG_GRADIENT
 	const QPixmap& pixmap() const;

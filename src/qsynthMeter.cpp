@@ -1,7 +1,7 @@
 // qsynthMeter.cpp
 //
 /****************************************************************************
-   Copyright (C) 2004-2021, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2023, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -48,6 +48,22 @@
 
 // Number of cycles the peak stays on hold before fall-off.
 #define QSYNTH_METER_PEAK_FALLOFF	16
+
+
+// Ref. P.448. Approximate cube root of an IEEE float
+// Hacker's Delight (2nd Edition), by Henry S. Warren
+// http://www.hackersdelight.org/hdcodetxt/acbrt.c.txt
+//
+static inline float cbrtf2 ( float x )
+{
+	// Avoid strict-aliasing optimization (gcc -O2).
+	union { float f; int i; } u;
+	u.f  = x;
+	u.i  = (u.i >> 4) + (u.i >> 2);
+	u.i += (u.i >> 4) + 0x2a6a8000; // 0x2a6497f8;
+//	return 0.33333333f * (2.0f * u.f + x / (u.f * u.f));
+	return u.f;
+}
 
 
 //----------------------------------------------------------------------------
@@ -160,18 +176,24 @@ void qsynthMeterValue::refresh (void)
 	if (m_fValue < 0.001f && m_iPeak < 1)
 		return;
 
+#if 0
 	float dB = QSYNTH_METER_MINDB;
 	if (m_fValue > 0.0f) {
 		dB = 20.0f * ::log10f(m_fValue);
 		m_fValue = 0.0f;
 	}
-
 	if (dB < QSYNTH_METER_MINDB)
 		dB = QSYNTH_METER_MINDB;
 	else if (dB > QSYNTH_METER_MAXDB)
 		dB = QSYNTH_METER_MAXDB;
-
 	int iValue = m_pMeter->iec_scale(dB);
+#else
+	int iValue = 0;
+	if (m_fValue > 0.001f) {
+		iValue = m_pMeter->scale(::cbrtf2(m_fValue));
+		m_fValue = 0.0f;
+	}
+#endif
 	if (iValue < m_iValue) {
 		iValue = int(m_fValueDecay * float(m_iValue));
 		m_fValueDecay *= m_fValueDecay;
@@ -376,7 +398,7 @@ int qsynthMeter::iec_scale ( float dB ) const
 	else /* if (dB < 0.0) */
 		fDef = (dB + 20.0) * 0.025 + 0.5;
 
-	return (int) (fDef * m_fScale);
+	return scale(fDef);
 }
 
 

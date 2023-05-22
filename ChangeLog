@@ -6,7 +6,7 @@ ChangeLog
 
 GIT HEAD
 
-- Prepping into the next development cycle (with Qt >= 6.5).
+- Optimized audio output peak-meters. (EXPERIMENTAL)
 
 
 0.9.10  2023-03-23  An Early-Spring'23 Release.
