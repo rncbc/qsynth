@@ -81,13 +81,20 @@ ShowUninstDetails show
 Icon ${SOURCE_FILES}\images\qsynth.ico
 UninstallIcon ${SOURCE_FILES}\images\qsynth.ico
 
+Section # hidden section
+    DetailPrint "Removing previous installation."
+    ExecWait '"$INSTDIR\uninstall.exe" /S _?=$INSTDIR'
+SectionEnd
+
 # Installer sections
 Section -Main SEC0000
-#   CreateDirectory $INSTDIR\bearer
+    CreateDirectory $INSTDIR\generic
     CreateDirectory $INSTDIR\iconengines
     CreateDirectory $INSTDIR\imageformats
+    CreateDirectory $INSTDIR\networkinformation
     CreateDirectory $INSTDIR\platforms
     CreateDirectory $INSTDIR\styles
+    CreateDirectory $INSTDIR\tls
     CreateDirectory $INSTDIR\translations
     SetOutPath $INSTDIR
     SetOverwrite on
@@ -107,17 +114,18 @@ Section -Main SEC0000
     File ${BINARY_FILES}\translations\qt_ru.qm
 
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libfluidsynth-3.dll $INSTDIR\libfluidsynth-3.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libFLAC.dll       $INSTDIR\libFLAC.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libFLAC.dll         $INSTDIR\libFLAC.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libglib-2.0-0.dll   $INSTDIR\libglib-2.0-0.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libgomp-1.dll       $INSTDIR\libgomp-1.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libiconv-2.dll      $INSTDIR\libiconv-2.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libintl-8.dll       $INSTDIR\libintl-8.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libmp3lame-0.dll    $INSTDIR\libmp3lame-0.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libmpg123-0.dll     $INSTDIR\libmpg123-0.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libogg-0.dll        $INSTDIR\libogg-0.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libopus-0.dll       $INSTDIR\libopus-0.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libpcre-1.dll       $INSTDIR\libpcre-1.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libpcre2-8-0.dll    $INSTDIR\libpcre2-8-0.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libreadline8.dll    $INSTDIR\libreadline8.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libsndfile-1.dll    $INSTDIR\libsndfile-1.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libssp-0.dll        $INSTDIR\libssp-0.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libtermcap-0.dll    $INSTDIR\libtermcap-0.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libvorbis-0.dll     $INSTDIR\libvorbis-0.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libvorbisenc-2.dll  $INSTDIR\libvorbisenc-2.dll $INSTDIR
@@ -128,15 +136,12 @@ Section -Main SEC0000
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\Qt6Svg.dll $INSTDIR\Qt6Svg.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\Qt6Widgets.dll $INSTDIR\Qt6Widgets.dll $INSTDIR
 
-#    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libGLESv2.dll $INSTDIR\libGLESv2.dll $INSTDIR
-#    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libEGL.dll $INSTDIR\libEGL.dll $INSTDIR
-
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\D3Dcompiler_47.dll $INSTDIR\D3Dcompiler_47.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\opengl32sw.dll $INSTDIR\opengl32sw.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libgcc_s_seh-1.dll $INSTDIR\libgcc_s_seh-1.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libstdc++-6.dll $INSTDIR\libstdc++-6.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\libwinpthread-1.dll $INSTDIR\libwinpthread-1.dll $INSTDIR
-#    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\bearer\qgenericbearer.dll $INSTDIR\bearer\qgenericbearer.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\generic\qtuiotouchplugin.dll $INSTDIR\generic\qtuiotouchplugin.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\iconengines\qsvgicon.dll $INSTDIR\iconengines\qsvgicon.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\imageformats\qgif.dll $INSTDIR\imageformats\qgif.dll $INSTDIR
 #    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\imageformats\qicns.dll $INSTDIR\imageformats\qicns.dll $INSTDIR
@@ -147,8 +152,12 @@ Section -Main SEC0000
 #    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\imageformats\qtiff.dll $INSTDIR\imageformats\qtiff.dll $INSTDIR
 #    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\imageformats\qwbmp.dll $INSTDIR\imageformats\qwbmp.dll $INSTDIR
 #    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\imageformats\qwebp.dll $INSTDIR\imageformats\qwebp.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\networkinformation\qnetworklistmanager.dll $INSTDIR\networkinformation\qnetworklistmanager.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\platforms\qwindows.dll $INSTDIR\platforms\qwindows.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\styles\qwindowsvistastyle.dll $INSTDIR\styles\qwindowsvistastyle.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\tls\qcertonlybackend.dll $INSTDIR\tls\qcertonlybackend.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\tls\qopensslbackend.dll $INSTDIR\tls\qopensslbackend.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\tls\qschannelbackend.dll $INSTDIR\tls\qschannelbackend.dll $INSTDIR
 
     WriteRegStr HKLM "${REGKEY}\Components" Main 1
 SectionEnd
@@ -208,12 +217,13 @@ Section /o -un.Main UNSEC0000
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libgomp-1.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libiconv-2.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libintl-8.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libmp3lame-0.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libmpg123-0.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libogg-0.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libopus-0.dll
-    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libpcre-1.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libpcre2-8-0.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libreadline8.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libsndfile-1.dll
-    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libssp-0.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libtermcap-0.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libvorbis-0.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libvorbisenc-2.dll
@@ -224,16 +234,13 @@ Section /o -un.Main UNSEC0000
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\Qt6Svg.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\Qt6Widgets.dll
 
-#    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libGLESv2.dll
-#    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libEGL.dll
-
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\D3Dcompiler_47.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\opengl32sw.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libgcc_s_seh-1.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libstdc++-6.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\libwinpthread-1.dll
 
-#    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\bearer\qgenericbearer.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\generic\qtuiotouchplugin.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\iconengines\qsvgicon.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\imageformats\qgif.dll
 #    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\imageformats\qicns.dll
@@ -244,15 +251,21 @@ Section /o -un.Main UNSEC0000
 #    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\imageformats\qtiff.dll
 #    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\imageformats\qwbmp.dll
 #    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\imageformats\qwebp.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\networkinformation\qnetworklistmanager.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\platforms\qwindows.dll
     !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\styles\qwindowsvistastyle.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\tls\qcertonlybackend.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\tls\qopensslbackend.dll
+    !insertmacro UnInstallLib DLL NOTSHARED REBOOT_PROTECTED $INSTDIR\tls\qschannelbackend.dll
 
     RMDir /REBOOTOK $INSTDIR\translations
+    RMDir /REBOOTOK $INSTDIR\tls
     RMDir /REBOOTOK $INSTDIR\styles
     RMDir /REBOOTOK $INSTDIR\platforms
+    RMDir /REBOOTOK $INSTDIR\networkinformation
     RMDir /REBOOTOK $INSTDIR\iconengines
     RMDir /REBOOTOK $INSTDIR\imageformats
-#    RMDir /REBOOTOK $INSTDIR\bearer
+    RMDir /REBOOTOK $INSTDIR\generic
     DeleteRegValue HKLM "${REGKEY}\Components" Main
 SectionEnd
 
