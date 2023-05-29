@@ -4,9 +4,9 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.9.11  2023-06-01  A Spring'23 Release.
 
-- Optimized audio output peak-meters. (EXPERIMENTAL)
+- Optimized audio output peak-meters.
 
 
 0.9.10  2023-03-23  An Early-Spring'23 Release.

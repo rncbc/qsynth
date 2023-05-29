@@ -63,7 +63,7 @@ Var LibInstall
 !insertmacro MUI_LANGUAGE "Spanish"
 
 # Installer attributes
-OutFile qsynth-${VERSION}-54.1.win-x64-setup.exe
+OutFile qsynth-${VERSION}-55.1.win-x64-setup.exe
 #InstallDir $PROGRAMFILES\QSynth
 CRCCheck on
 XPStyle on
