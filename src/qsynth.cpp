@@ -1,7 +1,7 @@
 // qsynth.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2023, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -328,11 +328,13 @@ bool qsynthApplication::setup (void)
 	m_sUnique += '@';
 	m_sUnique += QHostInfo::localHostName();
 #ifdef Q_OS_UNIX
-	m_pMemory = new QSharedMemory(m_sUnique);
+	m_pMemory = new QSharedMemory();
+	m_pMemory->setNativeKey(m_sUnique);
 	m_pMemory->attach();
 	delete m_pMemory;
 #endif
-	m_pMemory = new QSharedMemory(m_sUnique);
+	m_pMemory = new QSharedMemory();
+	m_pMemory->setNativeKey(m_sUnique);
 	bool bServer = false;
 	const qint64 pid = QCoreApplication::applicationPid();
 	struct Data { qint64 pid; };
