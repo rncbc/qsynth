@@ -333,19 +333,13 @@ bool qsynthApplication::setup (void)
 #if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
 	const QNativeIpcKey nativeKey
 		= QSharedMemory::legacyNativeKey(m_sUnique);
-#endif
-#ifdef Q_OS_UNIX
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
 	m_pMemory = new QSharedMemory(nativeKey);
 #else
+#if defined(Q_OS_UNIX)
 	m_pMemory = new QSharedMemory(m_sUnique);
-#endif
 	m_pMemory->attach();
 	delete m_pMemory;
 #endif
-#if QT_VERSION >= QT_VERSION_CHECK(6, 6, 0)
-	m_pMemory = new QSharedMemory(nativeKey);
-#else
 	m_pMemory = new QSharedMemory(m_sUnique);
 #endif
 	bool bServer = false;
@@ -424,7 +418,7 @@ void qsynthApplication::x11PropertyNotify ( Window w )
 			// Avoid repeating it-self...
 			XDeleteProperty(m_pDisplay, m_wOwner, m_aUnique);
 			// Just make it always shows up fine...
-			m_pWidget->show();
+			m_pWidget->showNormal();
 			m_pWidget->raise();
 			m_pWidget->activateWindow();
 			// FIXME: Do our best speciality, although it should be
@@ -468,10 +462,11 @@ void qsynthApplication::readyReadSlot (void)
 		if (nread > 0) {
 			const QByteArray data = pSocket->read(nread);
 			// Just make it always shows up fine...
-			m_pWidget->hide();
-			m_pWidget->show();
-			m_pWidget->raise();
-			m_pWidget->activateWindow();
+			if (m_pWidget) {
+				m_pWidget->showNormal();
+				m_pWidget->raise();
+				m_pWidget->activateWindow();
+			}
 			// FIXME: Do our best speciality, although it should be
 			// done iif configuration says so, we'll do it anyway!
 			qsynthMainForm *pMainForm = qsynthMainForm::getInstance();
