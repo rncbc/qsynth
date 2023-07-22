@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Restore all MIDI channels synth-engine funcionality, when the
+  output peak-meters aren't opted in. (EXPERIMENTAL)
+
 - Preppings to next development cycle (Qt >= 6.6)
 
 

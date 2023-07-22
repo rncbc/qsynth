@@ -273,11 +273,23 @@ int qsynth_process ( void *pvData, int len,
 	int nfx, float **fx, int nout, float **out )
 {
 	qsynthEngine *pEngine = (qsynthEngine *) pvData;
-	// Call the synthesizer process function to fill
-	// the output buffers with its audio output.
 #if FLUIDSYNTH_VERSION_MAJOR >= 2
 	nfx = nout; fx = out;
 #endif
+	// Call the synthesizer process function to fill
+	// the output buffers with its audio output.
+	return ::fluid_synth_process(pEngine->pSynth, len, nfx, fx, nout, out);
+}
+
+int qsynth_process_meters ( void *pvData, int len,
+	int nfx, float **fx, int nout, float **out )
+{
+	qsynthEngine *pEngine = (qsynthEngine *) pvData;
+#if FLUIDSYNTH_VERSION_MAJOR >= 2
+	nfx = nout; fx = out;
+#endif
+	// Call the synthesizer process function to fill
+	// the output buffers with its audio output.
 	if (::fluid_synth_process(pEngine->pSynth, len, nfx, fx, nout, out) != 0)
 		return -1;
 	// Now find the peak level for this buffer run...
@@ -332,7 +344,7 @@ static void qsynth_midi_event ( qsynthEngine *pEngine,
 		const int iType = ::fluid_midi_event_get_type(pMidiEvent);
 		const int iKey  = ::fluid_midi_event_get_control(pMidiEvent);
 		const int iVal  = ::fluid_midi_event_get_value(pMidiEvent);
-		fprintf(stderr, "Type=%03d (0x%02x) Chan=%02d Key=%03d (0x%02x) Val=%03d (0x%02x).\n",
+		qDebug("Type=%03d (0x%02x) Chan=%02d Key=%03d (0x%02x) Val=%03d (0x%02x).",
 			iType, iType, iChan, iKey, iKey, iVal, iVal);
 	#endif
 		if (iChan >= 0 && iChan < g_iMidiChannels) {
@@ -430,7 +442,7 @@ struct qsynthEngineNode
 static int qsynth_sfont_free ( fluid_sfont_t *pSoundFont )
 {
 #ifdef CONFIG_DEBUG
-	fprintf(stderr, "qsynth_sfont_free(%p)\n", pSoundFont);
+	qDebug("qsynth_sfont_free(%p)", pSoundFont);
 #endif
 	if (pSoundFont)	::free(pSoundFont);
 	return 0;
@@ -439,7 +451,7 @@ static int qsynth_sfont_free ( fluid_sfont_t *pSoundFont )
 static int qsynth_sfloader_free ( fluid_sfloader_t * pLoader )
 {
 #ifdef CONFIG_DEBUG
-	fprintf(stderr, "qsynth_sfloader_free(%p)\n", pLoader);
+	qDebug("qsynth_sfloader_free(%p)", pLoader);
 #endif
 	if (pLoader) ::free(pLoader);
 	return 0;
@@ -450,7 +462,7 @@ static fluid_sfont_t *qsynth_sfloader_load (
 	fluid_sfloader_t *pLoader, const char *pszFilename )
 {
 #ifdef CONFIG_DEBUG
-	fprintf(stderr, "qsynth_sfloader_load(%p, \"%s\")\n", pLoader, pszFilename);
+	qDebug("qsynth_sfloader_load(%p, \"%s\")", pLoader, pszFilename);
 #endif
 
 	if (pLoader == nullptr)
@@ -2056,12 +2068,12 @@ bool qsynthMainForm::startEngine ( qsynthEngine *pEngine )
 	pEngine->bMeterEnabled = false;
 	if (m_pOptions->bOutputMeters) {
 		pEngine->pAudioDriver  = ::new_fluid_audio_driver2(
-			pSetup->fluid_settings(), qsynth_process, pEngine);
+			pSetup->fluid_settings(), qsynth_process_meters, pEngine);
 		pEngine->bMeterEnabled = (pEngine->pAudioDriver != nullptr);
 	}
 	if (pEngine->pAudioDriver == nullptr)
-		pEngine->pAudioDriver = ::new_fluid_audio_driver(
-			pSetup->fluid_settings(), pEngine->pSynth);
+		pEngine->pAudioDriver = ::new_fluid_audio_driver2(
+			pSetup->fluid_settings(), qsynth_process, pEngine);
 	if (pEngine->pAudioDriver == nullptr) {
 		appendMessagesError(sPrefix +
 			tr("Failed to create the audio driver (%1).\n\n"
