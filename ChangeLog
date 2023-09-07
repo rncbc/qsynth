@@ -4,10 +4,10 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.9.12  2023-09-09  An End-of-Summer'23 Release.
 
 - Restore all MIDI channels synth-engine funcionality, when the
-  output peak-meters aren't opted in. (EXPERIMENTAL)
+  output peak-meters aren't opted in.
 
 - Preppings to next development cycle (Qt >= 6.6)
 
