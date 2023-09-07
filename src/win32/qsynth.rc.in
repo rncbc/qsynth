@@ -15,7 +15,7 @@ BEGIN
       VALUE "FileVersion", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@"
       VALUE "Full Version", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@.0"
       VALUE "InternalName", "@PACKAGE_NAME@"
-      VALUE "LegalCopyright", "Copyright \251 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved."
+      VALUE "LegalCopyright", "Copyright \251 2003-2023, rncbc aka Rui Nuno Capela. All rights reserved."
       VALUE "OriginalFilename", "qsynth.exe"
       VALUE "ProductName", "@PACKAGE_NAME@"
       VALUE "ProductVersion", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@"
