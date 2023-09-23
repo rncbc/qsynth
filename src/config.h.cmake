@@ -40,7 +40,7 @@
 /* Define if lroundf is available. */
 #cmakedefine CONFIG_ROUND @CONFIG_ROUND@
 
-/* Define if X11 Unique/Single instance is enabled. */
+/* Define if Unique/Single instance is enabled. */
 #cmakedefine CONFIG_XUNIQUE @CONFIG_XUNIQUE@
 
 /* Define if gradient eye-candy is enabled. */
