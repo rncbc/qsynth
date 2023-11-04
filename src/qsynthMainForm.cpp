@@ -2976,7 +2976,7 @@ void qsynthMainForm::updateKnobs (void)
 	const qsynthKnob::DialMode mode
 		= qsynthKnob::DialMode(m_pOptions->iKnobMotion);
 	QList<qsynthKnob *> allKnobs = findChildren<qsynthKnob *>();
-	for(qsynthKnob* knob : allKnobs) {
+	foreach (qsynthKnob* knob, allKnobs) {
 		knob->setStyle(m_pKnobStyle);
 		knob->setDialMode(mode);
 	}
