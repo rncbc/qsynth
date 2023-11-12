@@ -164,6 +164,10 @@ if (CONFIG_ROUND)
   target_link_libraries (${PROJECT_NAME} PRIVATE ${MATH_LIBRARY})
 endif ()
 
+if (CONFIG_PIPEWIRE)
+  target_link_libraries (${PROJECT_NAME} PRIVATE PkgConfig::PIPEWIRE)
+endif ()
+
 
 if (UNIX AND NOT APPLE)
   install (TARGETS ${PROJECT_NAME} RUNTIME

@@ -36,6 +36,10 @@
 
 #include <QSessionManager>
 
+#if CONFIG_PIPEWIRE
+#include <pipewire/pipewire.h>
+#endif
+
 #if QT_VERSION < QT_VERSION_CHECK(4, 5, 0)
 namespace Qt {
 const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
@@ -572,6 +576,12 @@ void stacktrace ( int signo )
 
 int main ( int argc, char **argv )
 {
+#if CONFIG_PIPEWIRE
+	// Initialize PipeWire first
+	::pw_init(&argc, &argv);
+	::atexit(::pw_deinit);
+#endif
+
 	Q_INIT_RESOURCE(qsynth);
 #ifdef CONFIG_STACKTRACE
 #if defined(Q_CC_GNU) && defined(Q_OS_LINUX)

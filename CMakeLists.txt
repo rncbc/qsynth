@@ -215,6 +215,8 @@ else ()
   set (CONFIG_FLUIDSYNTH 0)
 endif ()
 
+pkg_check_modules (PIPEWIRE IMPORTED_TARGET libpipewire-0.3)
+set (CONFIG_PIPEWIRE ${PIPEWIRE_FOUND})
 
 add_subdirectory (src)
 
