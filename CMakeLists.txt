@@ -56,7 +56,7 @@ set (CONFIG_PREFIX "${CMAKE_INSTALL_PREFIX}")
 include (GNUInstallDirs)
 set (CONFIG_BINDIR  "${CONFIG_PREFIX}/${CMAKE_INSTALL_BINDIR}")
 set (CONFIG_LIBDIR  "${CONFIG_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
-set (CONFIG_DATADIR "/${CMAKE_INSTALL_DATADIR}")
+set (CONFIG_DATADIR "${CONFIG_PREFIX}/${CMAKE_INSTALL_DATADIR}")
 set (CONFIG_MANDIR  "${CONFIG_PREFIX}/${CMAKE_INSTALL_MANDIR}")
 
 
@@ -71,6 +71,9 @@ option (CONFIG_FLUID_MIDI_ROUTER "Enable FluidSynth MIDI router support (DEPRECA
 
 # Enable new_fluid_server function.
 option (CONFIG_FLUID_SERVER "Enable FluidSynth server (default=yes)" 1)
+
+# Enable PipwWire support.
+option (CONFIG_PIPEWIRE "Enable PipeWire support (default=yes)" 1)
 
 # Enable unique/single instance.
 option (CONFIG_XUNIQUE "Enable unique/single instance (default=yes)" 1)
@@ -215,8 +218,14 @@ else ()
   set (CONFIG_FLUIDSYNTH 0)
 endif ()
 
-pkg_check_modules (PIPEWIRE IMPORTED_TARGET libpipewire-0.3)
-set (CONFIG_PIPEWIRE ${PIPEWIRE_FOUND})
+
+if (CONFIG_PIPEWIRE)
+  pkg_check_modules (PIPEWIRE IMPORTED_TARGET libpipewire-0.3)
+  if (NOT PIPEWIRE_FOUND)
+    set (CONFIG_PIPEWIRE 0)
+  endif ()
+endif ()
+
 
 add_subdirectory (src)
 
@@ -241,6 +250,8 @@ show_option ("  FluidSynth channel info support (DEPRECATED) . . ." CONFIG_FLUID
 show_option ("  FluidSynth MIDI router support  (DEPRECATED) . . ." CONFIG_FLUID_MIDI_ROUTER)
 show_option ("  FluidSynth unset program support . . . . . . . . ." CONFIG_FLUID_UNSET_PROGRAM)
 show_option ("  FluidSynth version string support  . . . . . . . ." CONFIG_FLUID_VERSION_STR)
+message     ("")
+show_option ("  PipeWire (pw-init) support . . . . . . . . . . . ." CONFIG_PIPEWIRE)
 message     ("")
 show_option ("  System tray icon support . . . . . . . . . . . . ." CONFIG_SYSTEM_TRAY)
 message     ("")

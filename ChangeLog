@@ -6,6 +6,8 @@ ChangeLog
 
 GIT HEAD
 
+- Add PipeWire (pw_init) support. (GH PR#75) (EXPERIMENTAL)
+
 - Bumping into next development cycle (Qt >= 6.6)
 
 

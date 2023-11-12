@@ -36,9 +36,10 @@
 
 #include <QSessionManager>
 
-#if CONFIG_PIPEWIRE
+#ifdef CONFIG_PIPEWIRE
 #include <pipewire/pipewire.h>
 #endif
+
 
 #if QT_VERSION < QT_VERSION_CHECK(4, 5, 0)
 namespace Qt {
@@ -576,7 +577,7 @@ void stacktrace ( int signo )
 
 int main ( int argc, char **argv )
 {
-#if CONFIG_PIPEWIRE
+#ifdef CONFIG_PIPEWIRE
 	// Initialize PipeWire first
 	::pw_init(&argc, &argv);
 	::atexit(::pw_deinit);

@@ -127,10 +127,10 @@
 /* Define if fluid_free function is available. */
 #cmakedefine CONFIG_FLUID_FREE @CONFIG_FLUID_FREE@
 
+/* Define if PipeWire is supported. */
+#cmakedefine CONFIG_PIPEWIRE @CONFIG_PIPEWIRE@
+
 /* Define if Wayland is supported */
 #cmakedefine CONFIG_WAYLAND @CONFIG_WAYLAND@
-
-/* Define if PipeWire is available */
-#cmakedefine CONFIG_PIPEWIRE @CONFIG_PIPEWIRE@
 
 #endif /* CONFIG_H */
