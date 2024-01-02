@@ -1,7 +1,7 @@
 // qsynthAbout.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2023, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -24,12 +24,12 @@
 
 #include "config.h"
 
-#define QSYNTH_TITLE        PACKAGE_NAME
+#define QSYNTH_TITLE        "Qsynth"
 
-#define QSYNTH_SUBTITLE     "A fluidsynth Qt GUI Interface"
-#define QSYNTH_WEBSITE      "https://qsynth.sourceforge.io"
-#define QSYNTH_COPYRIGHT    "Copyright (C) 2003-2023, rncbc aka Rui Nuno Capela. All rights reserved."
+#define QSYNTH_SUBTITLE     PROJECT_DESCRIPTION
+#define QSYNTH_WEBSITE      PROJECT_HOMEPAGE_URL
 
+#define QSYNTH_COPYRIGHT    "Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved."
 #define QSYNTH_DOMAIN       "rncbc.org"
 
 #endif  // __qsynthAbout_h
