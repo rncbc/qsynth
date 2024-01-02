@@ -1,4 +1,4 @@
-Name "@PACKAGE_NAME@"
+Name "@PROJECT_NAME@"
 SetCompressor /SOLID lzma
 Unicode true
 # BrandingText " "
@@ -11,9 +11,9 @@ RequestExecutionLevel admin
 !define FUIDSYNTH_FILES "@FLUIDSYNTH_PREFIX@/bin"
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION @PROJECT_VERSION@
-!define PROGNAME "@PACKAGE_NAME@"
+!define PROGNAME "@PROJECT_NAME@"
 !define COMPANY "rncbc.org"
-!define URL https://qsynth.sourceforge.io
+!define URL "https://qsynth.sourceforge.io"
 
 # Included files
 !include Sections.nsh
@@ -28,7 +28,7 @@ RequestExecutionLevel admin
 !define MUI_STARTMENUPAGE_NODISABLE
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER "@PACKAGE_NAME@"
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "@PROJECT_NAME@"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
@@ -69,7 +69,7 @@ CRCCheck on
 XPStyle on
 ShowInstDetails show
 VIProductVersion @PROJECT_VERSION@.0
-VIAddVersionKey ProductName @PACKAGE_NAME@
+VIAddVersionKey ProductName @PROJECT_NAME@
 VIAddVersionKey ProductVersion ${VERSION}
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"

@@ -12,13 +12,13 @@ BEGIN
     BEGIN
       VALUE "CompanyName", "rncbc.org"
       VALUE "FileDescription", "@PROJECT_DESCRIPTION@"
-      VALUE "FileVersion", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@"
-      VALUE "Full Version", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@.0"
-      VALUE "InternalName", "@PACKAGE_NAME@"
-      VALUE "LegalCopyright", "Copyright \251 2003-2023, rncbc aka Rui Nuno Capela. All rights reserved."
+      VALUE "FileVersion", "@PROJECT_VERSION@"
+      VALUE "Full Version", "@PROJECT_VERSION@.0"
+      VALUE "InternalName", "@PROJECT_NAME@"
+      VALUE "LegalCopyright", "Copyright \251 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved."
       VALUE "OriginalFilename", "qsynth.exe"
-      VALUE "ProductName", "@PACKAGE_NAME@"
-      VALUE "ProductVersion", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@"
+      VALUE "ProductName", "@PROJECT_NAME@"
+      VALUE "ProductVersion", "@PROJECT_VERSION@"
     END
   END
   BLOCK "VarFileInfo"

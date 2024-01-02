@@ -24,7 +24,7 @@
 
 #include "config.h"
 
-#define QSYNTH_TITLE        "Qsynth"
+#define QSYNTH_TITLE        PROJECT_TITLE
 
 #define QSYNTH_SUBTITLE     PROJECT_DESCRIPTION
 #define QSYNTH_WEBSITE      PROJECT_HOMEPAGE_URL
