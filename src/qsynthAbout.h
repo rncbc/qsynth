@@ -29,8 +29,8 @@
 #define QSYNTH_SUBTITLE     PROJECT_DESCRIPTION
 #define QSYNTH_WEBSITE      PROJECT_HOMEPAGE_URL
 
-#define QSYNTH_COPYRIGHT    "Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved."
-#define QSYNTH_DOMAIN       "rncbc.org"
+#define QSYNTH_COPYRIGHT    PROJECT_COPYRIGHT
+#define QSYNTH_DOMAIN       PROJECT_DOMAIN
 
 #endif  // __qsynthAbout_h
 

@@ -10,14 +10,14 @@ BEGIN
   BEGIN
     BLOCK "040904E4"
     BEGIN
-      VALUE "CompanyName", "rncbc.org"
+      VALUE "CompanyName", "@PROJECT_DOMAIN@"
       VALUE "FileDescription", "@PROJECT_DESCRIPTION@"
-      VALUE "FileVersion", "@PROJECT_VERSION@"
-      VALUE "Full Version", "@PROJECT_VERSION@.0"
+      VALUE "FileVersion", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@"
+      VALUE "Full Version", "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@.0"
       VALUE "InternalName", "@PROJECT_NAME@"
-      VALUE "LegalCopyright", "Copyright \251 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved."
-      VALUE "OriginalFilename", "qsynth.exe"
-      VALUE "ProductName", "@PROJECT_NAME@"
+      VALUE "LegalCopyright", "@PROJECT_COPYRIGHT@"
+      VALUE "OriginalFilename", "@PROJECT_NAME@.exe"
+      VALUE "ProductName", "@PROJECT_TITLE@"
       VALUE "ProductVersion", "@PROJECT_VERSION@"
     END
   END
