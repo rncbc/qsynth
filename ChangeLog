@@ -4,9 +4,9 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+0.9.13  2024-01-24  A Winter'24 Release.
 
-- Add PipeWire (pw_init) support. (GH PR#75) (EXPERIMENTAL)
+- Add PipeWire (pw_init) support.
 
 - Updated copyright headers into the New Year (2024).
 

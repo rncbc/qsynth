@@ -16,8 +16,8 @@
 #
 
 %define name    qsynth
-%define version 0.9.12
-%define release 56.1
+%define version 0.9.13
+%define release 57.1
 
 %define _prefix	/usr
 
@@ -141,6 +141,8 @@ cmake --install build
 %{_datadir}/man/fr/man1/%{name}.1.gz
 
 %changelog
+* Wed Jan 24 2024 Rui Nuno Capela <rncbc@rncbc.org> 0.9.13
+- A Winter'24 Release.
 * Sat Sep  9 2023 Rui Nuno Capela <rncbc@rncbc.org> 0.9.12
 - An End-of-Summer'23 Release.
 * Thu Jun  1 2023 Rui Nuno Capela <rncbc@rncbc.org> 0.9.11
