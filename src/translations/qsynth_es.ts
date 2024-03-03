@@ -1515,31 +1515,38 @@ después de la próxima vez que inicie esta aplicación.</translation>
         <translation>Mostrar detalles</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="323"/>
+        <location filename="../qsynthPaletteForm.cpp" line="343"/>
         <source>Import File - %1</source>
         <translation>Importar archivo - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="326"/>
-        <location filename="../qsynthPaletteForm.cpp" line="400"/>
+        <location filename="../qsynthPaletteForm.cpp" line="259"/>
+        <location filename="../qsynthPaletteForm.cpp" line="346"/>
+        <location filename="../qsynthPaletteForm.cpp" line="391"/>
         <source>Palette files (*.%1)</source>
         <translation>Archivos de paletas (*.%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="327"/>
-        <location filename="../qsynthPaletteForm.cpp" line="401"/>
+        <location filename="../qsynthPaletteForm.cpp" line="257"/>
+        <source>Save Palette - %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthPaletteForm.cpp" line="260"/>
+        <location filename="../qsynthPaletteForm.cpp" line="347"/>
+        <location filename="../qsynthPaletteForm.cpp" line="392"/>
         <source>All files (*.*)</source>
         <translation>Todos los archivos (*.*)</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="387"/>
-        <location filename="../qsynthPaletteForm.cpp" line="820"/>
-        <location filename="../qsynthPaletteForm.cpp" line="828"/>
+        <location filename="../qsynthPaletteForm.cpp" line="378"/>
+        <location filename="../qsynthPaletteForm.cpp" line="754"/>
+        <location filename="../qsynthPaletteForm.cpp" line="762"/>
         <source>Warning - %1</source>
         <translation>Aviso - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="388"/>
+        <location filename="../qsynthPaletteForm.cpp" line="379"/>
         <source>Could not import from file:
 
 %1
@@ -1548,19 +1555,19 @@ Sorry.</source>
         <translation>No se ha podido importar desde archivo: %1. Lo siento.</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="397"/>
+        <location filename="../qsynthPaletteForm.cpp" line="388"/>
         <source>Export File - %1</source>
         <translation>Exportar archivo - %1</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="821"/>
+        <location filename="../qsynthPaletteForm.cpp" line="755"/>
         <source>Some settings have been changed.
 
 Do you want to discard the changes?</source>
         <translation>Algunas opciones han cambiado. ¿Desea descartar los cambios?</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="829"/>
+        <location filename="../qsynthPaletteForm.cpp" line="763"/>
         <source>Some settings have been changed:
 
 &quot;%1&quot;.
@@ -1572,22 +1579,22 @@ Do you want to save the changes?</source>
 <context>
     <name>qsynthPaletteForm::PaletteModel</name>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1072"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1006"/>
         <source>Color Role</source>
         <translation>Rol de color</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1075"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1009"/>
         <source>Active</source>
         <translation>Activo</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1078"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1012"/>
         <source>Inactive</source>
         <translation>Inactivo</translation>
     </message>
     <message>
-        <location filename="../qsynthPaletteForm.cpp" line="1081"/>
+        <location filename="../qsynthPaletteForm.cpp" line="1015"/>
         <source>Disabled</source>
         <translation>Deshabilitado</translation>
     </message>
