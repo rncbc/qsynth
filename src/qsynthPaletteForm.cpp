@@ -235,9 +235,10 @@ QSettings *qsynthPaletteForm::settings (void) const
 
 void qsynthPaletteForm::nameComboChanged ( const QString& name )
 {
-	if (m_dirtyCount > 0 || m_ui.nameCombo->findText(name) < 0) {
+	if (m_dirtyCount > 0 && m_ui.nameCombo->findText(name) < 0) {
 		updateDialogButtons();
 	} else {
+		resetButtonClicked();
 		setPaletteName(name);
 		++m_dirtyTotal;
 	}
@@ -406,7 +407,7 @@ void qsynthPaletteForm::exportButtonClicked (void)
 	const QFileInfo fi(filename);
 	const QString& name = fi.baseName();
 	if (saveNamedPaletteConf(name, filename, m_palette)) {
-		addNamedPaletteConf(name, filename);
+	//	addNamedPaletteConf(name, filename);
 		setDefaultDir(fi.absolutePath());
 	}
 }
