@@ -4,6 +4,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Custom color themes are now file based (*.conf); legacy still
+  preserved ntl. (EXPERIMENTAL)
+
+
 0.9.13  2024-01-24  A Winter'24 Release.
 
 - Add PipeWire (pw_init) support.
