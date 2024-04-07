@@ -10,7 +10,7 @@ RequestExecutionLevel admin
 !define BINARY_FILES "@CMAKE_BINARY_DIR@/src"
 !define FUIDSYNTH_FILES "@FLUIDSYNTH_PREFIX@/bin"
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION @PROJECT_VERSION@
+!define VERSION "@PROJECT_VERSION@"
 !define PROGNAME "@PROJECT_NAME@"
 !define COMPANY "@PROJECT_DOMAIN@"
 !define URL "@PROJECT_HOMEPAGE_URL@"
@@ -63,17 +63,17 @@ Var LibInstall
 !insertmacro MUI_LANGUAGE "Spanish"
 
 # Installer attributes
-OutFile @PROJECT_NAME@-${VERSION}-57.1.win-x64-setup.exe
-#InstallDir $PROGRAMFILES\@PROJECT_TITLE@
+OutFile "@PROJECT_NAME@-${VERSION}-58.win-x64-setup.exe"
+#InstallDir "$PROGRAMFILES\@PROJECT_TITLE@"
 CRCCheck on
 XPStyle on
 ShowInstDetails show
-VIProductVersion @PROJECT_VERSION@.0
-VIAddVersionKey ProductName @PROJECT_TITLE@
-VIAddVersionKey ProductVersion ${VERSION}
+VIProductVersion "@PROJECT_VERSION@.0"
+VIAddVersionKey ProductName "@PROJECT_TITLE@"
+VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
-VIAddVersionKey FileVersion ${VERSION}
+VIAddVersionKey FileVersion "${VERSION}"
 VIAddVersionKey FileDescription "@PROJECT_DESCRIPTION@"
 VIAddVersionKey LegalCopyright "@PROJECT_COPYRIGHT@"
 InstallDirRegKey HKLM "${REGKEY}" Path
@@ -154,7 +154,7 @@ Section -Main SEC0000
 #    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\imageformats\qwebp.dll $INSTDIR\imageformats\qwebp.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\networkinformation\qnetworklistmanager.dll $INSTDIR\networkinformation\qnetworklistmanager.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\platforms\qwindows.dll $INSTDIR\platforms\qwindows.dll $INSTDIR
-    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\styles\qwindowsvistastyle.dll $INSTDIR\styles\qwindowsvistastyle.dll $INSTDIR
+    !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\styles\qmodernwindowsstyle.dll $INSTDIR\styles\qmodernwindowsstyle.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\tls\qcertonlybackend.dll $INSTDIR\tls\qcertonlybackend.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\tls\qopensslbackend.dll $INSTDIR\tls\qopensslbackend.dll $INSTDIR
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${BINARY_FILES}\tls\qschannelbackend.dll $INSTDIR\tls\qschannelbackend.dll $INSTDIR
