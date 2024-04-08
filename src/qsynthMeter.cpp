@@ -1,7 +1,7 @@
 // qsynthMeter.cpp
 //
 /****************************************************************************
-   Copyright (C) 2004-2023, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2024, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -250,33 +250,8 @@ void qsynthMeterValue::paintEvent ( QPaintEvent * )
 		painter.fillRect(0, 0, w, h, QWidget::palette().dark().color());
 	}
 
-#ifdef CONFIG_GRADIENT
 	painter.drawPixmap(0, h - m_iValue,
 		m_pMeter->pixmap(), 0, h - m_iValue, w, m_iValue);
-#else
-	y = m_iValue;
-
-	int y_over = 0;
-	int y_curr = 0;
-
-	for (int i = qsynthMeter::Color10dB;
-			i > qsynthMeter::ColorOver && y >= y_over; --i) {
-		y_curr = m_pMeter->iec_level(i);
-		if (y < y_curr) {
-			painter.fillRect(0, h - y, w, y - y_over,
-				m_pMeter->color(i));
-		} else {
-			painter.fillRect(0, h - y_curr, w, y_curr - y_over,
-				m_pMeter->color(i));
-		}
-		y_over = y_curr;
-	}
-
-	if (y > y_over) {
-		painter.fillRect(0, h - y, w, y - y_over,
-			m_pMeter->color(qsynthMeter::ColorOver));
-	}
-#endif
 
 	painter.setPen(m_pMeter->color(m_iPeakColor));
 	painter.drawLine(0, h - m_iPeak, w, h - m_iPeak);
@@ -306,10 +281,6 @@ qsynthMeter::qsynthMeter ( QWidget *pParent )
 	m_ppScales     = nullptr;
 
 	m_fScale = 0.0f;
-
-#ifdef CONFIG_GRADIENT
-	m_pPixmap = new QPixmap();
-#endif
 
 	m_iPeakFalloff = QSYNTH_METER_PEAK_FALLOFF;
 
@@ -362,9 +333,6 @@ qsynthMeter::qsynthMeter ( QWidget *pParent )
 // Default destructor.
 qsynthMeter::~qsynthMeter (void)
 {
-#ifdef CONFIG_GRADIENT
-	delete m_pPixmap;
-#endif
 	for (int iPort = 0; iPort < m_iPortCount; iPort++) {
 		delete m_ppValues[iPort];
 		if (iPort < m_iScaleCount)
@@ -435,11 +403,10 @@ void qsynthMeter::peakReset (void)
 }
 
 
-#ifdef CONFIG_GRADIENT
-// Gradient pixmap accessor.
+// Pixmap accessors.
 const QPixmap& qsynthMeter::pixmap (void) const
 {
-	return *m_pPixmap;
+	return m_pixmap;
 }
 
 void qsynthMeter::updatePixmap (void)
@@ -447,18 +414,27 @@ void qsynthMeter::updatePixmap (void)
 	const int w = QWidget::width();
 	const int h = QWidget::height();
 
+	m_pixmap = QPixmap(w, h);
+
+#ifdef CONFIG_GRADIENT
 	QLinearGradient grad(0, 0, 0, h);
 	grad.setColorAt(0.2f, color(ColorOver));
 	grad.setColorAt(0.3f, color(Color0dB));
 	grad.setColorAt(0.4f, color(Color3dB));
 	grad.setColorAt(0.6f, color(Color6dB));
 	grad.setColorAt(0.8f, color(Color10dB));
-
-	*m_pPixmap = QPixmap(w, h);
-
-	QPainter(m_pPixmap).fillRect(0, 0, w, h, grad);
-}
+	QPainter(&m_pixmap).fillRect(0, 0, w, h, grad);
+#else
+	QPainter painter(&m_pixmap);
+	int y0 = 0;
+	for (int i = Color10dB; i > ColorOver; --i) {
+		const int y1 = iec_level(i);
+		painter.fillRect(0, h - y1, w, y1 - y0, color(i));
+		y0 = y1;
+	}
+	painter.fillRect(0, 0, w, h - y0, color(ColorOver));
 #endif
+}
 
 
 // Slot refreshment.
@@ -479,9 +455,7 @@ void qsynthMeter::resizeEvent ( QResizeEvent * )
 	m_levels[Color6dB]  = iec_scale( -6.0f);
 	m_levels[Color10dB] = iec_scale(-10.0f);
 
-#ifdef CONFIG_GRADIENT
 	updatePixmap();
-#endif
 }
 
 

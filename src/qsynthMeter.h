@@ -1,7 +1,7 @@
 // qsynthMeter.h
 //
 /****************************************************************************
-   Copyright (C) 2004-2023, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2004-2024, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -23,6 +23,8 @@
 #define __qsynthMeter_h
 
 #include <QFrame>
+#include <QPixmap>
+
 
 // Forward declarations.
 class qsynthMeter;
@@ -133,10 +135,10 @@ public:
 	int scale(float fValue) const
 		{ return int(m_fScale * fValue); }
 
-#ifdef CONFIG_GRADIENT
+	// Pixmap accessors.
 	const QPixmap& pixmap() const;
+
 	void updatePixmap();
-#endif
 
 	// Slot refreshment.
 	void refresh();
@@ -183,9 +185,7 @@ private:
 	int     m_levels[LevelCount];
 	QColor  m_colors[ColorCount];
 
-#ifdef CONFIG_GRADIENT
-	QPixmap *m_pPixmap;
-#endif
+	QPixmap m_pixmap;
 
 	// Peak falloff mode setting (0=no peak falloff).
 	int m_iPeakFalloff;
