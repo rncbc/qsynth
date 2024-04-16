@@ -1529,7 +1529,7 @@ qu&apos;après le prochain démarrage de cette application.</translation>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="258"/>
         <source>Save Palette - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Sauvegarder la palette - %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="261"/>
