@@ -192,6 +192,12 @@
        </item>
        <item row="2" column="1">
         <widget class="QSpinBox" name="MidiChannelsSpinBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>2</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="toolTip">
           <string>Number of MIDI channels</string>
          </property>
@@ -649,6 +655,12 @@
          </item>
          <item row="2" column="1">
           <widget class="QSpinBox" name="AudioGroupsSpinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Number of audio groups</string>
            </property>
@@ -662,6 +674,12 @@
          </item>
          <item row="3" column="1">
           <widget class="QSpinBox" name="PolyphonySpinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Number of enabled polyphonic voices</string>
            </property>
@@ -678,6 +696,12 @@
          </item>
          <item row="1" column="1">
           <widget class="QSpinBox" name="AudioChannelsSpinBox">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
            <property name="toolTip">
             <string>Number of stereo audio channels</string>
            </property>
