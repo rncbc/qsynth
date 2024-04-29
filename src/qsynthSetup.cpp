@@ -121,17 +121,17 @@ void qsynthSetup::realize (void)
 			sAudioKey += "name";
 		else
 			sAudioKey += "device";
-		::fluid_settings_setstr(m_pFluidSettings,
-			sAudioKey.toLocal8Bit().data(),
-			sAudioDevice.toLocal8Bit().data());
-	}
-	if (!sJackName.isEmpty()) {
-		pszKey = (char *) "audio.jack.id";
+        ::fluid_settings_setstr(m_pFluidSettings,
+            sAudioKey.toUtf8().data(),
+            sAudioDevice.toUtf8().data());
+    }
+    if (!sJackName.isEmpty()) {
+        pszKey = (char *) "audio.jack.id";
 		::fluid_settings_setstr(m_pFluidSettings, pszKey,
 			sJackName.toLocal8Bit().data());
-	}
+    }
 
-	pszKey = (char *) "audio.jack.autoconnect";
+    pszKey = (char *) "audio.jack.autoconnect";
 	::fluid_settings_setint(m_pFluidSettings, pszKey,
 		int(bJackAutoConnect));
 
