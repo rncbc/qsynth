@@ -1,7 +1,7 @@
 // qsynthSetupForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -52,7 +52,7 @@ static void qsynth_settings_foreach_option (
 {
 	qsynth_settings_data *pData = (qsynth_settings_data *) pvData;
 
-	pData->options.append(QString::fromUtf8(pszOption));
+	pData->options.append(pszOption);
 }
 
 static void qsynth_settings_foreach (
@@ -163,16 +163,16 @@ static void qsynth_settings_foreach (
 	#else
 		::fluid_settings_getstr(pFluidSettings, pszName, &pszCurrent);
 	#endif
-		(pData->pListItem)->setText(iCol++, QString::fromUtf8(pszCurrent));
-		(pData->pListItem)->setText(iCol++, QString::fromUtf8(pszDefault));
+		(pData->pListItem)->setText(iCol++, pszCurrent);
+		(pData->pListItem)->setText(iCol++, pszDefault);
 		(pData->pListItem)->setText(iCol++, QString());
 		(pData->pListItem)->setText(iCol++, QString());
 	#ifdef CONFIG_FLUID_SETTINGS_DUPSTR
-	#ifdef CONFIG_FLUID_FREE
+    #ifdef CONFIG_FLUID_FREE
 		::fluid_free(pszCurrent);
-	#else
+    #else
 		::free(pszCurrent);
-	#endif
+    #endif
 	#endif
 		break;
 	}}
@@ -180,7 +180,7 @@ static void qsynth_settings_foreach (
 	// Check for options.
 	pData->options.clear();
 	::fluid_settings_foreach_option(pFluidSettings, pszName, pvData, qsynth_settings_foreach_option);
-	(pData->pListItem)->setText(iCol++, pData->options.join(' '));
+	(pData->pListItem)->setText(iCol++, pData->options.join(" "));
 }
 
 
