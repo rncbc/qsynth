@@ -101,8 +101,8 @@ void qsynthSetup::realize (void)
 			sMidiKey += sMidiDriver;
 		sMidiKey += ".device";
 		::fluid_settings_setstr(m_pFluidSettings,
-			sMidiKey.toLocal8Bit().data(),
-			sMidiDevice.toLocal8Bit().data());
+			sMidiKey.toUtf8().data(),
+			sMidiDevice.toUtf8().data());
 	}
 #if FLUIDSYNTH_VERSION_MAJOR >= 2
 	pszKey = (char *) "midi.autoconnect";
