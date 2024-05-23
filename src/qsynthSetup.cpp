@@ -1,7 +1,7 @@
 // qsynthSetup.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -49,7 +49,7 @@ qsynthSetup::~qsynthSetup (void)
 
 
 // Fluidsynth settings accessor.
-fluid_settings_t *qsynthSetup::fluid_settings (void)
+fluid_settings_t *qsynthSetup::fluid_settings (void) const
 {
 	return m_pFluidSettings;
 }
@@ -249,30 +249,76 @@ void qsynthSetup::realize (void)
 	::fluid_settings_setint(m_pFluidSettings, pszKey, int(bVerbose));
 #endif
 
-	// Last we set user supplied options...
-	QStringListIterator iter(options);
-	while (iter.hasNext()) {
-		const QString sOpt = iter.next();
-		const QString sKey = sOpt.section('=', 0, 0);
-		const QString sVal = sOpt.section('=', 1, 1);
+	// We get command-line supplied options...
+	QStringListIterator options_iter(options);
+	while (options_iter.hasNext()) {
+		const QString& sOpt = options_iter.next();
+		const QString& sKey = sOpt.section('=', 0, 0);
+		const QString& sVal = sOpt.section('=', 1, 1);
+		settings.insert(sKey, sVal);
+	}
+	options.clear();
+
+	// Last we set custom settings...
+	QStringList keys;
+	Settings::ConstIterator iter = settings.constBegin();
+	const Settings::ConstIterator& iter_end = settings.constEnd();
+	for ( ; iter != iter_end; ++iter) {
+		const QString& sKey = iter.key();
+		const QString& sVal = iter.value();
 		QByteArray tmp = sKey.toLocal8Bit();
 		pszKey = tmp.data();
 		switch (::fluid_settings_get_type(m_pFluidSettings, pszKey)) {
-		case FLUID_NUM_TYPE:
-			::fluid_settings_setnum(m_pFluidSettings, pszKey,
-				sVal.toFloat());
-			break;
 		case FLUID_INT_TYPE:
-			::fluid_settings_setint(m_pFluidSettings, pszKey,
-				sVal.toInt());
+		{
+			const int iValue = sVal.toInt();
+		#ifdef CONFIG_FLUID_SETTINGS_GETINT_DEFAULT
+			int iDefValue = 0;
+			::fluid_settings_getint_default(m_pFluidSettings, pszKey, &iDefValue);
+		#else
+			const int fDefValue = ::fluid_settings_getint_default(m_pFluidSettings, pszKey);
+		#endif
+			if (iDefValue == iValue)
+				keys.append(sKey);
+			::fluid_settings_setint(m_pFluidSettings, pszKey, iValue);
 			break;
+		}
+		case FLUID_NUM_TYPE:
+		{
+			const double fValue = sVal.toDouble();
+		#ifdef CONFIG_FLUID_SETTINGS_GETNUM_DEFAULT
+			double fDefValue = 0.0;
+			::fluid_settings_getnum_default(m_pFluidSettings, pszKey, &fDefValue);
+		#else
+			const double fDefValue = ::fluid_settings_getnum_default(m_pFluidSettings, pszKey);
+		#endif
+			if (fDefValue == fValue)
+				keys.append(sKey);
+			::fluid_settings_setnum(m_pFluidSettings, pszKey, fValue);
+			break;
+		}
 		case FLUID_STR_TYPE:
 		default:
+		{
+		#ifdef CONFIG_FLUID_SETTINGS_GETSTR_DEFAULT
+			char *pszDefValue = nullptr;
+			::fluid_settings_getstr_default(m_pFluidSettings, pszKey, &pszDefValue);
+		#else
+			const char *pszDefValue = ::fluid_settings_getstr_default(m_pFluidSettings, pszKey);
+		#endif
+			if ((pszDefValue == nullptr) ||
+				(QString::fromLocal8Bit(pszDefValue) == sVal))
+				keys.append(sKey);
 			::fluid_settings_setstr(m_pFluidSettings, pszKey,
 				sVal.toLocal8Bit().data());
 			break;
-		}
+		}}
 	}
+
+	// Finally, clear-up all default settings...
+	QStringListIterator keys_iter(keys);
+	while (keys_iter.hasNext())
+		settings.remove(keys_iter.next());
 }
 
 

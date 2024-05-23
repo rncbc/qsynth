@@ -4,6 +4,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Introduce Setup/Settings custom editing per engine. (EXPERIMENTAL)
+
+
 0.9.91  2024-05-01  A Spring'24 Release Candidate 2.
 
 - Prepping the unthinkable (aka. v1.0.0-rc2)

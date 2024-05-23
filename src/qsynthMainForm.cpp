@@ -1,7 +1,7 @@
 // qsynthMainForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2023, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -737,6 +737,13 @@ qsynthMainForm::~qsynthMainForm (void)
 	if (m_pSystemTray)
 		delete m_pSystemTray;
 #endif
+
+	// Scrap the engines!
+	for (int iTab = 0; iTab < iTabCount; ++iTab) {
+		qsynthEngine *pEngine = m_ui.TabBar->engine(iTab);
+		if (pEngine)
+			delete pEngine;
+	}
 
 	// Pseudo-singleton reference shut-down.
 	g_pMainForm = nullptr;
