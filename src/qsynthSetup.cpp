@@ -278,9 +278,11 @@ void qsynthSetup::realize (void)
 		#else
 			const int fDefValue = ::fluid_settings_getint_default(m_pFluidSettings, pszKey);
 		#endif
-			if (iDefValue == iValue)
+			if (iDefValue == iValue) {
 				keys.append(sKey);
-			::fluid_settings_setint(m_pFluidSettings, pszKey, iValue);
+			} else {
+				::fluid_settings_setint(m_pFluidSettings, pszKey, iValue);
+			}
 			break;
 		}
 		case FLUID_NUM_TYPE:
@@ -292,9 +294,11 @@ void qsynthSetup::realize (void)
 		#else
 			const double fDefValue = ::fluid_settings_getnum_default(m_pFluidSettings, pszKey);
 		#endif
-			if (fDefValue == fValue)
+			if (fDefValue == fValue) {
 				keys.append(sKey);
-			::fluid_settings_setnum(m_pFluidSettings, pszKey, fValue);
+			} else {
+				::fluid_settings_setnum(m_pFluidSettings, pszKey, fValue);
+			}
 			break;
 		}
 		case FLUID_STR_TYPE:
@@ -307,10 +311,12 @@ void qsynthSetup::realize (void)
 			const char *pszDefValue = ::fluid_settings_getstr_default(m_pFluidSettings, pszKey);
 		#endif
 			if ((pszDefValue == nullptr) ||
-				(QString::fromLocal8Bit(pszDefValue) == sVal))
+				(QString::fromLocal8Bit(pszDefValue) == sVal)) {
 				keys.append(sKey);
-			::fluid_settings_setstr(m_pFluidSettings, pszKey,
-				sVal.toLocal8Bit().data());
+			} else {
+				::fluid_settings_setstr(m_pFluidSettings, pszKey,
+					sVal.toLocal8Bit().data());
+			}
 			break;
 		}}
 	}
