@@ -1050,10 +1050,10 @@
           <bool>true</bool>
          </property>
          <property name="selectionMode">
-          <enum>QAbstractItemView::NoSelection</enum>
+          <enum>QAbstractItemView::SingleSelection</enum>
          </property>
          <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectColumns</enum>
+          <enum>QAbstractItemView::SelectRows</enum>
          </property>
          <property name="indentation">
           <number>4</number>
