@@ -1324,8 +1324,7 @@ void qsynthSettingsItemDelegate::paint ( QPainter *pPainter,
 		QTreeWidgetItem *pListItem = pListView->topLevelItem(index.row());
 		const QString& sKey = pListItem->text(0);
 		if (m_pSetupForm->isSettingsItem(sKey)) {
-			const QFont& font = option.font;
-			option2.font = QFont(font.family(), font.pointSize(), QFont::Bold);
+			option2.font.setBold(true);
 		}
 	}
 
