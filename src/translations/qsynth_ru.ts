@@ -2018,74 +2018,74 @@ Do you want to save the changes?</source>
         <translation>Параметры</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="684"/>
-        <location filename="../qsynthSetupForm.cpp" line="968"/>
+        <location filename="../qsynthSetupForm.cpp" line="702"/>
+        <location filename="../qsynthSetupForm.cpp" line="986"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="685"/>
+        <location filename="../qsynthSetupForm.cpp" line="703"/>
         <source>Some settings have been changed.</source>
         <translation>Некоторые настройки изменились.</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="686"/>
+        <location filename="../qsynthSetupForm.cpp" line="704"/>
         <source>Do you want to apply the changes?</source>
         <translation>Вы хотите учесть изменения?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="914"/>
+        <location filename="../qsynthSetupForm.cpp" line="932"/>
         <source>Remove</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="919"/>
+        <location filename="../qsynthSetupForm.cpp" line="937"/>
         <source>Move Up</source>
         <translation>Переместить выше</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="923"/>
+        <location filename="../qsynthSetupForm.cpp" line="941"/>
         <source>Move Down</source>
         <translation>Переместить ниже</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="948"/>
-        <location filename="../qsynthSetupForm.cpp" line="949"/>
+        <location filename="../qsynthSetupForm.cpp" line="966"/>
+        <location filename="../qsynthSetupForm.cpp" line="967"/>
         <source>Soundfont files</source>
         <translation>Файлы SF2</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="950"/>
+        <location filename="../qsynthSetupForm.cpp" line="968"/>
         <source>All files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="998"/>
+        <location filename="../qsynthSetupForm.cpp" line="1016"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="999"/>
+        <location filename="../qsynthSetupForm.cpp" line="1017"/>
         <source>Failed to add soundfont file</source>
         <translation>Не удалось добавить файл SF2</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="1001"/>
+        <location filename="../qsynthSetupForm.cpp" line="1019"/>
         <source>Please, check for a valid soundfont file.</source>
         <translation>Проверьте целостность файла SF2</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="904"/>
+        <location filename="../qsynthSetupForm.cpp" line="922"/>
         <source>Open...</source>
         <translation>Открыть...</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="969"/>
+        <location filename="../qsynthSetupForm.cpp" line="987"/>
         <source>Soundfont file already on list</source>
         <translation>Этот файл SF2 уже есть в списке</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="971"/>
+        <location filename="../qsynthSetupForm.cpp" line="989"/>
         <source>Add anyway?</source>
         <translation>Всё равно добавить?</translation>
     </message>
@@ -2162,12 +2162,12 @@ Do you want to save the changes?</source>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="34"/>
-        <location filename="../qsynthSetupForm.cpp" line="419"/>
+        <location filename="../qsynthSetupForm.cpp" line="425"/>
         <source>Setup</source>
         <translation>Параметры движка</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="909"/>
+        <location filename="../qsynthSetupForm.cpp" line="927"/>
         <source>Edit</source>
         <translation>Изменить</translation>
     </message>

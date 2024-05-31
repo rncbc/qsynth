@@ -31,6 +31,8 @@ class qsynthOptions;
 class qsynthEngine;
 class qsynthSetup;
 
+class qsynthSettingsItemEditor;
+
 class QPixmap;
 
 
@@ -52,12 +54,15 @@ public:
 	void setup(qsynthOptions *pOptions, qsynthEngine *pEngine, bool bNew);
 
 	// Settings accessors.
-	QTreeWidget *settingsWidget() const;
+	QTreeWidget *settingsListView() const;
 	qsynthSetup *engineSetup() const;
 
 	void setSettingsItem(const QString& sKey, const QString& sVal);
 	QString settingsItem(const QString& sKey) const;
 	bool isSettingsItem(const QString& sKey) const;
+
+	void setSettingsItemEditor(qsynthSettingsItemEditor *pItemEditor);
+	qsynthSettingsItemEditor *settingsItemEditor() const;
 
 public slots:
 
@@ -81,6 +86,7 @@ protected slots:
 	void soundfontItemChanged();
 
 	void settingsItemActivated(QTreeWidgetItem *pItem, int iColumn);
+	void settingsItemChanged(QTreeWidgetItem *pItem, QTreeWidgetItem *);
 	void settingsItemChanged();
 
 	void accept();
@@ -112,6 +118,8 @@ private:
 	QString  m_sSoundFontDir;
 	QPixmap *m_pXpmSoundFont;
 
+	qsynthSettingsItemEditor *m_pSettingsItemEditor;
+
 	qsynthSetup::Settings m_settings;
 };
 
@@ -130,6 +138,12 @@ public:
 		qsynthSetupForm *pSetupForm,
 		const QModelIndex& index,
 		QWidget *pParent = nullptr);
+
+	// Destructor.
+	virtual ~qsynthSettingsItemEditor();
+
+	// Target index accessor.
+	const QModelIndex& index() const;
 
 	// Value accessors.
 	void setValue(const QString& sValue);
@@ -153,6 +167,9 @@ protected slots:
 private:
 
 	// Instance variables.
+	qsynthSetupForm *m_pSetupForm;
+	const QModelIndex& m_index;
+
 	enum {
 		SpinBox,
 		DoubleSpinBox,

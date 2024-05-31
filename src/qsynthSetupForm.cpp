@@ -207,6 +207,9 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 	// Check for pixmaps.
 	m_pXpmSoundFont = new QPixmap(":/images/sfont1.png");
 
+	// Way to keep track of current settings custom editor.
+	m_pSettingsItemEditor = nullptr;
+
 	// Set dialog validators...
 	QRegularExpression rx("[\\w-]+");
 	m_ui.DisplayNameLineEdit->setValidator(new QRegularExpressionValidator(rx, m_ui.DisplayNameLineEdit));
@@ -360,6 +363,9 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 	QObject::connect(m_ui.SoundFontListView->itemDelegate(),
 		SIGNAL(commitData(QWidget*)),
 		SLOT(soundfontItemChanged()));
+	QObject::connect(m_ui.SettingsListView,
+		SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)),
+		SLOT(settingsItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)));
 	QObject::connect(m_ui.SettingsListView,
 		SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)),
 		SLOT(settingsItemActivated(QTreeWidgetItem *, int)));
@@ -591,7 +597,7 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 
 
 // Settings accessors.
-QTreeWidget *qsynthSetupForm::settingsWidget (void) const
+QTreeWidget *qsynthSetupForm::settingsListView (void) const
 {
 	return m_ui.SettingsListView;
 }
@@ -618,6 +624,18 @@ QString qsynthSetupForm::settingsItem ( const QString& sKey ) const
 bool qsynthSetupForm::isSettingsItem ( const QString& sKey ) const
 {
 	return m_settings.contains(sKey);
+}
+
+
+void qsynthSetupForm::setSettingsItemEditor ( qsynthSettingsItemEditor *pItemEditor )
+{
+	m_pSettingsItemEditor = pItemEditor;
+}
+
+
+qsynthSettingsItemEditor *qsynthSetupForm::settingsItemEditor (void) const
+{
+	return m_pSettingsItemEditor;
 }
 
 
@@ -1099,6 +1117,19 @@ void qsynthSetupForm::settingsItemActivated (
 }
 
 
+
+void qsynthSetupForm::settingsItemChanged ( QTreeWidgetItem *pItem, QTreeWidgetItem * )
+{
+	qsynthSettingsItemEditor *pItemEditor = settingsItemEditor();
+	if (pItemEditor) {
+		QTreeWidget *pListView = settingsListView();
+		QAbstractItemDelegate *pItemDelegate = pListView->itemDelegate();
+		if (pItemDelegate)
+			pItemDelegate->destroyEditor(pItemEditor, pItemEditor->index());
+	}
+}
+
+
 void qsynthSetupForm::settingsItemChanged (void)
 {
 	++m_iDirtyCount;
@@ -1114,17 +1145,17 @@ void qsynthSetupForm::settingsItemChanged (void)
 // Constructor.
 qsynthSettingsItemEditor::qsynthSettingsItemEditor (
 	qsynthSetupForm *pSetupForm, const QModelIndex& index, QWidget *pParent )
-	: QWidget(pParent)
+	: QWidget(pParent), m_pSetupForm(pSetupForm), m_index(index)
 {
 	QWidget *pEditor = nullptr;
 
-	QTreeWidget *pListView = pSetupForm->settingsWidget();
-	QTreeWidgetItem *pListItem = pListView->topLevelItem(index.row());
+	QTreeWidget *pListView = m_pSetupForm->settingsListView();
+	QTreeWidgetItem *pListItem = pListView->topLevelItem(m_index.row());
 	m_sCurrentKey = pListItem->text(0);
 	m_sCurrentValue = pListItem->text(3);
 	m_sDefaultValue = pListItem->text(4);
 
-	qsynthSetup *pSetup = pSetupForm->engineSetup();
+	qsynthSetup *pSetup = m_pSetupForm->engineSetup();
 	fluid_settings_t *pFluidSettings = pSetup->fluid_settings();
 	const QByteArray aKey = m_sCurrentKey.toLocal8Bit();
 	const char *pszKey = aKey.constData();
@@ -1218,6 +1249,21 @@ qsynthSettingsItemEditor::qsynthSettingsItemEditor (
 		SLOT(reset()));
 }
 
+
+// Destructor.
+qsynthSettingsItemEditor::~qsynthSettingsItemEditor (void)
+{
+	m_pSetupForm->setSettingsItemEditor(nullptr);
+}
+
+
+// Target index accessor.
+const QModelIndex& qsynthSettingsItemEditor::index (void) const
+{
+	return m_index;
+}
+
+
 // Value accessors.
 void qsynthSettingsItemEditor::setValue ( const QString& sValue )
 {
@@ -1309,7 +1355,7 @@ void qsynthSettingsItemEditor::reset (void)
 
 qsynthSettingsItemDelegate::qsynthSettingsItemDelegate (
 	qsynthSetupForm *pSetupForm )
-	: QItemDelegate(pSetupForm->settingsWidget()), m_pSetupForm(pSetupForm)
+	: QItemDelegate(pSetupForm->settingsListView()), m_pSetupForm(pSetupForm)
 {
 }
 
@@ -1320,7 +1366,7 @@ void qsynthSettingsItemDelegate::paint ( QPainter *pPainter,
 {
 	QStyleOptionViewItem option2 = option;
 	if (index.column() == 0 || index.column() == 3) {
-		QTreeWidget *pListView = m_pSetupForm->settingsWidget();
+		QTreeWidget *pListView = m_pSetupForm->settingsListView();
 		QTreeWidgetItem *pListItem = pListView->topLevelItem(index.row());
 		const QString& sKey = pListItem->text(0);
 		if (m_pSetupForm->isSettingsItem(sKey)) {
@@ -1340,6 +1386,7 @@ QWidget *qsynthSettingsItemDelegate::createEditor ( QWidget *pParent,
 	QObject::connect(pItemEditor,
 		SIGNAL(commitEditor(QWidget *)),
 		SLOT(commitEditor(QWidget *)));
+	m_pSetupForm->setSettingsItemEditor(pItemEditor);
 	return pItemEditor;
 }
 

@@ -2150,84 +2150,84 @@ Do you want to save the changes?</source>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="34"/>
-        <location filename="../qsynthSetupForm.cpp" line="419"/>
+        <location filename="../qsynthSetupForm.cpp" line="425"/>
         <source>Setup</source>
         <translation>Konfigurieren</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="684"/>
-        <location filename="../qsynthSetupForm.cpp" line="968"/>
+        <location filename="../qsynthSetupForm.cpp" line="702"/>
+        <location filename="../qsynthSetupForm.cpp" line="986"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="685"/>
+        <location filename="../qsynthSetupForm.cpp" line="703"/>
         <source>Some settings have been changed.</source>
         <translation>Einige Einstellungen wurden geändert.</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="686"/>
+        <location filename="../qsynthSetupForm.cpp" line="704"/>
         <source>Do you want to apply the changes?</source>
         <translation>Möchten Sie die Änderungen anwenden?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="904"/>
+        <location filename="../qsynthSetupForm.cpp" line="922"/>
         <source>Open...</source>
         <translation>Öffnen...</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="909"/>
+        <location filename="../qsynthSetupForm.cpp" line="927"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="914"/>
+        <location filename="../qsynthSetupForm.cpp" line="932"/>
         <source>Remove</source>
         <translation>Entfernen</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="919"/>
+        <location filename="../qsynthSetupForm.cpp" line="937"/>
         <source>Move Up</source>
         <translation>Auf</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="923"/>
+        <location filename="../qsynthSetupForm.cpp" line="941"/>
         <source>Move Down</source>
         <translation>Ab</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="948"/>
-        <location filename="../qsynthSetupForm.cpp" line="949"/>
+        <location filename="../qsynthSetupForm.cpp" line="966"/>
+        <location filename="../qsynthSetupForm.cpp" line="967"/>
         <source>Soundfont files</source>
         <translation>Soundfont-Dateien</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="950"/>
+        <location filename="../qsynthSetupForm.cpp" line="968"/>
         <source>All files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="969"/>
+        <location filename="../qsynthSetupForm.cpp" line="987"/>
         <source>Soundfont file already on list</source>
         <translation>Soundfont-Datei ist bereits Bestandteil der Liste</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="971"/>
+        <location filename="../qsynthSetupForm.cpp" line="989"/>
         <source>Add anyway?</source>
         <translation>Dennoch hinzufügen?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="998"/>
+        <location filename="../qsynthSetupForm.cpp" line="1016"/>
         <source>Error</source>
         <translation>Fehler</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="999"/>
+        <location filename="../qsynthSetupForm.cpp" line="1017"/>
         <source>Failed to add soundfont file</source>
         <translation>Fehler beim Hinzufügen der Soundfont-Datei</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="1001"/>
+        <location filename="../qsynthSetupForm.cpp" line="1019"/>
         <source>Please, check for a valid soundfont file.</source>
         <translation>Bitte wählen Sie eine gültige Soundfont-Datei.</translation>
     </message>
