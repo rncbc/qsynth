@@ -6,7 +6,9 @@ ChangeLog
 
 GIT HEAD
 
-- Introduce Setup/Settings custom editing per engine. (EXPERIMENTAL)
+- Cancel button option added to close to system-tray icon message.
+
+- Introduce Setup/Settings custom editing per engine.
 
 
 0.9.91  2024-05-01  A Spring'24 Release Candidate 2.
