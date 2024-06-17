@@ -1171,6 +1171,9 @@ qsynthSettingsItemEditor::qsynthSettingsItemEditor (
 			&iRangeMin, &iRangeMax);
 		m_u.pSpinBox->setMinimum(iRangeMin);
 		m_u.pSpinBox->setMaximum(iRangeMax);
+		m_u.pSpinBox->setAccelerated(true);
+		m_u.pSpinBox->setStepType(
+			QAbstractSpinBox::AdaptiveDecimalStepType);
 		QObject::connect(m_u.pSpinBox,
 			SIGNAL(valueChanged(int)),
 			SLOT(changed())
@@ -1189,6 +1192,9 @@ qsynthSettingsItemEditor::qsynthSettingsItemEditor (
 			&fRangeMin, &fRangeMax);
 		m_u.pDoubleSpinBox->setMinimum(fRangeMin);
 		m_u.pDoubleSpinBox->setMaximum(fRangeMax);
+		m_u.pDoubleSpinBox->setAccelerated(true);
+		m_u.pDoubleSpinBox->setStepType(
+			QAbstractSpinBox::AdaptiveDecimalStepType);
 		QObject::connect(m_u.pDoubleSpinBox,
 			SIGNAL(valueChanged(double)),
 			SLOT(changed())
