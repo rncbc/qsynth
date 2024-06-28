@@ -4,6 +4,12 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Setup/Settings editor: differ between edit text being changed and
+  just finished and committed. (EXPERIMENTAL)
+
+
 1.0.0  2024-06-19  An Unthinkable Release.
 
 - Making up the unthinkable (aka. v1.0.0)

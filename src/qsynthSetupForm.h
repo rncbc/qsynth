@@ -162,6 +162,7 @@ protected slots:
 
 	// Local interaction slots.
 	void changed();
+	void committed();
 	void reset();
 
 private:
