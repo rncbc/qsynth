@@ -1176,7 +1176,7 @@ qsynthSettingsItemEditor::qsynthSettingsItemEditor (
 			QAbstractSpinBox::AdaptiveDecimalStepType);
 		QObject::connect(m_u.pSpinBox,
 			SIGNAL(valueChanged(int)),
-			SLOT(changed())
+			SLOT(committed())
 		);
 		pEditor = m_u.pSpinBox;
 		break;
@@ -1197,7 +1197,7 @@ qsynthSettingsItemEditor::qsynthSettingsItemEditor (
 			QAbstractSpinBox::AdaptiveDecimalStepType);
 		QObject::connect(m_u.pDoubleSpinBox,
 			SIGNAL(valueChanged(double)),
-			SLOT(changed())
+			SLOT(committed())
 		);
 		pEditor = m_u.pDoubleSpinBox;
 		break;
@@ -1220,6 +1220,10 @@ qsynthSettingsItemEditor::qsynthSettingsItemEditor (
 				SIGNAL(textChanged(const QString&)),
 				SLOT(changed())
 			);
+			QObject::connect(m_u.pLineEdit,
+				SIGNAL(editingFinished()),
+				SLOT(committed())
+			);
 			pEditor = m_u.pLineEdit;
 		} else {
 			m_type = ComboBox;
@@ -1228,7 +1232,7 @@ qsynthSettingsItemEditor::qsynthSettingsItemEditor (
 			m_u.pComboBox->addItems(data.options);
 			QObject::connect(m_u.pComboBox,
 				SIGNAL(activated(int)),
-				SLOT(changed())
+				SLOT(committed())
 			);
 			pEditor = m_u.pComboBox;
 		}
@@ -1341,6 +1345,12 @@ void qsynthSettingsItemEditor::changed (void)
 	m_pToolButton->setEnabled(
 		sValue != currentValue() ||
 		sValue != defaultValue());
+}
+
+
+void qsynthSettingsItemEditor::committed (void)
+{
+	changed();
 
 	emit commitEditor(this);
 }
