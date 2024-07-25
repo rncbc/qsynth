@@ -7,7 +7,7 @@ ChangeLog
 GIT HEAD
 
 - Setup/Settings editor: differ between edit text being changed and
-  just finished and committed. (EXPERIMENTAL)
+  just finished and committed.
 
 
 1.0.0  2024-06-19  An Unthinkable Release.
