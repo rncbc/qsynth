@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.15)
 
 project (Qsynth
-  VERSION 0.9.91
+  VERSION 1.0.1
   DESCRIPTION "A fluidsynth Qt GUI Interface"
   HOMEPAGE_URL "https://qsynth.sourceforge.io"
   LANGUAGES C CXX)
@@ -23,8 +23,6 @@ execute_process (
 if (GIT_DESCRIBE_RESULT EQUAL 0)
   set (GIT_VERSION "${GIT_DESCRIBE_OUTPUT}")
   string (REGEX REPLACE "^[^0-9]+" "" GIT_VERSION "${GIT_VERSION}")
-  string (REGEX REPLACE "^1_"      "" GIT_VERSION "${GIT_VERSION}")
-  string (REGEX REPLACE "^[_vV]+"  "" GIT_VERSION "${GIT_VERSION}")
   string (REGEX REPLACE "-g"   "git." GIT_VERSION "${GIT_VERSION}")
   string (REGEX REPLACE "[_|-]"   "." GIT_VERSION "${GIT_VERSION}")
   execute_process (
@@ -227,6 +225,11 @@ endif ()
 
 add_subdirectory (src)
 
+
+# Finally check whether Qt is statically linked.
+if (QT_FEATURE_static)
+  set(QT_VERSION "${QT_VERSION}-static")
+endif ()
 
 # Configuration status
 macro (SHOW_OPTION text value)

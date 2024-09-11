@@ -434,8 +434,8 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="130"/>
-        <location filename="../qsynthMainForm.cpp" line="1385"/>
-        <location filename="../qsynthMainForm.cpp" line="1480"/>
+        <location filename="../qsynthMainForm.cpp" line="1393"/>
+        <location filename="../qsynthMainForm.cpp" line="1488"/>
         <source>Re&amp;start</source>
         <translation>R&amp;edémarrage</translation>
     </message>
@@ -594,7 +594,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="850"/>
-        <location filename="../qsynthMainForm.cpp" line="1432"/>
+        <location filename="../qsynthMainForm.cpp" line="1440"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
@@ -605,7 +605,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="866"/>
-        <location filename="../qsynthMainForm.cpp" line="1426"/>
+        <location filename="../qsynthMainForm.cpp" line="1434"/>
         <source>&amp;Options...</source>
         <translation>&amp;Options...</translation>
     </message>
@@ -616,7 +616,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="882"/>
-        <location filename="../qsynthMainForm.cpp" line="1422"/>
+        <location filename="../qsynthMainForm.cpp" line="1430"/>
         <source>&amp;Messages</source>
         <translation>&amp;Messages</translation>
     </message>
@@ -637,7 +637,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="935"/>
-        <location filename="../qsynthMainForm.cpp" line="1390"/>
+        <location filename="../qsynthMainForm.cpp" line="1398"/>
         <source>&amp;Panic</source>
         <translation>&amp;Panique</translation>
     </message>
@@ -648,7 +648,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="948"/>
-        <location filename="../qsynthMainForm.cpp" line="1387"/>
+        <location filename="../qsynthMainForm.cpp" line="1395"/>
         <source>&amp;Reset</source>
         <translation>&amp;Remise à zéro</translation>
     </message>
@@ -659,8 +659,8 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="961"/>
-        <location filename="../qsynthMainForm.cpp" line="1399"/>
-        <location filename="../qsynthMainForm.cpp" line="1872"/>
+        <location filename="../qsynthMainForm.cpp" line="1407"/>
+        <location filename="../qsynthMainForm.cpp" line="1880"/>
         <source>Set&amp;up...</source>
         <translation>Config&amp;uration...</translation>
     </message>
@@ -671,7 +671,7 @@
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="977"/>
-        <location filename="../qsynthMainForm.cpp" line="1394"/>
+        <location filename="../qsynthMainForm.cpp" line="1402"/>
         <source>&amp;Channels</source>
         <translation>&amp;Canaux</translation>
     </message>
@@ -691,12 +691,12 @@
         <translation>Supprimer le moteur courant</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="856"/>
+        <location filename="../qsynthMainForm.cpp" line="863"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="858"/>
+        <location filename="../qsynthMainForm.cpp" line="865"/>
         <source>The program will keep running in the system tray.
 
 To terminate the program, please choose &quot;Quit&quot;
@@ -707,115 +707,115 @@ Pour terminer ce programme, veuillez choisir &quot;Quitter&quot;
 dans le menu contextuel de l&apos;icône de la barre d&apos;état du système.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="874"/>
+        <location filename="../qsynthMainForm.cpp" line="881"/>
         <source>Don&apos;t show this message again</source>
         <translation>Ne pas montrer ce message à nouveau</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="899"/>
-        <location filename="../qsynthMainForm.cpp" line="1609"/>
-        <location filename="../qsynthMainForm.cpp" line="2358"/>
-        <location filename="../qsynthMainForm.cpp" line="2388"/>
+        <location filename="../qsynthMainForm.cpp" line="907"/>
+        <location filename="../qsynthMainForm.cpp" line="1617"/>
+        <location filename="../qsynthMainForm.cpp" line="2366"/>
+        <location filename="../qsynthMainForm.cpp" line="2396"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="901"/>
+        <location filename="../qsynthMainForm.cpp" line="909"/>
         <source>is about to terminate.</source>
         <translation>est sur le point de terminer.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="902"/>
-        <location filename="../qsynthMainForm.cpp" line="1612"/>
+        <location filename="../qsynthMainForm.cpp" line="910"/>
+        <location filename="../qsynthMainForm.cpp" line="1620"/>
         <source>Are you sure?</source>
         <translation>Êtes-vous sûr ?</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="912"/>
+        <location filename="../qsynthMainForm.cpp" line="920"/>
         <source>Don&apos;t ask this again</source>
         <translation>Ne pas le redemander</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1010"/>
+        <location filename="../qsynthMainForm.cpp" line="1018"/>
         <source>Loading soundfont: &quot;%1&quot;</source>
         <translation>Charge la banque de son : &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1021"/>
-        <location filename="../qsynthMainForm.cpp" line="2048"/>
+        <location filename="../qsynthMainForm.cpp" line="1029"/>
+        <location filename="../qsynthMainForm.cpp" line="2056"/>
         <source>Failed to load the soundfont: &quot;%1&quot;.</source>
         <translation>Échec du chargement de la banque de son : &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1048"/>
+        <location filename="../qsynthMainForm.cpp" line="1056"/>
         <source>Playing MIDI file: &quot;%1&quot;</source>
         <translation>Joue le fichier MIDI : &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1055"/>
+        <location filename="../qsynthMainForm.cpp" line="1063"/>
         <source>Failed to play MIDI file: &quot;%1&quot;.</source>
         <translation>N&apos;a pas pu jouer le fichier MIDI : &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1260"/>
+        <location filename="../qsynthMainForm.cpp" line="1268"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1368"/>
+        <location filename="../qsynthMainForm.cpp" line="1376"/>
         <source>&amp;Hide</source>
         <translation>&amp;Cacher</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1364"/>
+        <location filename="../qsynthMainForm.cpp" line="1372"/>
         <source>Mi&amp;nimize</source>
         <translation>&amp;Minimiser</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1369"/>
+        <location filename="../qsynthMainForm.cpp" line="1377"/>
         <source>S&amp;how</source>
         <translation>Affic&amp;her</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1365"/>
+        <location filename="../qsynthMainForm.cpp" line="1373"/>
         <source>Rest&amp;ore</source>
         <translation>Restaurati&amp;on</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1377"/>
-        <location filename="../qsynthMainForm.cpp" line="1866"/>
+        <location filename="../qsynthMainForm.cpp" line="1385"/>
+        <location filename="../qsynthMainForm.cpp" line="1874"/>
         <source>&amp;New engine...</source>
         <translation>&amp;Nouveau moteur...</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1379"/>
-        <location filename="../qsynthMainForm.cpp" line="1868"/>
+        <location filename="../qsynthMainForm.cpp" line="1387"/>
+        <location filename="../qsynthMainForm.cpp" line="1876"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1385"/>
-        <location filename="../qsynthMainForm.cpp" line="1482"/>
+        <location filename="../qsynthMainForm.cpp" line="1393"/>
+        <location filename="../qsynthMainForm.cpp" line="1490"/>
         <source>&amp;Start</source>
         <translation>&amp;Démarrer</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1405"/>
+        <location filename="../qsynthMainForm.cpp" line="1413"/>
         <source>Engines</source>
         <translation>Moteurs</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1610"/>
+        <location filename="../qsynthMainForm.cpp" line="1618"/>
         <source>Delete fluidsynth engine:</source>
         <translation>Supprimer le moteur fluidsynth :</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2007"/>
+        <location filename="../qsynthMainForm.cpp" line="2015"/>
         <source>Creating synthesizer engine</source>
         <translation>Création du moteur de synthèse</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2011"/>
+        <location filename="../qsynthMainForm.cpp" line="2019"/>
         <source>Failed to create the synthesizer.
 
 Cannot continue without it.</source>
@@ -824,22 +824,22 @@ Cannot continue without it.</source>
 Ne peut pas continuer sans.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2042"/>
+        <location filename="../qsynthMainForm.cpp" line="2050"/>
         <source>Loading soundfont: &quot;%1&quot; (bank offset %2)</source>
         <translation>Chargement de la banque de son : &quot;%1&quot; (décalage de banque %2)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2055"/>
+        <location filename="../qsynthMainForm.cpp" line="2063"/>
         <source>Failed to set bank offset (%1) for soundfont: &quot;%2&quot;.</source>
         <translation>Échec d&apos;affectation du décalage de banque (%1) pour la banque de son : &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2065"/>
+        <location filename="../qsynthMainForm.cpp" line="2073"/>
         <source>Creating audio driver (%1)</source>
         <translation>Création du pilote audio (%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2079"/>
+        <location filename="../qsynthMainForm.cpp" line="2087"/>
         <source>Failed to create the audio driver (%1).
 
 Cannot continue without it.</source>
@@ -848,12 +848,12 @@ Cannot continue without it.</source>
 Ne peut pas continuer sans.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2092"/>
+        <location filename="../qsynthMainForm.cpp" line="2100"/>
         <source>Creating MIDI router (%1)</source>
         <translation>Création du routeur MIDI (%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2101"/>
+        <location filename="../qsynthMainForm.cpp" line="2109"/>
         <source>Failed to create the MIDI input router (%1).
 
 No MIDI input will be available.</source>
@@ -862,12 +862,12 @@ No MIDI input will be available.</source>
 Aucune entrée MIDI ne sera disponible.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2109"/>
+        <location filename="../qsynthMainForm.cpp" line="2117"/>
         <source>Creating MIDI driver (%1)</source>
         <translation>Création du pilote MIDI (%1)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2118"/>
+        <location filename="../qsynthMainForm.cpp" line="2126"/>
         <source>Failed to create the MIDI driver (%1).
 
 No MIDI input will be available.</source>
@@ -876,12 +876,12 @@ No MIDI input will be available.</source>
 Aucune entrée MIDI ne sera disponible.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1037"/>
+        <location filename="../qsynthMainForm.cpp" line="1045"/>
         <source>Creating MIDI player</source>
         <translation>Création du lecteur MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1041"/>
+        <location filename="../qsynthMainForm.cpp" line="1049"/>
         <source>Failed to create the MIDI player.
 
 Continuing without a player.</source>
@@ -890,12 +890,12 @@ Continuing without a player.</source>
 Continue sans le lecteur.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2127"/>
+        <location filename="../qsynthMainForm.cpp" line="2135"/>
         <source>Creating server</source>
         <translation>Création du serveur</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2161"/>
+        <location filename="../qsynthMainForm.cpp" line="2169"/>
         <source>Failed to create the server.
 
 Continuing without it.</source>
@@ -904,7 +904,7 @@ Continuing without it.</source>
 Continue sans.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2165"/>
+        <location filename="../qsynthMainForm.cpp" line="2173"/>
         <source>Server mode disabled.
 
 Continuing without it.</source>
@@ -913,95 +913,95 @@ Continuing without it.</source>
 Continue sans.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2199"/>
+        <location filename="../qsynthMainForm.cpp" line="2207"/>
         <source>Synthesizer engine started.</source>
         <translation>Moteur du synthétiseur démarré.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2242"/>
+        <location filename="../qsynthMainForm.cpp" line="2250"/>
         <source>Destroying server</source>
         <translation>Destruction du serveur</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2250"/>
+        <location filename="../qsynthMainForm.cpp" line="2258"/>
         <source>Stopping MIDI player</source>
         <translation>Arrêt du lecteur MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2252"/>
+        <location filename="../qsynthMainForm.cpp" line="2260"/>
         <source>Waiting for MIDI player to terminate</source>
         <translation>Attends que le lecteur MIDI s&apos;arrête</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="1031"/>
-        <location filename="../qsynthMainForm.cpp" line="2254"/>
+        <location filename="../qsynthMainForm.cpp" line="1039"/>
+        <location filename="../qsynthMainForm.cpp" line="2262"/>
         <source>Destroying MIDI player</source>
         <translation>Destruction du lecteur MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2262"/>
+        <location filename="../qsynthMainForm.cpp" line="2270"/>
         <source>Destroying MIDI driver</source>
         <translation>Destruction du pilote MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2266"/>
+        <location filename="../qsynthMainForm.cpp" line="2274"/>
         <source>Destroying MIDI router</source>
         <translation>Destruction du routeur MIDI</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2273"/>
+        <location filename="../qsynthMainForm.cpp" line="2281"/>
         <source>Destroying audio driver</source>
         <translation>Destruction du pilote audio</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2296"/>
+        <location filename="../qsynthMainForm.cpp" line="2304"/>
         <source>Unloading soundfont: &quot;%1&quot; (SFID=%2)</source>
         <translation>Chargement de la banque de son : &quot;%1&quot; (SFID=%2)</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2300"/>
+        <location filename="../qsynthMainForm.cpp" line="2308"/>
         <source>Failed to unload the soundfont: &quot;%1&quot;.</source>
         <translation>Échec du chargement de la banque de son : &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2307"/>
+        <location filename="../qsynthMainForm.cpp" line="2315"/>
         <source>Destroying synthesizer engine</source>
         <translation>Destruction du moteur du synthétiseur</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2311"/>
+        <location filename="../qsynthMainForm.cpp" line="2319"/>
         <source>Synthesizer engine terminated.</source>
         <translation>Moteur du synthétiseur arrêté.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2359"/>
+        <location filename="../qsynthMainForm.cpp" line="2367"/>
         <source>New settings will be effective after
 restarting all fluidsynth engines.</source>
         <translation>Les nouveaux réglages ne seront effectifs qu&apos;après
 le redémarrage de tous les moteurs de fluildsynth.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2361"/>
-        <location filename="../qsynthMainForm.cpp" line="2392"/>
+        <location filename="../qsynthMainForm.cpp" line="2369"/>
+        <location filename="../qsynthMainForm.cpp" line="2400"/>
         <source>Please note that this operation may cause
 temporary MIDI and Audio disruption.</source>
         <translation>Veuillez noter que cette opération peut causer
 une interruption temporaire du MIDI et de l&apos;audio.</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2363"/>
+        <location filename="../qsynthMainForm.cpp" line="2371"/>
         <source>Do you want to restart all engines now?</source>
         <translation>Voulez-vous redémarrer tous les moteurs maintenant?</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2389"/>
+        <location filename="../qsynthMainForm.cpp" line="2397"/>
         <source>New settings will be effective after
 restarting the fluidsynth engine:</source>
         <translation>Les nouveaux réglages ne seront effectifs qu&apos;après
 le redémarrage du moteur fluidsynth :</translation>
     </message>
     <message>
-        <location filename="../qsynthMainForm.cpp" line="2394"/>
+        <location filename="../qsynthMainForm.cpp" line="2402"/>
         <source>Do you want to restart the engine now?</source>
         <translation>Voulez-vous redémarrer le moteur maintenant?</translation>
     </message>
@@ -2150,84 +2150,84 @@ Souhaitez-vous sauvegarder les modifications ?</translation>
     </message>
     <message>
         <location filename="../qsynthSetupForm.ui" line="34"/>
-        <location filename="../qsynthSetupForm.cpp" line="405"/>
+        <location filename="../qsynthSetupForm.cpp" line="425"/>
         <source>Setup</source>
         <translation>Réglage</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="637"/>
-        <location filename="../qsynthSetupForm.cpp" line="921"/>
+        <location filename="../qsynthSetupForm.cpp" line="702"/>
+        <location filename="../qsynthSetupForm.cpp" line="986"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="638"/>
+        <location filename="../qsynthSetupForm.cpp" line="703"/>
         <source>Some settings have been changed.</source>
         <translation>Des réglages ont été changés.</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="639"/>
+        <location filename="../qsynthSetupForm.cpp" line="704"/>
         <source>Do you want to apply the changes?</source>
         <translation>Voulez-vous appliquer les changements?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="857"/>
+        <location filename="../qsynthSetupForm.cpp" line="922"/>
         <source>Open...</source>
         <translation>Ouvrir...</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="862"/>
+        <location filename="../qsynthSetupForm.cpp" line="927"/>
         <source>Edit</source>
         <translation>Éditer</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="867"/>
+        <location filename="../qsynthSetupForm.cpp" line="932"/>
         <source>Remove</source>
         <translation>Supprimer</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="872"/>
+        <location filename="../qsynthSetupForm.cpp" line="937"/>
         <source>Move Up</source>
         <translation>Déplace vers le Haut</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="876"/>
+        <location filename="../qsynthSetupForm.cpp" line="941"/>
         <source>Move Down</source>
         <translation>Déplace vers le Bas</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="901"/>
-        <location filename="../qsynthSetupForm.cpp" line="902"/>
+        <location filename="../qsynthSetupForm.cpp" line="966"/>
+        <location filename="../qsynthSetupForm.cpp" line="967"/>
         <source>Soundfont files</source>
         <translation>Fichiers de banque de son</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="903"/>
+        <location filename="../qsynthSetupForm.cpp" line="968"/>
         <source>All files</source>
         <translation>Tous les fichiers</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="922"/>
+        <location filename="../qsynthSetupForm.cpp" line="987"/>
         <source>Soundfont file already on list</source>
         <translation>Le fichier de banque de son est déjà dans la liste</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="924"/>
+        <location filename="../qsynthSetupForm.cpp" line="989"/>
         <source>Add anyway?</source>
         <translation>Ajouter quand même?</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="951"/>
+        <location filename="../qsynthSetupForm.cpp" line="1016"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="952"/>
+        <location filename="../qsynthSetupForm.cpp" line="1017"/>
         <source>Failed to add soundfont file</source>
         <translation>Impossible d&apos;ajouter le fichier de banque de son</translation>
     </message>
     <message>
-        <location filename="../qsynthSetupForm.cpp" line="954"/>
+        <location filename="../qsynthSetupForm.cpp" line="1019"/>
         <source>Please, check for a valid soundfont file.</source>
         <translation>Veuillez vérifier la validité du fichier de banque de son.</translation>
     </message>

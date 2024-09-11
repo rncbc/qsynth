@@ -13,8 +13,12 @@ configure_file (config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 set (HEADERS
   qsynth.h
+  qsynthEngine.h
+  qsynthChannels.h
   qsynthKnob.h
   qsynthMeter.h
+  qsynthSetup.h
+  qsynthOptions.h
   qsynthSystemTray.h
   qsynthTabBar.h
   qsynthAboutForm.h
@@ -25,6 +29,10 @@ set (HEADERS
   qsynthPaletteForm.h
   qsynthPresetForm.h
   qsynthSetupForm.h
+  qsynthDialClassicStyle.h
+  qsynthDialPeppinoStyle.h
+  qsynthDialVokiStyle.h
+  qsynthDialSkulptureStyle.h
 )
 
 set (SOURCES

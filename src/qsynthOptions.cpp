@@ -809,6 +809,14 @@ void qsynthOptions::loadSetup ( qsynthSetup *pSetup, const QString& sName )
 	pSetup->bServer          = m_settings.value("/Server", false).toBool();
 	pSetup->bMidiDump        = m_settings.value("/MidiDump", false).toBool();
 	pSetup->bVerbose         = m_settings.value("/Verbose", false).toBool();
+	m_settings.beginGroup("/Custom");
+	QStringListIterator keys_iter(m_settings.childKeys());
+	while (keys_iter.hasNext()) {
+		const QString& sKey = keys_iter.next();
+		const QString& sVal = m_settings.value("/" + sKey).toString();
+		pSetup->settings.insert(sKey, sVal);
+	}
+	m_settings.endGroup();
 	m_settings.endGroup();
 
 	// Load soundfont list...
@@ -889,7 +897,7 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
 	}
 	m_settings.endGroup();
 
-	// Save last fluidsynth m_settings.
+	// Save last fluidsynth settings.
 	m_settings.beginGroup("/Settings");
 	m_settings.setValue("/DisplayName",      pSetup->sDisplayName);
 	m_settings.setValue("/MidiIn",           pSetup->bMidiIn);
@@ -928,7 +936,17 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
 	m_settings.setValue("/Server",           pSetup->bServer);
 	m_settings.setValue("/MidiDump",         pSetup->bMidiDump);
 	m_settings.setValue("/Verbose",          pSetup->bVerbose);
+	m_settings.beginGroup("/Custom");
+	m_settings.remove(QString());
+	qsynthSetup::Settings::ConstIterator iter2
+		= pSetup->settings.constBegin();
+	const qsynthSetup::Settings::ConstIterator& iter2_end
+		= pSetup->settings.constEnd();
+	for ( ; iter2 != iter2_end; ++iter2)
+		m_settings.setValue("/" + iter2.key(), iter2.value());
 	m_settings.endGroup();
+	m_settings.endGroup();
+
 
 	// Done with the key group?
 	if (!sName.isEmpty())

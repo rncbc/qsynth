@@ -4,6 +4,21 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+1.0.1  2024-09-11  An End-of-Summer'24 Release.
+
+- Setup/Settings editor: differ between edit text being changed and
+  just finished and committed.
+
+
+1.0.0  2024-06-19  An Unthinkable Release.
+
+- Making up the unthinkable (aka. v1.0.0)
+
+- Cancel button option added to close to system-tray icon message.
+
+- Introduce Setup/Settings custom editing per engine.
+
+
 0.9.91  2024-05-01  A Spring'24 Release Candidate 2.
 
 - Prepping the unthinkable (aka. v1.0.0-rc2)

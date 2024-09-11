@@ -1,7 +1,7 @@
 // qsynthMainForm.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2023, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -738,6 +738,13 @@ qsynthMainForm::~qsynthMainForm (void)
 		delete m_pSystemTray;
 #endif
 
+	// Scrap the engines!
+	for (int iTab = 0; iTab < iTabCount; ++iTab) {
+		qsynthEngine *pEngine = m_ui.TabBar->engine(iTab);
+		if (pEngine)
+			delete pEngine;
+	}
+
 	// Pseudo-singleton reference shut-down.
 	g_pMainForm = nullptr;
 
@@ -870,17 +877,18 @@ bool qsynthMainForm::queryClose (void)
 				mbox.setIcon(QMessageBox::Information);
 				mbox.setWindowTitle(sTitle);
 				mbox.setText(sText);
-				mbox.setStandardButtons(QMessageBox::Ok);
+				mbox.setStandardButtons(QMessageBox::Ok|QMessageBox::Cancel);
 				QCheckBox cbox(tr("Don't show this message again"));
 				cbox.setChecked(false);
 				cbox.blockSignals(true);
 				mbox.addButton(&cbox, QMessageBox::ActionRole);
-				mbox.exec();
+				bQueryClose = (mbox.exec() == QMessageBox::Ok);
 				if (cbox.isChecked())
 					m_pOptions->bSystemTrayQueryClose = false;
 			#endif
 			}
-			hide();
+			if (bQueryClose)
+				hide();
 			updateContextMenu();
 			bQueryClose = false;
 		}

@@ -1,7 +1,7 @@
 // qsynthSetup.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2021, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -25,6 +25,8 @@
 #include <QStringList>
 #include <QSettings>
 
+#include <QHash>
+
 #include <fluidsynth.h>
 
 
@@ -45,7 +47,7 @@ public:
 	void realize();
 
 	// Fluidsynth settings accessor.
-	fluid_settings_t *fluid_settings();
+	fluid_settings_t *fluid_settings() const;
 
 	// Setup display name.
 	QString sDisplayName;
@@ -103,6 +105,11 @@ public:
 	QString sDefPreset;
 	// Available presets list.
 	QStringList presets;
+
+	// Custom settings map.
+	using Settings = QHash<QString, QString>;
+
+	Settings settings;
 
 private:
 

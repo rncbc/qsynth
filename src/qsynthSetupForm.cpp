@@ -52,7 +52,7 @@ static void qsynth_settings_foreach_option (
 {
 	qsynth_settings_data *pData = (qsynth_settings_data *) pvData;
 
-	pData->options.append(QString::fromUtf8(pszOption));
+	pData->options.append(pszOption);
 }
 
 static void qsynth_settings_foreach (
@@ -69,16 +69,18 @@ static void qsynth_settings_foreach (
 	int iCol = 0;
 	pData->pListItem = new QTreeWidgetItem(pData->pListView, pData->pListItem);
 	(pData->pListItem)->setText(iCol++, pszName);
+	(pData->pListItem)->setFlags(
+		Qt::ItemIsEnabled | Qt::ItemIsEditable | Qt::ItemIsSelectable);
 
 	// Check for type...
-	QString qsType = "?";
+	QString sType = "?";
 	switch (iType) {
-	case FLUID_NUM_TYPE: qsType = "num"; break;
-	case FLUID_INT_TYPE: qsType = "int"; break;
-	case FLUID_STR_TYPE: qsType = "str"; break;
-	case FLUID_SET_TYPE: qsType = "set"; break;
+	case FLUID_NUM_TYPE: sType = "num"; break;
+	case FLUID_INT_TYPE: sType = "int"; break;
+	case FLUID_STR_TYPE: sType = "str"; break;
+	case FLUID_SET_TYPE: sType = "set"; break;
 	}
-	(pData->pListItem)->setText(iCol++, qsType);
+	(pData->pListItem)->setText(iCol++, sType);
 /*
 	// Check for hints...
 	int iHints = ::fluid_settings_get_hints(pFluidSettings, pszName);
@@ -163,8 +165,8 @@ static void qsynth_settings_foreach (
 	#else
 		::fluid_settings_getstr(pFluidSettings, pszName, &pszCurrent);
 	#endif
-		(pData->pListItem)->setText(iCol++, QString::fromUtf8(pszCurrent));
-		(pData->pListItem)->setText(iCol++, QString::fromUtf8(pszDefault));
+		(pData->pListItem)->setText(iCol++, pszCurrent);
+		(pData->pListItem)->setText(iCol++, pszDefault);
 		(pData->pListItem)->setText(iCol++, QString());
 		(pData->pListItem)->setText(iCol++, QString());
 	#ifdef CONFIG_FLUID_SETTINGS_DUPSTR
@@ -180,7 +182,7 @@ static void qsynth_settings_foreach (
 	// Check for options.
 	pData->options.clear();
 	::fluid_settings_foreach_option(pFluidSettings, pszName, pvData, qsynth_settings_foreach_option);
-	(pData->pListItem)->setText(iCol++, pData->options.join(' '));
+	(pData->pListItem)->setText(iCol++, pData->options.join(" "));
 }
 
 
@@ -204,6 +206,9 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 
 	// Check for pixmaps.
 	m_pXpmSoundFont = new QPixmap(":/images/sfont1.png");
+
+	// Way to keep track of current settings custom editor.
+	m_pSettingsItemEditor = nullptr;
 
 	// Set dialog validators...
 	QRegularExpression rx("[\\w-]+");
@@ -235,6 +240,9 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 	m_ui.SoundFontListView->resizeColumnToContents(2);	// Offset.
 
 	// Settings list view...
+	m_ui.SettingsListView->setItemDelegate(
+		new qsynthSettingsItemDelegate(this));
+
 	pHeader = m_ui.SettingsListView->header();
 	pHeader->setDefaultAlignment(Qt::AlignLeft);
 //	pHeader->setDefaultSectionSize(160);
@@ -333,7 +341,7 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 #endif
 	QObject::connect(m_ui.SoundFontListView,
 		SIGNAL(customContextMenuRequested(const QPoint&)),
-		SLOT(contextMenuRequested(const QPoint&)));
+		SLOT(soundfontContextMenu(const QPoint&)));
 	QObject::connect(m_ui.SoundFontListView,
 		SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),
 		SLOT(stabilizeForm()));
@@ -354,7 +362,16 @@ qsynthSetupForm::qsynthSetupForm ( QWidget *pParent )
 		SLOT(moveDownSoundFont()));
 	QObject::connect(m_ui.SoundFontListView->itemDelegate(),
 		SIGNAL(commitData(QWidget*)),
-		SLOT(itemRenamed()));
+		SLOT(soundfontItemChanged()));
+	QObject::connect(m_ui.SettingsListView,
+		SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)),
+		SLOT(settingsItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)));
+	QObject::connect(m_ui.SettingsListView,
+		SIGNAL(itemDoubleClicked(QTreeWidgetItem *, int)),
+		SLOT(settingsItemActivated(QTreeWidgetItem *, int)));
+	QObject::connect(m_ui.SettingsListView->itemDelegate(),
+		SIGNAL(commitData(QWidget*)),
+		SLOT(settingsItemChanged()));
 	QObject::connect(m_ui.DialogButtonBox,
 		SIGNAL(accepted()),
 		SLOT(accept()));
@@ -400,6 +417,9 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 	// Set reference descriptors.
 	m_pOptions = pOptions;
 	m_pSetup = pEngine->setup();
+
+	// Make local copy to custom settings map...
+	m_settings = m_pSetup->settings;
 
 	// Update caption.
 	setWindowTitle(pEngine->name() + " - " + tr("Setup"));
@@ -576,6 +596,49 @@ void qsynthSetupForm::setup ( qsynthOptions *pOptions, qsynthEngine *pEngine, bo
 }
 
 
+// Settings accessors.
+QTreeWidget *qsynthSetupForm::settingsListView (void) const
+{
+	return m_ui.SettingsListView;
+}
+
+
+qsynthSetup *qsynthSetupForm::engineSetup (void) const
+{
+	return m_pSetup;
+}
+
+
+void qsynthSetupForm::setSettingsItem ( const QString& sKey, const QString& sVal )
+{
+	m_settings.insert(sKey, sVal);
+}
+
+
+QString qsynthSetupForm::settingsItem ( const QString& sKey ) const
+{
+	return m_settings.value(sKey);
+}
+
+
+bool qsynthSetupForm::isSettingsItem ( const QString& sKey ) const
+{
+	return m_settings.contains(sKey);
+}
+
+
+void qsynthSetupForm::setSettingsItemEditor ( qsynthSettingsItemEditor *pItemEditor )
+{
+	m_pSettingsItemEditor = pItemEditor;
+}
+
+
+qsynthSettingsItemEditor *qsynthSetupForm::settingsItemEditor (void) const
+{
+	return m_pSettingsItemEditor;
+}
+
+
 // Accept settings (OK button slot).
 void qsynthSetupForm::accept (void)
 {
@@ -617,6 +680,8 @@ void qsynthSetupForm::accept (void)
 	#if defined(Q_OS_WINDOWS)
 		m_pSetup->bWasapiExclusive = m_ui.WasapiExclusiveCheckBox->isChecked();
 	#endif
+		// Copy custom settings map...
+		m_pSetup->settings = m_settings;
 		// Reset dirty flag.
 		m_iDirtyCount = 0;
 	}
@@ -836,7 +901,7 @@ void qsynthSetupForm::stabilizeForm (void)
 
 
 // Soundfont view context menu handler.
-void qsynthSetupForm::contextMenuRequested ( const QPoint& pos )
+void qsynthSetupForm::soundfontContextMenu ( const QPoint& pos )
 {
 	int iItem = 0;
 	int iItemCount = 0;
@@ -1030,7 +1095,7 @@ void qsynthSetupForm::moveDownSoundFont (void)
 
 
 // Check soundfont bank offset edit.
-void qsynthSetupForm::itemRenamed (void)
+void qsynthSetupForm::soundfontItemChanged (void)
 {
 	QTreeWidgetItem *pItem = m_ui.SoundFontListView->currentItem();
 	if (pItem) {
@@ -1041,6 +1106,345 @@ void qsynthSetupForm::itemRenamed (void)
 	}
 
 	stabilizeForm();
+}
+
+
+// Settings list-view slots.
+void qsynthSetupForm::settingsItemActivated (
+	QTreeWidgetItem *pItem, int iColumn )
+{
+	m_ui.SettingsListView->editItem(pItem, 3);
+}
+
+
+
+void qsynthSetupForm::settingsItemChanged ( QTreeWidgetItem *pItem, QTreeWidgetItem * )
+{
+	qsynthSettingsItemEditor *pItemEditor = settingsItemEditor();
+	if (pItemEditor) {
+		QTreeWidget *pListView = settingsListView();
+		QAbstractItemDelegate *pItemDelegate = pListView->itemDelegate();
+		if (pItemDelegate)
+			pItemDelegate->destroyEditor(pItemEditor, pItemEditor->index());
+	}
+}
+
+
+void qsynthSetupForm::settingsItemChanged (void)
+{
+	++m_iDirtyCount;
+	stabilizeForm();
+}
+
+
+//-------------------------------------------------------------------------
+// qsynthSettingsItemEditor - list-view item editor widget impl.
+
+#include <QToolButton>
+
+// Constructor.
+qsynthSettingsItemEditor::qsynthSettingsItemEditor (
+	qsynthSetupForm *pSetupForm, const QModelIndex& index, QWidget *pParent )
+	: QWidget(pParent), m_pSetupForm(pSetupForm), m_index(index)
+{
+	QWidget *pEditor = nullptr;
+
+	QTreeWidget *pListView = m_pSetupForm->settingsListView();
+	QTreeWidgetItem *pListItem = pListView->topLevelItem(m_index.row());
+	m_sCurrentKey = pListItem->text(0);
+	m_sCurrentValue = pListItem->text(3);
+	m_sDefaultValue = pListItem->text(4);
+
+	qsynthSetup *pSetup = m_pSetupForm->engineSetup();
+	fluid_settings_t *pFluidSettings = pSetup->fluid_settings();
+	const QByteArray aKey = m_sCurrentKey.toLocal8Bit();
+	const char *pszKey = aKey.constData();
+	switch (::fluid_settings_get_type(pFluidSettings, pszKey)) {
+	case FLUID_INT_TYPE:
+	{
+		m_type = SpinBox;
+		m_u.pSpinBox = new QSpinBox(/*this*/);
+		int iRangeMin = 0;
+		int iRangeMax = 0;
+		::fluid_settings_getint_range(
+			pFluidSettings, pszKey,
+			&iRangeMin, &iRangeMax);
+		m_u.pSpinBox->setMinimum(iRangeMin);
+		m_u.pSpinBox->setMaximum(iRangeMax);
+		m_u.pSpinBox->setAccelerated(true);
+		m_u.pSpinBox->setStepType(
+			QAbstractSpinBox::AdaptiveDecimalStepType);
+		QObject::connect(m_u.pSpinBox,
+			SIGNAL(valueChanged(int)),
+			SLOT(committed())
+		);
+		pEditor = m_u.pSpinBox;
+		break;
+	}
+	case FLUID_NUM_TYPE:
+	{
+		m_type = DoubleSpinBox;
+		m_u.pDoubleSpinBox = new QDoubleSpinBox(/*this*/);
+		double fRangeMin = 0.0;
+		double fRangeMax = 0.0;
+		::fluid_settings_getnum_range(
+			pFluidSettings, pszKey,
+			&fRangeMin, &fRangeMax);
+		m_u.pDoubleSpinBox->setMinimum(fRangeMin);
+		m_u.pDoubleSpinBox->setMaximum(fRangeMax);
+		m_u.pDoubleSpinBox->setAccelerated(true);
+		m_u.pDoubleSpinBox->setStepType(
+			QAbstractSpinBox::AdaptiveDecimalStepType);
+		QObject::connect(m_u.pDoubleSpinBox,
+			SIGNAL(valueChanged(double)),
+			SLOT(committed())
+		);
+		pEditor = m_u.pDoubleSpinBox;
+		break;
+	}
+	case FLUID_STR_TYPE:
+	case FLUID_SET_TYPE:
+	default:
+	{
+		qsynth_settings_data data;
+		data.pSetup    = pSetup;
+		data.pListView = pListView;
+		data.pListItem = pListItem;
+		::fluid_settings_foreach_option(
+			pFluidSettings, pszKey, &data,
+			qsynth_settings_foreach_option);
+		if (data.options.isEmpty()) {
+			m_type = LineEdit;
+			m_u.pLineEdit = new QLineEdit(/*this*/);
+			QObject::connect(m_u.pLineEdit,
+				SIGNAL(textChanged(const QString&)),
+				SLOT(changed())
+			);
+			QObject::connect(m_u.pLineEdit,
+				SIGNAL(editingFinished()),
+				SLOT(committed())
+			);
+			pEditor = m_u.pLineEdit;
+		} else {
+			m_type = ComboBox;
+			m_u.pComboBox = new QComboBox(/*this*/);
+			m_u.pComboBox->setEditable(false);
+			m_u.pComboBox->addItems(data.options);
+			QObject::connect(m_u.pComboBox,
+				SIGNAL(activated(int)),
+				SLOT(committed())
+			);
+			pEditor = m_u.pComboBox;
+		}
+		break;
+	}}
+
+	m_pToolButton = new QToolButton(/*this*/);
+	m_pToolButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
+//	m_pToolButton->setIconSize(QSize(18, 18));
+	m_pToolButton->setIcon(QPixmap(":/images/itemReset.png"));
+
+	QHBoxLayout *pLayout = new QHBoxLayout();
+	pLayout->setSpacing(0);
+	pLayout->setContentsMargins(0, 0, 0, 0);
+	pLayout->addWidget(pEditor);
+	pLayout->addWidget(m_pToolButton);
+	QWidget::setLayout(pLayout);
+
+	QWidget::setFocusPolicy(Qt::StrongFocus);
+	QWidget::setFocusProxy(pEditor);
+
+	QObject::connect(m_pToolButton,
+		SIGNAL(clicked()),
+		SLOT(reset()));
+}
+
+
+// Destructor.
+qsynthSettingsItemEditor::~qsynthSettingsItemEditor (void)
+{
+	m_pSetupForm->setSettingsItemEditor(nullptr);
+}
+
+
+// Target index accessor.
+const QModelIndex& qsynthSettingsItemEditor::index (void) const
+{
+	return m_index;
+}
+
+
+// Value accessors.
+void qsynthSettingsItemEditor::setValue ( const QString& sValue )
+{
+	switch (m_type) {
+	case SpinBox:
+		m_u.pSpinBox->setValue(sValue.toInt());
+		break;
+	case DoubleSpinBox:
+		m_u.pDoubleSpinBox->setValue(sValue.toDouble());
+		break;
+	case LineEdit:
+		m_u.pLineEdit->setText(sValue);
+		break;
+	case ComboBox:
+		m_u.pComboBox->setCurrentText(sValue);
+		break;
+	}
+
+	changed();
+}
+
+
+QString qsynthSettingsItemEditor::value (void) const
+{
+	QString sValue;
+
+	switch (m_type) {
+	case SpinBox:
+		sValue = QString::number(m_u.pSpinBox->value());
+		break;
+	case DoubleSpinBox:
+		sValue = QString::number(m_u.pDoubleSpinBox->value());
+		break;
+	case LineEdit:
+		sValue = m_u.pLineEdit->text();
+		break;
+	case ComboBox:
+		sValue = m_u.pComboBox->currentText();
+		break;
+	}
+
+	return sValue;
+}
+
+
+// Current/Default value accessors.
+const QString& qsynthSettingsItemEditor::currentKey (void) const
+{
+	return m_sCurrentKey;
+}
+
+
+const QString& qsynthSettingsItemEditor::currentValue (void) const
+{
+	return m_sCurrentValue;
+}
+
+
+const QString& qsynthSettingsItemEditor::defaultValue (void) const
+{
+	return m_sDefaultValue;
+}
+
+
+// Local interaction slots.
+void qsynthSettingsItemEditor::changed (void)
+{
+	const QString& sValue = value();
+	m_pToolButton->setEnabled(
+		sValue != currentValue() ||
+		sValue != defaultValue());
+}
+
+
+void qsynthSettingsItemEditor::committed (void)
+{
+	changed();
+
+	emit commitEditor(this);
+}
+
+
+void qsynthSettingsItemEditor::reset (void)
+{
+	const QString& sValue = value();
+	if (sValue == currentValue())
+		setValue(defaultValue());
+	else
+		setValue(currentValue());
+}
+
+
+//-------------------------------------------------------------------------
+// qsynthSettingsItemDelegate - list-view item delegate impl.
+
+qsynthSettingsItemDelegate::qsynthSettingsItemDelegate (
+	qsynthSetupForm *pSetupForm )
+	: QItemDelegate(pSetupForm->settingsListView()), m_pSetupForm(pSetupForm)
+{
+}
+
+
+// Overridden paint method.
+void qsynthSettingsItemDelegate::paint ( QPainter *pPainter,
+	const QStyleOptionViewItem& option, const QModelIndex& index ) const
+{
+	QStyleOptionViewItem option2 = option;
+	if (index.column() == 0 || index.column() == 3) {
+		QTreeWidget *pListView = m_pSetupForm->settingsListView();
+		QTreeWidgetItem *pListItem = pListView->topLevelItem(index.row());
+		const QString& sKey = pListItem->text(0);
+		if (m_pSetupForm->isSettingsItem(sKey)) {
+			option2.font.setBold(true);
+		}
+	}
+
+	QItemDelegate::paint(pPainter, option2, index);
+}
+
+
+QWidget *qsynthSettingsItemDelegate::createEditor ( QWidget *pParent,
+	const QStyleOptionViewItem& /*option*/, const QModelIndex& index ) const
+{
+	qsynthSettingsItemEditor *pItemEditor
+		= new qsynthSettingsItemEditor(m_pSetupForm, index, pParent);
+	QObject::connect(pItemEditor,
+		SIGNAL(commitEditor(QWidget *)),
+		SLOT(commitEditor(QWidget *)));
+	m_pSetupForm->setSettingsItemEditor(pItemEditor);
+	return pItemEditor;
+}
+
+
+void qsynthSettingsItemDelegate::setEditorData ( QWidget *pEditor,
+	const QModelIndex& index ) const
+{
+	qsynthSettingsItemEditor *pItemEditor
+		= qobject_cast<qsynthSettingsItemEditor *> (pEditor);
+	if (pItemEditor)
+		pItemEditor->setValue(index.model()->data(index, Qt::DisplayRole).toString());
+}
+
+
+void qsynthSettingsItemDelegate::setModelData ( QWidget *pEditor,
+	QAbstractItemModel *pModel, const QModelIndex& index ) const
+{
+	qsynthSettingsItemEditor *pItemEditor
+		= qobject_cast<qsynthSettingsItemEditor *> (pEditor);
+	if (pItemEditor)
+		pModel->setData(index, pItemEditor->value());
+}
+
+
+QSize qsynthSettingsItemDelegate::sizeHint (
+	const QStyleOptionViewItem& option, const QModelIndex& index ) const
+{
+	return QItemDelegate::sizeHint(option, index) + QSize(4, 4);
+}
+
+
+void qsynthSettingsItemDelegate::commitEditor ( QWidget *pEditor )
+{
+	qsynthSettingsItemEditor *pItemEditor
+		= qobject_cast<qsynthSettingsItemEditor *> (pEditor);
+	if (pItemEditor) {
+		const QString& sVal = pItemEditor->value();
+		if (sVal != pItemEditor->currentValue()) {
+			m_pSetupForm->setSettingsItem(pItemEditor->currentKey(), sVal);
+			emit commitData(pEditor);
+		}
+	}
 }
 
 
