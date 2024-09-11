@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.15)
 
 project (Qsynth
-  VERSION 1.0.0
+  VERSION 1.0.1
   DESCRIPTION "A fluidsynth Qt GUI Interface"
   HOMEPAGE_URL "https://qsynth.sourceforge.io"
   LANGUAGES C CXX)
