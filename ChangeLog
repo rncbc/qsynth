@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+1.0.2  2024-09-30  An Early-Fall'24 Release.
 
 - Peppino knob graphic style refined to follow designated palette
   color theme (and not being such an ugly style anymore;)).

@@ -63,7 +63,7 @@ Var LibInstall
 !insertmacro MUI_LANGUAGE "Spanish"
 
 # Installer attributes
-OutFile "@PROJECT_NAME@-${VERSION}-2.1.win-x64-setup.exe"
+OutFile "@PROJECT_NAME@-${VERSION}-3.1.win-x64-setup.exe"
 #InstallDir "$PROGRAMFILES\@PROJECT_TITLE@"
 CRCCheck on
 XPStyle on
