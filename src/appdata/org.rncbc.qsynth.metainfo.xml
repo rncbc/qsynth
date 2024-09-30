@@ -39,6 +39,7 @@
  <developer_name>rncbc aka. Rui Nuno Capela</developer_name>
  <update_contact>rncbc@rncbc.org</update_contact>
  <releases>
+  <release version="1.0.2" date="2024-09-30" urgency="low" />
   <release version="1.0.1" date="2024-09-11" urgency="low" />
   <release version="1.0.0" date="2024-06-19" urgency="low" />
  </releases>

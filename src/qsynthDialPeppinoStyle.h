@@ -5,8 +5,9 @@
 
    This file,
    Copyright (C) 2019 rncbc aka Rui Nuno Capela <rncbc@rncbc.org>,
-   Copyright (C) 2008 Giuseppe Cigala <g_cigala@virgilio.it>
-   Copyright (C) 2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>.
+   Copyright (C) 2008 Giuseppe Cigala <g_cigala@virgilio.it>,
+   Copyright (C) 2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>,
+   Copyright (C) 2024 Rui Nuno Capela <rncbc@rncbc.org>.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -34,9 +35,10 @@ class qsynthDialPeppinoStyle : public QCommonStyle
 public:
 	qsynthDialPeppinoStyle() {};
 	virtual ~qsynthDialPeppinoStyle() {};
-	
-	virtual void drawComplexControl(ComplexControl cc, const QStyleOptionComplex *opt, QPainter *p,
-                            		const QWidget *widget = 0) const;
+
+	virtual void drawComplexControl(
+		ComplexControl cc, const QStyleOptionComplex *opt, QPainter *p,
+		const QWidget *widget = 0) const;
 };
 
 #endif /*PEPPINOSTYLE_H_*/

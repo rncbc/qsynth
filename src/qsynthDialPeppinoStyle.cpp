@@ -6,7 +6,8 @@
    This file,
    Copyright (C) 2019 rncbc aka Rui Nuno Capela <rncbc@rncbc.org>,
    Copyright (C) 2008 Giuseppe Cigala <g_cigala@virgilio.it>,
-   Copyright (C) 2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>.
+   Copyright (C) 2008 Pedro Lopez-Cabanillas <plcl@users.sf.net>,
+   Copyright (C) 2024 Rui Nuno Capela <rncbc@rncbc.org>.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -32,8 +33,9 @@
 #include <iostream>
 #include <QtMath>
 
-inline void paintBorder(QPainter *p)
+inline void paintBorder(QPainter *p, const QStyleOptionSlider *dial)
 {
+#if 0//--rncbc Sep 25 2024
     p->setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
     QLinearGradient linGrad1(0, 100, 100, 80);
@@ -44,7 +46,7 @@ inline void paintBorder(QPainter *p)
 
     QRectF border(5, 5, 190, 190);
     p->drawRect(border);
-
+#endif
     // draw screws
     p->setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
     p->drawEllipse(10, 10, 10, 10);
@@ -64,8 +66,14 @@ inline void paintBorder(QPainter *p)
     p->drawLine(187, 183, 183, 187);
 
     QLinearGradient linGrad(20, 150, 210, 160);
+#if 0//--rncbc Sep 25 2024
     linGrad.setColorAt(0, Qt::white);
-    linGrad.setColorAt(1, Qt::darkGray);
+    linGrad.setColorAt(1, Qt::drakGray);
+#else
+    const QPalette& pal = dial->palette;
+    linGrad.setColorAt(0, pal.buttonText().color());
+    linGrad.setColorAt(1, pal.button().color());
+#endif
     linGrad.setSpread(QGradient::PadSpread);
     p->setBrush(linGrad);
 
@@ -97,13 +105,19 @@ inline void paintArc(QPainter *p, const QStyleOptionSlider *dial)
     p->drawPie(rectangle, startAngle, spanAngle);
 }
 
-inline void paintDial(QPainter *p)
+inline void paintDial(QPainter *p, const QStyleOptionSlider *dial)
 {
     p->setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
     QLinearGradient linGrad1(20, 140, 90, 90);
+#if 0//--rncbc Sep 25 2024
     linGrad1.setColorAt(0, Qt::gray);
     linGrad1.setColorAt(1, Qt::white);
+#else
+    const QPalette& pal = dial->palette;
+    linGrad1.setColorAt(0, pal.button().color());
+    linGrad1.setColorAt(1, pal.buttonText().color());
+#endif
     linGrad1.setSpread(QGradient::ReflectSpread);
     p->setBrush(linGrad1);
 
@@ -156,9 +170,9 @@ qsynthDialPeppinoStyle::drawComplexControl(ComplexControl cc, const QStyleOption
     p->setWindow(0, 0, 200, 200);
     p->setRenderHint(QPainter::Antialiasing);
 
-    paintBorder(p);
+    paintBorder(p, dial);
     paintArc(p, dial);
-    paintDial(p);
+    paintDial(p, dial);
     paintDot(p, dial);
 
 	// done
