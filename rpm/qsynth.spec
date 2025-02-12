@@ -1,7 +1,7 @@
 #
 # spec file for package qsynth
 #
-# Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved.
+# Copyright (C) 2003-2025, rncbc aka Rui Nuno Capela. All rights reserved.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -77,6 +77,11 @@ BuildRequires:	pkgconfig(jack)
 BuildRequires:	pkgconfig(alsa)
 
 BuildRequires:	libfluidsynth-devel
+
+%if 0%{?fedora_version} >= 39 || 0%{?suse_version} > 1500
+BuildRequires:  pkgconfig(libpipewire-0.3)
+%endif
+
 
 %description
 Qsynth is a fluidsynth GUI front-end application, written in C++ around the
