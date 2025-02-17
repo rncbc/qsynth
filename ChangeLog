@@ -6,6 +6,10 @@ ChangeLog
 
 GIT HEAD
 
+- Fixed command line parsing (QCommandLineParser/Option) to not
+  exiting the application with a segfault when showing help and
+  version information.
+
 - Peppino knob style adjusted to lighter custom color themes.
 
 - Prepping up next development cycle (Qt >= 6.8)

@@ -136,16 +136,7 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 	QApplication::setDesktopFileName(
 		QString("org.rncbc.%1").arg(PROJECT_NAME));
 #endif
-	QString sVersion(PROJECT_VERSION);
-	sVersion += '\n';
-	sVersion += QString("Qt: %1").arg(qVersion());
-#if defined(QT_STATIC)
-	sVersion += "-static";
-#endif
-	sVersion += '\n';
-	sVersion += QString("FluidSynth: %1\n")
-		.arg(::fluid_version_str());
-	QApplication::setApplicationVersion(sVersion);
+	QApplication::setApplicationVersion(PROJECT_VERSION);
 #endif
 
 	QDir appDir(QApplication::applicationDirPath());
