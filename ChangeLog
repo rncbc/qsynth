@@ -6,6 +6,11 @@ ChangeLog
 
 GIT HEAD
 
+- Master gain front panel control now ranges from 0..1000, with
+  default still at 100 (unit gain).
+
+- Maximum Gain allowed is now 10 (1000
+
 - Fixed command line parsing (QCommandLineParser/Option) to not
   exiting the application with a segfault when showing help and
   version information.

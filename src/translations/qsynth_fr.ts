@@ -92,7 +92,6 @@
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="253"/>
-        <location filename="../qsynthOptions.cpp" line="309"/>
         <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
         <translation>Défini le gain général [0 &lt; gain &lt; 2, défaut = 1]</translation>
     </message>
@@ -135,6 +134,11 @@
         <location filename="../qsynthOptions.cpp" line="267"/>
         <source>Show version information</source>
         <translation>Affiche les informations de version</translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="309"/>
+        <source>Set the master gain [0 &lt; gain &lt; 10, default = 1]</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="323"/>

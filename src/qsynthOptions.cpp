@@ -306,7 +306,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 	parser.addOption({{"C", "chorus"},
 		QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]"), "flag"});
 	parser.addOption({{"g", "gain"},
-		QObject::tr("Set the master gain [0 < gain < 2, default = 1]"), "gain"});
+		QObject::tr("Set the master gain [0 < gain < 10, default = 1]"), "gain"});
 	parser.addOption({{"o", "option"},
 		QObject::tr("Define a setting name=value"), "name=value"});
 	parser.addOption({{"s", "server"},

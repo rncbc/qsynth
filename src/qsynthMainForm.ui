@@ -86,7 +86,7 @@
          <string>Master Gain</string>
         </property>
         <property name="maximum">
-         <number>200</number>
+         <number>1000</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -114,7 +114,7 @@
          <set>Qt::AlignHCenter</set>
         </property>
         <property name="maximum">
-         <number>200</number>
+         <number>1000</number>
         </property>
        </widget>
       </item>
