@@ -71,8 +71,10 @@ inline void paintBorder(QPainter *p, const QStyleOptionSlider *dial)
     linGrad.setColorAt(1, Qt::drakGray);
 #else
     const QPalette& pal = dial->palette;
-    linGrad.setColorAt(0, pal.buttonText().color());
-    linGrad.setColorAt(1, pal.button().color());
+    const QColor& btnColor = pal.button().color();
+    linGrad.setColorAt(0, btnColor.value() < 0x7f
+        ? btnColor.lighter() : btnColor.darker());
+    linGrad.setColorAt(1, btnColor);
 #endif
     linGrad.setSpread(QGradient::PadSpread);
     p->setBrush(linGrad);
@@ -115,8 +117,10 @@ inline void paintDial(QPainter *p, const QStyleOptionSlider *dial)
     linGrad1.setColorAt(1, Qt::white);
 #else
     const QPalette& pal = dial->palette;
-    linGrad1.setColorAt(0, pal.button().color());
-    linGrad1.setColorAt(1, pal.buttonText().color());
+    const QColor& btnColor = pal.button().color();
+    linGrad1.setColorAt(0, btnColor);
+    linGrad1.setColorAt(1, btnColor.value() < 0x7f
+        ? btnColor.lighter() : btnColor.darker());
 #endif
     linGrad1.setSpread(QGradient::ReflectSpread);
     p->setBrush(linGrad1);
