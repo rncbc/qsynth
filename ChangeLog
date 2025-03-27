@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+1.0.3  2025-03-27  An Early Spring'25 Release.
 
 - Master gain front panel control now ranges from 0..1000, with
   default still at 100 (unit gain).
