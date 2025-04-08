@@ -4,6 +4,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Stepping up next development cycle (Qt >= 6.9)
+
+
 1.0.3  2025-03-27  An Early Spring'25 Release.
 
 - Master gain front panel control now ranges from 0..1000, with
