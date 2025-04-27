@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.15)
 
 project (Qsynth
-  VERSION 1.0.2
+  VERSION 1.0.3
   DESCRIPTION "A fluidsynth Qt GUI Interface"
   HOMEPAGE_URL "https://qsynth.sourceforge.io"
   LANGUAGES C CXX)
@@ -9,7 +9,7 @@ project (Qsynth
 set (PROJECT_TITLE "${PROJECT_NAME}")
 string (TOLOWER "${PROJECT_TITLE}" PROJECT_NAME)
 
-set (PROJECT_COPYRIGHT "Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved.")
+set (PROJECT_COPYRIGHT "Copyright (C) 2003-2025, rncbc aka Rui Nuno Capela. All rights reserved.")
 set (PROJECT_DOMAIN    "rncbc.org")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")

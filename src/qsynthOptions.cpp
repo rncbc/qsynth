@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2024, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2025, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -306,7 +306,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 	parser.addOption({{"C", "chorus"},
 		QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]"), "flag"});
 	parser.addOption({{"g", "gain"},
-		QObject::tr("Set the master gain [0 < gain < 2, default = 1]"), "gain"});
+		QObject::tr("Set the master gain [0 < gain < 10, default = 1]"), "gain"});
 	parser.addOption({{"o", "option"},
 		QObject::tr("Define a setting name=value"), "name=value"});
 	parser.addOption({{"s", "server"},
@@ -317,15 +317,39 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		QObject::tr("Dump midi router events")});
 	parser.addOption({{"V", "verbose"},
 		QObject::tr("Print out verbose messages about midi events")});
-	parser.addHelpOption();
-	parser.addVersionOption();
+	const QCommandLineOption& helpOption = parser.addHelpOption();
+	const QCommandLineOption& versionOption = parser.addVersionOption();
 	parser.addPositionalArgument("soundfonts",
 		QObject::tr("SoundFont Files"),
 		QObject::tr("[soundfonts]"));
 	parser.addPositionalArgument("midifiles",
 		QObject::tr("MIDI Files"),
 		QObject::tr("[midifiles]"));
-	parser.process(args);
+
+	if (!parser.parse(args)) {
+		show_error(parser.errorText());
+		return false;
+	}
+
+	if (parser.isSet(helpOption)) {
+		show_error(parser.helpText());
+		return false;
+	}
+
+	if (parser.isSet(versionOption)) {
+		QString sVersion = QString("%1 %2\n")
+			.arg(QSYNTH_TITLE)
+			.arg(QCoreApplication::applicationVersion());
+		sVersion += QString("Qt: %1").arg(qVersion());
+	#if defined(QT_STATIC)
+		sVersion += "-static";
+	#endif
+		sVersion += '\n';
+		sVersion += QString("FluidSynth: %1\n")
+			.arg(::fluid_version_str());
+		show_error(sVersion);
+		return false;
+	}
 
 	if (parser.isSet("no-midi-in")) {
 		m_pDefaultSetup->bMidiIn = false;
@@ -634,6 +658,9 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			return false;
 		}
 		else if (sArg == "-v" || sArg == "--version") {
+			out << QString("%1: %2\n")
+				.arg(QSYNTH_TITLE)
+				.arg(QCoreApplication::applicationVersion()));
 			out << QString("Qt: %1").arg(qVersion());
 		#if defined(QT_STATIC)
 			out << "-static";
@@ -641,9 +668,6 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 			out << '\n';
 			out << QString("FluidSynth: %1\n")
 				.arg(::fluid_version_str());
-			out << QString("%1: %2\n")
-				.arg(QSYNTH_TITLE)
-				.arg(PROJECT_VERSION);
 			return false;
 		}
 		else {
