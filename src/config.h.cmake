@@ -131,8 +131,5 @@
 /* Define if PipeWire is supported. */
 #cmakedefine CONFIG_PIPEWIRE @CONFIG_PIPEWIRE@
 
-/* Define if Wayland is supported */
-#cmakedefine CONFIG_WAYLAND @CONFIG_WAYLAND@
-
 
 #endif /* CONFIG_H */
