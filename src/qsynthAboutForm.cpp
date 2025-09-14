@@ -73,6 +73,12 @@ qsynthAboutForm::qsynthAboutForm ( QWidget *pParent )
 #if defined(QT_STATIC)
 	sText += "-static";
 #endif
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
+	sText += ' ';
+	sText += '(';
+	sText += QApplication::platformName();
+	sText += ')';
+#endif
 #ifdef CONFIG_FLUID_VERSION_STR
 	sText += ", ";
 	sText += tr("FluidSynth %1").arg(::fluid_version_str());
