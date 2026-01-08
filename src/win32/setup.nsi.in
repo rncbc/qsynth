@@ -105,12 +105,14 @@ Section -Main SEC0000
     File ${BINARY_FILES}\qsynth_de.qm
     File ${BINARY_FILES}\qsynth_es.qm
     File ${BINARY_FILES}\qsynth_fr.qm
+    File ${BINARY_FILES}\qsynth_ka.qm
     File ${BINARY_FILES}\qsynth_ru.qm
     File ${BINARY_FILES}\qsynth_sr.qm
     File ${BINARY_FILES}\translations\qt_cs.qm
     File ${BINARY_FILES}\translations\qt_de.qm
     File ${BINARY_FILES}\translations\qt_es.qm
     File ${BINARY_FILES}\translations\qt_fr.qm
+    File ${BINARY_FILES}\translations\qt_ka.qm
     File ${BINARY_FILES}\translations\qt_ru.qm
 
     !insertmacro InstallLib DLL NOTSHARED REBOOT_PROTECTED ${FUIDSYNTH_FILES}\libfluidsynth-3.dll $INSTDIR\libfluidsynth-3.dll $INSTDIR
