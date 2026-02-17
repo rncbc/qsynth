@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Make sure initial empty preset channel-map always gets Channel
+  10 to Bank 128 and Program 0 on default (GM Drums/Percussion).
+
 - Get rid of CONFIG_WAYLAND build config option; add underlying
   platform name (eg. xcb, wayland) to Qt version string.
 
