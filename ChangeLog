@@ -4,7 +4,7 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+1.0.4  2026-02-19  A Mid-Winter'26 Release.
 
 - Make sure initial empty preset channel-map always gets Channel
   10 to Bank 128 and Program 0 on default (GM Drums/Percussion).
