@@ -4,9 +4,13 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
-GIT HEAD
+1.0.4  2026-02-19  A Mid-Winter'26 Release.
 
-- Stepping up next development cycle (Qt >= 6.9)
+- Make sure initial empty preset channel-map always gets Channel
+  10 to Bank 128 and Program 0 on default (GM Drums/Percussion).
+
+- Get rid of CONFIG_WAYLAND build config option; add underlying
+  platform name (eg. xcb, wayland) to Qt version string.
 
 
 1.0.3  2025-03-27  An Early Spring'25 Release.

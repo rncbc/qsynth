@@ -161,68 +161,68 @@
         <translation>[fichiersmidi]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="361"/>
-        <location filename="../qsynthOptions.cpp" line="537"/>
+        <location filename="../qsynthOptions.cpp" line="367"/>
+        <location filename="../qsynthOptions.cpp" line="543"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>L&apos;option -m requiert un argument (pilote-midi).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="371"/>
-        <location filename="../qsynthOptions.cpp" line="546"/>
+        <location filename="../qsynthOptions.cpp" line="377"/>
+        <location filename="../qsynthOptions.cpp" line="552"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>L&apos;option -K requiert un argument (canaux-midi).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="380"/>
-        <location filename="../qsynthOptions.cpp" line="555"/>
+        <location filename="../qsynthOptions.cpp" line="386"/>
+        <location filename="../qsynthOptions.cpp" line="561"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>L&apos;option -a requiert un argument (pilote-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="394"/>
-        <location filename="../qsynthOptions.cpp" line="567"/>
+        <location filename="../qsynthOptions.cpp" line="400"/>
+        <location filename="../qsynthOptions.cpp" line="573"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>L&apos;option -L requiert un argument (canaux-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="404"/>
-        <location filename="../qsynthOptions.cpp" line="576"/>
+        <location filename="../qsynthOptions.cpp" line="410"/>
+        <location filename="../qsynthOptions.cpp" line="582"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>L&apos;option -G requiert un argument (groupes-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="414"/>
-        <location filename="../qsynthOptions.cpp" line="585"/>
+        <location filename="../qsynthOptions.cpp" line="420"/>
+        <location filename="../qsynthOptions.cpp" line="591"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>L&apos;option -z requiert un argument (taille-tampon-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="424"/>
-        <location filename="../qsynthOptions.cpp" line="594"/>
+        <location filename="../qsynthOptions.cpp" line="430"/>
+        <location filename="../qsynthOptions.cpp" line="600"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>L&apos;option -c requiert un argument (compte-tampon-audio).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="434"/>
-        <location filename="../qsynthOptions.cpp" line="603"/>
+        <location filename="../qsynthOptions.cpp" line="440"/>
+        <location filename="../qsynthOptions.cpp" line="609"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>L&apos;option -r requiert un argument (taux-échantillonnage).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="462"/>
-        <location filename="../qsynthOptions.cpp" line="630"/>
+        <location filename="../qsynthOptions.cpp" line="468"/>
+        <location filename="../qsynthOptions.cpp" line="636"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>L&apos;option -g requiert un argument (gain).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="471"/>
-        <location filename="../qsynthOptions.cpp" line="639"/>
+        <location filename="../qsynthOptions.cpp" line="477"/>
+        <location filename="../qsynthOptions.cpp" line="645"/>
         <source>Option -o requires an argument.</source>
         <translation>L&apos;option -o requiert un argument.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="506"/>
-        <location filename="../qsynthOptions.cpp" line="688"/>
+        <location filename="../qsynthOptions.cpp" line="512"/>
+        <location filename="../qsynthOptions.cpp" line="694"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>Option &apos;%1&apos; inconnue.</translation>
     </message>
@@ -280,22 +280,22 @@
         <translation>Utilisant : Qt %1</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="78"/>
+        <location filename="../qsynthAboutForm.cpp" line="84"/>
         <source>FluidSynth %1</source>
         <translation>FluidSynth %1</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="82"/>
+        <location filename="../qsynthAboutForm.cpp" line="88"/>
         <source>Website</source>
         <translation>Site web</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="87"/>
+        <location filename="../qsynthAboutForm.cpp" line="93"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Ce programme est un programme libre; vous pouvez le redistribuer et/ou le modifier</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="88"/>
+        <location filename="../qsynthAboutForm.cpp" line="94"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>sous les termes de la license publique générale GNU version 2 ou plus récente.</translation>
     </message>
