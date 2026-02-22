@@ -104,7 +104,6 @@ void qsynthOptions::loadOptions (void)
 	m_settings.beginGroup("/Custom");
 	sCustomColorTheme = m_settings.value("/ColorTheme").toString();
 	sCustomStyleTheme = m_settings.value("/StyleTheme").toString();
-	sLanguage = m_settings.value("/Language").toString();
 	m_settings.endGroup();
 
 	// Load custom additional engines.
@@ -158,7 +157,6 @@ void qsynthOptions::saveOptions (void)
 	m_settings.beginGroup("/Custom");
 	m_settings.setValue("/ColorTheme", sCustomColorTheme);
 	m_settings.setValue("/StyleTheme", sCustomStyleTheme);
-	m_settings.setValue("/Language", sLanguage);
 	m_settings.endGroup();
 
 	// Save engines list...

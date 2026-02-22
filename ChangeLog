@@ -4,6 +4,13 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Regression to the option to change the UI language translation,
+  which was percluding the whole translations/localization effort
+  (probably since its inception on v0.9.6).
+
+
 1.0.4  2026-02-19  A Mid-Winter'26 Release.
 
 - Make sure initial empty preset channel-map always gets Channel

@@ -1,7 +1,7 @@
 // qsynth.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2025, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2026, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -105,11 +105,6 @@ const WindowFlags WindowCloseButtonHint = WindowFlags(0x08000000);
 
 #endif	// CONFIG_XUNIQUE
 
-// Install Prefix Location
-QString qsynthApplication::prefixPath;
-
-// Translations Location
-QString qsynthApplication::translationsPath;
 
 // Constructor.
 qsynthApplication::qsynthApplication ( int& argc, char **argv )
@@ -138,12 +133,56 @@ qsynthApplication::qsynthApplication ( int& argc, char **argv )
 #endif
 	QApplication::setApplicationVersion(PROJECT_VERSION);
 #endif
-
-	QDir appDir(QApplication::applicationDirPath());
-#ifndef Q_OS_WINDOWS
-	appDir.cdUp();
-#endif
-	qsynthApplication::prefixPath = appDir.path();
+	// Load translation support.
+	QLocale loc;
+	if (loc.language() != QLocale::C) {
+		// Try own Qt translation...
+		m_pQtTranslator = new QTranslator(this);
+		QString sLocName = "qt_" + loc.name();
+	#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+		QString sLocPath = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
+	#else
+		QString sLocPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
+	#endif
+		if (m_pQtTranslator->load(sLocName, sLocPath)) {
+			QApplication::installTranslator(m_pQtTranslator);
+		} else {
+			delete m_pQtTranslator;
+			m_pQtTranslator = nullptr;
+		#ifdef CONFIG_DEBUG
+			qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
+				loc.name().toUtf8().constData(),
+				sLocPath.toUtf8().constData(),
+				sLocName.toUtf8().constData());
+		#endif
+		}
+		// Try own application translation...
+		m_pMyTranslator = new QTranslator(this);
+		sLocName = "qsynth_" + loc.name();
+		if (m_pMyTranslator->load(sLocName, sLocPath)) {
+			QApplication::installTranslator(m_pMyTranslator);
+		} else {
+			sLocPath = QApplication::applicationDirPath();
+		#ifndef _WIN32
+			sLocPath.remove(CONFIG_BINDIR);
+			sLocPath.append(CONFIG_DATADIR "/qsynth/translations");
+		#else
+			sLocPath.append("/translations");
+		#endif
+			if (m_pMyTranslator->load(sLocName, sLocPath)) {
+				QApplication::installTranslator(m_pMyTranslator);
+			} else {
+				delete m_pMyTranslator;
+				m_pMyTranslator = nullptr;
+			#ifdef CONFIG_DEBUG
+				qWarning("Warning: no translation found for '%s' locale: %s/%s.qm",
+					loc.name().toUtf8().constData(),
+					sLocPath.toUtf8().constData(),
+					sLocName.toUtf8().constData());
+			#endif
+			}
+		}
+	}
 }
 
 
@@ -157,68 +196,6 @@ qsynthApplication::~qsynthApplication (void)
 #endif	// CONFIG_XUNIQUE
 	if (m_pMyTranslator) delete m_pMyTranslator;
 	if (m_pQtTranslator) delete m_pQtTranslator;
-}
-
-
-// Load translation support.
-void qsynthApplication::loadTranslations(const QString& sLanguage)
-{
-	QLocale loc;
-	if (!sLanguage.isEmpty()) {
-		loc = QLocale(sLanguage);
-	}
-
-	QString sLocPath = qsynthApplication::prefixPath;
-#if defined(Q_OS_WINDOWS) || defined(Q_OS_MACOS)
-	sLocPath.append("/translations");
-#else
-	sLocPath.append(CONFIG_DATADIR "/qsynth/translations");
-#endif
-	qsynthApplication::translationsPath = sLocPath;
-
-	if (loc.language() != QLocale::C) {
-		// Try own Qt translation...
-		m_pQtTranslator = new QTranslator(this);
-		QString sLocName = "qt";
-	#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-		sLocPath = QLibraryInfo::path(QLibraryInfo::TranslationsPath);
-	#else
-		sLocPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath);
-	#endif
-// https://www.kdab.com/fixing-a-common-antipattern-when-loading-translations-in-qt/
-		if (m_pQtTranslator->load(loc, sLocName, "_", sLocPath)) {
-			QApplication::installTranslator(m_pQtTranslator);
-		} else {
-			delete m_pQtTranslator;
-			m_pQtTranslator = nullptr;
-		#ifdef CONFIG_DEBUG
-			qWarning() << "Warning: no translation found for"
-				<< loc.name()
-				<< "path:" << sLocPath
-				<< "name:" << sLocName;
-		#endif
-		}
-		// Try own application translation...
-		m_pMyTranslator = new QTranslator(this);
-		sLocName = "qsynth";
-		if (m_pMyTranslator->load(loc, sLocName, "_", sLocPath)) {
-			QApplication::installTranslator(m_pMyTranslator);
-		} else {
-			sLocPath = qsynthApplication::translationsPath;
-			if (m_pMyTranslator->load(loc, sLocName, "_", sLocPath)) {
-				QApplication::installTranslator(m_pMyTranslator);
-			} else {
-				delete m_pMyTranslator;
-				m_pMyTranslator = nullptr;
-			#ifdef CONFIG_DEBUG
-				qWarning() << "Warning: no translation found for"
-					<< loc.name()
-					<< "path:" << sLocPath
-					<< "name:" << sLocName;
-			#endif
-			}
-		}
-	}
 }
 
 
@@ -594,7 +571,6 @@ int main ( int argc, char **argv )
 
 	// Construct default settings; override with command line arguments.
 	qsynthOptions options;
-	app.loadTranslations(options.sLanguage);
 	if (!options.parse_args(app.arguments())) {
 		app.quit();
 		return 1;

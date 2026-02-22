@@ -106,9 +106,6 @@ public:
 	// Available custom engines list.
 	QStringList engines;
 
-	// Language choices
-	QString sLanguage;
-
 	// Engine management methods.
 	void newEngine(qsynthEngine *pEngine);
 	bool renameEngine(qsynthEngine *pEngine);
