@@ -1,7 +1,7 @@
 // qsynthOptions.cpp
 //
 /****************************************************************************
-   Copyright (C) 2003-2025, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2026, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -104,7 +104,6 @@ void qsynthOptions::loadOptions (void)
 	m_settings.beginGroup("/Custom");
 	sCustomColorTheme = m_settings.value("/ColorTheme").toString();
 	sCustomStyleTheme = m_settings.value("/StyleTheme").toString();
-	sLanguage = m_settings.value("/Language").toString();
 	m_settings.endGroup();
 
 	// Load custom additional engines.
@@ -158,7 +157,6 @@ void qsynthOptions::saveOptions (void)
 	m_settings.beginGroup("/Custom");
 	m_settings.setValue("/ColorTheme", sCustomColorTheme);
 	m_settings.setValue("/StyleTheme", sCustomStyleTheme);
-	m_settings.setValue("/Language", sLanguage);
 	m_settings.endGroup();
 
 	// Save engines list...
@@ -343,6 +341,12 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		sVersion += QString("Qt: %1").arg(qVersion());
 	#if defined(QT_STATIC)
 		sVersion += "-static";
+	#endif
+	#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
+		sVersion += ' ';
+		sVersion += '(';
+		sVersion += QApplication::platformName();
+		sVersion += ')';
 	#endif
 		sVersion += '\n';
 		sVersion += QString("FluidSynth: %1\n")
@@ -748,7 +752,7 @@ void qsynthOptions::deleteEngine ( qsynthEngine *pEngine )
 		return;
 
 	const QString& sName = pEngine->name();
-	int iEngine = engines.indexOf(sName);
+	const int iEngine = engines.indexOf(sName);
 	if (iEngine >= 0)
 		engines.removeAt(iEngine);
 
@@ -971,7 +975,6 @@ void qsynthOptions::saveSetup ( qsynthSetup *pSetup, const QString& sName )
 	m_settings.endGroup();
 	m_settings.endGroup();
 
-
 	// Done with the key group?
 	if (!sName.isEmpty())
 		m_settings.endGroup();
@@ -1003,22 +1006,18 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 		m_settings.beginGroup("/Engine/" + pEngine->name());
 
 	// Load as current presets.
-#ifdef CONFIG_FLUID_UNSET_PROGRAM
 	int iChannelsSet = 0;
-#endif
 	const QString sPrefix = "/Chan%1";
 	m_settings.beginGroup("/Preset" + sSuffix);
-	int iChannels = ::fluid_synth_count_midi_channels(pEngine->pSynth);
-	for (int iChan = 0; iChan < iChannels; iChan++) {
+	const int iChannels = ::fluid_synth_count_midi_channels(pEngine->pSynth);
+	for (int iChan = 0; iChan < iChannels; ++iChan) {
 		QString sEntry = m_settings.value(sPrefix.arg(iChan + 1)).toString();
 		if (!sEntry.isEmpty() && iChan == sEntry.section(':', 0, 0).toInt()) {
 			::fluid_synth_bank_select(pEngine->pSynth, iChan,
 				sEntry.section(':', 1, 1).toInt());
 			::fluid_synth_program_change(pEngine->pSynth, iChan,
 				sEntry.section(':', 2, 2).toInt());
-		#ifdef CONFIG_FLUID_UNSET_PROGRAM
 			++iChannelsSet;
-		#endif
 		}
 	#ifdef CONFIG_FLUID_UNSET_PROGRAM
 		else ::fluid_synth_unset_program(pEngine->pSynth, iChan);
@@ -1030,19 +1029,22 @@ bool qsynthOptions::loadPreset ( qsynthEngine *pEngine, const QString& sPreset )
 	if (!pEngine->isDefault())
 		m_settings.endGroup();
 
-#ifdef CONFIG_FLUID_UNSET_PROGRAM
 	// If there's none channels set (eg. empty/blank preset)
 	// then fallback to old default fill up all the channels
 	// according to available soundfont stack.
 	if (iChannelsSet < 1) {
 		int iProg = 0;
 		for (int iChan = 0; iChan < iChannels; iChan++) {
-			::fluid_synth_bank_select(pEngine->pSynth, iChan, 0);
-			::fluid_synth_program_change(pEngine->pSynth, iChan, iProg);
+			if (iChan == 9) {
+				::fluid_synth_bank_select(pEngine->pSynth, iChan, 128);
+				::fluid_synth_program_change(pEngine->pSynth, iChan, 0);
+			} else {
+				::fluid_synth_bank_select(pEngine->pSynth, iChan, 0);
+				::fluid_synth_program_change(pEngine->pSynth, iChan, iProg);
+			}
 			++iProg;
 		}
 	}
-#endif
 
 	// Recommended to post-stabilize things around.
 	::fluid_synth_program_reset(pEngine->pSynth);
@@ -1074,7 +1076,7 @@ bool qsynthOptions::savePreset ( qsynthEngine *pEngine, const QString& sPreset )
 	// Unload current presets.
 	const QString sPrefix = "/Chan%1";
 	m_settings.beginGroup("/Preset" + sSuffix);
-	int iChannels = ::fluid_synth_count_midi_channels(pEngine->pSynth);
+	const int iChannels = ::fluid_synth_count_midi_channels(pEngine->pSynth);
 	int iChan = 0;
 	for ( ; iChan < iChannels; iChan++) {
 	#ifdef CONFIG_FLUID_CHANNEL_INFO
@@ -1158,9 +1160,9 @@ bool qsynthOptions::deletePreset ( qsynthEngine *pEngine, const QString& sPreset
 	QString sSuffix;
 	if (sPreset != pSetup->sDefPresetName && !sPreset.isEmpty()) {
 		sSuffix = "/" + sPreset;
-		int iPreset = pSetup->presets.indexOf(sPreset);
+		const int iPreset = pSetup->presets.indexOf(sPreset);
 		if (iPreset < 0)
-				return false;
+			return false;
 		pSetup->presets.removeAt(iPreset);
 		m_settings.remove(sPrefix + "/Preset" + sSuffix);
 	}
@@ -1316,4 +1318,3 @@ void qsynthOptions::saveWidgetGeometry ( QWidget *pWidget, bool bVisible )
 
 
 // end of qsynthOptions.cpp
-

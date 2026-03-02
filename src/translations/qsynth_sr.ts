@@ -161,68 +161,68 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="361"/>
-        <location filename="../qsynthOptions.cpp" line="537"/>
+        <location filename="../qsynthOptions.cpp" line="367"/>
+        <location filename="../qsynthOptions.cpp" line="543"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation type="unfinished">Опција „-m“ захтева аргумент (миди посредник).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="371"/>
-        <location filename="../qsynthOptions.cpp" line="546"/>
+        <location filename="../qsynthOptions.cpp" line="377"/>
+        <location filename="../qsynthOptions.cpp" line="552"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation type="unfinished">Опција „-K“ захтева аргумент (миди-канали).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="380"/>
-        <location filename="../qsynthOptions.cpp" line="555"/>
+        <location filename="../qsynthOptions.cpp" line="386"/>
+        <location filename="../qsynthOptions.cpp" line="561"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation type="unfinished">Опција „-a“ захтева аргумент (звучни посредник).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="394"/>
-        <location filename="../qsynthOptions.cpp" line="567"/>
+        <location filename="../qsynthOptions.cpp" line="400"/>
+        <location filename="../qsynthOptions.cpp" line="573"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation type="unfinished">Опција „-L“ захтева аргумент (звучни канали).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="404"/>
-        <location filename="../qsynthOptions.cpp" line="576"/>
+        <location filename="../qsynthOptions.cpp" line="410"/>
+        <location filename="../qsynthOptions.cpp" line="582"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation type="unfinished">Опција „-G“ захтева аргумент (звучне групе).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="414"/>
-        <location filename="../qsynthOptions.cpp" line="585"/>
+        <location filename="../qsynthOptions.cpp" line="420"/>
+        <location filename="../qsynthOptions.cpp" line="591"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation type="unfinished">Опција „-z“ захтева аргумент (вел. зв. бафера).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="424"/>
-        <location filename="../qsynthOptions.cpp" line="594"/>
+        <location filename="../qsynthOptions.cpp" line="430"/>
+        <location filename="../qsynthOptions.cpp" line="600"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation type="unfinished">Опција „-c“ захтева аргумент (број зв. бафера).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="434"/>
-        <location filename="../qsynthOptions.cpp" line="603"/>
+        <location filename="../qsynthOptions.cpp" line="440"/>
+        <location filename="../qsynthOptions.cpp" line="609"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation type="unfinished">Опција „-r“ захтева аргумент (учестаност узорковања).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="462"/>
-        <location filename="../qsynthOptions.cpp" line="630"/>
+        <location filename="../qsynthOptions.cpp" line="468"/>
+        <location filename="../qsynthOptions.cpp" line="636"/>
         <source>Option -g requires an argument (gain).</source>
         <translation type="unfinished">Опција „-g“ захтева аргумент (појачање).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="471"/>
-        <location filename="../qsynthOptions.cpp" line="639"/>
+        <location filename="../qsynthOptions.cpp" line="477"/>
+        <location filename="../qsynthOptions.cpp" line="645"/>
         <source>Option -o requires an argument.</source>
         <translation type="unfinished">Опција „-o“ захтева аргумент.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="506"/>
-        <location filename="../qsynthOptions.cpp" line="688"/>
+        <location filename="../qsynthOptions.cpp" line="512"/>
+        <location filename="../qsynthOptions.cpp" line="694"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation type="unfinished">Непозната опција „%1“.</translation>
     </message>
@@ -280,22 +280,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="78"/>
+        <location filename="../qsynthAboutForm.cpp" line="84"/>
         <source>FluidSynth %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="82"/>
+        <location filename="../qsynthAboutForm.cpp" line="88"/>
         <source>Website</source>
         <translation>Интернет страница</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="87"/>
+        <location filename="../qsynthAboutForm.cpp" line="93"/>
         <source>This program is free software; you can redistribute it and/or modify it</source>
         <translation>Овај програм је слободан софтвер; можете га прослеђивати и/или мењати</translation>
     </message>
     <message>
-        <location filename="../qsynthAboutForm.cpp" line="88"/>
+        <location filename="../qsynthAboutForm.cpp" line="94"/>
         <source>under the terms of the GNU General Public License version 2 or later.</source>
         <translation>под условима ГНУ Опште Јавне Лиценце верзије 2 или (по вашем избору) било које касније верзије.</translation>
     </message>

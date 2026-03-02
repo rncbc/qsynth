@@ -1,7 +1,7 @@
 // qsynthOptionsForm.h
 //
 /****************************************************************************
-   Copyright (C) 2003-2022, rncbc aka Rui Nuno Capela. All rights reserved.
+   Copyright (C) 2003-2026, rncbc aka Rui Nuno Capela. All rights reserved.
 
    This program is free software; you can redistribute it and/or
    modify it under the terms of the GNU General Public License
@@ -61,8 +61,6 @@ protected:
 	// Custom color/style themes settlers.
 	void resetCustomColorThemes(const QString& sCustomColorTheme);
 	void resetCustomStyleThemes(const QString& sCustomStyleTheme);
-
-	void resetDefaultLanguage(const QString& sLanguage);
 
 	void stabilizeForm();
 

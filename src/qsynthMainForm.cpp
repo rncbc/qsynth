@@ -2993,6 +2993,13 @@ void qsynthMainForm::updateKnobs (void)
 
 void qsynthMainForm::commitData ( QSessionManager& sm )
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
+	QStringList args;
+	args << QApplication::applicationName();
+	args << "-platform" << QApplication::platformName();
+	args << "-session" << sm.sessionId();
+	sm.setRestartCommand(args);
+#endif
 	sm.release();
 
 #ifdef CONFIG_SYSTEM_TRAY

@@ -1,7 +1,7 @@
 #
 # spec file for package qsynth
 #
-# Copyright (C) 2003-2025, rncbc aka Rui Nuno Capela. All rights reserved.
+# Copyright (C) 2003-2026, rncbc aka Rui Nuno Capela. All rights reserved.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -17,19 +17,13 @@
 
 Summary:	A fluidsynth Qt GUI Interface
 Name:		qsynth
-Version:	1.0.3
-Release:	4.1
+Version:	1.0.5
+Release:	6.1
 License:	GPL-2.0-or-later
 Group:		Productivity/Multimedia/Sound/Midi
 Source:		%{name}-%{version}.tar.gz
 URL:		https://qsynth.sourceforge.io/
 #Packager:	rncbc.org
-
-%if 0%{?fedora_version} >= 34 || 0%{?suse_version} > 1500 || ( 0%{?sle_version} == 150200 && 0%{?is_opensuse} )
-%define qt_major_version  6
-%else
-%define qt_major_version  5
-%endif
 
 BuildRequires:	coreutils
 BuildRequires:	pkgconfig
@@ -46,29 +40,20 @@ BuildRequires:	gcc-c++ >= 10
 %define _GCC	/usr/bin/gcc
 %define _GXX	/usr/bin/g++
 %endif
-%if 0%{qt_major_version} == 6
 %if 0%{?sle_version} == 150200 && 0%{?is_opensuse}
-BuildRequires:	qtbase6.8-static >= 6.8
-BuildRequires:	qttools6.8-static
-BuildRequires:	qttranslations6.8-static
-BuildRequires:	qtsvg6.8-static
+BuildRequires:	qtbase6.9-static >= 6.9
+BuildRequires:	qttools6.9-static
+BuildRequires:	qttranslations6.9-static
+BuildRequires:	qtsvg6.9-static
 %else
 BuildRequires:	cmake(Qt6LinguistTools)
 BuildRequires:	pkgconfig(Qt6Core)
 BuildRequires:	pkgconfig(Qt6Gui)
 BuildRequires:	pkgconfig(Qt6Widgets)
 BuildRequires:	pkgconfig(Qt6Svg)
+BuildRequires:	pkgconfig(Qt6Xml)
 BuildRequires:	pkgconfig(Qt6Network)
 %endif
-%else
-BuildRequires:	cmake(Qt5LinguistTools)
-BuildRequires:	pkgconfig(Qt5Core)
-BuildRequires:	pkgconfig(Qt5Gui)
-BuildRequires:	pkgconfig(Qt5Widgets)
-BuildRequires:	pkgconfig(Qt5Svg)
-BuildRequires:	pkgconfig(Qt5Network)
-%endif
-
 %if %{defined fedora}
 BuildRequires:	jack-audio-connection-kit-devel
 %else
@@ -95,7 +80,7 @@ command line softsynths.
 
 %build
 %if 0%{?sle_version} == 150200 && 0%{?is_opensuse}
-source /opt/qt6.8-static/bin/qt6.8-static-env.sh
+source /opt/qt6.9-static/bin/qt6.9-static-env.sh
 %endif
 CXX=%{_GXX} CC=%{_GCC} \
 cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -Wno-dev -B build
@@ -135,6 +120,10 @@ cmake --install build
 
 
 %changelog
+* Mon Mar  2 2026 Rui Nuno Capela <rncbc@rncbc.org> 1.0.5
+- An End-of-Winter'26 Release.
+* Thu Feb 19 2026 Rui Nuno Capela <rncbc@rncbc.org> 1.0.4
+- A Mid-Winter'26 Release.
 * Thu Mar 27 2025 Rui Nuno Capela <rncbc@rncbc.org> 1.0.3
 - An Early Spring'25 Release.
 * Mon Sep 30 2024 Rui Nuno Capela <rncbc@rncbc.org> 1.0.2
