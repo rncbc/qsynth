@@ -35,6 +35,7 @@
   <keyword>Qt</keyword>
  </keywords>
  <url type="homepage">https://qsynth.sourceforge.io</url>
+ <url type="vcs-browser">https://github.com/rncbc/qsynth</url>
  <project_group>rncbc.org</project_group>
  <developer_name>rncbc aka. Rui Nuno Capela</developer_name>
  <update_contact>rncbc@rncbc.org</update_contact>
