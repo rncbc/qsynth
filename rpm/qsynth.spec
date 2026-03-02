@@ -17,8 +17,8 @@
 
 Summary:	A fluidsynth Qt GUI Interface
 Name:		qsynth
-Version:	1.0.4
-Release:	5.1
+Version:	1.0.5
+Release:	6.1
 License:	GPL-2.0-or-later
 Group:		Productivity/Multimedia/Sound/Midi
 Source:		%{name}-%{version}.tar.gz
@@ -120,6 +120,8 @@ cmake --install build
 
 
 %changelog
+* Mon Mar  2 2026 Rui Nuno Capela <rncbc@rncbc.org> 1.0.5
+- An End-of-Winter'26 Release.
 * Thu Feb 19 2026 Rui Nuno Capela <rncbc@rncbc.org> 1.0.4
 - A Mid-Winter'26 Release.
 * Thu Mar 27 2025 Rui Nuno Capela <rncbc@rncbc.org> 1.0.3
