@@ -25,6 +25,8 @@ Source:		%{name}-%{version}.tar.gz
 URL:		https://qsynth.sourceforge.io/
 #Packager:	rncbc.org
 
+%global debug_package %{nil}
+
 BuildRequires:	coreutils
 BuildRequires:	pkgconfig
 BuildRequires:	glibc-devel
