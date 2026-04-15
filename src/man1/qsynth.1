@@ -1,4 +1,4 @@
-.TH QSYNTH 1 "June 17, 2014"
+.TH qsynth 1 "April 15, 2026"
 .SH NAME
 Qsynth \- A fluidsynth Qt GUI Interface
 .SH SYNOPSIS
@@ -7,7 +7,7 @@ Qsynth \- A fluidsynth Qt GUI Interface
 .SH DESCRIPTION
 This manual page documents briefly the
 .B qsynth
-command.
+command-line options.
 .PP
 \fBQsynth\fP is a fluidsynth GUI front-end application written
 in C++ around the Qt framework using Qt Designer. Eventually it
@@ -25,7 +25,7 @@ Don't create a midi driver to read MIDI input events [default = yes]
 .HP
 \fB\-m\fR, \fB\-\-midi\-driver\fR=[\fIlabel\fR]
 .IP
-The name of the midi driver to use [oss, alsa, alsa_seq, ...]
+The name of the midi driver to use [alsa_raw, alsa_seq, jack, ...]
 .HP
 \fB\-K\fR, \fB\-\-midi\-channels\fR=[\fInum\fR]
 .IP
@@ -33,11 +33,11 @@ The number of midi channels [default = 16]
 .HP
 \fB\-a\fR, \fB\-\-audio\-driver\fR=[\fIlabel\fR]
 .IP
-The audio driver [alsa,jack,oss,dsound,...]
+The audio driver [alsa, jack, pipewire, ...]
 .HP
 \fB\-j\fR, \fB\-\-connect\-jack\-outputs\fR
 .IP
-Attempt to connect the jack outputs to the physical ports
+Attempt to connect the jack outputs to the physical ports.
 .HP
 \fB\-L\fR, \fB\-\-audio\-channels\fR=[\fInum\fR]
 .IP
@@ -49,15 +49,15 @@ The number of audio groups [default = 1]
 .HP
 \fB\-z\fR, \fB\-\-audio\-bufsize\fR=[\fIsize\fR]
 .IP
-Size of each audio buffer
+Size of each audio buffer.
 .HP
 \fB\-c\fR, \fB\-\-audio\-bufcount\fR=[\fIcount\fR]
 .IP
-Number of audio buffers
+Number of audio buffers.
 .HP
 \fB\-r\fR, \fB\-\-sample\-rate\fR=[\fIrate\fR]
 .IP
-Set the sample rate
+Set the sample rate.
 .HP
 \fB\-R\fR, \fB\-\-reverb\fR[=\fIflag\fR]
 .IP
@@ -85,19 +85,19 @@ Don't read commands from the shell [ignored]
 .HP
 \fB\-d\fR, \fB\-\-dump\fR
 .IP
-Dump midi router events
+Dump midi router events.
 .HP
 \fB\-V\fR, \fB\-\-verbose\fR
 .IP
-Print out verbose messages about midi events
+Print out verbose messages about midi events.
 .HP
 \fB\-h\fR, \fB\-\-help\fR
 .IP
-Show help about command line options
+Displays help on command-line options.
 .HP
 \fB\-v\fR, \fB\-\-version\fR
 .IP
-Show version information
+Show version information.
 .SH FILES
 Configuration settings are stored in ~/.config/rncbc.org/Qsynth.conf
 .SH SEE ALSO

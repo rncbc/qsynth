@@ -9,220 +9,225 @@
         <translation>(ნაგულისხმევი)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="224"/>
+        <location filename="../qsynthOptions.cpp" line="222"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
         <translation>გამოყენება: %1 [პარამეტრები] [ხმისფონტები] [midiფაილები]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="227"/>
+        <location filename="../qsynthOptions.cpp" line="225"/>
         <source>Options</source>
         <translation>მორგება</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="229"/>
-        <location filename="../qsynthOptions.cpp" line="285"/>
+        <location filename="../qsynthOptions.cpp" line="227"/>
+        <location filename="../qsynthOptions.cpp" line="303"/>
         <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
         <translation>MIDI-ის შეყვანის მოვლენების წასაკითხად midi დრაივერი არ შეიქმნება [ნაგულისხმევი = დიახ]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="231"/>
-        <location filename="../qsynthOptions.cpp" line="287"/>
+        <location filename="../qsynthOptions.cpp" line="229"/>
+        <location filename="../qsynthOptions.cpp" line="305"/>
         <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
         <translation>გამოყენებული midi-ის დრაივერის სახელი [oss,alsa,alsa_seq,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="233"/>
-        <location filename="../qsynthOptions.cpp" line="289"/>
+        <location filename="../qsynthOptions.cpp" line="231"/>
+        <location filename="../qsynthOptions.cpp" line="307"/>
         <source>The number of midi channels [default = 16]</source>
         <translation>midi-ის არხების რაოდენობა [ნაგულისხმევი = 16]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="235"/>
-        <location filename="../qsynthOptions.cpp" line="291"/>
+        <location filename="../qsynthOptions.cpp" line="233"/>
+        <location filename="../qsynthOptions.cpp" line="309"/>
         <source>The audio driver [alsa,jack,oss,dsound,...]</source>
         <translation>აუდიოდრაივერი [alsa,jack,oss,dsound,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="237"/>
-        <location filename="../qsynthOptions.cpp" line="293"/>
+        <location filename="../qsynthOptions.cpp" line="235"/>
+        <location filename="../qsynthOptions.cpp" line="311"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
         <translation>JACK-ის გამოტანების ფიზიკურ პორტებზე დაკავშირების მცდელობა</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="239"/>
-        <location filename="../qsynthOptions.cpp" line="295"/>
+        <location filename="../qsynthOptions.cpp" line="237"/>
+        <location filename="../qsynthOptions.cpp" line="313"/>
         <source>The number of stereo audio channels [default = 1]</source>
         <translation>სტერეო აუდიოარხების რაოდენობა [ნაგულისხმევი = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="241"/>
-        <location filename="../qsynthOptions.cpp" line="297"/>
+        <location filename="../qsynthOptions.cpp" line="239"/>
+        <location filename="../qsynthOptions.cpp" line="315"/>
         <source>The number of audio groups [default = 1]</source>
         <translation>აუდიოს ჯგუფების რაოდენობა [ნაგულისხმევი = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="243"/>
-        <location filename="../qsynthOptions.cpp" line="299"/>
+        <location filename="../qsynthOptions.cpp" line="241"/>
+        <location filename="../qsynthOptions.cpp" line="317"/>
         <source>Size of each audio buffer</source>
         <translation>თითოეული აუდიობუფერის ზომა</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="245"/>
-        <location filename="../qsynthOptions.cpp" line="301"/>
+        <location filename="../qsynthOptions.cpp" line="243"/>
+        <location filename="../qsynthOptions.cpp" line="319"/>
         <source>Number of audio buffers</source>
         <translation>აუდიობუფერების რაოდენობა</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="247"/>
-        <location filename="../qsynthOptions.cpp" line="303"/>
+        <location filename="../qsynthOptions.cpp" line="245"/>
+        <location filename="../qsynthOptions.cpp" line="321"/>
         <source>Set the sample rate</source>
         <translation>დააყენეთ სემპლების სიხშირე</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="249"/>
-        <location filename="../qsynthOptions.cpp" line="305"/>
+        <location filename="../qsynthOptions.cpp" line="247"/>
+        <location filename="../qsynthOptions.cpp" line="323"/>
         <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
         <translation>რევერბერაციის ჩართვა, ან გამორთქვა [1|0|yes|no|on|off, ნაგულისხმევი = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="251"/>
-        <location filename="../qsynthOptions.cpp" line="307"/>
+        <location filename="../qsynthOptions.cpp" line="249"/>
+        <location filename="../qsynthOptions.cpp" line="325"/>
         <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
         <translation>ქორის ჩართვა, ან გამორთვა [1|0|yes|no|on|off, ნაგულისხმევი = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="253"/>
+        <location filename="../qsynthOptions.cpp" line="251"/>
         <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
         <translation>მთავარი გაძლიერების დაყენება [0 &lt; გაძლიერება &lt; 2, ნაგულისხმევი = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="255"/>
-        <location filename="../qsynthOptions.cpp" line="311"/>
+        <location filename="../qsynthOptions.cpp" line="253"/>
+        <location filename="../qsynthOptions.cpp" line="329"/>
         <source>Define a setting name=value</source>
         <translation>აღწერეთ პარამეტრი. სახელი=მნიშვნელობა</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="257"/>
-        <location filename="../qsynthOptions.cpp" line="313"/>
+        <location filename="../qsynthOptions.cpp" line="255"/>
+        <location filename="../qsynthOptions.cpp" line="331"/>
         <source>Create and start server [default = no]</source>
         <translation>სერვერის შექმნა და გაშვება [ნაგულისხმევი = no]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="259"/>
-        <location filename="../qsynthOptions.cpp" line="315"/>
+        <location filename="../qsynthOptions.cpp" line="257"/>
+        <location filename="../qsynthOptions.cpp" line="333"/>
         <source>Don&apos;t read commands from the shell [ignored]</source>
         <translation>ბრძანებები გარსიდან წაკითხული არ იქნება [გამოტოვებულია]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="261"/>
-        <location filename="../qsynthOptions.cpp" line="317"/>
+        <location filename="../qsynthOptions.cpp" line="259"/>
+        <location filename="../qsynthOptions.cpp" line="335"/>
         <source>Dump midi router events</source>
         <translation>MIDI რაუტერის მოვლენების გამოტანა</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="263"/>
-        <location filename="../qsynthOptions.cpp" line="319"/>
+        <location filename="../qsynthOptions.cpp" line="261"/>
+        <location filename="../qsynthOptions.cpp" line="337"/>
         <source>Print out verbose messages about midi events</source>
         <translation>მეტი შეტყობინების გამოტანა MIDI-ის მოვლენების შესახებ</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="265"/>
+        <location filename="../qsynthOptions.cpp" line="263"/>
         <source>Show help about command line options</source>
         <translation>დახმარების ჩვენება ბრძანების სტრიქონის პარამეტრების შესახებ</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="267"/>
+        <location filename="../qsynthOptions.cpp" line="265"/>
         <source>Show version information</source>
         <translation>ვერსიის ინფორმაციის ჩვენება</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="309"/>
+        <location filename="../qsynthOptions.cpp" line="327"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 1]</source>
         <translation>მთავარი გაძლიერების დაყენება [0 &lt; გაძლიერება &lt; 10, ნაგულისხმევი = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="323"/>
+        <location filename="../qsynthOptions.cpp" line="339"/>
+        <source>Displays help on command-line options.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="342"/>
         <source>SoundFont Files</source>
         <translation>SoundFont-ის ფაილები</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="324"/>
+        <location filename="../qsynthOptions.cpp" line="343"/>
         <source>[soundfonts]</source>
         <translation>[ხმისფონტები]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="326"/>
+        <location filename="../qsynthOptions.cpp" line="345"/>
         <source>MIDI Files</source>
         <translation>MIDI ფაილები</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="327"/>
+        <location filename="../qsynthOptions.cpp" line="346"/>
         <source>[midifiles]</source>
         <translation>[midiფაილები]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="367"/>
-        <location filename="../qsynthOptions.cpp" line="543"/>
+        <location filename="../qsynthOptions.cpp" line="386"/>
+        <location filename="../qsynthOptions.cpp" line="562"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation>პარამეტრს -m არგუმენტი სჭირდება (midi-driver).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="377"/>
-        <location filename="../qsynthOptions.cpp" line="552"/>
+        <location filename="../qsynthOptions.cpp" line="396"/>
+        <location filename="../qsynthOptions.cpp" line="571"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation>პარამეტრს -K არგუმენტი სჭირდება (midi-channels).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="386"/>
-        <location filename="../qsynthOptions.cpp" line="561"/>
+        <location filename="../qsynthOptions.cpp" line="405"/>
+        <location filename="../qsynthOptions.cpp" line="580"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation>პარამეტრს -a არგუმენტი სჭირდება (audio-driver).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="400"/>
-        <location filename="../qsynthOptions.cpp" line="573"/>
+        <location filename="../qsynthOptions.cpp" line="419"/>
+        <location filename="../qsynthOptions.cpp" line="592"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation>პარამეტრს -L არგუმენტი სჭირდება (audio-channels).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="410"/>
-        <location filename="../qsynthOptions.cpp" line="582"/>
+        <location filename="../qsynthOptions.cpp" line="429"/>
+        <location filename="../qsynthOptions.cpp" line="601"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation>პარამეტრს -G არგუმენტი სჭირდება (audio-groups).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="420"/>
-        <location filename="../qsynthOptions.cpp" line="591"/>
+        <location filename="../qsynthOptions.cpp" line="439"/>
+        <location filename="../qsynthOptions.cpp" line="610"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation>პარამეტრს -z არგუმენტი სჭირდება (audio-bufsize).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="430"/>
-        <location filename="../qsynthOptions.cpp" line="600"/>
+        <location filename="../qsynthOptions.cpp" line="449"/>
+        <location filename="../qsynthOptions.cpp" line="619"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation>პარამეტრს -c არგუმენტი სჭირდება (audio-bufcount).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="440"/>
-        <location filename="../qsynthOptions.cpp" line="609"/>
+        <location filename="../qsynthOptions.cpp" line="459"/>
+        <location filename="../qsynthOptions.cpp" line="628"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation>პარამეტრს -r არგუმენტი სჭირდება (sample-rate).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="468"/>
-        <location filename="../qsynthOptions.cpp" line="636"/>
+        <location filename="../qsynthOptions.cpp" line="487"/>
+        <location filename="../qsynthOptions.cpp" line="655"/>
         <source>Option -g requires an argument (gain).</source>
         <translation>პარამეტრს -g არგუმენტი სჭირდება (gain).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="477"/>
-        <location filename="../qsynthOptions.cpp" line="645"/>
+        <location filename="../qsynthOptions.cpp" line="496"/>
+        <location filename="../qsynthOptions.cpp" line="664"/>
         <source>Option -o requires an argument.</source>
         <translation>პარამეტრს -o არგუმენტი სჭირდება.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="512"/>
-        <location filename="../qsynthOptions.cpp" line="694"/>
+        <location filename="../qsynthOptions.cpp" line="531"/>
+        <location filename="../qsynthOptions.cpp" line="713"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation>უცნობი პარამეტრი &apos;%1&apos;.</translation>
     </message>
@@ -1136,39 +1141,39 @@ restarting all fluidsynth engines.</source>
         <translation>მოხდება თუ არა სტანდარტული გამოტანის (stdout/stderr) ჩაწერა შეტყობინებების ფანჯარაში</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="342"/>
+        <location filename="../qsynthOptionsForm.cpp" line="328"/>
         <source>Warning</source>
         <translation>გაფრთხილება</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="344"/>
+        <location filename="../qsynthOptionsForm.cpp" line="330"/>
         <source>Do you want to apply the changes?</source>
         <translation>გნებავთ ცვლილებების გადატარება?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="343"/>
+        <location filename="../qsynthOptionsForm.cpp" line="329"/>
         <source>Some options have been changed.</source>
         <translation>ზოგიერთი პარამეტრი შეიცვალა.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="315"/>
+        <location filename="../qsynthOptionsForm.cpp" line="301"/>
         <source>Information</source>
         <translation>ინფორმაცია</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="316"/>
+        <location filename="../qsynthOptionsForm.cpp" line="302"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation>ზოგიერთი პარამეტრი ძალაში
 ამ აპლიკაციის შემდეგი გაშვებისას შევა.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="501"/>
+        <location filename="../qsynthOptionsForm.cpp" line="459"/>
         <source>Messages Log</source>
         <translation>შეტყობინებების ჟურნალი</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="503"/>
+        <location filename="../qsynthOptionsForm.cpp" line="461"/>
         <source>Log files</source>
         <translation>ჟურნალის ფაილები</translation>
     </message>
@@ -1362,20 +1367,19 @@ next time you start this application.</source>
         <translation>სისტემურ საათთან ხატულაში ჩაკე&amp;ცილი გაშვება</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="819"/>
+        <location filename="../qsynthOptionsForm.ui" line="788"/>
         <source>&amp;Base font size:</source>
         <translation>სა&amp;ბაზისო ფონტის ზომა:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="838"/>
+        <location filename="../qsynthOptionsForm.ui" line="807"/>
         <source>Base application font size (pt.)</source>
         <translation>საბაზისო აპლიკაციის ფონტის ზომა (წრტ.)</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="652"/>
         <location filename="../qsynthOptionsForm.ui" line="743"/>
-        <location filename="../qsynthOptionsForm.ui" line="792"/>
-        <location filename="../qsynthOptionsForm.ui" line="845"/>
+        <location filename="../qsynthOptionsForm.ui" line="814"/>
         <location filename="../qsynthOptionsForm.cpp" line="44"/>
         <source>(default)</source>
         <translation>(ნაგულისხმევი)</translation>
@@ -1386,42 +1390,37 @@ next time you start this application.</source>
         <translation>ზოგადი</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="775"/>
-        <source>Language</source>
-        <translation>ენა</translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptionsForm.ui" line="850"/>
+        <location filename="../qsynthOptionsForm.ui" line="819"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="855"/>
+        <location filename="../qsynthOptionsForm.ui" line="824"/>
         <source>7</source>
         <translation>7</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="860"/>
+        <location filename="../qsynthOptionsForm.ui" line="829"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="865"/>
+        <location filename="../qsynthOptionsForm.ui" line="834"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="870"/>
+        <location filename="../qsynthOptionsForm.ui" line="839"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="875"/>
+        <location filename="../qsynthOptionsForm.ui" line="844"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="880"/>
+        <location filename="../qsynthOptionsForm.ui" line="849"/>
         <source>12</source>
         <translation>12</translation>
     </message>

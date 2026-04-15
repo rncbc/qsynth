@@ -279,43 +279,64 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 	parser.setApplicationDescription(
 		QSYNTH_TITLE " - " + QObject::tr(QSYNTH_SUBTITLE));
 
-	parser.addOption({{"n", "no-midi-in"},
+	const QString s_no_midi_in           = "no-midi-in";
+	const QString s_midi_driver          = "midi-driver";
+	const QString s_midi_channels        = "midi-channels";
+	const QString s_audio_driver         = "audio-driver";
+	const QString s_connect_jack_outputs = "connect-jack-outputs";
+	const QString s_audio_channels       = "audio-channels";
+	const QString s_audio_groups         = "audio-groups";
+	const QString s_audio_bufsize        = "audio-bufsize";
+	const QString s_audio_bufcount       = "audio-bufcount";
+	const QString s_sample_rate          = "sample-rate";
+	const QString s_reverb               = "reverb";
+	const QString s_chorus               = "chorus";
+	const QString s_gain                 = "gain";
+	const QString s_option               = "option";
+	const QString s_server               = "server";
+	const QString s_no_shell             = "no-shell";
+	const QString s_dump                 = "dump";
+	const QString s_verbose              = "verbose";
+	const QString s_help                 = "help";
+
+	parser.addOption({{"n", s_no_midi_in},
 		QObject::tr("Don't create a midi driver to read MIDI input events [default = yes]")});
-	parser.addOption({{"m", "midi-driver"},
+	parser.addOption({{"m", s_midi_driver},
 		QObject::tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]"), "label"});
-	parser.addOption({{"K", "midi-channels"},
+	parser.addOption({{"K", s_midi_channels},
 		QObject::tr("The number of midi channels [default = 16]"), "num"});
-	parser.addOption({{"a", "audio-driver"},
+	parser.addOption({{"a", s_audio_driver},
 		QObject::tr("The audio driver [alsa,jack,oss,dsound,...]"), "label"});
-	parser.addOption({{"j", "connect-jack-outputs"},
+	parser.addOption({{"j", s_connect_jack_outputs},
 		QObject::tr("Attempt to connect the jack outputs to the physical ports")});
-	parser.addOption({{"L", "audio-channels"},
+	parser.addOption({{"L", s_audio_channels},
 		QObject::tr("The number of stereo audio channels [default = 1]"), "num"});
-	parser.addOption({{"G", "audio-groups"},
+	parser.addOption({{"G", s_audio_groups},
 		QObject::tr("The number of audio groups [default = 1]"), "num"});
-	parser.addOption({{"z", "audio-bufsize"},
+	parser.addOption({{"z", s_audio_bufsize},
 		QObject::tr("Size of each audio buffer"), "size"});
-	parser.addOption({{"c", "audio-bufcount"},
+	parser.addOption({{"c", s_audio_bufcount},
 		QObject::tr("Number of audio buffers"), "count"});
-	parser.addOption({{"r", "sample-rate"},
+	parser.addOption({{"r", s_sample_rate},
 		QObject::tr("Set the sample rate"), "rate"});
-	parser.addOption({{"R", "reverb"},
+	parser.addOption({{"R", s_reverb},
 		QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]"), "flag"});
-	parser.addOption({{"C", "chorus"},
+	parser.addOption({{"C", s_chorus},
 		QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]"), "flag"});
-	parser.addOption({{"g", "gain"},
+	parser.addOption({{"g", s_gain},
 		QObject::tr("Set the master gain [0 < gain < 10, default = 1]"), "gain"});
-	parser.addOption({{"o", "option"},
+	parser.addOption({{"o", s_option},
 		QObject::tr("Define a setting name=value"), "name=value"});
-	parser.addOption({{"s", "server"},
+	parser.addOption({{"s", s_server},
 		QObject::tr("Create and start server [default = no]")});
-	parser.addOption({{"i", "no-shell"},
+	parser.addOption({{"i", s_no_shell},
 		QObject::tr("Don't read commands from the shell [ignored]")});
-	parser.addOption({{"d", "dump"},
+	parser.addOption({{"d", s_dump},
 		QObject::tr("Dump midi router events")});
-	parser.addOption({{"V", "verbose"},
+	parser.addOption({{"V", s_verbose},
 		QObject::tr("Print out verbose messages about midi events")});
-	const QCommandLineOption& helpOption = parser.addHelpOption();
+	parser.addOption({{"h", s_help},
+		QObject::tr("Displays help on command-line options.")});
 	const QCommandLineOption& versionOption = parser.addVersionOption();
 	parser.addPositionalArgument("soundfonts",
 		QObject::tr("SoundFont Files"),
@@ -329,7 +350,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		return false;
 	}
 
-	if (parser.isSet(helpOption)) {
+	if (parser.isSet(s_help)) {
 		show_error(parser.helpText());
 		return false;
 	}
@@ -355,12 +376,12 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		return false;
 	}
 
-	if (parser.isSet("no-midi-in")) {
+	if (parser.isSet(s_no_midi_in)) {
 		m_pDefaultSetup->bMidiIn = false;
 	}
 
-	if (parser.isSet("midi-driver")) {
-		const QString& sVal = parser.value("midi-driver");
+	if (parser.isSet(s_midi_driver)) {
+		const QString& sVal = parser.value(s_midi_driver);
 		if (sVal.isEmpty()) {
 			show_error(QObject::tr("Option -m requires an argument (midi-driver)."));
 			return false;
@@ -368,9 +389,9 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->sMidiDriver = sVal;
 	}
 
-	if (parser.isSet("midi-channels")) {
+	if (parser.isSet(s_midi_channels)) {
 		bool bOK = false;
-		const int iVal = parser.value("midi-channels").toInt(&bOK);
+		const int iVal = parser.value(s_midi_channels).toInt(&bOK);
 		if (!bOK) {
 			show_error(QObject::tr("Option -K requires an argument (midi-channels)."));
 			return false;
@@ -378,8 +399,8 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->iMidiChannels = iVal;
 	}
 
-	if (parser.isSet("audio-driver")) {
-		const QString& sVal = parser.value("audio-driver");
+	if (parser.isSet(s_audio_driver)) {
+		const QString& sVal = parser.value(s_audio_driver);
 		if (sVal.isEmpty()) {
 			show_error(QObject::tr("Option -a requires an argument (audio-driver)."));
 			return false;
@@ -387,13 +408,13 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->sAudioDriver = sVal;
 	}
 
-	if (parser.isSet("connect-jack-outputs")) {
+	if (parser.isSet(s_connect_jack_outputs)) {
 		m_pDefaultSetup->bJackAutoConnect = true;
 	}
 
-	if (parser.isSet("audio-channels")) {
+	if (parser.isSet(s_audio_channels)) {
 		bool bOK = false;
-		const int iVal = parser.value("audio-channels").toInt(&bOK);
+		const int iVal = parser.value(s_audio_channels).toInt(&bOK);
 		if (!bOK) {
 			show_error(QObject::tr("Option -L requires an argument (audio-channels)."));
 			return false;
@@ -401,9 +422,9 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->iAudioChannels = iVal;
 	}
 
-	if (parser.isSet("audio-groups")) {
+	if (parser.isSet(s_audio_groups)) {
 		bool bOK = false;
-		const int iVal = parser.value("audio-groups").toInt(&bOK);
+		const int iVal = parser.value(s_audio_groups).toInt(&bOK);
 		if (!bOK) {
 			show_error(QObject::tr("Option -G requires an argument (audio-groups)."));
 			return false;
@@ -411,9 +432,9 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->iAudioGroups = iVal;
 	}
 
-	if (parser.isSet("audio-bufsize")) {
+	if (parser.isSet(s_audio_bufsize)) {
 		bool bOK = false;
-		const int iVal = parser.value("audio-bufsize").toInt(&bOK);
+		const int iVal = parser.value(s_audio_bufsize).toInt(&bOK);
 		if (!bOK) {
 			show_error(QObject::tr("Option -z requires an argument (audio-bufsize)."));
 			return false;
@@ -421,9 +442,9 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->iAudioBufSize =iVal;
 	}
 
-	if (parser.isSet("audio-bufcount")) {
+	if (parser.isSet(s_audio_bufcount)) {
 		bool bOK = false;
-		const int iVal = parser.value("audio-bufcount").toInt(&bOK);
+		const int iVal = parser.value(s_audio_bufcount).toInt(&bOK);
 		if (!bOK) {
 			show_error(QObject::tr("Option -c requires an argument (audio-bufcount)."));
 			return false;
@@ -431,9 +452,9 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->iAudioBufCount = iVal;
 	}
 
-	if (parser.isSet("sample-rate")) {
+	if (parser.isSet(s_sample_rate)) {
 		bool bOK = false;
-		const float fVal = parser.value("sample-rate").toFloat(&bOK);
+		const float fVal = parser.value(s_sample_rate).toFloat(&bOK);
 		if (!bOK) {
 			show_error(QObject::tr("Option -r requires an argument (sample-rate)."));
 			return false;
@@ -441,8 +462,8 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->fSampleRate = fVal;
 	}
 
-	if (parser.isSet("reverb")) {
-		const QString& sVal = parser.value("reverb");
+	if (parser.isSet(s_reverb)) {
+		const QString& sVal = parser.value(s_reverb);
 		if (sVal.isEmpty()) {
 			m_pDefaultSetup->bReverbActive = true;
 		} else {
@@ -450,8 +471,8 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		}
 	}
 
-	if (parser.isSet("chorus")) {
-		const QString& sVal = parser.value("chorus");
+	if (parser.isSet(s_chorus)) {
+		const QString& sVal = parser.value(s_chorus);
 		if (sVal.isEmpty()) {
 			m_pDefaultSetup->bChorusActive = true;
 		} else {
@@ -459,9 +480,9 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		}
 	}
 
-	if (parser.isSet("gain")) {
+	if (parser.isSet(s_gain)) {
 		bool bOK = false;
-		const float fVal = parser.value("gain").toFloat(&bOK);
+		const float fVal = parser.value(s_gain).toFloat(&bOK);
 		if (!bOK) {
 			show_error(QObject::tr("Option -g requires an argument (gain)."));
 			return false;
@@ -469,8 +490,8 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->fGain = fVal;
 	}
 
-	if (parser.isSet("option")) {
-		const QStringList& sValues = parser.values("option");
+	if (parser.isSet(s_option)) {
+		const QStringList& sValues = parser.values(s_option);
 		if (sValues.isEmpty()) {
 			show_error(QObject::tr("Option -o requires an argument."));
 			return false;
@@ -478,19 +499,19 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		m_pDefaultSetup->options.append(sValues);
 	}
 
-	if (parser.isSet("server")) {
+	if (parser.isSet(s_server)) {
 		m_pDefaultSetup->bServer = true;
 	}
 
-	if (parser.isSet("no-shell")) {
+	if (parser.isSet(s_no_shell)) {
 		// Just ignore this one...
 	}
 
-	if (parser.isSet("dump")) {
+	if (parser.isSet(s_dump)) {
 		m_pDefaultSetup->bMidiDump = true;
 	}
 
-	if (parser.isSet("verbose")) {
+	if (parser.isSet(s_verbose)) {
 		m_pDefaultSetup->bVerbose = true;
 	}
 

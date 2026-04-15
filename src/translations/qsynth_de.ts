@@ -9,220 +9,225 @@
         <translation>(voreingestellt)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="224"/>
+        <location filename="../qsynthOptions.cpp" line="222"/>
         <source>Usage: %1 [options] [soundfonts] [midifiles]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="227"/>
+        <location filename="../qsynthOptions.cpp" line="225"/>
         <source>Options</source>
         <translation type="unfinished">Optionen</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="229"/>
-        <location filename="../qsynthOptions.cpp" line="285"/>
+        <location filename="../qsynthOptions.cpp" line="227"/>
+        <location filename="../qsynthOptions.cpp" line="303"/>
         <source>Don&apos;t create a midi driver to read MIDI input events [default = yes]</source>
         <translation type="unfinished">Keinen MIDI-Treiber erzeugen, um eingehende MIDI-Ereignisse zu lesen [Voreinstellung = yes]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="231"/>
-        <location filename="../qsynthOptions.cpp" line="287"/>
+        <location filename="../qsynthOptions.cpp" line="229"/>
+        <location filename="../qsynthOptions.cpp" line="305"/>
         <source>The name of the midi driver to use [oss,alsa,alsa_seq,...]</source>
         <translation type="unfinished">Name des zu benutzenden MIDI-Treibers [oss, alsa, alsa_seq,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="233"/>
-        <location filename="../qsynthOptions.cpp" line="289"/>
+        <location filename="../qsynthOptions.cpp" line="231"/>
+        <location filename="../qsynthOptions.cpp" line="307"/>
         <source>The number of midi channels [default = 16]</source>
         <translation type="unfinished">Anzahl der MIDI-Kanäle [Voreinstellung = 16]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="235"/>
-        <location filename="../qsynthOptions.cpp" line="291"/>
+        <location filename="../qsynthOptions.cpp" line="233"/>
+        <location filename="../qsynthOptions.cpp" line="309"/>
         <source>The audio driver [alsa,jack,oss,dsound,...]</source>
         <translation type="unfinished">Der Audiotreiber [alsa, jack, oss, dsound,...]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="237"/>
-        <location filename="../qsynthOptions.cpp" line="293"/>
+        <location filename="../qsynthOptions.cpp" line="235"/>
+        <location filename="../qsynthOptions.cpp" line="311"/>
         <source>Attempt to connect the jack outputs to the physical ports</source>
         <translation type="unfinished">Versuch, die JACK-Ausgänge mit den physikalischen Anschlüssen zu verbinden</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="239"/>
-        <location filename="../qsynthOptions.cpp" line="295"/>
+        <location filename="../qsynthOptions.cpp" line="237"/>
+        <location filename="../qsynthOptions.cpp" line="313"/>
         <source>The number of stereo audio channels [default = 1]</source>
         <translation type="unfinished">Anzahl der Stereo-Audiokanäle [Voreinstellung = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="241"/>
-        <location filename="../qsynthOptions.cpp" line="297"/>
+        <location filename="../qsynthOptions.cpp" line="239"/>
+        <location filename="../qsynthOptions.cpp" line="315"/>
         <source>The number of audio groups [default = 1]</source>
         <translation type="unfinished">Anzahl der Audiogruppen [Voreinstellung = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="243"/>
-        <location filename="../qsynthOptions.cpp" line="299"/>
+        <location filename="../qsynthOptions.cpp" line="241"/>
+        <location filename="../qsynthOptions.cpp" line="317"/>
         <source>Size of each audio buffer</source>
         <translation type="unfinished">Größe eines Audiopuffers</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="245"/>
-        <location filename="../qsynthOptions.cpp" line="301"/>
+        <location filename="../qsynthOptions.cpp" line="243"/>
+        <location filename="../qsynthOptions.cpp" line="319"/>
         <source>Number of audio buffers</source>
         <translation type="unfinished">Anzahl der Audiopuffer</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="247"/>
-        <location filename="../qsynthOptions.cpp" line="303"/>
+        <location filename="../qsynthOptions.cpp" line="245"/>
+        <location filename="../qsynthOptions.cpp" line="321"/>
         <source>Set the sample rate</source>
         <translation type="unfinished">Abtastrate festlegen</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="249"/>
-        <location filename="../qsynthOptions.cpp" line="305"/>
+        <location filename="../qsynthOptions.cpp" line="247"/>
+        <location filename="../qsynthOptions.cpp" line="323"/>
         <source>Turn the reverb on or off [1|0|yes|no|on|off, default = on]</source>
         <translation type="unfinished">Hall ein- oder ausschalten [[1|0|yes|no|on|off, Voreinstellung = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="251"/>
-        <location filename="../qsynthOptions.cpp" line="307"/>
+        <location filename="../qsynthOptions.cpp" line="249"/>
+        <location filename="../qsynthOptions.cpp" line="325"/>
         <source>Turn the chorus on or off [1|0|yes|no|on|off, default = on]</source>
         <translation type="unfinished">Chor ein- oder ausschalten [[1|0|yes|no|on|off, Voreinstellung = on]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="253"/>
+        <location filename="../qsynthOptions.cpp" line="251"/>
         <source>Set the master gain [0 &lt; gain &lt; 2, default = 1]</source>
         <translation type="unfinished">Ausgangsverstärkung festlegen [0 &lt; gain &lt; 2, Voreinstellung = 1]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="255"/>
-        <location filename="../qsynthOptions.cpp" line="311"/>
+        <location filename="../qsynthOptions.cpp" line="253"/>
+        <location filename="../qsynthOptions.cpp" line="329"/>
         <source>Define a setting name=value</source>
         <translation type="unfinished">Einstellung definieren Name=Wert</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="257"/>
-        <location filename="../qsynthOptions.cpp" line="313"/>
+        <location filename="../qsynthOptions.cpp" line="255"/>
+        <location filename="../qsynthOptions.cpp" line="331"/>
         <source>Create and start server [default = no]</source>
         <translation type="unfinished">Server erzeugen und Starten [Voreinstellung = nein]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="259"/>
-        <location filename="../qsynthOptions.cpp" line="315"/>
+        <location filename="../qsynthOptions.cpp" line="257"/>
+        <location filename="../qsynthOptions.cpp" line="333"/>
         <source>Don&apos;t read commands from the shell [ignored]</source>
         <translation type="unfinished">Lese keine Kommandos von der Shell [ignoriert]</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="261"/>
-        <location filename="../qsynthOptions.cpp" line="317"/>
+        <location filename="../qsynthOptions.cpp" line="259"/>
+        <location filename="../qsynthOptions.cpp" line="335"/>
         <source>Dump midi router events</source>
         <translation type="unfinished">Ereignisse des MIDI-Routers ausgeben</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="263"/>
-        <location filename="../qsynthOptions.cpp" line="319"/>
+        <location filename="../qsynthOptions.cpp" line="261"/>
+        <location filename="../qsynthOptions.cpp" line="337"/>
         <source>Print out verbose messages about midi events</source>
         <translation type="unfinished">Zeige ausführliche Meldungen für MIDI-Ereignisse an</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="265"/>
+        <location filename="../qsynthOptions.cpp" line="263"/>
         <source>Show help about command line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="267"/>
+        <location filename="../qsynthOptions.cpp" line="265"/>
         <source>Show version information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="309"/>
+        <location filename="../qsynthOptions.cpp" line="327"/>
         <source>Set the master gain [0 &lt; gain &lt; 10, default = 1]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="323"/>
+        <location filename="../qsynthOptions.cpp" line="339"/>
+        <source>Displays help on command-line options.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../qsynthOptions.cpp" line="342"/>
         <source>SoundFont Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="324"/>
+        <location filename="../qsynthOptions.cpp" line="343"/>
         <source>[soundfonts]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="326"/>
+        <location filename="../qsynthOptions.cpp" line="345"/>
         <source>MIDI Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="327"/>
+        <location filename="../qsynthOptions.cpp" line="346"/>
         <source>[midifiles]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="367"/>
-        <location filename="../qsynthOptions.cpp" line="543"/>
+        <location filename="../qsynthOptions.cpp" line="386"/>
+        <location filename="../qsynthOptions.cpp" line="562"/>
         <source>Option -m requires an argument (midi-driver).</source>
         <translation type="unfinished">Option -m benötigt ein Argument (midi-driver).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="377"/>
-        <location filename="../qsynthOptions.cpp" line="552"/>
+        <location filename="../qsynthOptions.cpp" line="396"/>
+        <location filename="../qsynthOptions.cpp" line="571"/>
         <source>Option -K requires an argument (midi-channels).</source>
         <translation type="unfinished">Option -K benötigt ein Argument (midi-channels).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="386"/>
-        <location filename="../qsynthOptions.cpp" line="561"/>
+        <location filename="../qsynthOptions.cpp" line="405"/>
+        <location filename="../qsynthOptions.cpp" line="580"/>
         <source>Option -a requires an argument (audio-driver).</source>
         <translation type="unfinished">Option -a benötigt ein Argument (audio-driver).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="400"/>
-        <location filename="../qsynthOptions.cpp" line="573"/>
+        <location filename="../qsynthOptions.cpp" line="419"/>
+        <location filename="../qsynthOptions.cpp" line="592"/>
         <source>Option -L requires an argument (audio-channels).</source>
         <translation type="unfinished">Option -L benötigt ein Argument (audio-channels).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="410"/>
-        <location filename="../qsynthOptions.cpp" line="582"/>
+        <location filename="../qsynthOptions.cpp" line="429"/>
+        <location filename="../qsynthOptions.cpp" line="601"/>
         <source>Option -G requires an argument (audio-groups).</source>
         <translation type="unfinished">Option -G benötigt ein Argument (audio-groups).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="420"/>
-        <location filename="../qsynthOptions.cpp" line="591"/>
+        <location filename="../qsynthOptions.cpp" line="439"/>
+        <location filename="../qsynthOptions.cpp" line="610"/>
         <source>Option -z requires an argument (audio-bufsize).</source>
         <translation type="unfinished">Option -z benötigt ein Argument (audio-bufsize).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="430"/>
-        <location filename="../qsynthOptions.cpp" line="600"/>
+        <location filename="../qsynthOptions.cpp" line="449"/>
+        <location filename="../qsynthOptions.cpp" line="619"/>
         <source>Option -c requires an argument (audio-bufcount).</source>
         <translation type="unfinished">Option -c benötigt ein Argument (audio-bufcount).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="440"/>
-        <location filename="../qsynthOptions.cpp" line="609"/>
+        <location filename="../qsynthOptions.cpp" line="459"/>
+        <location filename="../qsynthOptions.cpp" line="628"/>
         <source>Option -r requires an argument (sample-rate).</source>
         <translation type="unfinished">Option -R benötigt ein Argument (sample-rate).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="468"/>
-        <location filename="../qsynthOptions.cpp" line="636"/>
+        <location filename="../qsynthOptions.cpp" line="487"/>
+        <location filename="../qsynthOptions.cpp" line="655"/>
         <source>Option -g requires an argument (gain).</source>
         <translation type="unfinished">Option -g benötigt ein Argument (gain).</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="477"/>
-        <location filename="../qsynthOptions.cpp" line="645"/>
+        <location filename="../qsynthOptions.cpp" line="496"/>
+        <location filename="../qsynthOptions.cpp" line="664"/>
         <source>Option -o requires an argument.</source>
         <translation type="unfinished">Option -o benötigt ein Argument.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptions.cpp" line="512"/>
-        <location filename="../qsynthOptions.cpp" line="694"/>
+        <location filename="../qsynthOptions.cpp" line="531"/>
+        <location filename="../qsynthOptions.cpp" line="713"/>
         <source>Unknown option &apos;%1&apos;.</source>
         <translation type="unfinished">Unbekannte Option: &apos;%1&apos;.</translation>
     </message>
@@ -1244,39 +1249,39 @@ Neustart dieses fluidsynth-Klangmoduls effektiv sein:</translation>
         <translation>Minimiert im &amp;Benachrichtigungsfeld starten</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="315"/>
+        <location filename="../qsynthOptionsForm.cpp" line="301"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="316"/>
+        <location filename="../qsynthOptionsForm.cpp" line="302"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
         <translation>Einige Einstellunge werden erst aktiviert,
 wenn die Anwendung neu getartet wird.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="342"/>
+        <location filename="../qsynthOptionsForm.cpp" line="328"/>
         <source>Warning</source>
         <translation>Warnung</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="343"/>
+        <location filename="../qsynthOptionsForm.cpp" line="329"/>
         <source>Some options have been changed.</source>
         <translation>Einige Einstellungen wurden verändert.</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="344"/>
+        <location filename="../qsynthOptionsForm.cpp" line="330"/>
         <source>Do you want to apply the changes?</source>
         <translation>Möchten Sie die Änderungen anwenden?</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="501"/>
+        <location filename="../qsynthOptionsForm.cpp" line="459"/>
         <source>Messages Log</source>
         <translation>Meldungsprotokoll</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.cpp" line="503"/>
+        <location filename="../qsynthOptionsForm.cpp" line="461"/>
         <source>Log files</source>
         <translation>Protokolldateien</translation>
     </message>
@@ -1342,51 +1347,45 @@ wenn die Anwendung neu getartet wird.</translation>
         <translation>Voreinstellungen</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="819"/>
+        <location filename="../qsynthOptionsForm.ui" line="788"/>
         <source>&amp;Base font size:</source>
         <translation>Schrift&amp;größe:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="838"/>
+        <location filename="../qsynthOptionsForm.ui" line="807"/>
         <source>Base application font size (pt.)</source>
         <translation>Standardschriftgröße für die Anwendung</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="652"/>
         <location filename="../qsynthOptionsForm.ui" line="743"/>
-        <location filename="../qsynthOptionsForm.ui" line="792"/>
-        <location filename="../qsynthOptionsForm.ui" line="845"/>
+        <location filename="../qsynthOptionsForm.ui" line="814"/>
         <location filename="../qsynthOptionsForm.cpp" line="44"/>
         <source>(default)</source>
         <translation>(voreingestellt)</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="775"/>
-        <source>Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qsynthOptionsForm.ui" line="860"/>
+        <location filename="../qsynthOptionsForm.ui" line="829"/>
         <source>8</source>
         <translation>8</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="865"/>
+        <location filename="../qsynthOptionsForm.ui" line="834"/>
         <source>9</source>
         <translation>9</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="870"/>
+        <location filename="../qsynthOptionsForm.ui" line="839"/>
         <source>10</source>
         <translation>10</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="875"/>
+        <location filename="../qsynthOptionsForm.ui" line="844"/>
         <source>11</source>
         <translation>11</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="880"/>
+        <location filename="../qsynthOptionsForm.ui" line="849"/>
         <source>12</source>
         <translation>12</translation>
     </message>
@@ -1411,12 +1410,12 @@ wenn die Anwendung neu getartet wird.</translation>
         <translation>Reaktion auf Mausbe&amp;wegung:</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="850"/>
+        <location filename="../qsynthOptionsForm.ui" line="819"/>
         <source>6</source>
         <translation>6</translation>
     </message>
     <message>
-        <location filename="../qsynthOptionsForm.ui" line="855"/>
+        <location filename="../qsynthOptionsForm.ui" line="824"/>
         <source>7</source>
         <translation>7</translation>
     </message>
