@@ -225,31 +225,31 @@ void qsynthOptions::print_usage ( const QString& arg0 )
 	out << QObject::tr("Options") + ":" + sEol;
 	out << "  -n, --no-midi-in" + sEot +
 		QObject::tr("Don't create a midi driver to read MIDI input events [default = yes]") + sEol;
-	out << "  -m, --midi-driver=[label]" + sEot +
+	out << "  -m, --midi-driver <label>" + sEot +
 		QObject::tr("The name of the midi driver to use [oss,alsa,alsa_seq,...]") + sEol;
-	out << "  -K, --midi-channels=[num]" + sEot +
+	out << "  -K, --midi-channell <num>" + sEot +
 		QObject::tr("The number of midi channels [default = 16]") + sEol;
-	out << "  -a, --audio-driver=[label]" + sEot +
+	out << "  -a, --audio-driver <label>" + sEot +
 		QObject::tr("The audio driver [alsa,jack,oss,dsound,...]") + sEol;
 	out << "  -j, --connect-jack-outputs" + sEot +
 		QObject::tr("Attempt to connect the jack outputs to the physical ports") + sEol;
-	out << "  -L, --audio-channels=[num]" + sEot +
+	out << "  -L, --audio-channels <num>" + sEot +
 		QObject::tr("The number of stereo audio channels [default = 1]") + sEol;
-	out << "  -G, --audio-groups=[num]" + sEot +
+	out << "  -G, --audio-groups <num>" + sEot +
 		QObject::tr("The number of audio groups [default = 1]") + sEol;
-	out << "  -z, --audio-bufsize=[size]" + sEot +
+	out << "  -z, --audio-bufsize <size>" + sEot +
 		QObject::tr("Size of each audio buffer") + sEol;
-	out << "  -c, --audio-bufcount=[count]" + sEot +
+	out << "  -c, --audio-bufcount <count>" + sEot +
 		QObject::tr("Number of audio buffers") + sEol;
-	out << "  -r, --sample-rate=[rate]" + sEot +
+	out << "  -r, --sample-rate <rate>" + sEot +
 		QObject::tr("Set the sample rate") + sEol;
-	out << "  -R, --reverb=[flag]" + sEot +
+	out << "  -R, --reverb <flag>" + sEot +
 		QObject::tr("Turn the reverb on or off [1|0|yes|no|on|off, default = on]") + sEol;
-	out << "  -C, --chorus=[flag]" + sEot +
+	out << "  -C, --chorus <flag>" + sEot +
 		QObject::tr("Turn the chorus on or off [1|0|yes|no|on|off, default = on]") + sEol;
-	out << "  -g, --gain=[gain]" + sEot +
+	out << "  -g, --gain <gain>" + sEot +
 		QObject::tr("Set the master gain [0 < gain < 2, default = 1]") + sEol;
-	out << "  -o, --option [name=value]" + sEot +
+	out << "  -o, --option <name=value>" + sEot +
 		QObject::tr("Define a setting name=value") + sEol;
 	out << "  -s, --server" + sEot +
 		QObject::tr("Create and start server [default = no]") + sEol;
@@ -259,7 +259,7 @@ void qsynthOptions::print_usage ( const QString& arg0 )
 		QObject::tr("Dump midi router events") + sEol;
 	out << "  -V, --verbose" + sEot +
 		QObject::tr("Print out verbose messages about midi events") + sEol;
-	out << "  -h, --help" + sEot +
+	out << "  -?, --help" + sEot +
 		QObject::tr("Show help about command line options") + sEol;
 	out << "  -v, --version" + sEot +
 		QObject::tr("Show version information") + sEol;
@@ -335,7 +335,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		QObject::tr("Dump midi router events")});
 	parser.addOption({{"V", s_verbose},
 		QObject::tr("Print out verbose messages about midi events")});
-	parser.addOption({{"h", s_help},
+	parser.addOption({{"?", s_help},
 		QObject::tr("Displays help on command-line options.")});
 	const QCommandLineOption& versionOption = parser.addVersionOption();
 	parser.addPositionalArgument("soundfonts",
@@ -678,7 +678,7 @@ bool qsynthOptions::parse_args ( const QStringList& args )
 		else if (sArg == "-V" || sArg == "--verbose") {
 			m_pDefaultSetup->bVerbose = true;
 		}
-		else if (sArg == "-h" || sArg == "--help") {
+		else if (sArg == "-?" || sArg == "--help") {
 			print_usage(args.at(0));
 			return false;
 		}
