@@ -4,6 +4,11 @@ Qsynth - A fluidsynth Qt GUI Interface
 ChangeLog
 
 
+GIT HEAD
+
+- Bumping into next development cycle (Qt >= 6.11)
+
+
 1.0.5  2026-03-02  An End-of-Winter'26 Release.
 
 - Regression to the option to change the UI language translation,
