@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>QObject</name>
     <message>
@@ -16,7 +16,7 @@
     <message>
         <location filename="../qsynthOptions.cpp" line="225"/>
         <source>Options</source>
-        <translation type="unfinished">Параметры</translation>
+        <translation>Параметры</translation>
     </message>
     <message>
         <location filename="../qsynthOptions.cpp" line="227"/>
@@ -257,7 +257,7 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="48"/>
         <source>System tray disabled.</source>
-        <translation type="unfinished"></translation>
+        <translation>Область уведомления отключена</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="51"/>
@@ -267,12 +267,12 @@
     <message>
         <location filename="../qsynthAboutForm.cpp" line="72"/>
         <source>Using: Qt %1</source>
-        <translation type="unfinished"></translation>
+        <translation>С использованием Qt %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="84"/>
         <source>FluidSynth %1</source>
-        <translation type="unfinished"></translation>
+        <translation>FluidSynth %1</translation>
     </message>
     <message>
         <location filename="../qsynthAboutForm.cpp" line="88"/>
@@ -770,7 +770,7 @@ temporary MIDI and Audio disruption.</source>
     <message>
         <location filename="../qsynthMainForm.ui" line="170"/>
         <source>Reverb effect activation</source>
-        <translation>Включение эффекта хора</translation>
+        <translation>Включение эффекта реверберации</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.ui" line="958"/>
@@ -797,7 +797,7 @@ temporary MIDI and Audio disruption.</source>
     <message>
         <location filename="../qsynthMainForm.cpp" line="920"/>
         <source>Don&apos;t ask this again</source>
-        <translation type="unfinished"></translation>
+        <translation>Больше не спрашивать</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1393"/>
@@ -831,7 +831,7 @@ in the context menu of the system tray icon.</source>
     <message>
         <location filename="../qsynthMainForm.cpp" line="881"/>
         <source>Don&apos;t show this message again</source>
-        <translation type="unfinished"></translation>
+        <translation>Больше не показывать это сообщение</translation>
     </message>
     <message>
         <location filename="../qsynthMainForm.cpp" line="1018"/>
@@ -1022,7 +1022,7 @@ restarting all fluidsynth engines.</source>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="33"/>
         <source>Messages</source>
-        <translation type="unfinished">Сообщения</translation>
+        <translation>Сообщения</translation>
     </message>
     <message>
         <location filename="../qsynthMessagesForm.ui" line="48"/>
@@ -1165,13 +1165,14 @@ restarting all fluidsynth engines.</source>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="301"/>
         <source>Information</source>
-        <translation type="unfinished">Информация</translation>
+        <translation>Информация</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="302"/>
         <source>Some settings may be only effective
 next time you start this application.</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения некоторых параметров могут вступить в силу
+только при следующем запуске программы.</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.cpp" line="459"/>
@@ -1283,17 +1284,17 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="611"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Настройка</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="626"/>
         <source>&amp;Color palette theme:</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Цветовая схема:</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="645"/>
         <source>Custom color palette theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Другая схема цветовой палитры</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="657"/>
@@ -1315,12 +1316,12 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="720"/>
         <source>&amp;Widget style theme:</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема &amp;виджетов:</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="736"/>
         <source>Custom widget style theme</source>
-        <translation type="unfinished"></translation>
+        <translation>Другая тема виджетов</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="370"/>
@@ -1345,7 +1346,7 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="760"/>
         <source>Defaults</source>
-        <translation type="unfinished"></translation>
+        <translation>Параметры по у молчанию</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="399"/>
@@ -1355,7 +1356,7 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="34"/>
         <source>Options</source>
-        <translation type="unfinished">Параметры</translation>
+        <translation>Параметры</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="402"/>
@@ -1393,7 +1394,7 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="50"/>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Общие</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="819"/>
@@ -1436,12 +1437,12 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="40"/>
         <source>Color Themes</source>
-        <translation type="unfinished"></translation>
+        <translation>Цветовые темы</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="46"/>
         <source>Name</source>
-        <translation type="unfinished">Имя</translation>
+        <translation>Название</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="64"/>
@@ -1456,7 +1457,7 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="80"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="90"/>
@@ -1466,12 +1467,12 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="93"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="106"/>
         <source>Palette</source>
-        <translation type="unfinished"></translation>
+        <translation>Палитра</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="118"/>
@@ -1481,7 +1482,7 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="128"/>
         <source>Generate:</source>
-        <translation type="unfinished"></translation>
+        <translation>Создать:</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="144"/>
@@ -1496,7 +1497,7 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="154"/>
         <source> Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Сбросить</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="177"/>
@@ -1506,7 +1507,7 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="180"/>
         <source>Import...</source>
-        <translation type="unfinished"></translation>
+        <translation>Импорт…</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="190"/>
@@ -1516,43 +1517,43 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="193"/>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспорт…</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.ui" line="216"/>
         <source>Show Details</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Подробности</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="344"/>
         <source>Import File - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Импортировать файл - %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="260"/>
         <location filename="../qsynthPaletteForm.cpp" line="347"/>
         <location filename="../qsynthPaletteForm.cpp" line="392"/>
         <source>Palette files (*.%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Файлы палитр (*.%1)</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="258"/>
         <source>Save Palette - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Сохранить палитру - %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="261"/>
         <location filename="../qsynthPaletteForm.cpp" line="348"/>
         <location filename="../qsynthPaletteForm.cpp" line="393"/>
         <source>All files (*.*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Все файлы (*.*)</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="379"/>
         <location filename="../qsynthPaletteForm.cpp" line="755"/>
         <location filename="../qsynthPaletteForm.cpp" line="763"/>
         <source>Warning - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Предупреждение - %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="380"/>
@@ -1566,7 +1567,7 @@ Sorry.</source>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="389"/>
         <source>Export File - %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспортировать файл - %1</translation>
     </message>
     <message>
         <location filename="../qsynthPaletteForm.cpp" line="756"/>
