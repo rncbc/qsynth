@@ -35,16 +35,15 @@
   <keyword>Qt</keyword>
  </keywords>
  <url type="homepage">https://qsynth.sourceforge.io</url>
+ <url type="vcs-browser">https://github.com/rncbc/qsynth</url>
  <project_group>rncbc.org</project_group>
- <developer_name>rncbc aka. Rui Nuno Capela</developer_name>
+ <developer id="rncbc.org">
+  <name>rncbc aka. Rui Nuno Capela</name>
+ </developer>
  <update_contact>rncbc@rncbc.org</update_contact>
  <releases>
+  <release version="1.0.6" date="2026-06-01" urgency="low" />
   <release version="1.0.5" date="2026-03-02" urgency="high" />
-  <release version="1.0.4" date="2026-02-19" urgency="low" />
-  <release version="1.0.3" date="2025-03-27" urgency="low" />
-  <release version="1.0.2" date="2024-09-30" urgency="low" />
-  <release version="1.0.1" date="2024-09-11" urgency="low" />
-  <release version="1.0.0" date="2024-06-19" urgency="low" />
  </releases>
  <content_rating type="oars-1.0"/>
 </component>

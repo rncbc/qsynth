@@ -17,13 +17,15 @@
 
 Summary:	A fluidsynth Qt GUI Interface
 Name:		qsynth
-Version:	1.0.5
-Release:	6.1
+Version:	1.0.6
+Release:	7.1
 License:	GPL-2.0-or-later
 Group:		Productivity/Multimedia/Sound/Midi
 Source:		%{name}-%{version}.tar.gz
 URL:		https://qsynth.sourceforge.io/
 #Packager:	rncbc.org
+
+%global debug_package %{nil}
 
 BuildRequires:	coreutils
 BuildRequires:	pkgconfig
@@ -41,10 +43,10 @@ BuildRequires:	gcc-c++ >= 10
 %define _GXX	/usr/bin/g++
 %endif
 %if 0%{?sle_version} == 150200 && 0%{?is_opensuse}
-BuildRequires:	qtbase6.9-static >= 6.9
-BuildRequires:	qttools6.9-static
-BuildRequires:	qttranslations6.9-static
-BuildRequires:	qtsvg6.9-static
+BuildRequires:	qtbase6.11-static >= 6.11
+BuildRequires:	qttools6.11-static
+BuildRequires:	qtsvg6.11-static
+BuildRequires:	qttranslations6.11-static
 %else
 BuildRequires:	cmake(Qt6LinguistTools)
 BuildRequires:	pkgconfig(Qt6Core)
@@ -80,7 +82,7 @@ command line softsynths.
 
 %build
 %if 0%{?sle_version} == 150200 && 0%{?is_opensuse}
-source /opt/qt6.9-static/bin/qt6.9-static-env.sh
+source /opt/qt6.11-static/bin/qt6.11-static-env.sh
 %endif
 CXX=%{_GXX} CC=%{_GCC} \
 cmake -DCMAKE_INSTALL_PREFIX=%{_prefix} -Wno-dev -B build
@@ -120,15 +122,7 @@ cmake --install build
 
 
 %changelog
+* Mon Jun  1 2026 Rui Nuno Capela <rncbc@rncbc.org> 1.0.6
+- A Mid-Spring'26 Release.
 * Mon Mar  2 2026 Rui Nuno Capela <rncbc@rncbc.org> 1.0.5
 - An End-of-Winter'26 Release.
-* Thu Feb 19 2026 Rui Nuno Capela <rncbc@rncbc.org> 1.0.4
-- A Mid-Winter'26 Release.
-* Thu Mar 27 2025 Rui Nuno Capela <rncbc@rncbc.org> 1.0.3
-- An Early Spring'25 Release.
-* Mon Sep 30 2024 Rui Nuno Capela <rncbc@rncbc.org> 1.0.2
-- An Early-Fall'24 Release.
-* Wed Sep 11 2024 Rui Nuno Capela <rncbc@rncbc.org> 1.0.1
-- An End-of-Summer'24 Release.
-* Wed Jun 19 2024 Rui Nuno Capela <rncbc@rncbc.org> 1.0.0
-- An Unthinkable Release.

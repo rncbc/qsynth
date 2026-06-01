@@ -1,4 +1,4 @@
-.TH QSYNTH 1 "June 17, 2014"
+.TH qsynth 1 "Avril 16, 2026"
 .SH NOM
 Qsynth \- une interface graphique en Qt pour fluidsynth
 .SH SYNOPSIS
@@ -23,55 +23,55 @@ spécifications Soundfont.
 .IP
 Ne pas créer de pilote MIDI pour lire les évènements d'entrée MIDI [par défaut = yes]
 .HP
-\fB\-m\fR, \fB\-\-midi\-driver\fR=[\fIétiquette\fR]
+\fB\-m\fR, \fB\-\-midi\-driver\fR <\fIétiquette\fR>
 .IP
-Le nom du pilote midi à utiliser [oss, alsa, alsa_seq, ...]
+Le nom du pilote midi à utiliser [alsa_raw, alsa_seq, jack, ...]
 .HP
-\fB\-K\fR, \fB\-\-midi\-channels\fR=[\fInombre\fR]
+\fB\-K\fR, \fB\-\-midi\-channels\fR <\fInombre\fR>
 .IP
 Le nombre de canaux MIDI [par défaut = 16]
 .HP
-\fB\-a\fR, \fB\-\-audio\-driver\fR=[\fIétiquette\fR]
+\fB\-a\fR, \fB\-\-audio\-driver\fR <\fIétiquette\fR>
 .IP
-Le pilote audio [alsa,jack,oss,dsound,...]
+Le pilote audio [alsa, jack, pipewire, ...]
 .HP
 \fB\-j\fR, \fB\-\-connect\-jack\-outputs\fR
 .IP
 Tente de connecter les sorties JACK aux ports physiques
 .HP
-\fB\-L\fR, \fB\-\-audio\-channels\fR=[\fInombre\fR]
+\fB\-L\fR, \fB\-\-audio\-channels\fR <\fInombre\fR>
 .IP
 Le nombre de canaux audio stéréo [par défaut = 1]
 .HP
-\fB\-G\fR, \fB\-\-audio\-groups\fR=[\fInombre\fR]
+\fB\-G\fR, \fB\-\-audio\-groups\fR <\fInombre\fR>
 .IP
 Le nombre de groupes audio [par défaut = 1]
 .HP
-\fB\-z\fR, \fB\-\-audio\-bufsize\fR=[\fItaille\fR]
+\fB\-z\fR, \fB\-\-audio\-bufsize\fR <\fItaille\fR>
 .IP
 Taille de chaque tampon audio
 .HP
-\fB\-c\fR, \fB\-\-audio\-bufcount\fR=[\fInombre\fR]
+\fB\-c\fR, \fB\-\-audio\-bufcount\fR <\fInombre\fR>
 .IP
 Nombre de tampons audio
 .HP
-\fB\-r\fR, \fB\-\-sample\-rate\fR=[\fItaux\fR]
+\fB\-r\fR, \fB\-\-sample\-rate\fR <\fItaux\fR>
 .IP
 Paramètre le taux d'échantillonnage
 .HP
-\fB\-R\fR, \fB\-\-reverb\fR[=\fIdrapeau\fR]
+\fB\-R\fR, \fB\-\-reverb\fR <\fIdrapeau\fR>
 .IP
 Active ou désactive la réverbération [1|0|yes|no|on|off, par défaut = on]
 .HP
-\fB\-C\fR, \fB\-\-chorus\fR[=\fIétiquette\fR]
+\fB\-C\fR, \fB\-\-chorus\fR <\fIétiquette\fR>
 .IP
 Active ou désactive le chorus [1|0|yes|no|on|off, par défaut = on]
 .HP
-\fB\-g\fR, \fB\-\-gain\fR=[\fIgain\fR]
+\fB\-g\fR, \fB\-\-gain\fR <\fIgain\fR>
 .IP
 Paramètre le gain général [0 < gain < 2, par défaut = 1]
 .HP
-\fB\-o\fR, \fB\-\-option\fR [\fInom\fR=\fIvaleur\fR]
+\fB\-o\fR, \fB\-\-option\fR <\fInom\fR=\fIvaleur\fR>
 .IP
 Définit un paramètre nom=valeur
 .HP
@@ -91,7 +91,7 @@ Décharger les évènements de routage MIDI
 .IP
 Affiche des messages verbeux à propos des évènements MIDI
 .HP
-\fB\-h\fR, \fB\-\-help\fR
+\fB\-?\fR, \fB\-\-help\fR
 .IP
 Affiche de l'aide à propos des options de ligne de commande
 .HP
