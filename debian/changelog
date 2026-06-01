@@ -1,35 +1,11 @@
+qsynth (1.0.6-7.1) unstable; urgency=low
+
+  * A Mid-Spring'26 release.
+
+ -- Rui Nuno Capela <rncbc@rncbc.org>  Mon,  1 Jun 2026 18:00:00 +0100
+
 qsynth (1.0.5-6.1) unstable; urgency=low
 
   * An End-of-Winter'26 release.
 
  -- Rui Nuno Capela <rncbc@rncbc.org>  Mon,  2 Mar 2026 18:00:00 +0000
-
-qsynth (1.0.4-5.1) unstable; urgency=low
-
-  * A Mid-Winter'26 release.
-
- -- Rui Nuno Capela <rncbc@rncbc.org>  Thu, 19 Feb 2026 18:00:00 +0000
-
-qsynth (1.0.3-4.1) unstable; urgency=low
-
-  * An Early Spring'25 release.
-
- -- Rui Nuno Capela <rncbc@rncbc.org>  Thu, 27 Mar 2025 19:00:00 +0100
-
-qsynth (1.0.2-3.1) unstable; urgency=low
-
-  * An Early-Fall'24 release.
-
- -- Rui Nuno Capela <rncbc@rncbc.org>  Mon, 30 Sep 2024 18:00:00 +0100
-
-qsynth (1.0.1-2.1) unstable; urgency=low
-
-  * An End-of-Summer'24 release.
-
- -- Rui Nuno Capela <rncbc@rncbc.org>  Wed, 11 Sep 2024 18:00:00 +0100
-
-qsynth (1.0.0-1.1) unstable; urgency=low
-
-  * An Unthinkable release.
-
- -- Rui Nuno Capela <rncbc@rncbc.org>  Wed, 19 Jun 2024 18:00:00 +0100
