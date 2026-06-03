@@ -74,7 +74,7 @@ set (RESOURCES
   qsynth.qrc
 )
 
-set ( TRANSLATIONS
+set (TRANSLATIONS
   translations/qsynth_cs.ts
   translations/qsynth_de.ts
   translations/qsynth_es.ts
@@ -82,6 +82,7 @@ set ( TRANSLATIONS
   translations/qsynth_ka.ts
   translations/qsynth_ru.ts
   translations/qsynth_sr.ts
+  translations/qsynth_zh_CN.ts
 )
 
 add_custom_target (update_translations
