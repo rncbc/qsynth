@@ -1266,12 +1266,12 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="513"/>
         <source>Vokimon</source>
-        <translation>沃奇蒙</translation>
+        <translation>Vokimon</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="518"/>
         <source>Peppino</source>
-        <translation>佩皮诺</translation>
+        <translation>Peppino</translation>
     </message>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="528"/>
@@ -1422,7 +1422,7 @@ next time you start this application.</source>
     <message>
         <location filename="../qsynthOptionsForm.ui" line="523"/>
         <source>Skulpture</source>
-        <translation>雕塑</translation>
+        <translation>Skulpture</translation>
     </message>
 </context>
 <context>
