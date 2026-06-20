@@ -6,6 +6,9 @@ ChangeLog
 
 GIT HEAD
 
+- Fixed crash when selecting the "Don't ask this again" option
+  on some message-box prompts. (EXPERIMENTAL)
+
 - Added simplified Chinese (zh_CN) translation.
 
 
